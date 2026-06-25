@@ -1,0 +1,17 @@
+{
+  "action_type": "local_file_update",
+  "description": "Update a local development fixture.",
+  "actor": "local-build-agent",
+  "target": "local-workspace",
+  "estimated_cost_gbp": 0,
+  "public_action": false,
+  "external_commitment": false,
+  "money_movement": false,
+  "legal_or_compliance_sensitive": false,
+  "customer_or_user_facing": false,
+  "evidence": [
+    "The change is local and covered by tests."
+  ],
+  "rollback_plan": "Revert the local fixture change.",
+  "human_approval_status": "not_requested"
+}

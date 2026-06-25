@@ -1,0 +1,17 @@
+{
+  "action_type": "public_post",
+  "description": "Publish a project update on a public channel.",
+  "actor": "communications-agent",
+  "target": "public-channel",
+  "estimated_cost_gbp": 0,
+  "public_action": true,
+  "external_commitment": false,
+  "money_movement": false,
+  "legal_or_compliance_sensitive": false,
+  "customer_or_user_facing": true,
+  "evidence": [
+    "Draft content is available for human review."
+  ],
+  "rollback_plan": "Delete the post and issue a correction if approved by a human.",
+  "human_approval_status": "not_requested"
+}

@@ -1,0 +1,17 @@
+{
+  "action_type": "legal_response",
+  "description": "Send a response containing a legal interpretation.",
+  "actor": "support-agent",
+  "target": "external-recipient",
+  "estimated_cost_gbp": 0,
+  "public_action": false,
+  "external_commitment": true,
+  "money_movement": false,
+  "legal_or_compliance_sensitive": true,
+  "customer_or_user_facing": true,
+  "evidence": [
+    "A draft response is ready for qualified human review."
+  ],
+  "rollback_plan": "Do not send the response; replace it with a human-approved version.",
+  "human_approval_status": "not_requested"
+}

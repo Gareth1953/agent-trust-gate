@@ -82,6 +82,20 @@ Example output (IDs and timestamps vary):
 }
 ```
 
+## Local CLI demo
+
+Run the local CLI against one of the example action files:
+
+```sh
+npm run verify -- examples/low-risk-internal.json
+npm run verify -- examples/public-post.json
+npm run verify -- examples/money-movement.json
+npm run verify -- examples/legal-sensitive.json
+```
+
+The CLI reads the local JSON file and prints a formatted verification receipt.
+It does not send data to the internet and does not perform the proposed action.
+
 ## Human approval boundary
 
 Explicit human approval is required for public posting, spending, legal or

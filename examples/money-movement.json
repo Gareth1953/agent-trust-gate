@@ -1,0 +1,17 @@
+{
+  "action_type": "money_transfer",
+  "description": "Transfer funds to an external account.",
+  "actor": "finance-agent",
+  "target": "external-account",
+  "estimated_cost_gbp": 25,
+  "public_action": false,
+  "external_commitment": true,
+  "money_movement": true,
+  "legal_or_compliance_sensitive": false,
+  "customer_or_user_facing": false,
+  "evidence": [
+    "A transfer request exists but has not been approved."
+  ],
+  "rollback_plan": "Do not initiate the transfer without explicit human approval.",
+  "human_approval_status": "not_requested"
+}
