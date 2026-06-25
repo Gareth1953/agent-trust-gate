@@ -1,0 +1,20 @@
+{
+  "name": "agent-trust-gate",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local verify-before-action engine for structured AI agent safety receipts.",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build --silent && node --test dist/test/verify-before-action.test.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.8.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
