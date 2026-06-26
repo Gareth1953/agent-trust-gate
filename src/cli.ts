@@ -15,10 +15,17 @@ import {
 import { auditReceipts, listReceipts } from "./receipt-audit.js";
 import { saveReceiptToArchive } from "./receipt-archive.js";
 import { verifyBeforeAction } from "./verify-before-action.js";
+import {
+  createHumanReviewRecord,
+  formatHumanReviewRecordForConsole,
+  HumanReviewError,
+  saveHumanReviewRecord,
+  withReviewRecordSaveStatus,
+} from "./human-review.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const USAGE =
-  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
+  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
@@ -41,6 +48,19 @@ export function runCli(args: string[]): number {
   if (args.includes("--list-receipts")) {
     console.log(JSON.stringify(listReceipts(), null, 2));
     return 0;
+  }
+
+  if (args.includes("--review-approval-pack")) {
+    if (args.includes("--batch")) {
+      printError(
+        "UNSUPPORTED_REVIEW_MODE",
+        "Batch human review decisions are not supported. Review one approval pack at a time.",
+        jsonMode,
+      );
+      return 1;
+    }
+
+    return runHumanReviewMode(args, jsonMode);
   }
 
   if (args.includes("--batch")) {
@@ -147,6 +167,9 @@ function errorCode(error: unknown): string {
   const message = errorMessage(error);
   if (message.includes("Unknown policy profile")) {
     return "UNKNOWN_POLICY_PROFILE";
+  }
+  if (error instanceof HumanReviewError) {
+    return error.code;
   }
   if (error instanceof ActionValidationError) {
     return "INVALID_ACTION_DESCRIPTOR";
@@ -333,6 +356,171 @@ function runBatchMode(args: string[], jsonMode: boolean, failOnBlock: boolean): 
     printError(batchErrorCode(error), errorMessage(error), jsonMode);
     return 1;
   }
+}
+
+function runHumanReviewMode(args: string[], jsonMode: boolean): number {
+  const parsedArgs = parseHumanReviewArgs(args);
+  if (parsedArgs.error !== undefined) {
+    printError(
+      parsedArgs.errorCode ?? "INVALID_HUMAN_REVIEW",
+      parsedArgs.error,
+      jsonMode,
+      parsedArgs.details,
+    );
+    return 1;
+  }
+
+  try {
+    const reviewRecord = createHumanReviewRecord({
+      approval_pack_path: parsedArgs.approvalPackPath,
+      decision: parsedArgs.decision,
+      reviewer: parsedArgs.reviewer,
+      ...(parsedArgs.reviewNote === undefined ? {} : { review_note: parsedArgs.reviewNote }),
+    });
+    const reviewRecordPath = args.includes("--save-review-record")
+      ? saveHumanReviewRecord(reviewRecord)
+      : undefined;
+
+    if (jsonMode) {
+      console.log(
+        JSON.stringify(withReviewRecordSaveStatus(reviewRecord, reviewRecordPath), null, 2),
+      );
+    } else {
+      console.log(formatHumanReviewRecordForConsole(reviewRecord, reviewRecordPath));
+    }
+
+    return 0;
+  } catch (error) {
+    printError(
+      errorCode(error),
+      errorMessage(error),
+      jsonMode,
+      error instanceof HumanReviewError ? error.details : undefined,
+    );
+    return 1;
+  }
+}
+
+function parseHumanReviewArgs(args: string[]): {
+  approvalPackPath: string;
+  decision: string;
+  reviewer: string;
+  reviewNote?: string;
+  error?: string;
+  errorCode?: string;
+  details?: Array<{ field: string; issue: string }>;
+} {
+  let approvalPackPath: string | undefined;
+  let decision: string | undefined;
+  let reviewer: string | undefined;
+  let reviewNote: string | undefined;
+
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+
+    if (arg === "--json" || arg === "--save-review-record") {
+      continue;
+    }
+
+    if (arg === "--review-approval-pack") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) {
+        return humanReviewArgError("approval_pack_path", "--review-approval-pack is required.");
+      }
+      approvalPackPath = value;
+      index += 1;
+      continue;
+    }
+
+    if (arg === "--decision") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) {
+        return humanReviewArgError("decision", "--decision is required.");
+      }
+      decision = value;
+      index += 1;
+      continue;
+    }
+
+    if (arg === "--reviewer") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) {
+        return humanReviewArgError("reviewer", "--reviewer is required.");
+      }
+      reviewer = value;
+      index += 1;
+      continue;
+    }
+
+    if (arg === "--review-note") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) {
+        return humanReviewArgError("review_note", "--review-note requires a value.");
+      }
+      reviewNote = value;
+      index += 1;
+      continue;
+    }
+
+    if (arg?.startsWith("--")) {
+      return humanReviewArgError("argument", `Unknown option "${arg}".`);
+    }
+
+    return humanReviewArgError("argument", `Unexpected extra argument "${arg}".`);
+  }
+
+  const details: Array<{ field: string; issue: string }> = [];
+  if (approvalPackPath === undefined || approvalPackPath.trim().length === 0) {
+    details.push({
+      field: "approval_pack_path",
+      issue: "--review-approval-pack is required.",
+    });
+  }
+  if (decision === undefined || decision.trim().length === 0) {
+    details.push({ field: "decision", issue: "--decision is required." });
+  }
+  if (reviewer === undefined || reviewer.trim().length === 0) {
+    details.push({ field: "reviewer", issue: "--reviewer is required and must be non-empty." });
+  }
+
+  if (details.length > 0) {
+    return {
+      approvalPackPath: "",
+      decision: "",
+      reviewer: "",
+      error: "Invalid human review input.",
+      errorCode: "INVALID_HUMAN_REVIEW",
+      details,
+    };
+  }
+
+  const validApprovalPackPath = approvalPackPath!;
+  const validDecision = decision!;
+  const validReviewer = reviewer!;
+
+  return reviewNote === undefined
+    ? {
+        approvalPackPath: validApprovalPackPath,
+        decision: validDecision,
+        reviewer: validReviewer,
+      }
+    : {
+        approvalPackPath: validApprovalPackPath,
+        decision: validDecision,
+        reviewer: validReviewer,
+        reviewNote,
+      };
+}
+
+function humanReviewArgError(field: string, issue: string) {
+  return {
+    approvalPackPath: "",
+    decision: "",
+    reviewer: "",
+    error: issue,
+    errorCode: "INVALID_HUMAN_REVIEW",
+    details: [{ field, issue }],
+  };
 }
 
 function parseBatchArgs(args: string[]): {

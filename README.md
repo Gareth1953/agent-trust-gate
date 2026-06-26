@@ -267,6 +267,29 @@ Git by default.
 Approval packets do not execute actions. They do not guarantee legal compliance.
 They help a human reviewer decide whether an AI action should proceed.
 
+### Human Review Decision Record
+
+P3-M011 adds local human review decision records after an approval pack has been
+reviewed. This matters because businesses need evidence of the full oversight
+chain: the AI proposed an action, Agent Trust Gate assessed it, an approval pack
+was created, a human reviewed it, and a separate decision record was saved.
+
+Review records are local append-only evidence files. Creating a review record
+does not mutate or overwrite the original approval pack.
+
+Example commands:
+
+```sh
+npm run verify -- --review-approval-pack approval-packs/example_approval_pack.json --decision approved --reviewer "Gareth Price"
+npm run verify -- --review-approval-pack approval-packs/example_approval_pack.json --decision rejected --reviewer "Gareth Price"
+npm run verify -- --review-approval-pack approval-packs/example_approval_pack.json --decision needs_more_info --reviewer "Gareth Price"
+npm run verify -- --review-approval-pack approval-packs/example_approval_pack.json --decision approved --reviewer "Gareth Price" --json
+npm run verify -- --review-approval-pack approval-packs/example_approval_pack.json --decision approved --reviewer "Gareth Price" --save-review-record
+```
+
+Human review records are local evidence records. They do not execute actions,
+authenticate reviewers, guarantee legality, or prove compliance.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

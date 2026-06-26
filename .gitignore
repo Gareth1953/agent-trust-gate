@@ -7,3 +7,5 @@ coverage/
 !.env.example
 receipts/*.json
 approval-packs/*.json
+!approval-packs/example_approval_pack.json
+approval-reviews/*.json

@@ -1,0 +1,23 @@
+{
+  "contract_version": "atg.v1",
+  "checked_at": "2026-06-26T08:00:00.000Z",
+  "action_type": "public_post",
+  "actor": "example-agent",
+  "target": "example-public-channel",
+  "description": "Example approval pack for a public post demo.",
+  "allowed": false,
+  "risk_level": "high",
+  "human_approval_required": true,
+  "policy_profile": "standard",
+  "regulated_policy": false,
+  "approval_reason": "Public actions require explicit human approval.",
+  "reasons": [
+    "Public actions require explicit human approval."
+  ],
+  "human_review_status": "pending",
+  "human_reviewer": null,
+  "human_reviewed_at": null,
+  "approval_statement": "Human approval is required before this action may proceed.",
+  "safety_statement": "Agent Trust Gate does not execute actions. It returns a local trust decision for human review.",
+  "receipt_id": "atg_example_approval_pack"
+}

@@ -8,6 +8,13 @@ export {
   saveApprovalPackToArchive,
 } from "./approval-pack.js";
 export {
+  createHumanReviewRecord,
+  formatHumanReviewRecordForConsole,
+  REVIEW_RECORD_VERSION,
+  saveHumanReviewRecord,
+  withReviewRecordSaveStatus,
+} from "./human-review.js";
+export {
   CONTRACT_VERSION,
   formatContractForConsole,
   getContractDescription,
@@ -35,6 +42,11 @@ export type {
   BatchReviewSummary,
 } from "./batch-review.js";
 export type { ApprovalPack, HumanReviewStatus } from "./approval-pack.js";
+export type {
+  HumanDecision,
+  HumanReviewRecord,
+  SavedHumanReviewRecord,
+} from "./human-review.js";
 export type {
   PolicyApplication,
   PolicyProfile,
