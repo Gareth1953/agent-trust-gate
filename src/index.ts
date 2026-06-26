@@ -35,6 +35,10 @@ export {
   startGatewayServer,
 } from "./gateway-server.js";
 export {
+  createGatewayAdminSummary,
+  formatGatewayAdminForConsole,
+} from "./gateway-admin.js";
+export {
   appendGatewayRequestLog,
   auditGatewayClientUsage,
   auditGatewayUsage,
@@ -101,6 +105,11 @@ export type {
   PolicyProfile,
   PolicyProfileName,
 } from "./policy-profiles.js";
+export type {
+  GatewayAdminAllowanceStatus,
+  GatewayAdminClientSummary,
+  GatewayAdminSummary,
+} from "./gateway-admin.js";
 export type {
   GatewayRequestListEntry,
   GatewayRequestLogEntry,

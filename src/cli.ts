@@ -40,10 +40,14 @@ import {
   type GatewayRequestListEntry,
   type GatewayUsageSummary,
 } from "./gateway-logging.js";
+import {
+  createGatewayAdminSummary,
+  formatGatewayAdminForConsole,
+} from "./gateway-admin.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const USAGE =
-  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787] [--require-api-key] [--clients-file gateway-clients.json]\n       npm run verify -- --gateway-usage [--json]\n       npm run verify -- --client-usage [--json]\n       npm run verify -- --list-gateway-requests [--limit 20] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
+  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787] [--require-api-key] [--clients-file gateway-clients.json]\n       npm run verify -- --gateway-admin [--clients-file gateway-clients.json] [--json]\n       npm run verify -- --gateway-usage [--json]\n       npm run verify -- --client-usage [--json]\n       npm run verify -- --list-gateway-requests [--limit 20] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
@@ -51,6 +55,10 @@ export function runCli(args: string[]): number {
 
   if (args.includes("--serve")) {
     return runServeMode(args, jsonMode);
+  }
+
+  if (args.includes("--gateway-admin")) {
+    return runGatewayAdminMode(args, jsonMode);
   }
 
   if (args.includes("--gateway-usage")) {
@@ -324,6 +332,20 @@ function runGatewayUsageMode(args: string[], jsonMode: boolean): number {
   return 0;
 }
 
+function runGatewayAdminMode(args: string[], jsonMode: boolean): number {
+  const parsedArgs = parseGatewayAdminArgs(args);
+  if (parsedArgs.error !== undefined) {
+    printError(parsedArgs.errorCode ?? "INVALID_GATEWAY_ADMIN_ARGUMENTS", parsedArgs.error, jsonMode);
+    return 1;
+  }
+
+  const admin = createGatewayAdminSummary(
+    parsedArgs.clientsFile === undefined ? {} : { clientsFile: parsedArgs.clientsFile },
+  );
+  console.log(jsonMode ? JSON.stringify(admin, null, 2) : formatGatewayAdminForConsole(admin));
+  return 0;
+}
+
 function runClientUsageMode(args: string[], jsonMode: boolean): number {
   const conflict = clientUsageConflict(args);
   if (conflict !== undefined) {
@@ -350,6 +372,50 @@ function runListGatewayRequestsMode(args: string[], jsonMode: boolean): number {
   const requests = listGatewayRequests(parsedArgs.limit);
   console.log(jsonMode ? JSON.stringify(requests, null, 2) : formatGatewayRequestListForConsole(requests));
   return 0;
+}
+
+function parseGatewayAdminArgs(args: string[]): {
+  clientsFile?: string;
+  error?: string;
+  errorCode?: string;
+} {
+  let clientsFile: string | undefined;
+
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+
+    if (arg === "--gateway-admin" || arg === "--json") {
+      continue;
+    }
+
+    if (arg === "--clients-file") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) {
+        return {
+          error: "Missing clients file after --clients-file.",
+          errorCode: "MISSING_GATEWAY_CLIENTS_FILE",
+        };
+      }
+
+      clientsFile = value;
+      index += 1;
+      continue;
+    }
+
+    if (arg?.startsWith("--")) {
+      return {
+        error: `--gateway-admin cannot be combined with ${arg}.`,
+        errorCode: "INVALID_GATEWAY_ADMIN_ARGUMENTS",
+      };
+    }
+
+    return {
+      error: "--gateway-admin does not accept an action file argument.",
+      errorCode: "INVALID_GATEWAY_ADMIN_ARGUMENTS",
+    };
+  }
+
+  return clientsFile === undefined ? {} : { clientsFile };
 }
 
 function gatewayUsageConflict(args: string[]): string | undefined {

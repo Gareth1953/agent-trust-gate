@@ -563,6 +563,48 @@ Local decision allowances are local control records only. They do not bill
 customers, process payments, expose a public service, authenticate real-world
 identities, guarantee legality, or prove compliance.
 
+### Local Gateway Admin Summary
+
+P3-M018 adds a local gateway admin summary for human operators. It gives one
+place to inspect gateway health, client usage, local allowances, over-limit
+events, authentication activity, and decision outcomes from local gateway logs.
+
+This matters for infrastructure operation because machine-to-machine products
+need an operator view: who is using the gateway, how many trust decisions were
+requested, which clients are near or over local allowance, and whether the
+gateway is producing useful metering records.
+
+The admin summary reads local gateway logs and, when provided, the local client
+configuration file. It never displays raw API keys. Configured clients are shown
+with `has_api_key_configured: true` or `false` only.
+
+Example commands:
+
+```sh
+npm run verify -- --gateway-admin
+npm run verify -- --gateway-admin --json
+npm run verify -- --gateway-admin --clients-file gateway-clients.json
+npm run verify -- --gateway-admin --clients-file gateway-clients.json --json
+```
+
+The summary includes:
+
+- gateway request totals and malformed log line counts
+- decision, approval pack, evidence bundle, and health request counts
+- allowed, blocked, approval-required, risk, and regulated-policy counts
+- authenticated, unauthenticated, and unauthorized request counts
+- over-limit request counts and usage-limited client counts
+- per-client usage, allowance, remaining decisions, and allowance status
+
+If `gateway-clients.json` is missing, the command does not crash. If gateway
+logs are missing, it returns zero usage and still shows configured clients when
+a clients file is provided.
+
+Local Gateway Admin Summary reads local usage logs and local client
+configuration only. It does not execute actions, bill customers, expose a public
+service, authenticate real-world identities, guarantee legality, or prove
+compliance.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:
