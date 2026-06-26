@@ -126,6 +126,39 @@ of which trust policy was applied before an AI action was allowed or blocked.
 Profiles may tighten, label, or clarify requirements, but they do not weaken the
 base safety rules.
 
+### Machine-readable integration mode
+
+P3-M006 adds machine-readable CLI output for agents, scripts, CI tools, and
+business systems that need a stable local trust decision before an action runs.
+
+Use `--json` to print integration-friendly JSON only:
+
+```sh
+npm run verify -- examples/public-post.json --json
+npm run verify -- examples/public-post.json --policy regulated --json
+npm run verify -- examples/public-post.json --policy regulated --save --json
+npm run verify -- --audit --json
+npm run verify -- --list-receipts --json
+```
+
+Use `--fail-on-block` when a calling script should treat a blocked or not
+allowed action as a failed gate:
+
+```sh
+npm run verify -- examples/public-post.json --json --fail-on-block
+```
+
+Exit codes:
+
+- `0`: command completed; when `--fail-on-block` is used, the action was
+  allowed.
+- `1`: input or configuration error, such as an unreadable file, invalid JSON,
+  or unknown policy profile.
+- `2`: action was not allowed when `--fail-on-block` was used.
+
+Machine-readable mode is for integration with other systems. It does not execute
+actions. It only returns a local trust decision.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

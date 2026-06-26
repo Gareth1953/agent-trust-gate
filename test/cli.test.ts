@@ -171,3 +171,147 @@ test("CLI --save includes the selected policy profile in the saved receipt", asy
     rmSync(tempDirectory, { recursive: true, force: true });
   }
 });
+
+test("CLI --json outputs parseable integration JSON for a normal verification", () => {
+  const result = runCli("examples/public-post.json", "--json");
+
+  assert.equal(result.status, 0);
+  assert.equal(result.stderr, "");
+
+  const output = JSON.parse(result.stdout) as {
+    ok: boolean;
+    allowed: boolean;
+    action_type: string;
+    policy_profile: string;
+    receipt_saved: boolean;
+  };
+  assert.equal(output.ok, true);
+  assert.equal(output.allowed, false);
+  assert.equal(output.action_type, "public_post");
+  assert.equal(output.policy_profile, "standard");
+  assert.equal(output.receipt_saved, false);
+});
+
+test("CLI --json with regulated policy includes policy fields", () => {
+  const result = runCli("examples/public-post.json", "--policy", "regulated", "--json");
+
+  assert.equal(result.status, 0);
+  assert.equal(result.stderr, "");
+
+  const output = JSON.parse(result.stdout) as {
+    policy_profile: string;
+    regulated_policy: boolean;
+  };
+  assert.equal(output.policy_profile, "regulated");
+  assert.equal(output.regulated_policy, true);
+});
+
+test("CLI --json with --save includes receipt save metadata", async () => {
+  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-cli-json-save-`);
+
+  try {
+    const result = spawnSync(
+      process.execPath,
+      [cliPath, lowRiskExamplePath, "--json", "--save"],
+      {
+        cwd: tempDirectory,
+        encoding: "utf8",
+      },
+    );
+
+    assert.equal(result.status, 0);
+    assert.equal(result.stderr, "");
+
+    const output = JSON.parse(result.stdout) as {
+      receipt_saved: boolean;
+      receipt_path: string;
+    };
+    assert.equal(output.receipt_saved, true);
+    assert.match(output.receipt_path, /^receipts[\\/]/);
+
+    const files = await readdir(resolve(tempDirectory, "receipts"));
+    assert.equal(files.length, 1);
+  } finally {
+    rmSync(tempDirectory, { recursive: true, force: true });
+  }
+});
+
+test("CLI --fail-on-block exits 2 for a blocked action", () => {
+  const result = runCli("examples/public-post.json", "--fail-on-block");
+
+  assert.equal(result.status, 2);
+  assert.equal(result.stderr, "");
+  assert.equal((JSON.parse(result.stdout) as { allowed: boolean }).allowed, false);
+});
+
+test("CLI --json --fail-on-block prints parseable JSON before exiting 2", () => {
+  const result = runCli("examples/public-post.json", "--json", "--fail-on-block");
+
+  assert.equal(result.status, 2);
+  assert.equal(result.stderr, "");
+
+  const output = JSON.parse(result.stdout) as {
+    ok: boolean;
+    allowed: boolean;
+    risk_level: string;
+  };
+  assert.equal(output.ok, true);
+  assert.equal(output.allowed, false);
+  assert.equal(output.risk_level, "high");
+});
+
+test("CLI unknown policy with --json prints a JSON error object", () => {
+  const result = runCli("examples/low-risk-internal.json", "--policy", "unknown", "--json");
+
+  assert.equal(result.status, 1);
+  assert.equal(result.stderr, "");
+
+  const output = JSON.parse(result.stdout) as {
+    ok: boolean;
+    error: {
+      code: string;
+      message: string;
+    };
+  };
+  assert.equal(output.ok, false);
+  assert.equal(output.error.code, "UNKNOWN_POLICY_PROFILE");
+  assert.match(output.error.message, /Unknown policy profile "unknown"/);
+});
+
+test("CLI --audit --json outputs parseable JSON", () => {
+  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-cli-audit-json-`);
+
+  try {
+    const result = spawnSync(process.execPath, [cliPath, "--audit", "--json"], {
+      cwd: tempDirectory,
+      encoding: "utf8",
+    });
+
+    assert.equal(result.status, 0);
+    assert.equal(result.stderr, "");
+
+    const output = JSON.parse(result.stdout) as {
+      summary: { total_receipts: number };
+    };
+    assert.equal(output.summary.total_receipts, 0);
+  } finally {
+    rmSync(tempDirectory, { recursive: true, force: true });
+  }
+});
+
+test("CLI --list-receipts --json outputs parseable JSON", () => {
+  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-cli-list-json-`);
+
+  try {
+    const result = spawnSync(process.execPath, [cliPath, "--list-receipts", "--json"], {
+      cwd: tempDirectory,
+      encoding: "utf8",
+    });
+
+    assert.equal(result.status, 0);
+    assert.equal(result.stderr, "");
+    assert.deepEqual(JSON.parse(result.stdout), []);
+  } finally {
+    rmSync(tempDirectory, { recursive: true, force: true });
+  }
+});
