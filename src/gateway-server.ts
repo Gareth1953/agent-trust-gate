@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import { createServer, type IncomingMessage, type Server, type ServerResponse } from "node:http";
 
 import { ActionValidationError } from "./action-validation.js";
@@ -9,6 +10,11 @@ import {
   saveEvidenceBundle,
   withEvidenceBundleSaveStatus,
 } from "./evidence-bundle.js";
+import {
+  appendGatewayRequestLog,
+  DEFAULT_GATEWAY_REQUEST_LOG_PATH,
+  type GatewayRequestLogEntry,
+} from "./gateway-logging.js";
 import { verifyBeforeAction } from "./verify-before-action.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
@@ -20,20 +26,48 @@ export const GATEWAY_SAFETY_STATEMENT =
 export interface GatewayServerOptions {
   host?: string;
   port?: number;
+  gatewayLogPath?: string;
 }
 
 type GatewayBody = Record<string, unknown>;
 
-export function createGatewayServer(): Server {
+interface GatewayRequestContext {
+  request_id: string;
+  started_at: number;
+  timestamp: string;
+  endpoint: string;
+  method: string;
+  gatewayLogPath: string;
+}
+
+type GatewayResponseBody = Record<string, unknown>;
+
+type GatewayLogMetadata = Partial<
+  Pick<
+    GatewayRequestLogEntry,
+    | "policy_profile"
+    | "action_type"
+    | "actor"
+    | "target"
+    | "allowed"
+    | "risk_level"
+    | "human_approval_required"
+    | "regulated_policy"
+    | "error_code"
+  >
+>;
+
+export function createGatewayServer(options: GatewayServerOptions = {}): Server {
+  const gatewayLogPath = options.gatewayLogPath ?? DEFAULT_GATEWAY_REQUEST_LOG_PATH;
   return createServer((request, response) => {
-    void handleGatewayRequest(request, response);
+    void handleGatewayRequest(request, response, gatewayLogPath);
   });
 }
 
 export function startGatewayServer(options: GatewayServerOptions = {}): Server {
   const host = options.host ?? DEFAULT_GATEWAY_HOST;
   const port = options.port ?? DEFAULT_GATEWAY_PORT;
-  const server = createGatewayServer();
+  const server = createGatewayServer(options);
 
   server.listen(port, host, () => {
     console.log(
@@ -49,18 +83,34 @@ export function startGatewayServer(options: GatewayServerOptions = {}): Server {
 async function handleGatewayRequest(
   request: IncomingMessage,
   response: ServerResponse,
+  gatewayLogPath: string,
 ): Promise<void> {
-  try {
-    const url = new URL(request.url ?? "/", `http://${request.headers.host ?? "127.0.0.1"}`);
+  const url = new URL(request.url ?? "/", `http://${request.headers.host ?? "127.0.0.1"}`);
+  const context: GatewayRequestContext = {
+    request_id: `gw_${randomUUID()}`,
+    started_at: Date.now(),
+    timestamp: new Date().toISOString(),
+    endpoint: url.pathname,
+    method: request.method ?? "UNKNOWN",
+    gatewayLogPath,
+  };
 
+  try {
     if (url.pathname === "/v1/health") {
       if (request.method !== "GET") {
-        writeJson(response, 405, errorResponse("METHOD_NOT_ALLOWED", "GET is required for /v1/health."));
+        writeGatewayJson(
+          response,
+          context,
+          405,
+          errorResponse(context.request_id, "METHOD_NOT_ALLOWED", "GET is required for /v1/health."),
+          { error_code: "METHOD_NOT_ALLOWED" },
+        );
         return;
       }
 
-      writeJson(response, 200, {
+      writeGatewayJson(response, context, 200, {
         ok: true,
+        request_id: context.request_id,
         service: "agent-trust-gate",
         contract_version: CONTRACT_VERSION,
         mode: "local-gateway",
@@ -71,20 +121,41 @@ async function handleGatewayRequest(
 
     if (url.pathname === "/v1/decision") {
       if (request.method !== "POST") {
-        writeJson(response, 405, errorResponse("METHOD_NOT_ALLOWED", "POST is required for /v1/decision."));
+        writeGatewayJson(
+          response,
+          context,
+          405,
+          errorResponse(context.request_id, "METHOD_NOT_ALLOWED", "POST is required for /v1/decision."),
+          { error_code: "METHOD_NOT_ALLOWED" },
+        );
         return;
       }
 
       const body = await readJsonBody(request);
       const { action, policyProfile } = parseActionGatewayBody(body, url);
       const receipt = verifyBeforeAction(action as VerifyBeforeActionInput, policyProfile === undefined ? {} : { policy_profile: policyProfile });
-      writeJson(response, 200, toGatewayDecision(receipt));
+      writeGatewayJson(response, context, 200, toGatewayDecision(context.request_id, receipt), {
+        policy_profile: receipt.policy_profile,
+        action_type: receipt.input_summary.action_type,
+        actor: receipt.input_summary.actor,
+        target: receipt.input_summary.target,
+        allowed: receipt.allowed,
+        risk_level: receipt.risk_level,
+        human_approval_required: receipt.human_approval_required,
+        regulated_policy: receipt.regulated_policy,
+      });
       return;
     }
 
     if (url.pathname === "/v1/approval-pack") {
       if (request.method !== "POST") {
-        writeJson(response, 405, errorResponse("METHOD_NOT_ALLOWED", "POST is required for /v1/approval-pack."));
+        writeGatewayJson(
+          response,
+          context,
+          405,
+          errorResponse(context.request_id, "METHOD_NOT_ALLOWED", "POST is required for /v1/approval-pack."),
+          { error_code: "METHOD_NOT_ALLOWED" },
+        );
         return;
       }
 
@@ -95,17 +166,33 @@ async function handleGatewayRequest(
       const approvalPackPath = body.save_approval_pack === true
         ? saveApprovalPackToArchive(approvalPack)
         : undefined;
-      writeJson(response, 200, {
+      writeGatewayJson(response, context, 200, {
         ...approvalPack,
+        request_id: context.request_id,
         approval_pack_saved: approvalPackPath !== undefined,
         ...(approvalPackPath === undefined ? {} : { approval_pack_path: approvalPackPath }),
+      }, {
+        policy_profile: receipt.policy_profile,
+        action_type: receipt.input_summary.action_type,
+        actor: receipt.input_summary.actor,
+        target: receipt.input_summary.target,
+        allowed: receipt.allowed,
+        risk_level: receipt.risk_level,
+        human_approval_required: receipt.human_approval_required,
+        regulated_policy: receipt.regulated_policy,
       });
       return;
     }
 
     if (url.pathname === "/v1/evidence-bundle") {
       if (request.method !== "POST") {
-        writeJson(response, 405, errorResponse("METHOD_NOT_ALLOWED", "POST is required for /v1/evidence-bundle."));
+        writeGatewayJson(
+          response,
+          context,
+          405,
+          errorResponse(context.request_id, "METHOD_NOT_ALLOWED", "POST is required for /v1/evidence-bundle."),
+          { error_code: "METHOD_NOT_ALLOWED" },
+        );
         return;
       }
 
@@ -117,47 +204,92 @@ async function handleGatewayRequest(
       const evidenceBundlePath = body.save_evidence_bundle === true
         ? saveEvidenceBundle(evidenceBundle)
         : undefined;
-      writeJson(response, 200, withEvidenceBundleSaveStatus(evidenceBundle, evidenceBundlePath));
+      writeGatewayJson(response, context, 200, {
+        ...withEvidenceBundleSaveStatus(evidenceBundle, evidenceBundlePath),
+        request_id: context.request_id,
+      }, {
+        policy_profile: evidenceBundle.trust_decision.policy_profile,
+        action_type: evidenceBundle.action.action_type,
+        actor: evidenceBundle.action.actor,
+        target: evidenceBundle.action.target,
+        allowed: evidenceBundle.trust_decision.allowed,
+        risk_level: evidenceBundle.trust_decision.risk_level,
+        human_approval_required: evidenceBundle.trust_decision.human_approval_required,
+        regulated_policy: evidenceBundle.trust_decision.regulated_policy,
+      });
       return;
     }
 
-    writeJson(response, 404, errorResponse("NOT_FOUND", `Unknown route "${url.pathname}".`));
+    writeGatewayJson(
+      response,
+      context,
+      404,
+      errorResponse(context.request_id, "NOT_FOUND", `Unknown route "${url.pathname}".`),
+      { error_code: "NOT_FOUND" },
+    );
   } catch (error) {
     if (error instanceof GatewayInputError) {
-      writeJson(response, 400, errorResponse(error.code, error.message, error.details));
+      writeGatewayJson(
+        response,
+        context,
+        400,
+        errorResponse(context.request_id, error.code, error.message, error.details),
+        { error_code: error.code },
+      );
       return;
     }
 
     if (error instanceof ActionValidationError) {
-      writeJson(
+      writeGatewayJson(
         response,
+        context,
         400,
-        errorResponse("INVALID_ACTION_DESCRIPTOR", error.message, error.details),
+        errorResponse(context.request_id, "INVALID_ACTION_DESCRIPTOR", error.message, error.details),
+        { error_code: "INVALID_ACTION_DESCRIPTOR" },
       );
       return;
     }
 
     if (error instanceof EvidenceBundleError) {
-      writeJson(response, 400, errorResponse(error.code, error.message, error.details));
+      writeGatewayJson(
+        response,
+        context,
+        400,
+        errorResponse(context.request_id, error.code, error.message, error.details),
+        { error_code: error.code },
+      );
       return;
     }
 
     if (errorMessage(error).includes("Unknown policy profile")) {
-      writeJson(response, 400, errorResponse("UNKNOWN_POLICY_PROFILE", errorMessage(error)));
+      writeGatewayJson(
+        response,
+        context,
+        400,
+        errorResponse(context.request_id, "UNKNOWN_POLICY_PROFILE", errorMessage(error)),
+        { error_code: "UNKNOWN_POLICY_PROFILE" },
+      );
       return;
     }
 
-    writeJson(
+    writeGatewayJson(
       response,
+      context,
       500,
-      errorResponse("INTERNAL_GATEWAY_ERROR", "Unexpected local gateway error."),
+      errorResponse(
+        context.request_id,
+        "INTERNAL_GATEWAY_ERROR",
+        "Unexpected local gateway error.",
+      ),
+      { error_code: "INTERNAL_GATEWAY_ERROR" },
     );
   }
 }
 
-function toGatewayDecision(receipt: ReturnType<typeof verifyBeforeAction>) {
+function toGatewayDecision(requestId: string, receipt: ReturnType<typeof verifyBeforeAction>) {
   return {
     ok: true,
+    request_id: requestId,
     contract_version: receipt.contract_version,
     allowed: receipt.allowed,
     risk_level: receipt.risk_level,
@@ -214,16 +346,36 @@ async function readJsonBody(request: IncomingMessage): Promise<GatewayBody> {
   }
 }
 
-function writeJson(response: ServerResponse, statusCode: number, body: unknown): void {
+function writeGatewayJson(
+  response: ServerResponse,
+  context: GatewayRequestContext,
+  statusCode: number,
+  body: GatewayResponseBody,
+  metadata: GatewayLogMetadata = {},
+): void {
+  appendGatewayRequestLog({
+    request_id: context.request_id,
+    timestamp: context.timestamp,
+    endpoint: context.endpoint,
+    method: context.method,
+    ok: statusCode >= 200 && statusCode < 400,
+    status_code: statusCode,
+    contract_version: CONTRACT_VERSION,
+    gateway_mode: "local",
+    duration_ms: Date.now() - context.started_at,
+    ...metadata,
+  }, context.gatewayLogPath);
+
   response.writeHead(statusCode, {
     "content-type": "application/json; charset=utf-8",
   });
   response.end(`${JSON.stringify(body, null, 2)}\n`);
 }
 
-function errorResponse(code: string, message: string, details: unknown[] = []) {
+function errorResponse(requestId: string, code: string, message: string, details: unknown[] = []) {
   return {
     ok: false,
+    request_id: requestId,
     contract_version: CONTRACT_VERSION,
     error: {
       code,

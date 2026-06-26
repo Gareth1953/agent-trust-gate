@@ -34,6 +34,14 @@ export {
   GATEWAY_SAFETY_STATEMENT,
   startGatewayServer,
 } from "./gateway-server.js";
+export {
+  appendGatewayRequestLog,
+  auditGatewayUsage,
+  DEFAULT_GATEWAY_LOGS_DIRECTORY,
+  DEFAULT_GATEWAY_REQUEST_LOG_PATH,
+  emptyGatewayUsageSummary,
+  listGatewayRequests,
+} from "./gateway-logging.js";
 export { ActionValidationError, validateActionDescriptor } from "./action-validation.js";
 export { applyPolicyProfile, resolvePolicyProfile } from "./policy-profiles.js";
 export type {
@@ -79,3 +87,8 @@ export type {
   PolicyProfile,
   PolicyProfileName,
 } from "./policy-profiles.js";
+export type {
+  GatewayRequestListEntry,
+  GatewayRequestLogEntry,
+  GatewayUsageSummary,
+} from "./gateway-logging.js";

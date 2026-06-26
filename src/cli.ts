@@ -31,10 +31,16 @@ import {
   saveHumanReviewRecord,
   withReviewRecordSaveStatus,
 } from "./human-review.js";
+import {
+  auditGatewayUsage,
+  listGatewayRequests,
+  type GatewayRequestListEntry,
+  type GatewayUsageSummary,
+} from "./gateway-logging.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const USAGE =
-  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
+  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787]\n       npm run verify -- --gateway-usage [--json]\n       npm run verify -- --list-gateway-requests [--limit 20] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
@@ -42,6 +48,14 @@ export function runCli(args: string[]): number {
 
   if (args.includes("--serve")) {
     return runServeMode(args, jsonMode);
+  }
+
+  if (args.includes("--gateway-usage")) {
+    return runGatewayUsageMode(args, jsonMode);
+  }
+
+  if (args.includes("--list-gateway-requests")) {
+    return runListGatewayRequestsMode(args, jsonMode);
   }
 
   if (args.includes("--evidence-bundle")) {
@@ -245,6 +259,104 @@ function parseServeArgs(args: string[]): {
   }
 
   return { port };
+}
+
+function runGatewayUsageMode(args: string[], jsonMode: boolean): number {
+  const conflict = gatewayUsageConflict(args);
+  if (conflict !== undefined) {
+    printError("INVALID_GATEWAY_USAGE_ARGUMENTS", conflict, jsonMode);
+    return 1;
+  }
+
+  const usage = auditGatewayUsage();
+  console.log(jsonMode ? JSON.stringify(usage, null, 2) : formatGatewayUsageForConsole(usage));
+  return 0;
+}
+
+function runListGatewayRequestsMode(args: string[], jsonMode: boolean): number {
+  const parsedArgs = parseListGatewayRequestsArgs(args);
+  if (parsedArgs.error !== undefined) {
+    printError(
+      parsedArgs.errorCode ?? "INVALID_GATEWAY_REQUEST_LIST_ARGUMENTS",
+      parsedArgs.error,
+      jsonMode,
+    );
+    return 1;
+  }
+
+  const requests = listGatewayRequests(parsedArgs.limit);
+  console.log(jsonMode ? JSON.stringify(requests, null, 2) : formatGatewayRequestListForConsole(requests));
+  return 0;
+}
+
+function gatewayUsageConflict(args: string[]): string | undefined {
+  for (const arg of args) {
+    if (arg === "--gateway-usage" || arg === "--json") {
+      continue;
+    }
+    if (arg.startsWith("--")) {
+      return `--gateway-usage cannot be combined with ${arg}.`;
+    }
+    return "--gateway-usage does not accept an action file argument.";
+  }
+
+  return undefined;
+}
+
+function parseListGatewayRequestsArgs(args: string[]): {
+  limit: number;
+  error?: string;
+  errorCode?: string;
+} {
+  let limit = 20;
+
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+
+    if (arg === "--list-gateway-requests" || arg === "--json") {
+      continue;
+    }
+
+    if (arg === "--limit") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) {
+        return {
+          limit,
+          error: "Missing limit after --limit.",
+          errorCode: "MISSING_GATEWAY_REQUEST_LIMIT",
+        };
+      }
+
+      const parsedLimit = Number(value);
+      if (!Number.isInteger(parsedLimit) || parsedLimit < 1 || parsedLimit > 1000) {
+        return {
+          limit,
+          error: `Invalid gateway request limit "${value}". Use an integer from 1 to 1000.`,
+          errorCode: "INVALID_GATEWAY_REQUEST_LIMIT",
+        };
+      }
+
+      limit = parsedLimit;
+      index += 1;
+      continue;
+    }
+
+    if (arg?.startsWith("--")) {
+      return {
+        limit,
+        error: `--list-gateway-requests cannot be combined with ${arg}.`,
+        errorCode: "INVALID_GATEWAY_REQUEST_LIST_ARGUMENTS",
+      };
+    }
+
+    return {
+      limit,
+      error: "--list-gateway-requests does not accept an action file argument.",
+      errorCode: "INVALID_GATEWAY_REQUEST_LIST_ARGUMENTS",
+    };
+  }
+
+  return { limit };
 }
 
 function errorMessage(error: unknown): string {
@@ -915,6 +1027,70 @@ function formatBatchForConsole(result: ReturnType<typeof reviewBatch>): string {
     "",
     "Batch review does not execute actions.",
   ].join("\n");
+}
+
+function formatGatewayUsageForConsole(usage: GatewayUsageSummary): string {
+  return [
+    `Gateway usage: ${usage.gateway_logs_path}`,
+    `contract_version: ${CONTRACT_VERSION}`,
+    "",
+    "Summary:",
+    `- total_requests: ${usage.total_requests}`,
+    `- successful_requests: ${usage.successful_requests}`,
+    `- error_requests: ${usage.error_requests}`,
+    `- malformed_log_lines_count: ${usage.malformed_log_lines_count}`,
+    "",
+    "Endpoint counts:",
+    ...formatCounts(usage.endpoint_counts),
+    "",
+    "Decision counts:",
+    `- allowed_count: ${usage.allowed_count}`,
+    `- blocked_count: ${usage.blocked_count}`,
+    `- approval_required_count: ${usage.approval_required_count}`,
+    "",
+    "Risk counts:",
+    `- high_risk_count: ${usage.high_risk_count}`,
+    `- medium_risk_count: ${usage.medium_risk_count}`,
+    `- low_risk_count: ${usage.low_risk_count}`,
+    "",
+    "Policy profile counts:",
+    ...formatCounts(usage.policy_profile_counts),
+    `- regulated_policy_count: ${usage.regulated_policy_count}`,
+    "",
+    "Error counts:",
+    ...formatCounts(usage.error_code_counts),
+    "",
+    `first_request_at: ${usage.first_request_at ?? "none"}`,
+    `last_request_at: ${usage.last_request_at ?? "none"}`,
+    "",
+    "Gateway request logs are local usage records only.",
+  ].join("\n");
+}
+
+function formatGatewayRequestListForConsole(requests: GatewayRequestListEntry[]): string {
+  if (requests.length === 0) {
+    return "No gateway request log entries found.";
+  }
+
+  return [
+    "Gateway request log entries:",
+    ...requests.map((entry) => {
+      if (entry.status === "malformed") {
+        return `- line ${entry.line_number}: malformed (${entry.error})`;
+      }
+
+      return `- ${entry.timestamp} ${entry.method} ${entry.endpoint} request_id=${entry.request_id} ok=${entry.ok} status=${entry.status_code} policy=${entry.policy_profile ?? "none"} action=${entry.action_type ?? "none"} allowed=${entry.allowed ?? "none"} risk=${entry.risk_level ?? "none"} approval_required=${entry.human_approval_required ?? "none"} error=${entry.error_code ?? "none"}`;
+    }),
+  ].join("\n");
+}
+
+function formatCounts(counts: Record<string, number>): string[] {
+  const entries = Object.entries(counts).sort(([left], [right]) => left.localeCompare(right));
+  if (entries.length === 0) {
+    return ["- none: 0"];
+  }
+
+  return entries.map(([key, count]) => `- ${key}: ${count}`);
 }
 
 function batchErrorCode(error: unknown): string {

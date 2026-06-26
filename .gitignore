@@ -11,3 +11,5 @@ approval-packs/*.json
 approval-reviews/*.json
 !approval-reviews/example_review.json
 evidence-bundles/*.json
+gateway-logs/*.jsonl
+gateway-logs/*.json

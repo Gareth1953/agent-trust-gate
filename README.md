@@ -397,6 +397,53 @@ Local Gateway API Mode is for local machine-to-machine integration. It returns
 trust decisions and evidence objects only. It does not execute actions, expose a
 public service, authenticate users, guarantee legality, or prove compliance.
 
+### Gateway Request Logging & Decision Metering
+
+P3-M015 adds local gateway request logging and decision metering. This makes
+Local Gateway API Mode measurable: teams can see how many machine-to-machine
+trust decisions, approval packs, evidence bundles, health checks, and errors
+were requested through the local gateway.
+
+Local metering matters because Agent Trust Gate is infrastructure. Usage records
+are the local foundation for future usage-based pricing, subscription limits,
+billing analytics, and enterprise reporting. This version does not add payments,
+cloud services, public hosting, scraping, external services, or autonomous
+execution.
+
+Gateway requests are logged locally to:
+
+```text
+gateway-logs/gateway-requests.jsonl
+```
+
+Generated gateway logs are ignored by Git. The tracked `gateway-logs/.gitkeep`
+file keeps the local log folder present.
+
+Example commands:
+
+```sh
+npm run verify -- --serve --port 8787
+npm run verify -- --gateway-usage
+npm run verify -- --gateway-usage --json
+npm run verify -- --list-gateway-requests
+npm run verify -- --list-gateway-requests --json
+```
+
+Gateway usage summary includes request counts, endpoint counts, method counts,
+allowed and blocked counts, approval-required counts, risk counts, regulated
+policy counts, policy profile counts, error counts, malformed log line counts,
+and first/last request timestamps.
+
+Recent gateway request listing defaults to the latest 20 entries:
+
+```sh
+npm run verify -- --list-gateway-requests --limit 50
+```
+
+Gateway request logs are local usage records only. They do not execute actions,
+bill customers, expose a public service, authenticate users, guarantee legality,
+or prove compliance.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

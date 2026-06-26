@@ -7,7 +7,7 @@
   "types": "dist/src/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "npm run build --silent && node --test dist/test/verify-before-action.test.js dist/test/cli.test.js dist/test/receipt-audit.test.js dist/test/policy-profiles.test.js dist/test/contract.test.js dist/test/action-validation.test.js dist/test/integration-examples.test.js dist/test/batch-review.test.js dist/test/approval-pack.test.js dist/test/human-review.test.js dist/test/review-audit.test.js dist/test/evidence-bundle.test.js dist/test/gateway-server.test.js",
+    "test": "npm run build --silent && node --test dist/test/verify-before-action.test.js dist/test/cli.test.js dist/test/receipt-audit.test.js dist/test/policy-profiles.test.js dist/test/contract.test.js dist/test/action-validation.test.js dist/test/integration-examples.test.js dist/test/batch-review.test.js dist/test/approval-pack.test.js dist/test/human-review.test.js dist/test/review-audit.test.js dist/test/evidence-bundle.test.js dist/test/gateway-server.test.js dist/test/gateway-logging.test.js",
     "verify": "npm run build --silent && node dist/src/cli.js",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },

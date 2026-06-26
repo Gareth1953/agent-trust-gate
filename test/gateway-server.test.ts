@@ -61,6 +61,7 @@ test("GET /v1/health returns ok JSON", async () => {
     assert.equal(body.ok, true);
     assert.equal(body.service, "agent-trust-gate");
     assert.equal(body.contract_version, "atg.v1");
+    assert.match(String(body.request_id), /^gw_[0-9a-f-]{36}$/);
     assert.equal(body.mode, "local-gateway");
     assert.equal(typeof body.checked_at, "string");
   });
@@ -77,6 +78,7 @@ test("POST /v1/decision returns valid trust decision JSON", async () => {
     assert.equal(response.status, 200);
     assert.equal(body.ok, true);
     assert.equal(body.contract_version, "atg.v1");
+    assert.match(String(body.request_id), /^gw_[0-9a-f-]{36}$/);
     assert.equal(body.allowed, false);
     assert.equal(body.risk_level, "high");
     assert.equal(body.human_approval_required, true);
