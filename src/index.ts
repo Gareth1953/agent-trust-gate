@@ -3,6 +3,11 @@ export { LIMITATIONS } from "./receipt.js";
 export { auditReceipts, listReceipts } from "./receipt-audit.js";
 export { BatchDirectoryError, reviewBatch } from "./batch-review.js";
 export {
+  createApprovalPack,
+  formatApprovalPackForConsole,
+  saveApprovalPackToArchive,
+} from "./approval-pack.js";
+export {
   CONTRACT_VERSION,
   formatContractForConsole,
   getContractDescription,
@@ -29,6 +34,7 @@ export type {
   BatchReviewResult,
   BatchReviewSummary,
 } from "./batch-review.js";
+export type { ApprovalPack, HumanReviewStatus } from "./approval-pack.js";
 export type {
   PolicyApplication,
   PolicyProfile,

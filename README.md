@@ -243,6 +243,30 @@ crashing the review.
 Batch review does not execute actions. It reviews local proposed action
 descriptors and returns trust decisions before anything proceeds.
 
+### Human Approval Pack
+
+P3-M010 adds local approval packet generation for actions that need human
+review. Approval packets matter because they create a simple evidence record of
+what the AI wanted to do, why the action was risky, which policy was applied,
+whether the gate allowed or blocked it, and what a human must review before
+anything proceeds.
+
+Example commands:
+
+```sh
+npm run verify -- examples/public-post.json --approval-pack
+npm run verify -- examples/public-post.json --policy regulated --approval-pack
+npm run verify -- examples/public-post.json --policy regulated --approval-pack --json
+npm run verify -- examples/public-post.json --policy regulated --approval-pack --save-approval-pack
+```
+
+Approval packets are local evidence records. Saved packets are written to
+`approval-packs/`, and generated `approval-packs/*.json` files are ignored by
+Git by default.
+
+Approval packets do not execute actions. They do not guarantee legal compliance.
+They help a human reviewer decide whether an AI action should proceed.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

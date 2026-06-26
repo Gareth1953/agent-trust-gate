@@ -2,6 +2,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 
 import { ActionValidationError } from "./action-validation.js";
+import { createApprovalPack, type ApprovalPack } from "./approval-pack.js";
 import { CONTRACT_VERSION } from "./contract.js";
 import { resolvePolicyProfile } from "./policy-profiles.js";
 import { saveReceiptToArchive } from "./receipt-archive.js";
@@ -11,6 +12,7 @@ import type { RiskLevel } from "./types.js";
 export interface BatchReviewOptions {
   policy_profile?: string;
   save_receipts?: boolean;
+  include_approval_pack?: boolean;
 }
 
 export interface BatchReviewSummary {
@@ -38,6 +40,7 @@ export interface BatchActionResult {
   target?: string;
   policy_profile?: string;
   regulated_policy?: boolean;
+  approval_packet?: ApprovalPack;
   receipt_saved?: boolean;
   receipt_path?: string;
   error?: {
@@ -187,6 +190,10 @@ function reviewBatchFile(
       regulated_policy: receipt.regulated_policy,
       receipt_saved: receiptPath !== undefined,
     };
+
+    if (options.include_approval_pack === true) {
+      result.approval_packet = createApprovalPack(receipt);
+    }
 
     if (receiptPath !== undefined) {
       result.receipt_path = receiptPath;

@@ -6,3 +6,4 @@ coverage/
 .env.*
 !.env.example
 receipts/*.json
+approval-packs/*.json

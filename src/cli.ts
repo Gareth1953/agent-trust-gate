@@ -1,6 +1,11 @@
 import { readFileSync } from "node:fs";
 
 import { ActionValidationError } from "./action-validation.js";
+import {
+  createApprovalPack,
+  formatApprovalPackForConsole,
+  saveApprovalPackToArchive,
+} from "./approval-pack.js";
 import { BatchDirectoryError, reviewBatch } from "./batch-review.js";
 import {
   CONTRACT_VERSION,
@@ -13,7 +18,7 @@ import { verifyBeforeAction } from "./verify-before-action.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const USAGE =
-  "Usage: npm run verify -- <path-to-action.json> [--save] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --batch <directory> [--save] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
+  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
@@ -43,6 +48,8 @@ export function runCli(args: string[]): number {
   }
 
   const saveReceipt = args.includes("--save");
+  const approvalPackRequested = args.includes("--approval-pack");
+  const saveApprovalPack = args.includes("--save-approval-pack");
   const parsedArgs = parseVerificationArgs(args);
   if (parsedArgs.error !== undefined) {
     printError(parsedArgs.errorCode ?? "CLI_ARGUMENT_ERROR", parsedArgs.error, jsonMode);
@@ -91,6 +98,27 @@ export function runCli(args: string[]): number {
       if (!jsonMode) {
         console.error(`Saved receipt to ${receiptPath}`);
       }
+    }
+
+    if (approvalPackRequested) {
+      const approvalPack = createApprovalPack(receipt);
+      const approvalPackPath = saveApprovalPack
+        ? saveApprovalPackToArchive(approvalPack)
+        : undefined;
+
+      if (jsonMode) {
+        console.log(
+          JSON.stringify(
+            toApprovalPackResult(approvalPack, approvalPackPath),
+            null,
+            2,
+          ),
+        );
+      } else {
+        console.log(formatApprovalPackForConsole(approvalPack, approvalPackPath));
+      }
+
+      return failOnBlock && !receipt.allowed ? 2 : 0;
     }
 
     if (jsonMode) {
@@ -226,6 +254,8 @@ function parseVerificationArgs(args: string[]): {
 
     if (
       arg === "--save" ||
+      arg === "--approval-pack" ||
+      arg === "--save-approval-pack" ||
       arg === "--json" ||
       arg === "--fail-on-block" ||
       arg === "--contract"
@@ -289,6 +319,7 @@ function runBatchMode(args: string[], jsonMode: boolean, failOnBlock: boolean): 
         ? {}
         : { policy_profile: parsedArgs.policyProfile }),
       save_receipts: args.includes("--save"),
+      include_approval_pack: args.includes("--approval-pack"),
     });
 
     if (jsonMode) {
@@ -316,7 +347,12 @@ function parseBatchArgs(args: string[]): {
   for (let index = 0; index < args.length; index += 1) {
     const arg = args[index];
 
-    if (arg === "--json" || arg === "--fail-on-block" || arg === "--save") {
+    if (
+      arg === "--json" ||
+      arg === "--fail-on-block" ||
+      arg === "--save" ||
+      arg === "--approval-pack"
+    ) {
       continue;
     }
 
@@ -374,6 +410,25 @@ function parseBatchArgs(args: string[]): {
   return policyProfile === undefined
     ? { batchDirectory }
     : { batchDirectory, policyProfile };
+}
+
+function toApprovalPackResult(
+  approvalPack: ReturnType<typeof createApprovalPack>,
+  approvalPackPath?: string,
+) {
+  const result: ReturnType<typeof createApprovalPack> & {
+    approval_pack_saved: boolean;
+    approval_pack_path?: string;
+  } = {
+    ...approvalPack,
+    approval_pack_saved: approvalPackPath !== undefined,
+  };
+
+  if (approvalPackPath !== undefined) {
+    result.approval_pack_path = approvalPackPath;
+  }
+
+  return result;
 }
 
 function formatBatchForConsole(result: ReturnType<typeof reviewBatch>): string {
