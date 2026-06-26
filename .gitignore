@@ -9,3 +9,5 @@ receipts/*.json
 approval-packs/*.json
 !approval-packs/example_approval_pack.json
 approval-reviews/*.json
+!approval-reviews/example_review.json
+evidence-bundles/*.json

@@ -1,0 +1,20 @@
+{
+  "contract_version": "atg.v1",
+  "review_record_version": "atg.review.v1",
+  "approval_pack_path": "approval-packs/example_approval_pack.json",
+  "approval_pack_hash": "46e0958746b2073b242b216a7950206dcd65f75733925573a2a20675a909f8cb",
+  "reviewed_at": "2026-06-26T09:00:00.000Z",
+  "human_reviewer": "Gareth Price",
+  "human_decision": "approved",
+  "human_review_status": "approved",
+  "review_note": "Example review record for local evidence bundle demos.",
+  "original_action_type": "public_post",
+  "original_actor": "example-agent",
+  "original_target": "example-public-channel",
+  "original_allowed": false,
+  "original_risk_level": "high",
+  "original_human_approval_required": true,
+  "original_policy_profile": "standard",
+  "original_regulated_policy": false,
+  "safety_statement": "Human review records are local evidence records. Agent Trust Gate does not execute actions."
+}

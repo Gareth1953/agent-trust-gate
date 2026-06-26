@@ -16,6 +16,13 @@ export {
 } from "./human-review.js";
 export { auditReviewRecords, listReviewRecords } from "./review-audit.js";
 export {
+  createEvidenceBundle,
+  EVIDENCE_BUNDLE_VERSION,
+  formatEvidenceBundleForConsole,
+  saveEvidenceBundle,
+  withEvidenceBundleSaveStatus,
+} from "./evidence-bundle.js";
+export {
   CONTRACT_VERSION,
   formatContractForConsole,
   getContractDescription,
@@ -55,6 +62,11 @@ export type {
   ReviewListEntry,
   ReviewRecordStatus,
 } from "./review-audit.js";
+export type {
+  EvidenceBundle,
+  EvidenceBundleDetail,
+  SavedEvidenceBundle,
+} from "./evidence-bundle.js";
 export type {
   PolicyApplication,
   PolicyProfile,

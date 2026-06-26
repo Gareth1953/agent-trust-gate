@@ -318,6 +318,36 @@ Approval pack integrity status:
 Review audit mode inspects local evidence records only. It does not execute
 actions, authenticate reviewers, guarantee legality, or prove compliance.
 
+### Evidence Bundle Export
+
+P3-M013 adds local evidence bundle export. Evidence bundles consolidate one
+human review record and its linked approval pack into a single explanation file
+for demos, client review, or internal audit support.
+
+Bundles show the proposed AI action, Agent Trust Gate decision, applied policy
+profile, whether human approval was required, the human review decision, approval
+pack hash integrity, and safety disclaimers.
+
+Example commands:
+
+```sh
+npm run verify -- --evidence-bundle approval-reviews/example_review.json
+npm run verify -- --evidence-bundle approval-reviews/example_review.json --json
+npm run verify -- --evidence-bundle approval-reviews/example_review.json --save-evidence-bundle
+npm run verify -- --evidence-bundle approval-reviews/example_review.json --save-evidence-bundle --json
+```
+
+Approval pack integrity status:
+
+- `match`: the linked approval pack exists and its SHA-256 hash matches the
+  review record.
+- `mismatch`: the linked approval pack exists but its hash differs, or it cannot
+  be parsed as a valid approval pack.
+- `missing`: the linked approval pack path does not exist.
+
+Evidence bundles are local explanation records. They do not execute actions,
+authenticate reviewers, guarantee legality, or prove compliance.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

@@ -12,6 +12,13 @@ import {
   formatContractForConsole,
   getContractDescription,
 } from "./contract.js";
+import {
+  createEvidenceBundle,
+  EvidenceBundleError,
+  formatEvidenceBundleForConsole,
+  saveEvidenceBundle,
+  withEvidenceBundleSaveStatus,
+} from "./evidence-bundle.js";
 import { auditReceipts, listReceipts } from "./receipt-audit.js";
 import { saveReceiptToArchive } from "./receipt-archive.js";
 import { auditReviewRecords, listReviewRecords } from "./review-audit.js";
@@ -26,11 +33,15 @@ import {
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const USAGE =
-  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
+  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
   const failOnBlock = args.includes("--fail-on-block");
+
+  if (args.includes("--evidence-bundle")) {
+    return runEvidenceBundleMode(args, jsonMode);
+  }
 
   if (args.includes("--contract")) {
     if (jsonMode) {
@@ -174,6 +185,9 @@ function errorCode(error: unknown): string {
     return "UNKNOWN_POLICY_PROFILE";
   }
   if (error instanceof HumanReviewError) {
+    return error.code;
+  }
+  if (error instanceof EvidenceBundleError) {
     return error.code;
   }
   if (error instanceof ActionValidationError) {
@@ -434,6 +448,98 @@ function runReviewAuditMode(args: string[], jsonMode: boolean): number {
   const records = listReviewRecords();
   console.log(jsonMode ? JSON.stringify(records, null, 2) : formatReviewListForConsole(records));
   return 0;
+}
+
+function runEvidenceBundleMode(args: string[], jsonMode: boolean): number {
+  const parsedArgs = parseEvidenceBundleArgs(args);
+  if (parsedArgs.error !== undefined) {
+    printError(
+      parsedArgs.errorCode ?? "INVALID_EVIDENCE_BUNDLE_INPUT",
+      parsedArgs.error,
+      jsonMode,
+      parsedArgs.details,
+    );
+    return 1;
+  }
+
+  try {
+    const evidenceBundle = createEvidenceBundle(parsedArgs.reviewRecordPath);
+    const evidenceBundlePath = args.includes("--save-evidence-bundle")
+      ? saveEvidenceBundle(evidenceBundle)
+      : undefined;
+
+    if (jsonMode) {
+      console.log(
+        JSON.stringify(withEvidenceBundleSaveStatus(evidenceBundle, evidenceBundlePath), null, 2),
+      );
+    } else {
+      console.log(formatEvidenceBundleForConsole(evidenceBundle, evidenceBundlePath));
+    }
+
+    return 0;
+  } catch (error) {
+    printError(
+      errorCode(error),
+      errorMessage(error),
+      jsonMode,
+      error instanceof EvidenceBundleError ? error.details : undefined,
+    );
+    return 1;
+  }
+}
+
+function parseEvidenceBundleArgs(args: string[]): {
+  reviewRecordPath: string;
+  error?: string;
+  errorCode?: string;
+  details?: Array<{ field: string; issue: string }>;
+} {
+  let reviewRecordPath: string | undefined;
+
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+
+    if (arg === "--json" || arg === "--save-evidence-bundle") {
+      continue;
+    }
+
+    if (arg === "--evidence-bundle") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) {
+        return evidenceBundleArgError("review_record_path", "--evidence-bundle requires a review record path.");
+      }
+      reviewRecordPath = value;
+      index += 1;
+      continue;
+    }
+
+    if (arg?.startsWith("--")) {
+      return evidenceBundleArgError(
+        "mode",
+        `--evidence-bundle cannot be combined with ${arg}.`,
+      );
+    }
+
+    return evidenceBundleArgError(
+      "argument",
+      "--evidence-bundle does not accept a separate action file argument.",
+    );
+  }
+
+  if (reviewRecordPath === undefined || reviewRecordPath.trim().length === 0) {
+    return evidenceBundleArgError("review_record_path", "--evidence-bundle requires a review record path.");
+  }
+
+  return { reviewRecordPath };
+}
+
+function evidenceBundleArgError(field: string, issue: string) {
+  return {
+    reviewRecordPath: "",
+    error: issue,
+    errorCode: "INVALID_EVIDENCE_BUNDLE_INPUT",
+    details: [{ field, issue }],
+  };
 }
 
 function reviewAuditConflict(args: string[]): string | undefined {
