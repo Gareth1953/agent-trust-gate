@@ -1,6 +1,7 @@
 export { verifyBeforeAction } from "./verify-before-action.js";
 export { LIMITATIONS } from "./receipt.js";
 export { auditReceipts, listReceipts } from "./receipt-audit.js";
+export { BatchDirectoryError, reviewBatch } from "./batch-review.js";
 export {
   CONTRACT_VERSION,
   formatContractForConsole,
@@ -22,6 +23,12 @@ export type {
   ReceiptAuditSummary,
   ReceiptListEntry,
 } from "./receipt-audit.js";
+export type {
+  BatchActionResult,
+  BatchReviewOptions,
+  BatchReviewResult,
+  BatchReviewSummary,
+} from "./batch-review.js";
 export type {
   PolicyApplication,
   PolicyProfile,

@@ -1,18 +1,19 @@
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { readFileSync } from "node:fs";
 
 import { ActionValidationError } from "./action-validation.js";
+import { BatchDirectoryError, reviewBatch } from "./batch-review.js";
 import {
   CONTRACT_VERSION,
   formatContractForConsole,
   getContractDescription,
 } from "./contract.js";
 import { auditReceipts, listReceipts } from "./receipt-audit.js";
+import { saveReceiptToArchive } from "./receipt-archive.js";
 import { verifyBeforeAction } from "./verify-before-action.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const USAGE =
-  "Usage: npm run verify -- <path-to-action.json> [--save] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
+  "Usage: npm run verify -- <path-to-action.json> [--save] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --batch <directory> [--save] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
@@ -35,6 +36,10 @@ export function runCli(args: string[]): number {
   if (args.includes("--list-receipts")) {
     console.log(JSON.stringify(listReceipts(), null, 2));
     return 0;
+  }
+
+  if (args.includes("--batch")) {
+    return runBatchMode(args, jsonMode, failOnBlock);
   }
 
   const saveReceipt = args.includes("--save");
@@ -271,16 +276,145 @@ function parseVerificationArgs(args: string[]): {
   return result;
 }
 
-function saveReceiptToArchive(receipt: ReturnType<typeof verifyBeforeAction>): string {
-  const archiveDirectory = "receipts";
-  mkdirSync(archiveDirectory, { recursive: true });
+function runBatchMode(args: string[], jsonMode: boolean, failOnBlock: boolean): number {
+  const parsedArgs = parseBatchArgs(args);
+  if (parsedArgs.error !== undefined) {
+    printError(parsedArgs.errorCode ?? "CLI_ARGUMENT_ERROR", parsedArgs.error, jsonMode);
+    return 1;
+  }
 
-  const safeTimestamp = receipt.timestamp.replace(/[-:]/g, "").replace(/\.\d{3}Z$/, "Z");
-  const fileName = `${safeTimestamp}_${receipt.receipt_id}.json`;
-  const archivePath = join(archiveDirectory, fileName);
+  try {
+    const result = reviewBatch(parsedArgs.batchDirectory, {
+      ...(parsedArgs.policyProfile === undefined
+        ? {}
+        : { policy_profile: parsedArgs.policyProfile }),
+      save_receipts: args.includes("--save"),
+    });
 
-  writeFileSync(archivePath, `${JSON.stringify(receipt, null, 2)}\n`, "utf8");
-  return archivePath;
+    if (jsonMode) {
+      console.log(JSON.stringify(result, null, 2));
+    } else {
+      console.log(formatBatchForConsole(result));
+    }
+
+    return failOnBlock && result.summary.blocked_count > 0 ? 2 : 0;
+  } catch (error) {
+    printError(batchErrorCode(error), errorMessage(error), jsonMode);
+    return 1;
+  }
+}
+
+function parseBatchArgs(args: string[]): {
+  batchDirectory: string;
+  policyProfile?: string;
+  error?: string;
+  errorCode?: string;
+} {
+  let batchDirectory: string | undefined;
+  let policyProfile: string | undefined;
+
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+
+    if (arg === "--json" || arg === "--fail-on-block" || arg === "--save") {
+      continue;
+    }
+
+    if (arg === "--batch") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) {
+        return {
+          batchDirectory: "",
+          error: "Missing batch directory after --batch.",
+          errorCode: "MISSING_BATCH_DIRECTORY",
+        };
+      }
+      batchDirectory = value;
+      index += 1;
+      continue;
+    }
+
+    if (arg === "--policy") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) {
+        return {
+          batchDirectory: "",
+          error: "Missing policy profile after --policy.",
+          errorCode: "MISSING_POLICY_PROFILE",
+        };
+      }
+      policyProfile = value;
+      index += 1;
+      continue;
+    }
+
+    if (arg?.startsWith("--")) {
+      return {
+        batchDirectory: "",
+        error: `Unknown option "${arg}".`,
+        errorCode: "UNKNOWN_CLI_OPTION",
+      };
+    }
+
+    return {
+      batchDirectory: "",
+      error: `Unexpected extra argument "${arg}".`,
+      errorCode: "UNEXPECTED_ARGUMENT",
+    };
+  }
+
+  if (batchDirectory === undefined) {
+    return {
+      batchDirectory: "",
+      error: "Missing batch directory after --batch.",
+      errorCode: "MISSING_BATCH_DIRECTORY",
+    };
+  }
+
+  return policyProfile === undefined
+    ? { batchDirectory }
+    : { batchDirectory, policyProfile };
+}
+
+function formatBatchForConsole(result: ReturnType<typeof reviewBatch>): string {
+  return [
+    `Batch preflight review: ${result.batch_directory}`,
+    `contract_version: ${result.contract_version}`,
+    "",
+    "Summary:",
+    `- total_files: ${result.summary.total_files}`,
+    `- valid_actions: ${result.summary.valid_actions}`,
+    `- invalid_actions: ${result.summary.invalid_actions}`,
+    `- malformed_json_count: ${result.summary.malformed_json_count}`,
+    `- allowed_count: ${result.summary.allowed_count}`,
+    `- blocked_count: ${result.summary.blocked_count}`,
+    `- approval_required_count: ${result.summary.approval_required_count}`,
+    `- high_risk_count: ${result.summary.high_risk_count}`,
+    `- medium_risk_count: ${result.summary.medium_risk_count}`,
+    `- low_risk_count: ${result.summary.low_risk_count}`,
+    "",
+    "Results:",
+    ...result.results.map((entry) => {
+      if (entry.status === "valid") {
+        return `- ${entry.filename}: ${entry.allowed ? "allowed" : "blocked"} (${entry.risk_level}, policy=${entry.policy_profile})`;
+      }
+
+      return `- ${entry.filename}: ${entry.status} (${entry.error?.code ?? "ERROR"})`;
+    }),
+    "",
+    "Batch review does not execute actions.",
+  ].join("\n");
+}
+
+function batchErrorCode(error: unknown): string {
+  const message = errorMessage(error);
+  if (error instanceof BatchDirectoryError) {
+    return error.code;
+  }
+  if (message.includes("Unknown policy profile")) {
+    return "UNKNOWN_POLICY_PROFILE";
+  }
+  return "BATCH_REVIEW_ERROR";
 }
 
 if (require.main === module) {

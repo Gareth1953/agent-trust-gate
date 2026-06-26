@@ -218,6 +218,31 @@ The starter pack includes:
 Integration examples do not execute actions. They demonstrate how another system
 can ask Agent Trust Gate for a local trust decision before proceeding.
 
+### Batch Preflight Review
+
+P3-M009 adds batch review for local folders of proposed action descriptors. This
+matters for agent workflows because real agents and business systems often
+prepare several actions before doing anything. Batch review lets a supervising
+system or human see which proposed actions are allowed, blocked, invalid, or
+require approval before anything proceeds.
+
+Example commands:
+
+```sh
+npm run verify -- --batch examples/integrations
+npm run verify -- --batch examples/integrations --json
+npm run verify -- --batch examples/integrations --policy regulated --json
+npm run verify -- --batch examples/integrations --json --fail-on-block
+```
+
+Batch mode reads local `.json` files from the selected directory, ignores
+non-JSON files, and returns one summary plus per-action results. Malformed JSON
+and invalid action descriptors are reported in the batch result instead of
+crashing the review.
+
+Batch review does not execute actions. It reviews local proposed action
+descriptors and returns trust decisions before anything proceeds.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:
