@@ -193,6 +193,31 @@ The minimum required action descriptor fields are:
 The contract defines the shape of the local trust decision. It does not
 guarantee safety, truth, legality, or compliance.
 
+### Integration Starter Pack
+
+P3-M008 adds local integration examples for scripts, agents, CI steps, and
+business workflows that need to ask Agent Trust Gate for a pre-action decision.
+
+Example commands:
+
+```sh
+npm run verify -- examples/integrations/sample-public-post.json --json
+npm run verify -- examples/integrations/sample-public-post.json --json --fail-on-block
+node examples/integrations/node-preflight.mjs
+powershell -ExecutionPolicy Bypass -File examples/integrations/powershell-preflight.ps1
+```
+
+The starter pack includes:
+
+- a Node.js preflight example
+- a PowerShell preflight example
+- safe sample action descriptors for public posting, customer-facing messages,
+  and synthetic money movement checks
+- a local integration README under `examples/integrations/`
+
+Integration examples do not execute actions. They demonstrate how another system
+can ask Agent Trust Gate for a local trust decision before proceeding.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

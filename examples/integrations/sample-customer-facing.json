@@ -1,0 +1,17 @@
+{
+  "action_type": "customer_message",
+  "actor": "integration-demo-agent",
+  "target": "demo-customer-message-draft",
+  "description": "Prepare a customer-facing status message for local integration testing.",
+  "estimated_cost_gbp": 0,
+  "public_action": false,
+  "external_commitment": false,
+  "money_movement": false,
+  "legal_or_compliance_sensitive": false,
+  "customer_or_user_facing": true,
+  "evidence": [
+    "Synthetic demo message; no real customer data is included."
+  ],
+  "rollback_plan": "Do not send automatically. Revise or discard the draft if approval is not granted.",
+  "human_approval_status": "requested"
+}

@@ -1,0 +1,17 @@
+{
+  "action_type": "money_movement",
+  "actor": "integration-demo-agent",
+  "target": "demo-payment-recipient",
+  "description": "Check a synthetic money movement action for integration demonstration only.",
+  "estimated_cost_gbp": 25,
+  "public_action": false,
+  "external_commitment": true,
+  "money_movement": true,
+  "legal_or_compliance_sensitive": false,
+  "customer_or_user_facing": false,
+  "evidence": [
+    "Synthetic demo only; no real payment account, recipient, or instruction is included."
+  ],
+  "rollback_plan": "Do not move money. Treat this as a pre-action check only.",
+  "human_approval_status": "not_requested"
+}

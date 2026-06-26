@@ -1,0 +1,17 @@
+{
+  "action_type": "public_post",
+  "actor": "integration-demo-agent",
+  "target": "public-demo-channel",
+  "description": "Draft a public project update for demonstration only.",
+  "estimated_cost_gbp": 0,
+  "public_action": true,
+  "external_commitment": false,
+  "money_movement": false,
+  "legal_or_compliance_sensitive": false,
+  "customer_or_user_facing": true,
+  "evidence": [
+    "Demo content only; no private data or real posting target is included."
+  ],
+  "rollback_plan": "Do not publish automatically. If separately approved and posted, delete or correct the post if Gareth requests it.",
+  "human_approval_status": "not_requested"
+}
