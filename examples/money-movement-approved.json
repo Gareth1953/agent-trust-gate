@@ -1,0 +1,17 @@
+{
+  "action_type": "money_movement",
+  "description": "Demo-only proposed transfer check for a clearly scoped approved action.",
+  "actor": "local-demo-agent",
+  "target": "approved-payment-recipient",
+  "estimated_cost_gbp": 10,
+  "public_action": false,
+  "external_commitment": true,
+  "money_movement": true,
+  "legal_or_compliance_sensitive": false,
+  "customer_or_user_facing": false,
+  "evidence": [
+    "Explicit human approval is recorded for this exact demo action."
+  ],
+  "rollback_plan": "Do not execute automatically; if executed separately, reconcile manually according to the approved process.",
+  "human_approval_status": "approved"
+}

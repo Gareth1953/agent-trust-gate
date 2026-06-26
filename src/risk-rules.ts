@@ -103,20 +103,37 @@ export function evaluateRisk(input: VerifyBeforeActionInput): RiskEvaluation {
   const status = approvalStatus(input);
   const humanApprovalRequired = approvalReasons.length > 0;
 
+  checks.push({
+    check: "human_approval_status",
+    passed: status === "approved" || !humanApprovalRequired,
+    severity: humanApprovalRequired ? "high" : "low",
+    message:
+      status === "approved" && humanApprovalRequired
+        ? "Explicit human approval is recorded; approval-gated checks may proceed only within the exact approved scope."
+        : status === "rejected"
+          ? "Human approval was rejected."
+          : humanApprovalRequired
+            ? `Human approval status is ${status}; explicit approved status is required before proceeding.`
+            : "No human approval is required for this low-risk local action.",
+  });
+
+  if (status === "rejected") {
+    return {
+      risk_level: "blocked",
+      human_approval_required: true,
+      approval_reasons:
+        approvalReasons.length > 0
+          ? [...approvalReasons, "Human approval was rejected."]
+          : ["Human approval was rejected."],
+      checks,
+    };
+  }
+
   if (moneyMovement && status !== "approved") {
     return {
       risk_level: "blocked",
       human_approval_required: true,
       approval_reasons: approvalReasons,
-      checks,
-    };
-  }
-
-  if (status === "denied" && humanApprovalRequired) {
-    return {
-      risk_level: "blocked",
-      human_approval_required: true,
-      approval_reasons: [...approvalReasons, "Human approval was denied."],
       checks,
     };
   }

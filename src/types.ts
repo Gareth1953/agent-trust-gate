@@ -1,6 +1,6 @@
 export type RiskLevel = "low" | "medium" | "high" | "blocked";
 
-export type HumanApprovalStatus = "not_requested" | "pending" | "approved" | "denied";
+export type HumanApprovalStatus = "not_requested" | "requested" | "approved" | "rejected";
 
 export interface VerifyBeforeActionInput {
   action_type: string;

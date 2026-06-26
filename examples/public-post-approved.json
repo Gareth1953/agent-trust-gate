@@ -1,0 +1,17 @@
+{
+  "action_type": "public_post",
+  "description": "Publish a short public update about the local Agent Trust Gate demo.",
+  "actor": "local-demo-agent",
+  "target": "public-channel",
+  "estimated_cost_gbp": 0,
+  "public_action": true,
+  "external_commitment": false,
+  "money_movement": false,
+  "legal_or_compliance_sensitive": false,
+  "customer_or_user_facing": false,
+  "evidence": [
+    "Gareth explicitly approved this exact public post text for demo purposes."
+  ],
+  "rollback_plan": "Delete or correct the post if Gareth requests a change.",
+  "human_approval_status": "approved"
+}

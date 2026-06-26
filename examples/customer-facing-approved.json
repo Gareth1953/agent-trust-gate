@@ -1,0 +1,17 @@
+{
+  "action_type": "customer_message",
+  "description": "Send an approved customer-facing status update.",
+  "actor": "local-demo-agent",
+  "target": "customer-message-draft",
+  "estimated_cost_gbp": 0,
+  "public_action": false,
+  "external_commitment": false,
+  "money_movement": false,
+  "legal_or_compliance_sensitive": false,
+  "customer_or_user_facing": true,
+  "evidence": [
+    "Gareth approved the exact customer-facing message before sending."
+  ],
+  "rollback_plan": "Send a correction or clarification if Gareth requests one.",
+  "human_approval_status": "approved"
+}

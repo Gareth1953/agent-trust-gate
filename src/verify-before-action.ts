@@ -22,4 +22,15 @@ function validateInput(input: VerifyBeforeActionInput): void {
   ) {
     throw new RangeError("estimated_cost_gbp must be a finite, non-negative number.");
   }
+
+  if (
+    input.human_approval_status !== undefined &&
+    !["not_requested", "requested", "approved", "rejected"].includes(
+      input.human_approval_status,
+    )
+  ) {
+    throw new TypeError(
+      "human_approval_status must be one of: not_requested, requested, approved, rejected.",
+    );
+  }
 }

@@ -1,0 +1,17 @@
+{
+  "action_type": "external_commitment",
+  "description": "Offer a delivery commitment to an external party without recorded approval.",
+  "actor": "local-demo-agent",
+  "target": "external-party",
+  "estimated_cost_gbp": 0,
+  "public_action": false,
+  "external_commitment": true,
+  "money_movement": false,
+  "legal_or_compliance_sensitive": false,
+  "customer_or_user_facing": true,
+  "evidence": [
+    "Draft exists but has not been approved."
+  ],
+  "rollback_plan": "Do not send; revise the draft and request approval.",
+  "human_approval_status": "requested"
+}

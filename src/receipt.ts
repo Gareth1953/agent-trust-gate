@@ -54,7 +54,7 @@ export function createReceipt(
       "Proceed only within the exact scope of the recorded human approval and retain this receipt.";
   } else if (allowed) {
     recommendedNextStep = "Proceed locally as described and retain this receipt.";
-  } else if (input.human_approval_status === "denied") {
+  } else if (input.human_approval_status === "rejected") {
     recommendedNextStep = "Do not proceed. Revise or abandon the action.";
   } else {
     recommendedNextStep =

@@ -91,10 +91,47 @@ npm run verify -- examples/low-risk-internal.json
 npm run verify -- examples/public-post.json
 npm run verify -- examples/money-movement.json
 npm run verify -- examples/legal-sensitive.json
+npm run verify -- examples/public-post-approved.json
+npm run verify -- examples/money-movement-approved.json
+npm run verify -- examples/legal-sensitive.json
 ```
 
 The CLI reads the local JSON file and prints a formatted verification receipt.
 It does not send data to the internet and does not perform the proposed action.
+
+### Approval-status examples
+
+Use `human_approval_status` to make the approval boundary explicit:
+
+- `not_requested`: no approval has been requested.
+- `requested`: approval has been requested but not granted.
+- `approved`: explicit human approval exists for the exact described action.
+- `rejected`: approval was rejected, so the action is blocked.
+
+Approved high-risk examples can be run locally:
+
+```sh
+npm run verify -- examples/public-post-approved.json
+npm run verify -- examples/money-movement-approved.json
+npm run verify -- examples/customer-facing-approved.json
+npm run verify -- examples/high-risk-not-approved.json
+```
+
+Money movement remains high risk. Without `human_approval_status: "approved"`,
+it is blocked. With explicit approval, the receipt can allow it only within the
+exact approved scope and still records the high-risk status.
+
+### Local receipt archive
+
+Add `--save` to write the generated receipt into the local `receipts/` folder:
+
+```sh
+npm run verify -- examples/public-post.json --save
+```
+
+Saved receipts are local only. They are not uploaded, published, transmitted, or
+used to perform the proposed action. Receipt JSON files are ignored by Git by
+default; `receipts/.gitkeep` keeps the archive folder present in the project.
 
 ## Human approval boundary
 
@@ -105,6 +142,8 @@ capital movement, payment or money movement, and other high-risk actions.
 Money movement is blocked unless `human_approval_status` is explicitly
 `"approved"`. Approval applies only to the exact action described in the input;
 the receipt does not grant broader authority.
+
+If `human_approval_status` is `"rejected"`, the action is blocked.
 
 Low-risk local or internal actions can be allowed when they have no cost, are
 not public or externally binding, do not move money, are not legal,

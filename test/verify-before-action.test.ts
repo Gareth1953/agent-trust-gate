@@ -40,12 +40,48 @@ test("requires approval for a public post", () => {
   assert.equal(receipt.human_approval_required, true);
 });
 
+test("allows an approved public action while keeping it high risk", () => {
+  const receipt = verifyBeforeAction(
+    baseInput({ public_action: true, human_approval_status: "approved" }),
+  );
+
+  assert.equal(receipt.allowed, true);
+  assert.equal(receipt.risk_level, "high");
+  assert.equal(receipt.human_approval_required, true);
+  assert.match(receipt.recommended_next_step, /exact scope/i);
+});
+
+test("rejected approval status blocks the action", () => {
+  const receipt = verifyBeforeAction(
+    baseInput({ public_action: true, human_approval_status: "rejected" }),
+  );
+
+  assert.equal(receipt.allowed, false);
+  assert.equal(receipt.risk_level, "blocked");
+  assert.equal(receipt.human_approval_required, true);
+  assert.match(receipt.approval_reason ?? "", /rejected/i);
+});
+
 test("blocks money movement without explicit approval", () => {
   const receipt = verifyBeforeAction(baseInput({ money_movement: true }));
 
   assert.equal(receipt.allowed, false);
   assert.equal(receipt.risk_level, "blocked");
   assert.equal(receipt.human_approval_required, true);
+});
+
+test("allows approved money movement while keeping it high risk", () => {
+  const receipt = verifyBeforeAction(
+    baseInput({ money_movement: true, human_approval_status: "approved" }),
+  );
+
+  assert.equal(receipt.allowed, true);
+  assert.equal(receipt.risk_level, "high");
+  assert.equal(receipt.human_approval_required, true);
+  assert.match(
+    receipt.checks.find((check) => check.check === "human_approval_status")?.message ?? "",
+    /explicit human approval is recorded/i,
+  );
 });
 
 test("requires approval for a legal or compliance-sensitive action", () => {
