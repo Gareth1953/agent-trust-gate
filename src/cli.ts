@@ -22,6 +22,7 @@ import {
 import { auditReceipts, listReceipts } from "./receipt-audit.js";
 import { saveReceiptToArchive } from "./receipt-archive.js";
 import { auditReviewRecords, listReviewRecords } from "./review-audit.js";
+import { DEFAULT_GATEWAY_PORT, startGatewayServer } from "./gateway-server.js";
 import { verifyBeforeAction } from "./verify-before-action.js";
 import {
   createHumanReviewRecord,
@@ -33,11 +34,15 @@ import {
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const USAGE =
-  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
+  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
   const failOnBlock = args.includes("--fail-on-block");
+
+  if (args.includes("--serve")) {
+    return runServeMode(args, jsonMode);
+  }
 
   if (args.includes("--evidence-bundle")) {
     return runEvidenceBundleMode(args, jsonMode);
@@ -173,6 +178,73 @@ export function runCli(args: string[]): number {
     );
     return 1;
   }
+}
+
+function runServeMode(args: string[], jsonMode: boolean): number {
+  const parsedArgs = parseServeArgs(args);
+  if (parsedArgs.error !== undefined) {
+    printError(parsedArgs.errorCode ?? "INVALID_GATEWAY_ARGUMENTS", parsedArgs.error, jsonMode);
+    return 1;
+  }
+
+  startGatewayServer({ port: parsedArgs.port });
+  return 0;
+}
+
+function parseServeArgs(args: string[]): {
+  port: number;
+  error?: string;
+  errorCode?: string;
+} {
+  let port = DEFAULT_GATEWAY_PORT;
+
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+
+    if (arg === "--serve" || arg === "--json") {
+      continue;
+    }
+
+    if (arg === "--port") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) {
+        return {
+          port,
+          error: "Missing port after --port.",
+          errorCode: "MISSING_GATEWAY_PORT",
+        };
+      }
+
+      const parsedPort = Number(value);
+      if (!Number.isInteger(parsedPort) || parsedPort < 1 || parsedPort > 65535) {
+        return {
+          port,
+          error: `Invalid gateway port "${value}". Use an integer from 1 to 65535.`,
+          errorCode: "INVALID_GATEWAY_PORT",
+        };
+      }
+
+      port = parsedPort;
+      index += 1;
+      continue;
+    }
+
+    if (arg?.startsWith("--")) {
+      return {
+        port,
+        error: `--serve cannot be combined with ${arg}.`,
+        errorCode: "INVALID_GATEWAY_ARGUMENTS",
+      };
+    }
+
+    return {
+      port,
+      error: "--serve does not accept an action file argument.",
+      errorCode: "INVALID_GATEWAY_ARGUMENTS",
+    };
+  }
+
+  return { port };
 }
 
 function errorMessage(error: unknown): string {

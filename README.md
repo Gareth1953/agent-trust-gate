@@ -348,6 +348,55 @@ Approval pack integrity status:
 Evidence bundles are local explanation records. They do not execute actions,
 authenticate reviewers, guarantee legality, or prove compliance.
 
+### Local Gateway API Mode
+
+P3-M014 adds Local Gateway API Mode so agents, scripts, CI steps, and local
+business workflows can call Agent Trust Gate as machine-to-machine
+infrastructure before taking high-impact actions.
+
+This mode starts a local HTTP API bound to `127.0.0.1` by default. It is for
+local development and local integration only, not production internet hosting.
+Do not expose it publicly. API keys, authentication, and stronger deployment
+hardening are future work.
+
+Example commands:
+
+```sh
+npm run verify -- --serve
+npm run verify -- --serve --port 8787
+```
+
+Example endpoints:
+
+```text
+GET  http://127.0.0.1:8787/v1/health
+POST http://127.0.0.1:8787/v1/decision
+POST http://127.0.0.1:8787/v1/approval-pack
+POST http://127.0.0.1:8787/v1/evidence-bundle
+```
+
+Example decision request:
+
+```json
+{
+  "policy_profile": "regulated",
+  "action": {
+    "action_type": "public_post",
+    "description": "Publish a project update on a public channel.",
+    "actor": "communications-agent",
+    "target": "public-channel",
+    "public_action": true,
+    "customer_or_user_facing": true,
+    "rollback_plan": "Delete the post and issue a correction if needed.",
+    "human_approval_status": "not_requested"
+  }
+}
+```
+
+Local Gateway API Mode is for local machine-to-machine integration. It returns
+trust decisions and evidence objects only. It does not execute actions, expose a
+public service, authenticate users, guarantee legality, or prove compliance.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:
@@ -442,7 +491,6 @@ input is complete and truthful.
 
 ## Future machine-to-machine direction
 
-Future versions may expose the same receipt model through a machine-to-machine
-interface so agents, bots, apps, and automated systems can request a check before
-acting. Payment handling and x402 integration are intentionally excluded from
-this version.
+Future versions may harden Local Gateway API Mode with authentication, API keys,
+policy administration, and deployment guidance. Payment handling and x402
+integration are intentionally excluded from this version.

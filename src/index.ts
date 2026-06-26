@@ -27,6 +27,13 @@ export {
   formatContractForConsole,
   getContractDescription,
 } from "./contract.js";
+export {
+  createGatewayServer,
+  DEFAULT_GATEWAY_HOST,
+  DEFAULT_GATEWAY_PORT,
+  GATEWAY_SAFETY_STATEMENT,
+  startGatewayServer,
+} from "./gateway-server.js";
 export { ActionValidationError, validateActionDescriptor } from "./action-validation.js";
 export { applyPolicyProfile, resolvePolicyProfile } from "./policy-profiles.js";
 export type {
