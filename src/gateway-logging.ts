@@ -19,6 +19,9 @@ export interface GatewayRequestLogEntry {
   contract_version: string;
   gateway_mode: "local";
   duration_ms: number;
+  client_id?: string;
+  auth_required?: boolean;
+  auth_ok?: boolean | null;
   policy_profile?: string;
   action_type?: string;
   actor?: string;
@@ -49,6 +52,10 @@ export interface GatewayUsageSummary {
   medium_risk_count: number;
   low_risk_count: number;
   regulated_policy_count: number;
+  client_id_counts: Record<string, number>;
+  authenticated_requests: number;
+  unauthenticated_requests: number;
+  unauthorized_requests: number;
   policy_profile_counts: Record<string, number>;
   error_code_counts: Record<string, number>;
   first_request_at: string | null;
@@ -67,6 +74,9 @@ export type GatewayRequestListEntry =
       | "gateway_mode"
     > & {
       status: "valid";
+      client_id: string;
+      auth_required: boolean;
+      auth_ok: boolean | null;
       policy_profile?: string;
       action_type?: string;
       allowed?: boolean;
@@ -103,14 +113,28 @@ export function auditGatewayUsage(logPath = DEFAULT_GATEWAY_REQUEST_LOG_PATH): G
     }
 
     const entry = parsed.entry;
+    const clientId = entry.client_id ?? "local-anonymous";
+    const authRequired = entry.auth_required ?? false;
+    const authOk = entry.auth_ok ?? null;
     summary.total_requests += 1;
     increment(summary.endpoint_counts, entry.endpoint);
     increment(summary.method_counts, entry.method);
+    increment(summary.client_id_counts, clientId);
 
     if (entry.ok) {
       summary.successful_requests += 1;
     } else {
       summary.error_requests += 1;
+    }
+
+    if (authOk === true) {
+      summary.authenticated_requests += 1;
+    }
+    if (!authRequired) {
+      summary.unauthenticated_requests += 1;
+    }
+    if (authOk === false || entry.error_code === "UNAUTHORIZED_GATEWAY_REQUEST") {
+      summary.unauthorized_requests += 1;
     }
 
     if (entry.endpoint === "/v1/decision") {
@@ -191,6 +215,9 @@ export function listGatewayRequests(
       ok: entry.ok,
       status_code: entry.status_code,
       gateway_mode: entry.gateway_mode,
+      client_id: entry.client_id ?? "local-anonymous",
+      auth_required: entry.auth_required ?? false,
+      auth_ok: entry.auth_ok ?? null,
       ...(entry.policy_profile === undefined ? {} : { policy_profile: entry.policy_profile }),
       ...(entry.action_type === undefined ? {} : { action_type: entry.action_type }),
       ...(entry.allowed === undefined ? {} : { allowed: entry.allowed }),
@@ -223,6 +250,10 @@ export function emptyGatewayUsageSummary(logPath = DEFAULT_GATEWAY_REQUEST_LOG_P
     medium_risk_count: 0,
     low_risk_count: 0,
     regulated_policy_count: 0,
+    client_id_counts: {},
+    authenticated_requests: 0,
+    unauthenticated_requests: 0,
+    unauthorized_requests: 0,
     policy_profile_counts: {},
     error_code_counts: {},
     first_request_at: null,

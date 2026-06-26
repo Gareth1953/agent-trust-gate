@@ -15,6 +15,12 @@ import {
   DEFAULT_GATEWAY_REQUEST_LOG_PATH,
   type GatewayRequestLogEntry,
 } from "./gateway-logging.js";
+import {
+  authenticateGatewayRequest,
+  loadGatewayAuthConfig,
+  type GatewayAuthConfig,
+  type GatewayClient,
+} from "./gateway-auth.js";
 import { verifyBeforeAction } from "./verify-before-action.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
@@ -27,6 +33,9 @@ export interface GatewayServerOptions {
   host?: string;
   port?: number;
   gatewayLogPath?: string;
+  requireApiKey?: boolean;
+  clientsFile?: string;
+  clients?: GatewayClient[];
 }
 
 type GatewayBody = Record<string, unknown>;
@@ -38,6 +47,9 @@ interface GatewayRequestContext {
   endpoint: string;
   method: string;
   gatewayLogPath: string;
+  client_id: string;
+  auth_required: boolean;
+  auth_ok: boolean | null;
 }
 
 type GatewayResponseBody = Record<string, unknown>;
@@ -54,13 +66,21 @@ type GatewayLogMetadata = Partial<
     | "human_approval_required"
     | "regulated_policy"
     | "error_code"
+    | "client_id"
+    | "auth_required"
+    | "auth_ok"
   >
 >;
 
 export function createGatewayServer(options: GatewayServerOptions = {}): Server {
   const gatewayLogPath = options.gatewayLogPath ?? DEFAULT_GATEWAY_REQUEST_LOG_PATH;
+  const authConfig = loadGatewayAuthConfig({
+    ...(options.requireApiKey === undefined ? {} : { requireApiKey: options.requireApiKey }),
+    ...(options.clientsFile === undefined ? {} : { clientsFile: options.clientsFile }),
+    ...(options.clients === undefined ? {} : { clients: options.clients }),
+  });
   return createServer((request, response) => {
-    void handleGatewayRequest(request, response, gatewayLogPath);
+    void handleGatewayRequest(request, response, gatewayLogPath, authConfig);
   });
 }
 
@@ -84,8 +104,16 @@ async function handleGatewayRequest(
   request: IncomingMessage,
   response: ServerResponse,
   gatewayLogPath: string,
+  authConfig: GatewayAuthConfig,
 ): Promise<void> {
   const url = new URL(request.url ?? "/", `http://${request.headers.host ?? "127.0.0.1"}`);
+  const protectedEndpoint = isProtectedGatewayEndpoint(url.pathname, request.method);
+  const authResult = authenticateGatewayRequest({
+    protectedEndpoint,
+    ...optionalHeader("clientIdHeader", headerValue(request, "x-atg-client-id")),
+    ...optionalHeader("apiKeyHeader", headerValue(request, "x-atg-api-key")),
+    authConfig,
+  });
   const context: GatewayRequestContext = {
     request_id: `gw_${randomUUID()}`,
     started_at: Date.now(),
@@ -93,16 +121,35 @@ async function handleGatewayRequest(
     endpoint: url.pathname,
     method: request.method ?? "UNKNOWN",
     gatewayLogPath,
+    client_id: authResult.client_id,
+    auth_required: authResult.auth_required,
+    auth_ok: authResult.auth_ok,
   };
 
   try {
+    if (authResult.error_code !== undefined) {
+      writeGatewayJson(
+        response,
+        context,
+        401,
+        errorResponse(
+          context.request_id,
+          context.client_id,
+          authResult.error_code,
+          authResult.error_message ?? "Unauthorized local gateway request.",
+        ),
+        { error_code: authResult.error_code },
+      );
+      return;
+    }
+
     if (url.pathname === "/v1/health") {
       if (request.method !== "GET") {
         writeGatewayJson(
           response,
           context,
           405,
-          errorResponse(context.request_id, "METHOD_NOT_ALLOWED", "GET is required for /v1/health."),
+          errorResponse(context.request_id, context.client_id, "METHOD_NOT_ALLOWED", "GET is required for /v1/health."),
           { error_code: "METHOD_NOT_ALLOWED" },
         );
         return;
@@ -111,9 +158,11 @@ async function handleGatewayRequest(
       writeGatewayJson(response, context, 200, {
         ok: true,
         request_id: context.request_id,
+        client_id: context.client_id,
         service: "agent-trust-gate",
         contract_version: CONTRACT_VERSION,
         mode: "local-gateway",
+        api_key_required: authConfig.require_api_key,
         checked_at: new Date().toISOString(),
       });
       return;
@@ -125,7 +174,7 @@ async function handleGatewayRequest(
           response,
           context,
           405,
-          errorResponse(context.request_id, "METHOD_NOT_ALLOWED", "POST is required for /v1/decision."),
+          errorResponse(context.request_id, context.client_id, "METHOD_NOT_ALLOWED", "POST is required for /v1/decision."),
           { error_code: "METHOD_NOT_ALLOWED" },
         );
         return;
@@ -134,7 +183,7 @@ async function handleGatewayRequest(
       const body = await readJsonBody(request);
       const { action, policyProfile } = parseActionGatewayBody(body, url);
       const receipt = verifyBeforeAction(action as VerifyBeforeActionInput, policyProfile === undefined ? {} : { policy_profile: policyProfile });
-      writeGatewayJson(response, context, 200, toGatewayDecision(context.request_id, receipt), {
+      writeGatewayJson(response, context, 200, toGatewayDecision(context.request_id, context.client_id, receipt), {
         policy_profile: receipt.policy_profile,
         action_type: receipt.input_summary.action_type,
         actor: receipt.input_summary.actor,
@@ -153,7 +202,7 @@ async function handleGatewayRequest(
           response,
           context,
           405,
-          errorResponse(context.request_id, "METHOD_NOT_ALLOWED", "POST is required for /v1/approval-pack."),
+          errorResponse(context.request_id, context.client_id, "METHOD_NOT_ALLOWED", "POST is required for /v1/approval-pack."),
           { error_code: "METHOD_NOT_ALLOWED" },
         );
         return;
@@ -169,6 +218,7 @@ async function handleGatewayRequest(
       writeGatewayJson(response, context, 200, {
         ...approvalPack,
         request_id: context.request_id,
+        client_id: context.client_id,
         approval_pack_saved: approvalPackPath !== undefined,
         ...(approvalPackPath === undefined ? {} : { approval_pack_path: approvalPackPath }),
       }, {
@@ -190,7 +240,7 @@ async function handleGatewayRequest(
           response,
           context,
           405,
-          errorResponse(context.request_id, "METHOD_NOT_ALLOWED", "POST is required for /v1/evidence-bundle."),
+          errorResponse(context.request_id, context.client_id, "METHOD_NOT_ALLOWED", "POST is required for /v1/evidence-bundle."),
           { error_code: "METHOD_NOT_ALLOWED" },
         );
         return;
@@ -207,6 +257,7 @@ async function handleGatewayRequest(
       writeGatewayJson(response, context, 200, {
         ...withEvidenceBundleSaveStatus(evidenceBundle, evidenceBundlePath),
         request_id: context.request_id,
+        client_id: context.client_id,
       }, {
         policy_profile: evidenceBundle.trust_decision.policy_profile,
         action_type: evidenceBundle.action.action_type,
@@ -224,7 +275,7 @@ async function handleGatewayRequest(
       response,
       context,
       404,
-      errorResponse(context.request_id, "NOT_FOUND", `Unknown route "${url.pathname}".`),
+      errorResponse(context.request_id, context.client_id, "NOT_FOUND", `Unknown route "${url.pathname}".`),
       { error_code: "NOT_FOUND" },
     );
   } catch (error) {
@@ -233,7 +284,7 @@ async function handleGatewayRequest(
         response,
         context,
         400,
-        errorResponse(context.request_id, error.code, error.message, error.details),
+        errorResponse(context.request_id, context.client_id, error.code, error.message, error.details),
         { error_code: error.code },
       );
       return;
@@ -244,7 +295,7 @@ async function handleGatewayRequest(
         response,
         context,
         400,
-        errorResponse(context.request_id, "INVALID_ACTION_DESCRIPTOR", error.message, error.details),
+        errorResponse(context.request_id, context.client_id, "INVALID_ACTION_DESCRIPTOR", error.message, error.details),
         { error_code: "INVALID_ACTION_DESCRIPTOR" },
       );
       return;
@@ -255,7 +306,7 @@ async function handleGatewayRequest(
         response,
         context,
         400,
-        errorResponse(context.request_id, error.code, error.message, error.details),
+        errorResponse(context.request_id, context.client_id, error.code, error.message, error.details),
         { error_code: error.code },
       );
       return;
@@ -266,7 +317,7 @@ async function handleGatewayRequest(
         response,
         context,
         400,
-        errorResponse(context.request_id, "UNKNOWN_POLICY_PROFILE", errorMessage(error)),
+        errorResponse(context.request_id, context.client_id, "UNKNOWN_POLICY_PROFILE", errorMessage(error)),
         { error_code: "UNKNOWN_POLICY_PROFILE" },
       );
       return;
@@ -278,6 +329,7 @@ async function handleGatewayRequest(
       500,
       errorResponse(
         context.request_id,
+        context.client_id,
         "INTERNAL_GATEWAY_ERROR",
         "Unexpected local gateway error.",
       ),
@@ -286,10 +338,15 @@ async function handleGatewayRequest(
   }
 }
 
-function toGatewayDecision(requestId: string, receipt: ReturnType<typeof verifyBeforeAction>) {
+function toGatewayDecision(
+  requestId: string,
+  clientId: string,
+  receipt: ReturnType<typeof verifyBeforeAction>,
+) {
   return {
     ok: true,
     request_id: requestId,
+    client_id: clientId,
     contract_version: receipt.contract_version,
     allowed: receipt.allowed,
     risk_level: receipt.risk_level,
@@ -363,6 +420,9 @@ function writeGatewayJson(
     contract_version: CONTRACT_VERSION,
     gateway_mode: "local",
     duration_ms: Date.now() - context.started_at,
+    client_id: context.client_id,
+    auth_required: context.auth_required,
+    auth_ok: context.auth_ok,
     ...metadata,
   }, context.gatewayLogPath);
 
@@ -372,10 +432,17 @@ function writeGatewayJson(
   response.end(`${JSON.stringify(body, null, 2)}\n`);
 }
 
-function errorResponse(requestId: string, code: string, message: string, details: unknown[] = []) {
+function errorResponse(
+  requestId: string,
+  clientId: string,
+  code: string,
+  message: string,
+  details: unknown[] = [],
+) {
   return {
     ok: false,
     request_id: requestId,
+    client_id: clientId,
     contract_version: CONTRACT_VERSION,
     error: {
       code,
@@ -383,6 +450,32 @@ function errorResponse(requestId: string, code: string, message: string, details
       details,
     },
   };
+}
+
+function isProtectedGatewayEndpoint(pathname: string, method: string | undefined): boolean {
+  return (
+    method === "POST" &&
+    (
+      pathname === "/v1/decision" ||
+      pathname === "/v1/approval-pack" ||
+      pathname === "/v1/evidence-bundle"
+    )
+  );
+}
+
+function headerValue(request: IncomingMessage, headerName: string): string | undefined {
+  const value = request.headers[headerName];
+  if (Array.isArray(value)) {
+    return value[0];
+  }
+  return value;
+}
+
+function optionalHeader(
+  key: "clientIdHeader" | "apiKeyHeader",
+  value: string | undefined,
+): { clientIdHeader?: string; apiKeyHeader?: string } {
+  return value === undefined ? {} : { [key]: value };
 }
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {

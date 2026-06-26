@@ -1,0 +1,172 @@
+import { existsSync, readFileSync } from "node:fs";
+
+export const DEFAULT_GATEWAY_CLIENT_ID = "local-anonymous";
+export const DEFAULT_GATEWAY_CLIENTS_FILE = "gateway-clients.json";
+
+export interface GatewayClient {
+  client_id: string;
+  api_key: string;
+  label?: string;
+}
+
+export interface GatewayAuthConfig {
+  require_api_key: boolean;
+  clients: GatewayClient[];
+}
+
+export interface GatewayAuthResult {
+  client_id: string;
+  auth_required: boolean;
+  auth_ok: boolean | null;
+  error_code?: "UNAUTHORIZED_GATEWAY_REQUEST";
+  error_message?: string;
+}
+
+export class GatewayAuthConfigError extends Error {
+  readonly code = "INVALID_GATEWAY_AUTH_CONFIG";
+
+  constructor(message: string) {
+    super(message);
+    this.name = "GatewayAuthConfigError";
+  }
+}
+
+export function loadGatewayAuthConfig(options: {
+  requireApiKey?: boolean;
+  clientsFile?: string;
+  clients?: GatewayClient[];
+} = {}): GatewayAuthConfig {
+  const requireApiKey = options.requireApiKey === true;
+
+  if (!requireApiKey) {
+    return { require_api_key: false, clients: [] };
+  }
+
+  if (options.clients !== undefined) {
+    validateClients(options.clients);
+    return { require_api_key: true, clients: options.clients };
+  }
+
+  const clientsFile = options.clientsFile ?? DEFAULT_GATEWAY_CLIENTS_FILE;
+  if (!existsSync(clientsFile)) {
+    throw new GatewayAuthConfigError(
+      `API key mode requires a local clients file at "${clientsFile}".`,
+    );
+  }
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(readFileSync(clientsFile, "utf8")) as unknown;
+  } catch (error) {
+    throw new GatewayAuthConfigError(`Unable to read gateway clients file: ${errorMessage(error)}`);
+  }
+
+  if (!isClientsFile(parsed)) {
+    throw new GatewayAuthConfigError(
+      "Gateway clients file must contain a clients array with client_id and api_key strings.",
+    );
+  }
+
+  validateClients(parsed.clients);
+  return { require_api_key: true, clients: parsed.clients };
+}
+
+export function authenticateGatewayRequest(input: {
+  protectedEndpoint: boolean;
+  clientIdHeader?: string;
+  apiKeyHeader?: string;
+  authConfig: GatewayAuthConfig;
+}): GatewayAuthResult {
+  const requestedClientId = normalizeClientId(input.clientIdHeader);
+
+  if (!input.protectedEndpoint || !input.authConfig.require_api_key) {
+    return {
+      client_id: requestedClientId,
+      auth_required: false,
+      auth_ok: null,
+    };
+  }
+
+  const apiKey = input.apiKeyHeader?.trim();
+  if (apiKey === undefined || apiKey.length === 0) {
+    return unauthorized(requestedClientId, "Missing X-ATG-API-Key header.");
+  }
+
+  const matchedClient = input.authConfig.clients.find((client) => client.api_key === apiKey);
+  if (matchedClient === undefined) {
+    return unauthorized(requestedClientId, "Invalid local gateway API key.");
+  }
+
+  if (
+    input.clientIdHeader !== undefined &&
+    requestedClientId !== DEFAULT_GATEWAY_CLIENT_ID &&
+    requestedClientId !== matchedClient.client_id
+  ) {
+    return unauthorized(
+      requestedClientId,
+      "X-ATG-Client-ID does not match the supplied local API key.",
+    );
+  }
+
+  return {
+    client_id: matchedClient.client_id,
+    auth_required: true,
+    auth_ok: true,
+  };
+}
+
+export function normalizeClientId(clientId: string | undefined): string {
+  const normalized = clientId?.trim();
+  return normalized === undefined || normalized.length === 0
+    ? DEFAULT_GATEWAY_CLIENT_ID
+    : normalized;
+}
+
+function unauthorized(clientId: string, message: string): GatewayAuthResult {
+  return {
+    client_id: clientId,
+    auth_required: true,
+    auth_ok: false,
+    error_code: "UNAUTHORIZED_GATEWAY_REQUEST",
+    error_message: message,
+  };
+}
+
+function validateClients(clients: GatewayClient[]): void {
+  if (clients.length === 0) {
+    throw new GatewayAuthConfigError("API key mode requires at least one local gateway client.");
+  }
+
+  for (const client of clients) {
+    if (client.client_id.trim().length === 0 || client.api_key.trim().length === 0) {
+      throw new GatewayAuthConfigError("Gateway clients require non-empty client_id and api_key values.");
+    }
+  }
+}
+
+function isClientsFile(value: unknown): value is { clients: GatewayClient[] } {
+  if (typeof value !== "object" || value === null || Array.isArray(value)) {
+    return false;
+  }
+
+  const candidate = value as { clients?: unknown };
+  return (
+    Array.isArray(candidate.clients) &&
+    candidate.clients.every((client) => {
+      if (typeof client !== "object" || client === null || Array.isArray(client)) {
+        return false;
+      }
+
+      const gatewayClient = client as Partial<GatewayClient>;
+      return (
+        typeof gatewayClient.client_id === "string" &&
+        typeof gatewayClient.api_key === "string" &&
+        (gatewayClient.label === undefined || typeof gatewayClient.label === "string")
+      );
+    })
+  );
+}
+
+function errorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}

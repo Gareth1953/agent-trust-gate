@@ -444,6 +444,64 @@ Gateway request logs are local usage records only. They do not execute actions,
 bill customers, expose a public service, authenticate users, guarantee legality,
 or prove compliance.
 
+### Local Client Identity & API Key Gate
+
+P3-M016 adds local client identity and optional local API key gating for Local
+Gateway API Mode. Client identity matters because metered infrastructure needs
+to group usage by calling system: local agents, dashboards, scripts, CI jobs, or
+future customer integrations.
+
+By default, API key enforcement is off and existing local gateway calls continue
+to work. Requests can include a local client identity header:
+
+```text
+X-ATG-Client-ID: local-demo-agent
+```
+
+If the header is omitted or empty, Agent Trust Gate records the request as:
+
+```text
+local-anonymous
+```
+
+Optional local API key mode can be enabled at startup:
+
+```sh
+npm run verify -- --serve --port 8787
+npm run verify -- --serve --port 8787 --require-api-key
+npm run verify -- --serve --port 8787 --require-api-key --clients-file gateway-clients.json
+```
+
+Protected endpoints require `X-ATG-API-Key` only when `--require-api-key` is
+enabled:
+
+```text
+X-ATG-Client-ID: local-demo-agent
+X-ATG-API-Key: replace-with-local-dev-key
+```
+
+Protected endpoints:
+
+- `POST /v1/decision`
+- `POST /v1/approval-pack`
+- `POST /v1/evidence-bundle`
+
+`GET /v1/health` remains open and reports whether `api_key_required` is true.
+
+Local client configuration lives in:
+
+```text
+gateway-clients.json
+```
+
+That file is ignored by Git because it may contain local secrets. The tracked
+`gateway-clients.example.json` file is a safe example config with a placeholder
+API key. Raw API keys are not written to gateway request logs.
+
+Local API key mode is for local development hardening and client attribution. It
+does not expose a public service, bill customers, authenticate real-world
+identities, guarantee legality, or prove compliance.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

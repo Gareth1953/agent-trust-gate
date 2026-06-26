@@ -91,6 +91,9 @@ test("GET /v1/health writes a log entry", async () => {
     assert.equal(entry.status_code, 200);
     assert.equal(entry.contract_version, "atg.v1");
     assert.equal(entry.gateway_mode, "local");
+    assert.equal(entry.client_id, "local-anonymous");
+    assert.equal(entry.auth_required, false);
+    assert.equal(entry.auth_ok, null);
   });
 });
 
@@ -115,6 +118,9 @@ test("POST /v1/decision writes a useful log entry", async () => {
     assert.equal(entry.risk_level, "high");
     assert.equal(entry.human_approval_required, true);
     assert.equal(entry.regulated_policy, false);
+    assert.equal(entry.client_id, "local-anonymous");
+    assert.equal(entry.auth_required, false);
+    assert.equal(entry.auth_ok, null);
     assert.equal(typeof entry.duration_ms, "number");
   });
 });
@@ -192,6 +198,10 @@ test("--gateway-usage --json outputs parseable JSON", () => {
     assert.equal(output.total_requests, 1);
     assert.equal(output.decision_requests_count, 1);
     assert.equal(output.policy_profile_counts.standard, 1);
+    assert.equal(output.client_id_counts["local-demo-agent"], 1);
+    assert.equal(output.authenticated_requests, 1);
+    assert.equal(output.unauthenticated_requests, 0);
+    assert.equal(output.unauthorized_requests, 0);
   } finally {
     rmSync(directory, { recursive: true, force: true });
   }
@@ -209,13 +219,22 @@ test("--list-gateway-requests --json outputs parseable JSON", () => {
     );
 
     const result = runCli(directory, "--list-gateway-requests", "--json");
-    const output = JSON.parse(result.stdout) as Array<{ request_id: string; status: string }>;
+    const output = JSON.parse(result.stdout) as Array<{
+      request_id: string;
+      status: string;
+      client_id: string;
+      auth_required: boolean;
+      auth_ok: boolean;
+    }>;
 
     assert.equal(result.status, 0);
     assert.equal(result.stderr, "");
     assert.equal(output.length, 1);
     assert.equal(output[0]?.status, "valid");
     assert.equal(output[0]?.request_id, "gw_list_1");
+    assert.equal(output[0]?.client_id, "local-demo-agent");
+    assert.equal(output[0]?.auth_required, true);
+    assert.equal(output[0]?.auth_ok, true);
   } finally {
     rmSync(directory, { recursive: true, force: true });
   }
@@ -300,6 +319,9 @@ function sampleLogEntry(overrides: Partial<GatewayRequestLogEntry> = {}): Gatewa
     risk_level: "high",
     human_approval_required: true,
     regulated_policy: false,
+    client_id: "local-demo-agent",
+    auth_required: true,
+    auth_ok: true,
     ...overrides,
   };
 }

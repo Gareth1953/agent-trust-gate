@@ -42,6 +42,14 @@ export {
   emptyGatewayUsageSummary,
   listGatewayRequests,
 } from "./gateway-logging.js";
+export {
+  authenticateGatewayRequest,
+  DEFAULT_GATEWAY_CLIENT_ID,
+  DEFAULT_GATEWAY_CLIENTS_FILE,
+  GatewayAuthConfigError,
+  loadGatewayAuthConfig,
+  normalizeClientId,
+} from "./gateway-auth.js";
 export { ActionValidationError, validateActionDescriptor } from "./action-validation.js";
 export { applyPolicyProfile, resolvePolicyProfile } from "./policy-profiles.js";
 export type {
@@ -92,3 +100,8 @@ export type {
   GatewayRequestLogEntry,
   GatewayUsageSummary,
 } from "./gateway-logging.js";
+export type {
+  GatewayAuthConfig,
+  GatewayAuthResult,
+  GatewayClient,
+} from "./gateway-auth.js";

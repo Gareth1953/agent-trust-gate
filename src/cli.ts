@@ -23,6 +23,7 @@ import { auditReceipts, listReceipts } from "./receipt-audit.js";
 import { saveReceiptToArchive } from "./receipt-archive.js";
 import { auditReviewRecords, listReviewRecords } from "./review-audit.js";
 import { DEFAULT_GATEWAY_PORT, startGatewayServer } from "./gateway-server.js";
+import { DEFAULT_GATEWAY_CLIENTS_FILE, GatewayAuthConfigError } from "./gateway-auth.js";
 import { verifyBeforeAction } from "./verify-before-action.js";
 import {
   createHumanReviewRecord,
@@ -40,7 +41,7 @@ import {
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const USAGE =
-  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787]\n       npm run verify -- --gateway-usage [--json]\n       npm run verify -- --list-gateway-requests [--limit 20] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
+  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787] [--require-api-key] [--clients-file gateway-clients.json]\n       npm run verify -- --gateway-usage [--json]\n       npm run verify -- --list-gateway-requests [--limit 20] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
@@ -201,16 +202,30 @@ function runServeMode(args: string[], jsonMode: boolean): number {
     return 1;
   }
 
-  startGatewayServer({ port: parsedArgs.port });
+  try {
+    startGatewayServer({
+      port: parsedArgs.port,
+      requireApiKey: parsedArgs.requireApiKey,
+      ...(parsedArgs.clientsFile === undefined ? {} : { clientsFile: parsedArgs.clientsFile }),
+    });
+  } catch (error) {
+    printError(errorCode(error), errorMessage(error), jsonMode);
+    return 1;
+  }
+
   return 0;
 }
 
 function parseServeArgs(args: string[]): {
   port: number;
+  requireApiKey: boolean;
+  clientsFile?: string;
   error?: string;
   errorCode?: string;
 } {
   let port = DEFAULT_GATEWAY_PORT;
+  let requireApiKey = false;
+  let clientsFile: string | undefined;
 
   for (let index = 0; index < args.length; index += 1) {
     const arg = args[index];
@@ -219,11 +234,20 @@ function parseServeArgs(args: string[]): {
       continue;
     }
 
+    if (arg === "--require-api-key") {
+      requireApiKey = true;
+      if (clientsFile === undefined) {
+        clientsFile = DEFAULT_GATEWAY_CLIENTS_FILE;
+      }
+      continue;
+    }
+
     if (arg === "--port") {
       const value = args[index + 1];
       if (value === undefined || value.startsWith("--")) {
         return {
           port,
+          requireApiKey,
           error: "Missing port after --port.",
           errorCode: "MISSING_GATEWAY_PORT",
         };
@@ -233,6 +257,7 @@ function parseServeArgs(args: string[]): {
       if (!Number.isInteger(parsedPort) || parsedPort < 1 || parsedPort > 65535) {
         return {
           port,
+          requireApiKey,
           error: `Invalid gateway port "${value}". Use an integer from 1 to 65535.`,
           errorCode: "INVALID_GATEWAY_PORT",
         };
@@ -243,9 +268,26 @@ function parseServeArgs(args: string[]): {
       continue;
     }
 
+    if (arg === "--clients-file") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) {
+        return {
+          port,
+          requireApiKey,
+          error: "Missing clients file after --clients-file.",
+          errorCode: "MISSING_GATEWAY_CLIENTS_FILE",
+        };
+      }
+
+      clientsFile = value;
+      index += 1;
+      continue;
+    }
+
     if (arg?.startsWith("--")) {
       return {
         port,
+        requireApiKey,
         error: `--serve cannot be combined with ${arg}.`,
         errorCode: "INVALID_GATEWAY_ARGUMENTS",
       };
@@ -253,12 +295,15 @@ function parseServeArgs(args: string[]): {
 
     return {
       port,
+      requireApiKey,
       error: "--serve does not accept an action file argument.",
       errorCode: "INVALID_GATEWAY_ARGUMENTS",
     };
   }
 
-  return { port };
+  return clientsFile === undefined
+    ? { port, requireApiKey }
+    : { port, requireApiKey, clientsFile };
 }
 
 function runGatewayUsageMode(args: string[], jsonMode: boolean): number {
@@ -372,6 +417,9 @@ function errorCode(error: unknown): string {
     return error.code;
   }
   if (error instanceof EvidenceBundleError) {
+    return error.code;
+  }
+  if (error instanceof GatewayAuthConfigError) {
     return error.code;
   }
   if (error instanceof ActionValidationError) {
@@ -1057,6 +1105,12 @@ function formatGatewayUsageForConsole(usage: GatewayUsageSummary): string {
     ...formatCounts(usage.policy_profile_counts),
     `- regulated_policy_count: ${usage.regulated_policy_count}`,
     "",
+    "Client counts:",
+    ...formatCounts(usage.client_id_counts),
+    `- authenticated_requests: ${usage.authenticated_requests}`,
+    `- unauthenticated_requests: ${usage.unauthenticated_requests}`,
+    `- unauthorized_requests: ${usage.unauthorized_requests}`,
+    "",
     "Error counts:",
     ...formatCounts(usage.error_code_counts),
     "",
@@ -1079,7 +1133,7 @@ function formatGatewayRequestListForConsole(requests: GatewayRequestListEntry[])
         return `- line ${entry.line_number}: malformed (${entry.error})`;
       }
 
-      return `- ${entry.timestamp} ${entry.method} ${entry.endpoint} request_id=${entry.request_id} ok=${entry.ok} status=${entry.status_code} policy=${entry.policy_profile ?? "none"} action=${entry.action_type ?? "none"} allowed=${entry.allowed ?? "none"} risk=${entry.risk_level ?? "none"} approval_required=${entry.human_approval_required ?? "none"} error=${entry.error_code ?? "none"}`;
+      return `- ${entry.timestamp} ${entry.method} ${entry.endpoint} request_id=${entry.request_id} client=${entry.client_id} auth_required=${entry.auth_required} auth_ok=${entry.auth_ok ?? "none"} ok=${entry.ok} status=${entry.status_code} policy=${entry.policy_profile ?? "none"} action=${entry.action_type ?? "none"} allowed=${entry.allowed ?? "none"} risk=${entry.risk_level ?? "none"} approval_required=${entry.human_approval_required ?? "none"} error=${entry.error_code ?? "none"}`;
     }),
   ].join("\n");
 }
