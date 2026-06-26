@@ -1,12 +1,24 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
+import { auditReceipts, listReceipts } from "./receipt-audit.js";
 import { verifyBeforeAction } from "./verify-before-action.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
-const USAGE = "Usage: npm run verify -- <path-to-action.json> [--save]";
+const USAGE =
+  "Usage: npm run verify -- <path-to-action.json> [--save]\n       npm run verify -- --audit\n       npm run verify -- --list-receipts";
 
 export function runCli(args: string[]): number {
+  if (args.includes("--audit")) {
+    console.log(JSON.stringify(auditReceipts(), null, 2));
+    return 0;
+  }
+
+  if (args.includes("--list-receipts")) {
+    console.log(JSON.stringify(listReceipts(), null, 2));
+    return 0;
+  }
+
   const saveReceipt = args.includes("--save");
   const filePath = args.find((arg) => arg !== "--save");
 

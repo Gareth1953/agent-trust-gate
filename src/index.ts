@@ -1,5 +1,6 @@
 export { verifyBeforeAction } from "./verify-before-action.js";
 export { LIMITATIONS } from "./receipt.js";
+export { auditReceipts, listReceipts } from "./receipt-audit.js";
 export type {
   HumanApprovalStatus,
   InputSummary,
@@ -8,3 +9,8 @@ export type {
   VerificationReceipt,
   VerifyBeforeActionInput,
 } from "./types.js";
+export type {
+  ReceiptAuditResult,
+  ReceiptAuditSummary,
+  ReceiptListEntry,
+} from "./receipt-audit.js";

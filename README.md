@@ -133,6 +133,33 @@ Saved receipts are local only. They are not uploaded, published, transmitted, or
 used to perform the proposed action. Receipt JSON files are ignored by Git by
 default; `receipts/.gitkeep` keeps the archive folder present in the project.
 
+### Local receipt audit viewer
+
+P3-M004 adds a local-only audit viewer for saved receipts. It reads JSON receipt
+files from `receipts/`, ignores non-JSON files, handles a missing archive folder,
+and marks malformed receipt files instead of crashing.
+
+Create a local receipt:
+
+```sh
+npm run verify -- examples/public-post.json --save
+```
+
+Print an audit summary:
+
+```sh
+npm run verify -- --audit
+```
+
+List saved receipts and key fields:
+
+```sh
+npm run verify -- --list-receipts
+```
+
+Receipts are local evidence records for review and demos. They are not sent,
+uploaded, published, or used to perform the proposed action.
+
 ## Human approval boundary
 
 Explicit human approval is required for public posting, spending, legal or

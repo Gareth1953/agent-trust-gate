@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { mkdtempSync, rmSync } from "node:fs";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";
@@ -74,6 +74,57 @@ test("CLI --save writes a receipt to a local receipts archive", async () => {
 
     assert.equal(savedReceipt.allowed, true);
     assert.equal(savedReceipt.receipt_id, printedReceipt.receipt_id);
+  } finally {
+    rmSync(tempDirectory, { recursive: true, force: true });
+  }
+});
+
+test("CLI audit mode prints a receipt audit summary without requiring an action file", () => {
+  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-cli-audit-`);
+
+  try {
+    const result = spawnSync(process.execPath, [cliPath, "--audit"], {
+      cwd: tempDirectory,
+      encoding: "utf8",
+    });
+
+    assert.equal(result.status, 0);
+    assert.equal(result.stderr, "");
+
+    const audit = JSON.parse(result.stdout) as {
+      summary: { total_receipts: number; malformed_receipts_count: number };
+      receipts: unknown[];
+    };
+    assert.equal(audit.summary.total_receipts, 0);
+    assert.equal(audit.summary.malformed_receipts_count, 0);
+    assert.deepEqual(audit.receipts, []);
+  } finally {
+    rmSync(tempDirectory, { recursive: true, force: true });
+  }
+});
+
+test("CLI list receipts mode marks malformed receipts without crashing", () => {
+  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-cli-list-`);
+
+  try {
+    mkdirSync(resolve(tempDirectory, "receipts"));
+    writeFileSync(resolve(tempDirectory, "receipts", "bad.json"), "{ invalid json");
+
+    const result = spawnSync(process.execPath, [cliPath, "--list-receipts"], {
+      cwd: tempDirectory,
+      encoding: "utf8",
+    });
+
+    assert.equal(result.status, 0);
+    assert.equal(result.stderr, "");
+
+    const entries = JSON.parse(result.stdout) as Array<{
+      filename: string;
+      status: string;
+    }>;
+    assert.equal(entries.length, 1);
+    assert.equal(entries[0]?.filename, "bad.json");
+    assert.equal(entries[0]?.status, "malformed");
   } finally {
     rmSync(tempDirectory, { recursive: true, force: true });
   }
