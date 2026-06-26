@@ -605,6 +605,47 @@ configuration only. It does not execute actions, bill customers, expose a public
 service, authenticate real-world identities, guarantee legality, or prove
 compliance.
 
+### Gateway Developer Quickstart Pack
+
+P3-M019 adds a local developer quickstart pack for calling Agent Trust Gate
+through Local Gateway API Mode in minutes. The examples are under:
+
+```text
+examples/gateway-quickstart/
+```
+
+The pack includes:
+
+- a quickstart README with curl, PowerShell, and API-key examples
+- safe sample action descriptors for public posts, customer emails, and
+  synthetic money movement checks
+- a safe demo client config with fake local credentials
+- a Node.js gateway client example
+- a PowerShell gateway client example
+
+Example local flow:
+
+```sh
+npm run verify -- --serve --port 8787
+npm run verify -- --serve --port 8787 --require-api-key --clients-file examples/gateway-quickstart/gateway-clients.demo.json
+node examples/gateway-quickstart/node-gateway-client.mjs
+powershell -ExecutionPolicy Bypass -File examples/gateway-quickstart/powershell-gateway-client.ps1
+npm run verify -- --gateway-usage
+npm run verify -- --gateway-admin
+```
+
+The quickstart demonstrates the basic integration loop:
+
+1. start the local gateway
+2. call `GET /v1/health`
+3. call `POST /v1/decision`
+4. interpret `ALLOW`, `BLOCK`, or `REQUEST HUMAN`
+5. inspect local usage and admin summaries
+
+Gateway quickstart examples are local demos only. They do not execute actions,
+bill customers, expose a public service, authenticate real-world identities,
+guarantee legality, or prove compliance.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

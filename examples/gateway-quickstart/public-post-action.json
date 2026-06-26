@@ -1,0 +1,18 @@
+{
+  "action_type": "public_post",
+  "description": "Publish a demo product update to a local test social channel.",
+  "actor": "quickstart-demo-agent",
+  "target": "demo-public-channel",
+  "estimated_cost_gbp": 0,
+  "public_action": true,
+  "external_commitment": false,
+  "money_movement": false,
+  "legal_or_compliance_sensitive": false,
+  "customer_or_user_facing": true,
+  "evidence": [
+    "Demo copy was drafted for local quickstart testing only.",
+    "No real customer, private, or regulated information is included."
+  ],
+  "rollback_plan": "Delete the demo post from the local test channel and record the correction.",
+  "human_approval_status": "not_requested"
+}

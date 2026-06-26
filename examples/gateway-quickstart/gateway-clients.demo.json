@@ -1,0 +1,11 @@
+{
+  "clients": [
+    {
+      "client_id": "quickstart-demo-agent",
+      "api_key": "quickstart-demo-key",
+      "label": "Quickstart Demo Agent",
+      "decision_allowance": 5,
+      "allowance_window": "all_time"
+    }
+  ]
+}

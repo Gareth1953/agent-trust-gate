@@ -1,0 +1,18 @@
+{
+  "action_type": "customer_email",
+  "description": "Send a demo customer-facing email about a fictional service update.",
+  "actor": "quickstart-demo-agent",
+  "target": "demo-customer-list",
+  "estimated_cost_gbp": 0,
+  "public_action": false,
+  "external_commitment": true,
+  "money_movement": false,
+  "legal_or_compliance_sensitive": false,
+  "customer_or_user_facing": true,
+  "evidence": [
+    "Message content is fictional and for local gateway testing only.",
+    "No real customer email addresses or private records are present."
+  ],
+  "rollback_plan": "Do not send the message; if a demo send occurred in a sandbox, send a correction note.",
+  "human_approval_status": "not_requested"
+}

@@ -1,0 +1,18 @@
+{
+  "action_type": "money_movement",
+  "description": "Prepare a synthetic transfer request in a local demo ledger.",
+  "actor": "quickstart-demo-agent",
+  "target": "demo-ledger-account",
+  "estimated_cost_gbp": 250,
+  "public_action": false,
+  "external_commitment": true,
+  "money_movement": true,
+  "legal_or_compliance_sensitive": false,
+  "customer_or_user_facing": false,
+  "evidence": [
+    "The ledger account is fictional and used only for local testing.",
+    "No bank account, payment rail, or real funds are connected."
+  ],
+  "rollback_plan": "Cancel the synthetic ledger entry before any external commitment exists.",
+  "human_approval_status": "not_requested"
+}
