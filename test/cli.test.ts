@@ -129,3 +129,45 @@ test("CLI list receipts mode marks malformed receipts without crashing", () => {
     rmSync(tempDirectory, { recursive: true, force: true });
   }
 });
+
+test("CLI rejects an unknown policy profile clearly", () => {
+  const result = runCli("examples/low-risk-internal.json", "--policy", "unknown");
+
+  assert.notEqual(result.status, 0);
+  assert.match(result.stderr, /Unknown policy profile "unknown"/);
+});
+
+test("CLI --save includes the selected policy profile in the saved receipt", async () => {
+  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-cli-policy-`);
+
+  try {
+    const result = spawnSync(
+      process.execPath,
+      [cliPath, lowRiskExamplePath, "--policy", "regulated", "--save"],
+      {
+        cwd: tempDirectory,
+        encoding: "utf8",
+      },
+    );
+
+    assert.equal(result.status, 0);
+
+    const files = await readdir(resolve(tempDirectory, "receipts"));
+    const [fileName] = files;
+    assert.ok(fileName);
+
+    const savedReceipt = JSON.parse(
+      await readFile(resolve(tempDirectory, "receipts", fileName), "utf8"),
+    ) as {
+      policy_profile: string;
+      regulated_policy: boolean;
+      policy_notes: string[];
+    };
+
+    assert.equal(savedReceipt.policy_profile, "regulated");
+    assert.equal(savedReceipt.regulated_policy, true);
+    assert.match(savedReceipt.policy_notes.join(" "), /regulated-style policy/i);
+  } finally {
+    rmSync(tempDirectory, { recursive: true, force: true });
+  }
+});

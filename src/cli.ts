@@ -6,7 +6,7 @@ import { verifyBeforeAction } from "./verify-before-action.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const USAGE =
-  "Usage: npm run verify -- <path-to-action.json> [--save]\n       npm run verify -- --audit\n       npm run verify -- --list-receipts";
+  "Usage: npm run verify -- <path-to-action.json> [--save] [--policy standard|strict|regulated]\n       npm run verify -- --audit\n       npm run verify -- --list-receipts";
 
 export function runCli(args: string[]): number {
   if (args.includes("--audit")) {
@@ -20,7 +20,14 @@ export function runCli(args: string[]): number {
   }
 
   const saveReceipt = args.includes("--save");
-  const filePath = args.find((arg) => arg !== "--save");
+  const parsedArgs = parseVerificationArgs(args);
+  if (parsedArgs.error !== undefined) {
+    console.error(parsedArgs.error);
+    console.error(USAGE);
+    return 1;
+  }
+
+  const { filePath, policyProfile } = parsedArgs;
 
   if (filePath === undefined || filePath.trim().length === 0) {
     console.error(USAGE);
@@ -44,7 +51,10 @@ export function runCli(args: string[]): number {
   }
 
   try {
-    const receipt = verifyBeforeAction(input as VerifyBeforeActionInput);
+    const receipt = verifyBeforeAction(
+      input as VerifyBeforeActionInput,
+      policyProfile === undefined ? {} : { policy_profile: policyProfile },
+    );
     if (saveReceipt) {
       const archivePath = saveReceiptToArchive(receipt);
       console.error(`Saved receipt to ${archivePath}`);
@@ -59,6 +69,58 @@ export function runCli(args: string[]): number {
 
 function errorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
+}
+
+function parseVerificationArgs(args: string[]): {
+  filePath?: string;
+  policyProfile?: string;
+  error?: string;
+} {
+  let filePath: string | undefined;
+  let policyProfile: string | undefined;
+
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+
+    if (arg === "--save") {
+      continue;
+    }
+
+    if (arg === "--policy") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) {
+        return { error: "Missing policy profile after --policy." };
+      }
+      policyProfile = value;
+      index += 1;
+      continue;
+    }
+
+    if (arg?.startsWith("--")) {
+      return { error: `Unknown option "${arg}".` };
+    }
+
+    if (filePath !== undefined) {
+      return { error: `Unexpected extra argument "${arg}".` };
+    }
+
+    filePath = arg;
+  }
+
+  const result: {
+    filePath?: string;
+    policyProfile?: string;
+  } = {};
+
+  if (filePath !== undefined) {
+    result.filePath = filePath;
+  }
+
+  if (policyProfile !== undefined) {
+    result.policyProfile = policyProfile;
+  }
+
+  return result;
 }
 
 function saveReceiptToArchive(receipt: ReturnType<typeof verifyBeforeAction>): string {

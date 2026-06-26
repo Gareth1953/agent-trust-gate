@@ -99,6 +99,33 @@ npm run verify -- examples/legal-sensitive.json
 The CLI reads the local JSON file and prints a formatted verification receipt.
 It does not send data to the internet and does not perform the proposed action.
 
+### Policy profiles
+
+P3-M005 adds local policy profiles so different teams can run the same Trust
+Gate checks with different trust modes without changing source code.
+
+Available profiles:
+
+- `standard`: default profile; matches the base Agent Trust Gate rules.
+- `strict`: records a stricter approval threshold for medium-risk and high-risk
+  actions.
+- `regulated`: records a regulated-style local policy for medium-risk and
+  high-risk actions and adds regulated policy metadata to the receipt.
+
+Example commands:
+
+```sh
+npm run verify -- examples/public-post.json --policy standard
+npm run verify -- examples/public-post.json --policy strict
+npm run verify -- examples/public-post.json --policy regulated --save
+npm run verify -- --audit
+```
+
+Policy profiles do not guarantee legal compliance. They provide local evidence
+of which trust policy was applied before an AI action was allowed or blocked.
+Profiles may tighten, label, or clarify requirements, but they do not weaken the
+base safety rules.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

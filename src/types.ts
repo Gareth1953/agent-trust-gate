@@ -46,6 +46,9 @@ export interface VerificationReceipt {
   risk_level: RiskLevel;
   human_approval_required: boolean;
   approval_reason: string | null;
+  policy_profile: string;
+  policy_notes: string[];
+  regulated_policy: boolean;
   checks: VerificationCheck[];
   receipt_id: string;
   timestamp: string;
@@ -59,4 +62,8 @@ export interface RiskEvaluation {
   human_approval_required: boolean;
   approval_reasons: string[];
   checks: VerificationCheck[];
+}
+
+export interface VerifyBeforeActionOptions {
+  policy_profile?: string;
 }

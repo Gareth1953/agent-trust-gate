@@ -3,10 +3,11 @@ import { randomUUID } from "node:crypto";
 import type {
   HumanApprovalStatus,
   InputSummary,
-  RiskEvaluation,
   VerificationReceipt,
+  RiskEvaluation,
   VerifyBeforeActionInput,
 } from "./types.js";
+import type { PolicyProfile } from "./policy-profiles.js";
 
 export const LIMITATIONS = [
   "Not legal advice.",
@@ -42,6 +43,7 @@ function summarizeInput(input: VerifyBeforeActionInput): InputSummary {
 export function createReceipt(
   input: VerifyBeforeActionInput,
   evaluation: RiskEvaluation,
+  policy: PolicyProfile,
 ): VerificationReceipt {
   const approvalGranted = input.human_approval_status === "approved";
   const allowed =
@@ -69,6 +71,9 @@ export function createReceipt(
       evaluation.approval_reasons.length > 0
         ? evaluation.approval_reasons.join(" ")
         : null,
+    policy_profile: policy.name,
+    policy_notes: [...policy.notes],
+    regulated_policy: policy.regulated_policy,
     checks: evaluation.checks,
     receipt_id: `atg_${randomUUID()}`,
     timestamp: new Date().toISOString(),

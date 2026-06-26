@@ -12,6 +12,7 @@ export interface ReceiptAuditSummary {
   low_risk_count: number;
   approval_required_count: number;
   malformed_receipts_count: number;
+  policy_profile_counts: Record<string, number>;
 }
 
 export interface ReceiptListEntry {
@@ -22,6 +23,7 @@ export interface ReceiptListEntry {
   allowed?: boolean;
   risk_level?: RiskLevel;
   human_approval_required?: boolean;
+  policy_profile?: string;
   action_type?: string;
   actor?: string;
   target?: string;
@@ -46,6 +48,7 @@ export function auditReceipts(receiptsDirectory = "receipts"): ReceiptAuditResul
     low_risk_count: 0,
     approval_required_count: 0,
     malformed_receipts_count: 0,
+    policy_profile_counts: {},
   };
 
   for (const entry of entries) {
@@ -71,6 +74,10 @@ export function auditReceipts(receiptsDirectory = "receipts"): ReceiptAuditResul
     if (entry.human_approval_required === true) {
       summary.approval_required_count += 1;
     }
+
+    const policyProfile = entry.policy_profile ?? "standard";
+    summary.policy_profile_counts[policyProfile] =
+      (summary.policy_profile_counts[policyProfile] ?? 0) + 1;
   }
 
   return {
@@ -114,6 +121,7 @@ function readReceiptEntry(receiptsDirectory: string, filename: string): ReceiptL
       allowed: parsed.allowed,
       risk_level: parsed.risk_level,
       human_approval_required: parsed.human_approval_required,
+      policy_profile: parsed.policy_profile ?? "standard",
       action_type: parsed.input_summary.action_type,
       actor: parsed.input_summary.actor,
       target: parsed.input_summary.target,
@@ -139,6 +147,7 @@ function isReceiptLike(value: unknown): value is VerificationReceipt {
     typeof receipt.allowed === "boolean" &&
     isRiskLevel(receipt.risk_level) &&
     typeof receipt.human_approval_required === "boolean" &&
+    (receipt.policy_profile === undefined || typeof receipt.policy_profile === "string") &&
     typeof receipt.input_summary === "object" &&
     receipt.input_summary !== null &&
     typeof receipt.input_summary.action_type === "string" &&

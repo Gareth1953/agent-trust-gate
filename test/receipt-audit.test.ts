@@ -60,6 +60,7 @@ test("audit summary handles a missing receipts directory", () => {
       low_risk_count: 0,
       approval_required_count: 0,
       malformed_receipts_count: 0,
+      policy_profile_counts: {},
     });
     assert.deepEqual(result.receipts, []);
   } finally {
@@ -105,6 +106,7 @@ test("audit summary counts valid receipts and ignores non-json files", () => {
     assert.equal(result.summary.low_risk_count, 1);
     assert.equal(result.summary.approval_required_count, 1);
     assert.equal(result.summary.malformed_receipts_count, 0);
+    assert.deepEqual(result.summary.policy_profile_counts, { standard: 2 });
   } finally {
     rmSync(tempDirectory, { recursive: true, force: true });
   }
@@ -123,7 +125,54 @@ test("audit summary counts malformed receipt JSON without throwing", () => {
 
     assert.equal(result.summary.total_receipts, 1);
     assert.equal(result.summary.malformed_receipts_count, 1);
+    assert.deepEqual(result.summary.policy_profile_counts, {});
     assert.equal(entries[0]?.status, "malformed");
+  } finally {
+    rmSync(tempDirectory, { recursive: true, force: true });
+  }
+});
+
+test("audit summary includes policy profile counts", () => {
+  const tempDirectory = makeTempDirectory();
+  const receiptsDirectory = resolve(tempDirectory, "receipts");
+
+  try {
+    mkdirSync(receiptsDirectory);
+    writeFileSync(
+      resolve(receiptsDirectory, "strict.json"),
+      JSON.stringify({
+        ...receipt({
+          receipt_id: "atg_strict",
+          allowed: false,
+          risk_level: "medium",
+          human_approval_required: true,
+        }),
+        policy_profile: "strict",
+        policy_notes: ["Strict policy profile applied."],
+        regulated_policy: false,
+      }),
+    );
+    writeFileSync(
+      resolve(receiptsDirectory, "regulated.json"),
+      JSON.stringify({
+        ...receipt({
+          receipt_id: "atg_regulated",
+          allowed: false,
+          risk_level: "high",
+          human_approval_required: true,
+        }),
+        policy_profile: "regulated",
+        policy_notes: ["Regulated-style policy profile applied."],
+        regulated_policy: true,
+      }),
+    );
+
+    const result = auditReceipts(receiptsDirectory);
+
+    assert.deepEqual(result.summary.policy_profile_counts, {
+      regulated: 1,
+      strict: 1,
+    });
   } finally {
     rmSync(tempDirectory, { recursive: true, force: true });
   }

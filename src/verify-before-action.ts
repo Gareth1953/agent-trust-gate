@@ -1,12 +1,22 @@
 import { createReceipt } from "./receipt.js";
+import { applyPolicyProfile } from "./policy-profiles.js";
 import { evaluateRisk } from "./risk-rules.js";
-import type { VerificationReceipt, VerifyBeforeActionInput } from "./types.js";
+import type {
+  VerificationReceipt,
+  VerifyBeforeActionInput,
+  VerifyBeforeActionOptions,
+} from "./types.js";
 
 export function verifyBeforeAction(
   input: VerifyBeforeActionInput,
+  options: VerifyBeforeActionOptions = {},
 ): VerificationReceipt {
   validateInput(input);
-  return createReceipt(input, evaluateRisk(input));
+  const policyApplication = applyPolicyProfile(
+    evaluateRisk(input),
+    options.policy_profile,
+  );
+  return createReceipt(input, policyApplication.evaluation, policyApplication.policy);
 }
 
 function validateInput(input: VerifyBeforeActionInput): void {

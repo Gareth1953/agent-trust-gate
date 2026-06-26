@@ -7,7 +7,7 @@
   "types": "dist/src/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "npm run build --silent && node --test dist/test/verify-before-action.test.js dist/test/cli.test.js dist/test/receipt-audit.test.js",
+    "test": "npm run build --silent && node --test dist/test/verify-before-action.test.js dist/test/cli.test.js dist/test/receipt-audit.test.js dist/test/policy-profiles.test.js",
     "verify": "npm run build --silent && node dist/src/cli.js",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
