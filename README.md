@@ -159,6 +159,40 @@ Exit codes:
 Machine-readable mode is for integration with other systems. It does not execute
 actions. It only returns a local trust decision.
 
+### Stable Action & Decision Contract
+
+P3-M007 defines a stable local contract for action descriptor input and
+machine-readable trust decision output.
+
+Current contract version:
+
+```text
+atg.v1
+```
+
+Contracts matter because other agents, scripts, CI tools, and business systems
+need predictable input fields, predictable output fields, clear schema
+versioning, and stable error behaviour before they can safely integrate with a
+trust gate.
+
+Inspect the contract locally:
+
+```sh
+npm run verify -- --contract
+npm run verify -- --contract --json
+npm run verify -- examples/public-post.json --json
+```
+
+The minimum required action descriptor fields are:
+
+- `action_type`
+- `actor`
+- `target`
+- `description`
+
+The contract defines the shape of the local trust decision. It does not
+guarantee safety, truth, legality, or compliance.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

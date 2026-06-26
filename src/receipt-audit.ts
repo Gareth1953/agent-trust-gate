@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
+import { CONTRACT_VERSION } from "./contract.js";
 import type { RiskLevel, VerificationReceipt } from "./types.js";
 
 export interface ReceiptAuditSummary {
@@ -18,6 +19,7 @@ export interface ReceiptAuditSummary {
 export interface ReceiptListEntry {
   filename: string;
   status: "valid" | "malformed";
+  contract_version?: string;
   receipt_id?: string;
   timestamp?: string;
   allowed?: boolean;
@@ -31,6 +33,7 @@ export interface ReceiptListEntry {
 }
 
 export interface ReceiptAuditResult {
+  contract_version: string;
   receipts_directory: string;
   summary: ReceiptAuditSummary;
   receipts: ReceiptListEntry[];
@@ -81,6 +84,7 @@ export function auditReceipts(receiptsDirectory = "receipts"): ReceiptAuditResul
   }
 
   return {
+    contract_version: CONTRACT_VERSION,
     receipts_directory: receiptsDirectory,
     summary,
     receipts: entries,
@@ -116,6 +120,7 @@ function readReceiptEntry(receiptsDirectory: string, filename: string): ReceiptL
     return {
       filename,
       status: "valid",
+      contract_version: parsed.contract_version ?? CONTRACT_VERSION,
       receipt_id: parsed.receipt_id,
       timestamp: parsed.timestamp,
       allowed: parsed.allowed,

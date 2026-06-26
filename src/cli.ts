@@ -1,16 +1,31 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
+import { ActionValidationError } from "./action-validation.js";
+import {
+  CONTRACT_VERSION,
+  formatContractForConsole,
+  getContractDescription,
+} from "./contract.js";
 import { auditReceipts, listReceipts } from "./receipt-audit.js";
 import { verifyBeforeAction } from "./verify-before-action.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const USAGE =
-  "Usage: npm run verify -- <path-to-action.json> [--save] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]";
+  "Usage: npm run verify -- <path-to-action.json> [--save] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
   const failOnBlock = args.includes("--fail-on-block");
+
+  if (args.includes("--contract")) {
+    if (jsonMode) {
+      console.log(JSON.stringify(getContractDescription(), null, 2));
+    } else {
+      console.log(formatContractForConsole());
+    }
+    return 0;
+  }
 
   if (args.includes("--audit")) {
     console.log(JSON.stringify(auditReceipts(), null, 2));
@@ -81,7 +96,12 @@ export function runCli(args: string[]): number {
 
     return failOnBlock && !receipt.allowed ? 2 : 0;
   } catch (error) {
-    printError(errorCode(error), `Unable to verify action: ${errorMessage(error)}`, jsonMode);
+    printError(
+      errorCode(error),
+      `Unable to verify action: ${errorMessage(error)}`,
+      jsonMode,
+      error instanceof ActionValidationError ? error.details : undefined,
+    );
     return 1;
   }
 }
@@ -95,24 +115,41 @@ function errorCode(error: unknown): string {
   if (message.includes("Unknown policy profile")) {
     return "UNKNOWN_POLICY_PROFILE";
   }
+  if (error instanceof ActionValidationError) {
+    return "INVALID_ACTION_DESCRIPTOR";
+  }
   return "VERIFY_ACTION_ERROR";
 }
 
-function printError(code: string, message: string, jsonMode: boolean): void {
+function printError(
+  code: string,
+  message: string,
+  jsonMode: boolean,
+  details?: unknown[],
+): void {
   if (jsonMode) {
-    console.log(
-      JSON.stringify(
-        {
-          ok: false,
-          error: {
-            code,
-            message,
-          },
-        },
-        null,
-        2,
-      ),
-    );
+    const errorOutput: {
+      ok: false;
+      contract_version: string;
+      error: {
+        code: string;
+        message: string;
+        details?: unknown[];
+      };
+    } = {
+      ok: false,
+      contract_version: CONTRACT_VERSION,
+      error: {
+        code,
+        message,
+      },
+    };
+
+    if (details !== undefined) {
+      errorOutput.error.details = details;
+    }
+
+    console.log(JSON.stringify(errorOutput, null, 2));
     return;
   }
 
@@ -128,6 +165,7 @@ function toIntegrationResult(
 ) {
   const result: {
     ok: true;
+    contract_version: string;
     allowed: boolean;
     risk_level: string;
     human_approval_required: boolean;
@@ -145,6 +183,7 @@ function toIntegrationResult(
     checked_at: string;
   } = {
     ok: true,
+    contract_version: receipt.contract_version,
     allowed: receipt.allowed,
     risk_level: receipt.risk_level,
     human_approval_required: receipt.human_approval_required,
@@ -180,7 +219,12 @@ function parseVerificationArgs(args: string[]): {
   for (let index = 0; index < args.length; index += 1) {
     const arg = args[index];
 
-    if (arg === "--save" || arg === "--json" || arg === "--fail-on-block") {
+    if (
+      arg === "--save" ||
+      arg === "--json" ||
+      arg === "--fail-on-block" ||
+      arg === "--contract"
+    ) {
       continue;
     }
 

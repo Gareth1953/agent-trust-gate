@@ -180,16 +180,43 @@ test("CLI --json outputs parseable integration JSON for a normal verification", 
 
   const output = JSON.parse(result.stdout) as {
     ok: boolean;
+    contract_version: string;
     allowed: boolean;
     action_type: string;
     policy_profile: string;
     receipt_saved: boolean;
   };
   assert.equal(output.ok, true);
+  assert.equal(output.contract_version, "atg.v1");
   assert.equal(output.allowed, false);
   assert.equal(output.action_type, "public_post");
   assert.equal(output.policy_profile, "standard");
   assert.equal(output.receipt_saved, false);
+});
+
+test("CLI saved receipt includes contract_version", async () => {
+  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-cli-contract-save-`);
+
+  try {
+    const result = spawnSync(process.execPath, [cliPath, lowRiskExamplePath, "--save"], {
+      cwd: tempDirectory,
+      encoding: "utf8",
+    });
+
+    assert.equal(result.status, 0);
+
+    const files = await readdir(resolve(tempDirectory, "receipts"));
+    const [fileName] = files;
+    assert.ok(fileName);
+
+    const savedReceipt = JSON.parse(
+      await readFile(resolve(tempDirectory, "receipts", fileName), "utf8"),
+    ) as { contract_version: string };
+
+    assert.equal(savedReceipt.contract_version, "atg.v1");
+  } finally {
+    rmSync(tempDirectory, { recursive: true, force: true });
+  }
 });
 
 test("CLI --json with regulated policy includes policy fields", () => {
@@ -268,14 +295,84 @@ test("CLI unknown policy with --json prints a JSON error object", () => {
 
   const output = JSON.parse(result.stdout) as {
     ok: boolean;
+    contract_version: string;
     error: {
       code: string;
       message: string;
     };
   };
   assert.equal(output.ok, false);
+  assert.equal(output.contract_version, "atg.v1");
   assert.equal(output.error.code, "UNKNOWN_POLICY_PROFILE");
   assert.match(output.error.message, /Unknown policy profile "unknown"/);
+});
+
+test("CLI validation error with --json is parseable and exits 1", () => {
+  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-cli-invalid-contract-`);
+
+  try {
+    const invalidActionPath = resolve(tempDirectory, "invalid-action.json");
+    writeFileSync(
+      invalidActionPath,
+      JSON.stringify({
+        action_type: "public_post",
+        actor: "test-agent",
+        target: "public-channel",
+      }),
+    );
+
+    const result = spawnSync(process.execPath, [cliPath, invalidActionPath, "--json"], {
+      cwd: tempDirectory,
+      encoding: "utf8",
+    });
+
+    assert.equal(result.status, 1);
+    assert.equal(result.stderr, "");
+
+    const output = JSON.parse(result.stdout) as {
+      ok: boolean;
+      contract_version: string;
+      error: {
+        code: string;
+        details: Array<{ field: string }>;
+      };
+    };
+
+    assert.equal(output.ok, false);
+    assert.equal(output.contract_version, "atg.v1");
+    assert.equal(output.error.code, "INVALID_ACTION_DESCRIPTOR");
+    assert.equal(output.error.details.some((detail) => detail.field === "description"), true);
+  } finally {
+    rmSync(tempDirectory, { recursive: true, force: true });
+  }
+});
+
+test("CLI --contract prints readable contract output", () => {
+  const result = runCli("--contract");
+
+  assert.equal(result.status, 0);
+  assert.equal(result.stderr, "");
+  assert.match(result.stdout, /Agent Trust Gate contract atg\.v1/);
+  assert.match(result.stdout, /Required input fields/);
+});
+
+test("CLI --contract --json prints parseable contract JSON", () => {
+  const result = runCli("--contract", "--json");
+
+  assert.equal(result.status, 0);
+  assert.equal(result.stderr, "");
+
+  const output = JSON.parse(result.stdout) as {
+    contract_version: string;
+    supported_policy_profiles: string[];
+  };
+
+  assert.equal(output.contract_version, "atg.v1");
+  assert.deepEqual(output.supported_policy_profiles, [
+    "standard",
+    "strict",
+    "regulated",
+  ]);
 });
 
 test("CLI --audit --json outputs parseable JSON", () => {

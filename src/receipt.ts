@@ -1,5 +1,6 @@
 import { randomUUID } from "node:crypto";
 
+import { CONTRACT_VERSION } from "./contract.js";
 import type {
   HumanApprovalStatus,
   InputSummary,
@@ -64,6 +65,7 @@ export function createReceipt(
   }
 
   return {
+    contract_version: CONTRACT_VERSION,
     allowed,
     risk_level: evaluation.risk_level,
     human_approval_required: evaluation.human_approval_required,

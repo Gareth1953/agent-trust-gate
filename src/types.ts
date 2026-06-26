@@ -42,6 +42,7 @@ export interface InputSummary {
 }
 
 export interface VerificationReceipt {
+  contract_version: string;
   allowed: boolean;
   risk_level: RiskLevel;
   human_approval_required: boolean;
