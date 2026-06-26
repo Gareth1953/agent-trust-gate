@@ -14,6 +14,7 @@ import {
 } from "./contract.js";
 import { auditReceipts, listReceipts } from "./receipt-audit.js";
 import { saveReceiptToArchive } from "./receipt-archive.js";
+import { auditReviewRecords, listReviewRecords } from "./review-audit.js";
 import { verifyBeforeAction } from "./verify-before-action.js";
 import {
   createHumanReviewRecord,
@@ -25,7 +26,7 @@ import {
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const USAGE =
-  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
+  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
@@ -48,6 +49,10 @@ export function runCli(args: string[]): number {
   if (args.includes("--list-receipts")) {
     console.log(JSON.stringify(listReceipts(), null, 2));
     return 0;
+  }
+
+  if (args.includes("--audit-reviews") || args.includes("--list-review-records")) {
+    return runReviewAuditMode(args, jsonMode);
   }
 
   if (args.includes("--review-approval-pack")) {
@@ -399,6 +404,91 @@ function runHumanReviewMode(args: string[], jsonMode: boolean): number {
     );
     return 1;
   }
+}
+
+function runReviewAuditMode(args: string[], jsonMode: boolean): number {
+  const auditMode = args.includes("--audit-reviews");
+  const listMode = args.includes("--list-review-records");
+
+  if (auditMode && listMode) {
+    printError(
+      "INCOMPATIBLE_REVIEW_AUDIT_MODE",
+      "Use either --audit-reviews or --list-review-records, not both.",
+      jsonMode,
+    );
+    return 1;
+  }
+
+  const conflict = reviewAuditConflict(args);
+  if (conflict !== undefined) {
+    printError("INCOMPATIBLE_REVIEW_AUDIT_MODE", conflict, jsonMode);
+    return 1;
+  }
+
+  if (auditMode) {
+    const audit = auditReviewRecords();
+    console.log(jsonMode ? JSON.stringify(audit, null, 2) : formatReviewAuditForConsole(audit));
+    return 0;
+  }
+
+  const records = listReviewRecords();
+  console.log(jsonMode ? JSON.stringify(records, null, 2) : formatReviewListForConsole(records));
+  return 0;
+}
+
+function reviewAuditConflict(args: string[]): string | undefined {
+  if (args.includes("--review-approval-pack")) {
+    return "Review audit/list modes cannot be combined with --review-approval-pack.";
+  }
+  if (args.includes("--batch")) {
+    return "Review audit/list modes cannot be combined with --batch.";
+  }
+
+  for (const arg of args) {
+    if (!arg.startsWith("--")) {
+      return "Review audit/list modes do not accept an action file argument.";
+    }
+  }
+
+  return undefined;
+}
+
+function formatReviewAuditForConsole(audit: ReturnType<typeof auditReviewRecords>): string {
+  return [
+    `Human review audit: ${audit.review_records_directory}`,
+    `contract_version: ${audit.contract_version}`,
+    "",
+    "Summary:",
+    `- total_files: ${audit.summary.total_files}`,
+    `- valid_review_records: ${audit.summary.valid_review_records}`,
+    `- approved_count: ${audit.summary.approved_count}`,
+    `- rejected_count: ${audit.summary.rejected_count}`,
+    `- needs_more_info_count: ${audit.summary.needs_more_info_count}`,
+    `- invalid_review_records_count: ${audit.summary.invalid_review_records_count}`,
+    `- malformed_review_records_count: ${audit.summary.malformed_review_records_count}`,
+    `- approval_pack_hash_match_count: ${audit.summary.approval_pack_hash_match_count}`,
+    `- approval_pack_hash_mismatch_count: ${audit.summary.approval_pack_hash_mismatch_count}`,
+    `- approval_pack_missing_count: ${audit.summary.approval_pack_missing_count}`,
+    "",
+    "Review audit mode inspects local evidence records only.",
+  ].join("\n");
+}
+
+function formatReviewListForConsole(records: ReturnType<typeof listReviewRecords>): string {
+  if (records.length === 0) {
+    return "No human review records found.";
+  }
+
+  return [
+    "Human review records:",
+    ...records.map((record) => {
+      if (record.status !== "valid") {
+        return `- ${record.filename}: ${record.status} (${record.error ?? "error"})`;
+      }
+
+      return `- ${record.filename}: ${record.human_decision} by ${record.human_reviewer} | risk=${record.original_risk_level} | policy=${record.original_policy_profile} | integrity=${record.approval_pack_integrity_status}`;
+    }),
+  ].join("\n");
 }
 
 function parseHumanReviewArgs(args: string[]): {

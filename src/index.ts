@@ -14,6 +14,7 @@ export {
   saveHumanReviewRecord,
   withReviewRecordSaveStatus,
 } from "./human-review.js";
+export { auditReviewRecords, listReviewRecords } from "./review-audit.js";
 export {
   CONTRACT_VERSION,
   formatContractForConsole,
@@ -47,6 +48,13 @@ export type {
   HumanReviewRecord,
   SavedHumanReviewRecord,
 } from "./human-review.js";
+export type {
+  ApprovalPackIntegrityStatus,
+  ReviewAuditResult,
+  ReviewAuditSummary,
+  ReviewListEntry,
+  ReviewRecordStatus,
+} from "./review-audit.js";
 export type {
   PolicyApplication,
   PolicyProfile,

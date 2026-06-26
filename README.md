@@ -290,6 +290,34 @@ npm run verify -- --review-approval-pack approval-packs/example_approval_pack.js
 Human review records are local evidence records. They do not execute actions,
 authenticate reviewers, guarantee legality, or prove compliance.
 
+### Human Review Audit Viewer
+
+P3-M012 adds local audit and list commands for saved human review decision
+records. Review audits matter because businesses need to inspect the approval
+trail after decisions are made: how many decisions were approved, rejected, or
+marked `needs_more_info`, which approval packs were reviewed, and whether the
+stored approval pack hash still matches the referenced approval pack.
+
+Example commands:
+
+```sh
+npm run verify -- --audit-reviews
+npm run verify -- --audit-reviews --json
+npm run verify -- --list-review-records
+npm run verify -- --list-review-records --json
+```
+
+Approval pack integrity status:
+
+- `match`: the referenced approval pack exists and its SHA-256 hash matches the
+  hash stored in the review record.
+- `mismatch`: the referenced approval pack exists but its hash differs.
+- `missing`: the referenced approval pack path does not exist.
+- `not_checked`: integrity was not checked.
+
+Review audit mode inspects local evidence records only. It does not execute
+actions, authenticate reviewers, guarantee legality, or prove compliance.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:
