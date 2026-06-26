@@ -7,6 +7,8 @@ export interface GatewayClient {
   client_id: string;
   api_key: string;
   label?: string;
+  decision_allowance?: number;
+  allowance_window?: "all_time" | "daily" | "monthly";
 }
 
 export interface GatewayAuthConfig {
@@ -141,6 +143,20 @@ function validateClients(clients: GatewayClient[]): void {
     if (client.client_id.trim().length === 0 || client.api_key.trim().length === 0) {
       throw new GatewayAuthConfigError("Gateway clients require non-empty client_id and api_key values.");
     }
+    if (
+      client.decision_allowance !== undefined &&
+      (!Number.isInteger(client.decision_allowance) || client.decision_allowance < 0)
+    ) {
+      throw new GatewayAuthConfigError("Gateway client decision_allowance must be a non-negative integer.");
+    }
+    if (
+      client.allowance_window !== undefined &&
+      client.allowance_window !== "all_time" &&
+      client.allowance_window !== "daily" &&
+      client.allowance_window !== "monthly"
+    ) {
+      throw new GatewayAuthConfigError("Gateway client allowance_window must be all_time, daily, or monthly.");
+    }
   }
 }
 
@@ -161,7 +177,15 @@ function isClientsFile(value: unknown): value is { clients: GatewayClient[] } {
       return (
         typeof gatewayClient.client_id === "string" &&
         typeof gatewayClient.api_key === "string" &&
-        (gatewayClient.label === undefined || typeof gatewayClient.label === "string")
+        (gatewayClient.label === undefined || typeof gatewayClient.label === "string") &&
+        (
+          gatewayClient.decision_allowance === undefined ||
+          typeof gatewayClient.decision_allowance === "number"
+        ) &&
+        (
+          gatewayClient.allowance_window === undefined ||
+          typeof gatewayClient.allowance_window === "string"
+        )
       );
     })
   );

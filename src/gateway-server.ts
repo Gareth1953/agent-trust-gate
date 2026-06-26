@@ -21,6 +21,12 @@ import {
   type GatewayAuthConfig,
   type GatewayClient,
 } from "./gateway-auth.js";
+import {
+  checkGatewayClientUsageLimit,
+  usageObject,
+  type GatewayUsageLimitResult,
+  type GatewayUsageObject,
+} from "./gateway-usage-limits.js";
 import { verifyBeforeAction } from "./verify-before-action.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
@@ -69,6 +75,12 @@ type GatewayLogMetadata = Partial<
     | "client_id"
     | "auth_required"
     | "auth_ok"
+    | "usage_checked"
+    | "decision_allowance"
+    | "allowance_window"
+    | "used_decisions"
+    | "remaining_decisions"
+    | "over_limit"
   >
 >;
 
@@ -143,6 +155,36 @@ async function handleGatewayRequest(
       return;
     }
 
+    const usageLimit = protectedEndpoint && authResult.auth_ok === true
+      ? checkGatewayClientUsageLimit({
+          client: authConfig.clients.find((client) => client.client_id === context.client_id),
+          clientId: context.client_id,
+          gatewayLogPath,
+        })
+      : noUsageLimit(context.client_id);
+
+    if (usageLimit.over_limit) {
+      const usage = usageObject(usageLimit, false);
+      writeGatewayJson(
+        response,
+        context,
+        429,
+        errorResponse(
+          context.request_id,
+          context.client_id,
+          "CLIENT_USAGE_LIMIT_EXCEEDED",
+          "Client local decision allowance exceeded.",
+          [],
+          usage,
+        ),
+        {
+          ...usageLogMetadata(usageLimit),
+          error_code: "CLIENT_USAGE_LIMIT_EXCEEDED",
+        },
+      );
+      return;
+    }
+
     if (url.pathname === "/v1/health") {
       if (request.method !== "GET") {
         writeGatewayJson(
@@ -183,7 +225,11 @@ async function handleGatewayRequest(
       const body = await readJsonBody(request);
       const { action, policyProfile } = parseActionGatewayBody(body, url);
       const receipt = verifyBeforeAction(action as VerifyBeforeActionInput, policyProfile === undefined ? {} : { policy_profile: policyProfile });
-      writeGatewayJson(response, context, 200, toGatewayDecision(context.request_id, context.client_id, receipt), {
+      writeGatewayJson(response, context, 200, {
+        ...toGatewayDecision(context.request_id, context.client_id, receipt),
+        ...optionalUsage(usageObject(usageLimit, true)),
+      }, {
+        ...usageLogMetadata(usageLimit),
         policy_profile: receipt.policy_profile,
         action_type: receipt.input_summary.action_type,
         actor: receipt.input_summary.actor,
@@ -219,9 +265,11 @@ async function handleGatewayRequest(
         ...approvalPack,
         request_id: context.request_id,
         client_id: context.client_id,
+        ...optionalUsage(usageObject(usageLimit, true)),
         approval_pack_saved: approvalPackPath !== undefined,
         ...(approvalPackPath === undefined ? {} : { approval_pack_path: approvalPackPath }),
       }, {
+        ...usageLogMetadata(usageLimit),
         policy_profile: receipt.policy_profile,
         action_type: receipt.input_summary.action_type,
         actor: receipt.input_summary.actor,
@@ -258,7 +306,9 @@ async function handleGatewayRequest(
         ...withEvidenceBundleSaveStatus(evidenceBundle, evidenceBundlePath),
         request_id: context.request_id,
         client_id: context.client_id,
+        ...optionalUsage(usageObject(usageLimit, true)),
       }, {
+        ...usageLogMetadata(usageLimit),
         policy_profile: evidenceBundle.trust_decision.policy_profile,
         action_type: evidenceBundle.action.action_type,
         actor: evidenceBundle.action.actor,
@@ -423,6 +473,8 @@ function writeGatewayJson(
     client_id: context.client_id,
     auth_required: context.auth_required,
     auth_ok: context.auth_ok,
+    usage_checked: false,
+    over_limit: false,
     ...metadata,
   }, context.gatewayLogPath);
 
@@ -438,17 +490,48 @@ function errorResponse(
   code: string,
   message: string,
   details: unknown[] = [],
+  usage?: GatewayUsageObject,
 ) {
   return {
     ok: false,
     request_id: requestId,
     client_id: clientId,
     contract_version: CONTRACT_VERSION,
+    ...(usage === undefined ? {} : { usage }),
     error: {
       code,
       message,
       details,
     },
+  };
+}
+
+function noUsageLimit(clientId: string): GatewayUsageLimitResult {
+  return {
+    usage_checked: false,
+    client_id: clientId,
+    over_limit: false,
+  };
+}
+
+function optionalUsage(usage: GatewayUsageObject | undefined): { usage?: GatewayUsageObject } {
+  return usage === undefined ? {} : { usage };
+}
+
+function usageLogMetadata(usage: GatewayUsageLimitResult): GatewayLogMetadata {
+  return {
+    usage_checked: usage.usage_checked,
+    over_limit: usage.over_limit,
+    ...(usage.decision_allowance === undefined
+      ? {}
+      : { decision_allowance: usage.decision_allowance }),
+    ...(usage.allowance_window === undefined
+      ? {}
+      : { allowance_window: usage.allowance_window }),
+    ...(usage.used_decisions === undefined ? {} : { used_decisions: usage.used_decisions }),
+    ...(usage.remaining_decisions === undefined
+      ? {}
+      : { remaining_decisions: usage.remaining_decisions }),
   };
 }
 

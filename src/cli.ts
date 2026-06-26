@@ -33,15 +33,17 @@ import {
   withReviewRecordSaveStatus,
 } from "./human-review.js";
 import {
+  auditGatewayClientUsage,
   auditGatewayUsage,
   listGatewayRequests,
+  type GatewayClientUsageAudit,
   type GatewayRequestListEntry,
   type GatewayUsageSummary,
 } from "./gateway-logging.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const USAGE =
-  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787] [--require-api-key] [--clients-file gateway-clients.json]\n       npm run verify -- --gateway-usage [--json]\n       npm run verify -- --list-gateway-requests [--limit 20] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
+  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787] [--require-api-key] [--clients-file gateway-clients.json]\n       npm run verify -- --gateway-usage [--json]\n       npm run verify -- --client-usage [--json]\n       npm run verify -- --list-gateway-requests [--limit 20] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
@@ -53,6 +55,10 @@ export function runCli(args: string[]): number {
 
   if (args.includes("--gateway-usage")) {
     return runGatewayUsageMode(args, jsonMode);
+  }
+
+  if (args.includes("--client-usage")) {
+    return runClientUsageMode(args, jsonMode);
   }
 
   if (args.includes("--list-gateway-requests")) {
@@ -318,6 +324,18 @@ function runGatewayUsageMode(args: string[], jsonMode: boolean): number {
   return 0;
 }
 
+function runClientUsageMode(args: string[], jsonMode: boolean): number {
+  const conflict = clientUsageConflict(args);
+  if (conflict !== undefined) {
+    printError("INVALID_CLIENT_USAGE_ARGUMENTS", conflict, jsonMode);
+    return 1;
+  }
+
+  const usage = auditGatewayClientUsage();
+  console.log(jsonMode ? JSON.stringify(usage, null, 2) : formatClientUsageForConsole(usage));
+  return 0;
+}
+
 function runListGatewayRequestsMode(args: string[], jsonMode: boolean): number {
   const parsedArgs = parseListGatewayRequestsArgs(args);
   if (parsedArgs.error !== undefined) {
@@ -343,6 +361,20 @@ function gatewayUsageConflict(args: string[]): string | undefined {
       return `--gateway-usage cannot be combined with ${arg}.`;
     }
     return "--gateway-usage does not accept an action file argument.";
+  }
+
+  return undefined;
+}
+
+function clientUsageConflict(args: string[]): string | undefined {
+  for (const arg of args) {
+    if (arg === "--client-usage" || arg === "--json") {
+      continue;
+    }
+    if (arg.startsWith("--")) {
+      return `--client-usage cannot be combined with ${arg}.`;
+    }
+    return "--client-usage does not accept an action file argument.";
   }
 
   return undefined;
@@ -1110,6 +1142,10 @@ function formatGatewayUsageForConsole(usage: GatewayUsageSummary): string {
     `- authenticated_requests: ${usage.authenticated_requests}`,
     `- unauthenticated_requests: ${usage.unauthenticated_requests}`,
     `- unauthorized_requests: ${usage.unauthorized_requests}`,
+    `- over_limit_requests: ${usage.over_limit_requests}`,
+    "",
+    "Usage-limited client counts:",
+    ...formatCounts(usage.usage_limited_client_counts),
     "",
     "Error counts:",
     ...formatCounts(usage.error_code_counts),
@@ -1133,8 +1169,24 @@ function formatGatewayRequestListForConsole(requests: GatewayRequestListEntry[])
         return `- line ${entry.line_number}: malformed (${entry.error})`;
       }
 
-      return `- ${entry.timestamp} ${entry.method} ${entry.endpoint} request_id=${entry.request_id} client=${entry.client_id} auth_required=${entry.auth_required} auth_ok=${entry.auth_ok ?? "none"} ok=${entry.ok} status=${entry.status_code} policy=${entry.policy_profile ?? "none"} action=${entry.action_type ?? "none"} allowed=${entry.allowed ?? "none"} risk=${entry.risk_level ?? "none"} approval_required=${entry.human_approval_required ?? "none"} error=${entry.error_code ?? "none"}`;
+      return `- ${entry.timestamp} ${entry.method} ${entry.endpoint} request_id=${entry.request_id} client=${entry.client_id} auth_required=${entry.auth_required} auth_ok=${entry.auth_ok ?? "none"} usage_checked=${entry.usage_checked} over_limit=${entry.over_limit} remaining=${entry.remaining_decisions ?? "none"} ok=${entry.ok} status=${entry.status_code} policy=${entry.policy_profile ?? "none"} action=${entry.action_type ?? "none"} allowed=${entry.allowed ?? "none"} risk=${entry.risk_level ?? "none"} approval_required=${entry.human_approval_required ?? "none"} error=${entry.error_code ?? "none"}`;
     }),
+  ].join("\n");
+}
+
+function formatClientUsageForConsole(usage: GatewayClientUsageAudit): string {
+  if (usage.clients.length === 0) {
+    return [
+      `Client gateway usage: ${usage.gateway_logs_path}`,
+      "No gateway client usage found.",
+    ].join("\n");
+  }
+
+  return [
+    `Client gateway usage: ${usage.gateway_logs_path}`,
+    ...usage.clients.map((client) => (
+      `- ${client.client_id}: total=${client.total_requests} protected=${client.protected_requests} decisions=${client.decision_requests} approval_packs=${client.approval_pack_requests} evidence_bundles=${client.evidence_bundle_requests} successful=${client.successful_requests} errors=${client.error_requests} unauthorized=${client.unauthorized_requests} over_limit=${client.over_limit_requests} allowed=${client.allowed_count} blocked=${client.blocked_count} approval_required=${client.approval_required_count} first=${client.first_request_at ?? "none"} last=${client.last_request_at ?? "none"}`
+    )),
   ].join("\n");
 }
 

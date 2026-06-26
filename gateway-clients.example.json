@@ -3,7 +3,9 @@
     {
       "client_id": "local-demo-agent",
       "api_key": "replace-with-local-dev-key",
-      "label": "Local Demo Agent"
+      "label": "Local Demo Agent",
+      "decision_allowance": 1000,
+      "allowance_window": "monthly"
     }
   ]
 }

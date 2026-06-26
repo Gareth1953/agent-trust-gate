@@ -36,11 +36,13 @@ export {
 } from "./gateway-server.js";
 export {
   appendGatewayRequestLog,
+  auditGatewayClientUsage,
   auditGatewayUsage,
   DEFAULT_GATEWAY_LOGS_DIRECTORY,
   DEFAULT_GATEWAY_REQUEST_LOG_PATH,
   emptyGatewayUsageSummary,
   listGatewayRequests,
+  readValidGatewayRequestLogEntries,
 } from "./gateway-logging.js";
 export {
   authenticateGatewayRequest,
@@ -50,6 +52,10 @@ export {
   loadGatewayAuthConfig,
   normalizeClientId,
 } from "./gateway-auth.js";
+export {
+  checkGatewayClientUsageLimit,
+  usageObject,
+} from "./gateway-usage-limits.js";
 export { ActionValidationError, validateActionDescriptor } from "./action-validation.js";
 export { applyPolicyProfile, resolvePolicyProfile } from "./policy-profiles.js";
 export type {
@@ -99,9 +105,16 @@ export type {
   GatewayRequestListEntry,
   GatewayRequestLogEntry,
   GatewayUsageSummary,
+  GatewayClientUsageAudit,
+  GatewayClientUsageSummary,
 } from "./gateway-logging.js";
 export type {
   GatewayAuthConfig,
   GatewayAuthResult,
   GatewayClient,
 } from "./gateway-auth.js";
+export type {
+  AllowanceWindow,
+  GatewayUsageLimitResult,
+  GatewayUsageObject,
+} from "./gateway-usage-limits.js";

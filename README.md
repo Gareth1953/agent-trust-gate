@@ -502,6 +502,67 @@ Local API key mode is for local development hardening and client attribution. It
 does not expose a public service, bill customers, authenticate real-world
 identities, guarantee legality, or prove compliance.
 
+### Local Client Usage Limits & Decision Allowances
+
+P3-M017 adds local client usage limits and decision allowances. Allowances matter
+because metered infrastructure needs a way to enforce local decision quotas
+before future subscription tiers, monthly allowances, over-limit controls, and
+enterprise reporting can exist.
+
+This is local only. It is not billing, does not process payments, does not add
+cloud services, and does not expose a public service.
+
+Example `gateway-clients.json` entry:
+
+```json
+{
+  "clients": [
+    {
+      "client_id": "local-demo-agent",
+      "api_key": "replace-with-local-dev-key",
+      "label": "Local Demo Agent",
+      "decision_allowance": 1000,
+      "allowance_window": "monthly"
+    }
+  ]
+}
+```
+
+Supported allowance windows:
+
+- `all_time`
+- `daily`
+- `monthly`
+
+When `--require-api-key` is enabled and a matched client has
+`decision_allowance`, Agent Trust Gate counts previous successful protected
+gateway requests for that client from `gateway-logs/gateway-requests.jsonl`.
+Protected requests are:
+
+- `POST /v1/decision`
+- `POST /v1/approval-pack`
+- `POST /v1/evidence-bundle`
+
+If the client is at or over its local allowance, the gateway returns HTTP `429`
+with error code `CLIENT_USAGE_LIMIT_EXCEEDED`. The protected decision, approval
+pack, or evidence bundle logic does not run for that over-limit request. The
+rejection is still logged locally.
+
+Example commands:
+
+```sh
+npm run verify -- --serve --port 8787 --require-api-key
+npm run verify -- --gateway-usage
+npm run verify -- --client-usage
+npm run verify -- --client-usage --json
+```
+
+Clients without `decision_allowance` are treated as local unlimited clients.
+
+Local decision allowances are local control records only. They do not bill
+customers, process payments, expose a public service, authenticate real-world
+identities, guarantee legality, or prove compliance.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:
