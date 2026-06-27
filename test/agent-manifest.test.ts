@@ -19,7 +19,7 @@ test("agent manifest exposes stable discovery, capabilities, and disabled commer
   assert.equal(manifest.contract_version, "atg.v1");
   assert.equal(manifest.gateway_api_version, "atg.gateway.v1");
   assert.equal(manifest.openapi_url, "/v1/openapi.json");
-  for (const capability of ["pre_action_trust_decision", "approval_pack_generation", "human_review_evidence", "evidence_bundle_export", "gateway_usage_metering", "local_client_allowances", "local_admin_summary", "agent_entitlement_status"]) {
+  for (const capability of ["pre_action_trust_decision", "approval_pack_generation", "human_review_evidence", "evidence_bundle_export", "gateway_usage_metering", "local_client_allowances", "local_admin_summary", "agent_entitlement_status", "commercial_readiness_snapshot"]) {
     assert.ok(manifest.capabilities.includes(capability), capability);
   }
   assert.equal(manifest.tools.every((tool) => tool.executes_actions === false), true);
@@ -27,6 +27,11 @@ test("agent manifest exposes stable discovery, capabilities, and disabled commer
     tool.name === "atg_get_entitlement" &&
     tool.path === "/v1/entitlement" &&
     tool.http_method === "GET"
+  )), true);
+  assert.equal(manifest.tools.some((tool) => (
+    tool.name === "atg_get_commercial_readiness" &&
+    tool.path === "/v1/commercial-readiness" &&
+    tool.executes_actions === false
   )), true);
   assert.equal(manifest.usage_model.purchase_enabled, false);
   assert.equal(manifest.usage_model.automatic_purchase_enabled, false);

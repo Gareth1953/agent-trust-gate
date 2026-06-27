@@ -15,7 +15,8 @@
     "gateway_usage_metering",
     "local_client_allowances",
     "local_admin_summary",
-    "agent_entitlement_status"
+    "agent_entitlement_status",
+    "commercial_readiness_snapshot"
   ],
   "schemas": {
     "EmptyInput": {
@@ -95,6 +96,17 @@
       "input_schema_ref": "#/schemas/EmptyInput",
       "output_summary": "Local entitlement status and disabled purchase, automatic-purchase, and billing signals.",
       "safety_note": "Returns a local entitlement control signal only. It never purchases, bills, processes payments, or executes actions.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_get_commercial_readiness",
+      "description": "Read an honest local planning snapshot for local, commercial MVP, and full-target readiness.",
+      "transport": "http",
+      "http_method": "GET",
+      "path": "/v1/commercial-readiness",
+      "input_schema_ref": "#/schemas/EmptyInput",
+      "output_summary": "Readiness percentages, category evidence and gaps, missing capabilities, and next steps.",
+      "safety_note": "Returns local planning metadata only. It never bills, processes payments, enables automatic purchase, or executes actions.",
       "executes_actions": false
     },
     {

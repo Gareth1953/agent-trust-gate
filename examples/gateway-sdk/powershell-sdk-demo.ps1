@@ -31,6 +31,12 @@ try {
   Write-Host "purchase_enabled=$($entitlement.upgrade.purchase_enabled)"
   Write-Host "No purchase was made. Purchase, automatic purchase, and billing are disabled."
 
+  $readiness = Invoke-ATGCommercialReadiness -Client $client
+  Write-Host "local_product_readiness_percent=$($readiness.overall.local_product_readiness_percent)"
+  Write-Host "commercial_mvp_readiness_percent=$($readiness.overall.commercial_mvp_readiness_percent)"
+  Write-Host "full_target_readiness_percent=$($readiness.overall.full_target_readiness_percent)"
+  Write-Host "Commercial readiness is a planning snapshot only."
+
   if ($decision.human_approval_required -eq $true) {
     Write-Host "gateway_decision=REQUEST HUMAN"
     Write-Host "Stopping: explicit human review is required."

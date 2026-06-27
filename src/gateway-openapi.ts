@@ -124,6 +124,19 @@ export function createGatewayOpenApiDocument(): GatewayOpenApiDocument {
           },
         },
       },
+      "/v1/commercial-readiness": {
+        get: {
+          tags: ["Gateway"],
+          summary: "Read the local commercial readiness snapshot",
+          description: "Returns deterministic planning scores and gaps only. It does not implement hosting, payments, billing, automatic purchase, marketing automation, or action execution.",
+          parameters: [{ $ref: "#/components/parameters/ClientIdHeader" }],
+          responses: {
+            "200": response("Local commercial readiness planning snapshot.", "CommercialReadinessResponse"),
+            "405": errors["405"],
+            "500": errors["500"],
+          },
+        },
+      },
       "/v1/decision": {
         post: {
           tags: ["Trust"],
@@ -493,6 +506,51 @@ function createSchemas(): Record<string, unknown> {
           },
         },
         safety_statement: { type: "string" },
+      },
+    },
+    CommercialReadinessCategory: {
+      type: "object",
+      required: ["id", "label", "readiness_percent", "status", "evidence", "gaps", "next_step"],
+      properties: {
+        id: { type: "string" },
+        label: { type: "string" },
+        readiness_percent: { type: "integer", minimum: 0, maximum: 100 },
+        status: { type: "string", enum: ["complete", "partial", "not_started", "future"] },
+        evidence: { type: "array", items: { type: "string" } },
+        gaps: { type: "array", items: { type: "string" } },
+        next_step: { type: "string" },
+      },
+    },
+    CommercialReadinessResponse: {
+      type: "object",
+      required: ["contract_version", "readiness_version", "generated_at", "request_id", "local_only", "overall", "categories", "completed_capabilities", "missing_capabilities", "recommended_next_steps", "safety_statement"],
+      properties: {
+        contract_version: contractVersion,
+        readiness_version: { type: "string", const: "atg.commercial-readiness.v1" },
+        generated_at: { type: "string", format: "date-time" },
+        request_id: { type: "string" },
+        local_only: { type: "boolean", const: true },
+        overall: {
+          type: "object",
+          required: ["local_product_readiness_percent", "commercial_mvp_readiness_percent", "full_target_readiness_percent", "status"],
+          properties: {
+            local_product_readiness_percent: { type: "integer", minimum: 0, maximum: 100 },
+            commercial_mvp_readiness_percent: { type: "integer", minimum: 0, maximum: 100 },
+            full_target_readiness_percent: { type: "integer", minimum: 0, maximum: 100, description: "Must not be interpreted as 100% commercial completion." },
+            status: { type: "string", const: "local_infrastructure_ready_not_commercially_complete" },
+          },
+        },
+        categories: {
+          type: "array",
+          items: { $ref: "#/components/schemas/CommercialReadinessCategory" },
+        },
+        completed_capabilities: { type: "array", items: { type: "string" } },
+        missing_capabilities: { type: "array", items: { type: "string" } },
+        recommended_next_steps: { type: "array", items: { type: "string" } },
+        safety_statement: {
+          type: "string",
+          description: "Planning only: no billing, payment processing, automatic purchase, public hosting, or action execution.",
+        },
       },
     },
   };

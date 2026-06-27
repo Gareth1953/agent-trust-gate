@@ -16,3 +16,4 @@ gateway-logs/*.json
 gateway-clients.json
 openapi/*.json
 manifests/*.json
+reports/*.json

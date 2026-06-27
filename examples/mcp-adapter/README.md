@@ -17,6 +17,7 @@ The tool metadata exposes:
 - `atg_health`
 - `atg_decide`
 - `atg_get_entitlement`
+- `atg_get_commercial_readiness`
 - `atg_create_approval_pack`
 - `atg_create_evidence_bundle`
 
@@ -24,6 +25,9 @@ Every tool declares `executes_actions: false`.
 
 `atg_get_entitlement` reports local usage, allowance, and upgrade-required
 signals. Purchase, automatic purchase, and billing remain disabled.
+
+`atg_get_commercial_readiness` reports deterministic planning scores and gaps.
+It does not implement hosting, payments, billing, marketing, or self-learning.
 
 ## Run locally
 

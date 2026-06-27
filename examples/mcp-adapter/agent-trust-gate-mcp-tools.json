@@ -47,6 +47,18 @@
       "executes_actions": false
     },
     {
+      "name": "atg_get_commercial_readiness",
+      "description": "Read local product, commercial MVP, and full-target planning readiness.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {}
+      },
+      "output": "Local readiness percentages, category evidence and gaps, missing capabilities, and next steps.",
+      "safety_note": "Planning snapshot only. It does not bill, process payments, enable automatic purchase, expose a public service, or execute actions.",
+      "executes_actions": false
+    },
+    {
       "name": "atg_create_approval_pack",
       "description": "Create a local approval packet for an action.",
       "inputSchema": {

@@ -75,6 +75,7 @@ The wrappers expose equivalent operations:
 - `createEvidenceBundle()` / `Invoke-ATGEvidenceBundle`
 - `openapi()` / `Invoke-ATGOpenApi`
 - `entitlement()` / `Invoke-ATGEntitlement`
+- `commercialReadiness()` / `Invoke-ATGCommercialReadiness`
 
 Client ID and API key headers are optional. The wrappers add
 `X-ATG-Client-ID` and `X-ATG-API-Key` only when values are supplied. They do
@@ -83,6 +84,9 @@ not print credentials.
 Entitlement responses expose local allowance and upgrade-required signals.
 `purchase_enabled`, `automatic_purchase_enabled`, and `billing_enabled` remain
 false; the wrappers do not purchase usage or process payments.
+
+Commercial readiness methods return local planning scores, category evidence,
+gaps, and next steps. They do not implement any missing commercial capability.
 
 ## Handle decisions
 

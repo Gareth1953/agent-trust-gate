@@ -28,14 +28,14 @@ test("Node SDK wrapper exports the expected client operations", () => {
   assert.match(source, /export class AgentTrustGateClient/);
   assert.match(source, /export class AgentTrustGateError/);
   assert.match(source, /export function createAgentTrustGateClient/);
-  for (const method of ["health", "decide", "createApprovalPack", "createEvidenceBundle", "openapi", "entitlement"]) {
+  for (const method of ["health", "decide", "createApprovalPack", "createEvidenceBundle", "openapi", "entitlement", "commercialReadiness"]) {
     assert.match(source, new RegExp(`\\b${method}\\(`));
   }
 });
 
 test("PowerShell SDK wrapper defines the expected functions", () => {
   const source = readFileSync(files.powershellClient, "utf8");
-  for (const functionName of ["New-AgentTrustGateClient", "Invoke-ATGHealth", "Invoke-ATGDecision", "Invoke-ATGApprovalPack", "Invoke-ATGEvidenceBundle", "Invoke-ATGOpenApi", "Invoke-ATGEntitlement"]) {
+  for (const functionName of ["New-AgentTrustGateClient", "Invoke-ATGHealth", "Invoke-ATGDecision", "Invoke-ATGApprovalPack", "Invoke-ATGEvidenceBundle", "Invoke-ATGOpenApi", "Invoke-ATGEntitlement", "Invoke-ATGCommercialReadiness"]) {
     assert.match(source, new RegExp(`function ${functionName.replace("-", "\\-")}`));
   }
 });
@@ -81,6 +81,7 @@ test("Node SDK wrapper calls the local gateway and surfaces JSON errors", async 
         decide(action: Record<string, unknown>): Promise<Record<string, unknown>>;
         openapi(): Promise<Record<string, unknown>>;
         entitlement(): Promise<Record<string, unknown>>;
+        commercialReadiness(): Promise<Record<string, unknown>>;
       };
     };
     const client = sdk.createAgentTrustGateClient({
@@ -97,6 +98,9 @@ test("Node SDK wrapper calls the local gateway and surfaces JSON errors", async 
 
     const entitlement = await client.entitlement();
     assert.equal(entitlement.entitlement_version, "atg.entitlement.v1");
+
+    const readiness = await client.commercialReadiness();
+    assert.equal(readiness.readiness_version, "atg.commercial-readiness.v1");
 
     await assert.rejects(
       client.decide({ action_type: "public_post" }),

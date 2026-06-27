@@ -799,6 +799,46 @@ Entitlement and upgrade signals are local control signals only. They do not bill
 customers, process payments, enable automatic purchase, expose a public service,
 authenticate real-world identities, guarantee legality, or prove compliance.
 
+### Commercial Readiness Snapshot
+
+P3-M024 adds a deterministic local planning snapshot that separates three
+different measures instead of treating local MVP progress as full commercial
+completion:
+
+- local product readiness: the local trust, evidence, gateway, metering, and
+  integration foundations
+- commercial MVP readiness: the work needed for a responsibly sellable and
+  supportable developer/agent product
+- full target readiness: hosted global infrastructure, accounts, production
+  security and monitoring, payments, billing, automatic machine purchasing,
+  distribution, legal positioning, and governed adaptive recommendations
+
+Inspect or export the snapshot:
+
+```sh
+npm run verify -- --commercial-readiness
+npm run verify -- --commercial-readiness --json
+npm run verify -- --commercial-readiness --output reports/commercial-readiness.json
+```
+
+When Local Gateway API Mode is running:
+
+```text
+GET http://127.0.0.1:8787/v1/commercial-readiness
+```
+
+The snapshot records evidence, gaps, and next steps for each readiness category.
+It does not claim Agent Trust Gate is 100% complete. Production hosting,
+payment processing, automatic machine-to-machine purchase, billing records,
+global automated marketing, and self-learning market scanning remain
+`not_started` or `future` targets. The scores are static planning judgments and
+do not implement any missing capability.
+
+Commercial readiness is a local planning snapshot only. It does not bill
+customers, process payments, enable automatic purchase, execute actions, expose
+a public service, authenticate real-world identities, guarantee legality, or
+prove compliance.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

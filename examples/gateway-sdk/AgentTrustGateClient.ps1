@@ -91,6 +91,12 @@ function Invoke-ATGEntitlement {
   Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/entitlement"
 }
 
+function Invoke-ATGCommercialReadiness {
+  [CmdletBinding()]
+  param([Parameter(Mandatory)]$Client)
+  Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/commercial-readiness"
+}
+
 function Invoke-ATGRequest {
   [CmdletBinding()]
   param(

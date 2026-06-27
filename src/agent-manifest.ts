@@ -80,6 +80,7 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
       "local_client_allowances",
       "local_admin_summary",
       "agent_entitlement_status",
+      "commercial_readiness_snapshot",
     ],
     schemas: {
       EmptyInput: {
@@ -148,6 +149,15 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
         "#/schemas/EmptyInput",
         "Local entitlement status and disabled purchase, automatic-purchase, and billing signals.",
         "Returns a local entitlement control signal only. It never purchases, bills, processes payments, or executes actions.",
+      ),
+      httpTool(
+        "atg_get_commercial_readiness",
+        "Read an honest local planning snapshot for local, commercial MVP, and full-target readiness.",
+        "GET",
+        "/v1/commercial-readiness",
+        "#/schemas/EmptyInput",
+        "Readiness percentages, category evidence and gaps, missing capabilities, and next steps.",
+        "Returns local planning metadata only. It never bills, processes payments, enables automatic purchase, or executes actions.",
       ),
       cliTool(
         "atg_get_usage",

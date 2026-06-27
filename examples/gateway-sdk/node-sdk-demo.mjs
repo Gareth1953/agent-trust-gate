@@ -35,6 +35,12 @@ async function main() {
   console.log(`purchase_enabled=${entitlement.upgrade.purchase_enabled}`);
   console.log("No purchase was made. Purchase, automatic purchase, and billing are disabled.");
 
+  const readiness = await client.commercialReadiness();
+  console.log(`local_product_readiness_percent=${readiness.overall.local_product_readiness_percent}`);
+  console.log(`commercial_mvp_readiness_percent=${readiness.overall.commercial_mvp_readiness_percent}`);
+  console.log(`full_target_readiness_percent=${readiness.overall.full_target_readiness_percent}`);
+  console.log("Commercial readiness is a planning snapshot only.");
+
   if (decision.human_approval_required === true) {
     console.log("gateway_decision=REQUEST HUMAN");
     console.log("Stopping: explicit human review is required.");

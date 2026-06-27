@@ -15,6 +15,7 @@ export function createMcpStyleAdapter(options = {}) {
   const tools = {
     atg_health: async () => client.health(),
     atg_get_entitlement: async () => client.entitlement(),
+    atg_get_commercial_readiness: async () => client.commercialReadiness(),
     atg_decide: async ({ action, policy_profile } = {}) => (
       client.decide(action, policy_profile === undefined ? {} : { policyProfile: policy_profile })
     ),
@@ -69,6 +70,9 @@ async function demo() {
   console.log(`tool=atg_get_entitlement status=${entitlement.entitlement_status}`);
   console.log(`upgrade_required=${entitlement.upgrade.upgrade_required} purchase_enabled=${entitlement.upgrade.purchase_enabled}`);
   console.log("No purchase was made. Automatic purchase and billing are disabled.");
+  const readiness = await adapter.callTool("atg_get_commercial_readiness");
+  console.log(`tool=atg_get_commercial_readiness local=${readiness.overall.local_product_readiness_percent} commercial_mvp=${readiness.overall.commercial_mvp_readiness_percent} full_target=${readiness.overall.full_target_readiness_percent}`);
+  console.log("Commercial readiness is a local planning snapshot only.");
   console.log("No action was executed. This local MCP-style adapter requested a trust decision only.");
 }
 
