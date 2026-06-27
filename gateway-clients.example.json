@@ -5,7 +5,11 @@
       "api_key": "replace-with-local-dev-key",
       "label": "Local Demo Agent",
       "decision_allowance": 1000,
-      "allowance_window": "monthly"
+      "allowance_window": "monthly",
+      "rate_limit": {
+        "max_requests": 60,
+        "window": "local_runtime"
+      }
     }
   ]
 }

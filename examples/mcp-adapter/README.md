@@ -20,6 +20,7 @@ The tool metadata exposes:
 - `atg_get_commercial_readiness`
 - `atg_get_hosted_readiness`
 - `atg_get_security_readiness`
+- `atg_get_rate_limit_status`
 - `atg_create_approval_pack`
 - `atg_create_evidence_bundle`
 
@@ -36,6 +37,9 @@ not deploy, bind publicly, or expose a service.
 
 `atg_get_security_readiness` reports local production-security preparation gaps.
 It does not certify production security, deploy, bind publicly, or expose a service.
+
+`atg_get_rate_limit_status` reports local runtime request limits and abuse
+signals. It is not production-grade abuse prevention and never buys capacity.
 
 ## Run locally
 

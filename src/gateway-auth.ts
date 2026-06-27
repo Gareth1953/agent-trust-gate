@@ -1,5 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 
+import type { GatewayRateLimitConfig } from "./gateway-rate-limits.js";
+
 export const DEFAULT_GATEWAY_CLIENT_ID = "local-anonymous";
 export const DEFAULT_GATEWAY_CLIENTS_FILE = "gateway-clients.json";
 
@@ -9,6 +11,7 @@ export interface GatewayClient {
   label?: string;
   decision_allowance?: number;
   allowance_window?: "all_time" | "daily" | "monthly";
+  rate_limit?: GatewayRateLimitConfig;
 }
 
 export interface GatewayAuthConfig {
@@ -41,6 +44,10 @@ export function loadGatewayAuthConfig(options: {
   const requireApiKey = options.requireApiKey === true;
 
   if (!requireApiKey) {
+    if (options.clients !== undefined) {
+      validateClients(options.clients);
+      return { require_api_key: false, clients: options.clients };
+    }
     return { require_api_key: false, clients: [] };
   }
 
@@ -157,6 +164,18 @@ function validateClients(clients: GatewayClient[]): void {
     ) {
       throw new GatewayAuthConfigError("Gateway client allowance_window must be all_time, daily, or monthly.");
     }
+    if (
+      client.rate_limit !== undefined &&
+      (
+        !Number.isInteger(client.rate_limit.max_requests) ||
+        client.rate_limit.max_requests < 1 ||
+        client.rate_limit.window !== "local_runtime"
+      )
+    ) {
+      throw new GatewayAuthConfigError(
+        "Gateway client rate_limit requires a positive integer max_requests and window local_runtime.",
+      );
+    }
   }
 }
 
@@ -185,6 +204,14 @@ function isClientsFile(value: unknown): value is { clients: GatewayClient[] } {
         (
           gatewayClient.allowance_window === undefined ||
           typeof gatewayClient.allowance_window === "string"
+        ) &&
+        (
+          gatewayClient.rate_limit === undefined ||
+          (
+            typeof gatewayClient.rate_limit === "object" &&
+            gatewayClient.rate_limit !== null &&
+            !Array.isArray(gatewayClient.rate_limit)
+          )
         )
       );
     })

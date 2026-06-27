@@ -28,6 +28,11 @@ export interface GatewayRequestLogEntry {
   used_decisions?: number;
   remaining_decisions?: number;
   over_limit?: boolean;
+  rate_limit_status?: string;
+  abuse_status?: string;
+  rate_limit_max_requests?: number;
+  rate_limit_used_requests?: number;
+  rate_limit_remaining_requests?: number;
   policy_profile?: string;
   action_type?: string;
   actor?: string;

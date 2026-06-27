@@ -921,6 +921,37 @@ payments, enable automatic purchase, execute actions, authenticate real-world
 identities, guarantee legality, prove compliance, or provide SOC2, ISO27001,
 GDPR, or payment certification.
 
+### Local Rate Limit And Abuse-Control Signal Layer
+
+P3-M027 adds optional per-client request limits for one local gateway runtime.
+It returns deterministic limit and abuse-control signals and rejects an
+over-limit protected request with HTTP `429` and `ATG_RATE_LIMIT_EXCEEDED`
+before trust-decision or evidence logic runs.
+
+```sh
+npm run verify -- --rate-limit-status
+npm run verify -- --rate-limit-status --json
+npm run verify -- --rate-limit-status --client-id local-demo-agent --clients-file gateway-clients.example.json --json
+npm run verify -- --rate-limit-status --output reports/rate-limit-status.json
+```
+
+When the local gateway is running:
+
+```text
+GET http://127.0.0.1:8787/v1/rate-limit-status
+```
+
+The optional client configuration is documented under
+`docs/rate-limit-abuse-control/`. Runtime counters reset when the gateway
+process restarts. CLI inspection reads local logs as an audit snapshot, while
+the live endpoint reports the current process counter.
+
+Rate limit and abuse-control signals are local controls only. They do not deploy
+Agent Trust Gate, expose a public service, provide production-grade abuse
+prevention, bill customers, process payments, enable automatic purchase,
+execute actions, authenticate real-world identities, guarantee legality, prove
+compliance, or provide security certification.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

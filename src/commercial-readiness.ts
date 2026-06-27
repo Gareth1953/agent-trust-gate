@@ -26,9 +26,9 @@ export interface CommercialReadinessSnapshot {
   generated_at: string;
   local_only: true;
   overall: {
-    local_product_readiness_percent: 86;
-    commercial_mvp_readiness_percent: 63;
-    full_target_readiness_percent: 38;
+    local_product_readiness_percent: 87;
+    commercial_mvp_readiness_percent: 65;
+    full_target_readiness_percent: 40;
     status: "local_infrastructure_ready_not_commercially_complete";
   };
   categories: CommercialReadinessCategory[];
@@ -47,9 +47,9 @@ export function createCommercialReadinessSnapshot(
     generated_at: now.toISOString(),
     local_only: true,
     overall: {
-      local_product_readiness_percent: 86,
-      commercial_mvp_readiness_percent: 63,
-      full_target_readiness_percent: 38,
+      local_product_readiness_percent: 87,
+      commercial_mvp_readiness_percent: 65,
+      full_target_readiness_percent: 40,
       status: "local_infrastructure_ready_not_commercially_complete",
     },
     categories: categories(),
@@ -63,6 +63,7 @@ export function createCommercialReadinessSnapshot(
       "openapi_sdk_quickstart_and_agent_discovery",
       "local_admin_and_commercial_readiness_summaries",
       "hosted_and_production_security_readiness_packs",
+      "local_rate_limit_and_abuse_control_signals",
     ],
     missing_capabilities: [
       "production_hosting_and_edge_availability",
@@ -142,6 +143,7 @@ function categories(): CommercialReadinessCategory[] {
     partial("gateway_logging_and_metering", "Gateway logging and metering", 95, ["Append-only local JSONL request logs and usage summaries."], ["No production telemetry pipeline, retention policy, or tamper resistance."], "Design hosted metering durability and privacy controls."),
     partial("client_identity_and_api_key_gate", "Client identity and API key gate", 90, ["Optional local client IDs and API-key matching without key logging."], ["Local API keys do not authenticate real-world identities or provide production-grade lifecycle management."], "Design production identity, key rotation, revocation, and authorization."),
     partial("client_usage_limits", "Client usage limits", 95, ["Local all-time, daily, and monthly decision allowances with 429 enforcement."], ["No distributed atomic counters or multi-instance consistency."], "Specify production quota consistency and concurrency behavior."),
+    partial("rate_limit_and_abuse_control", "Rate limit and abuse control", 45, ["Optional per-server client request limits, machine-readable status, deterministic abuse signals, and local 429 enforcement exist."], ["No distributed counters, edge controls, IP or device signals, production monitoring, alerting, fraud review, or durable enforcement."], "Design and test distributed rate limiting and governed abuse operations before hosting."),
     partial("gateway_admin_summary", "Gateway admin summary", 90, ["Local operator summary for health, clients, outcomes, auth, and limits."], ["No hosted admin console or role-based access."], "Define production operator roles and audit controls."),
     partial("developer_quickstart", "Developer quickstart", 95, ["Safe Node, PowerShell, curl, and sample-action quickstarts."], ["No hosted onboarding journey or support process."], "Pilot onboarding with external developers."),
     partial("openapi_contract", "OpenAPI contract", 95, ["Tracked OpenAPI 3.1 contract with local export and discovery endpoint."], ["No compatibility policy or published API lifecycle."], "Define versioning, deprecation, and compatibility commitments."),

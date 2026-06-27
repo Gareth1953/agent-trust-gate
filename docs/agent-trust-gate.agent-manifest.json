@@ -18,7 +18,8 @@
     "agent_entitlement_status",
     "commercial_readiness_snapshot",
     "hosted_deployment_readiness",
-    "production_security_readiness"
+    "production_security_readiness",
+    "local_rate_limit_and_abuse_signals"
   ],
   "schemas": {
     "EmptyInput": {
@@ -131,6 +132,17 @@
       "input_schema_ref": "#/schemas/EmptyInput",
       "output_summary": "Security preparation percentage, checks, critical gaps, hosting requirements, and recommended controls.",
       "safety_note": "Planning snapshot only. It does not certify production security, deploy Agent Trust Gate, or expose a public service.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_get_rate_limit_status",
+      "description": "Read local runtime request-limit status and deterministic abuse-control signals for the calling client.",
+      "transport": "http",
+      "http_method": "GET",
+      "path": "/v1/rate-limit-status",
+      "input_schema_ref": "#/schemas/EmptyInput",
+      "output_summary": "Local request count, remaining capacity, limit status, abuse signal, and disabled commerce fields.",
+      "safety_note": "Local control signal only. It is not production-grade abuse prevention and never executes actions or purchases capacity.",
       "executes_actions": false
     },
     {

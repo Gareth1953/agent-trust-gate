@@ -47,6 +47,11 @@ try {
   Write-Host "production_security_certified=$($security.production_security_certified)"
   Write-Host "No deployment occurred and no security certification is claimed."
 
+  $rateLimit = Invoke-ATGRateLimitStatus -Client $client
+  Write-Host "rate_limit_status=$($rateLimit.rate_limit_status)"
+  Write-Host "abuse_status=$($rateLimit.abuse_signal.abuse_status)"
+  Write-Host "No action was executed and no purchase was made."
+
   if ($decision.human_approval_required -eq $true) {
     Write-Host "gateway_decision=REQUEST HUMAN"
     Write-Host "Stopping: explicit human review is required."

@@ -90,6 +90,10 @@ export class AgentTrustGateClient {
     return this.#request("/v1/security-readiness");
   }
 
+  rateLimitStatus() {
+    return this.#request("/v1/rate-limit-status");
+  }
+
   async #request(path, { method = "GET", body } = {}) {
     const headers = { Accept: "application/json" };
     if (this.#clientId !== undefined) {

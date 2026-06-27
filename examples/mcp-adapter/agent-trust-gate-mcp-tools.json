@@ -83,6 +83,18 @@
       "executes_actions": false
     },
     {
+      "name": "atg_get_rate_limit_status",
+      "description": "Read local runtime request-limit status and deterministic abuse signals.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {}
+      },
+      "output": "Local request count, remaining requests, rate-limit status, abuse status, and disabled commerce signals.",
+      "safety_note": "Local control signal only. It is not production-grade abuse prevention and never executes actions or purchases capacity.",
+      "executes_actions": false
+    },
+    {
       "name": "atg_create_approval_pack",
       "description": "Create a local approval packet for an action.",
       "inputSchema": {

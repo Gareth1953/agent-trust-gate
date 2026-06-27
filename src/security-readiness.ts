@@ -34,7 +34,7 @@ export interface SecurityReadinessReport {
   public_service_safe: false;
   payment_security_ready: false;
   overall: {
-    security_readiness_percent: 30;
+    security_readiness_percent: 35;
     status: "security_preparation_only_not_production_certified";
     next_gate: "complete_production_security_controls_before_public_hosting";
   };
@@ -55,7 +55,7 @@ export function createSecurityReadinessReport(now = new Date()): SecurityReadine
     public_service_safe: false,
     payment_security_ready: false,
     overall: {
-      security_readiness_percent: 30,
+      security_readiness_percent: 35,
       status: "security_preparation_only_not_production_certified",
       next_gate: "complete_production_security_controls_before_public_hosting",
     },
@@ -63,8 +63,8 @@ export function createSecurityReadinessReport(now = new Date()): SecurityReadine
     critical_gaps: [
       "production_authentication_not_implemented",
       "secure_secret_storage_not_implemented",
-      "rate_limiting_not_implemented",
-      "abuse_monitoring_not_implemented",
+      "production_rate_limiting_not_implemented",
+      "production_abuse_monitoring_not_implemented",
       "production_monitoring_not_implemented",
       "incident_response_not_documented",
       "transport_security_not_configured",
@@ -161,8 +161,8 @@ function securityChecks(): SecurityReadinessCheck[] {
     check("production_authentication_missing", "Production authentication missing", "not_started", "critical", ["Local API keys do not authenticate real-world identities or tenants."], "Implement production-grade authentication, authorization, tenant isolation, and lifecycle controls."),
     check("secret_storage_missing", "Managed secret storage missing", "not_started", "critical", ["Local client keys are stored in an ignored JSON file."], "Use managed secret storage with scoped access, audit, rotation, and revocation."),
     check("key_rotation_missing", "Key rotation process missing", "not_started", "critical", ["No production key rotation or revocation workflow exists."], "Define rotation intervals, emergency revocation, overlap, and client migration procedures."),
-    check("rate_limiting_missing", "Production rate limiting missing", "not_started", "critical", ["Local decision allowances are not network abuse controls."], "Implement distributed per-client and global rate limits, burst controls, and request-size limits."),
-    check("abuse_prevention_missing", "Abuse prevention missing", "not_started", "critical", ["No hosted anomaly detection, blocking, or abuse response workflow exists."], "Define abuse signals, automated containment boundaries, review, and appeal procedures."),
+    check("rate_limiting_local_only", "Rate limiting is local only", "partial", "warning", ["Configured clients can use deterministic per-server runtime request limits with 429 responses."], "Replace local counters with distributed per-client and global rate limits, burst controls, and request-size limits before hosting."),
+    check("abuse_prevention_local_signals", "Abuse prevention has local signals only", "partial", "warning", ["Local status reports expose suspicious-volume, repeated-error, unknown-client, and over-limit signals."], "Add production telemetry, anomaly detection, containment, review, and appeal procedures before hosting."),
     check("production_monitoring_missing", "Production monitoring missing", "not_started", "critical", ["Only local health and log inspection exist."], "Add metrics, tracing, availability objectives, dashboards, and on-call ownership."),
     check("alerting_missing", "Security alerting missing", "not_started", "critical", ["No production security or availability alerts are configured."], "Define actionable alerts, severity levels, escalation paths, and test schedules."),
     check("incident_response_missing", "Incident response missing", "not_started", "critical", ["A planning template exists, but no approved or exercised response process exists."], "Assign owners and exercise detection, containment, recovery, communication, and review."),

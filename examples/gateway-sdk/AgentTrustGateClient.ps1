@@ -109,6 +109,12 @@ function Invoke-ATGSecurityReadiness {
   Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/security-readiness"
 }
 
+function Invoke-ATGRateLimitStatus {
+  [CmdletBinding()]
+  param([Parameter(Mandatory)]$Client)
+  Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/rate-limit-status"
+}
+
 function Invoke-ATGRequest {
   [CmdletBinding()]
   param(

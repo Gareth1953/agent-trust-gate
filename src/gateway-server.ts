@@ -17,6 +17,7 @@ import {
 } from "./gateway-logging.js";
 import {
   authenticateGatewayRequest,
+  DEFAULT_GATEWAY_CLIENT_ID,
   loadGatewayAuthConfig,
   type GatewayAuthConfig,
   type GatewayClient,
@@ -33,6 +34,11 @@ import { getGatewayEntitlementStatus } from "./gateway-entitlements.js";
 import { createCommercialReadinessSnapshot } from "./commercial-readiness.js";
 import { createHostedReadinessReport } from "./hosted-readiness.js";
 import { createSecurityReadinessReport } from "./security-readiness.js";
+import {
+  createLocalGatewayRateLimiter,
+  type LocalGatewayRateLimiter,
+  type RateLimitStatusReport,
+} from "./gateway-rate-limits.js";
 import { verifyBeforeAction } from "./verify-before-action.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
@@ -87,6 +93,11 @@ type GatewayLogMetadata = Partial<
     | "used_decisions"
     | "remaining_decisions"
     | "over_limit"
+    | "rate_limit_status"
+    | "abuse_status"
+    | "rate_limit_max_requests"
+    | "rate_limit_used_requests"
+    | "rate_limit_remaining_requests"
   >
 >;
 
@@ -97,8 +108,9 @@ export function createGatewayServer(options: GatewayServerOptions = {}): Server 
     ...(options.clientsFile === undefined ? {} : { clientsFile: options.clientsFile }),
     ...(options.clients === undefined ? {} : { clients: options.clients }),
   });
+  const rateLimiter = createLocalGatewayRateLimiter();
   return createServer((request, response) => {
-    void handleGatewayRequest(request, response, gatewayLogPath, authConfig);
+    void handleGatewayRequest(request, response, gatewayLogPath, authConfig, rateLimiter);
   });
 }
 
@@ -123,11 +135,15 @@ async function handleGatewayRequest(
   response: ServerResponse,
   gatewayLogPath: string,
   authConfig: GatewayAuthConfig,
+  rateLimiter: LocalGatewayRateLimiter,
 ): Promise<void> {
   const url = new URL(request.url ?? "/", `http://${request.headers.host ?? "127.0.0.1"}`);
   const meteredEndpoint = isProtectedGatewayEndpoint(url.pathname, request.method);
   const authProtectedEndpoint = meteredEndpoint || (
-    url.pathname === "/v1/entitlement" && request.method === "GET"
+    (
+      url.pathname === "/v1/entitlement" ||
+      url.pathname === "/v1/rate-limit-status"
+    ) && request.method === "GET"
   );
   const authResult = authenticateGatewayRequest({
     protectedEndpoint: authProtectedEndpoint,
@@ -160,6 +176,54 @@ async function handleGatewayRequest(
           authResult.error_message ?? "Unauthorized local gateway request.",
         ),
         { error_code: authResult.error_code },
+      );
+      return;
+    }
+
+    const configuredClient = authConfig.clients.find(
+      (client) => client.client_id === context.client_id,
+    );
+    const rateLimit = meteredEndpoint
+      ? rateLimiter.consume({
+          clientId: context.client_id,
+          ...(configuredClient?.rate_limit === undefined
+            ? {}
+            : { rateLimit: configuredClient.rate_limit }),
+          knownClient: configuredClient !== undefined || context.client_id === DEFAULT_GATEWAY_CLIENT_ID,
+        })
+      : rateLimiter.inspect({
+          clientId: context.client_id,
+          ...(configuredClient?.rate_limit === undefined
+            ? {}
+            : { rateLimit: configuredClient.rate_limit }),
+          knownClient: configuredClient !== undefined || context.client_id === DEFAULT_GATEWAY_CLIENT_ID,
+        });
+
+    if (meteredEndpoint && rateLimit.rate_limited) {
+      writeGatewayJson(
+        response,
+        context,
+        429,
+        {
+          ...errorResponse(
+            context.request_id,
+            context.client_id,
+            "ATG_RATE_LIMIT_EXCEEDED",
+            "Client local runtime request limit exceeded.",
+          ),
+          rate_limit_status: "over_limit",
+          abuse_status: "over_limit",
+          rate_limit: rateLimit,
+          purchase_enabled: false,
+          automatic_purchase_enabled: false,
+          billing_enabled: false,
+          executes_actions: false,
+        },
+        {
+          ...rateLimitLogMetadata(rateLimit),
+          over_limit: true,
+          error_code: "ATG_RATE_LIMIT_EXCEEDED",
+        },
       );
       return;
     }
@@ -349,6 +413,25 @@ async function handleGatewayRequest(
         ...createSecurityReadinessReport(),
         request_id: context.request_id,
       });
+      return;
+    }
+
+    if (url.pathname === "/v1/rate-limit-status") {
+      if (request.method !== "GET") {
+        writeGatewayJson(
+          response,
+          context,
+          405,
+          errorResponse(context.request_id, context.client_id, "METHOD_NOT_ALLOWED", "GET is required for /v1/rate-limit-status."),
+          { error_code: "METHOD_NOT_ALLOWED" },
+        );
+        return;
+      }
+
+      writeGatewayJson(response, context, 200, {
+        ...rateLimit,
+        request_id: context.request_id,
+      }, rateLimitLogMetadata(rateLimit));
       return;
     }
 
@@ -675,6 +758,20 @@ function usageLogMetadata(usage: GatewayUsageLimitResult): GatewayLogMetadata {
     ...(usage.remaining_decisions === undefined
       ? {}
       : { remaining_decisions: usage.remaining_decisions }),
+  };
+}
+
+function rateLimitLogMetadata(rateLimit: RateLimitStatusReport): GatewayLogMetadata {
+  return {
+    rate_limit_status: rateLimit.rate_limit_status,
+    abuse_status: rateLimit.abuse_signal.abuse_status,
+    ...(rateLimit.window.max_requests === null
+      ? {}
+      : { rate_limit_max_requests: rateLimit.window.max_requests }),
+    rate_limit_used_requests: rateLimit.window.used_requests,
+    ...(rateLimit.window.remaining_requests === null
+      ? {}
+      : { rate_limit_remaining_requests: rateLimit.window.remaining_requests }),
   };
 }
 

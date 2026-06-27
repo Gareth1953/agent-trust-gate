@@ -196,3 +196,20 @@ export type {
   SecurityReadinessReport,
   SecurityReadinessSeverity,
 } from "./security-readiness.js";
+export {
+  RATE_LIMIT_SAFETY_STATEMENT,
+  RATE_LIMIT_VERSION,
+  calculateLocalRequestCount,
+  createLocalGatewayRateLimiter,
+  createRateLimitStatus,
+  formatRateLimitStatusForConsole,
+  writeRateLimitStatusReport,
+} from "./gateway-rate-limits.js";
+export type {
+  AbuseStatus,
+  GatewayRateLimitConfig,
+  LocalGatewayRateLimiter,
+  RateLimitInspectionInput,
+  RateLimitStatus,
+  RateLimitStatusReport,
+} from "./gateway-rate-limits.js";

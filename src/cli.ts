@@ -23,7 +23,11 @@ import { auditReceipts, listReceipts } from "./receipt-audit.js";
 import { saveReceiptToArchive } from "./receipt-archive.js";
 import { auditReviewRecords, listReviewRecords } from "./review-audit.js";
 import { DEFAULT_GATEWAY_PORT, startGatewayServer } from "./gateway-server.js";
-import { DEFAULT_GATEWAY_CLIENTS_FILE, GatewayAuthConfigError } from "./gateway-auth.js";
+import {
+  DEFAULT_GATEWAY_CLIENT_ID,
+  DEFAULT_GATEWAY_CLIENTS_FILE,
+  GatewayAuthConfigError,
+} from "./gateway-auth.js";
 import { verifyBeforeAction } from "./verify-before-action.js";
 import {
   createHumanReviewRecord,
@@ -36,6 +40,7 @@ import {
   auditGatewayClientUsage,
   auditGatewayUsage,
   listGatewayRequests,
+  readValidGatewayRequestLogEntries,
   type GatewayClientUsageAudit,
   type GatewayRequestListEntry,
   type GatewayUsageSummary,
@@ -75,10 +80,18 @@ import {
   formatSecurityReadinessForConsole,
   writeSecurityReadinessReport,
 } from "./security-readiness.js";
+import {
+  calculateLocalRequestCount,
+  createRateLimitStatus,
+  formatRateLimitStatusForConsole,
+  writeRateLimitStatusReport,
+} from "./gateway-rate-limits.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
-const USAGE =
+const BASE_USAGE =
   "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787] [--require-api-key] [--clients-file gateway-clients.json]\n       npm run verify -- --openapi [--json] [--output <path>]\n       npm run verify -- --agent-manifest [--json] [--output <path>]\n       npm run verify -- --entitlement [--client-id <id>] [--clients-file gateway-clients.json] [--json]\n       npm run verify -- --commercial-readiness [--json] [--output <path>]\n       npm run verify -- --hosted-readiness [--json] [--output <path>]\n       npm run verify -- --security-readiness [--json] [--output <path>]\n       npm run verify -- --gateway-admin [--clients-file gateway-clients.json] [--json]\n       npm run verify -- --gateway-usage [--json]\n       npm run verify -- --client-usage [--json]\n       npm run verify -- --list-gateway-requests [--limit 20] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
+
+const USAGE = `${BASE_USAGE}\n       npm run verify -- --rate-limit-status [--client-id <id>] [--clients-file gateway-clients.json] [--json] [--output <path>]`;
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
@@ -98,6 +111,10 @@ export function runCli(args: string[]): number {
 
   if (args.includes("--entitlement")) {
     return runEntitlementMode(args, jsonMode);
+  }
+
+  if (args.includes("--rate-limit-status")) {
+    return runRateLimitStatusMode(args, jsonMode);
   }
 
   if (args.includes("--commercial-readiness")) {
@@ -458,6 +475,84 @@ function parseEntitlementArgs(args: string[]): {
     };
   }
   return clientsFile === undefined ? { clientId } : { clientId, clientsFile };
+}
+
+function runRateLimitStatusMode(args: string[], jsonMode: boolean): number {
+  const parsedArgs = parseRateLimitStatusArgs(args);
+  if (parsedArgs.error !== undefined) {
+    printError("INVALID_RATE_LIMIT_STATUS_ARGUMENTS", parsedArgs.error, jsonMode);
+    return 1;
+  }
+
+  try {
+    const clients = readEntitlementClientsFile(parsedArgs.clientsFile);
+    const client = clients.find((candidate) => candidate.client_id === parsedArgs.clientId);
+    const usedRequests = calculateLocalRequestCount(
+      readValidGatewayRequestLogEntries(),
+      parsedArgs.clientId,
+    );
+    const report = createRateLimitStatus({
+      clientId: parsedArgs.clientId,
+      ...(client?.rate_limit === undefined
+        ? {}
+        : { maxRequests: client.rate_limit.max_requests }),
+      usedRequests,
+      knownClient: parsedArgs.clientId === DEFAULT_GATEWAY_CLIENT_ID || client !== undefined,
+      windowType: "local_log_audit",
+    });
+    const outputPath = parsedArgs.output === undefined
+      ? undefined
+      : writeRateLimitStatusReport(parsedArgs.output, report);
+    console.log(jsonMode ? JSON.stringify(report, null, 2) : formatRateLimitStatusForConsole(report));
+    if (!jsonMode && outputPath !== undefined) {
+      console.log(`\nSaved rate limit status report to ${outputPath}`);
+    }
+    return 0;
+  } catch (error) {
+    printError("RATE_LIMIT_STATUS_ERROR", `Unable to read local rate limit status: ${errorMessage(error)}`, jsonMode);
+    return 1;
+  }
+}
+
+function parseRateLimitStatusArgs(args: string[]): {
+  clientId: string;
+  clientsFile?: string;
+  output?: string;
+  error?: string;
+} {
+  let clientId = normalizeClientId(undefined);
+  let clientsFile: string | undefined;
+  let output: string | undefined;
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (arg === "--rate-limit-status" || arg === "--json") {
+      continue;
+    }
+    if (arg === "--client-id" || arg === "--clients-file" || arg === "--output") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) {
+        return { clientId, error: `Missing value after ${arg}.` };
+      }
+      if (arg === "--client-id") {
+        clientId = normalizeClientId(value);
+      } else if (arg === "--clients-file") {
+        clientsFile = value;
+      } else {
+        output = value;
+      }
+      index += 1;
+      continue;
+    }
+    if (arg?.startsWith("--")) {
+      return { clientId, error: `--rate-limit-status cannot be combined with ${arg}.` };
+    }
+    return { clientId, error: "--rate-limit-status does not accept an action file argument." };
+  }
+  return {
+    clientId,
+    ...(clientsFile === undefined ? {} : { clientsFile }),
+    ...(output === undefined ? {} : { output }),
+  };
 }
 
 function runCommercialReadinessMode(args: string[], jsonMode: boolean): number {

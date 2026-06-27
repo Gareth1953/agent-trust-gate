@@ -23,8 +23,15 @@ export function createGatewayOpenApiDocument(): GatewayOpenApiDocument {
     "401": response("Unauthorized local gateway request.", "ErrorResponse"),
     "405": response("The endpoint does not support this HTTP method.", "ErrorResponse"),
     "429": {
-      ...response("Client local decision allowance exceeded.", "ErrorResponse"),
-      "x-atg-error-code": "CLIENT_USAGE_LIMIT_EXCEEDED",
+      description: "Client local decision allowance or runtime request limit exceeded.",
+      content: {
+        "application/json": {
+          schema: {
+            oneOf: [schema("ErrorResponse"), schema("RateLimitExceededResponse")],
+          },
+        },
+      },
+      "x-atg-error-codes": ["CLIENT_USAGE_LIMIT_EXCEEDED", "ATG_RATE_LIMIT_EXCEEDED"],
     },
     "500": response("Unexpected local gateway error.", "ErrorResponse"),
   };
@@ -158,6 +165,21 @@ export function createGatewayOpenApiDocument(): GatewayOpenApiDocument {
           parameters: [{ $ref: "#/components/parameters/ClientIdHeader" }],
           responses: {
             "200": response("Local production security readiness report.", "SecurityReadinessResponse"),
+            "405": errors["405"],
+            "500": errors["500"],
+          },
+        },
+      },
+      "/v1/rate-limit-status": {
+        get: {
+          tags: ["Gateway"],
+          summary: "Read local rate-limit and abuse-control status",
+          description: "Returns local runtime counters and deterministic signals only. API-key mode protects client status when enabled. This is not production-grade abuse prevention and does not purchase capacity.",
+          parameters: protectedParameters,
+          security: [{}, { LocalApiKey: [] }],
+          responses: {
+            "200": response("Local rate-limit and abuse-control status.", "RateLimitStatusResponse"),
+            "401": errors["401"],
             "405": errors["405"],
             "500": errors["500"],
           },
@@ -684,6 +706,84 @@ function createSchemas(): Record<string, unknown> {
         safety_statement: {
           type: "string",
           description: "Planning only: not security, legal, privacy, SOC2, ISO27001, GDPR, payment, or production certification.",
+        },
+      },
+    },
+    AbuseSignal: {
+      type: "object",
+      required: ["abuse_status", "reasons"],
+      properties: {
+        abuse_status: {
+          type: "string",
+          enum: ["none", "suspicious_volume", "over_limit", "repeated_errors", "unknown_client"],
+        },
+        reasons: { type: "array", items: { type: "string" } },
+      },
+    },
+    RateLimitStatusResponse: {
+      type: "object",
+      required: ["contract_version", "rate_limit_version", "client_id", "local_only", "rate_limit_status", "rate_limited", "window", "abuse_signal", "upgrade", "safety_statement"],
+      properties: {
+        contract_version: contractVersion,
+        rate_limit_version: { type: "string", const: "atg.rate-limit.v1" },
+        request_id: { type: "string" },
+        client_id: { type: "string" },
+        local_only: { type: "boolean", const: true },
+        rate_limit_status: {
+          type: "string",
+          enum: ["not_configured", "within_limit", "near_limit", "at_limit", "over_limit"],
+        },
+        rate_limited: { type: "boolean" },
+        window: {
+          type: "object",
+          required: ["window_type", "max_requests", "used_requests", "remaining_requests"],
+          properties: {
+            window_type: { type: "string", enum: ["local_runtime", "local_log_audit"] },
+            max_requests: { type: ["integer", "null"], minimum: 1 },
+            used_requests: { type: "integer", minimum: 0 },
+            remaining_requests: { type: ["integer", "null"], minimum: 0 },
+          },
+        },
+        abuse_signal: { $ref: "#/components/schemas/AbuseSignal" },
+        upgrade: {
+          type: "object",
+          required: ["upgrade_required", "purchase_enabled", "automatic_purchase_enabled", "billing_enabled"],
+          properties: {
+            upgrade_required: { type: "boolean" },
+            purchase_enabled: { type: "boolean", const: false },
+            automatic_purchase_enabled: { type: "boolean", const: false },
+            billing_enabled: { type: "boolean", const: false },
+          },
+        },
+        safety_statement: {
+          type: "string",
+          description: "Local control only; not production-grade abuse prevention, billing, payment processing, or action execution.",
+        },
+      },
+    },
+    RateLimitExceededResponse: {
+      type: "object",
+      required: ["ok", "contract_version", "request_id", "client_id", "rate_limit_status", "abuse_status", "rate_limit", "purchase_enabled", "automatic_purchase_enabled", "billing_enabled", "executes_actions", "error"],
+      properties: {
+        ok: { type: "boolean", const: false },
+        contract_version: contractVersion,
+        request_id: { type: "string" },
+        client_id: { type: "string" },
+        rate_limit_status: { type: "string", const: "over_limit" },
+        abuse_status: { type: "string", const: "over_limit" },
+        rate_limit: { $ref: "#/components/schemas/RateLimitStatusResponse" },
+        purchase_enabled: { type: "boolean", const: false },
+        automatic_purchase_enabled: { type: "boolean", const: false },
+        billing_enabled: { type: "boolean", const: false },
+        executes_actions: { type: "boolean", const: false },
+        error: {
+          type: "object",
+          required: ["code", "message", "details"],
+          properties: {
+            code: { type: "string", const: "ATG_RATE_LIMIT_EXCEEDED" },
+            message: { type: "string" },
+            details: { type: "array", items: {} },
+          },
         },
       },
     },

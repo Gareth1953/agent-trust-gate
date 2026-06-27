@@ -83,6 +83,7 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
       "commercial_readiness_snapshot",
       "hosted_deployment_readiness",
       "production_security_readiness",
+      "local_rate_limit_and_abuse_signals",
     ],
     schemas: {
       EmptyInput: {
@@ -178,6 +179,15 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
         "#/schemas/EmptyInput",
         "Security preparation percentage, checks, critical gaps, hosting requirements, and recommended controls.",
         "Planning snapshot only. It does not certify production security, deploy Agent Trust Gate, or expose a public service.",
+      ),
+      httpTool(
+        "atg_get_rate_limit_status",
+        "Read local runtime request-limit status and deterministic abuse-control signals for the calling client.",
+        "GET",
+        "/v1/rate-limit-status",
+        "#/schemas/EmptyInput",
+        "Local request count, remaining capacity, limit status, abuse signal, and disabled commerce fields.",
+        "Local control signal only. It is not production-grade abuse prevention and never executes actions or purchases capacity.",
       ),
       cliTool(
         "atg_get_usage",

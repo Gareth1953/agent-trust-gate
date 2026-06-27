@@ -51,6 +51,11 @@ async function main() {
   console.log(`production_security_certified=${security.production_security_certified}`);
   console.log("No deployment occurred and no security certification is claimed.");
 
+  const rateLimit = await client.rateLimitStatus();
+  console.log(`rate_limit_status=${rateLimit.rate_limit_status}`);
+  console.log(`abuse_status=${rateLimit.abuse_signal.abuse_status}`);
+  console.log("No action was executed and no purchase was made.");
+
   if (decision.human_approval_required === true) {
     console.log("gateway_decision=REQUEST HUMAN");
     console.log("Stopping: explicit human review is required.");

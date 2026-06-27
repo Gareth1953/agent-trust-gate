@@ -20,9 +20,9 @@ test("commercial readiness snapshot is deterministic, versioned, and below full 
   const snapshot = createCommercialReadinessSnapshot(now);
   assert.equal(snapshot.readiness_version, "atg.commercial-readiness.v1");
   assert.equal(snapshot.generated_at, now.toISOString());
-  assert.equal(snapshot.overall.local_product_readiness_percent, 86);
-  assert.equal(snapshot.overall.commercial_mvp_readiness_percent, 63);
-  assert.equal(snapshot.overall.full_target_readiness_percent, 38);
+  assert.equal(snapshot.overall.local_product_readiness_percent, 87);
+  assert.equal(snapshot.overall.commercial_mvp_readiness_percent, 65);
+  assert.equal(snapshot.overall.full_target_readiness_percent, 40);
   assert.ok(snapshot.overall.full_target_readiness_percent < 100);
   assert.equal(snapshot.overall.status, "local_infrastructure_ready_not_commercially_complete");
   assert.doesNotMatch(JSON.stringify(snapshot), /100% complete/i);
@@ -70,6 +70,7 @@ test("commercial readiness includes the full required category inventory", () =>
     "gateway_logging_and_metering",
     "client_identity_and_api_key_gate",
     "client_usage_limits",
+    "rate_limit_and_abuse_control",
     "gateway_admin_summary",
     "developer_quickstart",
     "openapi_contract",
@@ -107,7 +108,7 @@ test("CLI commercial readiness JSON is parseable", () => {
   assert.equal(result.status, 0);
   assert.equal(result.stderr, "");
   assert.equal(output.readiness_version, "atg.commercial-readiness.v1");
-  assert.equal(output.overall.full_target_readiness_percent, 38);
+  assert.equal(output.overall.full_target_readiness_percent, 40);
 });
 
 test("CLI commercial readiness output creates a local JSON report", () => {
@@ -145,7 +146,7 @@ test("GET commercial readiness returns JSON with request ID and logs the request
     assert.equal(response.status, 200);
     assert.equal(body.readiness_version, "atg.commercial-readiness.v1");
     assert.match(body.request_id, /^gw_[0-9a-f-]{36}$/);
-    assert.equal(body.overall.full_target_readiness_percent, 38);
+    assert.equal(body.overall.full_target_readiness_percent, 40);
   } finally {
     await new Promise<void>((done, reject) => server.close((error) => error ? reject(error) : done()));
     const entry = JSON.parse(readFileSync(logPath, "utf8").trim()) as GatewayRequestLogEntry;

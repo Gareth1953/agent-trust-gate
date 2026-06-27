@@ -34,7 +34,7 @@ export interface HostedReadinessReport {
   public_service_enabled: false;
   production_ready: false;
   overall: {
-    hosted_readiness_percent: 30;
+    hosted_readiness_percent: 33;
     status: "not_hosted_preparation_only";
     next_gate: "complete_production_security_controls_before_public_hosting";
   };
@@ -67,7 +67,7 @@ export function createHostedReadinessReport(now = new Date()): HostedReadinessRe
     public_service_enabled: false,
     production_ready: false,
     overall: {
-      hosted_readiness_percent: 30,
+      hosted_readiness_percent: 33,
       status: "not_hosted_preparation_only",
       next_gate: "complete_production_security_controls_before_public_hosting",
     },
@@ -154,12 +154,13 @@ function hostedChecks(): HostedReadinessCheck[] {
     check("agent_manifest_available", "Agent integration manifest available", "pass", "info", ["Machine-readable local capabilities and tools are published in the repo."], "Plan signed hosted discovery only after production controls exist."),
     check("commercial_readiness_available", "Commercial readiness snapshot available", "pass", "info", ["A deterministic readiness scorecard reports missing commercial capabilities."], "Keep the scorecard conservative and evidence-based."),
     check("security_readiness_available", "Production security readiness available", "pass", "info", ["A deterministic local security readiness report, checklist, and planning documents exist."], "Complete the identified production controls and obtain independent review before hosting."),
+    check("local_rate_limit_signals_available", "Local rate-limit signals available", "partial", "warning", ["Configured clients can receive local runtime rate-limit and abuse-control signals with 429 enforcement."], "Implement distributed limits, abuse monitoring, alerting, and edge controls before hosting."),
     check("production_authentication_missing", "Production authentication missing", "not_started", "critical", ["Only local development API-key matching exists."], "Implement production-grade identity, authentication, authorization, and tenant isolation."),
     check("customer_accounts_missing", "Customer accounts missing", "not_started", "warning", ["No customer or tenant account lifecycle exists."], "Define onboarding, roles, account recovery, offboarding, and isolation."),
     check("payment_processing_missing", "Payment processing missing", "not_started", "warning", ["Payments are explicitly disabled."], "Complete pricing, legal, consent, fraud, and refund design before selecting a processor."),
     check("billing_records_missing", "Billing records missing", "not_started", "warning", ["No invoice or billing ledger exists."], "Design auditable billing records only if commercial charging is introduced."),
     check("production_monitoring_missing", "Production monitoring missing", "not_started", "critical", ["Only local health and log inspection exist."], "Add metrics, tracing, alerting, SLOs, incident response, backup, and disaster recovery plans."),
-    check("rate_limiting_missing_or_local_only", "Production rate limiting missing", "not_started", "critical", ["Local client allowances are not network abuse controls."], "Implement distributed rate limiting, request-size controls, timeouts, and denial-of-service protections."),
+    check("rate_limiting_local_only", "Rate limiting is local only", "partial", "warning", ["Per-server runtime counters provide local enforcement but are not shared or durable."], "Implement distributed rate limiting, request-size controls, timeouts, and denial-of-service protections."),
     check("terms_and_legal_review_missing", "Terms and legal review missing", "not_started", "critical", ["Safety wording avoids unsupported legal and compliance claims."], "Obtain qualified review of terms, privacy, acceptable use, data processing, and commercial claims."),
     check("public_hosting_not_enabled", "Public hosting not enabled", "pass", "info", ["hosted_deployment_enabled and public_service_enabled are false."], "Do not enable public hosting until every critical pre-hosting gate is complete."),
   ];
