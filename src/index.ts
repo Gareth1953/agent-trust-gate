@@ -147,3 +147,14 @@ export type {
   GatewayUsageLimitResult,
   GatewayUsageObject,
 } from "./gateway-usage-limits.js";
+export {
+  ENTITLEMENT_SAFETY_STATEMENT,
+  ENTITLEMENT_VERSION,
+  formatGatewayEntitlementForConsole,
+  getGatewayEntitlementStatus,
+  readEntitlementClientsFile,
+} from "./gateway-entitlements.js";
+export type {
+  EntitlementStatus,
+  GatewayEntitlementStatus,
+} from "./gateway-entitlements.js";

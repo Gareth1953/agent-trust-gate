@@ -25,6 +25,12 @@ try {
     Write-Host "remaining_decisions=$($decision.usage.remaining_decisions)"
   }
 
+  $entitlement = Invoke-ATGEntitlement -Client $client
+  Write-Host "entitlement_status=$($entitlement.entitlement_status)"
+  Write-Host "upgrade_required=$($entitlement.upgrade.upgrade_required)"
+  Write-Host "purchase_enabled=$($entitlement.upgrade.purchase_enabled)"
+  Write-Host "No purchase was made. Purchase, automatic purchase, and billing are disabled."
+
   if ($decision.human_approval_required -eq $true) {
     Write-Host "gateway_decision=REQUEST HUMAN"
     Write-Host "Stopping: explicit human review is required."

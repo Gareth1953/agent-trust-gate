@@ -149,6 +149,11 @@ test("client at allowance gets 429 over-limit JSON error before validation", asy
     const body = await response.json() as {
       usage: { over_limit: boolean; used_decisions: number; remaining_decisions: number };
       error: { code: string };
+      entitlement_status: string;
+      upgrade_required: boolean;
+      purchase_enabled: boolean;
+      automatic_purchase_enabled: boolean;
+      billing_enabled: boolean;
     };
 
     assert.equal(response.status, 429);
@@ -156,6 +161,11 @@ test("client at allowance gets 429 over-limit JSON error before validation", asy
     assert.equal(body.usage.over_limit, true);
     assert.equal(body.usage.used_decisions, 1);
     assert.equal(body.usage.remaining_decisions, 0);
+    assert.equal(body.entitlement_status, "over_limit");
+    assert.equal(body.upgrade_required, true);
+    assert.equal(body.purchase_enabled, false);
+    assert.equal(body.automatic_purchase_enabled, false);
+    assert.equal(body.billing_enabled, false);
   });
 });
 

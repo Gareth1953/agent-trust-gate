@@ -79,6 +79,7 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
       "gateway_usage_metering",
       "local_client_allowances",
       "local_admin_summary",
+      "agent_entitlement_status",
     ],
     schemas: {
       EmptyInput: {
@@ -138,6 +139,15 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
         "#/schemas/EmptyInput",
         "OpenAPI 3.1 document for the local gateway.",
         inspectionSafety,
+      ),
+      httpTool(
+        "atg_get_entitlement",
+        "Read local client identity, allowance, remaining usage, and upgrade-required signals.",
+        "GET",
+        "/v1/entitlement",
+        "#/schemas/EmptyInput",
+        "Local entitlement status and disabled purchase, automatic-purchase, and billing signals.",
+        "Returns a local entitlement control signal only. It never purchases, bills, processes payments, or executes actions.",
       ),
       cliTool(
         "atg_get_usage",

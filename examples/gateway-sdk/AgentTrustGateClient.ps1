@@ -85,6 +85,12 @@ function Invoke-ATGOpenApi {
   Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/openapi.json"
 }
 
+function Invoke-ATGEntitlement {
+  [CmdletBinding()]
+  param([Parameter(Mandatory)]$Client)
+  Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/entitlement"
+}
+
 function Invoke-ATGRequest {
   [CmdletBinding()]
   param(

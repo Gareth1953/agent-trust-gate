@@ -74,10 +74,15 @@ The wrappers expose equivalent operations:
 - `createApprovalPack()` / `Invoke-ATGApprovalPack`
 - `createEvidenceBundle()` / `Invoke-ATGEvidenceBundle`
 - `openapi()` / `Invoke-ATGOpenApi`
+- `entitlement()` / `Invoke-ATGEntitlement`
 
 Client ID and API key headers are optional. The wrappers add
 `X-ATG-Client-ID` and `X-ATG-API-Key` only when values are supplied. They do
 not print credentials.
+
+Entitlement responses expose local allowance and upgrade-required signals.
+`purchase_enabled`, `automatic_purchase_enabled`, and `billing_enabled` remain
+false; the wrappers do not purchase usage or process payments.
 
 ## Handle decisions
 

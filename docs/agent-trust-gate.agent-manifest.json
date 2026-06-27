@@ -14,7 +14,8 @@
     "evidence_bundle_export",
     "gateway_usage_metering",
     "local_client_allowances",
-    "local_admin_summary"
+    "local_admin_summary",
+    "agent_entitlement_status"
   ],
   "schemas": {
     "EmptyInput": {
@@ -83,6 +84,17 @@
       "input_schema_ref": "#/schemas/EmptyInput",
       "output_summary": "OpenAPI 3.1 document for the local gateway.",
       "safety_note": "Reads local gateway metadata or usage records only. Agent Trust Gate returns trust decisions and evidence only and never executes actions.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_get_entitlement",
+      "description": "Read local client identity, allowance, remaining usage, and upgrade-required signals.",
+      "transport": "http",
+      "http_method": "GET",
+      "path": "/v1/entitlement",
+      "input_schema_ref": "#/schemas/EmptyInput",
+      "output_summary": "Local entitlement status and disabled purchase, automatic-purchase, and billing signals.",
+      "safety_note": "Returns a local entitlement control signal only. It never purchases, bills, processes payments, or executes actions.",
       "executes_actions": false
     },
     {

@@ -89,7 +89,7 @@ export function usageObject(
   };
 }
 
-function countUsedProtectedRequests(input: {
+export function countUsedProtectedRequests(input: {
   clientId: string;
   allowanceWindow: AllowanceWindow;
   gatewayLogPath: string;
@@ -107,7 +107,7 @@ function countUsedProtectedRequests(input: {
   }).length;
 }
 
-function allowanceWindowStart(window: AllowanceWindow, now: Date): string | null {
+export function allowanceWindowStart(window: AllowanceWindow, now: Date): string | null {
   if (window === "all_time") {
     return null;
   }

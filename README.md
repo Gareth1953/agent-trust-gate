@@ -757,6 +757,48 @@ discovery/integration aids only. They do not execute actions, bill customers,
 process payments, expose a public service, authenticate real-world identities,
 guarantee legality, or prove compliance.
 
+### Agent Entitlement & Upgrade Signal Layer
+
+P3-M023 adds a machine-readable local entitlement status so agents and
+developers can inspect client identity, configured decision allowance, usage,
+remaining decisions, over-limit state, and whether a future commercial upgrade
+would be required. This creates a stable entitlement interface without adding
+payments, billing, customer accounts, or automatic purchasing.
+
+Inspect entitlement locally:
+
+```sh
+npm run verify -- --entitlement
+npm run verify -- --entitlement --json
+npm run verify -- --entitlement --client-id local-demo-agent --clients-file gateway-clients.json
+```
+
+When Local Gateway API Mode is running:
+
+```text
+GET http://127.0.0.1:8787/v1/entitlement
+```
+
+The endpoint accepts `X-ATG-Client-ID`. When the gateway runs with
+`--require-api-key`, entitlement lookup also requires a matching
+`X-ATG-API-Key` because usage status is client-specific.
+
+Entitlement statuses:
+
+- `active`: a configured allowance has remaining decisions.
+- `unlimited_local`: the known local client has no configured allowance.
+- `at_limit`: the configured allowance is exactly exhausted.
+- `over_limit`: usage exceeded allowance or an over-limit request was recorded.
+- `unknown_client`: the client has no configuration or protected usage record.
+
+`at_limit` and `over_limit` return `upgrade_required: true`, but all entitlement
+responses retain `purchase_enabled: false`, `automatic_purchase_enabled: false`,
+and `billing_enabled: false`. No purchase or payment can be initiated.
+
+Entitlement and upgrade signals are local control signals only. They do not bill
+customers, process payments, enable automatic purchase, expose a public service,
+authenticate real-world identities, guarantee legality, or prove compliance.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

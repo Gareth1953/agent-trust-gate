@@ -28,14 +28,14 @@ test("Node SDK wrapper exports the expected client operations", () => {
   assert.match(source, /export class AgentTrustGateClient/);
   assert.match(source, /export class AgentTrustGateError/);
   assert.match(source, /export function createAgentTrustGateClient/);
-  for (const method of ["health", "decide", "createApprovalPack", "createEvidenceBundle", "openapi"]) {
+  for (const method of ["health", "decide", "createApprovalPack", "createEvidenceBundle", "openapi", "entitlement"]) {
     assert.match(source, new RegExp(`\\b${method}\\(`));
   }
 });
 
 test("PowerShell SDK wrapper defines the expected functions", () => {
   const source = readFileSync(files.powershellClient, "utf8");
-  for (const functionName of ["New-AgentTrustGateClient", "Invoke-ATGHealth", "Invoke-ATGDecision", "Invoke-ATGApprovalPack", "Invoke-ATGEvidenceBundle", "Invoke-ATGOpenApi"]) {
+  for (const functionName of ["New-AgentTrustGateClient", "Invoke-ATGHealth", "Invoke-ATGDecision", "Invoke-ATGApprovalPack", "Invoke-ATGEvidenceBundle", "Invoke-ATGOpenApi", "Invoke-ATGEntitlement"]) {
     assert.match(source, new RegExp(`function ${functionName.replace("-", "\\-")}`));
   }
 });
@@ -55,6 +55,7 @@ test("SDK demos explicitly avoid executing actions", () => {
     assert.match(source, /No action was executed/);
     assert.match(source, /REQUEST HUMAN/);
     assert.match(source, /BLOCK/);
+    assert.match(source, /No purchase was made/);
   }
 });
 
@@ -79,6 +80,7 @@ test("Node SDK wrapper calls the local gateway and surfaces JSON errors", async 
         health(): Promise<Record<string, unknown>>;
         decide(action: Record<string, unknown>): Promise<Record<string, unknown>>;
         openapi(): Promise<Record<string, unknown>>;
+        entitlement(): Promise<Record<string, unknown>>;
       };
     };
     const client = sdk.createAgentTrustGateClient({
@@ -92,6 +94,9 @@ test("Node SDK wrapper calls the local gateway and surfaces JSON errors", async 
 
     const openapi = await client.openapi();
     assert.equal(openapi.openapi, "3.1.0");
+
+    const entitlement = await client.entitlement();
+    assert.equal(entitlement.entitlement_version, "atg.entitlement.v1");
 
     await assert.rejects(
       client.decide({ action_type: "public_post" }),

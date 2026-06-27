@@ -29,6 +29,12 @@ async function main() {
     console.log(`remaining_decisions=${decision.usage.remaining_decisions}`);
   }
 
+  const entitlement = await client.entitlement();
+  console.log(`entitlement_status=${entitlement.entitlement_status}`);
+  console.log(`upgrade_required=${entitlement.upgrade.upgrade_required}`);
+  console.log(`purchase_enabled=${entitlement.upgrade.purchase_enabled}`);
+  console.log("No purchase was made. Purchase, automatic purchase, and billing are disabled.");
+
   if (decision.human_approval_required === true) {
     console.log("gateway_decision=REQUEST HUMAN");
     console.log("Stopping: explicit human review is required.");

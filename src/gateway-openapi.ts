@@ -109,6 +109,21 @@ export function createGatewayOpenApiDocument(): GatewayOpenApiDocument {
           },
         },
       },
+      "/v1/entitlement": {
+        get: {
+          tags: ["Gateway"],
+          summary: "Read local client entitlement status",
+          description: "Returns local usage, allowance, over-limit, and upgrade-required signals. Requires a valid local API key only when the gateway runs in API-key mode. Purchase, automatic purchase, and billing remain disabled.",
+          parameters: protectedParameters,
+          security: [{}, { LocalApiKey: [] }],
+          responses: {
+            "200": response("Local entitlement and disabled commerce signals.", "EntitlementResponse"),
+            "401": errors["401"],
+            "405": errors["405"],
+            "500": errors["500"],
+          },
+        },
+      },
       "/v1/decision": {
         post: {
           tags: ["Trust"],
@@ -327,6 +342,11 @@ function createSchemas(): Record<string, unknown> {
         request_id: { type: "string" },
         client_id: { type: "string" },
         usage: { $ref: "#/components/schemas/UsageInfo" },
+        entitlement_status: { type: "string", enum: ["over_limit"] },
+        upgrade_required: { type: "boolean" },
+        purchase_enabled: { type: "boolean", const: false },
+        automatic_purchase_enabled: { type: "boolean", const: false },
+        billing_enabled: { type: "boolean", const: false },
         error: {
           type: "object",
           required: ["code", "message", "details"],
@@ -430,6 +450,48 @@ function createSchemas(): Record<string, unknown> {
         tools: { type: "array", items: { type: "object" } },
         auth: { type: "object" },
         usage_model: { type: "object" },
+        safety_statement: { type: "string" },
+      },
+    },
+    EntitlementResponse: {
+      type: "object",
+      required: ["contract_version", "entitlement_version", "request_id", "client_id", "local_only", "entitlement_status", "usage", "upgrade", "safety_statement"],
+      properties: {
+        contract_version: contractVersion,
+        entitlement_version: { type: "string", const: "atg.entitlement.v1" },
+        request_id: { type: "string" },
+        client_id: { type: "string" },
+        local_only: { type: "boolean", const: true },
+        entitlement_status: {
+          type: "string",
+          enum: ["active", "unlimited_local", "at_limit", "over_limit", "unknown_client"],
+        },
+        usage: {
+          type: "object",
+          required: ["decision_allowance", "allowance_window", "used_decisions", "remaining_decisions", "over_limit"],
+          properties: {
+            decision_allowance: { type: ["integer", "null"], minimum: 0 },
+            allowance_window: { type: ["string", "null"], enum: ["all_time", "daily", "monthly", null] },
+            used_decisions: { type: "integer", minimum: 0 },
+            remaining_decisions: { type: ["integer", "null"], minimum: 0 },
+            over_limit: { type: "boolean" },
+          },
+        },
+        upgrade: {
+          type: "object",
+          required: ["upgrade_required", "upgrade_reason", "purchase_enabled", "automatic_purchase_enabled", "billing_enabled", "purchase_mode"],
+          properties: {
+            upgrade_required: { type: "boolean" },
+            upgrade_reason: {
+              type: ["string", "null"],
+              enum: ["local_decision_allowance_exceeded", "local_decision_allowance_at_limit", null],
+            },
+            purchase_enabled: { type: "boolean", const: false, description: "Real purchase is not enabled." },
+            automatic_purchase_enabled: { type: "boolean", const: false, description: "Automatic purchase is not enabled." },
+            billing_enabled: { type: "boolean", const: false, description: "Billing is not enabled." },
+            purchase_mode: { type: "string", const: "not_enabled_local_only" },
+          },
+        },
         safety_statement: { type: "string" },
       },
     },

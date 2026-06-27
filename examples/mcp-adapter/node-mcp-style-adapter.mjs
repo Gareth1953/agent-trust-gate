@@ -14,6 +14,7 @@ export function createMcpStyleAdapter(options = {}) {
   const client = createAgentTrustGateClient(options);
   const tools = {
     atg_health: async () => client.health(),
+    atg_get_entitlement: async () => client.entitlement(),
     atg_decide: async ({ action, policy_profile } = {}) => (
       client.decide(action, policy_profile === undefined ? {} : { policyProfile: policy_profile })
     ),
@@ -64,6 +65,10 @@ async function demo() {
     : decision.allowed === true ? "ALLOW" : "BLOCK";
   console.log(`tool=atg_decide request_id=${decision.request_id}`);
   console.log(`client_id=${decision.client_id} decision=${status} risk_level=${decision.risk_level}`);
+  const entitlement = await adapter.callTool("atg_get_entitlement");
+  console.log(`tool=atg_get_entitlement status=${entitlement.entitlement_status}`);
+  console.log(`upgrade_required=${entitlement.upgrade.upgrade_required} purchase_enabled=${entitlement.upgrade.purchase_enabled}`);
+  console.log("No purchase was made. Automatic purchase and billing are disabled.");
   console.log("No action was executed. This local MCP-style adapter requested a trust decision only.");
 }
 

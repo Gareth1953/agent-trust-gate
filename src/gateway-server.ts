@@ -29,6 +29,7 @@ import {
 } from "./gateway-usage-limits.js";
 import { createGatewayOpenApiDocument } from "./gateway-openapi.js";
 import { createAgentIntegrationManifest } from "./agent-manifest.js";
+import { getGatewayEntitlementStatus } from "./gateway-entitlements.js";
 import { verifyBeforeAction } from "./verify-before-action.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
@@ -121,9 +122,12 @@ async function handleGatewayRequest(
   authConfig: GatewayAuthConfig,
 ): Promise<void> {
   const url = new URL(request.url ?? "/", `http://${request.headers.host ?? "127.0.0.1"}`);
-  const protectedEndpoint = isProtectedGatewayEndpoint(url.pathname, request.method);
+  const meteredEndpoint = isProtectedGatewayEndpoint(url.pathname, request.method);
+  const authProtectedEndpoint = meteredEndpoint || (
+    url.pathname === "/v1/entitlement" && request.method === "GET"
+  );
   const authResult = authenticateGatewayRequest({
-    protectedEndpoint,
+    protectedEndpoint: authProtectedEndpoint,
     ...optionalHeader("clientIdHeader", headerValue(request, "x-atg-client-id")),
     ...optionalHeader("apiKeyHeader", headerValue(request, "x-atg-api-key")),
     authConfig,
@@ -157,7 +161,7 @@ async function handleGatewayRequest(
       return;
     }
 
-    const usageLimit = protectedEndpoint && authResult.auth_ok === true
+    const usageLimit = meteredEndpoint && authResult.auth_ok === true
       ? checkGatewayClientUsageLimit({
           client: authConfig.clients.find((client) => client.client_id === context.client_id),
           clientId: context.client_id,
@@ -171,14 +175,21 @@ async function handleGatewayRequest(
         response,
         context,
         429,
-        errorResponse(
-          context.request_id,
-          context.client_id,
-          "CLIENT_USAGE_LIMIT_EXCEEDED",
-          "Client local decision allowance exceeded.",
-          [],
-          usage,
-        ),
+        {
+          ...errorResponse(
+            context.request_id,
+            context.client_id,
+            "CLIENT_USAGE_LIMIT_EXCEEDED",
+            "Client local decision allowance exceeded.",
+            [],
+            usage,
+          ),
+          entitlement_status: "over_limit",
+          upgrade_required: true,
+          purchase_enabled: false,
+          automatic_purchase_enabled: false,
+          billing_enabled: false,
+        },
         {
           ...usageLogMetadata(usageLimit),
           error_code: "CLIENT_USAGE_LIMIT_EXCEEDED",
@@ -241,6 +252,43 @@ async function handleGatewayRequest(
       }
 
       writeGatewayJson(response, context, 200, createAgentIntegrationManifest());
+      return;
+    }
+
+    if (url.pathname === "/v1/entitlement") {
+      if (request.method !== "GET") {
+        writeGatewayJson(
+          response,
+          context,
+          405,
+          errorResponse(context.request_id, context.client_id, "METHOD_NOT_ALLOWED", "GET is required for /v1/entitlement."),
+          { error_code: "METHOD_NOT_ALLOWED" },
+        );
+        return;
+      }
+
+      const entitlement = getGatewayEntitlementStatus({
+        clientId: context.client_id,
+        clients: authConfig.clients,
+        gatewayLogPath,
+      });
+      writeGatewayJson(response, context, 200, {
+        ...entitlement,
+        request_id: context.request_id,
+      }, {
+        usage_checked: entitlement.usage.decision_allowance !== null,
+        over_limit: entitlement.usage.over_limit,
+        ...(entitlement.usage.decision_allowance === null
+          ? {}
+          : { decision_allowance: entitlement.usage.decision_allowance }),
+        ...(entitlement.usage.allowance_window === null
+          ? {}
+          : { allowance_window: entitlement.usage.allowance_window }),
+        used_decisions: entitlement.usage.used_decisions,
+        ...(entitlement.usage.remaining_decisions === null
+          ? {}
+          : { remaining_decisions: entitlement.usage.remaining_decisions }),
+      });
       return;
     }
 

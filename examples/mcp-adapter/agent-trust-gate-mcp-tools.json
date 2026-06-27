@@ -35,6 +35,18 @@
       "executes_actions": false
     },
     {
+      "name": "atg_get_entitlement",
+      "description": "Read local client allowance, remaining usage, and upgrade-required signals.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {}
+      },
+      "output": "Local entitlement status. purchase_enabled, automatic_purchase_enabled, and billing_enabled are always false.",
+      "safety_note": "Reads local control signals only. It does not purchase usage, bill customers, process payments, or execute actions.",
+      "executes_actions": false
+    },
+    {
       "name": "atg_create_approval_pack",
       "description": "Create a local approval packet for an action.",
       "inputSchema": {
