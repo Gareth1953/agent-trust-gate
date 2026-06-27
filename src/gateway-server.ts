@@ -28,6 +28,7 @@ import {
   type GatewayUsageObject,
 } from "./gateway-usage-limits.js";
 import { createGatewayOpenApiDocument } from "./gateway-openapi.js";
+import { createAgentIntegrationManifest } from "./agent-manifest.js";
 import { verifyBeforeAction } from "./verify-before-action.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
@@ -224,6 +225,22 @@ async function handleGatewayRequest(
       }
 
       writeGatewayJson(response, context, 200, createGatewayOpenApiDocument());
+      return;
+    }
+
+    if (url.pathname === "/v1/agent-manifest.json") {
+      if (request.method !== "GET") {
+        writeGatewayJson(
+          response,
+          context,
+          405,
+          errorResponse(context.request_id, context.client_id, "METHOD_NOT_ALLOWED", "GET is required for /v1/agent-manifest.json."),
+          { error_code: "METHOD_NOT_ALLOWED" },
+        );
+        return;
+      }
+
+      writeGatewayJson(response, context, 200, createAgentIntegrationManifest());
       return;
     }
 

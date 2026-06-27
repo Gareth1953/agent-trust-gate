@@ -69,6 +69,17 @@ export {
   writeGatewayOpenApiDocument,
 } from "./gateway-openapi.js";
 export type { GatewayOpenApiDocument } from "./gateway-openapi.js";
+export {
+  AGENT_MANIFEST_SAFETY_STATEMENT,
+  AGENT_MANIFEST_VERSION,
+  createAgentIntegrationManifest,
+  formatAgentManifestForConsole,
+  writeAgentIntegrationManifest,
+} from "./agent-manifest.js";
+export type {
+  AgentIntegrationManifest,
+  AgentManifestTool,
+} from "./agent-manifest.js";
 export { ActionValidationError, validateActionDescriptor } from "./action-validation.js";
 export { applyPolicyProfile, resolvePolicyProfile } from "./policy-profiles.js";
 export type {

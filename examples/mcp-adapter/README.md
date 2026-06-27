@@ -1,0 +1,54 @@
+# Agent Trust Gate MCP-Style Adapter Pack
+
+This folder demonstrates how an agent framework could expose Agent Trust Gate
+as local MCP-style tools. It is not a production MCP server, does not implement
+an MCP transport, and is not published to an MCP registry.
+
+The examples are local-only integration aids. They call the gateway at
+`127.0.0.1`, return trust decisions or evidence, and never execute actions.
+
+## Files
+
+- `agent-trust-gate-mcp-tools.json`: machine-readable tool names and schemas.
+- `node-mcp-style-adapter.mjs`: dependency-free tool dispatch and gateway calls.
+
+The tool metadata exposes:
+
+- `atg_health`
+- `atg_decide`
+- `atg_create_approval_pack`
+- `atg_create_evidence_bundle`
+
+Every tool declares `executes_actions: false`.
+
+## Run locally
+
+Start the gateway:
+
+```sh
+npm run verify -- --serve --port 8787
+```
+
+Run the adapter demonstration:
+
+```sh
+node examples/mcp-adapter/node-mcp-style-adapter.mjs
+```
+
+Optional local API-key mode can use the safe quickstart demo config:
+
+```sh
+npm run verify -- --serve --port 8787 --require-api-key --clients-file examples/gateway-quickstart/gateway-clients.demo.json
+```
+
+The adapter loads its tool definitions, calls `atg_health`, submits the safe
+public-post example to `atg_decide`, prints ALLOW / BLOCK / REQUEST HUMAN, and
+stops. It does not perform the proposed action.
+
+Usage and allowance responses are local control records. Purchase, automatic
+purchase, billing, payment processing, hosted discovery, and public exposure
+remain disabled.
+
+These MCP-style examples are local discovery and integration aids only. They do
+not execute actions, bill customers, process payments, expose a public service,
+authenticate real-world identities, guarantee legality, or prove compliance.

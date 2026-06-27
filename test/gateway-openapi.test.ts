@@ -27,7 +27,7 @@ test("OpenAPI contract includes versions and every local gateway endpoint", () =
   assert.equal(contract.openapi, "3.1.0");
   assert.equal(contract["x-atg-contract-version"], "atg.v1");
   assert.equal(contract["x-atg-gateway-api-version"], "atg.gateway.v1");
-  for (const path of ["/v1/health", "/v1/decision", "/v1/approval-pack", "/v1/evidence-bundle", "/v1/openapi.json"]) {
+  for (const path of ["/v1/health", "/v1/decision", "/v1/approval-pack", "/v1/evidence-bundle", "/v1/openapi.json", "/v1/agent-manifest.json"]) {
     assert.ok(paths[path], `missing ${path}`);
   }
 });

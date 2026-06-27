@@ -87,6 +87,28 @@ export function createGatewayOpenApiDocument(): GatewayOpenApiDocument {
           },
         },
       },
+      "/v1/agent-manifest.json": {
+        get: {
+          tags: ["Gateway"],
+          summary: "Read agent integration metadata",
+          description: "Returns local discovery metadata only and does not require an API key. The request ID is returned in the X-ATG-Request-ID header.",
+          parameters: [{ $ref: "#/components/parameters/ClientIdHeader" }],
+          responses: {
+            "200": {
+              description: "Agent-readable local integration manifest.",
+              headers: {
+                "X-ATG-Request-ID": {
+                  description: "Local gateway request identifier.",
+                  schema: { type: "string" },
+                },
+              },
+              content: { "application/json": { schema: schema("AgentIntegrationManifest") } },
+            },
+            "405": errors["405"],
+            "500": errors["500"],
+          },
+        },
+      },
       "/v1/decision": {
         post: {
           tags: ["Trust"],
@@ -389,6 +411,26 @@ function createSchemas(): Record<string, unknown> {
         usage: { $ref: "#/components/schemas/UsageInfo" },
         evidence_bundle_saved: { type: "boolean" },
         evidence_bundle_path: { type: "string" },
+      },
+    },
+    AgentIntegrationManifest: {
+      type: "object",
+      required: ["name", "product", "contract_version", "gateway_api_version", "manifest_version", "local_only", "base_url", "openapi_url", "capabilities", "schemas", "tools", "auth", "usage_model", "safety_statement"],
+      properties: {
+        name: { type: "string", const: "Agent Trust Gate" },
+        product: { type: "string", const: "agent-trust-gate" },
+        contract_version: contractVersion,
+        gateway_api_version: { type: "string", const: GATEWAY_API_VERSION },
+        manifest_version: { type: "string", const: "atg.agent-manifest.v1" },
+        local_only: { type: "boolean", const: true },
+        base_url: { type: "string", const: "http://127.0.0.1:8787" },
+        openapi_url: { type: "string", const: "/v1/openapi.json" },
+        capabilities: { type: "array", items: { type: "string" } },
+        schemas: { type: "object" },
+        tools: { type: "array", items: { type: "object" } },
+        auth: { type: "object" },
+        usage_model: { type: "object" },
+        safety_statement: { type: "string" },
       },
     },
   };

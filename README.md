@@ -717,6 +717,46 @@ Gateway SDK starter wrappers are local demo clients only. They do not execute
 actions, bill customers, expose a public service, authenticate real-world
 identities, guarantee legality, or prove compliance.
 
+### Agent Integration Manifest & MCP Tool Adapter Pack
+
+P3-M022 adds machine-readable local discovery for AI agents and agent
+developers. The Agent Integration Manifest describes gateway capabilities,
+tools, schemas, local authentication headers, usage and allowance handling, and
+safety limits. The MCP-style adapter pack shows how those capabilities can be
+presented to an agent framework without implementing or publishing a production
+MCP server.
+
+Inspect or export the manifest:
+
+```sh
+npm run verify -- --agent-manifest
+npm run verify -- --agent-manifest --json
+npm run verify -- --agent-manifest --output manifests/agent-trust-gate.agent-manifest.json
+```
+
+The stable tracked manifest is `docs/agent-trust-gate.agent-manifest.json`.
+When the local gateway is running, agents can discover it at:
+
+```text
+GET http://127.0.0.1:8787/v1/agent-manifest.json
+```
+
+Run the dependency-free local MCP-style demonstration:
+
+```sh
+node examples/mcp-adapter/node-mcp-style-adapter.mjs
+```
+
+The manifest explicitly reports `purchase_enabled: false`,
+`automatic_purchase_enabled: false`, and `billing_enabled: false`. Usage and
+allowance fields remain local controls only. No action, purchase, billing, or
+payment processing is performed.
+
+Agent Integration Manifest and MCP-style adapter examples are local
+discovery/integration aids only. They do not execute actions, bill customers,
+process payments, expose a public service, authenticate real-world identities,
+guarantee legality, or prove compliance.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

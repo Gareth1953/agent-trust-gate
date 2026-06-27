@@ -49,10 +49,15 @@ import {
   formatGatewayOpenApiForConsole,
   writeGatewayOpenApiDocument,
 } from "./gateway-openapi.js";
+import {
+  createAgentIntegrationManifest,
+  formatAgentManifestForConsole,
+  writeAgentIntegrationManifest,
+} from "./agent-manifest.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const USAGE =
-  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787] [--require-api-key] [--clients-file gateway-clients.json]\n       npm run verify -- --openapi [--json] [--output <path>]\n       npm run verify -- --gateway-admin [--clients-file gateway-clients.json] [--json]\n       npm run verify -- --gateway-usage [--json]\n       npm run verify -- --client-usage [--json]\n       npm run verify -- --list-gateway-requests [--limit 20] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
+  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787] [--require-api-key] [--clients-file gateway-clients.json]\n       npm run verify -- --openapi [--json] [--output <path>]\n       npm run verify -- --agent-manifest [--json] [--output <path>]\n       npm run verify -- --gateway-admin [--clients-file gateway-clients.json] [--json]\n       npm run verify -- --gateway-usage [--json]\n       npm run verify -- --client-usage [--json]\n       npm run verify -- --list-gateway-requests [--limit 20] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
@@ -64,6 +69,10 @@ export function runCli(args: string[]): number {
 
   if (args.includes("--openapi")) {
     return runOpenApiMode(args, jsonMode);
+  }
+
+  if (args.includes("--agent-manifest")) {
+    return runAgentManifestMode(args, jsonMode);
   }
 
   if (args.includes("--gateway-admin")) {
@@ -288,6 +297,59 @@ function parseOpenApiArgs(args: string[]): {
       return { error: `--openapi cannot be combined with ${arg}.` };
     }
     return { error: "--openapi does not accept an action file argument." };
+  }
+  return output === undefined ? {} : { output };
+}
+
+function runAgentManifestMode(args: string[], jsonMode: boolean): number {
+  const parsedArgs = parseAgentManifestArgs(args);
+  if (parsedArgs.error !== undefined) {
+    printError("INVALID_AGENT_MANIFEST_ARGUMENTS", parsedArgs.error, jsonMode);
+    return 1;
+  }
+
+  try {
+    const outputPath = parsedArgs.output === undefined
+      ? undefined
+      : writeAgentIntegrationManifest(parsedArgs.output);
+    if (jsonMode) {
+      console.log(JSON.stringify(createAgentIntegrationManifest(), null, 2));
+    } else {
+      console.log(formatAgentManifestForConsole());
+      if (outputPath !== undefined) {
+        console.log(`\nSaved agent manifest to ${outputPath}`);
+      }
+    }
+    return 0;
+  } catch (error) {
+    printError("AGENT_MANIFEST_EXPORT_ERROR", `Unable to export agent manifest: ${errorMessage(error)}`, jsonMode);
+    return 1;
+  }
+}
+
+function parseAgentManifestArgs(args: string[]): {
+  output?: string;
+  error?: string;
+} {
+  let output: string | undefined;
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (arg === "--agent-manifest" || arg === "--json") {
+      continue;
+    }
+    if (arg === "--output") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) {
+        return { error: "Missing output path after --output." };
+      }
+      output = value;
+      index += 1;
+      continue;
+    }
+    if (arg?.startsWith("--")) {
+      return { error: `--agent-manifest cannot be combined with ${arg}.` };
+    }
+    return { error: "--agent-manifest does not accept an action file argument." };
   }
   return output === undefined ? {} : { output };
 }

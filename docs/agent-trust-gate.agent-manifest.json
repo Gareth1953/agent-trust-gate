@@ -1,0 +1,130 @@
+{
+  "name": "Agent Trust Gate",
+  "product": "agent-trust-gate",
+  "contract_version": "atg.v1",
+  "gateway_api_version": "atg.gateway.v1",
+  "manifest_version": "atg.agent-manifest.v1",
+  "local_only": true,
+  "base_url": "http://127.0.0.1:8787",
+  "openapi_url": "/v1/openapi.json",
+  "capabilities": [
+    "pre_action_trust_decision",
+    "approval_pack_generation",
+    "human_review_evidence",
+    "evidence_bundle_export",
+    "gateway_usage_metering",
+    "local_client_allowances",
+    "local_admin_summary"
+  ],
+  "schemas": {
+    "EmptyInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {}
+    },
+    "LocalCliInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {},
+      "description": "No tool input. Execute the documented local CLI flag from the repository."
+    }
+  },
+  "tools": [
+    {
+      "name": "atg_health",
+      "description": "Check local gateway health and whether optional local API-key mode is enabled.",
+      "transport": "http",
+      "http_method": "GET",
+      "path": "/v1/health",
+      "input_schema_ref": "#/schemas/EmptyInput",
+      "output_summary": "Health, service, request, client, and API-key-mode fields.",
+      "safety_note": "Reads local gateway metadata or usage records only. Agent Trust Gate returns trust decisions and evidence only and never executes actions.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_decide",
+      "description": "Evaluate a stable action descriptor before a caller takes a high-impact action.",
+      "transport": "http",
+      "http_method": "POST",
+      "path": "/v1/decision",
+      "input_schema_ref": "/v1/openapi.json#/components/schemas/GatewayDecisionRequest",
+      "output_summary": "ALLOW, BLOCK, or human-approval-required trust decision with risk and usage fields.",
+      "safety_note": "Returns a local trust decision only. The tool never executes the described action.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_create_approval_pack",
+      "description": "Create a local approval packet from an action trust decision.",
+      "transport": "http",
+      "http_method": "POST",
+      "path": "/v1/approval-pack",
+      "input_schema_ref": "/v1/openapi.json#/components/schemas/GatewayApprovalPackRequest",
+      "output_summary": "Approval packet and optional explicit local save status.",
+      "safety_note": "Returns or saves local evidence only when explicitly requested. The tool never executes actions.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_create_evidence_bundle",
+      "description": "Create a portable local evidence bundle from a human review record.",
+      "transport": "http",
+      "http_method": "POST",
+      "path": "/v1/evidence-bundle",
+      "input_schema_ref": "/v1/openapi.json#/components/schemas/GatewayEvidenceBundleRequest",
+      "output_summary": "Evidence bundle and optional explicit local save status.",
+      "safety_note": "Returns or saves local evidence only when explicitly requested. The tool never executes actions.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_get_openapi",
+      "description": "Retrieve the machine-readable local gateway API contract.",
+      "transport": "http",
+      "http_method": "GET",
+      "path": "/v1/openapi.json",
+      "input_schema_ref": "#/schemas/EmptyInput",
+      "output_summary": "OpenAPI 3.1 document for the local gateway.",
+      "safety_note": "Reads local gateway metadata or usage records only. Agent Trust Gate returns trust decisions and evidence only and never executes actions.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_get_usage",
+      "description": "Read the local gateway usage and allowance summary through the CLI.",
+      "transport": "local_cli",
+      "http_method": "LOCAL_CLI",
+      "path": "--gateway-usage --json",
+      "input_schema_ref": "#/schemas/LocalCliInput",
+      "output_summary": "Gateway usage totals, client counts, limits, and errors from local logs.",
+      "safety_note": "Reads local gateway metadata or usage records only. Agent Trust Gate returns trust decisions and evidence only and never executes actions.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_get_admin_summary",
+      "description": "Read the local operator summary through the CLI.",
+      "transport": "local_cli",
+      "http_method": "LOCAL_CLI",
+      "path": "--gateway-admin --json",
+      "input_schema_ref": "#/schemas/LocalCliInput",
+      "output_summary": "Local gateway health, decision activity, authentication, limits, and client summaries.",
+      "safety_note": "Reads local gateway metadata or usage records only. Agent Trust Gate returns trust decisions and evidence only and never executes actions.",
+      "executes_actions": false
+    }
+  ],
+  "auth": {
+    "supports_client_id_header": true,
+    "client_id_header": "X-ATG-Client-ID",
+    "supports_api_key_header": true,
+    "api_key_header": "X-ATG-API-Key",
+    "api_key_mode": "optional_local_development",
+    "raw_api_keys_logged": false,
+    "real_world_identity_authentication": false
+  },
+  "usage_model": {
+    "usage_metering_available": true,
+    "client_allowances_available": true,
+    "over_limit_error_code": "CLIENT_USAGE_LIMIT_EXCEEDED",
+    "purchase_enabled": false,
+    "automatic_purchase_enabled": false,
+    "billing_enabled": false,
+    "local_only_note": "Usage and allowance fields are local control records only. They do not bill customers or process payments."
+  },
+  "safety_statement": "Agent Trust Gate returns local trust decisions and evidence objects only. It does not execute actions, bill customers, process payments, expose a public service, authenticate real-world identities, guarantee legality, or prove compliance."
+}

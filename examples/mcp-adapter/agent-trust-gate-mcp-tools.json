@@ -1,0 +1,106 @@
+{
+  "manifest_version": "atg.mcp-tools.v1",
+  "local_only": true,
+  "gateway_base_url": "http://127.0.0.1:8787",
+  "tools": [
+    {
+      "name": "atg_health",
+      "description": "Check the local Agent Trust Gate gateway health.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {}
+      },
+      "output": "Local gateway health, request ID, client ID, and API-key-mode status.",
+      "safety_note": "Returns local gateway status only and never executes actions.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_decide",
+      "description": "Request a pre-action trust decision for a stable action descriptor.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["action"],
+        "properties": {
+          "action": { "$ref": "#/schemas/ActionDescriptor" },
+          "policy_profile": {
+            "type": "string",
+            "enum": ["standard", "strict", "regulated"]
+          }
+        }
+      },
+      "output": "ALLOW, BLOCK, or human-approval-required trust decision with risk and usage fields.",
+      "safety_note": "Returns a trust decision only and never executes the described action.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_create_approval_pack",
+      "description": "Create a local approval packet for an action.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["action"],
+        "properties": {
+          "action": { "$ref": "#/schemas/ActionDescriptor" },
+          "policy_profile": {
+            "type": "string",
+            "enum": ["standard", "strict", "regulated"]
+          },
+          "save_approval_pack": { "type": "boolean", "default": false }
+        }
+      },
+      "output": "Approval packet and optional explicit local save status.",
+      "safety_note": "Creates local approval evidence only and never executes actions.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_create_evidence_bundle",
+      "description": "Create a local evidence bundle from a human review record.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["review_record_path"],
+        "properties": {
+          "review_record_path": { "type": "string", "minLength": 1 },
+          "save_evidence_bundle": { "type": "boolean", "default": false }
+        }
+      },
+      "output": "Evidence bundle and optional explicit local save status.",
+      "safety_note": "Creates local evidence only and never executes actions.",
+      "executes_actions": false
+    }
+  ],
+  "schemas": {
+    "ActionDescriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action_type", "description", "actor", "target"],
+      "properties": {
+        "action_type": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 1 },
+        "actor": { "type": "string", "minLength": 1 },
+        "target": { "type": "string", "minLength": 1 },
+        "estimated_cost_gbp": { "type": "number", "minimum": 0 },
+        "public_action": { "type": "boolean" },
+        "external_commitment": { "type": "boolean" },
+        "money_movement": { "type": "boolean" },
+        "legal_or_compliance_sensitive": { "type": "boolean" },
+        "customer_or_user_facing": { "type": "boolean" },
+        "evidence": { "type": "array", "items": { "type": "string" } },
+        "rollback_plan": { "type": "string" },
+        "human_approval_status": {
+          "type": "string",
+          "enum": ["not_requested", "requested", "approved", "rejected"]
+        }
+      }
+    }
+  },
+  "usage_model": {
+    "over_limit_error_code": "CLIENT_USAGE_LIMIT_EXCEEDED",
+    "purchase_enabled": false,
+    "automatic_purchase_enabled": false,
+    "billing_enabled": false
+  },
+  "safety_statement": "These local MCP-style tool definitions return trust decisions and evidence only. They never execute actions or process payments."
+}
