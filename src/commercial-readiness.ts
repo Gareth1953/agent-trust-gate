@@ -27,8 +27,8 @@ export interface CommercialReadinessSnapshot {
   local_only: true;
   overall: {
     local_product_readiness_percent: 85;
-    commercial_mvp_readiness_percent: 60;
-    full_target_readiness_percent: 35;
+    commercial_mvp_readiness_percent: 62;
+    full_target_readiness_percent: 37;
     status: "local_infrastructure_ready_not_commercially_complete";
   };
   categories: CommercialReadinessCategory[];
@@ -48,8 +48,8 @@ export function createCommercialReadinessSnapshot(
     local_only: true,
     overall: {
       local_product_readiness_percent: 85,
-      commercial_mvp_readiness_percent: 60,
-      full_target_readiness_percent: 35,
+      commercial_mvp_readiness_percent: 62,
+      full_target_readiness_percent: 37,
       status: "local_infrastructure_ready_not_commercially_complete",
     },
     categories: categories(),
@@ -148,7 +148,7 @@ function categories(): CommercialReadinessCategory[] {
     partial("agent_manifest", "Agent manifest", 95, ["Machine-readable capabilities, tools, auth, usage, and safety metadata."], ["No hosted registry publication or signed manifest."], "Define signing and distribution requirements."),
     partial("mcp_style_adapter", "MCP-style adapter", 85, ["Inspectable local tool schemas and dependency-free adapter example."], ["Not a production MCP server and not registry-published."], "Validate framework demand before implementing a production transport."),
     partial("entitlement_and_upgrade_signals", "Entitlement and upgrade signals", 90, ["Local active, unlimited, at-limit, over-limit, and unknown-client signals."], ["Purchase, automatic purchase, billing, and account entitlements are disabled."], "Validate commercial entitlement semantics before payment integration."),
-    notStarted("production_hosting", "Production hosting", "No hosted service, deployment topology, regions, or availability guarantees.", "Design and threat-model a production deployment architecture."),
+    partial("production_hosting", "Production hosting", 20, ["A local hosted deployment readiness report, production checklist, safe environment template, and migration notes exist."], ["No hosted deployment, public service, production authentication, monitoring, tenant isolation, or legal review exists."], "Complete production security and deployment review before hosting."),
     partial("production_authentication", "Production authentication", 20, ["Local development API-key gate exists."], ["No real-world identity, OAuth/OIDC, tenant authorization, key lifecycle, or abuse controls."], "Select production identity and authorization architecture."),
     notStarted("customer_accounts", "Customer accounts", "No customer, tenant, organization, or account lifecycle system.", "Define tenant model, onboarding, roles, and account recovery."),
     notStarted("payment_processing", "Payment processing", "No payment processor or transaction flow is integrated.", "Validate pricing and legal design before selecting payment infrastructure."),

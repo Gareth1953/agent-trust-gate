@@ -97,6 +97,12 @@ function Invoke-ATGCommercialReadiness {
   Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/commercial-readiness"
 }
 
+function Invoke-ATGHostedReadiness {
+  [CmdletBinding()]
+  param([Parameter(Mandatory)]$Client)
+  Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/hosted-readiness"
+}
+
 function Invoke-ATGRequest {
   [CmdletBinding()]
   param(

@@ -286,6 +286,52 @@
         }
       }
     },
+    "/v1/hosted-readiness": {
+      "get": {
+        "tags": [
+          "Gateway"
+        ],
+        "summary": "Read local hosted deployment readiness",
+        "description": "Returns planning checks and safe configuration guidance only. It does not deploy Agent Trust Gate, change the localhost binding, or expose a public service.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Local hosted deployment readiness report.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HostedReadinessResponse"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "The endpoint does not support this HTTP method.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected local gateway error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/decision": {
       "post": {
         "tags": [
@@ -1627,6 +1673,204 @@
           "safety_statement": {
             "type": "string",
             "description": "Planning only: no billing, payment processing, automatic purchase, public hosting, or action execution."
+          }
+        }
+      },
+      "HostedReadinessCheck": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "status",
+          "severity",
+          "evidence",
+          "recommendation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "partial",
+              "fail",
+              "not_started",
+              "future"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "info",
+              "warning",
+              "critical"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recommendation": {
+            "type": "string"
+          }
+        }
+      },
+      "HostedReadinessResponse": {
+        "type": "object",
+        "required": [
+          "contract_version",
+          "hosted_readiness_version",
+          "generated_at",
+          "request_id",
+          "local_only",
+          "hosted_deployment_enabled",
+          "public_service_enabled",
+          "production_ready",
+          "overall",
+          "checks",
+          "required_before_hosting",
+          "recommended_environment",
+          "safety_statement"
+        ],
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "atg.v1"
+          },
+          "hosted_readiness_version": {
+            "type": "string",
+            "const": "atg.hosted-readiness.v1"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "request_id": {
+            "type": "string"
+          },
+          "local_only": {
+            "type": "boolean",
+            "const": true
+          },
+          "hosted_deployment_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "public_service_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "production_ready": {
+            "type": "boolean",
+            "const": false
+          },
+          "overall": {
+            "type": "object",
+            "required": [
+              "hosted_readiness_percent",
+              "status",
+              "next_gate"
+            ],
+            "properties": {
+              "hosted_readiness_percent": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "status": {
+                "type": "string",
+                "const": "not_hosted_preparation_only"
+              },
+              "next_gate": {
+                "type": "string",
+                "const": "complete_security_and_deployment_review_before_hosting"
+              }
+            }
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HostedReadinessCheck"
+            }
+          },
+          "required_before_hosting": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recommended_environment": {
+            "type": "object",
+            "required": [
+              "host",
+              "port",
+              "require_api_key",
+              "public_base_url",
+              "hosted_deployment_enabled",
+              "payment_enabled",
+              "automatic_purchase_enabled",
+              "billing_enabled",
+              "tls_termination",
+              "secrets_storage"
+            ],
+            "properties": {
+              "host": {
+                "type": "string",
+                "const": "127.0.0.1"
+              },
+              "port": {
+                "type": "integer",
+                "const": 8787
+              },
+              "require_api_key": {
+                "type": "boolean",
+                "const": false
+              },
+              "clients_file": {
+                "type": "string"
+              },
+              "log_file": {
+                "type": "string"
+              },
+              "public_base_url": {
+                "type": "null"
+              },
+              "hosted_deployment_enabled": {
+                "type": "boolean",
+                "const": false
+              },
+              "payment_enabled": {
+                "type": "boolean",
+                "const": false
+              },
+              "automatic_purchase_enabled": {
+                "type": "boolean",
+                "const": false
+              },
+              "billing_enabled": {
+                "type": "boolean",
+                "const": false
+              },
+              "tls_termination": {
+                "type": "string",
+                "const": "required_before_public_hosting"
+              },
+              "secrets_storage": {
+                "type": "string",
+                "const": "managed_secret_storage_required_before_hosting"
+              }
+            }
+          },
+          "safety_statement": {
+            "type": "string",
+            "description": "Planning only: no deployment, public exposure, payments, billing, automatic purchase, or action execution."
           }
         }
       }

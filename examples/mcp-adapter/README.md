@@ -18,6 +18,7 @@ The tool metadata exposes:
 - `atg_decide`
 - `atg_get_entitlement`
 - `atg_get_commercial_readiness`
+- `atg_get_hosted_readiness`
 - `atg_create_approval_pack`
 - `atg_create_evidence_bundle`
 
@@ -28,6 +29,9 @@ signals. Purchase, automatic purchase, and billing remain disabled.
 
 `atg_get_commercial_readiness` reports deterministic planning scores and gaps.
 It does not implement hosting, payments, billing, marketing, or self-learning.
+
+`atg_get_hosted_readiness` reports pre-deployment checks and blockers. It does
+not deploy, bind publicly, or expose a service.
 
 ## Run locally
 

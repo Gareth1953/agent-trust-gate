@@ -21,8 +21,8 @@ test("commercial readiness snapshot is deterministic, versioned, and below full 
   assert.equal(snapshot.readiness_version, "atg.commercial-readiness.v1");
   assert.equal(snapshot.generated_at, now.toISOString());
   assert.equal(snapshot.overall.local_product_readiness_percent, 85);
-  assert.equal(snapshot.overall.commercial_mvp_readiness_percent, 60);
-  assert.equal(snapshot.overall.full_target_readiness_percent, 35);
+  assert.equal(snapshot.overall.commercial_mvp_readiness_percent, 62);
+  assert.equal(snapshot.overall.full_target_readiness_percent, 37);
   assert.ok(snapshot.overall.full_target_readiness_percent < 100);
   assert.equal(snapshot.overall.status, "local_infrastructure_ready_not_commercially_complete");
   assert.doesNotMatch(JSON.stringify(snapshot), /100% complete/i);
@@ -31,7 +31,6 @@ test("commercial readiness snapshot is deterministic, versioned, and below full 
 test("future commercial target categories remain honestly unstarted", () => {
   const snapshot = createCommercialReadinessSnapshot();
   for (const id of [
-    "production_hosting",
     "payment_processing",
     "automatic_machine_to_machine_purchase",
     "global_automated_marketing",
@@ -42,6 +41,16 @@ test("future commercial target categories remain honestly unstarted", () => {
     assert.match(category.status, /^(not_started|future)$/);
     assert.equal(category.readiness_percent, 0);
   }
+});
+
+test("production hosting is partial preparation and not complete", () => {
+  const snapshot = createCommercialReadinessSnapshot();
+  const hosting = snapshot.categories.find((category) => category.id === "production_hosting");
+  assert.ok(hosting);
+  assert.equal(hosting.status, "partial");
+  assert.equal(hosting.readiness_percent, 20);
+  assert.match(hosting.evidence.join(" "), /readiness report/i);
+  assert.match(hosting.gaps.join(" "), /No hosted deployment/i);
 });
 
 test("commercial readiness includes the full required category inventory", () => {
@@ -92,7 +101,7 @@ test("CLI commercial readiness JSON is parseable", () => {
   assert.equal(result.status, 0);
   assert.equal(result.stderr, "");
   assert.equal(output.readiness_version, "atg.commercial-readiness.v1");
-  assert.equal(output.overall.full_target_readiness_percent, 35);
+  assert.equal(output.overall.full_target_readiness_percent, 37);
 });
 
 test("CLI commercial readiness output creates a local JSON report", () => {
@@ -130,7 +139,7 @@ test("GET commercial readiness returns JSON with request ID and logs the request
     assert.equal(response.status, 200);
     assert.equal(body.readiness_version, "atg.commercial-readiness.v1");
     assert.match(body.request_id, /^gw_[0-9a-f-]{36}$/);
-    assert.equal(body.overall.full_target_readiness_percent, 35);
+    assert.equal(body.overall.full_target_readiness_percent, 37);
   } finally {
     await new Promise<void>((done, reject) => server.close((error) => error ? reject(error) : done()));
     const entry = JSON.parse(readFileSync(logPath, "utf8").trim()) as GatewayRequestLogEntry;

@@ -16,7 +16,8 @@
     "local_client_allowances",
     "local_admin_summary",
     "agent_entitlement_status",
-    "commercial_readiness_snapshot"
+    "commercial_readiness_snapshot",
+    "hosted_deployment_readiness"
   ],
   "schemas": {
     "EmptyInput": {
@@ -107,6 +108,17 @@
       "input_schema_ref": "#/schemas/EmptyInput",
       "output_summary": "Readiness percentages, category evidence and gaps, missing capabilities, and next steps.",
       "safety_note": "Returns local planning metadata only. It never bills, processes payments, enables automatic purchase, or executes actions.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_get_hosted_readiness",
+      "description": "Read local pre-hosting checks, blockers, environment guidance, and required gates.",
+      "transport": "http",
+      "http_method": "GET",
+      "path": "/v1/hosted-readiness",
+      "input_schema_ref": "#/schemas/EmptyInput",
+      "output_summary": "Hosted preparation percentage, checks, blockers, required controls, and safe local defaults.",
+      "safety_note": "Preparation only. It does not deploy Agent Trust Gate, bind publicly, or expose a service.",
       "executes_actions": false
     },
     {

@@ -16,6 +16,7 @@ export function createMcpStyleAdapter(options = {}) {
     atg_health: async () => client.health(),
     atg_get_entitlement: async () => client.entitlement(),
     atg_get_commercial_readiness: async () => client.commercialReadiness(),
+    atg_get_hosted_readiness: async () => client.hostedReadiness(),
     atg_decide: async ({ action, policy_profile } = {}) => (
       client.decide(action, policy_profile === undefined ? {} : { policyProfile: policy_profile })
     ),
@@ -73,6 +74,9 @@ async function demo() {
   const readiness = await adapter.callTool("atg_get_commercial_readiness");
   console.log(`tool=atg_get_commercial_readiness local=${readiness.overall.local_product_readiness_percent} commercial_mvp=${readiness.overall.commercial_mvp_readiness_percent} full_target=${readiness.overall.full_target_readiness_percent}`);
   console.log("Commercial readiness is a local planning snapshot only.");
+  const hosted = await adapter.callTool("atg_get_hosted_readiness");
+  console.log(`tool=atg_get_hosted_readiness hosted=${hosted.overall.hosted_readiness_percent} production_ready=${hosted.production_ready}`);
+  console.log("No deployment occurred. Hosted readiness is preparation only.");
   console.log("No action was executed. This local MCP-style adapter requested a trust decision only.");
 }
 

@@ -37,6 +37,11 @@ try {
   Write-Host "full_target_readiness_percent=$($readiness.overall.full_target_readiness_percent)"
   Write-Host "Commercial readiness is a planning snapshot only."
 
+  $hosted = Invoke-ATGHostedReadiness -Client $client
+  Write-Host "hosted_readiness_percent=$($hosted.overall.hosted_readiness_percent)"
+  Write-Host "production_ready=$($hosted.production_ready)"
+  Write-Host "No deployment occurred. Hosted readiness is preparation only."
+
   if ($decision.human_approval_required -eq $true) {
     Write-Host "gateway_decision=REQUEST HUMAN"
     Write-Host "Stopping: explicit human review is required."

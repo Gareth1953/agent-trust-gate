@@ -59,6 +59,18 @@
       "executes_actions": false
     },
     {
+      "name": "atg_get_hosted_readiness",
+      "description": "Read local hosted deployment preparation checks and blockers.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {}
+      },
+      "output": "Hosted readiness percentage, critical checks, required controls, and safe local environment guidance.",
+      "safety_note": "Preparation only. It does not deploy Agent Trust Gate, bind publicly, expose a service, or execute actions.",
+      "executes_actions": false
+    },
+    {
       "name": "atg_create_approval_pack",
       "description": "Create a local approval packet for an action.",
       "inputSchema": {

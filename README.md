@@ -839,6 +839,49 @@ customers, process payments, enable automatic purchase, execute actions, expose
 a public service, authenticate real-world identities, guarantee legality, or
 prove compliance.
 
+### Hosted Deployment Readiness Pack
+
+P3-M025 adds a local, machine-readable preparation pack for a future hosted
+deployment review. It identifies existing local foundations, critical blockers,
+required controls, safe environment defaults, and migration work without
+deploying Agent Trust Gate or changing the gateway's localhost-only behavior.
+
+Run the readiness report locally:
+
+```sh
+npm run verify -- --hosted-readiness
+npm run verify -- --hosted-readiness --json
+npm run verify -- --hosted-readiness --output reports/hosted-readiness.json
+```
+
+When Local Gateway API Mode is running:
+
+```text
+GET http://127.0.0.1:8787/v1/hosted-readiness
+```
+
+The gateway still binds to `127.0.0.1` by default. This mission does not add a
+public binding option, cloud deployment, production authentication, customer
+accounts, payments, billing, automatic purchase, or production monitoring.
+
+Deployment readiness documents:
+
+- `docs/deployment-readiness/README.md`
+- `docs/deployment-readiness/production-checklist.md`
+- `docs/deployment-readiness/env.example`
+- `docs/deployment-readiness/local-to-hosted-notes.md`
+
+The commercial readiness snapshot now records `production_hosting` as partial
+preparation, not a hosted or production-ready service. Public hosting still
+requires production security, HTTPS/TLS, authentication, authorization, tenant
+isolation, rate limiting, abuse controls, monitoring, retention, legal review,
+staging, incident response, and tested rollback.
+
+Hosted readiness is a local planning and configuration aid only. It does not
+deploy Agent Trust Gate, expose a public service, bill customers, process
+payments, enable automatic purchase, execute actions, authenticate real-world
+identities, guarantee legality, or prove compliance.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

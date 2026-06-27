@@ -81,6 +81,7 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
       "local_admin_summary",
       "agent_entitlement_status",
       "commercial_readiness_snapshot",
+      "hosted_deployment_readiness",
     ],
     schemas: {
       EmptyInput: {
@@ -158,6 +159,15 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
         "#/schemas/EmptyInput",
         "Readiness percentages, category evidence and gaps, missing capabilities, and next steps.",
         "Returns local planning metadata only. It never bills, processes payments, enables automatic purchase, or executes actions.",
+      ),
+      httpTool(
+        "atg_get_hosted_readiness",
+        "Read local pre-hosting checks, blockers, environment guidance, and required gates.",
+        "GET",
+        "/v1/hosted-readiness",
+        "#/schemas/EmptyInput",
+        "Hosted preparation percentage, checks, blockers, required controls, and safe local defaults.",
+        "Preparation only. It does not deploy Agent Trust Gate, bind publicly, or expose a service.",
       ),
       cliTool(
         "atg_get_usage",

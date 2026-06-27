@@ -41,6 +41,11 @@ async function main() {
   console.log(`full_target_readiness_percent=${readiness.overall.full_target_readiness_percent}`);
   console.log("Commercial readiness is a planning snapshot only.");
 
+  const hosted = await client.hostedReadiness();
+  console.log(`hosted_readiness_percent=${hosted.overall.hosted_readiness_percent}`);
+  console.log(`production_ready=${hosted.production_ready}`);
+  console.log("No deployment occurred. Hosted readiness is preparation only.");
+
   if (decision.human_approval_required === true) {
     console.log("gateway_decision=REQUEST HUMAN");
     console.log("Stopping: explicit human review is required.");

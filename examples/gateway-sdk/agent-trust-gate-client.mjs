@@ -82,6 +82,10 @@ export class AgentTrustGateClient {
     return this.#request("/v1/commercial-readiness");
   }
 
+  hostedReadiness() {
+    return this.#request("/v1/hosted-readiness");
+  }
+
   async #request(path, { method = "GET", body } = {}) {
     const headers = { Accept: "application/json" };
     if (this.#clientId !== undefined) {

@@ -28,14 +28,14 @@ test("Node SDK wrapper exports the expected client operations", () => {
   assert.match(source, /export class AgentTrustGateClient/);
   assert.match(source, /export class AgentTrustGateError/);
   assert.match(source, /export function createAgentTrustGateClient/);
-  for (const method of ["health", "decide", "createApprovalPack", "createEvidenceBundle", "openapi", "entitlement", "commercialReadiness"]) {
+  for (const method of ["health", "decide", "createApprovalPack", "createEvidenceBundle", "openapi", "entitlement", "commercialReadiness", "hostedReadiness"]) {
     assert.match(source, new RegExp(`\\b${method}\\(`));
   }
 });
 
 test("PowerShell SDK wrapper defines the expected functions", () => {
   const source = readFileSync(files.powershellClient, "utf8");
-  for (const functionName of ["New-AgentTrustGateClient", "Invoke-ATGHealth", "Invoke-ATGDecision", "Invoke-ATGApprovalPack", "Invoke-ATGEvidenceBundle", "Invoke-ATGOpenApi", "Invoke-ATGEntitlement", "Invoke-ATGCommercialReadiness"]) {
+  for (const functionName of ["New-AgentTrustGateClient", "Invoke-ATGHealth", "Invoke-ATGDecision", "Invoke-ATGApprovalPack", "Invoke-ATGEvidenceBundle", "Invoke-ATGOpenApi", "Invoke-ATGEntitlement", "Invoke-ATGCommercialReadiness", "Invoke-ATGHostedReadiness"]) {
     assert.match(source, new RegExp(`function ${functionName.replace("-", "\\-")}`));
   }
 });
@@ -82,6 +82,7 @@ test("Node SDK wrapper calls the local gateway and surfaces JSON errors", async 
         openapi(): Promise<Record<string, unknown>>;
         entitlement(): Promise<Record<string, unknown>>;
         commercialReadiness(): Promise<Record<string, unknown>>;
+        hostedReadiness(): Promise<Record<string, unknown>>;
       };
     };
     const client = sdk.createAgentTrustGateClient({
@@ -101,6 +102,9 @@ test("Node SDK wrapper calls the local gateway and surfaces JSON errors", async 
 
     const readiness = await client.commercialReadiness();
     assert.equal(readiness.readiness_version, "atg.commercial-readiness.v1");
+
+    const hosted = await client.hostedReadiness();
+    assert.equal(hosted.hosted_readiness_version, "atg.hosted-readiness.v1");
 
     await assert.rejects(
       client.decide({ action_type: "public_post" }),

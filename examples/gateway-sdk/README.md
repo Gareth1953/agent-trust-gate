@@ -76,6 +76,7 @@ The wrappers expose equivalent operations:
 - `openapi()` / `Invoke-ATGOpenApi`
 - `entitlement()` / `Invoke-ATGEntitlement`
 - `commercialReadiness()` / `Invoke-ATGCommercialReadiness`
+- `hostedReadiness()` / `Invoke-ATGHostedReadiness`
 
 Client ID and API key headers are optional. The wrappers add
 `X-ATG-Client-ID` and `X-ATG-API-Key` only when values are supplied. They do
@@ -87,6 +88,9 @@ false; the wrappers do not purchase usage or process payments.
 
 Commercial readiness methods return local planning scores, category evidence,
 gaps, and next steps. They do not implement any missing commercial capability.
+
+Hosted readiness methods return pre-deployment checks and blockers. They do not
+deploy the gateway, change its localhost binding, or expose a public service.
 
 ## Handle decisions
 
