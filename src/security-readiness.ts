@@ -34,7 +34,7 @@ export interface SecurityReadinessReport {
   public_service_safe: false;
   payment_security_ready: false;
   overall: {
-    security_readiness_percent: 35;
+    security_readiness_percent: 38;
     status: "security_preparation_only_not_production_certified";
     next_gate: "complete_production_security_controls_before_public_hosting";
   };
@@ -55,7 +55,7 @@ export function createSecurityReadinessReport(now = new Date()): SecurityReadine
     public_service_safe: false,
     payment_security_ready: false,
     overall: {
-      security_readiness_percent: 35,
+      security_readiness_percent: 38,
       status: "security_preparation_only_not_production_certified",
       next_gate: "complete_production_security_controls_before_public_hosting",
     },
@@ -163,7 +163,7 @@ function securityChecks(): SecurityReadinessCheck[] {
     check("key_rotation_missing", "Key rotation process missing", "not_started", "critical", ["No production key rotation or revocation workflow exists."], "Define rotation intervals, emergency revocation, overlap, and client migration procedures."),
     check("rate_limiting_local_only", "Rate limiting is local only", "partial", "warning", ["Configured clients can use deterministic per-server runtime request limits with 429 responses."], "Replace local counters with distributed per-client and global rate limits, burst controls, and request-size limits before hosting."),
     check("abuse_prevention_local_signals", "Abuse prevention has local signals only", "partial", "warning", ["Local status reports expose suspicious-volume, repeated-error, unknown-client, and over-limit signals."], "Add production telemetry, anomaly detection, containment, review, and appeal procedures before hosting."),
-    check("production_monitoring_missing", "Production monitoring missing", "not_started", "critical", ["Only local health and log inspection exist."], "Add metrics, tracing, availability objectives, dashboards, and on-call ownership."),
+    check("production_monitoring_local_signals", "Production monitoring has local signals only", "partial", "warning", ["Local operational health, runtime, request-log, error, unauthorized, and rate-limit summaries exist."], "Add hosted metrics, tracing, availability objectives, protected dashboards, and on-call ownership."),
     check("alerting_missing", "Security alerting missing", "not_started", "critical", ["No production security or availability alerts are configured."], "Define actionable alerts, severity levels, escalation paths, and test schedules."),
     check("incident_response_missing", "Incident response missing", "not_started", "critical", ["A planning template exists, but no approved or exercised response process exists."], "Assign owners and exercise detection, containment, recovery, communication, and review."),
     check("data_retention_policy_missing", "Data retention policy missing", "not_started", "critical", ["No approved retention or deletion schedule exists for hosted logs or customer data."], "Define purpose, access, retention, deletion, legal hold, and customer request handling."),

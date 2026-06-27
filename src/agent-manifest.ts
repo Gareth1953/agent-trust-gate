@@ -84,6 +84,7 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
       "hosted_deployment_readiness",
       "production_security_readiness",
       "local_rate_limit_and_abuse_signals",
+      "local_monitoring_health_signals",
     ],
     schemas: {
       EmptyInput: {
@@ -188,6 +189,15 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
         "#/schemas/EmptyInput",
         "Local request count, remaining capacity, limit status, abuse signal, and disabled commerce fields.",
         "Local control signal only. It is not production-grade abuse prevention and never executes actions or purchases capacity.",
+      ),
+      httpTool(
+        "atg_get_monitoring_health",
+        "Read local operational health, runtime availability, and gateway request-log signals.",
+        "GET",
+        "/v1/monitoring-health",
+        "#/schemas/EmptyInput",
+        "Local monitoring readiness, runtime, log health, control checks, and future production requirements.",
+        "Local monitoring signal only. It is not production monitoring, external alerting, or a public uptime guarantee.",
       ),
       cliTool(
         "atg_get_usage",

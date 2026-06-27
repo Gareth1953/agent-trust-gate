@@ -95,6 +95,18 @@
       "executes_actions": false
     },
     {
+      "name": "atg_get_monitoring_health",
+      "description": "Read local gateway operational health and request-log signals.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {}
+      },
+      "output": "Local monitoring readiness, runtime availability, log health, checks, and future production requirements.",
+      "safety_note": "Local signal only. It is not production monitoring, external alerting, a public uptime SLA, or action execution.",
+      "executes_actions": false
+    },
+    {
       "name": "atg_create_approval_pack",
       "description": "Create a local approval packet for an action.",
       "inputSchema": {

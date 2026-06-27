@@ -56,6 +56,11 @@ async function main() {
   console.log(`abuse_status=${rateLimit.abuse_signal.abuse_status}`);
   console.log("No action was executed and no purchase was made.");
 
+  const monitoring = await client.monitoringHealth();
+  console.log(`monitoring_readiness_percent=${monitoring.overall.monitoring_readiness_percent}`);
+  console.log(`monitoring_status=${monitoring.overall.status}`);
+  console.log("No deployment occurred, no external alerting is enabled, and no action was executed.");
+
   if (decision.human_approval_required === true) {
     console.log("gateway_decision=REQUEST HUMAN");
     console.log("Stopping: explicit human review is required.");

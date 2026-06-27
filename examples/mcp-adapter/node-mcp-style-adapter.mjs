@@ -19,6 +19,7 @@ export function createMcpStyleAdapter(options = {}) {
     atg_get_hosted_readiness: async () => client.hostedReadiness(),
     atg_get_security_readiness: async () => client.securityReadiness(),
     atg_get_rate_limit_status: async () => client.rateLimitStatus(),
+    atg_get_monitoring_health: async () => client.monitoringHealth(),
     atg_decide: async ({ action, policy_profile } = {}) => (
       client.decide(action, policy_profile === undefined ? {} : { policyProfile: policy_profile })
     ),
@@ -85,6 +86,9 @@ async function demo() {
   const rateLimit = await adapter.callTool("atg_get_rate_limit_status");
   console.log(`tool=atg_get_rate_limit_status status=${rateLimit.rate_limit_status} abuse=${rateLimit.abuse_signal.abuse_status}`);
   console.log("Rate-limit status is local only. No action was executed or capacity purchased.");
+  const monitoring = await adapter.callTool("atg_get_monitoring_health");
+  console.log(`tool=atg_get_monitoring_health readiness=${monitoring.overall.monitoring_readiness_percent} status=${monitoring.overall.status}`);
+  console.log("Monitoring health is local only. No alerting, deployment, or action execution occurred.");
   console.log("No action was executed. This local MCP-style adapter requested a trust decision only.");
 }
 

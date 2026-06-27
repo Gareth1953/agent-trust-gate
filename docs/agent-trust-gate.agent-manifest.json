@@ -19,7 +19,8 @@
     "commercial_readiness_snapshot",
     "hosted_deployment_readiness",
     "production_security_readiness",
-    "local_rate_limit_and_abuse_signals"
+    "local_rate_limit_and_abuse_signals",
+    "local_monitoring_health_signals"
   ],
   "schemas": {
     "EmptyInput": {
@@ -143,6 +144,17 @@
       "input_schema_ref": "#/schemas/EmptyInput",
       "output_summary": "Local request count, remaining capacity, limit status, abuse signal, and disabled commerce fields.",
       "safety_note": "Local control signal only. It is not production-grade abuse prevention and never executes actions or purchases capacity.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_get_monitoring_health",
+      "description": "Read local operational health, runtime availability, and gateway request-log signals.",
+      "transport": "http",
+      "http_method": "GET",
+      "path": "/v1/monitoring-health",
+      "input_schema_ref": "#/schemas/EmptyInput",
+      "output_summary": "Local monitoring readiness, runtime, log health, control checks, and future production requirements.",
+      "safety_note": "Local monitoring signal only. It is not production monitoring, external alerting, or a public uptime guarantee.",
       "executes_actions": false
     },
     {

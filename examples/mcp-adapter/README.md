@@ -21,6 +21,7 @@ The tool metadata exposes:
 - `atg_get_hosted_readiness`
 - `atg_get_security_readiness`
 - `atg_get_rate_limit_status`
+- `atg_get_monitoring_health`
 - `atg_create_approval_pack`
 - `atg_create_evidence_bundle`
 
@@ -40,6 +41,9 @@ It does not certify production security, deploy, bind publicly, or expose a serv
 
 `atg_get_rate_limit_status` reports local runtime request limits and abuse
 signals. It is not production-grade abuse prevention and never buys capacity.
+
+`atg_get_monitoring_health` reports local runtime and request-log health. It is
+not production monitoring, external alerting, or a public uptime SLA.
 
 ## Run locally
 

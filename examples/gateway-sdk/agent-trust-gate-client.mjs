@@ -94,6 +94,10 @@ export class AgentTrustGateClient {
     return this.#request("/v1/rate-limit-status");
   }
 
+  monitoringHealth() {
+    return this.#request("/v1/monitoring-health");
+  }
+
   async #request(path, { method = "GET", body } = {}) {
     const headers = { Accept: "application/json" };
     if (this.#clientId !== undefined) {

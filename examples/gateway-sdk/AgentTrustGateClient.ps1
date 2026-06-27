@@ -115,6 +115,12 @@ function Invoke-ATGRateLimitStatus {
   Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/rate-limit-status"
 }
 
+function Invoke-ATGMonitoringHealth {
+  [CmdletBinding()]
+  param([Parameter(Mandatory)]$Client)
+  Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/monitoring-health"
+}
+
 function Invoke-ATGRequest {
   [CmdletBinding()]
   param(

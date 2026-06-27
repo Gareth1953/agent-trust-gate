@@ -213,3 +213,17 @@ export type {
   RateLimitStatus,
   RateLimitStatusReport,
 } from "./gateway-rate-limits.js";
+export {
+  MONITORING_HEALTH_SAFETY_STATEMENT,
+  MONITORING_HEALTH_VERSION,
+  createMonitoringHealthReport,
+  formatMonitoringHealthForConsole,
+  writeMonitoringHealthReport,
+} from "./monitoring-health.js";
+export type {
+  MonitoringHealthCheck,
+  MonitoringHealthCheckStatus,
+  MonitoringHealthOptions,
+  MonitoringHealthReport,
+  MonitoringHealthSeverity,
+} from "./monitoring-health.js";

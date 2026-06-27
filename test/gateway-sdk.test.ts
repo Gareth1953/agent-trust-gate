@@ -28,14 +28,14 @@ test("Node SDK wrapper exports the expected client operations", () => {
   assert.match(source, /export class AgentTrustGateClient/);
   assert.match(source, /export class AgentTrustGateError/);
   assert.match(source, /export function createAgentTrustGateClient/);
-  for (const method of ["health", "decide", "createApprovalPack", "createEvidenceBundle", "openapi", "entitlement", "commercialReadiness", "hostedReadiness", "securityReadiness", "rateLimitStatus"]) {
+  for (const method of ["health", "decide", "createApprovalPack", "createEvidenceBundle", "openapi", "entitlement", "commercialReadiness", "hostedReadiness", "securityReadiness", "rateLimitStatus", "monitoringHealth"]) {
     assert.match(source, new RegExp(`\\b${method}\\(`));
   }
 });
 
 test("PowerShell SDK wrapper defines the expected functions", () => {
   const source = readFileSync(files.powershellClient, "utf8");
-  for (const functionName of ["New-AgentTrustGateClient", "Invoke-ATGHealth", "Invoke-ATGDecision", "Invoke-ATGApprovalPack", "Invoke-ATGEvidenceBundle", "Invoke-ATGOpenApi", "Invoke-ATGEntitlement", "Invoke-ATGCommercialReadiness", "Invoke-ATGHostedReadiness", "Invoke-ATGSecurityReadiness", "Invoke-ATGRateLimitStatus"]) {
+  for (const functionName of ["New-AgentTrustGateClient", "Invoke-ATGHealth", "Invoke-ATGDecision", "Invoke-ATGApprovalPack", "Invoke-ATGEvidenceBundle", "Invoke-ATGOpenApi", "Invoke-ATGEntitlement", "Invoke-ATGCommercialReadiness", "Invoke-ATGHostedReadiness", "Invoke-ATGSecurityReadiness", "Invoke-ATGRateLimitStatus", "Invoke-ATGMonitoringHealth"]) {
     assert.match(source, new RegExp(`function ${functionName.replace("-", "\\-")}`));
   }
 });
@@ -85,6 +85,7 @@ test("Node SDK wrapper calls the local gateway and surfaces JSON errors", async 
         hostedReadiness(): Promise<Record<string, unknown>>;
         securityReadiness(): Promise<Record<string, unknown>>;
         rateLimitStatus(): Promise<Record<string, unknown>>;
+        monitoringHealth(): Promise<Record<string, unknown>>;
       };
     };
     const client = sdk.createAgentTrustGateClient({
@@ -113,6 +114,9 @@ test("Node SDK wrapper calls the local gateway and surfaces JSON errors", async 
 
     const rateLimit = await client.rateLimitStatus();
     assert.equal(rateLimit.rate_limit_version, "atg.rate-limit.v1");
+
+    const monitoring = await client.monitoringHealth();
+    assert.equal(monitoring.monitoring_health_version, "atg.monitoring-health.v1");
 
     await assert.rejects(
       client.decide({ action_type: "public_post" }),

@@ -952,6 +952,36 @@ prevention, bill customers, process payments, enable automatic purchase,
 execute actions, authenticate real-world identities, guarantee legality, prove
 compliance, or provide security certification.
 
+### Production Monitoring And Health Signal Pack
+
+P3-M028 adds a deterministic local operational health report using existing
+gateway health, request IDs, structured request logs, usage, authentication,
+malformed-line, and rate-limit signals. A live gateway report includes uptime
+for that local gateway process; CLI output marks gateway uptime unavailable.
+
+```sh
+npm run verify -- --monitoring-health
+npm run verify -- --monitoring-health --json
+npm run verify -- --monitoring-health --output reports/monitoring-health.json
+```
+
+When the local gateway is running:
+
+```text
+GET http://127.0.0.1:8787/v1/monitoring-health
+```
+
+Supporting documents are in `docs/monitoring-health/`. This pack does not add
+an external observability vendor, external alerts, hosted dashboard, public
+probe, availability commitment, or deployment behavior.
+
+Monitoring health is a local planning and operational signal only. It does not
+deploy Agent Trust Gate, expose a public service, provide production monitoring,
+enable external alerting, provide a public uptime SLA, bill customers, process
+payments, enable automatic purchase, execute actions, authenticate real-world
+identities, guarantee legality, prove compliance, or provide security
+certification.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

@@ -26,9 +26,9 @@ export interface CommercialReadinessSnapshot {
   generated_at: string;
   local_only: true;
   overall: {
-    local_product_readiness_percent: 87;
-    commercial_mvp_readiness_percent: 65;
-    full_target_readiness_percent: 40;
+    local_product_readiness_percent: 88;
+    commercial_mvp_readiness_percent: 66;
+    full_target_readiness_percent: 41;
     status: "local_infrastructure_ready_not_commercially_complete";
   };
   categories: CommercialReadinessCategory[];
@@ -47,9 +47,9 @@ export function createCommercialReadinessSnapshot(
     generated_at: now.toISOString(),
     local_only: true,
     overall: {
-      local_product_readiness_percent: 87,
-      commercial_mvp_readiness_percent: 65,
-      full_target_readiness_percent: 40,
+      local_product_readiness_percent: 88,
+      commercial_mvp_readiness_percent: 66,
+      full_target_readiness_percent: 41,
       status: "local_infrastructure_ready_not_commercially_complete",
     },
     categories: categories(),
@@ -162,7 +162,7 @@ function categories(): CommercialReadinessCategory[] {
     partial("public_developer_docs", "Public developer docs", 35, ["Comprehensive local README, quickstart, OpenAPI, SDK, and agent examples."], ["No hosted public documentation portal, search, analytics, or support lifecycle."], "Test documentation with pilot users before public hosting."),
     future("self_learning_market_scanning", "Self-learning market scanning", "No web scanning, external data collection, or self-learning pipeline exists.", "Define lawful data sources, governance, evaluation, and human oversight before implementation."),
     future("adaptive_upgrade_recommendations", "Adaptive upgrade recommendations", "Only static local upgrade-required signals exist; recommendations do not adapt or self-modify.", "Design explainable, reviewed recommendation logic after commercial usage data exists."),
-    partial("production_monitoring", "Production monitoring", 15, ["Local logs, health endpoint, and deterministic audits exist."], ["No hosted metrics, tracing, alerting, incident response, SLOs, backups, or disaster recovery."], "Define observability and operational readiness requirements."),
+    partial("production_monitoring", "Production monitoring", 30, ["Local health, gateway runtime, structured request logs, request IDs, usage, auth, malformed-line, and rate-limit summaries exist."], ["No hosted metrics, latency tracing, external alerting, protected dashboard, uptime objective, staffed incident response, backup monitoring, or recovery telemetry."], "Define and implement production observability and operational ownership before hosting."),
     partial("legal_terms_and_commercial_positioning", "Legal terms and commercial positioning", 10, ["Safety statements avoid claims of legality or compliance."], ["No reviewed terms, privacy policy, data processing terms, SLA, or commercial claims framework."], "Obtain qualified legal review before commercial launch."),
   ];
 }

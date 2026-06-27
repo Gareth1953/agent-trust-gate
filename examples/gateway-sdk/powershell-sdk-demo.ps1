@@ -52,6 +52,11 @@ try {
   Write-Host "abuse_status=$($rateLimit.abuse_signal.abuse_status)"
   Write-Host "No action was executed and no purchase was made."
 
+  $monitoring = Invoke-ATGMonitoringHealth -Client $client
+  Write-Host "monitoring_readiness_percent=$($monitoring.overall.monitoring_readiness_percent)"
+  Write-Host "monitoring_status=$($monitoring.overall.status)"
+  Write-Host "No deployment occurred, no external alerting is enabled, and no action was executed."
+
   if ($decision.human_approval_required -eq $true) {
     Write-Host "gateway_decision=REQUEST HUMAN"
     Write-Host "Stopping: explicit human review is required."

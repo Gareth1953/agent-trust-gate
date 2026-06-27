@@ -86,12 +86,17 @@ import {
   formatRateLimitStatusForConsole,
   writeRateLimitStatusReport,
 } from "./gateway-rate-limits.js";
+import {
+  createMonitoringHealthReport,
+  formatMonitoringHealthForConsole,
+  writeMonitoringHealthReport,
+} from "./monitoring-health.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const BASE_USAGE =
   "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787] [--require-api-key] [--clients-file gateway-clients.json]\n       npm run verify -- --openapi [--json] [--output <path>]\n       npm run verify -- --agent-manifest [--json] [--output <path>]\n       npm run verify -- --entitlement [--client-id <id>] [--clients-file gateway-clients.json] [--json]\n       npm run verify -- --commercial-readiness [--json] [--output <path>]\n       npm run verify -- --hosted-readiness [--json] [--output <path>]\n       npm run verify -- --security-readiness [--json] [--output <path>]\n       npm run verify -- --gateway-admin [--clients-file gateway-clients.json] [--json]\n       npm run verify -- --gateway-usage [--json]\n       npm run verify -- --client-usage [--json]\n       npm run verify -- --list-gateway-requests [--limit 20] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
 
-const USAGE = `${BASE_USAGE}\n       npm run verify -- --rate-limit-status [--client-id <id>] [--clients-file gateway-clients.json] [--json] [--output <path>]`;
+const USAGE = `${BASE_USAGE}\n       npm run verify -- --rate-limit-status [--client-id <id>] [--clients-file gateway-clients.json] [--json] [--output <path>]\n       npm run verify -- --monitoring-health [--json] [--output <path>]`;
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
@@ -115,6 +120,10 @@ export function runCli(args: string[]): number {
 
   if (args.includes("--rate-limit-status")) {
     return runRateLimitStatusMode(args, jsonMode);
+  }
+
+  if (args.includes("--monitoring-health")) {
+    return runMonitoringHealthMode(args, jsonMode);
   }
 
   if (args.includes("--commercial-readiness")) {
@@ -553,6 +562,53 @@ function parseRateLimitStatusArgs(args: string[]): {
     ...(clientsFile === undefined ? {} : { clientsFile }),
     ...(output === undefined ? {} : { output }),
   };
+}
+
+function runMonitoringHealthMode(args: string[], jsonMode: boolean): number {
+  const parsedArgs = parseMonitoringHealthArgs(args);
+  if (parsedArgs.error !== undefined) {
+    printError("INVALID_MONITORING_HEALTH_ARGUMENTS", parsedArgs.error, jsonMode);
+    return 1;
+  }
+
+  try {
+    const report = createMonitoringHealthReport();
+    const outputPath = parsedArgs.output === undefined
+      ? undefined
+      : writeMonitoringHealthReport(parsedArgs.output, report);
+    console.log(jsonMode ? JSON.stringify(report, null, 2) : formatMonitoringHealthForConsole(report));
+    if (!jsonMode && outputPath !== undefined) {
+      console.log(`\nSaved monitoring health report to ${outputPath}`);
+    }
+    return 0;
+  } catch (error) {
+    printError("MONITORING_HEALTH_ERROR", `Unable to create monitoring health report: ${errorMessage(error)}`, jsonMode);
+    return 1;
+  }
+}
+
+function parseMonitoringHealthArgs(args: string[]): { output?: string; error?: string } {
+  let output: string | undefined;
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (arg === "--monitoring-health" || arg === "--json") {
+      continue;
+    }
+    if (arg === "--output") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) {
+        return { error: "Missing output path after --output." };
+      }
+      output = value;
+      index += 1;
+      continue;
+    }
+    if (arg?.startsWith("--")) {
+      return { error: `--monitoring-health cannot be combined with ${arg}.` };
+    }
+    return { error: "--monitoring-health does not accept an action file argument." };
+  }
+  return output === undefined ? {} : { output };
 }
 
 function runCommercialReadinessMode(args: string[], jsonMode: boolean): number {

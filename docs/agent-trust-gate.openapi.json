@@ -443,6 +443,52 @@
         }
       }
     },
+    "/v1/monitoring-health": {
+      "get": {
+        "tags": [
+          "Gateway"
+        ],
+        "summary": "Read local monitoring and operational health",
+        "description": "Returns local runtime and request-log signals only. It does not provide production monitoring, external alerting, public uptime guarantees, deployment, or action execution.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Local monitoring and operational health report.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MonitoringHealthResponse"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "The endpoint does not support this HTTP method.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected local gateway error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/decision": {
       "post": {
         "tags": [
@@ -2384,6 +2430,287 @@
                 "items": {}
               }
             }
+          }
+        }
+      },
+      "MonitoringHealthCheck": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "status",
+          "severity",
+          "evidence",
+          "recommendation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "partial",
+              "fail",
+              "not_started",
+              "future"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "info",
+              "warning",
+              "critical"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recommendation": {
+            "type": "string"
+          }
+        }
+      },
+      "MonitoringLogHealth": {
+        "type": "object",
+        "required": [
+          "log_file_found",
+          "log_file_path",
+          "total_logged_requests",
+          "error_requests",
+          "rate_limited_requests",
+          "unauthorized_requests",
+          "malformed_log_lines",
+          "first_request_at",
+          "last_request_at"
+        ],
+        "properties": {
+          "log_file_found": {
+            "type": "boolean"
+          },
+          "log_file_path": {
+            "type": "string"
+          },
+          "total_logged_requests": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "error_requests": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "rate_limited_requests": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "unauthorized_requests": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "malformed_log_lines": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "first_request_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "last_request_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          }
+        }
+      },
+      "MonitoringHealthResponse": {
+        "type": "object",
+        "required": [
+          "contract_version",
+          "monitoring_health_version",
+          "generated_at",
+          "request_id",
+          "local_only",
+          "production_monitoring_enabled",
+          "external_alerting_enabled",
+          "public_uptime_sla_enabled",
+          "overall",
+          "runtime",
+          "health",
+          "log_health",
+          "checks",
+          "required_before_public_hosting",
+          "recommended_monitoring_controls",
+          "safety_statement"
+        ],
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "atg.v1"
+          },
+          "monitoring_health_version": {
+            "type": "string",
+            "const": "atg.monitoring-health.v1"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "request_id": {
+            "type": "string"
+          },
+          "local_only": {
+            "type": "boolean",
+            "const": true
+          },
+          "production_monitoring_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "external_alerting_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "public_uptime_sla_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "overall": {
+            "type": "object",
+            "required": [
+              "monitoring_readiness_percent",
+              "status",
+              "next_gate"
+            ],
+            "properties": {
+              "monitoring_readiness_percent": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "status": {
+                "type": "string",
+                "const": "local_monitoring_signals_only"
+              },
+              "next_gate": {
+                "type": "string",
+                "const": "add_production_monitoring_and_alerting_before_public_hosting"
+              }
+            }
+          },
+          "runtime": {
+            "type": "object",
+            "required": [
+              "scope",
+              "uptime_available",
+              "started_at",
+              "uptime_seconds"
+            ],
+            "properties": {
+              "scope": {
+                "type": "string",
+                "enum": [
+                  "current_gateway_process",
+                  "not_available"
+                ]
+              },
+              "uptime_available": {
+                "type": "boolean"
+              },
+              "started_at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time"
+              },
+              "uptime_seconds": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 0
+              }
+            }
+          },
+          "health": {
+            "type": "object",
+            "required": [
+              "gateway_health_endpoint_available",
+              "request_logging_available",
+              "request_id_available",
+              "usage_metering_available",
+              "rate_limit_signals_available",
+              "security_readiness_available",
+              "hosted_readiness_available"
+            ],
+            "properties": {
+              "gateway_health_endpoint_available": {
+                "type": "boolean",
+                "const": true
+              },
+              "request_logging_available": {
+                "type": "boolean",
+                "const": true
+              },
+              "request_id_available": {
+                "type": "boolean",
+                "const": true
+              },
+              "usage_metering_available": {
+                "type": "boolean",
+                "const": true
+              },
+              "rate_limit_signals_available": {
+                "type": "boolean",
+                "const": true
+              },
+              "security_readiness_available": {
+                "type": "boolean",
+                "const": true
+              },
+              "hosted_readiness_available": {
+                "type": "boolean",
+                "const": true
+              }
+            }
+          },
+          "log_health": {
+            "$ref": "#/components/schemas/MonitoringLogHealth"
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MonitoringHealthCheck"
+            }
+          },
+          "required_before_public_hosting": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recommended_monitoring_controls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "safety_statement": {
+            "type": "string",
+            "description": "Local signal only: no production monitoring, external alerting, public uptime SLA, payment processing, or action execution."
           }
         }
       }

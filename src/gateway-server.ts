@@ -34,6 +34,7 @@ import { getGatewayEntitlementStatus } from "./gateway-entitlements.js";
 import { createCommercialReadinessSnapshot } from "./commercial-readiness.js";
 import { createHostedReadinessReport } from "./hosted-readiness.js";
 import { createSecurityReadinessReport } from "./security-readiness.js";
+import { createMonitoringHealthReport } from "./monitoring-health.js";
 import {
   createLocalGatewayRateLimiter,
   type LocalGatewayRateLimiter,
@@ -109,8 +110,16 @@ export function createGatewayServer(options: GatewayServerOptions = {}): Server 
     ...(options.clients === undefined ? {} : { clients: options.clients }),
   });
   const rateLimiter = createLocalGatewayRateLimiter();
+  const runtimeStartedAt = new Date();
   return createServer((request, response) => {
-    void handleGatewayRequest(request, response, gatewayLogPath, authConfig, rateLimiter);
+    void handleGatewayRequest(
+      request,
+      response,
+      gatewayLogPath,
+      authConfig,
+      rateLimiter,
+      runtimeStartedAt,
+    );
   });
 }
 
@@ -136,6 +145,7 @@ async function handleGatewayRequest(
   gatewayLogPath: string,
   authConfig: GatewayAuthConfig,
   rateLimiter: LocalGatewayRateLimiter,
+  runtimeStartedAt: Date,
 ): Promise<void> {
   const url = new URL(request.url ?? "/", `http://${request.headers.host ?? "127.0.0.1"}`);
   const meteredEndpoint = isProtectedGatewayEndpoint(url.pathname, request.method);
@@ -432,6 +442,25 @@ async function handleGatewayRequest(
         ...rateLimit,
         request_id: context.request_id,
       }, rateLimitLogMetadata(rateLimit));
+      return;
+    }
+
+    if (url.pathname === "/v1/monitoring-health") {
+      if (request.method !== "GET") {
+        writeGatewayJson(
+          response,
+          context,
+          405,
+          errorResponse(context.request_id, context.client_id, "METHOD_NOT_ALLOWED", "GET is required for /v1/monitoring-health."),
+          { error_code: "METHOD_NOT_ALLOWED" },
+        );
+        return;
+      }
+
+      writeGatewayJson(response, context, 200, {
+        ...createMonitoringHealthReport({ gatewayLogPath, runtimeStartedAt }),
+        request_id: context.request_id,
+      });
       return;
     }
 
