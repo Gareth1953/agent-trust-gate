@@ -688,6 +688,35 @@ The OpenAPI contract describes the local gateway interface. It does not expose
 a public service, execute actions, bill customers, authenticate real-world
 identities, guarantee legality, or prove compliance.
 
+### Gateway SDK Starter Pack
+
+P3-M021 adds small SDK-style wrappers that remove repetitive HTTP setup for
+local Agent Trust Gate integrations. The dependency-free examples are under:
+
+```text
+examples/gateway-sdk/
+```
+
+The pack includes an ES module client, a PowerShell function library, and safe
+demos for both. Each wrapper supports health checks, trust decisions, approval
+packs, evidence bundles, OpenAPI retrieval, optional local client headers, and
+consistent JSON error handling.
+
+This is inspectable starter code, not a published npm or PowerShell Gallery SDK.
+Run the demos against a local gateway:
+
+```sh
+node examples/gateway-sdk/node-sdk-demo.mjs
+powershell -ExecutionPolicy Bypass -File examples/gateway-sdk/powershell-sdk-demo.ps1
+```
+
+See `examples/gateway-sdk/README.md` for gateway startup, optional demo API-key
+mode, wrapper methods, and ALLOW / BLOCK / REQUEST HUMAN handling.
+
+Gateway SDK starter wrappers are local demo clients only. They do not execute
+actions, bill customers, expose a public service, authenticate real-world
+identities, guarantee legality, or prove compliance.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:
