@@ -14,3 +14,4 @@ evidence-bundles/*.json
 gateway-logs/*.jsonl
 gateway-logs/*.json
 gateway-clients.json
+openapi/*.json

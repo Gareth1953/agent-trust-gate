@@ -646,6 +646,48 @@ Gateway quickstart examples are local demos only. They do not execute actions,
 bill customers, expose a public service, authenticate real-world identities,
 guarantee legality, or prove compliance.
 
+### Gateway OpenAPI / API Contract Export
+
+P3-M020 adds an OpenAPI 3.1 contract for professional local gateway
+integration. The machine-readable contract documents endpoint request and
+response shapes, stable action fields, errors, local client headers, optional
+API-key gating, usage limits, and safety boundaries. It can support future SDK,
+testing, onboarding, and enterprise evaluation work without adding a hosted
+developer portal or public API.
+
+The stable tracked contract is at:
+
+```text
+docs/agent-trust-gate.openapi.json
+```
+
+Generate, inspect, or export the same contract locally:
+
+```sh
+npm run verify -- --openapi
+npm run verify -- --openapi --json
+npm run verify -- --openapi --output openapi/agent-trust-gate.openapi.json
+npm run verify -- --serve --port 8787
+```
+
+The running local gateway serves the contract without requiring an API key:
+
+```text
+GET http://127.0.0.1:8787/v1/openapi.json
+```
+
+The contract documents these optional local headers:
+
+- `X-ATG-Client-ID` identifies the local calling system.
+- `X-ATG-API-Key` is used only when optional local API-key mode is enabled.
+
+API-key mode is local development hardening only. It does not authenticate
+real-world identities, and raw API keys must not be logged.
+
+The OpenAPI contract describes the local gateway interface. It does not expose
+a public service, execute actions, bill customers, authenticate real-world
+identities, guarantee legality, or prove compliance.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

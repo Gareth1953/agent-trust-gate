@@ -27,6 +27,7 @@ import {
   type GatewayUsageLimitResult,
   type GatewayUsageObject,
 } from "./gateway-usage-limits.js";
+import { createGatewayOpenApiDocument } from "./gateway-openapi.js";
 import { verifyBeforeAction } from "./verify-before-action.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
@@ -207,6 +208,22 @@ async function handleGatewayRequest(
         api_key_required: authConfig.require_api_key,
         checked_at: new Date().toISOString(),
       });
+      return;
+    }
+
+    if (url.pathname === "/v1/openapi.json") {
+      if (request.method !== "GET") {
+        writeGatewayJson(
+          response,
+          context,
+          405,
+          errorResponse(context.request_id, context.client_id, "METHOD_NOT_ALLOWED", "GET is required for /v1/openapi.json."),
+          { error_code: "METHOD_NOT_ALLOWED" },
+        );
+        return;
+      }
+
+      writeGatewayJson(response, context, 200, createGatewayOpenApiDocument());
       return;
     }
 
@@ -480,6 +497,7 @@ function writeGatewayJson(
 
   response.writeHead(statusCode, {
     "content-type": "application/json; charset=utf-8",
+    "x-atg-request-id": context.request_id,
   });
   response.end(`${JSON.stringify(body, null, 2)}\n`);
 }

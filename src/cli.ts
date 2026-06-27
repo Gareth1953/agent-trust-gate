@@ -44,10 +44,15 @@ import {
   createGatewayAdminSummary,
   formatGatewayAdminForConsole,
 } from "./gateway-admin.js";
+import {
+  createGatewayOpenApiDocument,
+  formatGatewayOpenApiForConsole,
+  writeGatewayOpenApiDocument,
+} from "./gateway-openapi.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const USAGE =
-  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787] [--require-api-key] [--clients-file gateway-clients.json]\n       npm run verify -- --gateway-admin [--clients-file gateway-clients.json] [--json]\n       npm run verify -- --gateway-usage [--json]\n       npm run verify -- --client-usage [--json]\n       npm run verify -- --list-gateway-requests [--limit 20] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
+  "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787] [--require-api-key] [--clients-file gateway-clients.json]\n       npm run verify -- --openapi [--json] [--output <path>]\n       npm run verify -- --gateway-admin [--clients-file gateway-clients.json] [--json]\n       npm run verify -- --gateway-usage [--json]\n       npm run verify -- --client-usage [--json]\n       npm run verify -- --list-gateway-requests [--limit 20] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
@@ -55,6 +60,10 @@ export function runCli(args: string[]): number {
 
   if (args.includes("--serve")) {
     return runServeMode(args, jsonMode);
+  }
+
+  if (args.includes("--openapi")) {
+    return runOpenApiMode(args, jsonMode);
   }
 
   if (args.includes("--gateway-admin")) {
@@ -228,6 +237,59 @@ function runServeMode(args: string[], jsonMode: boolean): number {
   }
 
   return 0;
+}
+
+function runOpenApiMode(args: string[], jsonMode: boolean): number {
+  const parsedArgs = parseOpenApiArgs(args);
+  if (parsedArgs.error !== undefined) {
+    printError("INVALID_OPENAPI_ARGUMENTS", parsedArgs.error, jsonMode);
+    return 1;
+  }
+
+  try {
+    const outputPath = parsedArgs.output === undefined
+      ? undefined
+      : writeGatewayOpenApiDocument(parsedArgs.output);
+    if (jsonMode) {
+      console.log(JSON.stringify(createGatewayOpenApiDocument(), null, 2));
+    } else {
+      console.log(formatGatewayOpenApiForConsole());
+      if (outputPath !== undefined) {
+        console.log(`\nSaved OpenAPI contract to ${outputPath}`);
+      }
+    }
+    return 0;
+  } catch (error) {
+    printError("OPENAPI_EXPORT_ERROR", `Unable to export OpenAPI contract: ${errorMessage(error)}`, jsonMode);
+    return 1;
+  }
+}
+
+function parseOpenApiArgs(args: string[]): {
+  output?: string;
+  error?: string;
+} {
+  let output: string | undefined;
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (arg === "--openapi" || arg === "--json") {
+      continue;
+    }
+    if (arg === "--output") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) {
+        return { error: "Missing output path after --output." };
+      }
+      output = value;
+      index += 1;
+      continue;
+    }
+    if (arg?.startsWith("--")) {
+      return { error: `--openapi cannot be combined with ${arg}.` };
+    }
+    return { error: "--openapi does not accept an action file argument." };
+  }
+  return output === undefined ? {} : { output };
 }
 
 function parseServeArgs(args: string[]): {

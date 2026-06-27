@@ -60,6 +60,15 @@ export {
   checkGatewayClientUsageLimit,
   usageObject,
 } from "./gateway-usage-limits.js";
+export {
+  createGatewayOpenApiDocument,
+  formatGatewayOpenApiForConsole,
+  GATEWAY_API_VERSION,
+  GATEWAY_OPENAPI_SAFETY_STATEMENT,
+  GATEWAY_OPENAPI_VERSION,
+  writeGatewayOpenApiDocument,
+} from "./gateway-openapi.js";
+export type { GatewayOpenApiDocument } from "./gateway-openapi.js";
 export { ActionValidationError, validateActionDescriptor } from "./action-validation.js";
 export { applyPolicyProfile, resolvePolicyProfile } from "./policy-profiles.js";
 export type {

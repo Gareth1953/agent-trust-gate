@@ -1,0 +1,1093 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Agent Trust Gate Local Gateway API",
+    "version": "atg.gateway.v1",
+    "description": "A localhost-only pre-action trust decision and evidence API. The OpenAPI contract describes the local gateway interface. It does not expose a public service, execute actions, bill customers, authenticate real-world identities, guarantee legality, or prove compliance.",
+    "x-atg-contract-version": "atg.v1",
+    "x-atg-gateway-api-version": "atg.gateway.v1"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8787",
+      "description": "Local machine gateway only. Do not expose publicly."
+    }
+  ],
+  "tags": [
+    {
+      "name": "Gateway",
+      "description": "Local health and contract discovery."
+    },
+    {
+      "name": "Trust",
+      "description": "Local trust decisions and approval evidence."
+    }
+  ],
+  "paths": {
+    "/v1/health": {
+      "get": {
+        "tags": [
+          "Gateway"
+        ],
+        "summary": "Check local gateway health",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Gateway health and local API-key mode status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "The endpoint does not support this HTTP method.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected local gateway error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/openapi.json": {
+      "get": {
+        "tags": [
+          "Gateway"
+        ],
+        "summary": "Read the local gateway OpenAPI contract",
+        "description": "Does not require an API key. The response request ID is returned in the X-ATG-Request-ID header.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The OpenAPI document.",
+            "headers": {
+              "X-ATG-Request-ID": {
+                "description": "Local gateway request identifier.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "405": {
+            "description": "The endpoint does not support this HTTP method.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected local gateway error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/decision": {
+      "post": {
+        "tags": [
+          "Trust"
+        ],
+        "summary": "Evaluate an action before execution",
+        "description": "Returns a trust decision only. Agent Trust Gate does not execute the described action.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ApiKeyHeader"
+          }
+        ],
+        "security": [
+          {},
+          {
+            "LocalApiKey": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/ActionDescriptor"
+                  },
+                  {
+                    "$ref": "#/components/schemas/GatewayDecisionRequest"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Local trust decision.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DecisionResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid JSON, request, or action descriptor.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized local gateway request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "The endpoint does not support this HTTP method.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Client local decision allowance exceeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "x-atg-error-code": "CLIENT_USAGE_LIMIT_EXCEEDED"
+          },
+          "500": {
+            "description": "Unexpected local gateway error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/approval-pack": {
+      "post": {
+        "tags": [
+          "Trust"
+        ],
+        "summary": "Create a local approval packet",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ApiKeyHeader"
+          }
+        ],
+        "security": [
+          {},
+          {
+            "LocalApiKey": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GatewayApprovalPackRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Approval packet and optional local save status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalPackResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid JSON, request, or action descriptor.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized local gateway request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "The endpoint does not support this HTTP method.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Client local decision allowance exceeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "x-atg-error-code": "CLIENT_USAGE_LIMIT_EXCEEDED"
+          },
+          "500": {
+            "description": "Unexpected local gateway error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/evidence-bundle": {
+      "post": {
+        "tags": [
+          "Trust"
+        ],
+        "summary": "Create a local evidence bundle",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ApiKeyHeader"
+          }
+        ],
+        "security": [
+          {},
+          {
+            "LocalApiKey": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GatewayEvidenceBundleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Evidence bundle and optional local save status.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvidenceBundleResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid JSON, request, or action descriptor.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized local gateway request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "The endpoint does not support this HTTP method.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Client local decision allowance exceeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "x-atg-error-code": "CLIENT_USAGE_LIMIT_EXCEEDED"
+          },
+          "500": {
+            "description": "Unexpected local gateway error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "InvalidRequest": {
+        "description": "Invalid JSON, request, or action descriptor.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "UnauthorizedGatewayRequest": {
+        "description": "Unauthorized local gateway request.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "UnknownRoute": {
+        "description": "Unknown local gateway route.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "MethodNotAllowed": {
+        "description": "Unsupported method for a known local gateway route.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "ClientUsageLimitExceeded": {
+        "description": "Client local decision allowance exceeded.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        },
+        "x-atg-error-code": "CLIENT_USAGE_LIMIT_EXCEEDED"
+      },
+      "InternalGatewayError": {
+        "description": "Unexpected local gateway error.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "ClientIdHeader": {
+        "name": "X-ATG-Client-ID",
+        "in": "header",
+        "required": false,
+        "description": "Optional local calling-system identifier. Defaults to local-anonymous.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "ApiKeyHeader": {
+        "name": "X-ATG-API-Key",
+        "in": "header",
+        "required": false,
+        "description": "Required on protected endpoints only when local API-key mode is enabled. Local development hardening only; it does not authenticate real-world identities. Raw API keys must not be logged.",
+        "schema": {
+          "type": "string",
+          "format": "password",
+          "writeOnly": true
+        }
+      }
+    },
+    "securitySchemes": {
+      "LocalApiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-ATG-API-Key",
+        "description": "Optional localhost-only API-key gate. Raw API keys must not be logged."
+      }
+    },
+    "schemas": {
+      "ActionDescriptor": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "action_type",
+          "description",
+          "actor",
+          "target"
+        ],
+        "properties": {
+          "action_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          },
+          "actor": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target": {
+            "type": "string",
+            "minLength": 1
+          },
+          "estimated_cost_gbp": {
+            "type": "number",
+            "minimum": 0
+          },
+          "public_action": {
+            "type": "boolean"
+          },
+          "external_commitment": {
+            "type": "boolean"
+          },
+          "money_movement": {
+            "type": "boolean"
+          },
+          "legal_or_compliance_sensitive": {
+            "type": "boolean"
+          },
+          "customer_or_user_facing": {
+            "type": "boolean"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rollback_plan": {
+            "type": "string"
+          },
+          "human_approval_status": {
+            "type": "string",
+            "enum": [
+              "not_requested",
+              "requested",
+              "approved",
+              "rejected"
+            ]
+          }
+        }
+      },
+      "GatewayDecisionRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "action"
+        ],
+        "properties": {
+          "policy_profile": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "strict",
+              "regulated"
+            ],
+            "default": "standard"
+          },
+          "action": {
+            "$ref": "#/components/schemas/ActionDescriptor"
+          }
+        }
+      },
+      "GatewayApprovalPackRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "action"
+        ],
+        "properties": {
+          "policy_profile": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "strict",
+              "regulated"
+            ],
+            "default": "standard"
+          },
+          "action": {
+            "$ref": "#/components/schemas/ActionDescriptor"
+          },
+          "save_approval_pack": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "GatewayEvidenceBundleRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "review_record_path"
+        ],
+        "properties": {
+          "review_record_path": {
+            "type": "string",
+            "description": "Local review record path."
+          },
+          "save_evidence_bundle": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "ErrorDetail": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "field": {
+            "type": "string"
+          },
+          "issue": {
+            "type": "string"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": [
+          "ok",
+          "contract_version",
+          "request_id",
+          "client_id",
+          "error"
+        ],
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "const": false
+          },
+          "contract_version": {
+            "type": "string",
+            "const": "atg.v1"
+          },
+          "request_id": {
+            "type": "string"
+          },
+          "client_id": {
+            "type": "string"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/UsageInfo"
+          },
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "details"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "enum": [
+                  "INVALID_JSON",
+                  "INVALID_ACTION_DESCRIPTOR",
+                  "INVALID_EVIDENCE_BUNDLE_INPUT",
+                  "UNKNOWN_POLICY_PROFILE",
+                  "UNAUTHORIZED_GATEWAY_REQUEST",
+                  "NOT_FOUND",
+                  "METHOD_NOT_ALLOWED",
+                  "CLIENT_USAGE_LIMIT_EXCEEDED",
+                  "INTERNAL_GATEWAY_ERROR"
+                ]
+              },
+              "message": {
+                "type": "string"
+              },
+              "details": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/ErrorDetail"
+                }
+              }
+            }
+          }
+        }
+      },
+      "UsageInfo": {
+        "type": "object",
+        "required": [
+          "client_id",
+          "decision_allowance",
+          "allowance_window",
+          "used_decisions",
+          "remaining_decisions",
+          "over_limit"
+        ],
+        "properties": {
+          "client_id": {
+            "type": "string"
+          },
+          "decision_allowance": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "allowance_window": {
+            "type": "string",
+            "enum": [
+              "all_time",
+              "daily",
+              "monthly"
+            ]
+          },
+          "used_decisions": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "remaining_decisions": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "over_limit": {
+            "type": "boolean"
+          }
+        }
+      },
+      "HealthResponse": {
+        "type": "object",
+        "required": [
+          "ok",
+          "request_id",
+          "client_id",
+          "service",
+          "contract_version",
+          "mode",
+          "api_key_required",
+          "checked_at"
+        ],
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "const": true
+          },
+          "request_id": {
+            "type": "string"
+          },
+          "client_id": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string",
+            "const": "agent-trust-gate"
+          },
+          "contract_version": {
+            "type": "string",
+            "const": "atg.v1"
+          },
+          "mode": {
+            "type": "string",
+            "const": "local-gateway"
+          },
+          "api_key_required": {
+            "type": "boolean"
+          },
+          "checked_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "DecisionResponse": {
+        "type": "object",
+        "required": [
+          "ok",
+          "request_id",
+          "client_id",
+          "contract_version",
+          "allowed",
+          "risk_level",
+          "human_approval_required",
+          "action_type",
+          "actor",
+          "target",
+          "policy_profile",
+          "regulated_policy",
+          "gateway_mode",
+          "safety_statement"
+        ],
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "const": true
+          },
+          "request_id": {
+            "type": "string"
+          },
+          "client_id": {
+            "type": "string"
+          },
+          "contract_version": {
+            "type": "string",
+            "const": "atg.v1"
+          },
+          "allowed": {
+            "type": "boolean"
+          },
+          "risk_level": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "blocked"
+            ]
+          },
+          "human_approval_required": {
+            "type": "boolean"
+          },
+          "action_type": {
+            "type": "string"
+          },
+          "actor": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          },
+          "policy_profile": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "strict",
+              "regulated"
+            ],
+            "default": "standard"
+          },
+          "regulated_policy": {
+            "type": "boolean"
+          },
+          "approval_reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "gateway_mode": {
+            "type": "string",
+            "const": "local"
+          },
+          "safety_statement": {
+            "type": "string"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/UsageInfo"
+          },
+          "receipt_id": {
+            "type": "string"
+          },
+          "checked_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ApprovalPackResponse": {
+        "type": "object",
+        "required": [
+          "request_id",
+          "client_id",
+          "contract_version",
+          "allowed",
+          "risk_level",
+          "human_approval_required",
+          "action_type",
+          "actor",
+          "target",
+          "policy_profile",
+          "regulated_policy",
+          "approval_pack_saved"
+        ],
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "const": true
+          },
+          "request_id": {
+            "type": "string"
+          },
+          "client_id": {
+            "type": "string"
+          },
+          "contract_version": {
+            "type": "string",
+            "const": "atg.v1"
+          },
+          "allowed": {
+            "type": "boolean"
+          },
+          "risk_level": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "blocked"
+            ]
+          },
+          "human_approval_required": {
+            "type": "boolean"
+          },
+          "action_type": {
+            "type": "string"
+          },
+          "actor": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          },
+          "policy_profile": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "strict",
+              "regulated"
+            ],
+            "default": "standard"
+          },
+          "regulated_policy": {
+            "type": "boolean"
+          },
+          "approval_reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "gateway_mode": {
+            "type": "string",
+            "const": "local"
+          },
+          "safety_statement": {
+            "type": "string"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/UsageInfo"
+          },
+          "checked_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "description": {
+            "type": "string"
+          },
+          "human_review_status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "not_required"
+            ]
+          },
+          "approval_statement": {
+            "type": "string"
+          },
+          "receipt_id": {
+            "type": "string"
+          },
+          "approval_pack_saved": {
+            "type": "boolean"
+          },
+          "approval_pack_path": {
+            "type": "string"
+          }
+        }
+      },
+      "EvidenceBundleResponse": {
+        "type": "object",
+        "required": [
+          "request_id",
+          "client_id",
+          "contract_version",
+          "evidence_bundle_version",
+          "created_at",
+          "action",
+          "trust_decision",
+          "human_review",
+          "timeline",
+          "safety_statement",
+          "evidence_bundle_saved"
+        ],
+        "properties": {
+          "request_id": {
+            "type": "string"
+          },
+          "client_id": {
+            "type": "string"
+          },
+          "contract_version": {
+            "type": "string",
+            "const": "atg.v1"
+          },
+          "evidence_bundle_version": {
+            "type": "string",
+            "const": "atg.evidence.v1"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "source_review_record_path": {
+            "type": "string"
+          },
+          "source_approval_pack_path": {
+            "type": "string"
+          },
+          "approval_pack_hash": {
+            "type": "string"
+          },
+          "approval_pack_integrity_status": {
+            "type": "string"
+          },
+          "action": {
+            "type": "object"
+          },
+          "trust_decision": {
+            "type": "object"
+          },
+          "human_review": {
+            "type": "object"
+          },
+          "timeline": {
+            "type": "object"
+          },
+          "safety_statement": {
+            "type": "string"
+          },
+          "usage": {
+            "$ref": "#/components/schemas/UsageInfo"
+          },
+          "evidence_bundle_saved": {
+            "type": "boolean"
+          },
+          "evidence_bundle_path": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "x-atg-contract-version": "atg.v1",
+  "x-atg-gateway-api-version": "atg.gateway.v1",
+  "x-atg-local-only": true,
+  "x-atg-safety-statement": "The OpenAPI contract describes the local gateway interface. It does not expose a public service, execute actions, bill customers, authenticate real-world identities, guarantee legality, or prove compliance."
+}
