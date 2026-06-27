@@ -183,3 +183,16 @@ export type {
   HostedReadinessReport,
   HostedReadinessSeverity,
 } from "./hosted-readiness.js";
+export {
+  SECURITY_READINESS_SAFETY_STATEMENT,
+  SECURITY_READINESS_VERSION,
+  createSecurityReadinessReport,
+  formatSecurityReadinessForConsole,
+  writeSecurityReadinessReport,
+} from "./security-readiness.js";
+export type {
+  SecurityReadinessCheck,
+  SecurityReadinessCheckStatus,
+  SecurityReadinessReport,
+  SecurityReadinessSeverity,
+} from "./security-readiness.js";

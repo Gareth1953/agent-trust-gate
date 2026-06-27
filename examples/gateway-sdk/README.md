@@ -77,6 +77,7 @@ The wrappers expose equivalent operations:
 - `entitlement()` / `Invoke-ATGEntitlement`
 - `commercialReadiness()` / `Invoke-ATGCommercialReadiness`
 - `hostedReadiness()` / `Invoke-ATGHostedReadiness`
+- `securityReadiness()` / `Invoke-ATGSecurityReadiness`
 
 Client ID and API key headers are optional. The wrappers add
 `X-ATG-Client-ID` and `X-ATG-API-Key` only when values are supplied. They do
@@ -91,6 +92,9 @@ gaps, and next steps. They do not implement any missing commercial capability.
 
 Hosted readiness methods return pre-deployment checks and blockers. They do not
 deploy the gateway, change its localhost binding, or expose a public service.
+
+Security readiness methods return local production-security gaps and recommended
+controls. They do not certify security, deploy the gateway, or expose a service.
 
 ## Handle decisions
 

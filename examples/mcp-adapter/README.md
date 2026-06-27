@@ -19,6 +19,7 @@ The tool metadata exposes:
 - `atg_get_entitlement`
 - `atg_get_commercial_readiness`
 - `atg_get_hosted_readiness`
+- `atg_get_security_readiness`
 - `atg_create_approval_pack`
 - `atg_create_evidence_bundle`
 
@@ -32,6 +33,9 @@ It does not implement hosting, payments, billing, marketing, or self-learning.
 
 `atg_get_hosted_readiness` reports pre-deployment checks and blockers. It does
 not deploy, bind publicly, or expose a service.
+
+`atg_get_security_readiness` reports local production-security preparation gaps.
+It does not certify production security, deploy, bind publicly, or expose a service.
 
 ## Run locally
 

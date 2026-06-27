@@ -32,6 +32,7 @@ import { createAgentIntegrationManifest } from "./agent-manifest.js";
 import { getGatewayEntitlementStatus } from "./gateway-entitlements.js";
 import { createCommercialReadinessSnapshot } from "./commercial-readiness.js";
 import { createHostedReadinessReport } from "./hosted-readiness.js";
+import { createSecurityReadinessReport } from "./security-readiness.js";
 import { verifyBeforeAction } from "./verify-before-action.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
@@ -327,6 +328,25 @@ async function handleGatewayRequest(
 
       writeGatewayJson(response, context, 200, {
         ...createHostedReadinessReport(),
+        request_id: context.request_id,
+      });
+      return;
+    }
+
+    if (url.pathname === "/v1/security-readiness") {
+      if (request.method !== "GET") {
+        writeGatewayJson(
+          response,
+          context,
+          405,
+          errorResponse(context.request_id, context.client_id, "METHOD_NOT_ALLOWED", "GET is required for /v1/security-readiness."),
+          { error_code: "METHOD_NOT_ALLOWED" },
+        );
+        return;
+      }
+
+      writeGatewayJson(response, context, 200, {
+        ...createSecurityReadinessReport(),
         request_id: context.request_id,
       });
       return;

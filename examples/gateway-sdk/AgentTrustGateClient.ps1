@@ -103,6 +103,12 @@ function Invoke-ATGHostedReadiness {
   Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/hosted-readiness"
 }
 
+function Invoke-ATGSecurityReadiness {
+  [CmdletBinding()]
+  param([Parameter(Mandatory)]$Client)
+  Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/security-readiness"
+}
+
 function Invoke-ATGRequest {
   [CmdletBinding()]
   param(

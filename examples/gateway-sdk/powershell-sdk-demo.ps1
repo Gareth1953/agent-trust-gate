@@ -42,6 +42,11 @@ try {
   Write-Host "production_ready=$($hosted.production_ready)"
   Write-Host "No deployment occurred. Hosted readiness is preparation only."
 
+  $security = Invoke-ATGSecurityReadiness -Client $client
+  Write-Host "security_readiness_percent=$($security.overall.security_readiness_percent)"
+  Write-Host "production_security_certified=$($security.production_security_certified)"
+  Write-Host "No deployment occurred and no security certification is claimed."
+
   if ($decision.human_approval_required -eq $true) {
     Write-Host "gateway_decision=REQUEST HUMAN"
     Write-Host "Stopping: explicit human review is required."

@@ -46,6 +46,11 @@ async function main() {
   console.log(`production_ready=${hosted.production_ready}`);
   console.log("No deployment occurred. Hosted readiness is preparation only.");
 
+  const security = await client.securityReadiness();
+  console.log(`security_readiness_percent=${security.overall.security_readiness_percent}`);
+  console.log(`production_security_certified=${security.production_security_certified}`);
+  console.log("No deployment occurred and no security certification is claimed.");
+
   if (decision.human_approval_required === true) {
     console.log("gateway_decision=REQUEST HUMAN");
     console.log("Stopping: explicit human review is required.");

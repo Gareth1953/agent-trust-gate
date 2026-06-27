@@ -17,7 +17,8 @@
     "local_admin_summary",
     "agent_entitlement_status",
     "commercial_readiness_snapshot",
-    "hosted_deployment_readiness"
+    "hosted_deployment_readiness",
+    "production_security_readiness"
   ],
   "schemas": {
     "EmptyInput": {
@@ -119,6 +120,17 @@
       "input_schema_ref": "#/schemas/EmptyInput",
       "output_summary": "Hosted preparation percentage, checks, blockers, required controls, and safe local defaults.",
       "safety_note": "Preparation only. It does not deploy Agent Trust Gate, bind publicly, or expose a service.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_get_security_readiness",
+      "description": "Read local production security preparation checks, critical gaps, and required controls.",
+      "transport": "http",
+      "http_method": "GET",
+      "path": "/v1/security-readiness",
+      "input_schema_ref": "#/schemas/EmptyInput",
+      "output_summary": "Security preparation percentage, checks, critical gaps, hosting requirements, and recommended controls.",
+      "safety_note": "Planning snapshot only. It does not certify production security, deploy Agent Trust Gate, or expose a public service.",
       "executes_actions": false
     },
     {

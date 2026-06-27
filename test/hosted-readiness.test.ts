@@ -24,9 +24,10 @@ test("hosted readiness report is versioned and keeps deployment disabled", () =>
   assert.equal(report.hosted_deployment_enabled, false);
   assert.equal(report.public_service_enabled, false);
   assert.equal(report.production_ready, false);
-  assert.equal(report.overall.hosted_readiness_percent, 25);
+  assert.equal(report.overall.hosted_readiness_percent, 30);
   assert.equal(report.overall.status, "not_hosted_preparation_only");
   assert.equal(report.recommended_environment.host, "127.0.0.1");
+  assert.equal(report.checks.some((check) => check.id === "security_readiness_available"), true);
 });
 
 test("hosted readiness contains required security and missing-capability checks", () => {

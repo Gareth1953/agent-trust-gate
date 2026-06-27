@@ -150,6 +150,19 @@ export function createGatewayOpenApiDocument(): GatewayOpenApiDocument {
           },
         },
       },
+      "/v1/security-readiness": {
+        get: {
+          tags: ["Gateway"],
+          summary: "Read local production security readiness",
+          description: "Returns deterministic security planning checks and gaps only. It does not certify security, deploy Agent Trust Gate, change the localhost binding, or expose a public service.",
+          parameters: [{ $ref: "#/components/parameters/ClientIdHeader" }],
+          responses: {
+            "200": response("Local production security readiness report.", "SecurityReadinessResponse"),
+            "405": errors["405"],
+            "500": errors["500"],
+          },
+        },
+      },
       "/v1/decision": {
         post: {
           tags: ["Trust"],
@@ -596,7 +609,7 @@ function createSchemas(): Record<string, unknown> {
           properties: {
             hosted_readiness_percent: { type: "integer", minimum: 0, maximum: 100 },
             status: { type: "string", const: "not_hosted_preparation_only" },
-            next_gate: { type: "string", const: "complete_security_and_deployment_review_before_hosting" },
+            next_gate: { type: "string", const: "complete_production_security_controls_before_public_hosting" },
           },
         },
         checks: {
@@ -625,6 +638,52 @@ function createSchemas(): Record<string, unknown> {
         safety_statement: {
           type: "string",
           description: "Planning only: no deployment, public exposure, payments, billing, automatic purchase, or action execution.",
+        },
+      },
+    },
+    SecurityReadinessCheck: {
+      type: "object",
+      required: ["id", "label", "status", "severity", "evidence", "recommendation"],
+      properties: {
+        id: { type: "string" },
+        label: { type: "string" },
+        status: { type: "string", enum: ["pass", "partial", "fail", "not_started", "future"] },
+        severity: { type: "string", enum: ["info", "warning", "critical"] },
+        evidence: { type: "array", items: { type: "string" } },
+        recommendation: { type: "string" },
+      },
+    },
+    SecurityReadinessResponse: {
+      type: "object",
+      required: ["contract_version", "security_readiness_version", "generated_at", "request_id", "local_only", "production_security_certified", "public_service_safe", "payment_security_ready", "overall", "checks", "critical_gaps", "required_before_public_hosting", "recommended_security_controls", "safety_statement"],
+      properties: {
+        contract_version: contractVersion,
+        security_readiness_version: { type: "string", const: "atg.security-readiness.v1" },
+        generated_at: { type: "string", format: "date-time" },
+        request_id: { type: "string" },
+        local_only: { type: "boolean", const: true },
+        production_security_certified: { type: "boolean", const: false },
+        public_service_safe: { type: "boolean", const: false },
+        payment_security_ready: { type: "boolean", const: false },
+        overall: {
+          type: "object",
+          required: ["security_readiness_percent", "status", "next_gate"],
+          properties: {
+            security_readiness_percent: { type: "integer", minimum: 0, maximum: 100 },
+            status: { type: "string", const: "security_preparation_only_not_production_certified" },
+            next_gate: { type: "string", const: "complete_production_security_controls_before_public_hosting" },
+          },
+        },
+        checks: {
+          type: "array",
+          items: { $ref: "#/components/schemas/SecurityReadinessCheck" },
+        },
+        critical_gaps: { type: "array", items: { type: "string" } },
+        required_before_public_hosting: { type: "array", items: { type: "string" } },
+        recommended_security_controls: { type: "array", items: { type: "string" } },
+        safety_statement: {
+          type: "string",
+          description: "Planning only: not security, legal, privacy, SOC2, ISO27001, GDPR, payment, or production certification.",
         },
       },
     },

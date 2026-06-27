@@ -71,6 +71,18 @@
       "executes_actions": false
     },
     {
+      "name": "atg_get_security_readiness",
+      "description": "Read local production security preparation checks and critical gaps.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {}
+      },
+      "output": "Security readiness percentage, critical gaps, public-hosting prerequisites, and recommended controls.",
+      "safety_note": "Planning only. It does not certify production security, deploy Agent Trust Gate, expose a public service, or execute actions.",
+      "executes_actions": false
+    },
+    {
       "name": "atg_create_approval_pack",
       "description": "Create a local approval packet for an action.",
       "inputSchema": {

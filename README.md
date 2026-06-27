@@ -882,6 +882,45 @@ deploy Agent Trust Gate, expose a public service, bill customers, process
 payments, enable automatic purchase, execute actions, authenticate real-world
 identities, guarantee legality, or prove compliance.
 
+### Production Security Readiness Pack
+
+P3-M026 adds a deterministic local production security readiness report. It
+separates existing local safeguards from the authentication, secret storage,
+transport security, rate limiting, abuse prevention, monitoring, retention,
+privacy, legal, incident response, and dependency controls still required before
+public hosting. It is planning evidence, not an audit or certification.
+
+Run the report locally:
+
+```sh
+npm run verify -- --security-readiness
+npm run verify -- --security-readiness --json
+npm run verify -- --security-readiness --output reports/security-readiness.json
+```
+
+When Local Gateway API Mode is running:
+
+```text
+GET http://127.0.0.1:8787/v1/security-readiness
+```
+
+The gateway remains bound to `127.0.0.1` by default. The report does not scan,
+deploy, expose, authenticate, monitor, or certify a production service.
+
+Security readiness documents:
+
+- `docs/security-readiness/README.md`
+- `docs/security-readiness/production-security-checklist.md`
+- `docs/security-readiness/secret-handling.md`
+- `docs/security-readiness/incident-response-template.md`
+- `docs/security-readiness/rate-limiting-and-abuse-prevention.md`
+
+Security readiness is a local planning snapshot only. It does not deploy Agent
+Trust Gate, expose a public service, certify security, bill customers, process
+payments, enable automatic purchase, execute actions, authenticate real-world
+identities, guarantee legality, prove compliance, or provide SOC2, ISO27001,
+GDPR, or payment certification.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

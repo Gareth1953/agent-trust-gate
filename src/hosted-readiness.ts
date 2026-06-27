@@ -34,9 +34,9 @@ export interface HostedReadinessReport {
   public_service_enabled: false;
   production_ready: false;
   overall: {
-    hosted_readiness_percent: 25;
+    hosted_readiness_percent: 30;
     status: "not_hosted_preparation_only";
-    next_gate: "complete_security_and_deployment_review_before_hosting";
+    next_gate: "complete_production_security_controls_before_public_hosting";
   };
   checks: HostedReadinessCheck[];
   required_before_hosting: string[];
@@ -67,9 +67,9 @@ export function createHostedReadinessReport(now = new Date()): HostedReadinessRe
     public_service_enabled: false,
     production_ready: false,
     overall: {
-      hosted_readiness_percent: 25,
+      hosted_readiness_percent: 30,
       status: "not_hosted_preparation_only",
-      next_gate: "complete_security_and_deployment_review_before_hosting",
+      next_gate: "complete_production_security_controls_before_public_hosting",
     },
     checks: hostedChecks(),
     required_before_hosting: [
@@ -153,6 +153,7 @@ function hostedChecks(): HostedReadinessCheck[] {
     check("openapi_available", "OpenAPI contract available", "pass", "info", ["A tracked OpenAPI 3.1 contract and local discovery endpoint exist."], "Define production API lifecycle, compatibility, and deprecation policies."),
     check("agent_manifest_available", "Agent integration manifest available", "pass", "info", ["Machine-readable local capabilities and tools are published in the repo."], "Plan signed hosted discovery only after production controls exist."),
     check("commercial_readiness_available", "Commercial readiness snapshot available", "pass", "info", ["A deterministic readiness scorecard reports missing commercial capabilities."], "Keep the scorecard conservative and evidence-based."),
+    check("security_readiness_available", "Production security readiness available", "pass", "info", ["A deterministic local security readiness report, checklist, and planning documents exist."], "Complete the identified production controls and obtain independent review before hosting."),
     check("production_authentication_missing", "Production authentication missing", "not_started", "critical", ["Only local development API-key matching exists."], "Implement production-grade identity, authentication, authorization, and tenant isolation."),
     check("customer_accounts_missing", "Customer accounts missing", "not_started", "warning", ["No customer or tenant account lifecycle exists."], "Define onboarding, roles, account recovery, offboarding, and isolation."),
     check("payment_processing_missing", "Payment processing missing", "not_started", "warning", ["Payments are explicitly disabled."], "Complete pricing, legal, consent, fraud, and refund design before selecting a processor."),

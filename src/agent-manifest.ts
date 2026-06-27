@@ -82,6 +82,7 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
       "agent_entitlement_status",
       "commercial_readiness_snapshot",
       "hosted_deployment_readiness",
+      "production_security_readiness",
     ],
     schemas: {
       EmptyInput: {
@@ -168,6 +169,15 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
         "#/schemas/EmptyInput",
         "Hosted preparation percentage, checks, blockers, required controls, and safe local defaults.",
         "Preparation only. It does not deploy Agent Trust Gate, bind publicly, or expose a service.",
+      ),
+      httpTool(
+        "atg_get_security_readiness",
+        "Read local production security preparation checks, critical gaps, and required controls.",
+        "GET",
+        "/v1/security-readiness",
+        "#/schemas/EmptyInput",
+        "Security preparation percentage, checks, critical gaps, hosting requirements, and recommended controls.",
+        "Planning snapshot only. It does not certify production security, deploy Agent Trust Gate, or expose a public service.",
       ),
       cliTool(
         "atg_get_usage",
