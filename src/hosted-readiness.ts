@@ -34,7 +34,7 @@ export interface HostedReadinessReport {
   public_service_enabled: false;
   production_ready: false;
   overall: {
-    hosted_readiness_percent: 37;
+    hosted_readiness_percent: 39;
     status: "not_hosted_preparation_only";
     next_gate: "complete_production_security_controls_before_public_hosting";
   };
@@ -67,7 +67,7 @@ export function createHostedReadinessReport(now = new Date()): HostedReadinessRe
     public_service_enabled: false,
     production_ready: false,
     overall: {
-      hosted_readiness_percent: 37,
+      hosted_readiness_percent: 39,
       status: "not_hosted_preparation_only",
       next_gate: "complete_production_security_controls_before_public_hosting",
     },
@@ -157,6 +157,7 @@ function hostedChecks(): HostedReadinessCheck[] {
     check("local_rate_limit_signals_available", "Local rate-limit signals available", "partial", "warning", ["Configured clients can receive local runtime rate-limit and abuse-control signals with 429 enforcement."], "Implement distributed limits, abuse monitoring, alerting, and edge controls before hosting."),
     check("local_monitoring_health_available", "Local monitoring health available", "partial", "warning", ["Local runtime, request-log, error, auth, malformed-line, and rate-limit health signals exist."], "Add external uptime checks, latency metrics, alerting, protected dashboards, retention, and on-call response before hosting."),
     check("local_incident_response_readiness_available", "Local incident response readiness available", "partial", "warning", ["A local severity model, containment and recovery guidance, readiness report, and incident record template exist."], "Assign incident owners and test alerting, escalation, communication, rollback, and recovery before hosting."),
+    check("local_customer_tenant_readiness_available", "Local customer and tenant readiness available", "partial", "warning", ["A local-only account, tenant, client ownership, and disabled-commerce planning model exists."], "Implement production authentication, tenant isolation, secure storage, privacy controls, and account lifecycle before hosting."),
     check("production_authentication_missing", "Production authentication missing", "not_started", "critical", ["Only local development API-key matching exists."], "Implement production-grade identity, authentication, authorization, and tenant isolation."),
     check("customer_accounts_missing", "Customer accounts missing", "not_started", "warning", ["No customer or tenant account lifecycle exists."], "Define onboarding, roles, account recovery, offboarding, and isolation."),
     check("payment_processing_missing", "Payment processing missing", "not_started", "warning", ["Payments are explicitly disabled."], "Complete pricing, legal, consent, fraud, and refund design before selecting a processor."),

@@ -247,3 +247,26 @@ export type {
   IncidentResponseReadinessReport,
   IncidentSeverityDefinition,
 } from "./incident-response-readiness.js";
+export {
+  CUSTOMER_TENANT_READINESS_SAFETY_STATEMENT,
+  CUSTOMER_TENANT_READINESS_VERSION,
+  createCustomerTenantReadinessReport,
+  formatCustomerTenantReadinessForConsole,
+  writeCustomerTenantReadinessReport,
+} from "./customer-tenant-readiness.js";
+export type {
+  CustomerTenantReadinessCheck,
+  CustomerTenantReadinessReport,
+  CustomerTenantReadinessSeverity,
+  CustomerTenantReadinessStatus,
+} from "./customer-tenant-readiness.js";
+export {
+  CustomerTenantsConfigError,
+  readLocalCustomerTenantsFile,
+} from "./customer-tenants.js";
+export type {
+  LocalCustomerTenantsFile,
+  LocalCustomerTenantsResult,
+  LocalTenantPlaceholder,
+  LocalTenantStatus,
+} from "./customer-tenants.js";

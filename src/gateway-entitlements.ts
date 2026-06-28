@@ -34,7 +34,12 @@ export interface GatewayEntitlementStatus {
   contract_version: typeof CONTRACT_VERSION;
   entitlement_version: typeof ENTITLEMENT_VERSION;
   client_id: string;
+  tenant_id: null;
+  account_id: null;
   local_only: true;
+  billing_enabled: false;
+  payment_processing_enabled: false;
+  automatic_purchase_enabled: false;
   entitlement_status: EntitlementStatus;
   usage: {
     decision_allowance: number | null;
@@ -116,7 +121,12 @@ export function getGatewayEntitlementStatus(input: {
     contract_version: CONTRACT_VERSION,
     entitlement_version: ENTITLEMENT_VERSION,
     client_id: clientId,
+    tenant_id: null,
+    account_id: null,
     local_only: true,
+    billing_enabled: false,
+    payment_processing_enabled: false,
+    automatic_purchase_enabled: false,
     entitlement_status: entitlementStatus,
     usage: {
       decision_allowance: client?.decision_allowance ?? null,
@@ -150,6 +160,8 @@ export function formatGatewayEntitlementForConsole(entitlement: GatewayEntitleme
     `contract_version: ${entitlement.contract_version}`,
     `entitlement_version: ${entitlement.entitlement_version}`,
     `client_id: ${entitlement.client_id}`,
+    `tenant_id: ${entitlement.tenant_id ?? "not_configured"}`,
+    `account_id: ${entitlement.account_id ?? "not_configured"}`,
     `entitlement_status: ${entitlement.entitlement_status}`,
     "",
     "Usage:",

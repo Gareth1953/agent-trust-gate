@@ -86,6 +86,7 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
       "local_rate_limit_and_abuse_signals",
       "local_monitoring_health_signals",
       "incident_response_and_recovery_readiness",
+      "customer_tenant_readiness",
     ],
     schemas: {
       EmptyInput: {
@@ -208,6 +209,15 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
         "#/schemas/EmptyInput",
         "Local readiness percentage, severity model, checks, containment and recovery guidance, and future requirements.",
         "Local planning signal only. It is not production incident response, sends no notifications, and never executes actions.",
+      ),
+      httpTool(
+        "atg_get_customer_tenant_readiness",
+        "Read local customer account, tenant, client ownership, and future billing-readiness planning signals.",
+        "GET",
+        "/v1/customer-tenant-readiness",
+        "#/schemas/EmptyInput",
+        "Local account, tenant, client mapping, readiness checks, and disabled billing and payment fields.",
+        "Local planning only. It does not create accounts, collect personal data, bill customers, process payments, or execute actions.",
       ),
       cliTool(
         "atg_get_usage",

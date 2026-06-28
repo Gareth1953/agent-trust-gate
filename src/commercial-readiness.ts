@@ -26,9 +26,9 @@ export interface CommercialReadinessSnapshot {
   generated_at: string;
   local_only: true;
   overall: {
-    local_product_readiness_percent: 89;
-    commercial_mvp_readiness_percent: 67;
-    full_target_readiness_percent: 42;
+    local_product_readiness_percent: 90;
+    commercial_mvp_readiness_percent: 69;
+    full_target_readiness_percent: 44;
     status: "local_infrastructure_ready_not_commercially_complete";
   };
   categories: CommercialReadinessCategory[];
@@ -47,9 +47,9 @@ export function createCommercialReadinessSnapshot(
     generated_at: now.toISOString(),
     local_only: true,
     overall: {
-      local_product_readiness_percent: 89,
-      commercial_mvp_readiness_percent: 67,
-      full_target_readiness_percent: 42,
+      local_product_readiness_percent: 90,
+      commercial_mvp_readiness_percent: 69,
+      full_target_readiness_percent: 44,
       status: "local_infrastructure_ready_not_commercially_complete",
     },
     categories: categories(),
@@ -154,7 +154,8 @@ function categories(): CommercialReadinessCategory[] {
     partial("production_hosting", "Production hosting", 25, ["Local hosted deployment and production security readiness reports, checklists, safe environment guidance, and migration notes exist."], ["No hosted deployment, public service, production authentication, monitoring, tenant isolation, or legal review exists."], "Complete production security controls and deployment review before hosting."),
     partial("production_authentication", "Production authentication", 20, ["Local development API-key gate exists."], ["No real-world identity, OAuth/OIDC, tenant authorization, key lifecycle, or abuse controls."], "Select production identity and authorization architecture."),
     partial("production_security_readiness", "Production security readiness", 30, ["A deterministic local security readiness report, critical-gap inventory, control recommendations, and operational templates exist."], ["No production authentication, managed secret storage, transport security, rate limiting, monitoring, incident response program, legal review, or certification exists."], "Implement and independently review production security controls before public hosting."),
-    notStarted("customer_accounts", "Customer accounts", "No customer, tenant, organization, or account lifecycle system.", "Define tenant model, onboarding, roles, and account recovery."),
+    partial("customer_accounts", "Customer accounts", 20, ["A local-only account and tenant readiness model, placeholder config parser, and disabled commerce signals exist."], ["No real customer records, signup, login, account lifecycle, secure database, support process, privacy review, or production authentication."], "Define and review production account identity, lifecycle, storage, privacy, and support controls."),
+    partial("tenant_and_client_ownership", "Tenant and client ownership", 25, ["Future account, tenant, plan, entitlement, usage-owner, billing-owner, and client mapping concepts are machine-readable."], ["No production tenant isolation, authorization, mapping store, billing relationship, or auditable ownership-change workflow."], "Design tenant isolation and auditable client ownership before hosted customer onboarding."),
     notStarted("payment_processing", "Payment processing", "No payment processor or transaction flow is integrated.", "Validate pricing and legal design before selecting payment infrastructure."),
     future("automatic_machine_to_machine_purchase", "Automatic machine-to-machine purchase", "Automatic purchase is explicitly disabled.", "Wait for a governed payment, consent, fraud, refund, and authorization design."),
     notStarted("billing_records", "Billing records", "No invoices, billing ledger, taxation, refunds, or revenue recognition records.", "Design auditable billing records only after pricing validation."),

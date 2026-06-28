@@ -102,6 +102,10 @@ export class AgentTrustGateClient {
     return this.#request("/v1/incident-response-readiness");
   }
 
+  customerTenantReadiness() {
+    return this.#request("/v1/customer-tenant-readiness");
+  }
+
   async #request(path, { method = "GET", body } = {}) {
     const headers = { Accept: "application/json" };
     if (this.#clientId !== undefined) {

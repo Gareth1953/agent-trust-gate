@@ -66,6 +66,11 @@ async function main() {
   console.log(`incident_response_status=${incident.overall.status}`);
   console.log("No deployment occurred, no external alerting was enabled, no notification was sent, and no action was executed.");
 
+  const customerTenant = await client.customerTenantReadiness();
+  console.log(`customer_tenant_readiness_percent=${customerTenant.overall.customer_tenant_readiness_percent}`);
+  console.log(`customer_tenant_status=${customerTenant.overall.status}`);
+  console.log("No account was created, no personal data was collected, no payment occurred, and no action was executed.");
+
   if (decision.human_approval_required === true) {
     console.log("gateway_decision=REQUEST HUMAN");
     console.log("Stopping: explicit human review is required.");

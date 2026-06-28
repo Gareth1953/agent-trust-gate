@@ -119,6 +119,18 @@
       "executes_actions": false
     },
     {
+      "name": "atg_get_customer_tenant_readiness",
+      "description": "Read local customer account, tenant, client ownership, and future billing-readiness planning signals.",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {}
+      },
+      "output": "Local account, tenant, client mapping, readiness checks, and disabled billing and payment fields.",
+      "safety_note": "Local planning only. It does not create accounts, collect personal data, bill customers, process payments, or execute actions.",
+      "executes_actions": false
+    },
+    {
       "name": "atg_create_approval_pack",
       "description": "Create a local approval packet for an action.",
       "inputSchema": {

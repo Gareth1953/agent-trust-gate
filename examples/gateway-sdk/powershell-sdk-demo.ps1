@@ -62,6 +62,11 @@ try {
   Write-Host "incident_response_status=$($incident.overall.status)"
   Write-Host "No deployment occurred, no external alerting was enabled, no notification was sent, and no action was executed."
 
+  $customerTenant = Invoke-ATGCustomerTenantReadiness -Client $client
+  Write-Host "customer_tenant_readiness_percent=$($customerTenant.overall.customer_tenant_readiness_percent)"
+  Write-Host "customer_tenant_status=$($customerTenant.overall.status)"
+  Write-Host "No account was created, no personal data was collected, no payment occurred, and no action was executed."
+
   if ($decision.human_approval_required -eq $true) {
     Write-Host "gateway_decision=REQUEST HUMAN"
     Write-Host "Stopping: explicit human review is required."

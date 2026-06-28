@@ -211,6 +211,19 @@ export function createGatewayOpenApiDocument(): GatewayOpenApiDocument {
           },
         },
       },
+      "/v1/customer-tenant-readiness": {
+        get: {
+          tags: ["Gateway"],
+          summary: "Read local customer account and tenant readiness",
+          description: "Returns local planning metadata only. It does not create real accounts, collect personal data, provide login or signup, bill customers, process payments, enable automatic purchase, or execute actions.",
+          parameters: [{ $ref: "#/components/parameters/ClientIdHeader" }],
+          responses: {
+            "200": response("Local customer account and tenant readiness report.", "CustomerTenantReadinessResponse"),
+            "405": errors["405"],
+            "500": errors["500"],
+          },
+        },
+      },
       "/v1/decision": {
         post: {
           tags: ["Trust"],
@@ -542,13 +555,18 @@ function createSchemas(): Record<string, unknown> {
     },
     EntitlementResponse: {
       type: "object",
-      required: ["contract_version", "entitlement_version", "request_id", "client_id", "local_only", "entitlement_status", "usage", "upgrade", "safety_statement"],
+      required: ["contract_version", "entitlement_version", "request_id", "client_id", "tenant_id", "account_id", "local_only", "billing_enabled", "payment_processing_enabled", "automatic_purchase_enabled", "entitlement_status", "usage", "upgrade", "safety_statement"],
       properties: {
         contract_version: contractVersion,
         entitlement_version: { type: "string", const: "atg.entitlement.v1" },
         request_id: { type: "string" },
         client_id: { type: "string" },
+        tenant_id: { type: "null", description: "Reserved for future tenant ownership; local entitlement lookup does not create or resolve customer records." },
+        account_id: { type: "null", description: "Reserved for future account ownership; local entitlement lookup does not create or resolve customer records." },
         local_only: { type: "boolean", const: true },
+        billing_enabled: { type: "boolean", const: false },
+        payment_processing_enabled: { type: "boolean", const: false },
+        automatic_purchase_enabled: { type: "boolean", const: false },
         entitlement_status: {
           type: "string",
           enum: ["active", "unlimited_local", "at_limit", "over_limit", "unknown_client"],
@@ -870,6 +888,90 @@ function createSchemas(): Record<string, unknown> {
         safety_statement: {
           type: "string",
           description: "Planning only: no production incident response, alerting, notification automation, certification, payment processing, or action execution.",
+        },
+      },
+    },
+    CustomerTenantReadinessCheck: {
+      type: "object",
+      required: ["id", "label", "status", "severity", "evidence", "recommendation"],
+      properties: {
+        id: { type: "string" },
+        label: { type: "string" },
+        status: { type: "string", enum: ["pass", "partial", "fail", "not_started", "future"] },
+        severity: { type: "string", enum: ["info", "warning", "critical"] },
+        evidence: { type: "array", items: { type: "string" } },
+        recommendation: { type: "string" },
+      },
+    },
+    CustomerAccountModel: {
+      type: "object",
+      required: ["account_id_format", "supports_tenants", "supports_client_ownership", "supports_plan_status", "supports_usage_ownership", "production_login_enabled", "personal_data_collection_enabled", "real_customer_records_enabled"],
+      properties: {
+        account_id_format: { type: "string", const: "local-account-placeholder" },
+        supports_tenants: { type: "boolean", const: true },
+        supports_client_ownership: { type: "boolean", const: true },
+        supports_plan_status: { type: "boolean", const: true },
+        supports_usage_ownership: { type: "boolean", const: true },
+        production_login_enabled: { type: "boolean", const: false },
+        personal_data_collection_enabled: { type: "boolean", const: false },
+        real_customer_records_enabled: { type: "boolean", const: false },
+      },
+    },
+    CustomerTenantModel: {
+      type: "object",
+      required: ["concepts", "production_tenant_records_enabled", "allowed_local_billing_status", "allowed_local_payment_status"],
+      properties: {
+        concepts: { type: "array", items: { type: "string", enum: ["tenant_id", "account_id", "tenant_name", "tenant_status", "plan_code", "billing_status", "payment_status", "created_at", "clients"] } },
+        production_tenant_records_enabled: { type: "boolean", const: false },
+        allowed_local_billing_status: { type: "string", const: "not_enabled" },
+        allowed_local_payment_status: { type: "string", const: "not_enabled" },
+      },
+    },
+    CustomerClientMappingModel: {
+      type: "object",
+      required: ["concepts", "production_mapping_enabled", "local_only_mapping_available"],
+      properties: {
+        concepts: { type: "array", items: { type: "string", enum: ["client_id", "tenant_id", "account_id", "plan_code", "entitlement_status", "usage_owner", "billing_owner"] } },
+        production_mapping_enabled: { type: "boolean", const: false },
+        local_only_mapping_available: { type: "boolean", const: true },
+      },
+    },
+    CustomerTenantReadinessResponse: {
+      type: "object",
+      required: ["contract_version", "customer_tenant_readiness_version", "generated_at", "request_id", "local_only", "production_customer_accounts_enabled", "real_customer_data_enabled", "billing_enabled", "payment_processing_enabled", "automatic_purchase_enabled", "overall", "account_model", "tenant_model", "client_mapping_model", "local_tenant_config", "checks", "required_before_billing", "recommended_customer_controls", "safety_statement"],
+      properties: {
+        contract_version: contractVersion,
+        customer_tenant_readiness_version: { type: "string", const: "atg.customer-tenant-readiness.v1" },
+        generated_at: { type: "string", format: "date-time" },
+        request_id: { type: "string" },
+        local_only: { type: "boolean", const: true },
+        production_customer_accounts_enabled: { type: "boolean", const: false },
+        real_customer_data_enabled: { type: "boolean", const: false },
+        billing_enabled: { type: "boolean", const: false },
+        payment_processing_enabled: { type: "boolean", const: false },
+        automatic_purchase_enabled: { type: "boolean", const: false },
+        overall: {
+          type: "object",
+          required: ["customer_tenant_readiness_percent", "status", "next_gate"],
+          properties: {
+            customer_tenant_readiness_percent: { type: "integer", minimum: 0, maximum: 100 },
+            status: { type: "string", const: "local_customer_tenant_planning_only" },
+            next_gate: { type: "string", const: "define_production_customer_account_and_billing_model_before_payments" },
+          },
+        },
+        account_model: { $ref: "#/components/schemas/CustomerAccountModel" },
+        tenant_model: { $ref: "#/components/schemas/CustomerTenantModel" },
+        client_mapping_model: { $ref: "#/components/schemas/CustomerClientMappingModel" },
+        local_tenant_config: {
+          type: "object",
+          description: "Optional validated local placeholder metadata only; no account is created.",
+        },
+        checks: { type: "array", items: { $ref: "#/components/schemas/CustomerTenantReadinessCheck" } },
+        required_before_billing: { type: "array", items: { type: "string" } },
+        recommended_customer_controls: { type: "array", items: { type: "string" } },
+        safety_statement: {
+          type: "string",
+          description: "Local planning only: no real accounts, personal-data collection, login, billing, payments, automatic purchase, public service, or action execution.",
         },
       },
     },

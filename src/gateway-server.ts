@@ -36,6 +36,7 @@ import { createHostedReadinessReport } from "./hosted-readiness.js";
 import { createSecurityReadinessReport } from "./security-readiness.js";
 import { createMonitoringHealthReport } from "./monitoring-health.js";
 import { createIncidentResponseReadinessReport } from "./incident-response-readiness.js";
+import { createCustomerTenantReadinessReport } from "./customer-tenant-readiness.js";
 import {
   createLocalGatewayRateLimiter,
   type LocalGatewayRateLimiter,
@@ -479,6 +480,25 @@ async function handleGatewayRequest(
 
       writeGatewayJson(response, context, 200, {
         ...createIncidentResponseReadinessReport(),
+        request_id: context.request_id,
+      });
+      return;
+    }
+
+    if (url.pathname === "/v1/customer-tenant-readiness") {
+      if (request.method !== "GET") {
+        writeGatewayJson(
+          response,
+          context,
+          405,
+          errorResponse(context.request_id, context.client_id, "METHOD_NOT_ALLOWED", "GET is required for /v1/customer-tenant-readiness."),
+          { error_code: "METHOD_NOT_ALLOWED" },
+        );
+        return;
+      }
+
+      writeGatewayJson(response, context, 200, {
+        ...createCustomerTenantReadinessReport(),
         request_id: context.request_id,
       });
       return;

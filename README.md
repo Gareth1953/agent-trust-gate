@@ -1015,6 +1015,39 @@ payments, enable automatic purchase, execute actions, authenticate real-world
 identities, guarantee legality, prove compliance, or provide security
 certification.
 
+## P3-M030: Customer Account & Tenant Readiness Pack
+
+P3-M030 adds a deterministic local account, tenant, client ownership, plan, and
+future billing-readiness model. An optional parser reads safe placeholder tenant
+configuration without creating accounts, changing entitlements, or establishing
+a billing relationship.
+
+```sh
+npm run verify -- --customer-tenant-readiness
+npm run verify -- --customer-tenant-readiness --json
+npm run verify -- --customer-tenant-readiness --output reports/customer-tenant-readiness.json
+npm run verify -- --customer-tenant-readiness --tenants-file examples/customer-tenants/customer-tenants.example.json --json
+```
+
+With the local gateway running:
+
+```text
+GET http://127.0.0.1:8787/v1/customer-tenant-readiness
+```
+
+The safe placeholder config is at
+`examples/customer-tenants/customer-tenants.example.json`; supporting guidance is
+under `docs/customer-tenant-readiness/`. Production authentication, secure account
+storage, tenant isolation, privacy and terms review, support, deletion/export,
+billing terms, payment integration, and customer incident communication remain
+future requirements.
+
+Customer and tenant readiness is a local planning snapshot only. It does not
+create real customer accounts, collect personal data, provide login/signup, bill
+customers, process payments, enable automatic purchase, expose a public service,
+execute actions, authenticate real-world identities, guarantee legality, prove
+compliance, or provide security certification.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

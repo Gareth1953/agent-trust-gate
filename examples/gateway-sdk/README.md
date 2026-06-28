@@ -81,6 +81,7 @@ The wrappers expose equivalent operations:
 - `rateLimitStatus()` / `Invoke-ATGRateLimitStatus`
 - `monitoringHealth()` / `Invoke-ATGMonitoringHealth`
 - `incidentResponseReadiness()` / `Invoke-ATGIncidentResponseReadiness`
+- `customerTenantReadiness()` / `Invoke-ATGCustomerTenantReadiness`
 
 Client ID and API key headers are optional. The wrappers add
 `X-ATG-Client-ID` and `X-ATG-API-Key` only when values are supplied. They do
@@ -108,6 +109,10 @@ not provide production monitoring, external alerting, or a public uptime SLA.
 Incident-response-readiness methods return local severity, containment, recovery,
 and readiness guidance. They do not provide production incident response, send
 notifications, or execute actions.
+
+Customer-tenant-readiness methods return local planning metadata only. They do
+not create real customer accounts, collect personal data, provide login/signup,
+bill customers, process payments, or execute actions.
 
 ## Handle decisions
 

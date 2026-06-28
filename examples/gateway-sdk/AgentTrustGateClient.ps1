@@ -127,6 +127,12 @@ function Invoke-ATGIncidentResponseReadiness {
   Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/incident-response-readiness"
 }
 
+function Invoke-ATGCustomerTenantReadiness {
+  [CmdletBinding()]
+  param([Parameter(Mandatory)]$Client)
+  Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/customer-tenant-readiness"
+}
+
 function Invoke-ATGRequest {
   [CmdletBinding()]
   param(

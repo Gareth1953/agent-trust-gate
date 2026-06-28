@@ -29,6 +29,7 @@ test("MCP-style tool definitions are parseable and never execute actions", () =>
     "atg_get_rate_limit_status",
     "atg_get_monitoring_health",
     "atg_get_incident_response_readiness",
+    "atg_get_customer_tenant_readiness",
     "atg_create_approval_pack",
     "atg_create_evidence_bundle",
   ]);
@@ -53,6 +54,7 @@ test("MCP-style adapter and README document local-only safe operation", () => {
   assert.match(adapter, /atg_get_rate_limit_status/);
   assert.match(adapter, /atg_get_monitoring_health/);
   assert.match(adapter, /atg_get_incident_response_readiness/);
+  assert.match(adapter, /atg_get_customer_tenant_readiness/);
   assert.match(adapter, /No action was executed/);
   assert.match(readme, /local-only/i);
   assert.match(readme, /not a production MCP server/i);
@@ -123,6 +125,9 @@ test("Node MCP-style adapter dispatches health and decision tools locally", asyn
 
     const incident = await adapter.callTool("atg_get_incident_response_readiness");
     assert.equal(incident.incident_response_version, "atg.incident-response.v1");
+
+    const customerTenant = await adapter.callTool("atg_get_customer_tenant_readiness");
+    assert.equal(customerTenant.customer_tenant_readiness_version, "atg.customer-tenant-readiness.v1");
   } finally {
     await new Promise<void>((done, reject) => server.close((error) => error ? reject(error) : done()));
     rmSync(temporaryDirectory, { recursive: true, force: true });

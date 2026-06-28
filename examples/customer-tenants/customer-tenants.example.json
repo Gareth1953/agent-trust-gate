@@ -1,0 +1,17 @@
+{
+  "tenants": [
+    {
+      "account_id": "acct_demo_placeholder",
+      "tenant_id": "tenant_demo_placeholder",
+      "tenant_name": "Demo Tenant Placeholder",
+      "tenant_status": "local_placeholder",
+      "plan_code": "local_demo",
+      "billing_status": "not_enabled",
+      "payment_status": "not_enabled",
+      "automatic_purchase_enabled": false,
+      "clients": [
+        "local-demo-agent"
+      ]
+    }
+  ]
+}
