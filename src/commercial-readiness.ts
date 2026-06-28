@@ -26,9 +26,9 @@ export interface CommercialReadinessSnapshot {
   generated_at: string;
   local_only: true;
   overall: {
-    local_product_readiness_percent: 92;
-    commercial_mvp_readiness_percent: 72;
-    full_target_readiness_percent: 48;
+    local_product_readiness_percent: 93;
+    commercial_mvp_readiness_percent: 75;
+    full_target_readiness_percent: 50;
     status: "local_infrastructure_ready_not_commercially_complete";
   };
   categories: CommercialReadinessCategory[];
@@ -47,9 +47,9 @@ export function createCommercialReadinessSnapshot(
     generated_at: now.toISOString(),
     local_only: true,
     overall: {
-      local_product_readiness_percent: 92,
-      commercial_mvp_readiness_percent: 72,
-      full_target_readiness_percent: 48,
+      local_product_readiness_percent: 93,
+      commercial_mvp_readiness_percent: 75,
+      full_target_readiness_percent: 50,
       status: "local_infrastructure_ready_not_commercially_complete",
     },
     categories: categories(),
@@ -162,7 +162,8 @@ function categories(): CommercialReadinessCategory[] {
     future("automatic_machine_to_machine_purchase", "Automatic machine-to-machine purchase", "Automatic purchase is explicitly disabled.", "Wait for a governed payment, consent, fraud, refund, and authorization design."),
     notStarted("billing_records", "Billing records", "No invoices, billing ledger, taxation, refunds, or revenue recognition records.", "Design auditable billing records only after pricing validation."),
     future("global_automated_marketing", "Global automated marketing", "No automated marketing, distribution, or acquisition system exists.", "Establish product-market evidence, brand controls, consent, and legal review first."),
-    partial("public_developer_docs", "Public developer docs", 35, ["Comprehensive local README, quickstart, OpenAPI, SDK, and agent examples."], ["No hosted public documentation portal, search, analytics, or support lifecycle."], "Test documentation with pilot users before public hosting."),
+    partial("public_developer_docs", "Public developer docs", 60, ["A structured external-developer pack now covers product, quickstart, API, SDK, agent, evidence, usage, commerce boundaries, roadmap, and limitations."], ["Documentation remains local; no hosted site, external review, search, release lifecycle, or support ownership exists."], "Review with pilot developers and define publication governance before launch."),
+    partial("public_launch_readiness", "Public launch readiness", 35, ["A deterministic local launch report inventories docs, assets, checks, blockers, and approval gates."], ["No hosted service, public API, docs site, signup, package, support process, security review, legal terms, or launch approval."], "Complete hosted, security, legal, support, onboarding, and explicit approval gates before launch."),
     future("self_learning_market_scanning", "Self-learning market scanning", "No web scanning, external data collection, or self-learning pipeline exists.", "Define lawful data sources, governance, evaluation, and human oversight before implementation."),
     future("adaptive_upgrade_recommendations", "Adaptive upgrade recommendations", "Only static local upgrade-required signals exist; recommendations do not adapt or self-modify.", "Design explainable, reviewed recommendation logic after commercial usage data exists."),
     partial("production_monitoring", "Production monitoring", 30, ["Local health, gateway runtime, structured request logs, request IDs, usage, auth, malformed-line, and rate-limit summaries exist."], ["No hosted metrics, latency tracing, external alerting, protected dashboard, uptime objective, staffed incident response, backup monitoring, or recovery telemetry."], "Define and implement production observability and operational ownership before hosting."),

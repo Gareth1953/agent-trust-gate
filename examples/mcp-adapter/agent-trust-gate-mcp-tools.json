@@ -147,6 +147,14 @@
       "executes_actions": false
     },
     {
+      "name": "atg_get_launch_readiness",
+      "description": "Read local public developer documentation and launch readiness.",
+      "inputSchema": { "type": "object", "additionalProperties": false, "properties": {} },
+      "output": "Local documentation inventory, developer assets, launch checks, blockers, and controls.",
+      "safety_note": "Does not publish, deploy, collect signups, process payments, or enable automatic purchase.",
+      "executes_actions": false
+    },
+    {
       "name": "atg_create_approval_pack",
       "description": "Create a local approval packet for an action.",
       "inputSchema": {

@@ -175,6 +175,7 @@ function securityChecks(): SecurityReadinessCheck[] {
     check("public_hosting_not_enabled", "Public hosting not enabled", "pass", "info", ["The gateway remains localhost-only and no public service is enabled."], "Keep public hosting disabled until every critical production security gate is complete."),
     check("payment_security_planning_only", "Payment security is planning only", "partial", "critical", ["A local payment-readiness control inventory exists, but no provider, payment flow, PCI scope assessment, or transaction security exists."], "Complete payment threat modeling, PCI scope review, data minimization, legal review, provider due diligence, fraud controls, and incident testing before billing."),
     check("automatic_purchase_policy_local_only", "Automatic purchase policy is local only", "partial", "warning", ["A deny-by-default policy requires zero limits and human approval."], "Keep payment execution disabled until production authorization, fraud, evidence, and incident controls exist."),
+    check("public_docs_safety_boundaries_available", "Public documentation safety boundaries available", "partial", "info", ["Local developer docs explicitly avoid production, legal, compliance, payment, and execution overclaims."], "Complete independent security and legal review before publishing or hosting."),
   ];
 }
 

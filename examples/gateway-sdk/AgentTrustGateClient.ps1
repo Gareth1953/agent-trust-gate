@@ -139,6 +139,7 @@ function Invoke-ATGBillingPaymentReadiness {
   Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/billing-payment-readiness"
 }
 function Invoke-ATGMachinePurchasePolicyReadiness { param([Parameter(Mandatory)]$Client) Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/machine-purchase-policy-readiness" }
+function Invoke-ATGLaunchReadiness { param([Parameter(Mandatory)]$Client) Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/launch-readiness" }
 
 function Invoke-ATGRequest {
   [CmdletBinding()]

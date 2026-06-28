@@ -34,7 +34,7 @@ export interface HostedReadinessReport {
   public_service_enabled: false;
   production_ready: false;
   overall: {
-    hosted_readiness_percent: 40;
+    hosted_readiness_percent: 42;
     status: "not_hosted_preparation_only";
     next_gate: "complete_production_security_controls_before_public_hosting";
   };
@@ -67,7 +67,7 @@ export function createHostedReadinessReport(now = new Date()): HostedReadinessRe
     public_service_enabled: false,
     production_ready: false,
     overall: {
-      hosted_readiness_percent: 40,
+      hosted_readiness_percent: 42,
       status: "not_hosted_preparation_only",
       next_gate: "complete_production_security_controls_before_public_hosting",
     },
@@ -160,6 +160,7 @@ function hostedChecks(): HostedReadinessCheck[] {
     check("local_customer_tenant_readiness_available", "Local customer and tenant readiness available", "partial", "warning", ["A local-only account, tenant, client ownership, and disabled-commerce planning model exists."], "Implement production authentication, tenant isolation, secure storage, privacy controls, and account lifecycle before hosting."),
     check("local_billing_payment_readiness_available", "Local billing and payment readiness available", "partial", "warning", ["A price-free placeholder plan and disabled billing, payment, and machine-purchase planning model exists."], "Complete payment provider, legal, tax, security, ledger, monitoring, and customer controls before charging."),
     check("local_machine_purchase_policy_readiness_available", "Local machine purchase policy readiness available", "partial", "warning", ["A deny-by-default, zero-limit, human-approval policy model exists."], "Do not expose purchase surfaces until production payment and security controls are complete."),
+    check("local_public_launch_readiness_available", "Local public launch readiness available", "partial", "warning", ["External-developer docs and a deterministic launch gate inventory exist locally."], "Complete hosted demo, security, legal, support, onboarding, and launch approval before publication."),
     check("production_authentication_missing", "Production authentication missing", "not_started", "critical", ["Only local development API-key matching exists."], "Implement production-grade identity, authentication, authorization, and tenant isolation."),
     check("customer_accounts_missing", "Customer accounts missing", "not_started", "warning", ["No customer or tenant account lifecycle exists."], "Define onboarding, roles, account recovery, offboarding, and isolation."),
     check("payment_processing_missing", "Payment processing missing", "not_started", "warning", ["Payments are explicitly disabled."], "Complete pricing, legal, consent, fraud, and refund design before selecting a processor."),

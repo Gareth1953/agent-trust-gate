@@ -39,6 +39,7 @@ import { createIncidentResponseReadinessReport } from "./incident-response-readi
 import { createCustomerTenantReadinessReport } from "./customer-tenant-readiness.js";
 import { createBillingPaymentReadinessReport } from "./billing-payment-readiness.js";
 import { createMachinePurchasePolicyReadinessReport } from "./machine-purchase-policy-readiness.js";
+import { createLaunchReadinessReport } from "./launch-readiness.js";
 import {
   createLocalGatewayRateLimiter,
   type LocalGatewayRateLimiter,
@@ -522,6 +523,10 @@ async function handleGatewayRequest(
     if(url.pathname==="/v1/machine-purchase-policy-readiness"){
       if(request.method!=="GET"){writeGatewayJson(response,context,405,errorResponse(context.request_id,context.client_id,"METHOD_NOT_ALLOWED","GET is required for /v1/machine-purchase-policy-readiness."),{error_code:"METHOD_NOT_ALLOWED"});return;}
       writeGatewayJson(response,context,200,{...createMachinePurchasePolicyReadinessReport(),request_id:context.request_id});return;
+    }
+    if(url.pathname==="/v1/launch-readiness"){
+      if(request.method!=="GET"){writeGatewayJson(response,context,405,errorResponse(context.request_id,context.client_id,"METHOD_NOT_ALLOWED","GET is required for /v1/launch-readiness."),{error_code:"METHOD_NOT_ALLOWED"});return;}
+      writeGatewayJson(response,context,200,{...createLaunchReadinessReport(),request_id:context.request_id});return;
     }
 
     if (url.pathname === "/v1/decision") {

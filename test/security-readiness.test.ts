@@ -41,6 +41,7 @@ test("security readiness includes implemented foundations and missing production
     "production_monitoring_local_signals",
     "incident_response_partial_local",
     "customer_tenant_readiness_local_only",
+    "public_docs_safety_boundaries_available",
     "transport_security_required",
     "payment_security_planning_only",
   ]) {

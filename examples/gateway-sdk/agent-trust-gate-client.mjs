@@ -110,6 +110,7 @@ export class AgentTrustGateClient {
     return this.#request("/v1/billing-payment-readiness");
   }
   machinePurchasePolicyReadiness() { return this.#request("/v1/machine-purchase-policy-readiness"); }
+  launchReadiness() { return this.#request("/v1/launch-readiness"); }
 
   async #request(path, { method = "GET", body } = {}) {
     const headers = { Accept: "application/json" };

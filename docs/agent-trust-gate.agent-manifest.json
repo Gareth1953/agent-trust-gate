@@ -24,7 +24,8 @@
     "incident_response_and_recovery_readiness",
     "customer_tenant_readiness",
     "billing_payment_readiness",
-    "machine_purchase_policy_readiness"
+    "machine_purchase_policy_readiness",
+    "public_developer_launch_readiness"
   ],
   "schemas": {
     "EmptyInput": {
@@ -203,6 +204,17 @@
       "input_schema_ref": "#/schemas/EmptyInput",
       "output_summary": "Local policy, spending, approval, evidence, and disabled purchase fields.",
       "safety_note": "Planning only. It does not bill, process payments, or enable automatic purchase.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_get_launch_readiness",
+      "description": "Read local public developer documentation and launch readiness.",
+      "transport": "http",
+      "http_method": "GET",
+      "path": "/v1/launch-readiness",
+      "input_schema_ref": "#/schemas/EmptyInput",
+      "output_summary": "Local documentation inventory, developer assets, launch checks, blockers, and controls.",
+      "safety_note": "Planning only. It does not publish, deploy, collect signups, process payments, or enable automatic purchase.",
       "executes_actions": false
     },
     {

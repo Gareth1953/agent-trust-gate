@@ -1097,6 +1097,30 @@ payment details, create real purchases, expose a public service, execute actions
 authenticate real-world identities, guarantee legality, prove compliance, provide
 PCI compliance, or provide security certification.
 
+## P3-M033: Public Developer Documentation & Launch Readiness Pack
+
+P3-M033 adds a structured local external-developer documentation set and a
+deterministic launch-gate report. Nothing is published or deployed.
+
+```sh
+npm run verify -- --launch-readiness
+npm run verify -- --launch-readiness --json
+npm run verify -- --launch-readiness --output reports/launch-readiness.json
+```
+
+`GET http://127.0.0.1:8787/v1/launch-readiness`
+
+The documentation starts at `docs/public-developer/README.md` and covers product
+overview, local quickstart, gateway API, OpenAPI and SDKs, agent manifest and MCP,
+approval/evidence, usage/entitlements/rate limits, commerce boundaries, hosted
+roadmap, and safety limitations.
+
+Launch readiness is a local planning snapshot only. It does not publish Agent
+Trust Gate, deploy a hosted service, expose a public API, collect signups, bill
+customers, process payments, enable automatic purchase, execute actions,
+authenticate real-world identities, guarantee legality, prove compliance, provide
+PCI compliance, or provide security certification.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

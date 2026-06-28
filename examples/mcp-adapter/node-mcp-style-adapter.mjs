@@ -24,6 +24,7 @@ export function createMcpStyleAdapter(options = {}) {
     atg_get_customer_tenant_readiness: async () => client.customerTenantReadiness(),
     atg_get_billing_payment_readiness: async () => client.billingPaymentReadiness(),
     atg_get_machine_purchase_policy_readiness: async () => client.machinePurchasePolicyReadiness(),
+    atg_get_launch_readiness: async () => client.launchReadiness(),
     atg_decide: async ({ action, policy_profile } = {}) => (
       client.decide(action, policy_profile === undefined ? {} : { policyProfile: policy_profile })
     ),
