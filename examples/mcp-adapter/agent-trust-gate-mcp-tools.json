@@ -131,6 +131,14 @@
       "executes_actions": false
     },
     {
+      "name": "atg_get_billing_payment_readiness",
+      "description": "Read local placeholder plan, billing, payment, and future machine-purchase readiness signals.",
+      "inputSchema": { "type": "object", "additionalProperties": false, "properties": {} },
+      "output": "Local readiness, placeholder plans, provider requirements, and disabled billing, payment, and purchase fields.",
+      "safety_note": "Local planning only. It does not bill customers, collect payment details, process payments, enable automatic purchase, or execute actions.",
+      "executes_actions": false
+    },
+    {
       "name": "atg_create_approval_pack",
       "description": "Create a local approval packet for an action.",
       "inputSchema": {

@@ -28,7 +28,7 @@ test("customer tenant readiness is versioned and all production commerce remains
   assert.equal(report.billing_enabled, false);
   assert.equal(report.payment_processing_enabled, false);
   assert.equal(report.automatic_purchase_enabled, false);
-  assert.equal(report.overall.customer_tenant_readiness_percent, 25);
+  assert.equal(report.overall.customer_tenant_readiness_percent, 30);
 });
 
 test("account, tenant, and client mapping models expose planning concepts only", () => {
@@ -43,6 +43,7 @@ test("account, tenant, and client mapping models expose planning concepts only",
     assert.ok(report.client_mapping_model.concepts.includes(concept), concept);
   }
   assert.equal(report.client_mapping_model.production_mapping_enabled, false);
+  assert.ok(report.checks.some((check) => check.id === "billing_payment_readiness_available"));
 });
 
 test("safe example tenant config is parseable and contains no personal data or secrets", () => {

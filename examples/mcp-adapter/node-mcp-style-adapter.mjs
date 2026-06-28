@@ -22,6 +22,7 @@ export function createMcpStyleAdapter(options = {}) {
     atg_get_monitoring_health: async () => client.monitoringHealth(),
     atg_get_incident_response_readiness: async () => client.incidentResponseReadiness(),
     atg_get_customer_tenant_readiness: async () => client.customerTenantReadiness(),
+    atg_get_billing_payment_readiness: async () => client.billingPaymentReadiness(),
     atg_decide: async ({ action, policy_profile } = {}) => (
       client.decide(action, policy_profile === undefined ? {} : { policyProfile: policy_profile })
     ),
@@ -97,6 +98,9 @@ async function demo() {
   const customerTenant = await adapter.callTool("atg_get_customer_tenant_readiness");
   console.log(`tool=atg_get_customer_tenant_readiness readiness=${customerTenant.overall.customer_tenant_readiness_percent} status=${customerTenant.overall.status}`);
   console.log("No account was created, no personal data was collected, no payment occurred, and no action was executed.");
+  const billingPayment = await adapter.callTool("atg_get_billing_payment_readiness");
+  console.log(`tool=atg_get_billing_payment_readiness readiness=${billingPayment.overall.billing_payment_readiness_percent} status=${billingPayment.overall.status}`);
+  console.log("No billing occurred, no account was charged, no payment or automatic purchase occurred, and no action was executed.");
   console.log("No action was executed. This local MCP-style adapter requested a trust decision only.");
 }
 

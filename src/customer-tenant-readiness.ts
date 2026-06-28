@@ -35,7 +35,7 @@ export interface CustomerTenantReadinessReport {
   payment_processing_enabled: false;
   automatic_purchase_enabled: false;
   overall: {
-    customer_tenant_readiness_percent: 25;
+    customer_tenant_readiness_percent: 30;
     status: "local_customer_tenant_planning_only";
     next_gate: "define_production_customer_account_and_billing_model_before_payments";
   };
@@ -83,7 +83,7 @@ export function createCustomerTenantReadinessReport(options: {
     payment_processing_enabled: false,
     automatic_purchase_enabled: false,
     overall: {
-      customer_tenant_readiness_percent: 25,
+      customer_tenant_readiness_percent: 30,
       status: "local_customer_tenant_planning_only",
       next_gate: "define_production_customer_account_and_billing_model_before_payments",
     },
@@ -203,6 +203,7 @@ function readinessChecks(config: LocalCustomerTenantsResult): CustomerTenantRead
     check("personal_data_collection_disabled", "Personal data collection disabled", "pass", "info", ["The local model requires no names, email addresses, passwords, or payment data."], "Keep data collection minimized and obtain privacy review before any production collection."),
     check("secure_customer_database_missing", "Secure customer database missing", "not_started", "critical", ["No account or tenant database exists."], "Design encryption, access control, isolation, backup, retention, deletion, and audit controls."),
     check("billing_relationship_missing", "Billing relationship missing", "not_started", "critical", ["Billing owners and statuses are planning concepts only; billing is disabled."], "Approve pricing, billing terms, ledger, tax, reconciliation, refund, and support processes."),
+    check("billing_payment_readiness_available", "Billing and payment readiness available", "partial", "warning", ["A price-free placeholder plan catalogue and disabled billing, payment, and machine-purchase model exist."], "Complete provider, legal, tax, security, ledger, monitoring, and customer-control gates before charging."),
     check("payment_processing_missing", "Payment processing missing", "not_started", "critical", ["Payment processing and automatic purchase are disabled."], "Complete legal, security, consent, fraud, and processor review before payments."),
     check("customer_support_process_missing", "Customer support process missing", "not_started", "warning", ["No production onboarding, recovery, dispute, or support workflow exists."], "Define owned support and escalation processes before customer launch."),
     check("customer_notification_process_missing", "Customer notification process missing", "not_started", "critical", ["No automated or staffed customer notification process exists."], "Approve legal and operational notification procedures before public service."),

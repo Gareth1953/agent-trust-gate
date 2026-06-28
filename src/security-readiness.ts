@@ -69,7 +69,7 @@ export function createSecurityReadinessReport(now = new Date()): SecurityReadine
       "production_incident_response_not_operational",
       "transport_security_not_configured",
       "legal_terms_not_reviewed",
-      "payment_security_not_started",
+      "payment_security_not_ready",
     ],
     required_before_public_hosting: [
       "production-grade authentication and authorization",
@@ -173,7 +173,7 @@ function securityChecks(): SecurityReadinessCheck[] {
     check("dependency_vulnerability_review_required", "Dependency vulnerability review required", "not_started", "critical", ["Tests and lockfiles do not constitute a production vulnerability program."], "Establish dependency inventory, advisory monitoring, patch SLAs, and supply-chain review."),
     check("transport_security_required", "Transport security required", "not_started", "critical", ["The local gateway uses loopback HTTP and has no TLS termination."], "Require HTTPS/TLS, certificate lifecycle management, secure proxy headers, and downgrade prevention."),
     check("public_hosting_not_enabled", "Public hosting not enabled", "pass", "info", ["The gateway remains localhost-only and no public service is enabled."], "Keep public hosting disabled until every critical production security gate is complete."),
-    check("payment_security_not_started", "Payment security not started", "future", "critical", ["Payment, billing, and automatic purchase are disabled."], "Complete payment threat modeling, data-scope reduction, legal review, and processor due diligence before billing."),
+    check("payment_security_planning_only", "Payment security is planning only", "partial", "critical", ["A local payment-readiness control inventory exists, but no provider, payment flow, PCI scope assessment, or transaction security exists."], "Complete payment threat modeling, PCI scope review, data minimization, legal review, provider due diligence, fraud controls, and incident testing before billing."),
   ];
 }
 

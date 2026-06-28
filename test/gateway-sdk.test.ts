@@ -28,14 +28,14 @@ test("Node SDK wrapper exports the expected client operations", () => {
   assert.match(source, /export class AgentTrustGateClient/);
   assert.match(source, /export class AgentTrustGateError/);
   assert.match(source, /export function createAgentTrustGateClient/);
-  for (const method of ["health", "decide", "createApprovalPack", "createEvidenceBundle", "openapi", "entitlement", "commercialReadiness", "hostedReadiness", "securityReadiness", "rateLimitStatus", "monitoringHealth", "incidentResponseReadiness", "customerTenantReadiness"]) {
+  for (const method of ["health", "decide", "createApprovalPack", "createEvidenceBundle", "openapi", "entitlement", "commercialReadiness", "hostedReadiness", "securityReadiness", "rateLimitStatus", "monitoringHealth", "incidentResponseReadiness", "customerTenantReadiness", "billingPaymentReadiness"]) {
     assert.match(source, new RegExp(`\\b${method}\\(`));
   }
 });
 
 test("PowerShell SDK wrapper defines the expected functions", () => {
   const source = readFileSync(files.powershellClient, "utf8");
-  for (const functionName of ["New-AgentTrustGateClient", "Invoke-ATGHealth", "Invoke-ATGDecision", "Invoke-ATGApprovalPack", "Invoke-ATGEvidenceBundle", "Invoke-ATGOpenApi", "Invoke-ATGEntitlement", "Invoke-ATGCommercialReadiness", "Invoke-ATGHostedReadiness", "Invoke-ATGSecurityReadiness", "Invoke-ATGRateLimitStatus", "Invoke-ATGMonitoringHealth", "Invoke-ATGIncidentResponseReadiness", "Invoke-ATGCustomerTenantReadiness"]) {
+  for (const functionName of ["New-AgentTrustGateClient", "Invoke-ATGHealth", "Invoke-ATGDecision", "Invoke-ATGApprovalPack", "Invoke-ATGEvidenceBundle", "Invoke-ATGOpenApi", "Invoke-ATGEntitlement", "Invoke-ATGCommercialReadiness", "Invoke-ATGHostedReadiness", "Invoke-ATGSecurityReadiness", "Invoke-ATGRateLimitStatus", "Invoke-ATGMonitoringHealth", "Invoke-ATGIncidentResponseReadiness", "Invoke-ATGCustomerTenantReadiness", "Invoke-ATGBillingPaymentReadiness"]) {
     assert.match(source, new RegExp(`function ${functionName.replace("-", "\\-")}`));
   }
 });
@@ -88,6 +88,7 @@ test("Node SDK wrapper calls the local gateway and surfaces JSON errors", async 
         monitoringHealth(): Promise<Record<string, unknown>>;
         incidentResponseReadiness(): Promise<Record<string, unknown>>;
         customerTenantReadiness(): Promise<Record<string, unknown>>;
+        billingPaymentReadiness(): Promise<Record<string, unknown>>;
       };
     };
     const client = sdk.createAgentTrustGateClient({
@@ -125,6 +126,9 @@ test("Node SDK wrapper calls the local gateway and surfaces JSON errors", async 
 
     const customerTenant = await client.customerTenantReadiness();
     assert.equal(customerTenant.customer_tenant_readiness_version, "atg.customer-tenant-readiness.v1");
+
+    const billingPayment = await client.billingPaymentReadiness();
+    assert.equal(billingPayment.billing_payment_readiness_version, "atg.billing-payment-readiness.v1");
 
     await assert.rejects(
       client.decide({ action_type: "public_post" }),

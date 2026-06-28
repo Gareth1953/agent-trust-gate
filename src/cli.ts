@@ -104,12 +104,17 @@ import {
   formatCustomerTenantReadinessForConsole,
   writeCustomerTenantReadinessReport,
 } from "./customer-tenant-readiness.js";
+import {
+  createBillingPaymentReadinessReport,
+  formatBillingPaymentReadinessForConsole,
+  writeBillingPaymentReadinessReport,
+} from "./billing-payment-readiness.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const BASE_USAGE =
   "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787] [--require-api-key] [--clients-file gateway-clients.json]\n       npm run verify -- --openapi [--json] [--output <path>]\n       npm run verify -- --agent-manifest [--json] [--output <path>]\n       npm run verify -- --entitlement [--client-id <id>] [--clients-file gateway-clients.json] [--json]\n       npm run verify -- --commercial-readiness [--json] [--output <path>]\n       npm run verify -- --hosted-readiness [--json] [--output <path>]\n       npm run verify -- --security-readiness [--json] [--output <path>]\n       npm run verify -- --gateway-admin [--clients-file gateway-clients.json] [--json]\n       npm run verify -- --gateway-usage [--json]\n       npm run verify -- --client-usage [--json]\n       npm run verify -- --list-gateway-requests [--limit 20] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
 
-const USAGE = `${BASE_USAGE}\n       npm run verify -- --rate-limit-status [--client-id <id>] [--clients-file gateway-clients.json] [--json] [--output <path>]\n       npm run verify -- --monitoring-health [--json] [--output <path>]\n       npm run verify -- --incident-response-readiness [--json] [--output <path>]\n       npm run verify -- --incident-template [--json] [--output <path>]\n       npm run verify -- --customer-tenant-readiness [--tenants-file <path>] [--json] [--output <path>]`;
+const USAGE = `${BASE_USAGE}\n       npm run verify -- --rate-limit-status [--client-id <id>] [--clients-file gateway-clients.json] [--json] [--output <path>]\n       npm run verify -- --monitoring-health [--json] [--output <path>]\n       npm run verify -- --incident-response-readiness [--json] [--output <path>]\n       npm run verify -- --incident-template [--json] [--output <path>]\n       npm run verify -- --customer-tenant-readiness [--tenants-file <path>] [--json] [--output <path>]\n       npm run verify -- --billing-payment-readiness [--plans-file <path>] [--json] [--output <path>]`;
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
@@ -149,6 +154,10 @@ export function runCli(args: string[]): number {
 
   if (args.includes("--customer-tenant-readiness")) {
     return runCustomerTenantReadinessMode(args, jsonMode);
+  }
+
+  if (args.includes("--billing-payment-readiness")) {
+    return runBillingPaymentReadinessMode(args, jsonMode);
   }
 
   if (args.includes("--commercial-readiness")) {
@@ -780,6 +789,50 @@ function parseCustomerTenantReadinessArgs(args: string[]): {
     ...(tenantsFile === undefined ? {} : { tenantsFile }),
     ...(output === undefined ? {} : { output }),
   };
+}
+
+function runBillingPaymentReadinessMode(args: string[], jsonMode: boolean): number {
+  const parsedArgs = parseBillingPaymentReadinessArgs(args);
+  if (parsedArgs.error !== undefined) {
+    printError("INVALID_BILLING_PAYMENT_READINESS_ARGUMENTS", parsedArgs.error, jsonMode);
+    return 1;
+  }
+  try {
+    const report = createBillingPaymentReadinessReport({
+      ...(parsedArgs.plansFile === undefined ? {} : { plansFile: parsedArgs.plansFile }),
+    });
+    const outputPath = parsedArgs.output === undefined
+      ? undefined
+      : writeBillingPaymentReadinessReport(parsedArgs.output, report);
+    console.log(jsonMode ? JSON.stringify(report, null, 2) : formatBillingPaymentReadinessForConsole(report));
+    if (!jsonMode && outputPath !== undefined) {
+      console.log(`\nSaved billing and payment readiness report to ${outputPath}`);
+    }
+    return 0;
+  } catch (error) {
+    printError("BILLING_PAYMENT_READINESS_ERROR", `Unable to create billing and payment readiness report: ${errorMessage(error)}`, jsonMode);
+    return 1;
+  }
+}
+
+function parseBillingPaymentReadinessArgs(args: string[]): { plansFile?: string; output?: string; error?: string } {
+  let plansFile: string | undefined;
+  let output: string | undefined;
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (arg === "--billing-payment-readiness" || arg === "--json") continue;
+    if (arg === "--plans-file" || arg === "--output") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) return { error: `Missing value after ${arg}.` };
+      if (arg === "--plans-file") plansFile = value;
+      else output = value;
+      index += 1;
+      continue;
+    }
+    if (arg?.startsWith("--")) return { error: `--billing-payment-readiness cannot be combined with ${arg}.` };
+    return { error: "--billing-payment-readiness does not accept an action file argument." };
+  }
+  return { ...(plansFile === undefined ? {} : { plansFile }), ...(output === undefined ? {} : { output }) };
 }
 
 function runCommercialReadinessMode(args: string[], jsonMode: boolean): number {

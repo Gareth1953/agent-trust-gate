@@ -67,6 +67,11 @@ try {
   Write-Host "customer_tenant_status=$($customerTenant.overall.status)"
   Write-Host "No account was created, no personal data was collected, no payment occurred, and no action was executed."
 
+  $billingPayment = Invoke-ATGBillingPaymentReadiness -Client $client
+  Write-Host "billing_payment_readiness_percent=$($billingPayment.overall.billing_payment_readiness_percent)"
+  Write-Host "billing_payment_status=$($billingPayment.overall.status)"
+  Write-Host "No billing occurred, no account was charged, no payment or automatic purchase occurred, and no action was executed."
+
   if ($decision.human_approval_required -eq $true) {
     Write-Host "gateway_decision=REQUEST HUMAN"
     Write-Host "Stopping: explicit human review is required."

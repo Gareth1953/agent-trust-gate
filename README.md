@@ -1048,6 +1048,35 @@ customers, process payments, enable automatic purchase, expose a public service,
 execute actions, authenticate real-world identities, guarantee legality, prove
 compliance, or provide security certification.
 
+## P3-M031: Billing & Payment Readiness Pack
+
+P3-M031 adds price-free placeholder plans and deterministic local models for
+billing status, payment status, future provider requirements, and governed
+machine-purchase readiness. It does not activate a tariff or transaction path.
+
+```sh
+npm run verify -- --billing-payment-readiness
+npm run verify -- --billing-payment-readiness --json
+npm run verify -- --billing-payment-readiness --output reports/billing-payment-readiness.json
+npm run verify -- --billing-payment-readiness --plans-file examples/billing-payment/billing-plans.example.json --json
+```
+
+With the local gateway running:
+
+```text
+GET http://127.0.0.1:8787/v1/billing-payment-readiness
+```
+
+The safe placeholder catalogue is at
+`examples/billing-payment/billing-plans.example.json`; supporting guidance is in
+`docs/billing-payment-readiness/`. No payment provider or payment SDK is added.
+
+Billing and payment readiness is a local planning snapshot only. It does not bill
+customers, process payments, collect payment details, enable automatic purchase,
+create real invoices, expose a public service, execute actions, authenticate
+real-world identities, guarantee legality, prove compliance, provide PCI
+compliance, or provide security certification.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

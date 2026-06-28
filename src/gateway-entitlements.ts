@@ -36,6 +36,8 @@ export interface GatewayEntitlementStatus {
   client_id: string;
   tenant_id: null;
   account_id: null;
+  plan_code: null;
+  payment_required: false;
   local_only: true;
   billing_enabled: false;
   payment_processing_enabled: false;
@@ -123,6 +125,8 @@ export function getGatewayEntitlementStatus(input: {
     client_id: clientId,
     tenant_id: null,
     account_id: null,
+    plan_code: null,
+    payment_required: false,
     local_only: true,
     billing_enabled: false,
     payment_processing_enabled: false,
@@ -162,6 +166,8 @@ export function formatGatewayEntitlementForConsole(entitlement: GatewayEntitleme
     `client_id: ${entitlement.client_id}`,
     `tenant_id: ${entitlement.tenant_id ?? "not_configured"}`,
     `account_id: ${entitlement.account_id ?? "not_configured"}`,
+    `plan_code: ${entitlement.plan_code ?? "not_configured"}`,
+    `payment_required: ${entitlement.payment_required}`,
     `entitlement_status: ${entitlement.entitlement_status}`,
     "",
     "Usage:",

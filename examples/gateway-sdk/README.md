@@ -82,6 +82,7 @@ The wrappers expose equivalent operations:
 - `monitoringHealth()` / `Invoke-ATGMonitoringHealth`
 - `incidentResponseReadiness()` / `Invoke-ATGIncidentResponseReadiness`
 - `customerTenantReadiness()` / `Invoke-ATGCustomerTenantReadiness`
+- `billingPaymentReadiness()` / `Invoke-ATGBillingPaymentReadiness`
 
 Client ID and API key headers are optional. The wrappers add
 `X-ATG-Client-ID` and `X-ATG-API-Key` only when values are supplied. They do
@@ -113,6 +114,10 @@ notifications, or execute actions.
 Customer-tenant-readiness methods return local planning metadata only. They do
 not create real customer accounts, collect personal data, provide login/signup,
 bill customers, process payments, or execute actions.
+
+Billing-payment-readiness methods return price-free placeholder plans and local
+planning controls. They do not bill, collect payment details, process payments,
+create real invoices, enable automatic purchase, or execute actions.
 
 ## Handle decisions
 

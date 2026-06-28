@@ -133,6 +133,12 @@ function Invoke-ATGCustomerTenantReadiness {
   Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/customer-tenant-readiness"
 }
 
+function Invoke-ATGBillingPaymentReadiness {
+  [CmdletBinding()]
+  param([Parameter(Mandatory)]$Client)
+  Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/billing-payment-readiness"
+}
+
 function Invoke-ATGRequest {
   [CmdletBinding()]
   param(

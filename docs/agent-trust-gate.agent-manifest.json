@@ -22,7 +22,8 @@
     "local_rate_limit_and_abuse_signals",
     "local_monitoring_health_signals",
     "incident_response_and_recovery_readiness",
-    "customer_tenant_readiness"
+    "customer_tenant_readiness",
+    "billing_payment_readiness"
   ],
   "schemas": {
     "EmptyInput": {
@@ -179,6 +180,17 @@
       "input_schema_ref": "#/schemas/EmptyInput",
       "output_summary": "Local account, tenant, client mapping, readiness checks, and disabled billing and payment fields.",
       "safety_note": "Local planning only. It does not create accounts, collect personal data, bill customers, process payments, or execute actions.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_get_billing_payment_readiness",
+      "description": "Read local placeholder plan, billing, payment, and future machine-purchase readiness signals.",
+      "transport": "http",
+      "http_method": "GET",
+      "path": "/v1/billing-payment-readiness",
+      "input_schema_ref": "#/schemas/EmptyInput",
+      "output_summary": "Local billing and payment readiness, placeholder plans, required controls, and disabled commerce fields.",
+      "safety_note": "Local planning only. It does not bill customers, collect payment details, process payments, enable automatic purchase, or execute actions.",
       "executes_actions": false
     },
     {

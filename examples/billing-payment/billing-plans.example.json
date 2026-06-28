@@ -1,0 +1,36 @@
+{
+  "currency": "GBP",
+  "billing_mode": "not_enabled",
+  "plans": [
+    {
+      "plan_code": "local_demo",
+      "label": "Local Demo",
+      "price": null,
+      "billing_interval": "none",
+      "decision_allowance": 1000,
+      "rate_limit_max_requests": 60,
+      "payment_required": false,
+      "automatic_purchase_available": false
+    },
+    {
+      "plan_code": "future_starter",
+      "label": "Future Starter",
+      "price": null,
+      "billing_interval": "future",
+      "decision_allowance": null,
+      "rate_limit_max_requests": null,
+      "payment_required": false,
+      "automatic_purchase_available": false
+    },
+    {
+      "plan_code": "future_machine_to_machine",
+      "label": "Future Machine-to-Machine",
+      "price": null,
+      "billing_interval": "future_usage_based",
+      "decision_allowance": null,
+      "rate_limit_max_requests": null,
+      "payment_required": false,
+      "automatic_purchase_available": false
+    }
+  ]
+}

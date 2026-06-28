@@ -71,6 +71,11 @@ async function main() {
   console.log(`customer_tenant_status=${customerTenant.overall.status}`);
   console.log("No account was created, no personal data was collected, no payment occurred, and no action was executed.");
 
+  const billingPayment = await client.billingPaymentReadiness();
+  console.log(`billing_payment_readiness_percent=${billingPayment.overall.billing_payment_readiness_percent}`);
+  console.log(`billing_payment_status=${billingPayment.overall.status}`);
+  console.log("No billing occurred, no account was charged, no payment or automatic purchase occurred, and no action was executed.");
+
   if (decision.human_approval_required === true) {
     console.log("gateway_decision=REQUEST HUMAN");
     console.log("Stopping: explicit human review is required.");

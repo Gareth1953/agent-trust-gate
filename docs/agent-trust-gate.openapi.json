@@ -581,6 +581,52 @@
         }
       }
     },
+    "/v1/billing-payment-readiness": {
+      "get": {
+        "tags": [
+          "Gateway"
+        ],
+        "summary": "Read local billing and payment readiness",
+        "description": "Returns local planning metadata only. It does not bill customers, collect payment details, process payments, create real invoices, enable automatic purchase, or execute actions.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Local billing and payment readiness report.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingPaymentReadinessResponse"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "The endpoint does not support this HTTP method.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected local gateway error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/decision": {
       "post": {
         "tags": [
@@ -1681,6 +1727,8 @@
           "client_id",
           "tenant_id",
           "account_id",
+          "plan_code",
+          "payment_required",
           "local_only",
           "billing_enabled",
           "payment_processing_enabled",
@@ -1712,6 +1760,14 @@
           "account_id": {
             "type": "null",
             "description": "Reserved for future account ownership; local entitlement lookup does not create or resolve customer records."
+          },
+          "plan_code": {
+            "type": "null",
+            "description": "Reserved for future reviewed plan mapping; no active commercial tariff is selected."
+          },
+          "payment_required": {
+            "type": "boolean",
+            "const": false
           },
           "local_only": {
             "type": "boolean",
@@ -2750,6 +2806,414 @@
           "safety_statement": {
             "type": "string",
             "description": "Planning only: no production incident response, alerting, notification automation, certification, payment processing, or action execution."
+          }
+        }
+      },
+      "BillingPaymentReadinessCheck": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "status",
+          "severity",
+          "evidence",
+          "recommendation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "partial",
+              "fail",
+              "not_started",
+              "future"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "info",
+              "warning",
+              "critical"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recommendation": {
+            "type": "string"
+          }
+        }
+      },
+      "PlaceholderBillingPlan": {
+        "type": "object",
+        "required": [
+          "plan_code",
+          "label",
+          "price",
+          "billing_interval",
+          "decision_allowance",
+          "rate_limit_max_requests",
+          "payment_required",
+          "automatic_purchase_available"
+        ],
+        "properties": {
+          "plan_code": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "price": {
+            "type": "null"
+          },
+          "billing_interval": {
+            "type": "string",
+            "enum": [
+              "none",
+              "future",
+              "future_usage_based"
+            ]
+          },
+          "decision_allowance": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "rate_limit_max_requests": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "payment_required": {
+            "type": "boolean",
+            "const": false
+          },
+          "automatic_purchase_available": {
+            "type": "boolean",
+            "const": false
+          }
+        }
+      },
+      "PlanModel": {
+        "type": "object",
+        "required": [
+          "plan_catalogue_available",
+          "plans_are_placeholders",
+          "currency",
+          "billing_mode",
+          "plans",
+          "source"
+        ],
+        "properties": {
+          "plan_catalogue_available": {
+            "type": "boolean",
+            "const": true
+          },
+          "plans_are_placeholders": {
+            "type": "boolean",
+            "const": true
+          },
+          "currency": {
+            "type": "string",
+            "const": "GBP"
+          },
+          "billing_mode": {
+            "type": "string",
+            "const": "not_enabled"
+          },
+          "plans": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlaceholderBillingPlan"
+            }
+          },
+          "source": {
+            "type": "object",
+            "description": "Local placeholder-file metadata only."
+          }
+        }
+      },
+      "BillingModel": {
+        "type": "object",
+        "required": [
+          "concepts",
+          "billing_enabled",
+          "real_invoice_generation_enabled",
+          "receipt_generation_enabled",
+          "tax_calculation_enabled"
+        ],
+        "properties": {
+          "concepts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "billing_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "real_invoice_generation_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "receipt_generation_enabled": {
+            "type": "string",
+            "const": "placeholder_only"
+          },
+          "tax_calculation_enabled": {
+            "type": "boolean",
+            "const": false
+          }
+        }
+      },
+      "PaymentModel": {
+        "type": "object",
+        "required": [
+          "payment_processing_enabled",
+          "payment_provider_configured",
+          "provider",
+          "test_mode_available",
+          "live_mode_available",
+          "card_collection_enabled",
+          "bank_payment_enabled",
+          "crypto_payment_enabled",
+          "machine_to_machine_payment_enabled",
+          "automatic_purchase_enabled",
+          "payment_security_ready"
+        ],
+        "properties": {
+          "payment_processing_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "payment_provider_configured": {
+            "type": "boolean",
+            "const": false
+          },
+          "provider": {
+            "type": "null"
+          },
+          "test_mode_available": {
+            "type": "boolean",
+            "const": false
+          },
+          "live_mode_available": {
+            "type": "boolean",
+            "const": false
+          },
+          "card_collection_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "bank_payment_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "crypto_payment_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "machine_to_machine_payment_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "automatic_purchase_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "payment_security_ready": {
+            "type": "boolean",
+            "const": false
+          }
+        }
+      },
+      "MachinePurchaseModel": {
+        "type": "object",
+        "required": [
+          "machine_purchase_supported_in_future",
+          "automatic_purchase_enabled",
+          "purchase_authorization_model",
+          "agent_purchase_policy_required",
+          "human_approval_required_before_enabling",
+          "entitlement_upgrade_signal_available",
+          "purchase_endpoint_available",
+          "payment_execution_available"
+        ],
+        "properties": {
+          "machine_purchase_supported_in_future": {
+            "type": "boolean",
+            "const": true
+          },
+          "automatic_purchase_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "purchase_authorization_model": {
+            "type": "string",
+            "const": "future"
+          },
+          "agent_purchase_policy_required": {
+            "type": "boolean",
+            "const": true
+          },
+          "human_approval_required_before_enabling": {
+            "type": "boolean",
+            "const": true
+          },
+          "entitlement_upgrade_signal_available": {
+            "type": "boolean",
+            "const": true
+          },
+          "purchase_endpoint_available": {
+            "type": "boolean",
+            "const": false
+          },
+          "payment_execution_available": {
+            "type": "boolean",
+            "const": false
+          }
+        }
+      },
+      "BillingPaymentReadinessResponse": {
+        "type": "object",
+        "required": [
+          "contract_version",
+          "billing_payment_readiness_version",
+          "generated_at",
+          "request_id",
+          "local_only",
+          "billing_enabled",
+          "payment_processing_enabled",
+          "automatic_purchase_enabled",
+          "real_charges_enabled",
+          "payment_provider_configured",
+          "pci_scope_assessed",
+          "overall",
+          "plan_model",
+          "billing_model",
+          "payment_model",
+          "machine_purchase_model",
+          "checks",
+          "required_before_payments",
+          "recommended_payment_controls",
+          "safety_statement"
+        ],
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "atg.v1"
+          },
+          "billing_payment_readiness_version": {
+            "type": "string",
+            "const": "atg.billing-payment-readiness.v1"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "request_id": {
+            "type": "string"
+          },
+          "local_only": {
+            "type": "boolean",
+            "const": true
+          },
+          "billing_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "payment_processing_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "automatic_purchase_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "real_charges_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "payment_provider_configured": {
+            "type": "boolean",
+            "const": false
+          },
+          "pci_scope_assessed": {
+            "type": "boolean",
+            "const": false
+          },
+          "overall": {
+            "type": "object",
+            "required": [
+              "billing_payment_readiness_percent",
+              "status",
+              "next_gate"
+            ],
+            "properties": {
+              "billing_payment_readiness_percent": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "status": {
+                "type": "string",
+                "const": "local_billing_payment_planning_only"
+              },
+              "next_gate": {
+                "type": "string",
+                "const": "define_payment_provider_and_billing_controls_before_enabling_payments"
+              }
+            }
+          },
+          "plan_model": {
+            "$ref": "#/components/schemas/PlanModel"
+          },
+          "billing_model": {
+            "$ref": "#/components/schemas/BillingModel"
+          },
+          "payment_model": {
+            "$ref": "#/components/schemas/PaymentModel"
+          },
+          "machine_purchase_model": {
+            "$ref": "#/components/schemas/MachinePurchaseModel"
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BillingPaymentReadinessCheck"
+            }
+          },
+          "required_before_payments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recommended_payment_controls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "safety_statement": {
+            "type": "string",
+            "description": "No billing, payment processing, payment-detail collection, automatic purchase, real invoices, public service, or action execution."
           }
         }
       },

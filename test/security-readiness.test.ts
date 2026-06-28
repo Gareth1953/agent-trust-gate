@@ -42,7 +42,7 @@ test("security readiness includes implemented foundations and missing production
     "incident_response_partial_local",
     "customer_tenant_readiness_local_only",
     "transport_security_required",
-    "payment_security_not_started",
+    "payment_security_planning_only",
   ]) {
     assert.ok(report.checks.some((check) => check.id === id), id);
   }

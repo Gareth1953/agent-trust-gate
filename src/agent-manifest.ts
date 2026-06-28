@@ -87,6 +87,7 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
       "local_monitoring_health_signals",
       "incident_response_and_recovery_readiness",
       "customer_tenant_readiness",
+      "billing_payment_readiness",
     ],
     schemas: {
       EmptyInput: {
@@ -218,6 +219,15 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
         "#/schemas/EmptyInput",
         "Local account, tenant, client mapping, readiness checks, and disabled billing and payment fields.",
         "Local planning only. It does not create accounts, collect personal data, bill customers, process payments, or execute actions.",
+      ),
+      httpTool(
+        "atg_get_billing_payment_readiness",
+        "Read local placeholder plan, billing, payment, and future machine-purchase readiness signals.",
+        "GET",
+        "/v1/billing-payment-readiness",
+        "#/schemas/EmptyInput",
+        "Local billing and payment readiness, placeholder plans, required controls, and disabled commerce fields.",
+        "Local planning only. It does not bill customers, collect payment details, process payments, enable automatic purchase, or execute actions.",
       ),
       cliTool(
         "atg_get_usage",
