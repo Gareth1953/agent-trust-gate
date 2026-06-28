@@ -18,3 +18,8 @@ Future movement beyond local readiness is governed by the
 [Commercial Launch Control Pack](../commercial-launch-control.md). Its default
 decision is blocked and every launch, deployment, publishing, outreach, signup,
 tracking, billing, payment, and automatic-purchase flag is false.
+
+Public-facing trust explanations are drafted in the
+[Public Trust Page](../public-trust-page.md) and
+[Public Trust FAQ](../public-trust-faq.md). Both remain local, unpublished, and
+subject to commercial launch control, legal review, and Gareth final approval.

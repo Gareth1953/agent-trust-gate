@@ -1167,6 +1167,18 @@ and Gareth's final approval are all required. This pack does not launch, deploy,
 publish, sell, contact, sign up, bill, charge, track, scan, buy, or execute
 anything.
 
+## P3-M036: Public Trust Page Pack
+
+P3-M036 adds local draft trust content for developers, businesses, procurement,
+compliance teams, agent platforms, and cautious human decision makers. The pack
+includes `docs/public-trust-page.md`, `docs/public-trust-faq.md`,
+`config/public-trust-page.json`, and blocked preview/publication examples.
+
+The page is not live or published. Public-page, deployment, tracking, analytics,
+signup, contact-form, email, billing, payment, outreach, scanning, and automatic-
+purchase flags all remain false. Commercial launch control, legal review, and
+Gareth final approval are required before any future publication decision.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

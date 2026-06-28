@@ -1,0 +1,26 @@
+{
+  "example_version": "atg.public-trust-publication-decision.v1",
+  "local_only": true,
+  "proposed_action": "publish_public_trust_page",
+  "control_state": {
+    "public_page_enabled": false,
+    "published": false,
+    "deployment_enabled": false,
+    "requires_gareth_final_approval": true,
+    "gareth_final_approval_recorded": false,
+    "requires_legal_review_before_publication": true,
+    "legal_review_completed": false
+  },
+  "decision": "blocked",
+  "reason_codes": [
+    "PUBLIC_PAGE_DISABLED",
+    "PUBLICATION_DISABLED",
+    "DEPLOYMENT_DISABLED",
+    "LEGAL_REVIEW_INCOMPLETE",
+    "GARETH_FINAL_APPROVAL_REQUIRED"
+  ],
+  "published": false,
+  "live_url": null,
+  "executes_actions": false,
+  "safety_statement": "This proposed publication is blocked. No page is published or deployed, no public URL is exposed, and no tracking, signup, outreach, billing, payment, or action execution occurs."
+}

@@ -1,0 +1,21 @@
+{
+  "preview_version": "atg.public-trust-page-preview.v1",
+  "page_status": "draft_only",
+  "local_only": true,
+  "public_page_enabled": false,
+  "published": false,
+  "deployment_enabled": false,
+  "tracking_enabled": false,
+  "signup_enabled": false,
+  "contact_form_enabled": false,
+  "billing_enabled": false,
+  "payment_enabled": false,
+  "outreach_enabled": false,
+  "automatic_purchase_enabled": false,
+  "live_url": null,
+  "final_approval_required": true,
+  "requires_gareth_final_approval": true,
+  "content_summary": "Draft trust and FAQ content for local review only.",
+  "executes_actions": false,
+  "safety_statement": "This preview is draft-only. It does not publish a page, expose a live URL, track users, collect signups, send messages, bill, process payments, enable automatic purchase, or execute actions."
+}
