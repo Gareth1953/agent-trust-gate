@@ -90,6 +90,7 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
       "billing_payment_readiness",
       "machine_purchase_policy_readiness",
       "public_developer_launch_readiness",
+      "global_marketing_distribution_readiness",
     ],
     schemas: {
       EmptyInput: {
@@ -233,6 +234,7 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
       ),
       httpTool("atg_get_machine_purchase_policy_readiness","Read local deny-by-default machine purchase policy readiness.","GET","/v1/machine-purchase-policy-readiness","#/schemas/EmptyInput","Local policy, spending, approval, evidence, and disabled purchase fields.","Planning only. It does not bill, process payments, or enable automatic purchase."),
       httpTool("atg_get_launch_readiness","Read local public developer documentation and launch readiness.","GET","/v1/launch-readiness","#/schemas/EmptyInput","Local documentation inventory, developer assets, launch checks, blockers, and controls.","Planning only. It does not publish, deploy, collect signups, process payments, or enable automatic purchase."),
+      httpTool("atg_get_global_marketing_readiness","Read local global marketing and distribution readiness.","GET","/v1/global-marketing-readiness","#/schemas/EmptyInput","Local positioning, distribution channels, developer assets, draft message boundaries, and launch controls.","Planning only. It does not publish content, send outreach, run ads, track users, collect signups, process payments, or enable automatic purchase."),
       cliTool(
         "atg_get_usage",
         "Read the local gateway usage and allowance summary through the CLI.",

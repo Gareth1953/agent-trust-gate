@@ -56,7 +56,7 @@ export interface LaunchReadinessReport {
   payments_enabled: false;
   automatic_purchase_enabled: false;
   overall: {
-    developer_launch_readiness_percent: 35;
+    developer_launch_readiness_percent: 38;
     status: "public_launch_preparation_only";
     next_gate: "complete_public_docs_hosted_demo_and_security_review_before_launch";
   };
@@ -81,7 +81,7 @@ export function createLaunchReadinessReport(now = new Date()): LaunchReadinessRe
     payments_enabled: false,
     automatic_purchase_enabled: false,
     overall: {
-      developer_launch_readiness_percent: 35,
+      developer_launch_readiness_percent: 38,
       status: "public_launch_preparation_only",
       next_gate: "complete_public_docs_hosted_demo_and_security_review_before_launch",
     },
@@ -216,5 +216,6 @@ function launchChecks(): LaunchCheck[] {
     check("customer_signup_missing", "Customer signup missing", "not_started", "warning", ["No signup, login, or real customer account system exists."], "Decide onboarding architecture after privacy and security review."),
     check("support_contact_missing_or_placeholder", "Support contact missing", "not_started", "warning", ["No public support contact or operating process exists."], "Define ownership, hours, escalation, and response boundaries."),
     check("package_publish_not_started", "Package publishing not started", "future", "info", ["No package has been published."], "Define support, release, signing, and deprecation policy first."),
+    check("global_marketing_readiness_available", "Global marketing readiness available", "partial", "info", ["A local positioning, distribution-channel, launch-message, and control inventory exists."], "Keep outreach, publication, ads, tracking, and signup capture disabled until every public launch gate passes."),
   ];
 }

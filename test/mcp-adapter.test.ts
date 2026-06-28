@@ -33,6 +33,7 @@ test("MCP-style tool definitions are parseable and never execute actions", () =>
     "atg_get_billing_payment_readiness",
     "atg_get_machine_purchase_policy_readiness",
     "atg_get_launch_readiness",
+    "atg_get_global_marketing_readiness",
     "atg_create_approval_pack",
     "atg_create_evidence_bundle",
   ]);
@@ -61,6 +62,7 @@ test("MCP-style adapter and README document local-only safe operation", () => {
   assert.match(adapter, /atg_get_billing_payment_readiness/);
   assert.match(adapter, /atg_get_machine_purchase_policy_readiness/);
   assert.match(adapter, /atg_get_launch_readiness/);
+  assert.match(adapter, /atg_get_global_marketing_readiness/);
   assert.match(adapter, /No action was executed/);
   assert.match(readme, /local-only/i);
   assert.match(readme, /not a production MCP server/i);

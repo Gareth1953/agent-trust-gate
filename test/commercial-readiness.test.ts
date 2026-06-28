@@ -20,9 +20,9 @@ test("commercial readiness snapshot is deterministic, versioned, and below full 
   const snapshot = createCommercialReadinessSnapshot(now);
   assert.equal(snapshot.readiness_version, "atg.commercial-readiness.v1");
   assert.equal(snapshot.generated_at, now.toISOString());
-  assert.equal(snapshot.overall.local_product_readiness_percent, 93);
-  assert.equal(snapshot.overall.commercial_mvp_readiness_percent, 75);
-  assert.equal(snapshot.overall.full_target_readiness_percent, 50);
+  assert.equal(snapshot.overall.local_product_readiness_percent, 94);
+  assert.equal(snapshot.overall.commercial_mvp_readiness_percent, 77);
+  assert.equal(snapshot.overall.full_target_readiness_percent, 52);
   assert.ok(snapshot.overall.full_target_readiness_percent < 100);
   assert.equal(snapshot.overall.status, "local_infrastructure_ready_not_commercially_complete");
   assert.doesNotMatch(JSON.stringify(snapshot), /100% complete/i);
@@ -33,7 +33,6 @@ test("future commercial target categories remain honestly unstarted", () => {
   for (const id of [
     "payment_processing",
     "automatic_machine_to_machine_purchase",
-    "global_automated_marketing",
     "self_learning_market_scanning",
   ]) {
     const category = snapshot.categories.find((candidate) => candidate.id === id);
@@ -56,6 +55,14 @@ test("production hosting is partial preparation and not complete", () => {
   assert.equal(security.status, "partial");
   assert.equal(security.readiness_percent, 30);
   assert.match(security.gaps.join(" "), /No production authentication/i);
+});
+
+test("global marketing and developer distribution are local planning only", () => {
+  const snapshot = createCommercialReadinessSnapshot();
+  const marketing = snapshot.categories.find((category) => category.id === "global_automated_marketing");
+  const distribution = snapshot.categories.find((category) => category.id === "developer_distribution");
+  assert.ok(marketing);assert.equal(marketing.status,"partial");assert.equal(marketing.readiness_percent,20);assert.match(marketing.gaps.join(" "),/No content is published/i);
+  assert.ok(distribution);assert.equal(distribution.status,"partial");assert.match(distribution.gaps.join(" "),/No public repository/i);
 });
 
 test("commercial readiness includes the full required category inventory", () => {
@@ -89,6 +96,7 @@ test("commercial readiness includes the full required category inventory", () =>
     "automatic_machine_to_machine_purchase",
     "billing_records",
     "global_automated_marketing",
+    "developer_distribution",
     "public_developer_docs",
     "public_launch_readiness",
     "self_learning_market_scanning",
@@ -113,7 +121,7 @@ test("CLI commercial readiness JSON is parseable", () => {
   assert.equal(result.status, 0);
   assert.equal(result.stderr, "");
   assert.equal(output.readiness_version, "atg.commercial-readiness.v1");
-  assert.equal(output.overall.full_target_readiness_percent, 50);
+  assert.equal(output.overall.full_target_readiness_percent, 52);
 });
 
 test("CLI commercial readiness output creates a local JSON report", () => {
@@ -151,7 +159,7 @@ test("GET commercial readiness returns JSON with request ID and logs the request
     assert.equal(response.status, 200);
     assert.equal(body.readiness_version, "atg.commercial-readiness.v1");
     assert.match(body.request_id, /^gw_[0-9a-f-]{36}$/);
-    assert.equal(body.overall.full_target_readiness_percent, 50);
+    assert.equal(body.overall.full_target_readiness_percent, 52);
   } finally {
     await new Promise<void>((done, reject) => server.close((error) => error ? reject(error) : done()));
     const entry = JSON.parse(readFileSync(logPath, "utf8").trim()) as GatewayRequestLogEntry;

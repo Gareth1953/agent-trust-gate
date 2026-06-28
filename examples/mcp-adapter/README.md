@@ -27,6 +27,7 @@ The tool metadata exposes:
 - `atg_get_billing_payment_readiness`
 - `atg_get_machine_purchase_policy_readiness`
 - `atg_get_launch_readiness`
+- `atg_get_global_marketing_readiness`
 - `atg_create_approval_pack`
 - `atg_create_evidence_bundle`
 

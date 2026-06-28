@@ -1121,6 +1121,36 @@ customers, process payments, enable automatic purchase, execute actions,
 authenticate real-world identities, guarantee legality, prove compliance, provide
 PCI compliance, or provide security certification.
 
+## P3-M034: Global Marketing & Distribution Readiness Pack
+
+P3-M034 adds a deterministic local positioning and distribution-readiness model.
+It inventories prospective developer and agent-builder channels, current adoption
+assets, draft message boundaries, launch risks, and mandatory approval gates.
+Nothing is published, advertised, tracked, deployed, or sent externally.
+
+```sh
+npm run verify -- --global-marketing-readiness
+npm run verify -- --global-marketing-readiness --json
+npm run verify -- --global-marketing-readiness --output reports/global-marketing-readiness.json
+```
+
+`GET http://127.0.0.1:8787/v1/global-marketing-readiness`
+
+The supporting local documents are in `docs/global-marketing-readiness/`. Every
+distribution channel remains non-live and requires explicit review and approval.
+
+Global marketing readiness is a local planning snapshot only. It does not publish
+Agent Trust Gate, deploy a hosted service, expose a public API, send outreach, run
+ads, add analytics or tracking, collect signups, bill customers, process payments,
+enable automatic purchase, execute actions, authenticate real-world identities,
+guarantee legality, prove compliance, provide PCI compliance, or provide security
+certification.
+
+Agent-to-agent discovery and invitation readiness is local planning only. It does
+not contact external agents, scan the web, send outreach, publish an agent card,
+expose a public endpoint, process payments, enable automatic purchase, or execute
+actions.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

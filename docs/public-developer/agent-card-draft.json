@@ -1,0 +1,19 @@
+{
+  "name": "Agent Trust Gate",
+  "description": "A local-first pre-action trust gateway that returns ALLOW, BLOCK, or REQUEST HUMAN decisions with evidence for AI-agent actions.",
+  "version": "0.1.0",
+  "local_only": true,
+  "public_endpoint_enabled": false,
+  "payment_processing_enabled": false,
+  "automatic_purchase_enabled": false,
+  "executes_actions": false,
+  "skills": [
+    "pre_action_trust_decision",
+    "approval_pack_generation",
+    "evidence_bundle_export",
+    "entitlement_status",
+    "rate_limit_status",
+    "readiness_snapshots"
+  ],
+  "safety_statement": "This is a local discovery draft only. It does not publish an agent card, expose a public endpoint, contact external agents, send outreach, process payments, enable automatic purchase, or execute actions."
+}

@@ -85,6 +85,7 @@ The wrappers expose equivalent operations:
 - `billingPaymentReadiness()` / `Invoke-ATGBillingPaymentReadiness`
 - `machinePurchasePolicyReadiness()` / `Invoke-ATGMachinePurchasePolicyReadiness`
 - `launchReadiness()` / `Invoke-ATGLaunchReadiness`
+- `globalMarketingReadiness()` / `Invoke-ATGGlobalMarketingReadiness`
 
 Client ID and API key headers are optional. The wrappers add
 `X-ATG-Client-ID` and `X-ATG-API-Key` only when values are supplied. They do

@@ -26,9 +26,9 @@ export interface CommercialReadinessSnapshot {
   generated_at: string;
   local_only: true;
   overall: {
-    local_product_readiness_percent: 93;
-    commercial_mvp_readiness_percent: 75;
-    full_target_readiness_percent: 50;
+    local_product_readiness_percent: 94;
+    commercial_mvp_readiness_percent: 77;
+    full_target_readiness_percent: 52;
     status: "local_infrastructure_ready_not_commercially_complete";
   };
   categories: CommercialReadinessCategory[];
@@ -47,9 +47,9 @@ export function createCommercialReadinessSnapshot(
     generated_at: now.toISOString(),
     local_only: true,
     overall: {
-      local_product_readiness_percent: 93,
-      commercial_mvp_readiness_percent: 75,
-      full_target_readiness_percent: 50,
+      local_product_readiness_percent: 94,
+      commercial_mvp_readiness_percent: 77,
+      full_target_readiness_percent: 52,
       status: "local_infrastructure_ready_not_commercially_complete",
     },
     categories: categories(),
@@ -161,7 +161,8 @@ function categories(): CommercialReadinessCategory[] {
     notStarted("payment_processing", "Payment processing", "No payment processor or transaction flow is integrated.", "Validate pricing and legal design before selecting payment infrastructure."),
     future("automatic_machine_to_machine_purchase", "Automatic machine-to-machine purchase", "Automatic purchase is explicitly disabled.", "Wait for a governed payment, consent, fraud, refund, and authorization design."),
     notStarted("billing_records", "Billing records", "No invoices, billing ledger, taxation, refunds, or revenue recognition records.", "Design auditable billing records only after pricing validation."),
-    future("global_automated_marketing", "Global automated marketing", "No automated marketing, distribution, or acquisition system exists.", "Establish product-market evidence, brand controls, consent, and legal review first."),
+    partial("global_automated_marketing", "Global automated marketing", 20, ["A local positioning, channel, message-boundary, and distribution-control model exists."], ["No content is published; no outreach, ads, analytics, tracking, signup capture, CRM, or automation exists."], "Complete public launch, legal, privacy, security, support, and explicit approval gates before any marketing activity."),
+    partial("developer_distribution", "Developer distribution", 30, ["Local developer docs, quickstart, OpenAPI, SDK wrappers, agent manifest, and MCP-style examples are ready for review."], ["No public repository, docs site, package, directory listing, hosted sandbox, support process, or distribution approval exists."], "Select and review a controlled distribution route after public launch gates pass."),
     partial("public_developer_docs", "Public developer docs", 60, ["A structured external-developer pack now covers product, quickstart, API, SDK, agent, evidence, usage, commerce boundaries, roadmap, and limitations."], ["Documentation remains local; no hosted site, external review, search, release lifecycle, or support ownership exists."], "Review with pilot developers and define publication governance before launch."),
     partial("public_launch_readiness", "Public launch readiness", 35, ["A deterministic local launch report inventories docs, assets, checks, blockers, and approval gates."], ["No hosted service, public API, docs site, signup, package, support process, security review, legal terms, or launch approval."], "Complete hosted, security, legal, support, onboarding, and explicit approval gates before launch."),
     future("self_learning_market_scanning", "Self-learning market scanning", "No web scanning, external data collection, or self-learning pipeline exists.", "Define lawful data sources, governance, evaluation, and human oversight before implementation."),

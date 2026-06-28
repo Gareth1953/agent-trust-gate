@@ -13,7 +13,7 @@ const docs = ["README.md","product-overview.md","local-quickstart.md","gateway-a
 test("launch readiness is versioned and all public/commercial surfaces remain disabled",()=>{
   const r=createLaunchReadinessReport(new Date("2026-06-28T12:00:00.000Z"));
   assert.equal(r.launch_readiness_version,"atg.launch-readiness.v1");
-  assert.equal(r.public_launch_enabled,false);assert.equal(r.public_docs_ready,false);assert.equal(r.hosted_service_enabled,false);assert.equal(r.package_published,false);assert.equal(r.payments_enabled,false);assert.equal(r.automatic_purchase_enabled,false);assert.equal(r.overall.developer_launch_readiness_percent,35);
+  assert.equal(r.public_launch_enabled,false);assert.equal(r.public_docs_ready,false);assert.equal(r.hosted_service_enabled,false);assert.equal(r.package_published,false);assert.equal(r.payments_enabled,false);assert.equal(r.automatic_purchase_enabled,false);assert.equal(r.overall.developer_launch_readiness_percent,38);
 });
 test("documentation inventory and developer assets cover required integration surfaces",()=>{
   const r=createLaunchReadinessReport(),ids=new Set(r.documentation_sections.map(s=>s.id));
@@ -23,6 +23,7 @@ test("documentation inventory and developer assets cover required integration su
 test("launch checks and blockers remain explicit",()=>{
   const r=createLaunchReadinessReport(),ids=new Set(r.launch_checks.map(c=>c.id));
   for(const id of ["local_docs_created","no_payments_enabled","no_automatic_purchase_enabled","hosted_service_not_enabled"])assert.equal(ids.has(id),true,id);
+  assert.equal(ids.has("global_marketing_readiness_available"),true);
   assert.match(r.required_before_public_launch.join(" "),/production security review/i);assert.match(r.required_before_public_launch.join(" "),/legal and terms review/i);assert.match(r.required_before_public_launch.join(" "),/explicit Gareth approval/i);assert.match(r.recommended_launch_controls.join(" "),/no compliance overclaims/i);
 });
 test("CLI JSON and output modes are local and parseable",()=>{

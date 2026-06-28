@@ -300,3 +300,5 @@ export { MachinePurchasePolicyError,defaultMachinePurchasePolicy,readLocalMachin
 export type { LocalMachinePurchasePolicy,LocalMachinePurchasePolicyResult } from "./machine-purchase-policy.js";
 export { LAUNCH_READINESS_SAFETY_STATEMENT,LAUNCH_READINESS_VERSION,createLaunchReadinessReport,formatLaunchReadinessForConsole,writeLaunchReadinessReport } from "./launch-readiness.js";
 export type { DeveloperAssets,DocumentationSection,DocumentationSectionStatus,LaunchCheck,LaunchCheckSeverity,LaunchCheckStatus,LaunchReadinessReport } from "./launch-readiness.js";
+export { GLOBAL_MARKETING_READINESS_SAFETY_STATEMENT,GLOBAL_MARKETING_READINESS_VERSION,createGlobalMarketingReadinessReport,formatGlobalMarketingReadinessForConsole,writeGlobalMarketingReadinessReport } from "./global-marketing-readiness.js";
+export type { DistributionChannel,DistributionChannelStatus,GlobalMarketingReadinessReport,MarketingReadinessCheck,MarketingReadinessCheckSeverity,MarketingReadinessCheckStatus } from "./global-marketing-readiness.js";

@@ -1,0 +1,17 @@
+{
+  "invitation_version": "atg.agent-integration-invitation.example.v1",
+  "local_only": true,
+  "outbound_contact_enabled": false,
+  "target_agent_platform": "placeholder",
+  "proposed_integration": "pre_action_trust_decision",
+  "supported_interfaces": [
+    "OpenAPI",
+    "Agent Manifest",
+    "MCP-style tools",
+    "future A2A-style Agent Card"
+  ],
+  "requested_action": "review_integration_docs",
+  "human_approval_required_before_sending": true,
+  "automatic_sending_enabled": false,
+  "safety_statement": "This local example does not contact external agents, scan the web, send outreach, publish an agent card, expose an endpoint, process payments, enable automatic purchase, or execute actions."
+}
