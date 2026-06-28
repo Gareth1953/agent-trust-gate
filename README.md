@@ -982,6 +982,39 @@ payments, enable automatic purchase, execute actions, authenticate real-world
 identities, guarantee legality, prove compliance, or provide security
 certification.
 
+## P3-M029: Incident Response & Operational Recovery Pack
+
+P3-M029 adds a deterministic local incident readiness report, severity model,
+containment and recovery guidance, and a blank incident record export. It moves
+incident planning from missing to partial/local only; it does not establish a
+staffed, exercised, or production incident response capability.
+
+```sh
+npm run verify -- --incident-response-readiness
+npm run verify -- --incident-response-readiness --json
+npm run verify -- --incident-response-readiness --output reports/incident-response-readiness.json
+npm run verify -- --incident-template
+npm run verify -- --incident-template --json
+npm run verify -- --incident-template --output incidents/example-incident-record.json
+```
+
+With the local gateway running, the same readiness report is available at:
+
+```text
+GET http://127.0.0.1:8787/v1/incident-response-readiness
+```
+
+Supporting guidance is in `docs/incident-response/`. Generated incident JSON
+records under `incidents/` are ignored by Git. The record template must not be
+used to store raw API keys or unrelated sensitive payloads.
+
+Incident response readiness is a local planning snapshot only. It does not
+deploy Agent Trust Gate, expose a public service, provide production incident
+response, enable external alerting, notify customers, bill customers, process
+payments, enable automatic purchase, execute actions, authenticate real-world
+identities, guarantee legality, prove compliance, or provide security
+certification.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

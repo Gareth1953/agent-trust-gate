@@ -98,6 +98,10 @@ export class AgentTrustGateClient {
     return this.#request("/v1/monitoring-health");
   }
 
+  incidentResponseReadiness() {
+    return this.#request("/v1/incident-response-readiness");
+  }
+
   async #request(path, { method = "GET", body } = {}) {
     const headers = { Accept: "application/json" };
     if (this.#clientId !== undefined) {

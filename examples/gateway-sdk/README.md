@@ -80,6 +80,7 @@ The wrappers expose equivalent operations:
 - `securityReadiness()` / `Invoke-ATGSecurityReadiness`
 - `rateLimitStatus()` / `Invoke-ATGRateLimitStatus`
 - `monitoringHealth()` / `Invoke-ATGMonitoringHealth`
+- `incidentResponseReadiness()` / `Invoke-ATGIncidentResponseReadiness`
 
 Client ID and API key headers are optional. The wrappers add
 `X-ATG-Client-ID` and `X-ATG-API-Key` only when values are supplied. They do
@@ -103,6 +104,10 @@ abuse signals. They are not production-grade abuse prevention and buy nothing.
 
 Monitoring-health methods return local runtime and request-log signals. They do
 not provide production monitoring, external alerting, or a public uptime SLA.
+
+Incident-response-readiness methods return local severity, containment, recovery,
+and readiness guidance. They do not provide production incident response, send
+notifications, or execute actions.
 
 ## Handle decisions
 

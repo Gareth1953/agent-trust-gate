@@ -34,7 +34,7 @@ export interface SecurityReadinessReport {
   public_service_safe: false;
   payment_security_ready: false;
   overall: {
-    security_readiness_percent: 38;
+    security_readiness_percent: 40;
     status: "security_preparation_only_not_production_certified";
     next_gate: "complete_production_security_controls_before_public_hosting";
   };
@@ -55,7 +55,7 @@ export function createSecurityReadinessReport(now = new Date()): SecurityReadine
     public_service_safe: false,
     payment_security_ready: false,
     overall: {
-      security_readiness_percent: 38,
+      security_readiness_percent: 40,
       status: "security_preparation_only_not_production_certified",
       next_gate: "complete_production_security_controls_before_public_hosting",
     },
@@ -66,7 +66,7 @@ export function createSecurityReadinessReport(now = new Date()): SecurityReadine
       "production_rate_limiting_not_implemented",
       "production_abuse_monitoring_not_implemented",
       "production_monitoring_not_implemented",
-      "incident_response_not_documented",
+      "production_incident_response_not_operational",
       "transport_security_not_configured",
       "legal_terms_not_reviewed",
       "payment_security_not_started",
@@ -165,7 +165,7 @@ function securityChecks(): SecurityReadinessCheck[] {
     check("abuse_prevention_local_signals", "Abuse prevention has local signals only", "partial", "warning", ["Local status reports expose suspicious-volume, repeated-error, unknown-client, and over-limit signals."], "Add production telemetry, anomaly detection, containment, review, and appeal procedures before hosting."),
     check("production_monitoring_local_signals", "Production monitoring has local signals only", "partial", "warning", ["Local operational health, runtime, request-log, error, unauthorized, and rate-limit summaries exist."], "Add hosted metrics, tracing, availability objectives, protected dashboards, and on-call ownership."),
     check("alerting_missing", "Security alerting missing", "not_started", "critical", ["No production security or availability alerts are configured."], "Define actionable alerts, severity levels, escalation paths, and test schedules."),
-    check("incident_response_missing", "Incident response missing", "not_started", "critical", ["A planning template exists, but no approved or exercised response process exists."], "Assign owners and exercise detection, containment, recovery, communication, and review."),
+    check("incident_response_partial_local", "Incident response is partial and local", "partial", "warning", ["A local readiness report, severity model, containment and recovery guidance, and incident record export exist."], "Assign owners and exercise detection, containment, recovery, communication, and review before hosting."),
     check("data_retention_policy_missing", "Data retention policy missing", "not_started", "critical", ["No approved retention or deletion schedule exists for hosted logs or customer data."], "Define purpose, access, retention, deletion, legal hold, and customer request handling."),
     check("privacy_review_missing", "Privacy review missing", "not_started", "critical", ["No qualified hosted privacy review has occurred."], "Review data flows, minimization, lawful basis, processors, regions, and customer commitments."),
     check("legal_terms_missing", "Legal terms missing", "not_started", "critical", ["No reviewed hosted terms or acceptable use policy exists."], "Obtain qualified review before making the service public or commercial."),

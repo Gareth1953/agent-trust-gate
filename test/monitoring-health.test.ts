@@ -28,7 +28,7 @@ test("monitoring health is versioned and keeps production services disabled", ()
     assert.equal(report.production_monitoring_enabled, false);
     assert.equal(report.external_alerting_enabled, false);
     assert.equal(report.public_uptime_sla_enabled, false);
-    assert.equal(report.overall.monitoring_readiness_percent, 30);
+    assert.equal(report.overall.monitoring_readiness_percent, 33);
     assert.equal(report.runtime.uptime_available, false);
     assert.equal(report.log_health.log_file_found, false);
     assert.equal(report.log_health.total_logged_requests, 0);
@@ -49,6 +49,7 @@ test("monitoring health exposes local capability signals and required checks", (
     "production_monitoring_local_signals",
     "external_alerting_missing",
     "uptime_sla_missing",
+    "incident_response_partial_local",
   ]) {
     assert.ok(report.checks.some((check) => check.id === id), id);
   }

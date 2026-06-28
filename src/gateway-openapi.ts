@@ -198,6 +198,19 @@ export function createGatewayOpenApiDocument(): GatewayOpenApiDocument {
           },
         },
       },
+      "/v1/incident-response-readiness": {
+        get: {
+          tags: ["Gateway"],
+          summary: "Read local incident response and recovery readiness",
+          description: "Returns local planning metadata only. It does not provide production incident response, external alerting, customer notifications, deployment, or action execution.",
+          parameters: [{ $ref: "#/components/parameters/ClientIdHeader" }],
+          responses: {
+            "200": response("Local incident response and operational recovery readiness report.", "IncidentResponseReadinessResponse"),
+            "405": errors["405"],
+            "500": errors["500"],
+          },
+        },
+      },
       "/v1/decision": {
         post: {
           tags: ["Trust"],
@@ -797,6 +810,66 @@ function createSchemas(): Record<string, unknown> {
             message: { type: "string" },
             details: { type: "array", items: {} },
           },
+        },
+      },
+    },
+    IncidentSeverity: {
+      type: "object",
+      required: ["id", "label", "example_conditions", "recommended_response", "escalation_required"],
+      properties: {
+        id: { type: "string", enum: ["sev0_critical", "sev1_high", "sev2_medium", "sev3_low"] },
+        label: { type: "string" },
+        example_conditions: { type: "array", items: { type: "string" } },
+        recommended_response: { type: "string" },
+        escalation_required: { type: "boolean" },
+      },
+    },
+    IncidentReadinessCheck: {
+      type: "object",
+      required: ["id", "label", "status", "severity", "evidence", "recommendation"],
+      properties: {
+        id: { type: "string" },
+        label: { type: "string" },
+        status: { type: "string", enum: ["pass", "partial", "fail", "not_started", "future"] },
+        severity: { type: "string", enum: ["info", "warning", "critical"] },
+        evidence: { type: "array", items: { type: "string" } },
+        recommendation: { type: "string" },
+      },
+    },
+    IncidentResponseStep: {
+      type: "string",
+      description: "Deterministic local planning guidance. It is not an automatically executed operation.",
+    },
+    IncidentResponseReadinessResponse: {
+      type: "object",
+      required: ["contract_version", "incident_response_version", "generated_at", "request_id", "local_only", "production_incident_response_enabled", "external_alerting_enabled", "customer_notification_automation_enabled", "overall", "severity_model", "checks", "containment_steps", "recovery_steps", "required_before_public_hosting", "recommended_operational_controls", "safety_statement"],
+      properties: {
+        contract_version: contractVersion,
+        incident_response_version: { type: "string", const: "atg.incident-response.v1" },
+        generated_at: { type: "string", format: "date-time" },
+        request_id: { type: "string" },
+        local_only: { type: "boolean", const: true },
+        production_incident_response_enabled: { type: "boolean", const: false },
+        external_alerting_enabled: { type: "boolean", const: false },
+        customer_notification_automation_enabled: { type: "boolean", const: false },
+        overall: {
+          type: "object",
+          required: ["incident_response_readiness_percent", "status", "next_gate"],
+          properties: {
+            incident_response_readiness_percent: { type: "integer", minimum: 0, maximum: 100 },
+            status: { type: "string", const: "local_incident_response_planning_only" },
+            next_gate: { type: "string", const: "define_production_incident_process_before_public_hosting" },
+          },
+        },
+        severity_model: { type: "array", items: { $ref: "#/components/schemas/IncidentSeverity" } },
+        checks: { type: "array", items: { $ref: "#/components/schemas/IncidentReadinessCheck" } },
+        containment_steps: { type: "array", items: { $ref: "#/components/schemas/IncidentResponseStep" } },
+        recovery_steps: { type: "array", items: { $ref: "#/components/schemas/IncidentResponseStep" } },
+        required_before_public_hosting: { type: "array", items: { type: "string" } },
+        recommended_operational_controls: { type: "array", items: { type: "string" } },
+        safety_statement: {
+          type: "string",
+          description: "Planning only: no production incident response, alerting, notification automation, certification, payment processing, or action execution.",
         },
       },
     },

@@ -61,6 +61,11 @@ async function main() {
   console.log(`monitoring_status=${monitoring.overall.status}`);
   console.log("No deployment occurred, no external alerting is enabled, and no action was executed.");
 
+  const incident = await client.incidentResponseReadiness();
+  console.log(`incident_response_readiness_percent=${incident.overall.incident_response_readiness_percent}`);
+  console.log(`incident_response_status=${incident.overall.status}`);
+  console.log("No deployment occurred, no external alerting was enabled, no notification was sent, and no action was executed.");
+
   if (decision.human_approval_required === true) {
     console.log("gateway_decision=REQUEST HUMAN");
     console.log("Stopping: explicit human review is required.");

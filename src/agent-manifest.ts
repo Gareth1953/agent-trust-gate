@@ -85,6 +85,7 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
       "production_security_readiness",
       "local_rate_limit_and_abuse_signals",
       "local_monitoring_health_signals",
+      "incident_response_and_recovery_readiness",
     ],
     schemas: {
       EmptyInput: {
@@ -198,6 +199,15 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
         "#/schemas/EmptyInput",
         "Local monitoring readiness, runtime, log health, control checks, and future production requirements.",
         "Local monitoring signal only. It is not production monitoring, external alerting, or a public uptime guarantee.",
+      ),
+      httpTool(
+        "atg_get_incident_response_readiness",
+        "Read local incident response and operational recovery planning signals.",
+        "GET",
+        "/v1/incident-response-readiness",
+        "#/schemas/EmptyInput",
+        "Local readiness percentage, severity model, checks, containment and recovery guidance, and future requirements.",
+        "Local planning signal only. It is not production incident response, sends no notifications, and never executes actions.",
       ),
       cliTool(
         "atg_get_usage",

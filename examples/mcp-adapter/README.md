@@ -22,6 +22,7 @@ The tool metadata exposes:
 - `atg_get_security_readiness`
 - `atg_get_rate_limit_status`
 - `atg_get_monitoring_health`
+- `atg_get_incident_response_readiness`
 - `atg_create_approval_pack`
 - `atg_create_evidence_bundle`
 
@@ -44,6 +45,10 @@ signals. It is not production-grade abuse prevention and never buys capacity.
 
 `atg_get_monitoring_health` reports local runtime and request-log health. It is
 not production monitoring, external alerting, or a public uptime SLA.
+
+`atg_get_incident_response_readiness` reports local severity, containment,
+recovery, and readiness guidance. It is not production incident response, does
+not send notifications, and never executes actions.
 
 ## Run locally
 

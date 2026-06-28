@@ -17,3 +17,4 @@ gateway-clients.json
 openapi/*.json
 manifests/*.json
 reports/*.json
+incidents/*.json

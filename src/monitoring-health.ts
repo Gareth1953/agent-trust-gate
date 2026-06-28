@@ -38,7 +38,7 @@ export interface MonitoringHealthReport {
   external_alerting_enabled: false;
   public_uptime_sla_enabled: false;
   overall: {
-    monitoring_readiness_percent: 30;
+    monitoring_readiness_percent: 33;
     status: "local_monitoring_signals_only";
     next_gate: "add_production_monitoring_and_alerting_before_public_hosting";
   };
@@ -100,7 +100,7 @@ export function createMonitoringHealthReport(
     external_alerting_enabled: false,
     public_uptime_sla_enabled: false,
     overall: {
-      monitoring_readiness_percent: 30,
+      monitoring_readiness_percent: 33,
       status: "local_monitoring_signals_only",
       next_gate: "add_production_monitoring_and_alerting_before_public_hosting",
     },
@@ -223,7 +223,7 @@ function monitoringChecks(): MonitoringHealthCheck[] {
     check("external_alerting_missing", "External alerting missing", "not_started", "critical", ["No email, SMS, chat, paging, or external alert integration exists."], "Define alert ownership, severity, escalation, deduplication, and tested delivery before hosting."),
     check("uptime_sla_missing", "Public uptime SLA missing", "not_started", "critical", ["No public service, external probe, availability objective, or uptime commitment exists."], "Define measurable service objectives before considering any contractual SLA."),
     check("log_retention_policy_missing", "Log retention policy missing", "not_started", "critical", ["Local logs have no approved production retention or deletion schedule."], "Approve purpose, access, retention, deletion, legal hold, and customer-data handling."),
-    check("incident_response_process_missing", "Incident response process missing", "not_started", "critical", ["Planning templates exist, but no staffed or exercised production workflow exists."], "Assign owners and exercise detection, triage, containment, recovery, communication, and review."),
+    check("incident_response_partial_local", "Incident response is partial and local", "partial", "warning", ["A local severity model, readiness report, containment and recovery guidance, and incident record export exist."], "Assign owners and exercise detection, triage, containment, recovery, communication, and review before hosting."),
     check("production_dashboard_missing", "Production dashboard missing", "not_started", "warning", ["No hosted operations dashboard exists."], "Build a protected dashboard only after metric definitions and access controls are approved."),
     check("backup_recovery_monitoring_missing", "Backup and recovery monitoring missing", "not_started", "critical", ["No hosted data store, backup verification, or recovery telemetry exists."], "Define backup scope, restore objectives, test frequency, alerts, and evidence before hosting."),
     check("payment_monitoring_not_started", "Payment monitoring not started", "future", "warning", ["Payments, billing, and automatic purchase are disabled."], "Design transaction, fraud, reconciliation, refund, and processor monitoring before billing."),

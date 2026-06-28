@@ -121,6 +121,12 @@ function Invoke-ATGMonitoringHealth {
   Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/monitoring-health"
 }
 
+function Invoke-ATGIncidentResponseReadiness {
+  [CmdletBinding()]
+  param([Parameter(Mandatory)]$Client)
+  Invoke-ATGRequest -Client $Client -Method Get -Path "/v1/incident-response-readiness"
+}
+
 function Invoke-ATGRequest {
   [CmdletBinding()]
   param(

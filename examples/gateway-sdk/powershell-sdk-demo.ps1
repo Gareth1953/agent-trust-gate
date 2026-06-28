@@ -57,6 +57,11 @@ try {
   Write-Host "monitoring_status=$($monitoring.overall.status)"
   Write-Host "No deployment occurred, no external alerting is enabled, and no action was executed."
 
+  $incident = Invoke-ATGIncidentResponseReadiness -Client $client
+  Write-Host "incident_response_readiness_percent=$($incident.overall.incident_response_readiness_percent)"
+  Write-Host "incident_response_status=$($incident.overall.status)"
+  Write-Host "No deployment occurred, no external alerting was enabled, no notification was sent, and no action was executed."
+
   if ($decision.human_approval_required -eq $true) {
     Write-Host "gateway_decision=REQUEST HUMAN"
     Write-Host "Stopping: explicit human review is required."

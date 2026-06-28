@@ -91,12 +91,20 @@ import {
   formatMonitoringHealthForConsole,
   writeMonitoringHealthReport,
 } from "./monitoring-health.js";
+import {
+  createIncidentRecordTemplate,
+  createIncidentResponseReadinessReport,
+  formatIncidentRecordTemplateForConsole,
+  formatIncidentResponseReadinessForConsole,
+  writeIncidentRecordTemplate,
+  writeIncidentResponseReadinessReport,
+} from "./incident-response-readiness.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const BASE_USAGE =
   "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787] [--require-api-key] [--clients-file gateway-clients.json]\n       npm run verify -- --openapi [--json] [--output <path>]\n       npm run verify -- --agent-manifest [--json] [--output <path>]\n       npm run verify -- --entitlement [--client-id <id>] [--clients-file gateway-clients.json] [--json]\n       npm run verify -- --commercial-readiness [--json] [--output <path>]\n       npm run verify -- --hosted-readiness [--json] [--output <path>]\n       npm run verify -- --security-readiness [--json] [--output <path>]\n       npm run verify -- --gateway-admin [--clients-file gateway-clients.json] [--json]\n       npm run verify -- --gateway-usage [--json]\n       npm run verify -- --client-usage [--json]\n       npm run verify -- --list-gateway-requests [--limit 20] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
 
-const USAGE = `${BASE_USAGE}\n       npm run verify -- --rate-limit-status [--client-id <id>] [--clients-file gateway-clients.json] [--json] [--output <path>]\n       npm run verify -- --monitoring-health [--json] [--output <path>]`;
+const USAGE = `${BASE_USAGE}\n       npm run verify -- --rate-limit-status [--client-id <id>] [--clients-file gateway-clients.json] [--json] [--output <path>]\n       npm run verify -- --monitoring-health [--json] [--output <path>]\n       npm run verify -- --incident-response-readiness [--json] [--output <path>]\n       npm run verify -- --incident-template [--json] [--output <path>]`;
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
@@ -124,6 +132,14 @@ export function runCli(args: string[]): number {
 
   if (args.includes("--monitoring-health")) {
     return runMonitoringHealthMode(args, jsonMode);
+  }
+
+  if (args.includes("--incident-response-readiness")) {
+    return runIncidentResponseReadinessMode(args, jsonMode);
+  }
+
+  if (args.includes("--incident-template")) {
+    return runIncidentTemplateMode(args, jsonMode);
   }
 
   if (args.includes("--commercial-readiness")) {
@@ -607,6 +623,87 @@ function parseMonitoringHealthArgs(args: string[]): { output?: string; error?: s
       return { error: `--monitoring-health cannot be combined with ${arg}.` };
     }
     return { error: "--monitoring-health does not accept an action file argument." };
+  }
+  return output === undefined ? {} : { output };
+}
+
+function runIncidentResponseReadinessMode(args: string[], jsonMode: boolean): number {
+  const parsedArgs = parseOutputOnlyArgs(args, "--incident-response-readiness");
+  if (parsedArgs.error !== undefined) {
+    printError("INVALID_INCIDENT_RESPONSE_READINESS_ARGUMENTS", parsedArgs.error, jsonMode);
+    return 1;
+  }
+
+  try {
+    const report = createIncidentResponseReadinessReport();
+    const outputPath = parsedArgs.output === undefined
+      ? undefined
+      : writeIncidentResponseReadinessReport(parsedArgs.output, report);
+    console.log(
+      jsonMode
+        ? JSON.stringify(report, null, 2)
+        : formatIncidentResponseReadinessForConsole(report),
+    );
+    if (!jsonMode && outputPath !== undefined) {
+      console.log(`\nSaved incident response readiness report to ${outputPath}`);
+    }
+    return 0;
+  } catch (error) {
+    printError("INCIDENT_RESPONSE_READINESS_ERROR", `Unable to create incident response readiness report: ${errorMessage(error)}`, jsonMode);
+    return 1;
+  }
+}
+
+function runIncidentTemplateMode(args: string[], jsonMode: boolean): number {
+  const parsedArgs = parseOutputOnlyArgs(args, "--incident-template");
+  if (parsedArgs.error !== undefined) {
+    printError("INVALID_INCIDENT_TEMPLATE_ARGUMENTS", parsedArgs.error, jsonMode);
+    return 1;
+  }
+
+  try {
+    const template = createIncidentRecordTemplate();
+    const outputPath = parsedArgs.output === undefined
+      ? undefined
+      : writeIncidentRecordTemplate(parsedArgs.output, template);
+    console.log(
+      jsonMode
+        ? JSON.stringify(template, null, 2)
+        : formatIncidentRecordTemplateForConsole(template),
+    );
+    if (!jsonMode && outputPath !== undefined) {
+      console.log(`\nSaved incident record template to ${outputPath}`);
+    }
+    return 0;
+  } catch (error) {
+    printError("INCIDENT_TEMPLATE_ERROR", `Unable to create incident record template: ${errorMessage(error)}`, jsonMode);
+    return 1;
+  }
+}
+
+function parseOutputOnlyArgs(
+  args: string[],
+  command: "--incident-response-readiness" | "--incident-template",
+): { output?: string; error?: string } {
+  let output: string | undefined;
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (arg === command || arg === "--json") {
+      continue;
+    }
+    if (arg === "--output") {
+      const value = args[index + 1];
+      if (value === undefined || value.startsWith("--")) {
+        return { error: "Missing output path after --output." };
+      }
+      output = value;
+      index += 1;
+      continue;
+    }
+    if (arg?.startsWith("--")) {
+      return { error: `${command} cannot be combined with ${arg}.` };
+    }
+    return { error: `${command} does not accept an action file argument.` };
   }
   return output === undefined ? {} : { output };
 }

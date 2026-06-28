@@ -25,7 +25,7 @@ test("security readiness report is versioned and never certifies production secu
   assert.equal(report.production_security_certified, false);
   assert.equal(report.public_service_safe, false);
   assert.equal(report.payment_security_ready, false);
-  assert.equal(report.overall.security_readiness_percent, 38);
+  assert.equal(report.overall.security_readiness_percent, 40);
   assert.equal(report.overall.status, "security_preparation_only_not_production_certified");
 });
 
@@ -39,6 +39,7 @@ test("security readiness includes implemented foundations and missing production
     "rate_limiting_local_only",
     "abuse_prevention_local_signals",
     "production_monitoring_local_signals",
+    "incident_response_partial_local",
     "transport_security_required",
     "payment_security_not_started",
   ]) {
