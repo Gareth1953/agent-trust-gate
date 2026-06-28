@@ -1,0 +1,24 @@
+{
+  "example_version": "atg.commercial-launch-example.v1",
+  "local_only": true,
+  "proposed_action": {
+    "action_type": "publish_landing_page",
+    "description": "Publish a future Agent Trust Gate landing page.",
+    "required_flags": [
+      "launch_enabled",
+      "publishing_enabled"
+    ]
+  },
+  "control_state": {
+    "launch_enabled": false,
+    "publishing_enabled": false
+  },
+  "decision": "blocked",
+  "reason_codes": [
+    "COMMERCIAL_LAUNCH_DISABLED",
+    "PUBLISHING_DISABLED",
+    "GARETH_FINAL_APPROVAL_REQUIRED"
+  ],
+  "executes_actions": false,
+  "safety_statement": "This local example is blocked and does not publish, deploy, send outreach, collect signups, bill, process payments, track users, or execute actions."
+}

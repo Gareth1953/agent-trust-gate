@@ -13,3 +13,8 @@ the described action.
 There is no hosted service, public API, signup, analytics, billing, payment
 processing, or automatic purchase. See the hosted roadmap and safety limits before
 evaluating future commercial use.
+
+Future movement beyond local readiness is governed by the
+[Commercial Launch Control Pack](../commercial-launch-control.md). Its default
+decision is blocked and every launch, deployment, publishing, outreach, signup,
+tracking, billing, payment, and automatic-purchase flag is false.

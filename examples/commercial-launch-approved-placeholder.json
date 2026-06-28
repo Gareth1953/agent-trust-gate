@@ -1,0 +1,28 @@
+{
+  "approval_version": "atg.commercial-launch-approval-placeholder.v1",
+  "local_only": true,
+  "status": "placeholder_only_blocked",
+  "proposed_action": "future_controlled_commercial_launch",
+  "approval_requirements": {
+    "human_approval_recorded": false,
+    "gareth_final_approval_recorded": false,
+    "technical_validation_complete": false,
+    "commercial_validation_complete": false,
+    "legal_review_complete": false
+  },
+  "activation_state": {
+    "launch_enabled": false,
+    "deployment_enabled": false,
+    "publishing_enabled": false,
+    "outreach_enabled": false,
+    "signup_enabled": false,
+    "billing_enabled": false,
+    "payment_enabled": false,
+    "tracking_enabled": false,
+    "automatic_purchase_enabled": false
+  },
+  "decision": "blocked",
+  "reason": "A placeholder approval object is not approval and cannot activate launch capabilities.",
+  "executes_actions": false,
+  "safety_statement": "This placeholder does not approve or enable launch, deployment, publishing, outreach, signup, billing, payment, tracking, automatic purchase, or action execution."
+}

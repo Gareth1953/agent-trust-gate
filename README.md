@@ -1151,6 +1151,22 @@ not contact external agents, scan the web, send outreach, publish an agent card,
 expose a public endpoint, process payments, enable automatic purchase, or execute
 actions.
 
+## P3-M035: Commercial Launch Control Pack
+
+P3-M035 adds a deny-by-default local governance document and machine-readable
+control record for any future commercial launch decision. See
+`docs/commercial-launch-control.md` and
+`config/commercial-launch-control.json`. The blocked and placeholder examples are
+`examples/commercial-launch-blocked.json` and
+`examples/commercial-launch-approved-placeholder.json`.
+
+Every launch, deployment, publishing, outreach, signup, billing, payment,
+tracking, scanning, customer-charging, and automatic-purchase flag defaults to
+false. Technical validation, commercial validation, legal review, human approval,
+and Gareth's final approval are all required. This pack does not launch, deploy,
+publish, sell, contact, sign up, bill, charge, track, scan, buy, or execute
+anything.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:
