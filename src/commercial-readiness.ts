@@ -26,9 +26,9 @@ export interface CommercialReadinessSnapshot {
   generated_at: string;
   local_only: true;
   overall: {
-    local_product_readiness_percent: 91;
-    commercial_mvp_readiness_percent: 71;
-    full_target_readiness_percent: 46;
+    local_product_readiness_percent: 92;
+    commercial_mvp_readiness_percent: 72;
+    full_target_readiness_percent: 48;
     status: "local_infrastructure_ready_not_commercially_complete";
   };
   categories: CommercialReadinessCategory[];
@@ -47,9 +47,9 @@ export function createCommercialReadinessSnapshot(
     generated_at: now.toISOString(),
     local_only: true,
     overall: {
-      local_product_readiness_percent: 91,
-      commercial_mvp_readiness_percent: 71,
-      full_target_readiness_percent: 46,
+      local_product_readiness_percent: 92,
+      commercial_mvp_readiness_percent: 72,
+      full_target_readiness_percent: 48,
       status: "local_infrastructure_ready_not_commercially_complete",
     },
     categories: categories(),
@@ -157,6 +157,7 @@ function categories(): CommercialReadinessCategory[] {
     partial("customer_accounts", "Customer accounts", 20, ["A local-only account and tenant readiness model, placeholder config parser, and disabled commerce signals exist."], ["No real customer records, signup, login, account lifecycle, secure database, support process, privacy review, or production authentication."], "Define and review production account identity, lifecycle, storage, privacy, and support controls."),
     partial("tenant_and_client_ownership", "Tenant and client ownership", 25, ["Future account, tenant, plan, entitlement, usage-owner, billing-owner, and client mapping concepts are machine-readable."], ["No production tenant isolation, authorization, mapping store, billing relationship, or auditable ownership-change workflow."], "Design tenant isolation and auditable client ownership before hosted customer onboarding."),
     partial("billing_and_payment_readiness", "Billing and payment readiness", 20, ["A local price-free placeholder plan catalogue, billing state model, payment-provider requirements, and disabled machine-purchase model exist."], ["No provider, payment flow, customer charges, payment-data handling, PCI scope review, billing ledger, tax review, commercial tariff, refunds, or reconciliation."], "Complete legal, tax, payment-security, provider, ledger, monitoring, and customer-control design before payments."),
+    partial("machine_to_machine_purchase_policy", "Machine-to-machine purchase policy", 25, ["A local deny-by-default policy requires zero spending limits, human approval, ownership, entitlement, and evidence."], ["No payment provider, purchase endpoint, payment execution, production limits, financial receipts, or automatic purchase."], "Complete all payment, ownership, approval, evidence, fraud, incident, legal, and tax gates before enabling."),
     notStarted("payment_processing", "Payment processing", "No payment processor or transaction flow is integrated.", "Validate pricing and legal design before selecting payment infrastructure."),
     future("automatic_machine_to_machine_purchase", "Automatic machine-to-machine purchase", "Automatic purchase is explicitly disabled.", "Wait for a governed payment, consent, fraud, refund, and authorization design."),
     notStarted("billing_records", "Billing records", "No invoices, billing ledger, taxation, refunds, or revenue recognition records.", "Design auditable billing records only after pricing validation."),

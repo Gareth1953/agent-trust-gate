@@ -100,6 +100,9 @@ test("entitlement statuses cover unlimited, active, at-limit, over-limit, and un
       assert.equal(entitlement.automatic_purchase_enabled, false, entry.name);
       assert.equal(entitlement.plan_code, null, entry.name);
       assert.equal(entitlement.payment_required, false, entry.name);
+      assert.equal(entitlement.upgrade_policy_available, true, entry.name);
+      assert.equal(entitlement.machine_purchase_policy_required, true, entry.name);
+      assert.equal(entitlement.human_approval_required_before_purchase, true, entry.name);
     }
   } finally {
     rmSync(directory, { recursive: true, force: true });

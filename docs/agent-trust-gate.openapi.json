@@ -627,6 +627,52 @@
         }
       }
     },
+    "/v1/machine-purchase-policy-readiness": {
+      "get": {
+        "tags": [
+          "Gateway"
+        ],
+        "summary": "Read local machine purchase policy readiness",
+        "description": "Planning only; no automatic purchase, billing, payment, or action execution.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Local machine purchase policy readiness.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MachinePurchasePolicyReadinessResponse"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "The endpoint does not support this HTTP method.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected local gateway error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/decision": {
       "post": {
         "tags": [
@@ -2806,6 +2852,178 @@
           "safety_statement": {
             "type": "string",
             "description": "Planning only: no production incident response, alerting, notification automation, certification, payment processing, or action execution."
+          }
+        }
+      },
+      "MachinePurchasePolicyReadinessCheck": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "status",
+          "severity",
+          "evidence",
+          "recommendation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recommendation": {
+            "type": "string"
+          }
+        }
+      },
+      "PolicyModel": {
+        "type": "object",
+        "description": "Deny-by-default local purchase policy signals."
+      },
+      "SpendingControlModel": {
+        "type": "object",
+        "required": [
+          "default_policy",
+          "automatic_purchase_limit"
+        ],
+        "properties": {
+          "default_policy": {
+            "type": "string",
+            "const": "deny_automatic_purchase"
+          },
+          "automatic_purchase_limit": {
+            "type": "integer",
+            "const": 0
+          }
+        }
+      },
+      "ApprovalModel": {
+        "type": "object",
+        "required": [
+          "human_approval_required",
+          "agent_self_approval_allowed"
+        ],
+        "properties": {
+          "human_approval_required": {
+            "type": "boolean",
+            "const": true
+          },
+          "agent_self_approval_allowed": {
+            "type": "boolean",
+            "const": false
+          }
+        }
+      },
+      "PurchaseEvidenceModel": {
+        "type": "object",
+        "description": "Required future purchase-attempt evidence fields."
+      },
+      "MachinePurchasePolicyReadinessResponse": {
+        "type": "object",
+        "required": [
+          "contract_version",
+          "machine_purchase_policy_readiness_version",
+          "request_id",
+          "local_only",
+          "machine_purchase_policy_available",
+          "automatic_purchase_enabled",
+          "payment_execution_enabled",
+          "purchase_endpoint_enabled",
+          "real_charges_enabled",
+          "overall",
+          "policy_model",
+          "spending_control_model",
+          "approval_model",
+          "purchase_evidence_model",
+          "checks",
+          "required_before_automatic_purchase",
+          "recommended_machine_purchase_controls",
+          "safety_statement"
+        ],
+        "properties": {
+          "contract_version": {
+            "type": "string",
+            "const": "atg.v1"
+          },
+          "machine_purchase_policy_readiness_version": {
+            "type": "string",
+            "const": "atg.machine-purchase-policy-readiness.v1"
+          },
+          "request_id": {
+            "type": "string"
+          },
+          "local_only": {
+            "type": "boolean",
+            "const": true
+          },
+          "machine_purchase_policy_available": {
+            "type": "boolean",
+            "const": true
+          },
+          "automatic_purchase_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "payment_execution_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "purchase_endpoint_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "real_charges_enabled": {
+            "type": "boolean",
+            "const": false
+          },
+          "overall": {
+            "type": "object"
+          },
+          "policy_model": {
+            "$ref": "#/components/schemas/PolicyModel"
+          },
+          "spending_control_model": {
+            "$ref": "#/components/schemas/SpendingControlModel"
+          },
+          "approval_model": {
+            "$ref": "#/components/schemas/ApprovalModel"
+          },
+          "purchase_evidence_model": {
+            "$ref": "#/components/schemas/PurchaseEvidenceModel"
+          },
+          "checks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MachinePurchasePolicyReadinessCheck"
+            }
+          },
+          "required_before_automatic_purchase": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recommended_machine_purchase_controls": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "safety_statement": {
+            "type": "string"
           }
         }
       },

@@ -109,12 +109,13 @@ import {
   formatBillingPaymentReadinessForConsole,
   writeBillingPaymentReadinessReport,
 } from "./billing-payment-readiness.js";
+import { createMachinePurchasePolicyReadinessReport, formatMachinePurchasePolicyReadinessForConsole, writeMachinePurchasePolicyReadinessReport } from "./machine-purchase-policy-readiness.js";
 import type { VerifyBeforeActionInput } from "./types.js";
 
 const BASE_USAGE =
   "Usage: npm run verify -- <path-to-action.json> [--save] [--approval-pack] [--save-approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --review-approval-pack <approval-pack.json> --decision approved|rejected|needs_more_info --reviewer <name> [--review-note <note>] [--save-review-record] [--json]\n       npm run verify -- --evidence-bundle <review-record.json> [--save-evidence-bundle] [--json]\n       npm run verify -- --serve [--port 8787] [--require-api-key] [--clients-file gateway-clients.json]\n       npm run verify -- --openapi [--json] [--output <path>]\n       npm run verify -- --agent-manifest [--json] [--output <path>]\n       npm run verify -- --entitlement [--client-id <id>] [--clients-file gateway-clients.json] [--json]\n       npm run verify -- --commercial-readiness [--json] [--output <path>]\n       npm run verify -- --hosted-readiness [--json] [--output <path>]\n       npm run verify -- --security-readiness [--json] [--output <path>]\n       npm run verify -- --gateway-admin [--clients-file gateway-clients.json] [--json]\n       npm run verify -- --gateway-usage [--json]\n       npm run verify -- --client-usage [--json]\n       npm run verify -- --list-gateway-requests [--limit 20] [--json]\n       npm run verify -- --batch <directory> [--save] [--approval-pack] [--json] [--fail-on-block] [--policy standard|strict|regulated]\n       npm run verify -- --audit-reviews [--json]\n       npm run verify -- --list-review-records [--json]\n       npm run verify -- --audit [--json]\n       npm run verify -- --list-receipts [--json]\n       npm run verify -- --contract [--json]";
 
-const USAGE = `${BASE_USAGE}\n       npm run verify -- --rate-limit-status [--client-id <id>] [--clients-file gateway-clients.json] [--json] [--output <path>]\n       npm run verify -- --monitoring-health [--json] [--output <path>]\n       npm run verify -- --incident-response-readiness [--json] [--output <path>]\n       npm run verify -- --incident-template [--json] [--output <path>]\n       npm run verify -- --customer-tenant-readiness [--tenants-file <path>] [--json] [--output <path>]\n       npm run verify -- --billing-payment-readiness [--plans-file <path>] [--json] [--output <path>]`;
+const USAGE = `${BASE_USAGE}\n       npm run verify -- --rate-limit-status [--client-id <id>] [--clients-file gateway-clients.json] [--json] [--output <path>]\n       npm run verify -- --monitoring-health [--json] [--output <path>]\n       npm run verify -- --incident-response-readiness [--json] [--output <path>]\n       npm run verify -- --incident-template [--json] [--output <path>]\n       npm run verify -- --customer-tenant-readiness [--tenants-file <path>] [--json] [--output <path>]\n       npm run verify -- --billing-payment-readiness [--plans-file <path>] [--json] [--output <path>]\n       npm run verify -- --machine-purchase-policy-readiness [--policy-file <path>] [--json] [--output <path>]`;
 
 export function runCli(args: string[]): number {
   const jsonMode = args.includes("--json");
@@ -159,6 +160,7 @@ export function runCli(args: string[]): number {
   if (args.includes("--billing-payment-readiness")) {
     return runBillingPaymentReadinessMode(args, jsonMode);
   }
+  if (args.includes("--machine-purchase-policy-readiness")) return runMachinePurchasePolicyReadinessMode(args,jsonMode);
 
   if (args.includes("--commercial-readiness")) {
     return runCommercialReadinessMode(args, jsonMode);
@@ -834,6 +836,11 @@ function parseBillingPaymentReadinessArgs(args: string[]): { plansFile?: string;
   }
   return { ...(plansFile === undefined ? {} : { plansFile }), ...(output === undefined ? {} : { output }) };
 }
+function runMachinePurchasePolicyReadinessMode(args:string[],json:boolean):number{
+  const p=parseMachinePurchasePolicyReadinessArgs(args);if(p.error){printError("INVALID_MACHINE_PURCHASE_POLICY_READINESS_ARGUMENTS",p.error,json);return 1;}
+  try{const r=createMachinePurchasePolicyReadinessReport({...p.policyFile===undefined?{}:{policyFile:p.policyFile}});const out=p.output===undefined?undefined:writeMachinePurchasePolicyReadinessReport(p.output,r);console.log(json?JSON.stringify(r,null,2):formatMachinePurchasePolicyReadinessForConsole(r));if(!json&&out)console.log(`\nSaved machine purchase policy readiness report to ${out}`);return 0;}catch(e){printError("MACHINE_PURCHASE_POLICY_READINESS_ERROR",`Unable to create machine purchase policy readiness report: ${errorMessage(e)}`,json);return 1;}
+}
+function parseMachinePurchasePolicyReadinessArgs(args:string[]):{policyFile?:string;output?:string;error?:string}{let policyFile:string|undefined,output:string|undefined;for(let i=0;i<args.length;i++){const a=args[i];if(a==="--machine-purchase-policy-readiness"||a==="--json")continue;if(a==="--policy-file"||a==="--output"){const v=args[i+1];if(v===undefined||v.startsWith("--"))return{error:`Missing value after ${a}.`};if(a==="--policy-file")policyFile=v;else output=v;i++;continue;}return{error:`--machine-purchase-policy-readiness cannot be combined with ${a}.`};}return{...(policyFile?{policyFile}:{}),...(output?{output}:{})};}
 
 function runCommercialReadinessMode(args: string[], jsonMode: boolean): number {
   const parsedArgs = parseCommercialReadinessArgs(args);

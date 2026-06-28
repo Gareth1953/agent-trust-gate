@@ -1,0 +1,16 @@
+{
+  "policy_version": "atg.machine-purchase-policy.example.v1",
+  "local_only": true,
+  "automatic_purchase_enabled": false,
+  "payment_execution_enabled": false,
+  "default_decision": "deny_automatic_purchase",
+  "currency": "GBP",
+  "per_purchase_limit": 0,
+  "daily_limit": 0,
+  "monthly_limit": 0,
+  "human_approval_required": true,
+  "approval_pack_required": true,
+  "evidence_bundle_required": true,
+  "allowed_plan_codes": [],
+  "safety_statement": "This example policy does not enable payments, billing, or automatic purchase."
+}

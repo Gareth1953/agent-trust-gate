@@ -38,6 +38,9 @@ export interface GatewayEntitlementStatus {
   account_id: null;
   plan_code: null;
   payment_required: false;
+  upgrade_policy_available: true;
+  machine_purchase_policy_required: true;
+  human_approval_required_before_purchase: true;
   local_only: true;
   billing_enabled: false;
   payment_processing_enabled: false;
@@ -127,6 +130,9 @@ export function getGatewayEntitlementStatus(input: {
     account_id: null,
     plan_code: null,
     payment_required: false,
+    upgrade_policy_available: true,
+    machine_purchase_policy_required: true,
+    human_approval_required_before_purchase: true,
     local_only: true,
     billing_enabled: false,
     payment_processing_enabled: false,

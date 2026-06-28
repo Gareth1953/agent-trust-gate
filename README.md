@@ -1077,6 +1077,26 @@ create real invoices, expose a public service, execute actions, authenticate
 real-world identities, guarantee legality, prove compliance, provide PCI
 compliance, or provide security certification.
 
+## P3-M032: Machine-to-Machine Purchase Policy Readiness Pack
+
+This pack adds a strict local deny policy with zero spending limits, mandatory
+human approval, and purchase evidence requirements. It adds no purchase endpoint.
+
+```sh
+npm run verify -- --machine-purchase-policy-readiness
+npm run verify -- --machine-purchase-policy-readiness --json
+npm run verify -- --machine-purchase-policy-readiness --output reports/machine-purchase-policy-readiness.json
+npm run verify -- --machine-purchase-policy-readiness --policy-file examples/machine-purchase-policy/machine-purchase-policy.example.json --json
+```
+
+`GET http://127.0.0.1:8787/v1/machine-purchase-policy-readiness`
+
+Machine-to-machine purchase policy readiness is a local planning snapshot only.
+It does not enable automatic purchase, bill customers, process payments, collect
+payment details, create real purchases, expose a public service, execute actions,
+authenticate real-world identities, guarantee legality, prove compliance, provide
+PCI compliance, or provide security certification.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

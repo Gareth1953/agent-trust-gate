@@ -139,6 +139,14 @@
       "executes_actions": false
     },
     {
+      "name": "atg_get_machine_purchase_policy_readiness",
+      "description": "Read local deny-by-default machine purchase policy readiness.",
+      "inputSchema": { "type": "object", "additionalProperties": false, "properties": {} },
+      "output": "Local policy, spending, approval, evidence, and disabled purchase fields.",
+      "safety_note": "Does not bill, collect payment details, process payments, or enable automatic purchase.",
+      "executes_actions": false
+    },
+    {
       "name": "atg_create_approval_pack",
       "description": "Create a local approval packet for an action.",
       "inputSchema": {

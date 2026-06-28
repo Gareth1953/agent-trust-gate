@@ -88,6 +88,7 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
       "incident_response_and_recovery_readiness",
       "customer_tenant_readiness",
       "billing_payment_readiness",
+      "machine_purchase_policy_readiness",
     ],
     schemas: {
       EmptyInput: {
@@ -229,6 +230,7 @@ export function createAgentIntegrationManifest(): AgentIntegrationManifest {
         "Local billing and payment readiness, placeholder plans, required controls, and disabled commerce fields.",
         "Local planning only. It does not bill customers, collect payment details, process payments, enable automatic purchase, or execute actions.",
       ),
+      httpTool("atg_get_machine_purchase_policy_readiness","Read local deny-by-default machine purchase policy readiness.","GET","/v1/machine-purchase-policy-readiness","#/schemas/EmptyInput","Local policy, spending, approval, evidence, and disabled purchase fields.","Planning only. It does not bill, process payments, or enable automatic purchase."),
       cliTool(
         "atg_get_usage",
         "Read the local gateway usage and allowance summary through the CLI.",

@@ -23,7 +23,8 @@
     "local_monitoring_health_signals",
     "incident_response_and_recovery_readiness",
     "customer_tenant_readiness",
-    "billing_payment_readiness"
+    "billing_payment_readiness",
+    "machine_purchase_policy_readiness"
   ],
   "schemas": {
     "EmptyInput": {
@@ -191,6 +192,17 @@
       "input_schema_ref": "#/schemas/EmptyInput",
       "output_summary": "Local billing and payment readiness, placeholder plans, required controls, and disabled commerce fields.",
       "safety_note": "Local planning only. It does not bill customers, collect payment details, process payments, enable automatic purchase, or execute actions.",
+      "executes_actions": false
+    },
+    {
+      "name": "atg_get_machine_purchase_policy_readiness",
+      "description": "Read local deny-by-default machine purchase policy readiness.",
+      "transport": "http",
+      "http_method": "GET",
+      "path": "/v1/machine-purchase-policy-readiness",
+      "input_schema_ref": "#/schemas/EmptyInput",
+      "output_summary": "Local policy, spending, approval, evidence, and disabled purchase fields.",
+      "safety_note": "Planning only. It does not bill, process payments, or enable automatic purchase.",
       "executes_actions": false
     },
     {

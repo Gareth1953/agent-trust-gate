@@ -19,7 +19,7 @@ test("agent manifest exposes stable discovery, capabilities, and disabled commer
   assert.equal(manifest.contract_version, "atg.v1");
   assert.equal(manifest.gateway_api_version, "atg.gateway.v1");
   assert.equal(manifest.openapi_url, "/v1/openapi.json");
-  for (const capability of ["pre_action_trust_decision", "approval_pack_generation", "human_review_evidence", "evidence_bundle_export", "gateway_usage_metering", "local_client_allowances", "local_admin_summary", "agent_entitlement_status", "commercial_readiness_snapshot", "hosted_deployment_readiness", "production_security_readiness", "local_rate_limit_and_abuse_signals", "local_monitoring_health_signals", "incident_response_and_recovery_readiness", "customer_tenant_readiness", "billing_payment_readiness"]) {
+  for (const capability of ["pre_action_trust_decision", "approval_pack_generation", "human_review_evidence", "evidence_bundle_export", "gateway_usage_metering", "local_client_allowances", "local_admin_summary", "agent_entitlement_status", "commercial_readiness_snapshot", "hosted_deployment_readiness", "production_security_readiness", "local_rate_limit_and_abuse_signals", "local_monitoring_health_signals", "incident_response_and_recovery_readiness", "customer_tenant_readiness", "billing_payment_readiness", "machine_purchase_policy_readiness"]) {
     assert.ok(manifest.capabilities.includes(capability), capability);
   }
   assert.equal(manifest.tools.every((tool) => tool.executes_actions === false), true);
@@ -63,6 +63,7 @@ test("agent manifest exposes stable discovery, capabilities, and disabled commer
     tool.path === "/v1/billing-payment-readiness" &&
     tool.executes_actions === false
   )), true);
+  assert.ok(manifest.tools.some((tool)=>tool.name==="atg_get_machine_purchase_policy_readiness"&&tool.executes_actions===false));
   assert.equal(manifest.tools.some((tool) => (
     tool.name === "atg_get_commercial_readiness" &&
     tool.path === "/v1/commercial-readiness" &&

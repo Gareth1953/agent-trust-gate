@@ -27,7 +27,8 @@ test("billing payment readiness is versioned and all transaction capabilities re
   assert.equal(report.real_charges_enabled, false);
   assert.equal(report.payment_provider_configured, false);
   assert.equal(report.pci_scope_assessed, false);
-  assert.equal(report.overall.billing_payment_readiness_percent, 20);
+  assert.equal(report.overall.billing_payment_readiness_percent, 25);
+  assert.ok(report.checks.some((check) => check.id === "machine_purchase_policy_readiness_available"));
 });
 
 test("plan, billing, payment, and machine purchase models are placeholders only", () => {

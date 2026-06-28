@@ -36,7 +36,7 @@ export interface BillingPaymentReadinessReport {
   payment_provider_configured: false;
   pci_scope_assessed: false;
   overall: {
-    billing_payment_readiness_percent: 20;
+    billing_payment_readiness_percent: 25;
     status: "local_billing_payment_planning_only";
     next_gate: "define_payment_provider_and_billing_controls_before_enabling_payments";
   };
@@ -101,7 +101,7 @@ export function createBillingPaymentReadinessReport(options: {
     payment_provider_configured: false,
     pci_scope_assessed: false,
     overall: {
-      billing_payment_readiness_percent: 20,
+      billing_payment_readiness_percent: 25,
       status: "local_billing_payment_planning_only",
       next_gate: "define_payment_provider_and_billing_controls_before_enabling_payments",
     },
@@ -219,6 +219,7 @@ function readinessChecks(plans: LocalBillingPlansResult): BillingPaymentReadines
     check("billing_ledger_missing", "Billing ledger missing", "not_started", "critical", ["No invoice, receipt, payment, refund, tax, or reconciliation ledger exists."], "Design immutable, auditable financial records before billing."),
     check("payment_monitoring_missing", "Payment monitoring missing", "future", "warning", ["Payments are disabled, so no transaction or failure monitoring exists."], "Add transaction, fraud, reconciliation, failure, and dispute monitoring before charging."),
     check("automatic_purchase_disabled", "Automatic purchase disabled", "pass", "info", ["No purchase endpoint or payment execution path exists."], "Require governed authorization, limits, revocation, fraud controls, and human approval before enabling."),
+    check("machine_purchase_policy_readiness_available", "Machine purchase policy readiness available", "partial", "warning", ["A local deny-by-default, zero-limit, human-approval policy model exists."], "Keep automatic purchase disabled until all provider, security, legal, ownership, evidence, and approval gates are complete."),
     check("public_hosting_not_enabled", "Public hosting not enabled", "pass", "info", ["The gateway remains local-only and localhost-bound by default."], "Do not expose billing or payment surfaces before production hosting and security gates are complete."),
   ];
 }

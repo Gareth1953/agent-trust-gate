@@ -27,7 +27,7 @@ test("OpenAPI contract includes versions and every local gateway endpoint", () =
   assert.equal(contract.openapi, "3.1.0");
   assert.equal(contract["x-atg-contract-version"], "atg.v1");
   assert.equal(contract["x-atg-gateway-api-version"], "atg.gateway.v1");
-  for (const path of ["/v1/health", "/v1/decision", "/v1/approval-pack", "/v1/evidence-bundle", "/v1/openapi.json", "/v1/agent-manifest.json", "/v1/entitlement", "/v1/commercial-readiness", "/v1/hosted-readiness", "/v1/security-readiness", "/v1/rate-limit-status", "/v1/monitoring-health", "/v1/incident-response-readiness", "/v1/customer-tenant-readiness", "/v1/billing-payment-readiness"]) {
+  for (const path of ["/v1/health", "/v1/decision", "/v1/approval-pack", "/v1/evidence-bundle", "/v1/openapi.json", "/v1/agent-manifest.json", "/v1/entitlement", "/v1/commercial-readiness", "/v1/hosted-readiness", "/v1/security-readiness", "/v1/rate-limit-status", "/v1/monitoring-health", "/v1/incident-response-readiness", "/v1/customer-tenant-readiness", "/v1/billing-payment-readiness", "/v1/machine-purchase-policy-readiness"]) {
     assert.ok(paths[path], `missing ${path}`);
   }
 });
@@ -52,6 +52,7 @@ test("OpenAPI contract documents local headers, required schemas, and usage limi
   assert.match(serialized, /atg\.incident-response\.v1/);
   assert.match(serialized, /atg\.customer-tenant-readiness\.v1/);
   assert.match(serialized, /atg\.billing-payment-readiness\.v1/);
+  assert.match(serialized, /atg\.machine-purchase-policy-readiness\.v1/);
   assert.match(serialized, /UnknownRoute/);
   assert.doesNotMatch(serialized, /quickstart-demo-key|replace-with-local-dev-key/);
 });
