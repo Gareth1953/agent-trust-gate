@@ -23,3 +23,9 @@ Public-facing trust explanations are drafted in the
 [Public Trust Page](../public-trust-page.md) and
 [Public Trust FAQ](../public-trust-faq.md). Both remain local, unpublished, and
 subject to commercial launch control, legal review, and Gareth final approval.
+
+Future integrations are governed by the
+[Developer Integration Safety Guide](../developer-integration-safety.md) and its
+[non-live API draft](../developer-integration-api-draft.md). External APIs,
+agent-to-agent networking, third-party connections, webhooks, live customer data,
+and action execution remain disabled.

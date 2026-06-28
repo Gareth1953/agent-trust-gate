@@ -1,0 +1,24 @@
+{
+  "request_version": "atg.developer-integration-request-draft.v1",
+  "status": "draft_only",
+  "local_only": true,
+  "integration_enabled": false,
+  "action_execution_enabled": false,
+  "action_id": "local-action-placeholder",
+  "actor_type": "ai_agent",
+  "actor_name": "local-demo-agent",
+  "proposed_action": "Send a customer-facing service update after human review.",
+  "action_category": "customer_communication",
+  "target": "customer-record-placeholder",
+  "impact_level": "high",
+  "evidence": [],
+  "human_approval_status": "not_requested",
+  "requested_output": [
+    "decision",
+    "risk_signals",
+    "approval_requirements",
+    "receipt"
+  ],
+  "executes_actions": false,
+  "safety_statement": "This local draft does not send email, contact a customer, connect to a live system, or execute the proposed action."
+}

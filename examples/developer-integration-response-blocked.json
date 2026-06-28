@@ -1,0 +1,36 @@
+{
+  "response_version": "atg.developer-integration-response-draft.v1",
+  "status": "draft_only",
+  "local_only": true,
+  "decision": "blocked",
+  "allowed": false,
+  "blocked": true,
+  "risk_level": "high",
+  "approval_required": true,
+  "gareth_final_approval_required": true,
+  "control_state": {
+    "integration_enabled": false,
+    "external_api_enabled": false,
+    "action_execution_enabled": false,
+    "outreach_enabled": false,
+    "email_sending_enabled": false
+  },
+  "reasons": [
+    "INTEGRATION_DISABLED",
+    "ACTION_EXECUTION_DISABLED",
+    "OUTREACH_DISABLED",
+    "EVIDENCE_INCOMPLETE",
+    "HUMAN_APPROVAL_MISSING",
+    "GARETH_FINAL_APPROVAL_REQUIRED"
+  ],
+  "missing_evidence": [
+    "approved_message_content",
+    "authorized_recipient_scope",
+    "rollback_or_correction_plan"
+  ],
+  "receipt_id": "local-receipt-placeholder",
+  "receipt_status": "draft_only",
+  "timestamp": "placeholder-iso-timestamp",
+  "executes_actions": false,
+  "safety_statement": "The proposed action is blocked. No integration, API connection, email, outreach, or action execution occurred."
+}

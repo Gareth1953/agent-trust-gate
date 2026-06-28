@@ -1179,6 +1179,20 @@ signup, contact-form, email, billing, payment, outreach, scanning, and automatic
 purchase flags all remain false. Commercial launch control, legal review, and
 Gareth final approval are required before any future publication decision.
 
+## P3-M037: Developer Integration Safety Pack
+
+P3-M037 adds local draft guidance for integrating developers, internal tools,
+future agent platforms, and other AI systems without exposing or activating an
+external service. See `docs/developer-integration-safety.md`,
+`docs/developer-integration-api-draft.md`, and
+`config/developer-integration-safety.json`.
+
+External/public APIs, agent networking, third-party connections, webhooks, live
+customer data, execution, deployment, publishing, outreach, tracking, signup,
+billing, payment, scanning, and automatic purchase remain disabled. Technical
+validation, security review, legal review, human approval, commercial launch
+control, and Gareth final approval are required before external integration.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

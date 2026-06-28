@@ -1,0 +1,34 @@
+{
+  "approval_version": "atg.developer-integration-approval-placeholder.v1",
+  "status": "placeholder_only_blocked",
+  "local_only": true,
+  "approval_scope": "future_exact_integration_placeholder",
+  "approval_requirements": {
+    "human_approval_recorded": false,
+    "gareth_final_approval_recorded": false,
+    "technical_validation_complete": false,
+    "security_review_complete": false,
+    "legal_review_complete": false
+  },
+  "activation_state": {
+    "integration_enabled": false,
+    "external_api_enabled": false,
+    "public_api_enabled": false,
+    "agent_to_agent_enabled": false,
+    "third_party_connections_enabled": false,
+    "webhook_enabled": false,
+    "live_customer_data_enabled": false,
+    "action_execution_enabled": false,
+    "deployment_enabled": false,
+    "publishing_enabled": false,
+    "outreach_enabled": false,
+    "tracking_enabled": false,
+    "signup_enabled": false,
+    "billing_enabled": false,
+    "payment_enabled": false,
+    "automatic_purchase_enabled": false
+  },
+  "decision": "blocked",
+  "executes_actions": false,
+  "safety_statement": "This placeholder is not approval and does not enable integration, APIs, agents, third parties, webhooks, customer data, execution, deployment, publishing, outreach, tracking, signup, billing, payment, or automatic purchase."
+}
