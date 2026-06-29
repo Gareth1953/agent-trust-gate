@@ -1,0 +1,21 @@
+{
+  "placeholder_version": "atg.refusalgraph-commercial-placeholder.v1",
+  "commercial_status": "placeholder_only",
+  "local_only": true,
+  "possible_fee_model": "per_receipt_verification",
+  "possible_fee_amount": "£0.01",
+  "possible_fee_trigger": "future_receipt_or_refusal_lookup",
+  "refusalgraph_enabled": false,
+  "network_enabled": false,
+  "external_lookup_enabled": false,
+  "public_api_enabled": false,
+  "machine_to_machine_fee_enabled": false,
+  "payment_enabled": false,
+  "billing_enabled": false,
+  "deployment_enabled": false,
+  "action_execution_enabled": false,
+  "automatic_purchase_enabled": false,
+  "requires_gareth_final_approval": true,
+  "executes_actions": false,
+  "safety_statement": "This is a price placeholder only. It does not establish a tariff, charge a fee, perform a lookup, expose an API, process payment, bill, deploy, purchase, settle, or execute actions."
+}

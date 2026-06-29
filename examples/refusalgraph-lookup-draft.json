@@ -1,0 +1,19 @@
+{
+  "lookup_version": "atg.refusalgraph-lookup-draft.v1",
+  "lookup_id": "refusal-lookup-placeholder",
+  "requesting_agent_type": "procurement_agent_placeholder",
+  "requested_action_category": "financial_action",
+  "requested_action_type": "buy_software_service",
+  "risk_level": "high",
+  "evidence_status": "incomplete",
+  "approval_status": "not_requested",
+  "query_status": "draft_only",
+  "refusalgraph_enabled": false,
+  "external_lookup_enabled": false,
+  "network_enabled": false,
+  "agent_to_agent_lookup_enabled": false,
+  "payment_enabled": false,
+  "result_status": "not_executed",
+  "executes_actions": false,
+  "safety_statement": "This is a local query draft only. It does not perform a lookup, contact an agent, access a network, process payment, or execute an action."
+}

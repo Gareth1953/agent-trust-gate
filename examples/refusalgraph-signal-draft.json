@@ -1,0 +1,31 @@
+{
+  "signal_version": "atg.refusalgraph-signal-draft.v1",
+  "signal_id": "refusal-signal-placeholder",
+  "source_receipt_id": "local-receipt-placeholder",
+  "action_category": "financial_action",
+  "proposed_action_type": "initiate_payment",
+  "refusal_type": "approval_required",
+  "refusal_reason_codes": [
+    "HIGH_RISK_ACTION",
+    "EVIDENCE_MISSING",
+    "HUMAN_APPROVAL_MISSING",
+    "IDENTITY_UNCLEAR"
+  ],
+  "risk_level": "high",
+  "impact_level": "high",
+  "evidence_status": "hash_only_incomplete",
+  "approval_status": "not_requested",
+  "private_data_included": false,
+  "anonymised": true,
+  "pseudonymised": true,
+  "evidence_hash_only": true,
+  "recommended_next_step": "require_human_approval",
+  "created_at": "placeholder-iso-timestamp",
+  "status": "draft_only",
+  "action_execution_enabled": false,
+  "network_enabled": false,
+  "external_lookup_enabled": false,
+  "machine_to_machine_fee_enabled": false,
+  "executes_actions": false,
+  "safety_statement": "This privacy-minimised local signal records a refusal pattern only. It contains no private customer data and does not execute, look up, network, bill, pay, or charge a fee."
+}

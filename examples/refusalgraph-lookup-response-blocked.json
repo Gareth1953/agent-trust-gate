@@ -1,0 +1,35 @@
+{
+  "response_version": "atg.refusalgraph-lookup-response-draft.v1",
+  "status": "draft_only",
+  "lookup_id": "refusal-lookup-placeholder",
+  "lookup_decision": "blocked",
+  "result_status": "not_executed",
+  "control_state": {
+    "refusalgraph_enabled": false,
+    "network_enabled": false,
+    "external_lookup_enabled": false,
+    "public_api_enabled": false,
+    "agent_to_agent_lookup_enabled": false,
+    "machine_to_machine_fee_enabled": false,
+    "action_execution_enabled": false
+  },
+  "review_state": {
+    "requires_gareth_final_approval": true,
+    "gareth_final_approval_recorded": false,
+    "technical_validation_complete": false,
+    "security_review_complete": false,
+    "legal_review_complete": false
+  },
+  "reason_codes": [
+    "REFUSALGRAPH_DISABLED",
+    "NETWORK_DISABLED",
+    "EXTERNAL_LOOKUP_DISABLED",
+    "AGENT_LOOKUP_DISABLED",
+    "MACHINE_FEE_DISABLED",
+    "REQUIRED_REVIEWS_INCOMPLETE",
+    "GARETH_FINAL_APPROVAL_REQUIRED"
+  ],
+  "private_data_included": false,
+  "executes_actions": false,
+  "safety_statement": "The lookup is blocked. No graph, network, external query, agent connection, fee, payment, private-data access, or action execution occurred."
+}

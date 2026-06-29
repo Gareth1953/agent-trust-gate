@@ -29,3 +29,8 @@ Future integrations are governed by the
 [non-live API draft](../developer-integration-api-draft.md). External APIs,
 agent-to-agent networking, third-party connections, webhooks, live customer data,
 and action execution remain disabled.
+
+The local [RefusalGraph Core Pack](../refusalgraph-core.md) and
+[signal schema draft](../refusalgraph-signal-schema-draft.md) describe
+privacy-minimised refusal intelligence for future trust checks. RefusalGraph,
+network/external lookups, fees, payments, and action execution remain disabled.

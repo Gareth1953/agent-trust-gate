@@ -1193,6 +1193,19 @@ billing, payment, scanning, and automatic purchase remain disabled. Technical
 validation, security review, legal review, human approval, commercial launch
 control, and Gareth final approval are required before external integration.
 
+## P3-M039: RefusalGraph Core Pack
+
+P3-M039 adds a local-only refusal-intelligence concept, draft signal vocabulary,
+false-default safety config, privacy-minimised refusal example, non-executing
+lookup drafts, and a blocked commercial fee placeholder. See
+`docs/refusalgraph-core.md`, `docs/refusalgraph-signal-schema-draft.md`, and
+`config/refusalgraph-safety.json`.
+
+RefusalGraph, networks, external or agent lookups, public APIs, machine-to-machine
+fees, payments, billing, private-data export, third-party connections, webhooks,
+deployment, publishing, outreach, tracking, signup, purchase, and action execution
+remain disabled. All external and commercial use requires Gareth final approval.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:
