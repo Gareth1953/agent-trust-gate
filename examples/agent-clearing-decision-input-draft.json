@@ -1,0 +1,45 @@
+{
+  "clearing_request_id": "local-clearing-payment-placeholder",
+  "requesting_agent_type": "procurement_agent_placeholder",
+  "receiving_agent_type": "service_agent_placeholder",
+  "requested_action_category": "payment",
+  "requested_action_type": "pay_for_task",
+  "proposed_value": null,
+  "proposed_fee": null,
+  "risk_level": "high",
+  "impact_level": "high",
+  "evidence_status": "incomplete",
+  "approval_status": "not_requested",
+  "agent_identity_status": "verified_locally",
+  "payment_intent_status": "unclear",
+  "refusalgraph_query_result": {
+    "query_id": "query_f87254de17e2951aa3e65e90",
+    "result_status": "matches_found",
+    "matched_signal_count": 2,
+    "caution_level": "high",
+    "common_refusal_reason_codes": [
+      "high_risk_action",
+      "missing_evidence",
+      "money_movement_requested",
+      "payment_intent_unclear",
+      "missing_human_approval"
+    ],
+    "recommended_decision": "require_human_approval",
+    "recommended_next_steps": [
+      "require_human_approval",
+      "require_more_evidence"
+    ],
+    "private_data_included": false,
+    "network_lookup_performed": false,
+    "external_lookup_performed": false,
+    "payment_or_fee_triggered": false,
+    "status": "draft_only"
+  },
+  "requested_decision": "request_clearance",
+  "timestamp": "2026-06-29T14:00:00.000Z",
+  "status": "draft_only",
+  "local_only": true,
+  "action_execution_enabled": false,
+  "payment_enabled": false,
+  "clearing_network_enabled": false
+}

@@ -306,3 +306,5 @@ export { REFUSALGRAPH_SIGNAL_ENGINE_VERSION,createRefusalGraphSignal,normalizeRe
 export type { RefusalGraphReceiptInput,RefusalGraphSignal,RefusalReasonCode,RefusalRecommendedNextStep,RefusalType } from "./refusalgraph-signal-engine.js";
 export { REFUSALGRAPH_QUERY_ENGINE_VERSION,aggregateRefusalReasonCodes,queryRefusalGraphSignals } from "./refusalgraph-query-engine.js";
 export type { LocalRefusalGraphSignal,RefusalGraphCautionLevel,RefusalGraphQuery,RefusalGraphQueryDecision,RefusalGraphQueryResult } from "./refusalgraph-query-engine.js";
+export { AGENT_CLEARING_DECISION_ENGINE_VERSION,createAgentClearingDecision,deriveAgentClearingReasonCodes } from "./agent-clearing-decision-engine.js";
+export type { AgentClearingDecision,AgentClearingDecisionInput,AgentClearingDecisionType,AgentClearingReasonCode } from "./agent-clearing-decision-engine.js";

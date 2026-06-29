@@ -1,0 +1,30 @@
+{
+  "clearing_decision_id": "acd_397dea1bfa31bc98fa13861c",
+  "clearing_request_id": "clearing_request_397dea1bfa31bc98fa13861c",
+  "decision": "accept_with_limits",
+  "action_allowed": true,
+  "action_blocked": false,
+  "approval_required": false,
+  "evidence_required": false,
+  "identity_verification_required": false,
+  "payment_intent_clarification_required": false,
+  "spend_limit_recommended": false,
+  "refusalgraph_caution_level": "none",
+  "refusalgraph_matched_signal_count": 0,
+  "reason_codes": [
+    "draft_only_not_executed",
+    "low_risk_receipt_only"
+  ],
+  "required_next_steps": [
+    "create_receipt_only",
+    "draft_only_not_executed"
+  ],
+  "receipt_recommended": true,
+  "private_data_included": false,
+  "network_lookup_performed": false,
+  "external_lookup_performed": false,
+  "payment_or_fee_triggered": false,
+  "action_executed": false,
+  "status": "draft_only",
+  "created_at": "2026-06-29T14:05:00.000Z"
+}

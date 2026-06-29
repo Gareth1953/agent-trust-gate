@@ -56,3 +56,8 @@ The pure local [RefusalGraph Query Engine](../refusalgraph-local-query-engine.md
 compares a proposed action with caller-supplied draft signals and returns an
 allowlisted caution result. It performs no persistence, network or external
 lookup, API access, fees, payment, private-data export, or action execution.
+
+The pure local [Agent Clearing Decision Engine](../agent-clearing-decision-engine.md)
+combines declared request controls with a local RefusalGraph caution result. It
+returns an allowlisted draft decision without persistence, networking, fees,
+payment, settlement, private-data export, or action execution.

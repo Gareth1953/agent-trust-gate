@@ -1262,6 +1262,21 @@ agent-to-agent lookup, machine fees, payment, billing, settlement, private-data
 export, deployment, publishing, outreach, tracking, signup, purchase, and action
 execution remain disabled.
 
+## P3-M043: Agent Clearing Decision Engine Pack
+
+P3-M043 adds a pure local decision layer that combines a draft clearing request,
+evidence, approval, identity, risk and payment-intent state, and a local
+RefusalGraph caution result. Deterministic fail-closed rules return only
+allowlisted draft decisions such as requiring evidence, identity verification,
+human approval, refusal, receipt creation, or acceptance with limits.
+
+Request IDs are pseudonymised and outputs contain no agent identity, proposed
+value or fee, raw evidence, refusal text, customer, company, payment, document,
+endpoint, URL, or email content. Decision persistence, clearing networks,
+external and agent lookup, public APIs/protocols, machine fees, payment, billing,
+settlement, private-data export, deployment, publishing, outreach, tracking,
+signup, purchase, and action execution remain disabled.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:
