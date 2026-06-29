@@ -1,0 +1,43 @@
+{
+  "approval_version": "atg.agent-to-agent-handshake-approval-placeholder.v1",
+  "status": "placeholder_only_blocked",
+  "local_only": true,
+  "handshake_id": "handshake-placeholder",
+  "approval_scope": "future_exact_handshake_placeholder",
+  "approval_requirements": {
+    "human_approval_recorded": false,
+    "gareth_final_approval_recorded": false,
+    "technical_validation_complete": false,
+    "security_review_complete": false,
+    "privacy_review_complete": false,
+    "legal_review_complete": false
+  },
+  "activation_state": {
+    "agent_to_agent_handshake_enabled": false,
+    "external_agent_connections_enabled": false,
+    "public_protocol_enabled": false,
+    "public_api_enabled": false,
+    "network_enabled": false,
+    "machine_to_machine_trust_enabled": false,
+    "third_party_connections_enabled": false,
+    "webhook_enabled": false,
+    "live_customer_data_enabled": false,
+    "private_data_exchange_enabled": false,
+    "action_execution_enabled": false,
+    "deployment_enabled": false,
+    "publishing_enabled": false,
+    "outreach_enabled": false,
+    "tracking_enabled": false,
+    "signup_enabled": false,
+    "billing_enabled": false,
+    "payment_enabled": false,
+    "purchase_enabled": false,
+    "automatic_purchase_enabled": false,
+    "refusalgraph_live_lookup_enabled": false
+  },
+  "handshake_decision": "blocked",
+  "trust_allowed": false,
+  "action_allowed": false,
+  "executes_actions": false,
+  "safety_statement": "This placeholder is not approval and does not enable agent networking, external connections, public protocol, machine trust, RefusalGraph lookup, customer data, webhooks, execution, deployment, publishing, outreach, tracking, signup, billing, payment, or purchase."
+}

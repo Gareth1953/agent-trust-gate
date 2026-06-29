@@ -1193,6 +1193,19 @@ billing, payment, scanning, and automatic purchase remain disabled. Technical
 validation, security review, legal review, human approval, commercial launch
 control, and Gareth final approval are required before external integration.
 
+## P3-M038: Agent-to-Agent Trust Handshake Pack
+
+P3-M038 backfills a local-only declaration and verification model for future
+agent-to-agent trust decisions. It adds the handshake guide, schema draft,
+false-default safety config, blocked request/response examples, and a non-enabling
+approval placeholder while preserving the later RefusalGraph work.
+
+Agent networking, external connections, public protocol/API access,
+machine-to-machine trust, third-party connections, webhooks, live customer data,
+RefusalGraph live lookup, execution, deployment, publishing, outreach, tracking,
+signup, billing, payment, scanning, and purchase remain disabled. External use
+requires technical, security, privacy, legal, human, and Gareth final approval.
+
 ## P3-M039: RefusalGraph Core Pack
 
 P3-M039 adds a local-only refusal-intelligence concept, draft signal vocabulary,

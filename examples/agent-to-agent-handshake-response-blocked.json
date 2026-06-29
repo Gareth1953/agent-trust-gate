@@ -1,0 +1,47 @@
+{
+  "response_version": "atg.agent-to-agent-handshake-response-draft.v1",
+  "status": "draft_only",
+  "handshake_id": "handshake-placeholder",
+  "handshake_decision": "blocked",
+  "trust_allowed": false,
+  "action_allowed": false,
+  "blocked": true,
+  "risk_level": "high",
+  "approval_required": true,
+  "gareth_final_approval_required": true,
+  "control_state": {
+    "agent_to_agent_handshake_enabled": false,
+    "external_agent_connections_enabled": false,
+    "public_protocol_enabled": false,
+    "machine_to_machine_trust_enabled": false,
+    "action_execution_enabled": false,
+    "payment_enabled": false,
+    "purchase_enabled": false,
+    "refusalgraph_live_lookup_enabled": false
+  },
+  "reasons": [
+    "HANDSHAKE_DISABLED",
+    "EXTERNAL_CONNECTIONS_DISABLED",
+    "ACTION_EXECUTION_DISABLED",
+    "PURCHASE_AND_PAYMENT_DISABLED",
+    "EVIDENCE_INCOMPLETE",
+    "HUMAN_APPROVAL_MISSING",
+    "GARETH_FINAL_APPROVAL_REQUIRED"
+  ],
+  "missing_evidence": [
+    "approved_business_need",
+    "vendor_security_review",
+    "spend_authority",
+    "human_approval_record"
+  ],
+  "required_next_steps": [
+    "require_more_evidence",
+    "require_human_approval"
+  ],
+  "receipt_id": "local-receipt-placeholder",
+  "receipt_status": "draft_only",
+  "refusalgraph_signal_reference": "local-refusal-signal-placeholder",
+  "timestamp": "placeholder-iso-timestamp",
+  "executes_actions": false,
+  "safety_statement": "The handshake is blocked. No trust, connection, protocol, RefusalGraph lookup, purchase, payment, or action execution occurred."
+}

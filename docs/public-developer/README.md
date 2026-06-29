@@ -30,6 +30,12 @@ Future integrations are governed by the
 agent-to-agent networking, third-party connections, webhooks, live customer data,
 and action execution remain disabled.
 
+The local [Agent-to-Agent Trust Handshake Pack](../agent-to-agent-trust-handshake.md)
+and [schema draft](../agent-to-agent-handshake-schema-draft.md) define how an
+acting agent could declare intent, evidence, impact, approval, and requested
+permissions before acceptance. Networking, public protocol access, machine trust,
+live RefusalGraph lookup, and action execution remain disabled.
+
 The local [RefusalGraph Core Pack](../refusalgraph-core.md) and
 [signal schema draft](../refusalgraph-signal-schema-draft.md) describe
 privacy-minimised refusal intelligence for future trust checks. RefusalGraph,

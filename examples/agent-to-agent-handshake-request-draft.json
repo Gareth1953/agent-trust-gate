@@ -1,0 +1,38 @@
+{
+  "request_version": "atg.agent-to-agent-handshake-request-draft.v1",
+  "status": "draft_only",
+  "local_only": true,
+  "handshake_id": "handshake-placeholder",
+  "acting_agent_id": "agent-placeholder",
+  "acting_agent_name": "local-procurement-agent",
+  "acting_agent_type": "procurement_agent",
+  "acting_agent_purpose": "Request review of a proposed software service purchase.",
+  "receiving_system": "local-trust-gate-placeholder",
+  "proposed_action": "Buy a software service after explicit approval.",
+  "action_category": "software_purchase",
+  "impact_level": "high",
+  "target": "service-placeholder",
+  "evidence_summary": "Required business, vendor, security, and spend approvals are not supplied.",
+  "evidence_references": [],
+  "requested_permissions": [
+    "request_purchase_review"
+  ],
+  "human_approval_status": "not_requested",
+  "prior_receipt_ids": [],
+  "requested_decision": [
+    "handshake_decision",
+    "risk_level",
+    "approval_requirements",
+    "receipt"
+  ],
+  "timestamp": "placeholder-iso-timestamp",
+  "agent_to_agent_handshake_enabled": false,
+  "external_agent_connections_enabled": false,
+  "action_execution_enabled": false,
+  "payment_enabled": false,
+  "purchase_enabled": false,
+  "automatic_purchase_enabled": false,
+  "refusalgraph_live_lookup_enabled": false,
+  "executes_actions": false,
+  "safety_statement": "This local draft does not connect agents, perform a RefusalGraph lookup, buy a service, process payment, or execute the proposed action."
+}
