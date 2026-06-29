@@ -1219,6 +1219,21 @@ fees, payments, billing, private-data export, third-party connections, webhooks,
 deployment, publishing, outreach, tracking, signup, purchase, and action execution
 remain disabled. All external and commercial use requires Gareth final approval.
 
+## P3-M040: Agent Clearing House Foundation Pack
+
+P3-M040 adds a local-only foundation showing how Agent Trust Gate, the
+Agent-to-Agent Handshake, RefusalGraph, draft Agent Treaties, Agent Receipts, and
+clearance decisions could fit into a future machine-to-machine clearing layer.
+See `docs/agent-clearing-house-foundation.md`, `docs/agent-treaty-draft.md`,
+`docs/agent-clearing-decision-types.md`, and
+`config/agent-clearing-house-safety.json`.
+
+The clearing house, network, treaty activation, receipt exchange, RefusalGraph
+live lookup, external agents, public APIs/protocols, machine fees, payment,
+billing, settlement, private-data export, deployment, publishing, outreach,
+tracking, signup, purchase, and action execution remain disabled. All live or
+commercial use requires Gareth final approval.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

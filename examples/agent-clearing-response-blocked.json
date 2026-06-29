@@ -1,0 +1,54 @@
+{
+  "response_version": "atg.agent-clearing-response-draft.v1",
+  "status": "draft_only",
+  "clearing_request_id": "clearing-request-placeholder",
+  "clearance_decision": "block",
+  "clearance_allowed": false,
+  "action_allowed": false,
+  "blocked": true,
+  "control_state": {
+    "agent_clearing_house_enabled": false,
+    "clearing_network_enabled": false,
+    "agent_treaty_enabled": false,
+    "agent_receipt_exchange_enabled": false,
+    "external_agent_connections_enabled": false,
+    "refusalgraph_live_lookup_enabled": false,
+    "public_api_enabled": false,
+    "machine_to_machine_fee_enabled": false,
+    "action_execution_enabled": false,
+    "payment_enabled": false,
+    "billing_enabled": false,
+    "settlement_enabled": false
+  },
+  "review_state": {
+    "requires_human_approval": true,
+    "requires_gareth_final_approval": true,
+    "human_approval_recorded": false,
+    "gareth_final_approval_recorded": false,
+    "technical_validation_complete": false,
+    "security_review_complete": false,
+    "legal_review_complete": false,
+    "commercial_validation_complete": false
+  },
+  "reasons": [
+    "CLEARING_HOUSE_DISABLED",
+    "CLEARING_NETWORK_DISABLED",
+    "EXTERNAL_AGENT_CONNECTIONS_DISABLED",
+    "REFUSALGRAPH_LOOKUP_DISABLED",
+    "ACTION_EXECUTION_DISABLED",
+    "PAYMENT_BILLING_SETTLEMENT_DISABLED",
+    "MACHINE_FEE_DISABLED",
+    "EVIDENCE_INCOMPLETE",
+    "HUMAN_APPROVAL_MISSING",
+    "GARETH_FINAL_APPROVAL_REQUIRED"
+  ],
+  "missing_evidence": [
+    "verified_participant_authority",
+    "approved_task_scope",
+    "approved_value_and_fee_terms"
+  ],
+  "receipt_id": "local-clearing-receipt-placeholder",
+  "receipt_status": "draft_only_not_exchanged",
+  "executes_actions": false,
+  "safety_statement": "The clearing request is blocked. No network, agent connection, treaty, RefusalGraph lookup, receipt exchange, fee, payment, billing, settlement, or action execution occurred."
+}

@@ -1,0 +1,43 @@
+{
+  "treaty_version": "atg.agent-treaty-draft.v1",
+  "treaty_id": "treaty-placeholder",
+  "requesting_agent_id": "requesting-agent-placeholder",
+  "receiving_agent_id": "receiving-agent-placeholder",
+  "requested_action": "Review a placeholder data-quality report.",
+  "action_category": "professional_task",
+  "proposed_value": "placeholder_only_not_priced",
+  "proposed_fee": null,
+  "payment_intent_status": "not_enabled",
+  "requested_permissions": [
+    "review_placeholder_report"
+  ],
+  "evidence_summary": "No private source data is included; evidence is hash-only and incomplete.",
+  "evidence_hashes": [
+    "hash-placeholder"
+  ],
+  "approval_status": "not_requested",
+  "risk_level": "medium",
+  "impact_level": "low",
+  "refusalgraph_check_status": "not_executed",
+  "clearance_required": true,
+  "completion_terms": [
+    "return_receipt_only",
+    "no_action_execution"
+  ],
+  "dispute_terms": [
+    "require_human_review",
+    "preserve_local_receipt"
+  ],
+  "expiry_time": "placeholder-iso-timestamp",
+  "status": "draft_only",
+  "private_data_included": false,
+  "agent_treaty_enabled": false,
+  "clearing_network_enabled": false,
+  "refusalgraph_live_lookup_enabled": false,
+  "payment_enabled": false,
+  "billing_enabled": false,
+  "settlement_enabled": false,
+  "action_execution_enabled": false,
+  "executes_actions": false,
+  "safety_statement": "This treaty is a local non-binding draft. It does not connect agents, expose private data, perform lookup, clear, pay, bill, settle, exchange receipts, or execute actions."
+}

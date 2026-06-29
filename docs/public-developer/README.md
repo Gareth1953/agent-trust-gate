@@ -40,3 +40,9 @@ The local [RefusalGraph Core Pack](../refusalgraph-core.md) and
 [signal schema draft](../refusalgraph-signal-schema-draft.md) describe
 privacy-minimised refusal intelligence for future trust checks. RefusalGraph,
 network/external lookups, fees, payments, and action execution remain disabled.
+
+The local [Agent Clearing House Foundation Pack](../agent-clearing-house-foundation.md),
+[Agent Treaty draft](../agent-treaty-draft.md), and
+[clearance decision types](../agent-clearing-decision-types.md) connect handshake,
+RefusalGraph, treaty, and receipt concepts into a future clearing model. Clearing,
+receipt exchange, fees, payment, settlement, networking, and execution remain disabled.

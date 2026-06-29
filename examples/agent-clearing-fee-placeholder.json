@@ -1,0 +1,23 @@
+{
+  "placeholder_version": "atg.agent-clearing-fee-placeholder.v1",
+  "commercial_status": "placeholder_only",
+  "local_only": true,
+  "possible_fee_model": "per_clearance_or_receipt_verification",
+  "possible_fee_amount": "£0.01",
+  "possible_fee_trigger": "future_agent_clearing_check",
+  "agent_clearing_house_enabled": false,
+  "clearing_network_enabled": false,
+  "external_agent_connections_enabled": false,
+  "public_api_enabled": false,
+  "public_protocol_enabled": false,
+  "machine_to_machine_fee_enabled": false,
+  "payment_enabled": false,
+  "billing_enabled": false,
+  "settlement_enabled": false,
+  "deployment_enabled": false,
+  "action_execution_enabled": false,
+  "automatic_purchase_enabled": false,
+  "requires_gareth_final_approval": true,
+  "executes_actions": false,
+  "safety_statement": "This fee is a local placeholder only. It does not establish a tariff, clear a transaction, collect a fee, expose an API, connect agents, pay, bill, settle, deploy, purchase, or execute actions."
+}
