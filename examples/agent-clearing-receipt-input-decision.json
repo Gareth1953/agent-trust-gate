@@ -1,0 +1,39 @@
+{
+  "clearing_decision_id": "acd_4feb9b2bf6e95539070c7366",
+  "clearing_request_id": "clearing_request_4feb9b2bf6e95539070c7366",
+  "decision": "require_human_approval",
+  "action_allowed": false,
+  "action_blocked": true,
+  "approval_required": true,
+  "evidence_required": true,
+  "identity_verification_required": false,
+  "payment_intent_clarification_required": true,
+  "spend_limit_recommended": true,
+  "refusalgraph_caution_level": "high",
+  "refusalgraph_matched_signal_count": 2,
+  "reason_codes": [
+    "draft_only_not_executed",
+    "high_risk_action",
+    "missing_evidence",
+    "missing_human_approval",
+    "money_movement_requested",
+    "payment_intent_unclear",
+    "payment_requested",
+    "refusalgraph_high_caution"
+  ],
+  "required_next_steps": [
+    "require_human_approval",
+    "require_more_evidence",
+    "clarify_payment_intent",
+    "create_receipt_only",
+    "draft_only_not_executed"
+  ],
+  "receipt_recommended": true,
+  "private_data_included": false,
+  "network_lookup_performed": false,
+  "external_lookup_performed": false,
+  "payment_or_fee_triggered": false,
+  "action_executed": false,
+  "status": "draft_only",
+  "created_at": "2026-06-29T14:00:00.000Z"
+}

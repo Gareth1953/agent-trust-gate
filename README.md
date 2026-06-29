@@ -1277,6 +1277,18 @@ external and agent lookup, public APIs/protocols, machine fees, payment, billing
 settlement, private-data export, deployment, publishing, outreach, tracking,
 signup, purchase, and action execution remain disabled.
 
+## P3-M044: Agent Clearing Receipt Engine Pack
+
+P3-M044 adds a pure local receipt projection for Agent Clearing decisions. It
+records the normalized decision, control requirements, RefusalGraph caution,
+safe reason codes and next steps, and explicit non-execution state. Source IDs
+are pseudonymised and arbitrary reason or next-step text is never copied.
+
+Receipts remain unpersisted and not externally verified. Clearing networks,
+external and agent lookup, public APIs/protocols, receipt exchange, machine fees,
+payment, billing, settlement, private-data export, deployment, publishing,
+outreach, tracking, signup, purchase, and action execution remain disabled.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

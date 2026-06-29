@@ -61,3 +61,8 @@ The pure local [Agent Clearing Decision Engine](../agent-clearing-decision-engin
 combines declared request controls with a local RefusalGraph caution result. It
 returns an allowlisted draft decision without persistence, networking, fees,
 payment, settlement, private-data export, or action execution.
+
+The pure local [Agent Clearing Receipt Engine](../agent-clearing-receipt-engine.md)
+projects a clearing decision into an allowlisted, pseudonymised draft receipt.
+Receipt persistence and external verification, networking, fees, payment,
+settlement, private-data export, and action execution remain disabled.
