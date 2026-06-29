@@ -1289,6 +1289,21 @@ external and agent lookup, public APIs/protocols, receipt exchange, machine fees
 payment, billing, settlement, private-data export, deployment, publishing,
 outreach, tracking, signup, purchase, and action execution remain disabled.
 
+## P3-M045: Unique Advantage Radar Pack
+
+P3-M045 adds a pure local strategic scoring discipline for future missions. Ten
+equally weighted criteria test uniqueness, defensibility, agent and clearing
+value, future fee potential, RefusalGraph contribution, private-data safety,
+developer adoption, commercial clarity, resistance to large-company bundling,
+and simplicity. Scores are planning hypotheses, not market findings or build
+authorization.
+
+The radar uses human-supplied local scores only. Live market scanning,
+competitor scraping, external lookup, public APIs, analytics, tracking,
+publishing, deployment, outreach, signup, machine fees, payment, billing,
+settlement, private-data export, third-party connections, automatic purchase,
+and action execution remain disabled.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

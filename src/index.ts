@@ -310,3 +310,5 @@ export { AGENT_CLEARING_DECISION_ENGINE_VERSION,createAgentClearingDecision,deri
 export type { AgentClearingDecision,AgentClearingDecisionInput,AgentClearingDecisionType,AgentClearingReasonCode } from "./agent-clearing-decision-engine.js";
 export { AGENT_CLEARING_RECEIPT_ENGINE_VERSION,createAgentClearingReceipt,createAgentClearingReceiptId,filterAgentClearingReceiptNextSteps,filterAgentClearingReceiptReasonCodes } from "./agent-clearing-receipt-engine.js";
 export type { AgentClearingReceipt,AgentClearingReceiptInput } from "./agent-clearing-receipt-engine.js";
+export { UNIQUE_ADVANTAGE_RADAR_VERSION,advantageBandForScore,clampUniqueAdvantageScore,scoreUniqueAdvantage } from "./unique-advantage-radar.js";
+export type { AdvantageBand,AdvantageDimension,AdvantageRecommendation,UniqueAdvantageInput,UniqueAdvantageResult } from "./unique-advantage-radar.js";

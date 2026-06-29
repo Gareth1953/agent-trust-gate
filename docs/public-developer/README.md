@@ -66,3 +66,8 @@ The pure local [Agent Clearing Receipt Engine](../agent-clearing-receipt-engine.
 projects a clearing decision into an allowlisted, pseudonymised draft receipt.
 Receipt persistence and external verification, networking, fees, payment,
 settlement, private-data export, and action execution remain disabled.
+
+The local [Unique Advantage Radar](../unique-advantage-radar.md) and
+[scoring model](../advantage-scoring-model.md) apply a consistent strategic test
+to future missions. They use human-supplied local scores only; scanning,
+scraping, tracking, publishing, fees, and external activity remain disabled.
