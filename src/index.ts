@@ -304,3 +304,5 @@ export { GLOBAL_MARKETING_READINESS_SAFETY_STATEMENT,GLOBAL_MARKETING_READINESS_
 export type { DistributionChannel,DistributionChannelStatus,GlobalMarketingReadinessReport,MarketingReadinessCheck,MarketingReadinessCheckSeverity,MarketingReadinessCheckStatus } from "./global-marketing-readiness.js";
 export { REFUSALGRAPH_SIGNAL_ENGINE_VERSION,createRefusalGraphSignal,normalizeRefusalReasons } from "./refusalgraph-signal-engine.js";
 export type { RefusalGraphReceiptInput,RefusalGraphSignal,RefusalReasonCode,RefusalRecommendedNextStep,RefusalType } from "./refusalgraph-signal-engine.js";
+export { REFUSALGRAPH_QUERY_ENGINE_VERSION,aggregateRefusalReasonCodes,queryRefusalGraphSignals } from "./refusalgraph-query-engine.js";
+export type { LocalRefusalGraphSignal,RefusalGraphCautionLevel,RefusalGraphQuery,RefusalGraphQueryDecision,RefusalGraphQueryResult } from "./refusalgraph-query-engine.js";

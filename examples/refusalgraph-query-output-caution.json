@@ -1,0 +1,23 @@
+{
+  "query_id": "query_f87254de17e2951aa3e65e90",
+  "result_status": "matches_found",
+  "matched_signal_count": 2,
+  "caution_level": "high",
+  "common_refusal_reason_codes": [
+    "high_risk_action",
+    "missing_evidence",
+    "money_movement_requested",
+    "payment_intent_unclear",
+    "missing_human_approval"
+  ],
+  "recommended_decision": "require_human_approval",
+  "recommended_next_steps": [
+    "require_human_approval",
+    "require_more_evidence"
+  ],
+  "private_data_included": false,
+  "network_lookup_performed": false,
+  "external_lookup_performed": false,
+  "payment_or_fee_triggered": false,
+  "status": "draft_only"
+}

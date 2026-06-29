@@ -1,0 +1,17 @@
+{
+  "query_id": "local-query-payment-placeholder",
+  "requested_action_category": "financial_action",
+  "requested_action_type": "initiate_payment",
+  "risk_level": "high",
+  "impact_level": "high",
+  "evidence_status": "incomplete",
+  "approval_status": "not_requested",
+  "agent_identity_status": "verified_locally",
+  "payment_intent_status": "unclear",
+  "status": "draft_only",
+  "local_only": true,
+  "network_lookup_enabled": false,
+  "external_lookup_enabled": false,
+  "payment_enabled": false,
+  "action_execution_enabled": false
+}

@@ -1248,6 +1248,20 @@ Signal persistence, network/external/agent lookup, public APIs, machine fees,
 payment, billing, settlement, private-data export, deployment, publishing,
 outreach, tracking, signup, purchase, and action execution remain disabled.
 
+## P3-M042: RefusalGraph Local Query Engine Pack
+
+P3-M042 adds a pure in-memory query layer for local draft RefusalGraph signals.
+It matches allowlisted action categories and types, aggregates safe refusal reason
+codes, assigns a deterministic caution level, and recommends evidence, identity,
+approval, payment-intent, or refusal controls. No match is not proof of trust.
+
+Query IDs are pseudonymised and results contain no raw reasons, evidence, signal
+identifiers, identities, customer, company, payment, document, endpoint, URL, or
+email content. Persistence, network and external lookup, public APIs,
+agent-to-agent lookup, machine fees, payment, billing, settlement, private-data
+export, deployment, publishing, outreach, tracking, signup, purchase, and action
+execution remain disabled.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

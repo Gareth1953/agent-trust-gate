@@ -1,0 +1,16 @@
+{
+  "query_id": "query_379686b01ae5b2171b031673",
+  "result_status": "no_matches",
+  "matched_signal_count": 0,
+  "caution_level": "none",
+  "common_refusal_reason_codes": [],
+  "recommended_decision": "allow_low_risk_only",
+  "recommended_next_steps": [
+    "allow_low_risk_only"
+  ],
+  "private_data_included": false,
+  "network_lookup_performed": false,
+  "external_lookup_performed": false,
+  "payment_or_fee_triggered": false,
+  "status": "draft_only"
+}

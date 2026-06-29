@@ -51,3 +51,8 @@ The pure local [RefusalGraph Signal Engine](../refusalgraph-signal-engine.md)
 converts blocked or approval-required receipt-like outcomes into allowlisted,
 pseudonymised, hash-only refusal signals. Persistence, network lookup, APIs, fees,
 payment, private-data export, and action execution remain disabled.
+
+The pure local [RefusalGraph Query Engine](../refusalgraph-local-query-engine.md)
+compares a proposed action with caller-supplied draft signals and returns an
+allowlisted caution result. It performs no persistence, network or external
+lookup, API access, fees, payment, private-data export, or action execution.
