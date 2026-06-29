@@ -81,3 +81,8 @@ The local [Fee Metering Readiness Pack](../fee-metering-readiness.md) classifies
 future fee-relevant events into closed placeholder categories. It records no
 billable event and triggers no tracking, billing, payment, settlement, external
 metering, or action execution.
+
+The local [Agent Clearing Pipeline Demo Pack](../agent-clearing-pipeline-demo.md)
+composes RefusalGraph querying, clearing decisions, receipts, local verification
+checks, and fee placeholders in memory. It uses no network, records no billable
+event, moves no money, and executes no proposed action.

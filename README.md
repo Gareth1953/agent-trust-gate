@@ -1331,6 +1331,21 @@ billing, payment, settlement, signup, deployment, publishing, outreach,
 third-party connections, private-data export, automatic purchase, and action
 execution remain disabled.
 
+## P3-M048: Agent Clearing Pipeline Demo Pack
+
+P3-M048 composes the local RefusalGraph query, clearing decision, clearing
+receipt, receipt verification-readiness, and fee-metering placeholder engines
+into one deterministic in-memory demonstration. High-caution requests fail
+closed; low-risk requests may produce `accept_with_limits`, but no proposed
+action is executed.
+
+The demo uses no network or external lookup and records no billable event. Live
+pipelines, public APIs/protocols, agent-to-agent pipelines, receipt networks,
+external verification, live/external metering, machine fees, tracking,
+analytics, billing, payment, settlement, signup, deployment, publishing,
+outreach, third-party connections, private-data export, automatic purchase, and
+action execution remain disabled.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

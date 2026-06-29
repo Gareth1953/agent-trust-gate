@@ -316,3 +316,5 @@ export { RECEIPT_VERIFICATION_READINESS_VERSION,createReceiptVerificationId,veri
 export type { LocalReceiptVerificationResult,ReceiptVerificationInput,ReceiptVerificationNextStep,ReceiptVerificationReadinessResult,ReceiptVerificationReasonCode } from "./receipt-verification-readiness.js";
 export { FEE_METERING_READINESS_VERSION,createFeeMeteringEvent,createFeeMeteringEventId,feeMeteringCategoryForEvent } from "./fee-metering-readiness.js";
 export type { FeeMeteringCategory,FeeMeteringEvent,FeeMeteringInput,FeeMeteringSourceEventType } from "./fee-metering-readiness.js";
+export { AGENT_CLEARING_PIPELINE_DEMO_VERSION,createAgentClearingPipelineId,runAgentClearingPipelineDemo } from "./agent-clearing-pipeline-demo.js";
+export type { AgentClearingPipelineDemoInput,AgentClearingPipelineDemoResult,AgentClearingPipelineRequest } from "./agent-clearing-pipeline-demo.js";

@@ -1,0 +1,65 @@
+{
+  "pipeline_id": "local-payment-clearing-pipeline-placeholder",
+  "clearing_request": {
+    "clearing_request_id": "local-clearing-payment-pipeline-request",
+    "requesting_agent_type": "procurement_agent_placeholder",
+    "receiving_agent_type": "service_agent_placeholder",
+    "requested_action_category": "financial_action",
+    "requested_action_type": "initiate_payment",
+    "proposed_value": null,
+    "proposed_fee": null,
+    "risk_level": "high",
+    "impact_level": "high",
+    "evidence_status": "incomplete",
+    "approval_status": "not_requested",
+    "agent_identity_status": "verified_locally",
+    "payment_intent_status": "unclear",
+    "requested_decision": "request_clearance",
+    "timestamp": "2026-06-29T18:00:00.000Z",
+    "status": "draft_only",
+    "local_only": true
+  },
+  "local_refusal_signals": [
+    {
+      "signal_id": "rgs_local_pipeline_payment_001",
+      "action_category": "financial_action",
+      "proposed_action_type": "initiate_payment",
+      "refusal_type": "approval_required",
+      "refusal_reason_codes": [
+        "missing_human_approval",
+        "money_movement_requested",
+        "payment_intent_unclear",
+        "high_risk_action"
+      ],
+      "risk_level": "high",
+      "impact_level": "high",
+      "evidence_status": "incomplete",
+      "approval_status": "not_requested",
+      "recommended_next_step": "require_human_approval",
+      "status": "draft_only",
+      "private_data_included": false
+    },
+    {
+      "signal_id": "rgs_local_pipeline_payment_002",
+      "action_category": "financial_action",
+      "proposed_action_type": "initiate_payment",
+      "refusal_type": "missing_evidence",
+      "refusal_reason_codes": [
+        "missing_evidence",
+        "money_movement_requested",
+        "payment_intent_unclear"
+      ],
+      "risk_level": "medium",
+      "impact_level": "high",
+      "evidence_status": "missing",
+      "approval_status": "requested",
+      "recommended_next_step": "require_more_evidence",
+      "status": "draft_only",
+      "private_data_included": false
+    }
+  ],
+  "fee_metering_requested": true,
+  "timestamp": "2026-06-29T18:00:00.000Z",
+  "status": "draft_only",
+  "local_only": true
+}
