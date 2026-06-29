@@ -71,3 +71,8 @@ The local [Unique Advantage Radar](../unique-advantage-radar.md) and
 [scoring model](../advantage-scoring-model.md) apply a consistent strategic test
 to future missions. They use human-supplied local scores only; scanning,
 scraping, tracking, publishing, fees, and external activity remain disabled.
+
+The local [Receipt Verification Readiness Pack](../receipt-verification-readiness.md)
+checks draft receipt structure, decision links, vocabularies, and safety flags.
+It does not verify externally, access a network, charge fees, persist receipts,
+or execute actions.

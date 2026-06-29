@@ -1304,6 +1304,20 @@ publishing, deployment, outreach, signup, machine fees, payment, billing,
 settlement, private-data export, third-party connections, automatic purchase,
 and action execution remain disabled.
 
+## P3-M046: Receipt Verification Readiness Pack
+
+P3-M046 adds a pure local consistency checker for Agent Clearing Receipts. It
+checks required receipt and decision references, draft status, closed reason and
+next-step vocabularies, and every private-data, network, external-lookup,
+payment, billing, settlement, fee, persistence, and execution indicator. A
+`locally_valid` result is structural only and is not external verification.
+
+Live and external receipt verification, receipt networks, public APIs/protocols,
+agent-to-agent verification, machine fees, payment, billing, settlement,
+analytics, tracking, signup, deployment, publishing, outreach, webhooks,
+third-party connections, private-data export, automatic purchase, and action
+execution remain disabled.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

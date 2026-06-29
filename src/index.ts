@@ -312,3 +312,5 @@ export { AGENT_CLEARING_RECEIPT_ENGINE_VERSION,createAgentClearingReceipt,create
 export type { AgentClearingReceipt,AgentClearingReceiptInput } from "./agent-clearing-receipt-engine.js";
 export { UNIQUE_ADVANTAGE_RADAR_VERSION,advantageBandForScore,clampUniqueAdvantageScore,scoreUniqueAdvantage } from "./unique-advantage-radar.js";
 export type { AdvantageBand,AdvantageDimension,AdvantageRecommendation,UniqueAdvantageInput,UniqueAdvantageResult } from "./unique-advantage-radar.js";
+export { RECEIPT_VERIFICATION_READINESS_VERSION,createReceiptVerificationId,verifyAgentClearingReceiptLocal } from "./receipt-verification-readiness.js";
+export type { LocalReceiptVerificationResult,ReceiptVerificationInput,ReceiptVerificationNextStep,ReceiptVerificationReadinessResult,ReceiptVerificationReasonCode } from "./receipt-verification-readiness.js";
