@@ -76,3 +76,8 @@ The local [Receipt Verification Readiness Pack](../receipt-verification-readines
 checks draft receipt structure, decision links, vocabularies, and safety flags.
 It does not verify externally, access a network, charge fees, persist receipts,
 or execute actions.
+
+The local [Fee Metering Readiness Pack](../fee-metering-readiness.md) classifies
+future fee-relevant events into closed placeholder categories. It records no
+billable event and triggers no tracking, billing, payment, settlement, external
+metering, or action execution.

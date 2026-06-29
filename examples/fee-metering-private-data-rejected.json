@@ -1,0 +1,27 @@
+{
+  "example_version": "atg.fee-metering-private-data-rejection.v1",
+  "status": "draft_only",
+  "input_private_fields_detected": [
+    "customer_name",
+    "customer_email",
+    "company_name",
+    "bank_account",
+    "card_number",
+    "wallet_address",
+    "api_key",
+    "access_token",
+    "private_document_text",
+    "invoice_number",
+    "contract_text",
+    "real_agent_endpoint",
+    "real_url",
+    "real_email_content"
+  ],
+  "private_fields_copied": [],
+  "private_data_included": false,
+  "tracking_triggered": false,
+  "analytics_triggered": false,
+  "billing_triggered": false,
+  "payment_triggered": false,
+  "action_executed": false
+}

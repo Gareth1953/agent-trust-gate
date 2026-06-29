@@ -1,0 +1,23 @@
+{
+  "event_type_map_version": "atg.fee-metering-event-types.v1",
+  "status": "draft_only",
+  "event_types": {
+    "refusal_signal_created": "refusal_signal_event",
+    "refusal_lookup_requested": "refusal_lookup_event",
+    "refusal_lookup_completed": "refusal_lookup_event",
+    "clearing_decision_created": "clearing_decision_event",
+    "clearing_receipt_created": "clearing_receipt_event",
+    "receipt_verification_requested": "receipt_verification_event",
+    "receipt_verification_completed": "receipt_verification_event",
+    "agent_treaty_created": "agent_treaty_event",
+    "agent_handshake_requested": "agent_handshake_event",
+    "advantage_review_completed": "strategic_review_event",
+    "unknown": "unknown_or_unmetered"
+  },
+  "billable_events_enabled": false,
+  "billing_enabled": false,
+  "payment_enabled": false,
+  "settlement_enabled": false,
+  "machine_to_machine_fee_enabled": false,
+  "external_metering_enabled": false
+}

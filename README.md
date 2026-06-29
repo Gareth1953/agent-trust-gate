@@ -1318,6 +1318,19 @@ analytics, tracking, signup, deployment, publishing, outreach, webhooks,
 third-party connections, private-data export, automatic purchase, and action
 execution remain disabled.
 
+## P3-M047: Fee Metering Readiness Pack
+
+P3-M047 adds a pure local classifier for future fee-relevant RefusalGraph,
+clearing, receipt, verification, treaty, handshake, and strategic review events.
+It produces deterministic pseudonymous placeholder events and discards actor,
+linked-object, arbitrary category, and raw fee amount data.
+
+No billable event is recorded. Live metering, external metering, tracking,
+analytics, public APIs/protocols, receipt networks, agent metering, machine fees,
+billing, payment, settlement, signup, deployment, publishing, outreach,
+third-party connections, private-data export, automatic purchase, and action
+execution remain disabled.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

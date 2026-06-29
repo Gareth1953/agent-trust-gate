@@ -314,3 +314,5 @@ export { UNIQUE_ADVANTAGE_RADAR_VERSION,advantageBandForScore,clampUniqueAdvanta
 export type { AdvantageBand,AdvantageDimension,AdvantageRecommendation,UniqueAdvantageInput,UniqueAdvantageResult } from "./unique-advantage-radar.js";
 export { RECEIPT_VERIFICATION_READINESS_VERSION,createReceiptVerificationId,verifyAgentClearingReceiptLocal } from "./receipt-verification-readiness.js";
 export type { LocalReceiptVerificationResult,ReceiptVerificationInput,ReceiptVerificationNextStep,ReceiptVerificationReadinessResult,ReceiptVerificationReasonCode } from "./receipt-verification-readiness.js";
+export { FEE_METERING_READINESS_VERSION,createFeeMeteringEvent,createFeeMeteringEventId,feeMeteringCategoryForEvent } from "./fee-metering-readiness.js";
+export type { FeeMeteringCategory,FeeMeteringEvent,FeeMeteringInput,FeeMeteringSourceEventType } from "./fee-metering-readiness.js";

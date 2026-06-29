@@ -1,0 +1,21 @@
+{
+  "proposal": "activate_live_fee_metering_and_billing",
+  "result": "blocked",
+  "status": "draft_only",
+  "fee_metering_readiness_enabled": false,
+  "live_fee_metering_enabled": false,
+  "billable_events_enabled": false,
+  "billing_enabled": false,
+  "payment_enabled": false,
+  "settlement_enabled": false,
+  "machine_to_machine_fee_enabled": false,
+  "external_metering_enabled": false,
+  "tracking_enabled": false,
+  "analytics_enabled": false,
+  "public_api_enabled": false,
+  "receipt_network_enabled": false,
+  "agent_to_agent_metering_enabled": false,
+  "action_execution_enabled": false,
+  "requires_gareth_final_approval": true,
+  "safety_statement": "Live metering, billable events, billing, payment, settlement, machine fees, tracking, external metering, and execution remain blocked."
+}
