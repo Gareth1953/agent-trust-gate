@@ -1,0 +1,33 @@
+{
+  "example_version": "atg.refusalgraph-private-data-rejection.v1",
+  "status": "draft_only",
+  "local_only": true,
+  "input_private_fields_detected": [
+    "customer_name",
+    "customer_email",
+    "company_name",
+    "bank_account",
+    "card_number",
+    "wallet_address",
+    "api_key",
+    "access_token",
+    "private_document_text",
+    "invoice_number",
+    "contract_text",
+    "real_agent_endpoint",
+    "real_url",
+    "real_email_content"
+  ],
+  "private_fields_copied": [],
+  "output_allowed_fields_only": true,
+  "private_data_included": false,
+  "anonymised": true,
+  "pseudonymised": true,
+  "evidence_hash_only": true,
+  "signal_generation_result": "private_fields_ignored",
+  "network_enabled": false,
+  "external_lookup_enabled": false,
+  "action_execution_enabled": false,
+  "executes_actions": false,
+  "safety_statement": "Private field names are documented for rejection testing, but no private values are copied into a RefusalGraph signal."
+}

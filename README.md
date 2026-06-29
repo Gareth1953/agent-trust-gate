@@ -1234,6 +1234,20 @@ billing, settlement, private-data export, deployment, publishing, outreach,
 tracking, signup, purchase, and action execution remain disabled. All live or
 commercial use requires Gareth final approval.
 
+## P3-M041: RefusalGraph Signal Engine Pack
+
+P3-M041 adds the first pure local RefusalGraph logic layer. It converts blocked,
+refused, limited, approval-required, missing-evidence, unclear-identity/payment,
+high-risk, or policy-blocked receipt-like outcomes into allowlisted,
+pseudonymised, hash-only draft signals. Fully allowed low-risk receipts produce no
+refusal signal.
+
+The engine performs no I/O or network calls and copies no raw reason, evidence,
+identity, customer, company, payment, document, endpoint, URL, or email content.
+Signal persistence, network/external/agent lookup, public APIs, machine fees,
+payment, billing, settlement, private-data export, deployment, publishing,
+outreach, tracking, signup, purchase, and action execution remain disabled.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

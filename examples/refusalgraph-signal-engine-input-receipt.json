@@ -1,0 +1,27 @@
+{
+  "receipt_id": "local-receipt-signal-engine-placeholder",
+  "decision": "approval_required",
+  "allowed": false,
+  "blocked": true,
+  "action_category": "financial_action",
+  "proposed_action_type": "initiate_payment",
+  "risk_level": "high",
+  "impact_level": "high",
+  "evidence_status": "hash_only_incomplete",
+  "approval_status": "not_requested",
+  "reasons": [
+    "Human approval is missing.",
+    "Payment intent is unclear.",
+    "Money movement requested."
+  ],
+  "missing_evidence": [
+    "spend_authority",
+    "approved_payment_purpose"
+  ],
+  "evidence_hashes": [
+    "sha256:0000000000000000000000000000000000000000000000000000000000000001"
+  ],
+  "timestamp": "2026-06-29T12:00:00.000Z",
+  "executes_actions": false,
+  "safety_statement": "This is a local blocked receipt fixture only. It does not initiate payment, move money, perform lookup, or execute actions."
+}

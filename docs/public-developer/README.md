@@ -46,3 +46,8 @@ The local [Agent Clearing House Foundation Pack](../agent-clearing-house-foundat
 [clearance decision types](../agent-clearing-decision-types.md) connect handshake,
 RefusalGraph, treaty, and receipt concepts into a future clearing model. Clearing,
 receipt exchange, fees, payment, settlement, networking, and execution remain disabled.
+
+The pure local [RefusalGraph Signal Engine](../refusalgraph-signal-engine.md)
+converts blocked or approval-required receipt-like outcomes into allowlisted,
+pseudonymised, hash-only refusal signals. Persistence, network lookup, APIs, fees,
+payment, private-data export, and action execution remain disabled.

@@ -302,3 +302,5 @@ export { LAUNCH_READINESS_SAFETY_STATEMENT,LAUNCH_READINESS_VERSION,createLaunch
 export type { DeveloperAssets,DocumentationSection,DocumentationSectionStatus,LaunchCheck,LaunchCheckSeverity,LaunchCheckStatus,LaunchReadinessReport } from "./launch-readiness.js";
 export { GLOBAL_MARKETING_READINESS_SAFETY_STATEMENT,GLOBAL_MARKETING_READINESS_VERSION,createGlobalMarketingReadinessReport,formatGlobalMarketingReadinessForConsole,writeGlobalMarketingReadinessReport } from "./global-marketing-readiness.js";
 export type { DistributionChannel,DistributionChannelStatus,GlobalMarketingReadinessReport,MarketingReadinessCheck,MarketingReadinessCheckSeverity,MarketingReadinessCheckStatus } from "./global-marketing-readiness.js";
+export { REFUSALGRAPH_SIGNAL_ENGINE_VERSION,createRefusalGraphSignal,normalizeRefusalReasons } from "./refusalgraph-signal-engine.js";
+export type { RefusalGraphReceiptInput,RefusalGraphSignal,RefusalReasonCode,RefusalRecommendedNextStep,RefusalType } from "./refusalgraph-signal-engine.js";

@@ -1,0 +1,28 @@
+{
+  "signal_id": "rgs_f39761310a7a90e1bd05eecf",
+  "source_receipt_id": "receipt_f39761310a7a90e1bd05eecf",
+  "action_category": "financial_action",
+  "proposed_action_type": "initiate_payment",
+  "refusal_type": "payment_intent_unclear",
+  "refusal_reason_codes": [
+    "high_risk_action",
+    "missing_evidence",
+    "missing_human_approval",
+    "money_movement_requested",
+    "payment_intent_unclear"
+  ],
+  "risk_level": "high",
+  "impact_level": "high",
+  "evidence_status": "hash_only_incomplete",
+  "approval_status": "not_requested",
+  "evidence_hashes": [
+    "sha256:0000000000000000000000000000000000000000000000000000000000000001"
+  ],
+  "private_data_included": false,
+  "anonymised": true,
+  "pseudonymised": true,
+  "evidence_hash_only": true,
+  "recommended_next_step": "require_human_approval",
+  "created_at": "2026-06-29T12:00:00.000Z",
+  "status": "draft_only"
+}
