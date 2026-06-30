@@ -1392,6 +1392,20 @@ third-party connections, public interfaces, agent/clearing/receipt networks,
 live verification, live metering, private-data export, automatic purchase, and
 action execution remain disabled.
 
+## P3-M052: Agent Clearing Investor / Partner Brief Pack
+
+P3-M052 adds an internal draft investor/partner brief, concise partner summary,
+founder strategic memo, and pure local brief/Markdown builder. The materials
+position Agent Clearing House as a protocol-neutral clearing layer and
+RefusalGraph as privacy-minimized negative trust intelligence, while treating
+adoption, defensibility, and fee points as hypotheses rather than guarantees.
+
+Nothing is externally shared, published, emailed, or sent as outreach. CRM,
+tracking, analytics, public pages, deployment, signup, contact forms, billing,
+payment, settlement, machine fees, webhooks, third-party connections, public
+interfaces, agent/clearing/receipt networks, live verification, live metering,
+private-data export, automatic purchase, and action execution remain disabled.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

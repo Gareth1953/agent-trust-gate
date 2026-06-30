@@ -1,0 +1,29 @@
+{
+  "example_version": "atg.agent-clearing-investor-partner-brief-private-data-rejection.v1",
+  "status": "draft_only",
+  "shared_externally": false,
+  "published": false,
+  "input_private_fields_detected": [
+    "customer_name",
+    "customer_email",
+    "company_name",
+    "bank_account",
+    "card_number",
+    "wallet_address",
+    "api_key",
+    "access_token",
+    "private_document_text",
+    "invoice_number",
+    "contract_text",
+    "real_agent_endpoint",
+    "real_url",
+    "real_email_content"
+  ],
+  "private_fields_used_in_brief": [],
+  "private_fields_copied_to_markdown": [],
+  "private_data_included": false,
+  "tracking_enabled": false,
+  "analytics_enabled": false,
+  "payment_or_fee_triggered": false,
+  "action_executed": false
+}

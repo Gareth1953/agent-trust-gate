@@ -324,3 +324,5 @@ export { AGENT_CLEARING_DEMO_REPORT_VERSION,createAgentClearingDemoReport,create
 export type { AgentClearingDemoReport } from "./agent-clearing-demo-report.js";
 export { AGENT_CLEARING_PUBLIC_DEMO_NARRATIVE_VERSION,createAgentClearingPublicDemoNarrative,createAgentClearingPublicDemoNarrativeId,renderAgentClearingPublicDemoNarrativeMarkdown } from "./agent-clearing-public-demo-narrative.js";
 export type { AgentClearingPublicDemoNarrative,AgentClearingPublicDemoNarrativeInput } from "./agent-clearing-public-demo-narrative.js";
+export { AGENT_CLEARING_INVESTOR_PARTNER_BRIEF_VERSION,createAgentClearingInvestorPartnerBrief,createAgentClearingInvestorPartnerBriefId,renderAgentClearingInvestorPartnerBriefMarkdown } from "./agent-clearing-investor-partner-brief.js";
+export type { AgentClearingInvestorPartnerBrief,AgentClearingInvestorPartnerBriefInput } from "./agent-clearing-investor-partner-brief.js";

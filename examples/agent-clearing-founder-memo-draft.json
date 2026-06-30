@@ -1,0 +1,17 @@
+{
+  "memo_version": "atg.agent-clearing-founder-memo.v1",
+  "status": "draft_only",
+  "shared_externally": false,
+  "published": false,
+  "audience": "Gareth",
+  "strategic_focus": "Protocol-neutral agent clearing, RefusalGraph refusal intelligence, receipts, verification, and future fee readiness.",
+  "avoid": [
+    "generic_ai_governance",
+    "building_a_payment_rail",
+    "private_data_as_a_moat",
+    "premature_public_activation",
+    "compliance_or_safety_overclaims"
+  ],
+  "next_priority": "Validate decision value locally while every external, network, commercial, and payment gate remains disabled.",
+  "requires_gareth_final_approval": true
+}

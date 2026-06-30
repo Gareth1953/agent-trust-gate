@@ -101,3 +101,8 @@ The [Agent Clearing Public Demo Narrative Pack](../agent-clearing-public-demo-na
 provides draft-only public wording, a one-page summary, FAQ, and deterministic
 local narrative object. Nothing is published, deployed, tracked, analysed,
 billed, networked, or executed.
+
+The [Agent Clearing Investor / Partner Brief Pack](../agent-clearing-investor-partner-brief.md)
+provides an internal draft brief, partner summary, founder memo, and deterministic
+local brief object. Nothing is externally shared, published, emailed, tracked,
+analysed, billed, networked, or executed.

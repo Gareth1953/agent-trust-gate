@@ -1,0 +1,19 @@
+{
+  "proposal": "share_agent_clearing_investor_partner_brief",
+  "result": "blocked",
+  "status": "draft_only",
+  "external_sharing_enabled": false,
+  "publication_enabled": false,
+  "outreach_enabled": false,
+  "email_sending_enabled": false,
+  "crm_enabled": false,
+  "tracking_enabled": false,
+  "analytics_enabled": false,
+  "deployment_enabled": false,
+  "public_api_enabled": false,
+  "action_execution_enabled": false,
+  "requires_gareth_final_approval": true,
+  "requires_external_sharing_approval": true,
+  "requires_publication_approval": true,
+  "safety_statement": "External sharing, publication, outreach, email, CRM, tracking, analytics, deployment, public interfaces, and execution remain blocked."
+}

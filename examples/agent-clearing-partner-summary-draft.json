@@ -1,0 +1,12 @@
+{
+  "summary_version": "atg.agent-clearing-partner-summary.v1",
+  "status": "draft_only",
+  "shared_externally": false,
+  "published": false,
+  "title": "Agent Clearing House + RefusalGraph Partner Summary",
+  "problem": "Agent communication and payment do not determine whether a risky request should proceed.",
+  "solution": "A draft pre-action clearing, refusal-intelligence, receipt, and verification layer.",
+  "unique_advantage": "Before an agent says yes, it can check who already said no - and why.",
+  "future_fee_model": "Clearance, receipt verification, and refusal lookup remain disabled commercial hypotheses.",
+  "safety_statement": "Internal draft only. Nothing is shared, published, networked, tracked, billed, paid, settled, or executed."
+}
