@@ -1518,3 +1518,7 @@ The local signal store collects, queries, and summarises allowlisted RefusalGrap
 ### Batch Agent Clearing Runner Pack
 
 The batch runner composes multiple local draft requests through RefusalGraph matching, clearing, receipts, verification, fee placeholders, reports, and one in-memory ledger. It performs no scheduling, networking, persistence, tracking, commerce, or action execution. See `docs/batch-agent-clearing-runner.md`.
+
+### Receipt Verification CLI Pack
+
+The local CLI validates and checks one draft clearing receipt with the existing readiness engine, then prints allowlisted JSON. It performs no live, network, external, blockchain, payment, or action verification. See `docs/receipt-verification-cli.md`.

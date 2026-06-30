@@ -1,0 +1,33 @@
+{
+  "receipt": {
+    "receipt_id": "acr_local_incomplete_001",
+    "receipt_type": "unsupported_local_receipt",
+    "source_clearing_decision_id": "",
+    "source_clearing_request_id": "",
+    "decision": "keep_blocked",
+    "action_allowed": false,
+    "action_blocked": true,
+    "approval_required": true,
+    "evidence_required": true,
+    "identity_verification_required": false,
+    "payment_intent_clarification_required": false,
+    "spend_limit_recommended": false,
+    "refusalgraph_caution_level": "unknown",
+    "refusalgraph_matched_signal_count": 0,
+    "reason_codes": [],
+    "required_next_steps": [],
+    "verification_status": "not_verified_externally",
+    "receipt_status": "invalid",
+    "private_data_included": false,
+    "network_lookup_performed": false,
+    "external_lookup_performed": false,
+    "payment_or_fee_triggered": false,
+    "action_executed": false,
+    "receipt_persisted": false,
+    "settlement_triggered": false,
+    "billing_triggered": false,
+    "machine_to_machine_fee_triggered": false,
+    "status": "draft_only",
+    "created_at": "2026-06-30T16:00:00.000Z"
+  }
+}

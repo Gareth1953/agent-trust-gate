@@ -118,3 +118,7 @@ counts. It uses no persistence, scraping, network, tracking, analytics, or execu
 The [Batch Agent Clearing Runner Pack](../batch-agent-clearing-runner.md) composes
 multiple local requests through the existing pipeline, signal store, reports, and
 one in-memory ledger without scheduling, networking, tracking, commerce, or execution.
+
+The [Receipt Verification CLI Pack](../receipt-verification-cli.md) checks one
+local draft clearing receipt and prints allowlisted JSON without live, network,
+external, blockchain, payment, or action verification.
