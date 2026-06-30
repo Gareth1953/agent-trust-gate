@@ -1346,6 +1346,23 @@ analytics, billing, payment, settlement, signup, deployment, publishing,
 outreach, third-party connections, private-data export, automatic purchase, and
 action execution remain disabled.
 
+## P3-M049: Agent Clearing Demo CLI Pack
+
+P3-M049 exposes the local pipeline demo through a short-lived compiled command:
+
+```text
+npm run demo:clearing -- examples/agent-clearing-cli-input-draft.json --pretty
+```
+
+The command rebuilds an allowlisted local input, prints the draft pipeline JSON
+to stdout, and returns structured errors without paths, values, or stack traces.
+It starts no server and writes no output file. Live CLI/network use, public
+APIs/protocols, agent-to-agent CLI, receipt networks, external verification,
+live/external metering, billable events, tracking, analytics, machine fees,
+billing, payment, settlement, signup, deployment, publishing, outreach,
+third-party connections, private-data export, automatic purchase, and action
+execution remain disabled.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

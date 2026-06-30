@@ -318,3 +318,5 @@ export { FEE_METERING_READINESS_VERSION,createFeeMeteringEvent,createFeeMetering
 export type { FeeMeteringCategory,FeeMeteringEvent,FeeMeteringInput,FeeMeteringSourceEventType } from "./fee-metering-readiness.js";
 export { AGENT_CLEARING_PIPELINE_DEMO_VERSION,createAgentClearingPipelineId,runAgentClearingPipelineDemo } from "./agent-clearing-pipeline-demo.js";
 export type { AgentClearingPipelineDemoInput,AgentClearingPipelineDemoResult,AgentClearingPipelineRequest } from "./agent-clearing-pipeline-demo.js";
+export { AGENT_CLEARING_DEMO_CLI_VERSION,readAgentClearingDemoInput,runAgentClearingDemoCli } from "./agent-clearing-demo-cli.js";
+export type { AgentClearingDemoCliErrorCode,AgentClearingDemoCliErrorResult,AgentClearingDemoCliIo } from "./agent-clearing-demo-cli.js";

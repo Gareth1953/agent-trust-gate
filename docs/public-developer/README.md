@@ -86,3 +86,8 @@ The local [Agent Clearing Pipeline Demo Pack](../agent-clearing-pipeline-demo.md
 composes RefusalGraph querying, clearing decisions, receipts, local verification
 checks, and fee placeholders in memory. It uses no network, records no billable
 event, moves no money, and executes no proposed action.
+
+The local [Agent Clearing Demo CLI Pack](../agent-clearing-demo-cli.md) runs that
+pipeline from one local JSON file and prints safe JSON to stdout. It starts no
+listener, writes no output, accesses no network, moves no money, and executes no
+proposed action.
