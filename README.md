@@ -1363,6 +1363,21 @@ billing, payment, settlement, signup, deployment, publishing, outreach,
 third-party connections, private-data export, automatic purchase, and action
 execution remain disabled.
 
+## P3-M050: Agent Clearing Demo Report Pack
+
+P3-M050 converts a local pipeline/CLI result into an allowlisted human-readable
+report object and optional in-memory Markdown. Request context is derived only
+from normalized reason codes; raw request text, identities, targets, values, and
+private fields are never interpolated.
+
+The tracked local example explains high RefusalGraph caution, required human
+approval, draft receipt creation, local verification, and placeholder-only fee
+metering. No report is written, exported, or published. Live reporting,
+publishing/export, tracking, analytics, networks, external verification,
+billable events, metering, billing, payment, settlement, deployment, outreach,
+third-party connections, private-data export, automatic purchase, and action
+execution remain disabled.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

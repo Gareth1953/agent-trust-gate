@@ -91,3 +91,8 @@ The local [Agent Clearing Demo CLI Pack](../agent-clearing-demo-cli.md) runs tha
 pipeline from one local JSON file and prints safe JSON to stdout. It starts no
 listener, writes no output, accesses no network, moves no money, and executes no
 proposed action.
+
+The local [Agent Clearing Demo Report Pack](../agent-clearing-demo-report.md)
+turns a draft pipeline result into an allowlisted report object or in-memory
+Markdown. It writes, exports, publishes, tracks, analyses, bills, and executes
+nothing.

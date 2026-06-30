@@ -320,3 +320,5 @@ export { AGENT_CLEARING_PIPELINE_DEMO_VERSION,createAgentClearingPipelineId,runA
 export type { AgentClearingPipelineDemoInput,AgentClearingPipelineDemoResult,AgentClearingPipelineRequest } from "./agent-clearing-pipeline-demo.js";
 export { AGENT_CLEARING_DEMO_CLI_VERSION,readAgentClearingDemoInput,runAgentClearingDemoCli } from "./agent-clearing-demo-cli.js";
 export type { AgentClearingDemoCliErrorCode,AgentClearingDemoCliErrorResult,AgentClearingDemoCliIo } from "./agent-clearing-demo-cli.js";
+export { AGENT_CLEARING_DEMO_REPORT_VERSION,createAgentClearingDemoReport,createAgentClearingDemoReportId,renderAgentClearingDemoReportMarkdown } from "./agent-clearing-demo-report.js";
+export type { AgentClearingDemoReport } from "./agent-clearing-demo-report.js";
