@@ -122,3 +122,7 @@ one in-memory ledger without scheduling, networking, tracking, commerce, or exec
 The [Receipt Verification CLI Pack](../receipt-verification-cli.md) checks one
 local draft clearing receipt and prints allowlisted JSON without live, network,
 external, blockchain, payment, or action verification.
+
+The [Fee Metering Ledger Pack](../fee-metering-ledger.md) records bounded local
+placeholder value events without billing, payment, settlement, invoicing, tax
+reporting, tracking, network metering, or execution.

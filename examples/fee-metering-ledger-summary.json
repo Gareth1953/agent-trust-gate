@@ -1,0 +1,41 @@
+{
+  "total_events": 7,
+  "event_type_counts": {
+    "clearing_check_placeholder": 1,
+    "refusalgraph_lookup_placeholder": 1,
+    "receipt_creation_placeholder": 1,
+    "receipt_verification_placeholder": 1,
+    "batch_clearing_placeholder": 1,
+    "approval_gate_placeholder": 1,
+    "blocked_action_placeholder": 1,
+    "unknown_fee_placeholder": 0
+  },
+  "placeholder_fee_status_counts": {
+    "placeholder_only": 2,
+    "not_billable": 1,
+    "billable_if_live": 3,
+    "blocked": 1,
+    "unknown": 0
+  },
+  "billable_if_live_count": 3,
+  "not_billable_count": 1,
+  "blocked_count": 1,
+  "approval_required_count": 6,
+  "action_blocked_count": 6,
+  "placeholder_amount_total": 0.095,
+  "placeholder_amount_minor_units_total": 10,
+  "billing_enabled_count": 0,
+  "payment_enabled_count": 0,
+  "settlement_enabled_count": 0,
+  "machine_to_machine_fee_enabled_count": 0,
+  "payment_triggered_count": 0,
+  "billing_triggered_count": 0,
+  "settlement_triggered_count": 0,
+  "network_lookup_count": 0,
+  "external_lookup_count": 0,
+  "tracking_triggered_count": 0,
+  "analytics_triggered_count": 0,
+  "action_executed_count": 0,
+  "private_data_included": false,
+  "status": "placeholder_only"
+}

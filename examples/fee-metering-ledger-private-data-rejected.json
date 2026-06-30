@@ -1,0 +1,15 @@
+{
+  "status": "placeholder_only",
+  "input_private_fields_detected": true,
+  "private_fields_copied": [],
+  "private_data_included": false,
+  "billing_enabled": false,
+  "payment_enabled": false,
+  "settlement_enabled": false,
+  "machine_to_machine_fee_enabled": false,
+  "network_lookup_performed": false,
+  "external_lookup_performed": false,
+  "tracking_triggered": false,
+  "analytics_triggered": false,
+  "action_executed": false
+}

@@ -1522,3 +1522,7 @@ The batch runner composes multiple local draft requests through RefusalGraph mat
 ### Receipt Verification CLI Pack
 
 The local CLI validates and checks one draft clearing receipt with the existing readiness engine, then prints allowlisted JSON. It performs no live, network, external, blockchain, payment, or action verification. See `docs/receipt-verification-cli.md`.
+
+### Fee Metering Ledger Pack
+
+The immutable local ledger records bounded placeholder value events for clearing, RefusalGraph, receipts, verification, batches, approvals, and blocks. It performs no billing, payment, settlement, invoicing, tax reporting, tracking, network metering, or execution. See `docs/fee-metering-ledger.md`.
