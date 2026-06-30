@@ -1378,6 +1378,20 @@ billable events, metering, billing, payment, settlement, deployment, outreach,
 third-party connections, private-data export, automatic purchase, and action
 execution remain disabled.
 
+## P3-M051: Agent Clearing Public Demo Narrative Pack
+
+P3-M051 adds draft public-facing narrative, one-page summary, FAQ, and a pure
+local narrative builder. The core positioning is: "Before an agent says yes, it
+can check who already said no - and why."
+
+The materials explain the request-to-RefusalGraph-to-decision-to-receipt-to-
+verification-to-fee-placeholder flow without publishing a page or activating a
+service. Live pages, publishing, deployment, tracking, analytics, signup,
+contact forms, billing, payment, settlement, fees, outreach, email, webhooks,
+third-party connections, public interfaces, agent/clearing/receipt networks,
+live verification, live metering, private-data export, automatic purchase, and
+action execution remain disabled.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:

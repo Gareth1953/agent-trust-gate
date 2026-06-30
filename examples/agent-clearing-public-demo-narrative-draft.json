@@ -1,0 +1,23 @@
+{
+  "narrative_id": "acpdn_local_1f8b1e2b765aa47496f08deb",
+  "narrative_type": "agent_clearing_public_demo_narrative",
+  "title": "Agent Clearing House + RefusalGraph Local Demo",
+  "headline": "Before an agent says yes, it can check who already said no - and why.",
+  "problem_summary": "AI agents will increasingly ask other agents and systems to perform work, access data, call tools, make purchases, or accept transactions. A request should not be trusted only because another agent sent it.",
+  "solution_summary": "Agent Clearing House provides a draft pre-action clearing, receipt, and verification layer. RefusalGraph adds local intelligence about similar requests that were blocked, limited, refused, or required stronger evidence and approval.",
+  "demo_flow_summary": "A local draft request was checked against supplied RefusalGraph signals, which returned high caution. The local clearing decision was require_human_approval. The demo then created an unpersisted receipt, performed local verification-readiness checks, and created a non-billable fee placeholder.",
+  "refusalgraph_summary": "RefusalGraph captures privacy-minimized refusal patterns rather than payment transfers or agent messages. It helps future systems ask what was refused before, why it was refused, and what proof or approval is still needed.",
+  "safety_summary": "This narrative is draft-only and unpublished. No action was executed, no network lookup was performed, no private data was exposed, and no tracking, analytics, signup, billing, payment, settlement, deployment, publishing, outreach, webhook, or third-party connection was activated.",
+  "future_fee_summary": "A future approved clearing service could charge a small fee for receipt verification, refusal lookup, or clearance checks. This draft does not record a billable event, trigger a fee, or move money.",
+  "current_status": "draft_public_narrative_not_published",
+  "published": false,
+  "tracking_enabled": false,
+  "analytics_enabled": false,
+  "payment_or_fee_triggered": false,
+  "billing_triggered": false,
+  "settlement_triggered": false,
+  "action_executed": false,
+  "private_data_included": false,
+  "status": "draft_only",
+  "created_at": "2026-06-30T09:00:00.000Z"
+}

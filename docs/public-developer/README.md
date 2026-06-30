@@ -96,3 +96,8 @@ The local [Agent Clearing Demo Report Pack](../agent-clearing-demo-report.md)
 turns a draft pipeline result into an allowlisted report object or in-memory
 Markdown. It writes, exports, publishes, tracks, analyses, bills, and executes
 nothing.
+
+The [Agent Clearing Public Demo Narrative Pack](../agent-clearing-public-demo-narrative.md)
+provides draft-only public wording, a one-page summary, FAQ, and deterministic
+local narrative object. Nothing is published, deployed, tracked, analysed,
+billed, networked, or executed.

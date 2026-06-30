@@ -1,0 +1,10 @@
+{
+  "summary_version": "atg.agent-clearing-public-demo-summary.v1",
+  "status": "draft_only",
+  "published": false,
+  "title": "Agent Clearing House + RefusalGraph",
+  "positioning_line": "Before an agent says yes, it can check who already said no - and why.",
+  "one_sentence_explanation": "A local draft pre-action clearing and receipt layer that uses RefusalGraph caution signals before risky agent requests are accepted.",
+  "future_value": "Possible future receipt verification, refusal lookup, and clearance fee points remain disabled.",
+  "safety_statement": "This is local draft material only. It is unpublished, uses no network, exposes no private data, moves no money, and executes no action."
+}

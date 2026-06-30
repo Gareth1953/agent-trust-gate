@@ -1,0 +1,27 @@
+{
+  "faq_version": "atg.agent-clearing-public-demo-faq.v1",
+  "status": "draft_only",
+  "published": false,
+  "questions": [
+    {
+      "question": "Is this live?",
+      "answer": "No. It is a local draft demonstration with no public page, hosted service, or network."
+    },
+    {
+      "question": "Does it move money or charge fees?",
+      "answer": "No. It does not transfer funds, create billable events, charge fees, bill, pay, or settle."
+    },
+    {
+      "question": "What is RefusalGraph?",
+      "answer": "A local draft layer of privacy-minimized patterns from blocked, refused, limited, evidence-missing, approval-required, and high-risk actions."
+    },
+    {
+      "question": "Can it execute actions?",
+      "answer": "No. It returns local draft decisions, receipts, checks, reports, and placeholders only."
+    },
+    {
+      "question": "Who approves publication or activation?",
+      "answer": "Gareth provides final approval after required publication, technical, security, privacy, legal, and commercial review."
+    }
+  ]
+}

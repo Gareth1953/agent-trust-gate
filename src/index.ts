@@ -322,3 +322,5 @@ export { AGENT_CLEARING_DEMO_CLI_VERSION,readAgentClearingDemoInput,runAgentClea
 export type { AgentClearingDemoCliErrorCode,AgentClearingDemoCliErrorResult,AgentClearingDemoCliIo } from "./agent-clearing-demo-cli.js";
 export { AGENT_CLEARING_DEMO_REPORT_VERSION,createAgentClearingDemoReport,createAgentClearingDemoReportId,renderAgentClearingDemoReportMarkdown } from "./agent-clearing-demo-report.js";
 export type { AgentClearingDemoReport } from "./agent-clearing-demo-report.js";
+export { AGENT_CLEARING_PUBLIC_DEMO_NARRATIVE_VERSION,createAgentClearingPublicDemoNarrative,createAgentClearingPublicDemoNarrativeId,renderAgentClearingPublicDemoNarrativeMarkdown } from "./agent-clearing-public-demo-narrative.js";
+export type { AgentClearingPublicDemoNarrative,AgentClearingPublicDemoNarrativeInput } from "./agent-clearing-public-demo-narrative.js";
