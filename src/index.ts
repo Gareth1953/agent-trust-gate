@@ -326,3 +326,5 @@ export { AGENT_CLEARING_PUBLIC_DEMO_NARRATIVE_VERSION,createAgentClearingPublicD
 export type { AgentClearingPublicDemoNarrative,AgentClearingPublicDemoNarrativeInput } from "./agent-clearing-public-demo-narrative.js";
 export { AGENT_CLEARING_INVESTOR_PARTNER_BRIEF_VERSION,createAgentClearingInvestorPartnerBrief,createAgentClearingInvestorPartnerBriefId,renderAgentClearingInvestorPartnerBriefMarkdown } from "./agent-clearing-investor-partner-brief.js";
 export type { AgentClearingInvestorPartnerBrief,AgentClearingInvestorPartnerBriefInput } from "./agent-clearing-investor-partner-brief.js";
+export { LOCAL_CLEARING_LEDGER_VERSION,addLocalClearingLedgerRecord,createLocalClearingLedger,createLocalLedgerRecordId,findLocalClearingLedgerRecordById,listLocalClearingLedgerRecords,summariseLocalClearingLedger } from "./local-clearing-ledger.js";
+export type { LocalClearingLedger,LocalClearingLedgerRecord,LocalClearingLedgerRecordInput,LocalClearingLedgerRecordType,LocalClearingLedgerSummary } from "./local-clearing-ledger.js";

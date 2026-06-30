@@ -106,3 +106,7 @@ The [Agent Clearing Investor / Partner Brief Pack](../agent-clearing-investor-pa
 provides an internal draft brief, partner summary, founder memo, and deterministic
 local brief object. Nothing is externally shared, published, emailed, tracked,
 analysed, billed, networked, or executed.
+
+The [Local Clearing Ledger Pack](../local-clearing-ledger.md) provides immutable
+in-memory record collection, lookup, deduplication, and summary counts. It uses
+no file persistence, database, cloud sync, tracking, network, or execution.

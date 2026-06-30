@@ -1,0 +1,29 @@
+{
+  "total_records": 5,
+  "record_type_counts": {
+    "pipeline_result": 1,
+    "clearing_decision": 1,
+    "clearing_receipt": 1,
+    "receipt_verification_result": 1,
+    "fee_metering_event": 1,
+    "refusalgraph_signal": 0,
+    "refusalgraph_query_result": 0,
+    "demo_report": 0,
+    "unknown_local_record": 0
+  },
+  "blocked_count": 3,
+  "approval_required_count": 3,
+  "allowed_count": 0,
+  "high_caution_count": 3,
+  "critical_caution_count": 0,
+  "receipts_created_count": 1,
+  "verifications_completed_count": 1,
+  "fee_placeholders_count": 1,
+  "action_executed_count": 0,
+  "payment_triggered_count": 0,
+  "billing_triggered_count": 0,
+  "settlement_triggered_count": 0,
+  "network_lookup_count": 0,
+  "private_data_included": false,
+  "status": "draft_only"
+}

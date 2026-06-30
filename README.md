@@ -1406,6 +1406,14 @@ payment, settlement, machine fees, webhooks, third-party connections, public
 interfaces, agent/clearing/receipt networks, live verification, live metering,
 private-data export, automatic purchase, and action execution remain disabled.
 
+## P3-M053: Local Clearing Ledger Pack
+
+P3-M053 adds an immutable in-memory ledger for allowlisted pipeline, decision,
+receipt, verification, fee-placeholder, RefusalGraph, and demo-report records.
+It supports deterministic IDs, pseudonymous references, deduplication, listing,
+lookup, and safe aggregate counts. No file persistence, database, cloud sync,
+tracking, network, billing, payment, settlement, or execution is enabled.
+
 ### Approval-status examples
 
 Use `human_approval_status` to make the approval boundary explicit:
