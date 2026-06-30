@@ -1,0 +1,23 @@
+{
+  "batch_id": "batch_agent_clearing_02d0ecd2d063f101c90c9b65",
+  "total_requests": 4,
+  "completed_count": 4,
+  "allowed_count": 1,
+  "blocked_count": 3,
+  "approval_required_count": 3,
+  "high_caution_count": 3,
+  "critical_caution_count": 0,
+  "receipts_created_count": 4,
+  "verifications_completed_count": 4,
+  "fee_placeholders_count": 4,
+  "private_data_included": false,
+  "network_lookup_count": 0,
+  "external_lookup_count": 0,
+  "tracking_triggered_count": 0,
+  "analytics_triggered_count": 0,
+  "payment_triggered_count": 0,
+  "billing_triggered_count": 0,
+  "settlement_triggered_count": 0,
+  "action_executed_count": 0,
+  "status": "draft_only"
+}

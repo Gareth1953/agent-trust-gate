@@ -114,3 +114,7 @@ no file persistence, database, cloud sync, tracking, network, or execution.
 The [RefusalGraph Local Signal Store Pack](../refusalgraph-local-signal-store.md)
 provides immutable in-memory signal collection, local querying, and safe summary
 counts. It uses no persistence, scraping, network, tracking, analytics, or execution.
+
+The [Batch Agent Clearing Runner Pack](../batch-agent-clearing-runner.md) composes
+multiple local requests through the existing pipeline, signal store, reports, and
+one in-memory ledger without scheduling, networking, tracking, commerce, or execution.

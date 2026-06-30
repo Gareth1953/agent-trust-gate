@@ -1,0 +1,100 @@
+{
+  "batch_id": "local-batch-demo-001",
+  "batch_status": "draft_only",
+  "clearing_requests": [
+    {
+      "request_id": "local-request-low-risk-001",
+      "agent_id": "local-agent-placeholder-a",
+      "target_agent_id": "local-agent-placeholder-b",
+      "intent_category": "internal_action",
+      "action_category": "internal_review",
+      "requested_action": "internal_review",
+      "risk_level": "low",
+      "evidence_level": "complete",
+      "approval_status": "not_required",
+      "created_at": "2026-06-30T15:00:00.000Z"
+    },
+    {
+      "request_id": "local-request-high-caution-002",
+      "agent_id": "local-agent-placeholder-c",
+      "target_agent_id": "local-agent-placeholder-d",
+      "intent_category": "payment",
+      "action_category": "initiate_payment",
+      "requested_action": "initiate_payment",
+      "risk_level": "high",
+      "evidence_level": "incomplete",
+      "approval_status": "missing",
+      "created_at": "2026-06-30T15:01:00.000Z"
+    },
+    {
+      "request_id": "local-request-approval-003",
+      "agent_id": "local-agent-placeholder-e",
+      "target_agent_id": "local-agent-placeholder-f",
+      "intent_category": "publishing",
+      "action_category": "publish_content",
+      "requested_action": "publish_content",
+      "risk_level": "medium",
+      "evidence_level": "complete",
+      "approval_status": "missing",
+      "created_at": "2026-06-30T15:02:00.000Z"
+    },
+    {
+      "request_id": "local-request-blocked-004",
+      "agent_id": "local-agent-placeholder-g",
+      "target_agent_id": "local-agent-placeholder-h",
+      "intent_category": "deployment",
+      "action_category": "deploy_code",
+      "requested_action": "deploy_code",
+      "risk_level": "high",
+      "evidence_level": "missing",
+      "approval_status": "missing",
+      "created_at": "2026-06-30T15:03:00.000Z"
+    }
+  ],
+  "local_refusal_signals": [
+    {
+      "signal_type": "high_caution",
+      "source_id": "local-payment-signal-001",
+      "related_request_id": "local-payment-pattern",
+      "intent_category": "payment",
+      "action_category": "initiate_payment",
+      "refusal_reason": "money_movement_requested",
+      "caution_level": "critical",
+      "approval_required": true,
+      "action_allowed": false,
+      "action_blocked": true,
+      "evidence_level": "incomplete",
+      "signal_status": "draft_only",
+      "created_at": "2026-06-30T14:00:00.000Z"
+    },
+    {
+      "signal_type": "approval_required",
+      "source_id": "local-publishing-signal-002",
+      "intent_category": "publishing",
+      "action_category": "publish_content",
+      "refusal_reason": "missing_human_approval",
+      "caution_level": "high",
+      "approval_required": true,
+      "action_allowed": false,
+      "action_blocked": true,
+      "evidence_level": "sufficient",
+      "signal_status": "draft_only",
+      "created_at": "2026-06-30T14:01:00.000Z"
+    },
+    {
+      "signal_type": "blocked_request",
+      "source_id": "local-deployment-signal-003",
+      "intent_category": "deployment",
+      "action_category": "deploy_code",
+      "refusal_reason": "missing_evidence",
+      "caution_level": "high",
+      "approval_required": true,
+      "action_allowed": false,
+      "action_blocked": true,
+      "evidence_level": "missing",
+      "signal_status": "draft_only",
+      "created_at": "2026-06-30T14:02:00.000Z"
+    }
+  ],
+  "created_at": "2026-06-30T15:05:00.000Z"
+}

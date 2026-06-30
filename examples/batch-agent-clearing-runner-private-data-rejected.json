@@ -1,0 +1,17 @@
+{
+  "status": "draft_only",
+  "input_private_fields_detected": true,
+  "private_fields_copied": [],
+  "batch_output_private_data_included": false,
+  "request_results_private_data_included": false,
+  "ledger_private_data_included": false,
+  "signal_store_private_data_included": false,
+  "network_lookup_performed": false,
+  "external_lookup_performed": false,
+  "tracking_triggered": false,
+  "analytics_triggered": false,
+  "payment_or_fee_triggered": false,
+  "billing_triggered": false,
+  "settlement_triggered": false,
+  "action_executed": false
+}

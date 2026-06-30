@@ -1514,3 +1514,7 @@ integration are intentionally excluded from this version.
 ### RefusalGraph Local Signal Store Pack
 
 The local signal store collects, queries, and summarises allowlisted RefusalGraph signals in memory. It performs no persistence, scraping, network lookup, tracking, analytics, commerce, or action execution. See `docs/refusalgraph-local-signal-store.md`.
+
+### Batch Agent Clearing Runner Pack
+
+The batch runner composes multiple local draft requests through RefusalGraph matching, clearing, receipts, verification, fee placeholders, reports, and one in-memory ledger. It performs no scheduling, networking, persistence, tracking, commerce, or action execution. See `docs/batch-agent-clearing-runner.md`.
