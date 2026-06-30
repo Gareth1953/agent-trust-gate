@@ -1,0 +1,29 @@
+{
+  "example_version": "atg.refusalgraph-local-signal-store-private-data-rejection.v1",
+  "status": "draft_only",
+  "input_private_fields_detected": [
+    "customer_name",
+    "customer_email",
+    "company_name",
+    "bank_account",
+    "card_number",
+    "wallet_address",
+    "api_key",
+    "access_token",
+    "private_document_text",
+    "invoice_number",
+    "contract_text",
+    "real_agent_endpoint",
+    "real_url",
+    "real_email_content"
+  ],
+  "private_fields_copied_to_signals": [],
+  "private_fields_copied_to_queries": [],
+  "private_fields_copied_to_summary": [],
+  "private_data_included": false,
+  "network_lookup_performed": false,
+  "external_lookup_performed": false,
+  "tracking_triggered": false,
+  "analytics_triggered": false,
+  "action_executed": false
+}

@@ -1511,3 +1511,6 @@ input is complete and truthful.
 Future versions may harden Local Gateway API Mode with authentication, API keys,
 policy administration, and deployment guidance. Payment handling and x402
 integration are intentionally excluded from this version.
+### RefusalGraph Local Signal Store Pack
+
+The local signal store collects, queries, and summarises allowlisted RefusalGraph signals in memory. It performs no persistence, scraping, network lookup, tracking, analytics, commerce, or action execution. See `docs/refusalgraph-local-signal-store.md`.

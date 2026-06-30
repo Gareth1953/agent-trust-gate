@@ -110,3 +110,7 @@ analysed, billed, networked, or executed.
 The [Local Clearing Ledger Pack](../local-clearing-ledger.md) provides immutable
 in-memory record collection, lookup, deduplication, and summary counts. It uses
 no file persistence, database, cloud sync, tracking, network, or execution.
+
+The [RefusalGraph Local Signal Store Pack](../refusalgraph-local-signal-store.md)
+provides immutable in-memory signal collection, local querying, and safe summary
+counts. It uses no persistence, scraping, network, tracking, analytics, or execution.
