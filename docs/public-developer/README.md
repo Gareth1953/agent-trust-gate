@@ -126,3 +126,7 @@ external, blockchain, payment, or action verification.
 The [Fee Metering Ledger Pack](../fee-metering-ledger.md) records bounded local
 placeholder value events without billing, payment, settlement, invoicing, tax
 reporting, tracking, network metering, or execution.
+
+The [Clearing Evidence Bundle Pack](../clearing-evidence-bundle.md) assembles
+pseudonymous local clearing references and summaries without creating legal
+evidence, certification, live audit, public proof, or network verification.

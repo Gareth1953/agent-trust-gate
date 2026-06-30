@@ -1526,3 +1526,7 @@ The local CLI validates and checks one draft clearing receipt with the existing 
 ### Fee Metering Ledger Pack
 
 The immutable local ledger records bounded placeholder value events for clearing, RefusalGraph, receipts, verification, batches, approvals, and blocks. It performs no billing, payment, settlement, invoicing, tax reporting, tracking, network metering, or execution. See `docs/fee-metering-ledger.md`.
+
+### Clearing Evidence Bundle Pack
+
+The local bundle combines pseudonymous clearing, RefusalGraph, receipt, verification, ledger, fee-placeholder, report, and batch references into an allowlisted object and Markdown view. It is not legal evidence, certification, audit, public proof, or network verification. See `docs/clearing-evidence-bundle.md`.

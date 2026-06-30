@@ -1,0 +1,44 @@
+{
+  "bundle_type": "single_clearing_run",
+  "source_id": "local-clearing-evidence-source-001",
+  "pipeline_id": "acp_local_8546957d70d11f9d520d8850",
+  "batch_id": null,
+  "clearing_request_id": "clearing_request_94a5a88c0e0cbeba8c83b2e4",
+  "clearing_decision_id": "acd_94a5a88c0e0cbeba8c83b2e4",
+  "clearing_receipt_id": "acr_local_7db94267e05f797b693ae394",
+  "verification_id": "acrv_local_95b156689cedf0bcb97eb363",
+  "refusalgraph_query_id": "query_950543223426e30f459897b0",
+  "matched_signal_ids": [
+    "rg_local_signal_payment_001",
+    "rg_local_signal_approval_002"
+  ],
+  "ledger_record_ids": [
+    "local_ledger_query_001",
+    "local_ledger_decision_002",
+    "local_ledger_receipt_003",
+    "local_ledger_verification_004",
+    "local_ledger_fee_005",
+    "local_ledger_pipeline_006",
+    "local_ledger_report_007"
+  ],
+  "fee_metering_event_ids": [
+    "fee_metering_placeholder_receipt_creation_001",
+    "fee_metering_placeholder_receipt_verification_002"
+  ],
+  "report_id": "acdr_local_demo_report_001",
+  "decision": "require_human_approval",
+  "caution_level": "high",
+  "approval_required": true,
+  "action_allowed": false,
+  "action_blocked": true,
+  "receipt_status": "draft_only",
+  "verification_result": "locally_valid",
+  "evidence_status": "approval_required",
+  "recommended_next_steps": [
+    "require_human_approval",
+    "require_more_evidence",
+    "keep_local_only",
+    "do_not_execute"
+  ],
+  "created_at": "2026-06-30T18:00:00.000Z"
+}
