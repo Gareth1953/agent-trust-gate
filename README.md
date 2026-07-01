@@ -1550,3 +1550,7 @@ The local profit test gates clearing-engine use behind a simulated paid-use enti
 ### Profit Demo Scenario Runner
 
 The local runner shows entitled clearing use, pre-use denial without entitlement, and repeat-use hypothetical revenue events in one command. See `docs/profit-demo-scenario-runner.md`.
+
+### Controlled Sandbox Readiness
+
+The offline sandbox permits only allowlisted test agents with local entitlement placeholders to use the clearing engine. See `docs/controlled-sandbox-readiness.md`.

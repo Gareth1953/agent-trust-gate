@@ -1,0 +1,19 @@
+{
+  "sandbox_access_status": "sandbox_clearing_allowed",
+  "requesting_agent_allowlisted": true,
+  "sandbox_entitlement_present": true,
+  "engine_run_id": "local_deterministic_engine_reference",
+  "decision": "require_human_approval",
+  "clearing_receipt_id": "local_deterministic_receipt_reference",
+  "verification_result": "locally_valid",
+  "evidence_bundle_id": "local_deterministic_evidence_reference",
+  "replay_status": "replay_consistent",
+  "integrity_score": 100,
+  "public_api_enabled": false,
+  "network_lookup_performed": false,
+  "payment_or_fee_triggered": false,
+  "action_executed": false,
+  "deployed": false,
+  "published": false,
+  "status": "sandbox_only"
+}

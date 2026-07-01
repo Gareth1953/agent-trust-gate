@@ -354,3 +354,7 @@ export { PROFIT_DEMO_SCENARIO_RUNNER_VERSION,createProfitDemoScenarioRunnerId,ru
 export type { ProfitDemoScenarioInput,ProfitDemoScenarioResult,ProfitDemoScenarioRunnerInput,ProfitDemoScenarioRunnerResult,ProfitDemoScenarioRunnerSummary,ProfitDemoScenarioType } from "./profit-demo-scenario-runner.js";
 export { readProfitDemoScenarioRunnerInput,runProfitDemoScenarioRunnerCli } from "./profit-demo-scenario-runner-cli.js";
 export type { ProfitDemoScenarioRunnerCliErrorCode,ProfitDemoScenarioRunnerCliIo } from "./profit-demo-scenario-runner-cli.js";
+export { CONTROLLED_SANDBOX_READINESS_VERSION,createControlledSandboxRunId,runControlledSandboxReadiness,summariseControlledSandboxRun,validateSandboxAgentAccess } from "./controlled-sandbox-readiness.js";
+export type { ControlledSandboxReadinessInput,ControlledSandboxRunResult,ControlledSandboxRunSummary,SandboxAccessStatus,SandboxAgentAccessValidation,SandboxAgentInput,SandboxEntitlementInput } from "./controlled-sandbox-readiness.js";
+export { readControlledSandboxReadinessInput,runControlledSandboxReadinessCli } from "./controlled-sandbox-readiness-cli.js";
+export type { ControlledSandboxCliErrorCode,ControlledSandboxCliIo } from "./controlled-sandbox-readiness-cli.js";

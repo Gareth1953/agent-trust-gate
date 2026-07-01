@@ -1,0 +1,13 @@
+{
+  "sandbox_run_id": "sandbox-demo-allowed",
+  "source_id": "sandbox-source-001",
+  "sandbox_status": "sandbox_only",
+  "allowed_sandbox_agents": [{ "agent_id": "sandbox-buyer-a", "agent_type": "test_agent", "sandbox_role": "requester", "access_status": "allowed" }],
+  "requesting_agent": { "agent_id": "sandbox-buyer-a", "agent_type": "test_agent", "sandbox_role": "requester", "requested_goal": "request local supplier review" },
+  "target_agent": { "agent_id": "sandbox-target-a", "agent_type": "test_service_agent", "sandbox_role": "target", "local_goal_outcome": "sandbox review only" },
+  "sandbox_entitlement": { "entitlement_id": "sandbox-entitlement-a", "entitlement_status": "active_placeholder", "sandbox_only": true, "paid_placeholder": true, "billable_if_live": true, "uses_allowed": 3, "uses_remaining": 3, "payment_enabled": false, "billing_enabled": false, "settlement_enabled": false, "machine_to_machine_fee_enabled": false },
+  "clearing_request": { "request_id": "sandbox-request-a", "agent_id": "sandbox-buyer-a", "target_agent_id": "sandbox-target-a", "intent_category": "sandbox_service", "action_category": "request_review", "requested_action": "request_review", "risk_level": "medium", "evidence_level": "complete", "approval_status": "missing", "created_at": "2026-07-01T14:00:00.000Z" },
+  "local_refusal_signals": [{ "signal_type": "approval_required", "source_id": "sandbox-signal-a", "intent_category": "sandbox_service", "action_category": "request_review", "refusal_reason": "missing_human_approval", "caution_level": "high", "approval_required": true, "action_allowed": false, "action_blocked": true, "evidence_level": "complete", "signal_status": "draft_only", "created_at": "2026-07-01T13:50:00.000Z" }],
+  "repeat_use_attempts": 1,
+  "created_at": "2026-07-01T14:00:00.000Z"
+}

@@ -149,3 +149,6 @@ real payment, billing, settlement, networking, tracking, or action execution.
 
 The [Profit Demo Scenario Runner](../profit-demo-scenario-runner.md) runs the
 entitled, denied, and repeat-use profit cases together as one local-only demo.
+
+The [Controlled Sandbox Readiness](../controlled-sandbox-readiness.md) harness
+gates local engine access by sandbox allowlist and entitlement only.
