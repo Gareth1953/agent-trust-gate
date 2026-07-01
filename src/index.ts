@@ -362,3 +362,7 @@ export { SANDBOX_END_TO_END_SMOKE_TEST_VERSION,createSandboxSmokeTestId,runSandb
 export type { SandboxEndToEndSmokeTestInput,SandboxEndToEndSmokeTestResult,SandboxEndToEndSmokeTestSummary,SandboxSmokeScenarioInput,SandboxSmokeScenarioResult,SandboxSmokeScenarioType } from "./sandbox-end-to-end-smoke-test.js";
 export { readSandboxEndToEndSmokeTestInput,runSandboxEndToEndSmokeTestCli } from "./sandbox-end-to-end-smoke-test-cli.js";
 export type { SandboxSmokeCliErrorCode,SandboxSmokeCliIo } from "./sandbox-end-to-end-smoke-test-cli.js";
+export { PRIVATE_SANDBOX_DECISION_GATE_VERSION,createPrivateSandboxDecisionGateId,runPrivateSandboxDecisionGate,summarisePrivateSandboxDecisionGate } from "./private-sandbox-decision-gate.js";
+export type { PrivateSandboxDecisionGateInput,PrivateSandboxDecisionGateResult,PrivateSandboxDecisionGateSummary,PrivateSandboxReadinessStatus } from "./private-sandbox-decision-gate.js";
+export { readPrivateSandboxDecisionGateInput,runPrivateSandboxDecisionGateCli } from "./private-sandbox-decision-gate-cli.js";
+export type { PrivateSandboxDecisionGateCliErrorCode,PrivateSandboxDecisionGateCliIo } from "./private-sandbox-decision-gate-cli.js";

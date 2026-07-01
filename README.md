@@ -1558,3 +1558,7 @@ The offline sandbox permits only allowlisted test agents with local entitlement 
 ### Sandbox End-to-End Smoke Test
 
 One local command checks allowed engine use plus denied-agent and missing-entitlement controls. See `docs/sandbox-end-to-end-smoke-test.md`.
+
+### Private Sandbox Decision Gate
+
+The local gate converts profit, sandbox, smoke, safety, and approval checks into a Gareth review recommendation. See `docs/private-sandbox-decision-gate.md`.

@@ -1,0 +1,1 @@
+{"private_sandbox_ready":false,"readiness_status":"not_ready","readiness_score":40,"blocking_reasons":["profit_demo_not_ready","sandbox_smoke_test_failed","entitlement_gate_not_verified"],"go_no_go_recommendation":"NO-GO. Resolve blocking reasons before private sandbox review.","status":"sandbox_only"}

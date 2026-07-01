@@ -1,0 +1,9 @@
+{
+  "decision_gate_id":"private-review-001","source_id":"local-private-sandbox-review",
+  "profit_demo_result":{"entitled_use_passed":true,"missing_entitlement_denied":true,"total_hypothetical_revenue_events":5},
+  "controlled_sandbox_result":{"sandbox_access_status":"sandbox_clearing_allowed","requesting_agent_allowlisted":true,"sandbox_entitlement_present":true,"engine_run_id":"local_engine_reference","private_data_included":false,"network_lookup_performed":false,"external_lookup_performed":false,"public_api_enabled":false,"tracking_triggered":false,"analytics_triggered":false,"payment_or_fee_triggered":false,"billing_triggered":false,"settlement_triggered":false,"machine_to_machine_fee_triggered":false,"action_executed":false,"deployed":false,"published":false},
+  "sandbox_smoke_test_result":{"smoke_test_passed":true,"allowed_sandbox_agent_passed":true,"denied_sandbox_agent_blocked":true,"missing_entitlement_blocked":true,"engine_ran_count":1,"private_data_included":false,"network_lookup_performed":false,"external_lookup_performed":false,"public_api_enabled":false,"tracking_triggered":false,"analytics_triggered":false,"payment_or_fee_triggered":false,"billing_triggered":false,"settlement_triggered":false,"machine_to_machine_fee_triggered":false,"action_executed":false,"deployed":false,"published":false},
+  "safety_flags":{"private_data_included":false,"network_lookup_performed":false,"external_lookup_performed":false,"public_api_enabled":false,"tracking_triggered":false,"analytics_triggered":false,"payment_or_fee_triggered":false,"billing_triggered":false,"settlement_triggered":false,"machine_to_machine_fee_triggered":false,"action_executed":false,"deployed":false,"published":false},
+  "required_approvals":{"requires_human_approval":true,"requires_gareth_final_approval":true,"requires_technical_validation":true,"requires_security_review":true},
+  "created_at":"2026-07-01T16:00:00.000Z"
+}

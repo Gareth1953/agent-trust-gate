@@ -155,3 +155,6 @@ gates local engine access by sandbox allowlist and entitlement only.
 
 The [Sandbox End-to-End Smoke Test](../sandbox-end-to-end-smoke-test.md)
 checks all three controlled sandbox access paths in one offline command.
+
+The [Private Sandbox Decision Gate](../private-sandbox-decision-gate.md)
+evaluates local readiness while preserving the final Gareth approval gate.
