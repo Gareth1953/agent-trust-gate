@@ -1,0 +1,42 @@
+{
+  "demo_id": "profit-demo-001",
+  "source_id": "local-profit-demo",
+  "scenarios": [
+    {
+      "scenario_id": "entitled-001",
+      "scenario_type": "entitled_use",
+      "title": "Entitled agent uses clearing",
+      "buyer_agent": { "agent_id": "buyer-a", "agent_type": "buyer_agent", "requested_goal": "request supplier review" },
+      "clearing_service_agent": { "agent_id": "clearing-a", "agent_type": "clearing_service", "service_name": "Agent Trust Gate", "requires_paid_entitlement": true },
+      "target_service_agent": { "agent_id": "supplier-a", "agent_type": "supplier_agent", "service_name": "supplier placeholder", "local_goal_outcome": "request held for approval" },
+      "paid_use_entitlement": { "source_id": "entitled-001", "entitlement_status": "active_placeholder", "paid_placeholder": true, "billable_if_live": true, "uses_allowed": 2, "uses_remaining": 2, "payment_enabled": false, "billing_enabled": false, "settlement_enabled": false, "machine_to_machine_fee_enabled": false },
+      "clearing_request": { "request_id": "request-entitled", "agent_id": "buyer-a", "target_agent_id": "supplier-a", "intent_category": "procurement", "action_category": "request_supplier_action", "requested_action": "request_supplier_action", "risk_level": "medium", "evidence_level": "complete", "approval_status": "missing", "created_at": "2026-07-01T13:00:00.000Z" },
+      "local_refusal_signals": [{ "signal_type": "approval_required", "source_id": "signal-entitled", "intent_category": "procurement", "action_category": "request_supplier_action", "refusal_reason": "missing_human_approval", "caution_level": "high", "approval_required": true, "action_allowed": false, "action_blocked": true, "evidence_level": "complete", "signal_status": "draft_only", "created_at": "2026-07-01T12:50:00.000Z" }],
+      "repeat_use_attempts": 0
+    },
+    {
+      "scenario_id": "missing-001",
+      "scenario_type": "missing_entitlement",
+      "title": "Missing entitlement denied",
+      "buyer_agent": { "agent_id": "buyer-b", "agent_type": "buyer_agent", "requested_goal": "request local service" },
+      "clearing_service_agent": { "agent_id": "clearing-b", "agent_type": "clearing_service", "service_name": "Agent Trust Gate", "requires_paid_entitlement": true },
+      "target_service_agent": { "agent_id": "supplier-b", "agent_type": "supplier_agent", "service_name": "supplier placeholder", "local_goal_outcome": "not attempted" },
+      "clearing_request": { "request_id": "request-missing", "agent_id": "buyer-b", "target_agent_id": "supplier-b", "intent_category": "service_use", "action_category": "request_service", "requested_action": "request_service", "risk_level": "low", "evidence_level": "complete", "approval_status": "not_required", "created_at": "2026-07-01T13:01:00.000Z" },
+      "local_refusal_signals": [],
+      "repeat_use_attempts": 0
+    },
+    {
+      "scenario_id": "repeat-001",
+      "scenario_type": "repeat_use",
+      "title": "Repeat use records revenue placeholders",
+      "buyer_agent": { "agent_id": "buyer-c", "agent_type": "buyer_agent", "requested_goal": "repeat local service checks" },
+      "clearing_service_agent": { "agent_id": "clearing-c", "agent_type": "clearing_service", "service_name": "Agent Trust Gate", "requires_paid_entitlement": true },
+      "target_service_agent": { "agent_id": "supplier-c", "agent_type": "supplier_agent", "service_name": "supplier placeholder", "local_goal_outcome": "locally cleared only" },
+      "paid_use_entitlement": { "source_id": "repeat-001", "entitlement_status": "active_placeholder", "paid_placeholder": true, "billable_if_live": true, "uses_allowed": 4, "uses_remaining": 4, "payment_enabled": false, "billing_enabled": false, "settlement_enabled": false, "machine_to_machine_fee_enabled": false },
+      "clearing_request": { "request_id": "request-repeat", "agent_id": "buyer-c", "target_agent_id": "supplier-c", "intent_category": "internal_action", "action_category": "internal_review", "requested_action": "internal_review", "risk_level": "low", "evidence_level": "complete", "approval_status": "not_required", "created_at": "2026-07-01T13:02:00.000Z" },
+      "local_refusal_signals": [],
+      "repeat_use_attempts": 3
+    }
+  ],
+  "created_at": "2026-07-01T13:05:00.000Z"
+}

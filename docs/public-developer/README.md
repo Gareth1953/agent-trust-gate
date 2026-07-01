@@ -146,3 +146,6 @@ safe recommendation without executing the requested action.
 The [Machine-to-Machine Paid Use Profit Test](../machine-to-machine-paid-use-profit-test.md)
 demonstrates a local entitlement gate and repeat-use fee placeholders without
 real payment, billing, settlement, networking, tracking, or action execution.
+
+The [Profit Demo Scenario Runner](../profit-demo-scenario-runner.md) runs the
+entitled, denied, and repeat-use profit cases together as one local-only demo.

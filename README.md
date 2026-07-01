@@ -1546,3 +1546,7 @@ The local engine composes one request through RefusalGraph, clearing, receipt ve
 ### Machine-to-Machine Paid Use Profit Test
 
 The local profit test gates clearing-engine use behind a simulated paid-use entitlement and counts bounded repeat-use revenue placeholders without charging, networking, tracking, or executing actions. See `docs/machine-to-machine-paid-use-profit-test.md`.
+
+### Profit Demo Scenario Runner
+
+The local runner shows entitled clearing use, pre-use denial without entitlement, and repeat-use hypothetical revenue events in one command. See `docs/profit-demo-scenario-runner.md`.

@@ -350,3 +350,7 @@ export { MACHINE_TO_MACHINE_PAID_USE_PROFIT_TEST_VERSION,createLocalPaidUseEntit
 export type { LocalPaidUseEntitlement,LocalPaidUseEntitlementInput,LocalProfitTestAgentInput,MachineToMachinePaidUseProfitTestInput,MachineToMachinePaidUseProfitTestResult,MachineToMachinePaidUseProfitTestSummary } from "./machine-to-machine-paid-use-profit-test.js";
 export { readMachineToMachinePaidUseProfitTestInput,runMachineToMachinePaidUseProfitTestCli } from "./machine-to-machine-paid-use-profit-test-cli.js";
 export type { MachineToMachineProfitTestCliErrorCode,MachineToMachineProfitTestCliIo } from "./machine-to-machine-paid-use-profit-test-cli.js";
+export { PROFIT_DEMO_SCENARIO_RUNNER_VERSION,createProfitDemoScenarioRunnerId,runProfitDemoScenarioRunner,summariseProfitDemoScenarioRunner } from "./profit-demo-scenario-runner.js";
+export type { ProfitDemoScenarioInput,ProfitDemoScenarioResult,ProfitDemoScenarioRunnerInput,ProfitDemoScenarioRunnerResult,ProfitDemoScenarioRunnerSummary,ProfitDemoScenarioType } from "./profit-demo-scenario-runner.js";
+export { readProfitDemoScenarioRunnerInput,runProfitDemoScenarioRunnerCli } from "./profit-demo-scenario-runner-cli.js";
+export type { ProfitDemoScenarioRunnerCliErrorCode,ProfitDemoScenarioRunnerCliIo } from "./profit-demo-scenario-runner-cli.js";

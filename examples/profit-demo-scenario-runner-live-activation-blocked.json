@@ -1,0 +1,14 @@
+{
+  "payment_enabled": false,
+  "billing_enabled": false,
+  "settlement_enabled": false,
+  "machine_to_machine_fee_enabled": false,
+  "network_enabled": false,
+  "public_api_enabled": false,
+  "tracking_enabled": false,
+  "analytics_enabled": false,
+  "deployment_enabled": false,
+  "publishing_enabled": false,
+  "action_execution_enabled": false,
+  "status": "draft_only"
+}

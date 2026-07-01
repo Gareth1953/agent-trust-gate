@@ -1,0 +1,6 @@
+{
+  "rejected_input_fields": ["customer_name", "customer_email", "company_name", "bank_account", "card_number", "wallet_address", "api_key", "access_token", "private_document_text", "invoice_number", "contract_text", "real_agent_endpoint", "real_url", "real_email_content"],
+  "copied_to_output": [],
+  "private_data_included": false,
+  "status": "draft_only"
+}
