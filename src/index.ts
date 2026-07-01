@@ -342,3 +342,7 @@ export { CLEARING_REPLAY_RUNNER_VERSION,compareClearingReplayArtifacts,createCle
 export type { ClearingReplayArtifactSnapshot,ClearingReplayComparison,ClearingReplayRun,ClearingReplayRunInput,ClearingReplayRunSummary,ClearingReplaySafetySnapshot,ClearingReplaySafetySummary,ClearingReplayStatus,ClearingReplayType } from "./clearing-replay-runner.js";
 export { CLEARING_INTEGRITY_SNAPSHOT_VERSION,createClearingIntegritySnapshot,createClearingIntegritySnapshotId,renderClearingIntegritySnapshotMarkdown,summariseClearingIntegritySnapshot } from "./clearing-integrity-snapshot.js";
 export type { ClearingIntegrityCountSummary,ClearingIntegritySafetySummary,ClearingIntegritySnapshot,ClearingIntegritySnapshotInput,ClearingIntegritySnapshotSummary,ClearingIntegritySnapshotType,ClearingIntegrityStatus } from "./clearing-integrity-snapshot.js";
+export { LOCAL_AGENT_CLEARING_ENGINE_VERSION,createLocalAgentClearingEngineRunId,runLocalAgentClearingEngine,summariseLocalAgentClearingEngineRun } from "./local-agent-clearing-engine.js";
+export type { LocalAgentClearingEngineInput,LocalAgentClearingEngineResult,LocalAgentClearingEngineSafetySummary,LocalAgentClearingEngineSummary } from "./local-agent-clearing-engine.js";
+export { readLocalAgentClearingEngineInput,runLocalAgentClearingEngineCli } from "./local-agent-clearing-engine-cli.js";
+export type { LocalAgentClearingEngineCliErrorCode,LocalAgentClearingEngineCliErrorResult,LocalAgentClearingEngineCliIo } from "./local-agent-clearing-engine-cli.js";

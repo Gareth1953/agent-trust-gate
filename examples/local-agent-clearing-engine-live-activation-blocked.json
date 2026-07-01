@@ -1,0 +1,15 @@
+{
+  "network_enabled": false,
+  "public_api_enabled": false,
+  "billing_enabled": false,
+  "payment_enabled": false,
+  "settlement_enabled": false,
+  "tracking_enabled": false,
+  "analytics_enabled": false,
+  "deployment_enabled": false,
+  "publishing_enabled": false,
+  "webhook_enabled": false,
+  "action_execution_enabled": false,
+  "requires_gareth_final_approval": true,
+  "status": "draft_only"
+}

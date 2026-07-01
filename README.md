@@ -1538,3 +1538,7 @@ The local replay runner compares two allowlisted clearing snapshots for decision
 ### Clearing Integrity Snapshot Pack
 
 The local snapshot combines allowlisted counts from clearing, RefusalGraph, evidence, replay, verification, fee-placeholder, and batch summaries into a deterministic demo integrity indicator. It performs no live monitoring, analytics, tracking, audit, proof, network, or commercial activity. See `docs/clearing-integrity-snapshot.md`.
+
+### Local Agent Clearing Engine
+
+The local engine composes one request through RefusalGraph, clearing, receipt verification, ledgers, evidence, replay, and integrity checks without networking, commerce, tracking, or action execution. See `docs/local-agent-clearing-engine.md`.

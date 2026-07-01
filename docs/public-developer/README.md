@@ -138,3 +138,7 @@ re-execution, audit, proof, network, or commercial activity.
 The [Clearing Integrity Snapshot Pack](../clearing-integrity-snapshot.md)
 combines local aggregate counts into a deterministic demo integrity indicator
 without monitoring, analytics, tracking, audit, proof, network, or commerce.
+
+The [Local Agent Clearing Engine](../local-agent-clearing-engine.md) composes one
+offline draft request through the existing local clearing modules and returns a
+safe recommendation without executing the requested action.
