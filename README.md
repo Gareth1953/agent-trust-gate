@@ -1562,3 +1562,7 @@ One local command checks allowed engine use plus denied-agent and missing-entitl
 ### Private Sandbox Decision Gate
 
 The local gate converts profit, sandbox, smoke, safety, and approval checks into a Gareth review recommendation. See `docs/private-sandbox-decision-gate.md`.
+
+### Gareth Go / No-Go Review Brief
+
+The local owner brief turns readiness evidence into GO preparation only, HOLD, or STOP. See `docs/gareth-go-no-go-review-brief.md`.

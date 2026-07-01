@@ -158,3 +158,6 @@ checks all three controlled sandbox access paths in one offline command.
 
 The [Private Sandbox Decision Gate](../private-sandbox-decision-gate.md)
 evaluates local readiness while preserving the final Gareth approval gate.
+
+The [Gareth Go / No-Go Review Brief](../gareth-go-no-go-review-brief.md)
+renders the local owner decision in JSON or Markdown without granting live approval.
