@@ -1566,3 +1566,7 @@ The local gate converts profit, sandbox, smoke, safety, and approval checks into
 ### Gareth Go / No-Go Review Brief
 
 The local owner brief turns readiness evidence into GO preparation only, HOLD, or STOP. See `docs/gareth-go-no-go-review-brief.md`.
+
+### Private Sandbox Preparation Plan
+
+The local plan defines fake-agent scope, prohibited capabilities, approvals, boundaries, and stop criteria. See `docs/private-sandbox-preparation-plan.md`.

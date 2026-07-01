@@ -161,3 +161,6 @@ evaluates local readiness while preserving the final Gareth approval gate.
 
 The [Gareth Go / No-Go Review Brief](../gareth-go-no-go-review-brief.md)
 renders the local owner decision in JSON or Markdown without granting live approval.
+
+The [Private Sandbox Preparation Plan](../private-sandbox-preparation-plan.md)
+defines the locked-down preparation checklist without enabling external testing.
