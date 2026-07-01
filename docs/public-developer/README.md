@@ -142,3 +142,7 @@ without monitoring, analytics, tracking, audit, proof, network, or commerce.
 The [Local Agent Clearing Engine](../local-agent-clearing-engine.md) composes one
 offline draft request through the existing local clearing modules and returns a
 safe recommendation without executing the requested action.
+
+The [Machine-to-Machine Paid Use Profit Test](../machine-to-machine-paid-use-profit-test.md)
+demonstrates a local entitlement gate and repeat-use fee placeholders without
+real payment, billing, settlement, networking, tracking, or action execution.

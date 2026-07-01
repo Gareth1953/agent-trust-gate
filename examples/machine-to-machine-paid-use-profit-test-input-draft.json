@@ -1,0 +1,66 @@
+{
+  "profit_test_id": "demo-profit-001",
+  "source_id": "local-m2m-profit-demo",
+  "buyer_agent": {
+    "agent_id": "buyer-agent-local",
+    "agent_type": "buyer_agent",
+    "agent_role": "requesting_machine",
+    "requested_goal": "obtain a locally cleared supplier response"
+  },
+  "clearing_service_agent": {
+    "agent_id": "clearing-agent-local",
+    "agent_type": "clearing_service",
+    "service_name": "Agent Trust Gate",
+    "requires_paid_entitlement": true
+  },
+  "target_service_agent": {
+    "agent_id": "supplier-agent-local",
+    "agent_type": "supplier_agent",
+    "service_name": "local supplier placeholder",
+    "local_goal_outcome": "supplier request cleared for human review"
+  },
+  "paid_use_entitlement": {
+    "source_id": "entitlement-demo-001",
+    "entitlement_id": "entitlement-demo-001",
+    "entitlement_type": "local_paid_use_placeholder",
+    "entitlement_status": "active_placeholder",
+    "paid_placeholder": true,
+    "billable_if_live": true,
+    "uses_allowed": 4,
+    "uses_remaining": 4,
+    "payment_enabled": false,
+    "billing_enabled": false,
+    "settlement_enabled": false,
+    "machine_to_machine_fee_enabled": false
+  },
+  "clearing_request": {
+    "request_id": "supplier-request-001",
+    "agent_id": "buyer-agent-local",
+    "target_agent_id": "supplier-agent-local",
+    "intent_category": "procurement",
+    "action_category": "request_supplier_action",
+    "requested_action": "request_supplier_action",
+    "risk_level": "medium",
+    "evidence_level": "complete",
+    "approval_status": "missing",
+    "created_at": "2026-07-01T12:00:00.000Z"
+  },
+  "local_refusal_signals": [
+    {
+      "signal_type": "approval_required",
+      "source_id": "supplier-signal-001",
+      "intent_category": "procurement",
+      "action_category": "request_supplier_action",
+      "refusal_reason": "missing_human_approval",
+      "caution_level": "high",
+      "approval_required": true,
+      "action_allowed": false,
+      "action_blocked": true,
+      "evidence_level": "complete",
+      "signal_status": "draft_only",
+      "created_at": "2026-07-01T11:55:00.000Z"
+    }
+  ],
+  "repeat_use_attempts": 2,
+  "created_at": "2026-07-01T12:00:00.000Z"
+}

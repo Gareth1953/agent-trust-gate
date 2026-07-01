@@ -1542,3 +1542,7 @@ The local snapshot combines allowlisted counts from clearing, RefusalGraph, evid
 ### Local Agent Clearing Engine
 
 The local engine composes one request through RefusalGraph, clearing, receipt verification, ledgers, evidence, replay, and integrity checks without networking, commerce, tracking, or action execution. See `docs/local-agent-clearing-engine.md`.
+
+### Machine-to-Machine Paid Use Profit Test
+
+The local profit test gates clearing-engine use behind a simulated paid-use entitlement and counts bounded repeat-use revenue placeholders without charging, networking, tracking, or executing actions. See `docs/machine-to-machine-paid-use-profit-test.md`.

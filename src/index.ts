@@ -346,3 +346,7 @@ export { LOCAL_AGENT_CLEARING_ENGINE_VERSION,createLocalAgentClearingEngineRunId
 export type { LocalAgentClearingEngineInput,LocalAgentClearingEngineResult,LocalAgentClearingEngineSafetySummary,LocalAgentClearingEngineSummary } from "./local-agent-clearing-engine.js";
 export { readLocalAgentClearingEngineInput,runLocalAgentClearingEngineCli } from "./local-agent-clearing-engine-cli.js";
 export type { LocalAgentClearingEngineCliErrorCode,LocalAgentClearingEngineCliErrorResult,LocalAgentClearingEngineCliIo } from "./local-agent-clearing-engine-cli.js";
+export { MACHINE_TO_MACHINE_PAID_USE_PROFIT_TEST_VERSION,createLocalPaidUseEntitlement,createMachineToMachineProfitTestId,runMachineToMachinePaidUseProfitTest,summariseMachineToMachinePaidUseProfitTest } from "./machine-to-machine-paid-use-profit-test.js";
+export type { LocalPaidUseEntitlement,LocalPaidUseEntitlementInput,LocalProfitTestAgentInput,MachineToMachinePaidUseProfitTestInput,MachineToMachinePaidUseProfitTestResult,MachineToMachinePaidUseProfitTestSummary } from "./machine-to-machine-paid-use-profit-test.js";
+export { readMachineToMachinePaidUseProfitTestInput,runMachineToMachinePaidUseProfitTestCli } from "./machine-to-machine-paid-use-profit-test-cli.js";
+export type { MachineToMachineProfitTestCliErrorCode,MachineToMachineProfitTestCliIo } from "./machine-to-machine-paid-use-profit-test-cli.js";

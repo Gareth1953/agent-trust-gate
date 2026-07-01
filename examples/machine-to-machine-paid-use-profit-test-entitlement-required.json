@@ -1,0 +1,15 @@
+{
+  "source_id": "local-m2m-profit-no-entitlement",
+  "buyer_agent": { "agent_id": "buyer-local", "agent_type": "buyer_agent", "requested_goal": "use supplier locally" },
+  "clearing_service_agent": { "agent_id": "clearing-local", "agent_type": "clearing_service", "service_name": "Agent Trust Gate", "requires_paid_entitlement": true },
+  "target_service_agent": { "agent_id": "supplier-local", "agent_type": "supplier_agent", "service_name": "supplier placeholder", "local_goal_outcome": "not attempted" },
+  "clearing_request": {
+    "request_id": "request-no-entitlement", "agent_id": "buyer-local", "target_agent_id": "supplier-local",
+    "intent_category": "service_use", "action_category": "request_service", "requested_action": "request_service",
+    "risk_level": "low", "evidence_level": "complete", "approval_status": "not_required",
+    "created_at": "2026-07-01T12:10:00.000Z"
+  },
+  "local_refusal_signals": [],
+  "repeat_use_attempts": 1,
+  "created_at": "2026-07-01T12:10:00.000Z"
+}

@@ -1,0 +1,13 @@
+{
+  "repeat_use_attempts": 5,
+  "uses_allowed": 3,
+  "uses_consumed": 3,
+  "uses_remaining": 0,
+  "hypothetical_revenue_event_count": 3,
+  "further_attempts_status": "paid_entitlement_required",
+  "payment_or_fee_triggered": false,
+  "billing_triggered": false,
+  "settlement_triggered": false,
+  "action_executed": false,
+  "status": "draft_only"
+}
