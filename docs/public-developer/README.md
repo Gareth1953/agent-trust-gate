@@ -134,3 +134,7 @@ evidence, certification, live audit, public proof, or network verification.
 The [Clearing Replay Runner Pack](../clearing-replay-runner.md) compares two
 allowlisted local clearing snapshots without production replay, action
 re-execution, audit, proof, network, or commercial activity.
+
+The [Clearing Integrity Snapshot Pack](../clearing-integrity-snapshot.md)
+combines local aggregate counts into a deterministic demo integrity indicator
+without monitoring, analytics, tracking, audit, proof, network, or commerce.

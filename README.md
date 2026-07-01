@@ -1534,3 +1534,7 @@ The local bundle combines pseudonymous clearing, RefusalGraph, receipt, verifica
 ### Clearing Replay Runner Pack
 
 The local replay runner compares two allowlisted clearing snapshots for decision, receipt, verification, RefusalGraph, ledger, fee-placeholder, and safety consistency. It performs no production replay, action re-execution, audit, proof, network, or commercial activity. See `docs/clearing-replay-runner.md`.
+
+### Clearing Integrity Snapshot Pack
+
+The local snapshot combines allowlisted counts from clearing, RefusalGraph, evidence, replay, verification, fee-placeholder, and batch summaries into a deterministic demo integrity indicator. It performs no live monitoring, analytics, tracking, audit, proof, network, or commercial activity. See `docs/clearing-integrity-snapshot.md`.

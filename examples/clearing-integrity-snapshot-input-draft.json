@@ -1,0 +1,68 @@
+{
+  "snapshot_type": "local_clearing_integrity_snapshot",
+  "source_id": "local-integrity-snapshot-source-001",
+  "batch_id": "batch-local-001",
+  "pipeline_id": "pipeline-local-001",
+  "clearing_ledger_summary": {
+    "total_records": 5,
+    "blocked_count": 3,
+    "approval_required_count": 3,
+    "allowed_count": 0,
+    "high_caution_count": 3,
+    "critical_caution_count": 0,
+    "receipts_created_count": 1,
+    "verifications_completed_count": 1,
+    "fee_placeholders_count": 1,
+    "status": "draft_only"
+  },
+  "refusalgraph_signal_store_summary": {
+    "total_signals": 5,
+    "approval_required_count": 4,
+    "action_blocked_count": 5,
+    "high_caution_count": 2,
+    "critical_caution_count": 1,
+    "status": "draft_only"
+  },
+  "evidence_bundle_summary": {
+    "total_bundles": 1,
+    "incomplete_count": 0,
+    "missing_receipt_count": 0,
+    "approval_required_count": 1,
+    "blocked_count": 1,
+    "status": "draft_only"
+  },
+  "replay_summary": {
+    "total_runs": 1,
+    "consistent_count": 1,
+    "mismatch_count": 0,
+    "incomplete_count": 0,
+    "safety_flag_mismatch_count": 0,
+    "status": "draft_only"
+  },
+  "receipt_verification_summary": {
+    "total_verifications": 1,
+    "passed_count": 1,
+    "failed_count": 0,
+    "status": "draft_only"
+  },
+  "fee_metering_summary": {
+    "total_events": 7,
+    "billable_if_live_count": 3,
+    "blocked_count": 1,
+    "status": "placeholder_only"
+  },
+  "batch_clearing_summary": {
+    "total_requests": 4,
+    "completed_count": 4,
+    "allowed_count": 1,
+    "blocked_count": 3,
+    "approval_required_count": 3,
+    "high_caution_count": 3,
+    "critical_caution_count": 0,
+    "receipts_created_count": 4,
+    "verifications_completed_count": 4,
+    "fee_placeholders_count": 4,
+    "status": "draft_only"
+  },
+  "created_at": "2026-07-01T10:00:00.000Z"
+}
