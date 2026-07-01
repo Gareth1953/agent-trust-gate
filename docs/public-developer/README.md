@@ -130,3 +130,7 @@ reporting, tracking, network metering, or execution.
 The [Clearing Evidence Bundle Pack](../clearing-evidence-bundle.md) assembles
 pseudonymous local clearing references and summaries without creating legal
 evidence, certification, live audit, public proof, or network verification.
+
+The [Clearing Replay Runner Pack](../clearing-replay-runner.md) compares two
+allowlisted local clearing snapshots without production replay, action
+re-execution, audit, proof, network, or commercial activity.

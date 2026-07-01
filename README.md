@@ -1530,3 +1530,7 @@ The immutable local ledger records bounded placeholder value events for clearing
 ### Clearing Evidence Bundle Pack
 
 The local bundle combines pseudonymous clearing, RefusalGraph, receipt, verification, ledger, fee-placeholder, report, and batch references into an allowlisted object and Markdown view. It is not legal evidence, certification, audit, public proof, or network verification. See `docs/clearing-evidence-bundle.md`.
+
+### Clearing Replay Runner Pack
+
+The local replay runner compares two allowlisted clearing snapshots for decision, receipt, verification, RefusalGraph, ledger, fee-placeholder, and safety consistency. It performs no production replay, action re-execution, audit, proof, network, or commercial activity. See `docs/clearing-replay-runner.md`.
