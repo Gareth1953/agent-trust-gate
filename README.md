@@ -1554,3 +1554,7 @@ The local runner shows entitled clearing use, pre-use denial without entitlement
 ### Controlled Sandbox Readiness
 
 The offline sandbox permits only allowlisted test agents with local entitlement placeholders to use the clearing engine. See `docs/controlled-sandbox-readiness.md`.
+
+### Sandbox End-to-End Smoke Test
+
+One local command checks allowed engine use plus denied-agent and missing-entitlement controls. See `docs/sandbox-end-to-end-smoke-test.md`.

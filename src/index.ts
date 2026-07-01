@@ -358,3 +358,7 @@ export { CONTROLLED_SANDBOX_READINESS_VERSION,createControlledSandboxRunId,runCo
 export type { ControlledSandboxReadinessInput,ControlledSandboxRunResult,ControlledSandboxRunSummary,SandboxAccessStatus,SandboxAgentAccessValidation,SandboxAgentInput,SandboxEntitlementInput } from "./controlled-sandbox-readiness.js";
 export { readControlledSandboxReadinessInput,runControlledSandboxReadinessCli } from "./controlled-sandbox-readiness-cli.js";
 export type { ControlledSandboxCliErrorCode,ControlledSandboxCliIo } from "./controlled-sandbox-readiness-cli.js";
+export { SANDBOX_END_TO_END_SMOKE_TEST_VERSION,createSandboxSmokeTestId,runSandboxEndToEndSmokeTest,summariseSandboxEndToEndSmokeTest } from "./sandbox-end-to-end-smoke-test.js";
+export type { SandboxEndToEndSmokeTestInput,SandboxEndToEndSmokeTestResult,SandboxEndToEndSmokeTestSummary,SandboxSmokeScenarioInput,SandboxSmokeScenarioResult,SandboxSmokeScenarioType } from "./sandbox-end-to-end-smoke-test.js";
+export { readSandboxEndToEndSmokeTestInput,runSandboxEndToEndSmokeTestCli } from "./sandbox-end-to-end-smoke-test-cli.js";
+export type { SandboxSmokeCliErrorCode,SandboxSmokeCliIo } from "./sandbox-end-to-end-smoke-test-cli.js";

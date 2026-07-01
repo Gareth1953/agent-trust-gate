@@ -152,3 +152,6 @@ entitled, denied, and repeat-use profit cases together as one local-only demo.
 
 The [Controlled Sandbox Readiness](../controlled-sandbox-readiness.md) harness
 gates local engine access by sandbox allowlist and entitlement only.
+
+The [Sandbox End-to-End Smoke Test](../sandbox-end-to-end-smoke-test.md)
+checks all three controlled sandbox access paths in one offline command.
