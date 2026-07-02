@@ -1,0 +1,9 @@
+{
+  "target_name": "Example Pilot Follow-Up Target",
+  "gareth_target_decision": "approved",
+  "requested_pilot_follow_up_decision": "approved",
+  "interest_status": "unknown",
+  "effective_pilot_follow_up_decision": "hold",
+  "queue_status": "queue_blocked",
+  "message_sent": false
+}

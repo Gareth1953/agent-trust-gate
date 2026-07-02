@@ -1598,3 +1598,7 @@ The global extension adds worldwide placeholder targeting, global fit scores, re
 ### Global Educational Technical Review Pack
 
 The local pack creates education-first technical review material, feedback questions, cautious quantum-readiness positioning, and unsent message drafts. See `docs/global-educational-technical-review-pack.md`.
+
+### Gareth Manual Outreach Approval Queue
+
+The local queue ranks placeholder targets and records prerequisite-checked target and message decisions without contacting or sending. See `docs/gareth-manual-outreach-approval-queue.md`.
