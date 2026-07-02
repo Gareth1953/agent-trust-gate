@@ -410,3 +410,7 @@ export { GLOBAL_DISCOVERY_LIVE_LAUNCH_FOLDER_VERSION,buildGlobalDiscoveryLaunchF
 export type { GlobalDiscoveryLaunchFile,GlobalDiscoveryLaunchStatus,GlobalDiscoveryLiveLaunchFolder,GlobalDiscoveryLiveLaunchFolderInput,GlobalDiscoveryLiveLaunchFolderSummary } from "./global-discovery-live-launch-folder.js";
 export { readGlobalDiscoveryLiveLaunchFolderInput,runGlobalDiscoveryLiveLaunchFolderCli } from "./global-discovery-live-launch-folder-cli.js";
 export type { GlobalDiscoveryLaunchCliErrorCode,GlobalDiscoveryLaunchCliIo } from "./global-discovery-live-launch-folder-cli.js";
+export { GARETH_GLOBAL_LAUNCH_APPROVAL_VERSION,createGarethGlobalLaunchApproval,createGarethGlobalLaunchApprovalId,renderGarethGlobalLaunchApprovalMarkdown,renderPostUploadVerificationChecklistMarkdown,renderPreUploadChecklistMarkdown,renderRollbackChecklistMarkdown,renderStaticUploadInstructionsMarkdown,summariseGarethGlobalLaunchApproval } from "./gareth-global-launch-approval.js";
+export type { GarethGlobalLaunchApproval,GarethGlobalLaunchApprovalInput,GarethGlobalLaunchApprovalSummary,GlobalLaunchApprovalStatus,GlobalLaunchOwnerDecision,GlobalLaunchScope,PreferredHostingOption } from "./gareth-global-launch-approval.js";
+export { readGarethGlobalLaunchApprovalInput,runGarethGlobalLaunchApprovalCli } from "./gareth-global-launch-approval-cli.js";
+export type { GarethGlobalLaunchApprovalCliErrorCode,GarethGlobalLaunchApprovalCliIo } from "./gareth-global-launch-approval-cli.js";

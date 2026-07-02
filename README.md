@@ -1610,3 +1610,7 @@ The local pack renders machine-readable product, capability, safety, pilot, appr
 ### Global Discovery Live Launch Folder
 
 The local builder creates an upload-ready static discovery folder without exposing an API, backend, live engine, payment, tracking, or execution. See `docs/global-discovery-live-launch-folder.md`.
+
+### Gareth Global Launch Approval + Upload Instructions
+
+The local pack records Gareth's static-upload decision and renders manual pre-upload, verification, and rollback instructions without uploading or publishing. See `docs/gareth-global-launch-approval.md`.
