@@ -1,0 +1,22 @@
+{
+  "source_id": "demo_001",
+  "product_name": "Agent Trust Gate™",
+  "owner_name": "Gareth",
+  "approval_record_result": {
+    "approval_status": "approved_for_local_demo_pack_preparation",
+    "owner_decision": "GO_TO_PRIVATE_SANDBOX_DEMO_PACK_PREPARATION"
+  },
+  "target_audience": ["AI agent platform builders", "AI security companies"],
+  "pricing_options": ["£500-£1,500 private sandbox pilot"],
+  "safety_flags": {
+    "public_api_enabled": false,
+    "network_enabled": false,
+    "payment_enabled": false,
+    "billing_enabled": false,
+    "settlement_enabled": false,
+    "tracking_enabled": false,
+    "analytics_enabled": false,
+    "action_execution_enabled": false
+  },
+  "created_at": "2026-07-02T09:00:00.000Z"
+}

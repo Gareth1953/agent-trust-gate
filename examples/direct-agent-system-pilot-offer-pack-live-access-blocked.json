@@ -1,0 +1,18 @@
+{
+  "go_live_approved": false,
+  "real_agents_enabled": false,
+  "public_api_enabled": false,
+  "network_lookup_performed": false,
+  "payment_enabled": false,
+  "billing_enabled": false,
+  "settlement_enabled": false,
+  "tracking_triggered": false,
+  "analytics_triggered": false,
+  "deployed": false,
+  "published": false,
+  "scraped": false,
+  "email_sent": false,
+  "message_sent": false,
+  "action_executed": false,
+  "gareth_approval_required_before_sending": true
+}

@@ -1,0 +1,12 @@
+{
+  "offer_type": "private_fake_agent_sandbox_pilot",
+  "product_name": "Agent Trust Gate™",
+  "pilot_scope": ["Controlled local fake-agent sandbox demonstration"],
+  "accepted_agent_types": ["Allowlisted fake agents", "Allowlisted test agents"],
+  "prohibited_agent_types": ["Real external agents", "Production agents"],
+  "sandbox_capabilities": ["Pre-action clearing", "Entitlement checks", "Receipts", "Evidence", "Replay"],
+  "disabled_capabilities": ["Public API", "Network access", "Payment", "Action execution"],
+  "required_approvals": ["Gareth approval for each target and message"],
+  "commercial_interest_signal": "Manual expression of interest in a controlled private pilot",
+  "next_step": "Gareth manually reviews a named target and draft message."
+}

@@ -386,3 +386,7 @@ export { GARETH_FINAL_APPROVAL_RECORD_VERSION,createGarethFinalApprovalRecord,cr
 export type { GarethApprovalStatus,GarethDecisionScope,GarethFinalApprovalRecord,GarethFinalApprovalRecordInput,GarethFinalApprovalRecordSummary,GarethOwnerDecision } from "./gareth-final-approval-record.js";
 export { readGarethFinalApprovalRecordInput,runGarethFinalApprovalRecordCli } from "./gareth-final-approval-record-cli.js";
 export type { GarethApprovalRecordCliErrorCode,GarethApprovalRecordCliIo } from "./gareth-final-approval-record-cli.js";
+export { DIRECT_AGENT_SYSTEM_PILOT_OFFER_PACK_VERSION,createDirectAgentSystemPilotOfferPack,createDirectAgentSystemPilotOfferPackId,renderDirectAgentSystemPilotOfferJson,renderDirectAgentSystemPilotOfferPackMarkdown,renderDirectPilotContactMessage,summariseDirectAgentSystemPilotOfferPack } from "./direct-agent-system-pilot-offer-pack.js";
+export type { DirectAgentSystemPilotOfferPack,DirectAgentSystemPilotOfferPackInput,DirectAgentSystemPilotOfferPackSummary,MachineReadablePilotOffer,PilotOfferCommercialStatus,PilotPricingOption } from "./direct-agent-system-pilot-offer-pack.js";
+export { readDirectAgentSystemPilotOfferPackInput,runDirectAgentSystemPilotOfferPackCli } from "./direct-agent-system-pilot-offer-pack-cli.js";
+export type { DirectPilotOfferCliErrorCode,DirectPilotOfferCliIo } from "./direct-agent-system-pilot-offer-pack-cli.js";

@@ -1582,3 +1582,7 @@ The local non-certification summary combines final fake-agent sandbox readiness 
 ### Gareth Final Approval Record
 
 The local owner record stores GO, HOLD, or STOP while limiting GO to fake-agent demo-pack preparation only. See `docs/gareth-final-approval-record.md`.
+
+### Direct Agent/System Pilot Offer Pack
+
+The local pack generates draft private-pilot positioning, qualification, pricing, machine-readable offer, and unsent contact material for manual Gareth review. See `docs/direct-agent-system-pilot-offer-pack.md`.
