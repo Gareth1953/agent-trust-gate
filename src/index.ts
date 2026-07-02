@@ -391,6 +391,6 @@ export type { DirectAgentSystemPilotOfferPack,DirectAgentSystemPilotOfferPackInp
 export { readDirectAgentSystemPilotOfferPackInput,runDirectAgentSystemPilotOfferPackCli } from "./direct-agent-system-pilot-offer-pack-cli.js";
 export type { DirectPilotOfferCliErrorCode,DirectPilotOfferCliIo } from "./direct-agent-system-pilot-offer-pack-cli.js";
 export { DIRECT_TARGET_LIST_BUILDER_VERSION,buildDirectTargetList,createDirectTargetListBuilderId,rankDirectTargets,renderDirectTargetListCsv,renderDirectTargetListMarkdown,scoreDirectTarget,summariseDirectTargetList } from "./direct-target-list-builder.js";
-export type { DirectTargetCategory,DirectTargetInput,DirectTargetListInput,DirectTargetListResult,DirectTargetListSummary,GarethTargetApprovalStatus,ScoredDirectTarget,TargetListCommercialStatus,TargetPriorityBand } from "./direct-target-list-builder.js";
+export type { DirectTargetCategory,DirectTargetInput,DirectTargetListInput,DirectTargetListResult,DirectTargetListSummary,GarethTargetApprovalStatus,GlobalMarketScope,GlobalPriorityBand,GlobalRegionSummary,GlobalTargetRegion,JurisdictionContactCaution,ScoredDirectTarget,TargetListCommercialStatus,TargetPriorityBand } from "./direct-target-list-builder.js";
 export { readDirectTargetListInput,runDirectTargetListBuilderCli } from "./direct-target-list-builder-cli.js";
 export type { DirectTargetListCliErrorCode,DirectTargetListCliIo } from "./direct-target-list-builder-cli.js";

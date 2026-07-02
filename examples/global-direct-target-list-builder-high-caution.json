@@ -1,0 +1,8 @@
+{
+  "target_name": "Example High Caution Global System",
+  "jurisdiction_contact_caution": "high",
+  "global_score_adjustment": -15,
+  "manual_contact_only": true,
+  "legal_review_may_be_needed": true,
+  "contact_performed": false
+}

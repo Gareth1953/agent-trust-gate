@@ -1,0 +1,21 @@
+{
+  "commercial_status": "target_list_ready_for_gareth_review",
+  "global_targeting_enabled": true,
+  "global_target_count": 8,
+  "top_global_priority_targets": ["Example North America Agent Platform", "Example Global Agent Protocol Project"],
+  "global_region_summary": ["north_america", "global", "united_kingdom", "europe", "asia_pacific", "middle_east", "latin_america", "africa"],
+  "global_contact_policy": ["All contact remains manual", "No automated global outreach", "No scraping or lead harvesting", "No mass emailing"],
+  "jurisdiction_contact_cautions": ["Different countries have different marketing and contact rules", "These cautions are not legal advice"],
+  "manual_global_review_required": true,
+  "gareth_approval_required_before_global_contact": true,
+  "network_lookup_performed": false,
+  "external_lookup_performed": false,
+  "public_api_enabled": false,
+  "email_sent": false,
+  "message_sent": false,
+  "scraped": false,
+  "action_executed": false,
+  "deployed": false,
+  "published": false,
+  "status": "target_list_only"
+}

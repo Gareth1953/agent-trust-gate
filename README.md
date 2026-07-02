@@ -1590,3 +1590,7 @@ The local pack generates draft private-pilot positioning, qualification, pricing
 ### Direct Target List Builder
 
 The local builder scores and ranks manually supplied placeholder pilot targets without search, scraping, contact, or sending. See `docs/direct-target-list-builder.md`.
+
+### Global Direct Target Expansion Pack
+
+The global extension adds worldwide placeholder targeting, global fit scores, region summaries, and manual jurisdiction cautions without discovery or contact. See `docs/global-direct-target-expansion-pack.md`.
