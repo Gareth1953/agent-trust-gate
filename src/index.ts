@@ -382,3 +382,7 @@ export { PRIVATE_SANDBOX_FINAL_READINESS_CERTIFICATE_VERSION,createPrivateSandbo
 export type { FinalReadinessResult,PrivateSandboxFinalReadinessCertificate,PrivateSandboxFinalReadinessCertificateInput,PrivateSandboxFinalReadinessCertificateSummary } from "./private-sandbox-final-readiness-certificate.js";
 export { readPrivateSandboxFinalReadinessCertificateInput,runPrivateSandboxFinalReadinessCertificateCli } from "./private-sandbox-final-readiness-certificate-cli.js";
 export type { FinalCertificateCliErrorCode,FinalCertificateCliIo } from "./private-sandbox-final-readiness-certificate-cli.js";
+export { GARETH_FINAL_APPROVAL_RECORD_VERSION,createGarethFinalApprovalRecord,createGarethFinalApprovalRecordId,renderGarethFinalApprovalRecordMarkdown,summariseGarethFinalApprovalRecord } from "./gareth-final-approval-record.js";
+export type { GarethApprovalStatus,GarethDecisionScope,GarethFinalApprovalRecord,GarethFinalApprovalRecordInput,GarethFinalApprovalRecordSummary,GarethOwnerDecision } from "./gareth-final-approval-record.js";
+export { readGarethFinalApprovalRecordInput,runGarethFinalApprovalRecordCli } from "./gareth-final-approval-record-cli.js";
+export type { GarethApprovalRecordCliErrorCode,GarethApprovalRecordCliIo } from "./gareth-final-approval-record-cli.js";

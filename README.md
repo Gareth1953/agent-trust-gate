@@ -1578,3 +1578,7 @@ The offline harness runs the approved local plan against fake/test-agent allowli
 ### Private Sandbox Final Readiness Certificate
 
 The local non-certification summary combines final fake-agent sandbox readiness for Gareth review only. See `docs/private-sandbox-final-readiness-certificate.md`.
+
+### Gareth Final Approval Record
+
+The local owner record stores GO, HOLD, or STOP while limiting GO to fake-agent demo-pack preparation only. See `docs/gareth-final-approval-record.md`.

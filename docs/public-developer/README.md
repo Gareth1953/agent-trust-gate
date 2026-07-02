@@ -170,3 +170,6 @@ the approved preparation plan with fake/test agents only and no live access.
 
 The [Private Sandbox Final Readiness Certificate](../private-sandbox-final-readiness-certificate.md)
 summarises local readiness without granting live approval or certification.
+
+The [Gareth Final Approval Record](../gareth-final-approval-record.md) records
+the local owner decision without approving any live or external capability.
