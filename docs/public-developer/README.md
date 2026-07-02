@@ -164,3 +164,6 @@ renders the local owner decision in JSON or Markdown without granting live appro
 
 The [Private Sandbox Preparation Plan](../private-sandbox-preparation-plan.md)
 defines the locked-down preparation checklist without enabling external testing.
+
+The [Private Sandbox Test Harness](../private-sandbox-test-harness.md) exercises
+the approved preparation plan with fake/test agents only and no live access.

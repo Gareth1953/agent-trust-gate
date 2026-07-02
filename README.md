@@ -1570,3 +1570,7 @@ The local owner brief turns readiness evidence into GO preparation only, HOLD, o
 ### Private Sandbox Preparation Plan
 
 The local plan defines fake-agent scope, prohibited capabilities, approvals, boundaries, and stop criteria. See `docs/private-sandbox-preparation-plan.md`.
+
+### Private Sandbox Test Harness
+
+The offline harness runs the approved local plan against fake/test-agent allowlist, entitlement, denial, and real-agent rejection cases. See `docs/private-sandbox-test-harness.md`.

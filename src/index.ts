@@ -374,3 +374,7 @@ export { PRIVATE_SANDBOX_PREPARATION_PLAN_VERSION,createPrivateSandboxPreparatio
 export type { PrivateSandboxPreparationPlan,PrivateSandboxPreparationPlanInput,PrivateSandboxPreparationPlanStatus,PrivateSandboxPreparationPlanSummary,ProposedSandboxAgent } from "./private-sandbox-preparation-plan.js";
 export { readPrivateSandboxPreparationPlanInput,runPrivateSandboxPreparationPlanCli } from "./private-sandbox-preparation-plan-cli.js";
 export type { PrivateSandboxPlanCliErrorCode,PrivateSandboxPlanCliIo } from "./private-sandbox-preparation-plan-cli.js";
+export { PRIVATE_SANDBOX_TEST_HARNESS_VERSION,createPrivateSandboxTestHarnessId,runPrivateSandboxTestHarness,summarisePrivateSandboxTestHarness,validatePrivateSandboxTestAgent } from "./private-sandbox-test-harness.js";
+export type { PrivateSandboxHarnessScenario,PrivateSandboxHarnessScenarioResult,PrivateSandboxHarnessScenarioType,PrivateSandboxHarnessStatus,PrivateSandboxTestAgent,PrivateSandboxTestHarnessInput,PrivateSandboxTestHarnessResult,PrivateSandboxTestHarnessSummary } from "./private-sandbox-test-harness.js";
+export { readPrivateSandboxTestHarnessInput,runPrivateSandboxTestHarnessCli } from "./private-sandbox-test-harness-cli.js";
+export type { PrivateSandboxHarnessCliErrorCode,PrivateSandboxHarnessCliIo } from "./private-sandbox-test-harness-cli.js";
