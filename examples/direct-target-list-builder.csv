@@ -1,0 +1,2 @@
+target_id,target_name,target_category,likely_buyer_role,pilot_fit_score,priority_band,risk_level,contact_readiness,gareth_approval_status,recommended_message_angle,next_manual_action
+"target_placeholder_001","Example Agent Platform Co","ai_agent_platform","Agent platform product or engineering lead","100","high_priority","high","ready_for_gareth_message_review","approved_for_manual_contact_draft","Lead with a local fake-agent demonstration of pre-action clearance and receipts.","Gareth reviews a local draft; this tool sends nothing."

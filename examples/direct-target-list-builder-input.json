@@ -1,0 +1,13 @@
+{
+  "source_id": "demo_001",
+  "owner_name": "Gareth",
+  "offer_pack_result": { "commercial_status": "draft_private_pilot_offer_ready" },
+  "targets": [
+    { "target_id": "example_agent_platform", "target_name": "Example Agent Platform Co", "target_category": "ai_agent_platform", "agent_system_relevance": "high", "governance_need": "high", "payment_or_action_risk": "high", "evidence_need": "high", "integration_complexity": "low", "commercial_fit": "high", "pilot_budget_likelihood": "high", "gareth_approval_status": "approved_for_manual_contact_draft" },
+    { "target_id": "example_workflow", "target_name": "Example Workflow Automation System", "target_category": "workflow_automation_system", "agent_system_relevance": "high", "governance_need": "high", "payment_or_action_risk": "medium", "evidence_need": "high", "integration_complexity": "medium", "commercial_fit": "high", "pilot_budget_likelihood": "medium", "gareth_approval_status": "not_reviewed" },
+    { "target_id": "example_governance", "target_name": "Example Enterprise AI Governance Team", "target_category": "enterprise_ai_governance", "agent_system_relevance": "high", "governance_need": "high", "payment_or_action_risk": "medium", "evidence_need": "high", "integration_complexity": "low", "commercial_fit": "medium", "pilot_budget_likelihood": "medium", "gareth_approval_status": "not_reviewed" },
+    { "target_id": "example_tooling", "target_name": "Example Developer Tooling Company", "target_category": "developer_tooling", "agent_system_relevance": "medium", "governance_need": "medium", "payment_or_action_risk": "low", "evidence_need": "medium", "integration_complexity": "high", "commercial_fit": "medium", "pilot_budget_likelihood": "low", "gareth_approval_status": "hold" }
+  ],
+  "safety_flags": { "scraping_enabled": false, "network_lookup_enabled": false, "automatic_contact_enabled": false, "email_sending_enabled": false, "message_sending_enabled": false, "payment_enabled": false, "billing_enabled": false, "settlement_enabled": false, "action_execution_enabled": false, "public_api_enabled": false, "deployment_enabled": false, "publishing_enabled": false },
+  "created_at": "2026-07-02T10:00:00.000Z"
+}

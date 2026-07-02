@@ -1586,3 +1586,7 @@ The local owner record stores GO, HOLD, or STOP while limiting GO to fake-agent 
 ### Direct Agent/System Pilot Offer Pack
 
 The local pack generates draft private-pilot positioning, qualification, pricing, machine-readable offer, and unsent contact material for manual Gareth review. See `docs/direct-agent-system-pilot-offer-pack.md`.
+
+### Direct Target List Builder
+
+The local builder scores and ranks manually supplied placeholder pilot targets without search, scraping, contact, or sending. See `docs/direct-target-list-builder.md`.

@@ -1,0 +1,9 @@
+{
+  "commercial_status": "target_list_hold",
+  "input_target_count": 0,
+  "accepted_target_count": 0,
+  "rejected_target_count": 0,
+  "no_automatic_contact": true,
+  "no_scraping_performed": true,
+  "status": "target_list_only"
+}
