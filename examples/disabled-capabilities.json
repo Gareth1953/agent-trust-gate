@@ -1,0 +1,18 @@
+{
+  "public_api": true,
+  "live_endpoint": true,
+  "real_external_agents": true,
+  "real_payment": true,
+  "billing": true,
+  "settlement": true,
+  "autonomous_action_execution": true,
+  "scraping": true,
+  "internet_search": true,
+  "deployment": true,
+  "publishing": true,
+  "quantum_security_claim": true,
+  "post_quantum_compliance_claim": true,
+  "ML_KEM_implementation": true,
+  "ML_DSA_implementation": true,
+  "SLH_DSA_implementation": true
+}

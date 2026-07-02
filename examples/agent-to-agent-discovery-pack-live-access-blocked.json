@@ -1,0 +1,22 @@
+{
+  "live_agent_access_enabled": false,
+  "public_endpoint_available": false,
+  "hosted_discovery_available": false,
+  "public_api_enabled": false,
+  "network_lookup_performed": false,
+  "external_lookup_performed": false,
+  "real_agents_enabled": false,
+  "payment_enabled": false,
+  "billing_enabled": false,
+  "settlement_enabled": false,
+  "tracking_triggered": false,
+  "analytics_triggered": false,
+  "deployed": false,
+  "published": false,
+  "scraped": false,
+  "internet_search_performed": false,
+  "email_sent": false,
+  "message_sent": false,
+  "action_executed": false,
+  "quantum_security_claimed": false
+}

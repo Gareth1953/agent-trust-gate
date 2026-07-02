@@ -1,0 +1,12 @@
+{
+  "local_fake_agent_sandbox_demo": true,
+  "pre_action_intent_check": true,
+  "entitlement_check": true,
+  "allow_deny_approval_gate": true,
+  "receipt_generation": true,
+  "evidence_bundle": true,
+  "replay_runner": true,
+  "manual_approval_queue": true,
+  "machine_readable_discovery_files": true,
+  "quantum_readiness_positioning_only": true
+}

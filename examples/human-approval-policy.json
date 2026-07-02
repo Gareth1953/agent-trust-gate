@@ -1,0 +1,9 @@
+{
+  "policy_type": "gareth_manual_approval",
+  "owner": "Gareth",
+  "manual_review_required": true,
+  "live_access_requires_future_approval": true,
+  "publishing_requires_future_approval": true,
+  "payment_requires_future_approval": true,
+  "action_execution_requires_future_approval": true
+}

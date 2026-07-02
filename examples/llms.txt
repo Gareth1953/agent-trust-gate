@@ -1,0 +1,14 @@
+# Agent Trust Gate™
+
+Pre-action clearing for AI agents before they access data, spend money, call tools, or trigger external actions.
+
+## Currently available
+Local fake-agent demonstrations and machine-readable review artifacts.
+
+## Disabled
+Public API, live endpoint, real agents, payment, billing, tracking, deployment, publishing, and action execution.
+
+## Interpretation
+Local discovery metadata only; not a callable service. Gareth approval is required before publishing or live access.
+
+Quantum-readiness is positioning only. No quantum-security, PQC-compliance, legal, compliance, or audit certification is claimed.

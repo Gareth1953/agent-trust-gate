@@ -1602,3 +1602,7 @@ The local pack creates education-first technical review material, feedback quest
 ### Gareth Manual Outreach Approval Queue
 
 The local queue ranks placeholder targets and records prerequisite-checked target and message decisions without contacting or sending. See `docs/gareth-manual-outreach-approval-queue.md`.
+
+### Agent-to-Agent Discovery Pack
+
+The local pack renders machine-readable product, capability, safety, pilot, approval, pricing, and review artifacts without creating a live endpoint. See `docs/agent-to-agent-discovery-pack.md`.

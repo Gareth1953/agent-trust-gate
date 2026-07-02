@@ -1,0 +1,7 @@
+{
+  "review_type": "educational_agent_system_technical_review",
+  "fake_agent_sandbox_scope": ["Local fake/test agents only", "Synthetic data only"],
+  "review_topics": ["Pre-action clearing", "Entitlement", "Receipts", "Evidence", "Replay"],
+  "quantum_readiness_topics": ["Positioning only", "Future inventory awareness"],
+  "next_step": "Review local artifacts only."
+}

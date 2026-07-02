@@ -1,0 +1,8 @@
+{
+  "offer_type": "private_fake_agent_sandbox_pilot",
+  "product_name": "Agent Trust Gate™",
+  "pilot_scope": ["Local fake-agent sandbox", "Pre-action clearing"],
+  "disabled_capabilities": ["Public API", "Live endpoint", "Payment", "Action execution"],
+  "required_approvals": ["Gareth approval before publishing or live access"],
+  "pricing_status": "draft_local_metadata_only"
+}

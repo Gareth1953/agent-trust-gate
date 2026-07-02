@@ -1,0 +1,11 @@
+{
+  "schema_version": "atg.agent-card.v1",
+  "agent_name": "Agent Trust Gate local discovery",
+  "product_name": "Agent Trust Gate™",
+  "discovery_status": "local_discovery_only",
+  "approval_required": true,
+  "live_endpoint_available": false,
+  "public_api_available": false,
+  "production_ready": false,
+  "sandbox_available": true
+}

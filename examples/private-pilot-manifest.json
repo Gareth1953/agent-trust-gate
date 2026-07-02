@@ -1,0 +1,8 @@
+{
+  "manifest_type": "private_fake_agent_pilot",
+  "product_name": "Agent Trust Gate™",
+  "pilot_status": "draft_review_only",
+  "pilot_mode": ["fake_agent_only", "local_review_only", "no_live_access"],
+  "sandbox_boundaries": ["No network", "No server", "No action execution"],
+  "next_step": "Run local review commands only."
+}
