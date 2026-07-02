@@ -1,0 +1,72 @@
+{
+  "schema_version": "atg.agent-card.v1",
+  "agent_name": "Agent Trust Gate local discovery",
+  "product_name": "Agent Trust Gate™",
+  "description": "Pre-action clearing for AI agents before they access data, spend money, call tools, or trigger external actions.",
+  "provider": "Gareth",
+  "discovery_status": "local_discovery_only",
+  "capabilities_summary": "Local fake-agent pre-action clearing, receipts, evidence, replay, readiness, and manual approval artifacts.",
+  "skills": [
+    "local_fake_agent_sandbox_demo",
+    "pre_action_intent_check",
+    "entitlement_check",
+    "allow_deny_approval_gate",
+    "refusal_signal_awareness",
+    "receipt_generation",
+    "receipt_verification",
+    "evidence_bundle",
+    "replay_runner",
+    "readiness_scoring",
+    "manual_approval_queue",
+    "machine_readable_discovery_files",
+    "quantum_readiness_positioning_only"
+  ],
+  "supported_interactions": [
+    "Read local discovery JSON",
+    "Review local fake-agent examples",
+    "Request human-reviewed technical feedback"
+  ],
+  "disabled_interactions": [
+    "Public API",
+    "Live endpoint",
+    "Real external agents",
+    "Real customer data",
+    "Real payment",
+    "Billing",
+    "Settlement",
+    "Live machine-to-machine fees",
+    "Autonomous action execution",
+    "Tool execution",
+    "Email and message sending",
+    "Scraping and internet search",
+    "Tracking and analytics",
+    "Deployment and publishing",
+    "Production integration",
+    "Quantum-security and post-quantum-compliance claims",
+    "Production post-quantum cryptographic controls"
+  ],
+  "access_model": [
+    "local_discovery_only",
+    "review_only",
+    "no_live_endpoint"
+  ],
+  "approval_required": true,
+  "live_endpoint_available": false,
+  "public_api_available": false,
+  "production_ready": false,
+  "sandbox_available": true,
+  "contact_policy": [
+    "Manual Gareth review only",
+    "No automatic outreach or live agent connection"
+  ],
+  "safety_boundaries": [
+    "Local files and deterministic rendering only",
+    "No public API, endpoint, hosting, network, or live agent access",
+    "No real customer data, credentials, contact details, or private data",
+    "No payment, billing, settlement, tracking, analytics, or execution",
+    "No publication without Gareth approval",
+    "No legal, compliance, audit, quantum-security, or PQC-compliance certification claim"
+  ],
+  "quantum_readiness": "Positioning only; not quantum secure or post-quantum compliant.",
+  "next_step": "Gareth reviews the local pack before any publishing or live-access decision."
+}

@@ -1,0 +1,12 @@
+{
+  "quantum_claim_level": "positioning_only",
+  "quantum_security_claimed": false,
+  "post_quantum_compliance_claimed": false,
+  "nist_certification_claimed": false,
+  "ml_kem_implemented": false,
+  "ml_dsa_implemented": false,
+  "slh_dsa_implemented": false,
+  "production_crypto_change": false,
+  "future_pqc_migration_awareness": true,
+  "cryptographic_inventory_readiness_placeholders": true
+}

@@ -1,0 +1,60 @@
+{
+  "review_type": "educational_agent_system_technical_review",
+  "technical_learning_objective": "Review how permission, entitlement, refusal, evidence, receipts, replay, and human approval can constrain agents before action.",
+  "review_topics": [
+    "Pre-action clearing",
+    "Entitlement and approval gates",
+    "Excessive-agency boundaries"
+  ],
+  "fake_agent_sandbox_scope": [
+    "Local fake/test agents only",
+    "Synthetic data only",
+    "No external integration"
+  ],
+  "evidence_and_receipt_topics": [
+    "Receipt creation and local verification",
+    "Evidence bundle boundaries"
+  ],
+  "refusal_signal_topics": [
+    "RefusalGraph-style local refusal intelligence",
+    "Denied scenario reasoning"
+  ],
+  "replay_topics": [
+    "Deterministic replay consistency",
+    "Mismatch identification"
+  ],
+  "human_approval_topics": [
+    "Target and message approval",
+    "Approval before external or high-impact action"
+  ],
+  "excessive_agency_boundary": "Requested actions are cleared and described but never executed.",
+  "quantum_readiness_topics": [
+    "Positioning only",
+    "Future cryptographic inventory",
+    "Future PQC migration awareness"
+  ],
+  "disabled_capabilities": [
+    "Public API",
+    "Live endpoint",
+    "Real external agents",
+    "Real customer data",
+    "Real payment",
+    "Billing",
+    "Settlement",
+    "Live machine-to-machine fees",
+    "Autonomous action execution",
+    "Tool execution",
+    "Email and message sending",
+    "Scraping and internet search",
+    "Tracking and analytics",
+    "Deployment and publishing",
+    "Production integration",
+    "Quantum-security and post-quantum-compliance claims",
+    "Production post-quantum cryptographic controls"
+  ],
+  "required_approvals": [
+    "Gareth review",
+    "Technical and security review before future live work"
+  ],
+  "next_step": "Review local JSON and sandbox artifacts only."
+}

@@ -1,0 +1,8 @@
+{
+  "source_id": "blocked-launch-demo",
+  "agent_to_agent_discovery_pack_result": { "discovery_status": "discovery_pack_ready" },
+  "launch_domain_placeholder": "example.invalid",
+  "safety_flags": { "public_api_enabled": true, "live_endpoint_enabled": true, "payment_enabled": true, "action_execution_enabled": true },
+  "expected_launch_status": "launch_folder_blocked",
+  "created_at": "2026-07-02T16:00:00Z"
+}

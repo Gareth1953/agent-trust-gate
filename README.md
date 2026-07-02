@@ -1606,3 +1606,7 @@ The local queue ranks placeholder targets and records prerequisite-checked targe
 ### Agent-to-Agent Discovery Pack
 
 The local pack renders machine-readable product, capability, safety, pilot, approval, pricing, and review artifacts without creating a live endpoint. See `docs/agent-to-agent-discovery-pack.md`.
+
+### Global Discovery Live Launch Folder
+
+The local builder creates an upload-ready static discovery folder without exposing an API, backend, live engine, payment, tracking, or execution. See `docs/global-discovery-live-launch-folder.md`.

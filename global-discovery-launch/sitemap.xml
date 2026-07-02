@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset>
+  <url><loc>https://example.invalid/</loc></url>
+  <url><loc>https://example.invalid/llms.txt</loc></url>
+  <url><loc>https://example.invalid/.well-known/agent.json</loc></url>
+  <url><loc>https://example.invalid/agent-trust-gate-offer.json</loc></url>
+  <url><loc>https://example.invalid/technical-review.json</loc></url>
+  <url><loc>https://example.invalid/capabilities.json</loc></url>
+  <url><loc>https://example.invalid/disabled-capabilities.json</loc></url>
+  <url><loc>https://example.invalid/private-pilot-manifest.json</loc></url>
+  <url><loc>https://example.invalid/human-approval-policy.json</loc></url>
+  <url><loc>https://example.invalid/pricing-pilot-metadata.json</loc></url>
+</urlset>

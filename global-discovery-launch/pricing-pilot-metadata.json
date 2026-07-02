@@ -1,0 +1,23 @@
+{
+  "pricing_status": "draft_local_metadata_only",
+  "pricing_options": [
+    {
+      "name": "Educational technical review",
+      "range": "£0 introductory review"
+    },
+    {
+      "name": "Private fake-agent sandbox pilot",
+      "range": "£500-£1,500"
+    },
+    {
+      "name": "Extended pilot",
+      "range": "£2,500-£5,000"
+    }
+  ],
+  "currency": "GBP",
+  "payment_links_available": false,
+  "billing_enabled": false,
+  "invoice_generated": false,
+  "commercial_terms_require_manual_approval": true,
+  "pilot_follow_up_only_after_interest": true
+}

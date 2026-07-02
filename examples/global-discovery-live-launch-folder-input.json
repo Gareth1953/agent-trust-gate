@@ -1,0 +1,11 @@
+{
+  "source_id": "global-discovery-launch-demo-001",
+  "product_name": "Agent Trust Gate™",
+  "owner_name": "Gareth",
+  "agent_to_agent_discovery_pack_result": { "discovery_status": "discovery_pack_ready" },
+  "educational_review_pack_result": { "review_status": "educational_review_pack_ready" },
+  "pilot_offer_result": { "commercial_status": "draft_private_pilot_offer_ready" },
+  "launch_domain_placeholder": "example.invalid",
+  "safety_flags": { "public_api_enabled": false, "live_endpoint_enabled": false, "payment_enabled": false, "tracking_enabled": false, "action_execution_enabled": false },
+  "created_at": "2026-07-02T16:00:00Z"
+}

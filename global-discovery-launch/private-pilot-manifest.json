@@ -1,0 +1,53 @@
+{
+  "manifest_type": "private_fake_agent_pilot",
+  "product_name": "Agent Trust Gate™",
+  "pilot_status": "draft_review_only",
+  "pilot_mode": [
+    "fake_agent_only",
+    "local_review_only",
+    "no_live_access"
+  ],
+  "accepted_inputs": [
+    "Synthetic local JSON",
+    "Fake/test-agent scenarios"
+  ],
+  "prohibited_inputs": [
+    "Private data",
+    "Credentials",
+    "Real customer data",
+    "Live agent requests"
+  ],
+  "sandbox_boundaries": [
+    "No network",
+    "No server",
+    "No action execution"
+  ],
+  "review_boundaries": [
+    "Educational and technical review only",
+    "No certification"
+  ],
+  "approval_gates": [
+    "Gareth approval before publishing",
+    "Gareth approval before live access"
+  ],
+  "disabled_capabilities": [
+    "Public API",
+    "Live endpoint",
+    "Real external agents",
+    "Real customer data",
+    "Real payment",
+    "Billing",
+    "Settlement",
+    "Live machine-to-machine fees",
+    "Autonomous action execution",
+    "Tool execution",
+    "Email and message sending",
+    "Scraping and internet search",
+    "Tracking and analytics",
+    "Deployment and publishing",
+    "Production integration",
+    "Quantum-security and post-quantum-compliance claims",
+    "Production post-quantum cryptographic controls"
+  ],
+  "next_step": "Run local review commands only."
+}

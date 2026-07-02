@@ -1,0 +1,16 @@
+{
+  "public_api_enabled": false,
+  "live_agent_access_enabled": false,
+  "backend_required": false,
+  "endpoint_created": false,
+  "real_external_agents_enabled": false,
+  "payment_enabled": false,
+  "billing_enabled": false,
+  "settlement_enabled": false,
+  "tracking_enabled": false,
+  "analytics_enabled": false,
+  "action_execution_enabled": false,
+  "deployment_requires_gareth_approval": true,
+  "domain_connection_requires_gareth_approval": true,
+  "private_pilot_requires_gareth_approval": true
+}

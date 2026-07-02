@@ -1,0 +1,57 @@
+{
+  "offer_type": "private_fake_agent_sandbox_pilot",
+  "product_name": "Agent Trust Gate™",
+  "buyer_problem": "Agent systems need a clear permission gate before tools, data, spend, or external actions.",
+  "pilot_scope": [
+    "Local fake-agent sandbox",
+    "Pre-action clearing and entitlement",
+    "Receipts, evidence, replay, and denied scenarios"
+  ],
+  "review_scope": [
+    "Education-first technical review",
+    "Developer, platform, governance, and security feedback"
+  ],
+  "accepted_agent_types": [
+    "Fake agents",
+    "Test agents",
+    "Local system simulations"
+  ],
+  "prohibited_agent_types": [
+    "Real external agents",
+    "Production agents",
+    "Agents carrying real customer data"
+  ],
+  "pilot_deliverables": [
+    "Allow, deny, and approval-gate outcomes",
+    "Receipt and verification output",
+    "Evidence bundle and replay",
+    "Manual approval queue"
+  ],
+  "disabled_capabilities": [
+    "Public API",
+    "Live endpoint",
+    "Real external agents",
+    "Real customer data",
+    "Real payment",
+    "Billing",
+    "Settlement",
+    "Live machine-to-machine fees",
+    "Autonomous action execution",
+    "Tool execution",
+    "Email and message sending",
+    "Scraping and internet search",
+    "Tracking and analytics",
+    "Deployment and publishing",
+    "Production integration",
+    "Quantum-security and post-quantum-compliance claims",
+    "Production post-quantum cryptographic controls"
+  ],
+  "required_approvals": [
+    "Gareth approval before publishing",
+    "Gareth approval before live access",
+    "Separate target and message approvals"
+  ],
+  "commercial_follow_up_policy": "Only after interest, mutual fit, and separate Gareth approval.",
+  "pricing_status": "draft_local_metadata_only",
+  "next_step": "Gareth reviews these local discovery artifacts."
+}

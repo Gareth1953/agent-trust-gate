@@ -1,0 +1,22 @@
+{
+  "policy_type": "gareth_manual_approval",
+  "owner": "Gareth",
+  "approvals_required_for": [
+    "Publishing discovery files",
+    "Live agent access",
+    "External sharing",
+    "Payment discussion",
+    "Action execution"
+  ],
+  "approvals_not_granted_for": [
+    "Go-live",
+    "Public API",
+    "Live endpoint",
+    "Autonomous execution"
+  ],
+  "manual_review_required": true,
+  "live_access_requires_future_approval": true,
+  "publishing_requires_future_approval": true,
+  "payment_requires_future_approval": true,
+  "action_execution_requires_future_approval": true
+}

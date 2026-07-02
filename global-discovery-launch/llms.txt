@@ -1,0 +1,64 @@
+# Agent Trust Gate™
+
+Pre-action clearing for AI agents before they access data, spend money, call tools, or trigger external actions.
+
+## What it does
+Describes a local pre-action clearing pattern with fake-agent review, receipts, evidence, replay, and human approval.
+
+## Currently available
+- local_fake_agent_sandbox_demo
+- pre_action_intent_check
+- entitlement_check
+- allow_deny_approval_gate
+- refusal_signal_awareness
+- receipt_generation
+- receipt_verification
+- evidence_bundle
+- replay_runner
+- readiness_scoring
+- manual_approval_queue
+- machine_readable_discovery_files
+- quantum_readiness_positioning_only
+
+## Disabled
+- public_api
+- live_endpoint
+- real_external_agents
+- real_customer_data
+- real_payment
+- billing
+- settlement
+- machine_to_machine_live_fee
+- autonomous_action_execution
+- tool_execution
+- email_sending
+- message_sending
+- scraping
+- internet_search
+- tracking
+- analytics
+- deployment
+- publishing
+- production_integration
+- quantum_security_claim
+- post_quantum_compliance_claim
+- ML_KEM_implementation
+- ML_DSA_implementation
+- SLH_DSA_implementation
+
+## Interpretation
+This pack is local discovery metadata only. It is not a callable service.
+
+## Human approval
+Gareth approval is required before publishing or live agent access.
+
+## Quantum readiness
+Positioning only: future inventory and PQC migration awareness. Not quantum secure, post-quantum compliant, NIST certified, or a production cryptographic implementation.
+
+No production API or live endpoint exists. No legal, compliance, audit, security, or quantum certification is claimed.
+
+## Static discovery files
+Agent card, offer, technical review, capabilities, disabled capabilities, pilot manifest, human approval policy, pricing metadata, launch boundaries, and quantum-readiness positioning are available as static files.
+
+## Private pilot route
+A fake-agent private pilot may be reviewed only after Gareth approval. No production API or live endpoint exists.
