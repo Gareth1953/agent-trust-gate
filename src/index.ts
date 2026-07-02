@@ -378,3 +378,7 @@ export { PRIVATE_SANDBOX_TEST_HARNESS_VERSION,createPrivateSandboxTestHarnessId,
 export type { PrivateSandboxHarnessScenario,PrivateSandboxHarnessScenarioResult,PrivateSandboxHarnessScenarioType,PrivateSandboxHarnessStatus,PrivateSandboxTestAgent,PrivateSandboxTestHarnessInput,PrivateSandboxTestHarnessResult,PrivateSandboxTestHarnessSummary } from "./private-sandbox-test-harness.js";
 export { readPrivateSandboxTestHarnessInput,runPrivateSandboxTestHarnessCli } from "./private-sandbox-test-harness-cli.js";
 export type { PrivateSandboxHarnessCliErrorCode,PrivateSandboxHarnessCliIo } from "./private-sandbox-test-harness-cli.js";
+export { PRIVATE_SANDBOX_FINAL_READINESS_CERTIFICATE_VERSION,createPrivateSandboxFinalReadinessCertificate,createPrivateSandboxFinalReadinessCertificateId,renderPrivateSandboxFinalReadinessCertificateMarkdown,summarisePrivateSandboxFinalReadinessCertificate } from "./private-sandbox-final-readiness-certificate.js";
+export type { FinalReadinessResult,PrivateSandboxFinalReadinessCertificate,PrivateSandboxFinalReadinessCertificateInput,PrivateSandboxFinalReadinessCertificateSummary } from "./private-sandbox-final-readiness-certificate.js";
+export { readPrivateSandboxFinalReadinessCertificateInput,runPrivateSandboxFinalReadinessCertificateCli } from "./private-sandbox-final-readiness-certificate-cli.js";
+export type { FinalCertificateCliErrorCode,FinalCertificateCliIo } from "./private-sandbox-final-readiness-certificate-cli.js";

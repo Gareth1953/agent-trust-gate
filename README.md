@@ -1574,3 +1574,7 @@ The local plan defines fake-agent scope, prohibited capabilities, approvals, bou
 ### Private Sandbox Test Harness
 
 The offline harness runs the approved local plan against fake/test-agent allowlist, entitlement, denial, and real-agent rejection cases. See `docs/private-sandbox-test-harness.md`.
+
+### Private Sandbox Final Readiness Certificate
+
+The local non-certification summary combines final fake-agent sandbox readiness for Gareth review only. See `docs/private-sandbox-final-readiness-certificate.md`.
