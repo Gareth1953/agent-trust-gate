@@ -1,0 +1,9 @@
+{
+  "quantum_claim_level": "positioning_only",
+  "quantum_secure": false,
+  "post_quantum_compliant": false,
+  "nist_certified": false,
+  "production_pqc_controls_implemented": false,
+  "cryptographic_inventory_placeholders_only": true,
+  "specialist_review_required_before_production": true
+}

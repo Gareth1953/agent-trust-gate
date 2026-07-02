@@ -1,0 +1,13 @@
+{
+  "review_type": "global_educational_technical_learning_review",
+  "product_name": "Agent Trust Gate™",
+  "technical_learning_objective": "Review pre-action permission, entitlement, evidence, refusal, receipts, and replay.",
+  "sandbox_scope": ["Local fake-agent sandbox only"],
+  "supported_review_topics": ["Pre-action clearing", "Excessive-agency boundaries", "Future cryptographic inventory awareness"],
+  "disabled_capabilities": ["Public API", "Network access", "Payment", "Action execution"],
+  "required_approvals": ["Gareth approval for every target and message"],
+  "quantum_claim_level": "positioning_only",
+  "quantum_readiness_statement": "No quantum-security or post-quantum-compliance claim.",
+  "commercial_follow_up_policy": "After interest and separate Gareth approval only.",
+  "next_step": "Gareth reviews one placeholder target and one local draft."
+}

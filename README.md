@@ -1594,3 +1594,7 @@ The local builder scores and ranks manually supplied placeholder pilot targets w
 ### Global Direct Target Expansion Pack
 
 The global extension adds worldwide placeholder targeting, global fit scores, region summaries, and manual jurisdiction cautions without discovery or contact. See `docs/global-direct-target-expansion-pack.md`.
+
+### Global Educational Technical Review Pack
+
+The local pack creates education-first technical review material, feedback questions, cautious quantum-readiness positioning, and unsent message drafts. See `docs/global-educational-technical-review-pack.md`.

@@ -1,0 +1,1 @@
+After interest is shown: thank you for reviewing the concept. If useful, we could discuss a scope-limited private sandbox pilot using fake/test agents only, with no production integration, real customer data, live payment, or action execution. Commercial terms would be discussed only after mutual fit and Gareth approval.
