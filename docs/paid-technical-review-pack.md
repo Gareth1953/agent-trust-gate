@@ -1,0 +1,2 @@
+# Paid Technical Review Pack
+Defines what a buyer may pay to review: static artifacts, boundaries, evidence, receipts, replay concepts, and a local fake-agent walkthrough. Buyers receive review outputs, not API, agents, production integration, payment processing, or execution. Gareth approves buyer, scope, price, and payment route. The tool creates no invoice or payment link. Run npm run paid:review with the local example.

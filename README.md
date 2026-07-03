@@ -1626,3 +1626,7 @@ The local pack prepares static discovery interpretation, developer notes, and ma
 ### Commercial Pilot Readiness Rules
 
 The local rules define a controlled paid private review or fake-agent pilot without buyer contact, invoicing, payment activation, API access, or execution. See `docs/commercial-pilot-readiness-rules.md`.
+
+### Paid Technical Review Pack
+
+The local pack defines buyer-facing technical review and fake-agent pilot outputs without contact, invoicing, payment activation, API access, or execution. See `docs/paid-technical-review-pack.md`.
