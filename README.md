@@ -1622,3 +1622,7 @@ The local record converts Gareth's manual static-site observations into bounded 
 ### Agent Discovery Indexing Pack
 
 The local pack prepares static discovery interpretation, developer notes, and manual sharing material without submitting, crawling, scraping, or sending. See `docs/agent-discovery-indexing-pack.md`.
+
+### Commercial Pilot Readiness Rules
+
+The local rules define a controlled paid private review or fake-agent pilot without buyer contact, invoicing, payment activation, API access, or execution. See `docs/commercial-pilot-readiness-rules.md`.
