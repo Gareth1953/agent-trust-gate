@@ -1,0 +1,27 @@
+{
+  "source_id": "global-discovery-verification-demo-001",
+  "product_name": "Agent Trust Gate™",
+  "owner_name": "Gareth",
+  "live_discovery_url": "https://wild-dust-37c6.gpmiddleton71.workers.dev/",
+  "launch_hosting_provider": "cloudflare_pages_or_workers_static_upload",
+  "manual_upload_completed": true,
+  "manual_verification_completed": true,
+  "launch_folder_commit": "d7cd2799fa22aed3ecf5c5b976abec5c33ce8b60",
+  "launch_approval_commit": "7f2fe5248ae8b6d0c73ea625d496a5d5c89fbd0e",
+  "verification_observations": [
+    {"path":"/","expected_artifact":"Static homepage","manually_observed_status":"loaded","expected_live_flags_false":true},
+    {"path":"/llms.txt","expected_artifact":"LLM discovery summary","manually_observed_status":"loaded","expected_live_flags_false":true},
+    {"path":"/.well-known/agent.json","expected_artifact":"Agent card JSON","manually_observed_status":"loaded","expected_live_flags_false":true},
+    {"path":"/agent-trust-gate-offer.json","expected_artifact":"Offer JSON","manually_observed_status":"loaded","expected_live_flags_false":true},
+    {"path":"/technical-review.json","expected_artifact":"Technical review JSON","manually_observed_status":"loaded","expected_live_flags_false":true},
+    {"path":"/capabilities.json","expected_artifact":"Capabilities JSON","manually_observed_status":"loaded","expected_live_flags_false":true},
+    {"path":"/disabled-capabilities.json","expected_artifact":"Disabled capabilities JSON","manually_observed_status":"loaded","expected_live_flags_false":true},
+    {"path":"/private-pilot-manifest.json","expected_artifact":"Private pilot manifest JSON","manually_observed_status":"loaded","expected_live_flags_false":true},
+    {"path":"/human-approval-policy.json","expected_artifact":"Human approval policy JSON","manually_observed_status":"loaded","expected_live_flags_false":true},
+    {"path":"/pricing-pilot-metadata.json","expected_artifact":"Pricing pilot metadata JSON","manually_observed_status":"loaded","expected_live_flags_false":true},
+    {"path":"/launch-boundaries.json","expected_artifact":"Launch boundaries JSON","manually_observed_status":"loaded","expected_live_flags_false":true},
+    {"path":"/quantum-readiness.json","expected_artifact":"Quantum-readiness positioning JSON","manually_observed_status":"loaded","expected_live_flags_false":true}
+  ],
+  "safety_flags": {"public_api_enabled":false,"live_agent_access_enabled":false,"backend_required":false,"endpoint_created":false,"payment_enabled":false,"billing_enabled":false,"settlement_enabled":false,"tracking_enabled":false,"analytics_enabled":false,"action_execution_enabled":false,"real_external_agents_enabled":false,"deployed_by_tool":false,"published_by_tool":false},
+  "created_at": "2026-07-03T09:00:00Z"
+}

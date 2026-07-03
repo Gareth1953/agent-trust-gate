@@ -1614,3 +1614,7 @@ The local builder creates an upload-ready static discovery folder without exposi
 ### Gareth Global Launch Approval + Upload Instructions
 
 The local pack records Gareth's static-upload decision and renders manual pre-upload, verification, and rollback instructions without uploading or publishing. See `docs/gareth-global-launch-approval.md`.
+
+### Global Discovery Verification Record
+
+The local record converts Gareth's manual static-site observations into bounded verification JSON, Markdown, and a post-launch checklist without fetching the network. See `docs/global-discovery-verification-record.md`.

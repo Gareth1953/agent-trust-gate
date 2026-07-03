@@ -414,3 +414,7 @@ export { GARETH_GLOBAL_LAUNCH_APPROVAL_VERSION,createGarethGlobalLaunchApproval,
 export type { GarethGlobalLaunchApproval,GarethGlobalLaunchApprovalInput,GarethGlobalLaunchApprovalSummary,GlobalLaunchApprovalStatus,GlobalLaunchOwnerDecision,GlobalLaunchScope,PreferredHostingOption } from "./gareth-global-launch-approval.js";
 export { readGarethGlobalLaunchApprovalInput,runGarethGlobalLaunchApprovalCli } from "./gareth-global-launch-approval-cli.js";
 export type { GarethGlobalLaunchApprovalCliErrorCode,GarethGlobalLaunchApprovalCliIo } from "./gareth-global-launch-approval-cli.js";
+export { GLOBAL_DISCOVERY_VERIFICATION_RECORD_VERSION,createGlobalDiscoveryVerificationRecord,createGlobalDiscoveryVerificationRecordId,renderGlobalDiscoveryPostLaunchChecklistMarkdown,renderGlobalDiscoveryVerificationJson,renderGlobalDiscoveryVerificationMarkdown,summariseGlobalDiscoveryVerificationRecord } from "./global-discovery-verification-record.js";
+export type { GlobalDiscoveryVerificationRecord,GlobalDiscoveryVerificationRecordInput,GlobalDiscoveryVerificationRecordSummary,GlobalDiscoveryVerificationStatus,LaunchHostingProvider,ManualObservationStatus,VerificationObservationInput,VerifiedDiscoveryArtifact } from "./global-discovery-verification-record.js";
+export { readGlobalDiscoveryVerificationRecordInput,runGlobalDiscoveryVerificationRecordCli } from "./global-discovery-verification-record-cli.js";
+export type { GlobalDiscoveryVerificationCliErrorCode,GlobalDiscoveryVerificationCliIo } from "./global-discovery-verification-record-cli.js";
