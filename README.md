@@ -1618,3 +1618,7 @@ The local pack records Gareth's static-upload decision and renders manual pre-up
 ### Global Discovery Verification Record
 
 The local record converts Gareth's manual static-site observations into bounded verification JSON, Markdown, and a post-launch checklist without fetching the network. See `docs/global-discovery-verification-record.md`.
+
+### Agent Discovery Indexing Pack
+
+The local pack prepares static discovery interpretation, developer notes, and manual sharing material without submitting, crawling, scraping, or sending. See `docs/agent-discovery-indexing-pack.md`.

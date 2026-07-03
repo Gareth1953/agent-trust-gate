@@ -418,3 +418,5 @@ export { GLOBAL_DISCOVERY_VERIFICATION_RECORD_VERSION,createGlobalDiscoveryVerif
 export type { GlobalDiscoveryVerificationRecord,GlobalDiscoveryVerificationRecordInput,GlobalDiscoveryVerificationRecordSummary,GlobalDiscoveryVerificationStatus,LaunchHostingProvider,ManualObservationStatus,VerificationObservationInput,VerifiedDiscoveryArtifact } from "./global-discovery-verification-record.js";
 export { readGlobalDiscoveryVerificationRecordInput,runGlobalDiscoveryVerificationRecordCli } from "./global-discovery-verification-record-cli.js";
 export type { GlobalDiscoveryVerificationCliErrorCode,GlobalDiscoveryVerificationCliIo } from "./global-discovery-verification-record-cli.js";
+export { createAgentDiscoveryIndexingPack,createAgentDiscoveryIndexingPackId,renderAgentDiscoveryAnnouncementDraftMarkdown,renderAgentDiscoveryDeveloperNotesMarkdown,renderAgentDiscoveryIndexingJson,renderAgentDiscoveryIndexingMarkdown,renderAgentDiscoveryManualShareChecklistMarkdown,summariseAgentDiscoveryIndexingPack } from "./agent-discovery-indexing-pack.js";
+export { runAgentDiscoveryIndexingPackCli } from "./agent-discovery-indexing-pack-cli.js";
