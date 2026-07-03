@@ -1,0 +1,2 @@
+# Live API Readiness Gate
+Defines controls required before any future controlled API design. It creates no API, endpoint, key, secret, or listener. Anonymous access is blocked, fake-agent mode stays default, and payment and execution remain separate. Authentication, rate limits, logging, receipts, refusal records, sandbox separation, kill switches, rollback, security review, and Gareth approval are mandatory. Run npm run api:readiness with the local example.

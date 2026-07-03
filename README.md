@@ -1630,3 +1630,7 @@ The local rules define a controlled paid private review or fake-agent pilot with
 ### Paid Technical Review Pack
 
 The local pack defines buyer-facing technical review and fake-agent pilot outputs without contact, invoicing, payment activation, API access, or execution. See `docs/paid-technical-review-pack.md`.
+
+### Live API Readiness Gate
+
+The local gate defines mandatory controls before any future controlled API design without creating an endpoint, key, secret, listener, live access, payment, or execution. See `docs/live-api-readiness-gate.md`.
