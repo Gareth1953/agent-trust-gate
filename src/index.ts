@@ -440,3 +440,7 @@ export { createLocalGatePassProtectionMetadata,createLocalGatePassReplayKey,eval
 export type { LocalGatePassProtectionDecision,LocalGatePassProtectionReason,LocalGatePassProtectionReceipt,LocalGatePassReplayMetadata,LocalGatePassReplayStatus,LocalGatePassValidityMetadata,LocalGatePassValidityStatus } from "./local-gate-pass-protection.js";
 export { formatLocalTrustReceiptVerification,LOCAL_TRUST_RECEIPT_VERIFIER_VERSION,SUPPORTED_LOCAL_TRUST_RECEIPT_SCHEMA,verifyLocalTrustReceipt } from "./local-trust-receipt-verifier.js";
 export type { LocalTrustReceiptVerificationDecision,LocalTrustReceiptVerificationReason,LocalTrustReceiptVerificationWarning,LocalTrustReceiptVerifierOptions } from "./local-trust-receipt-verifier.js";
+export { createLocalEndToEndMoneyGateProofId,LOCAL_END_TO_END_MONEY_GATE_PROOF_VERSION,runLocalEndToEndMoneyGateProof,summariseLocalEndToEndMoneyGateProof } from "./local-end-to-end-money-gate-proof.js";
+export type { LocalEndToEndMoneyGateProofInput,LocalEndToEndMoneyGateProofResult,LocalEndToEndMoneyGateProofSummary,LocalMoneyGateProofControls,LocalMoneyGateProofScenarioResult,LocalMoneyGateProofScenarioType,LocalMoneyGateSettlementOutcome } from "./local-end-to-end-money-gate-proof.js";
+export { readLocalEndToEndMoneyGateProofInput,runLocalEndToEndMoneyGateProofCli } from "./local-end-to-end-money-gate-proof-cli.js";
+export type { LocalMoneyGateProofCliErrorCode,LocalMoneyGateProofCliIo } from "./local-end-to-end-money-gate-proof-cli.js";

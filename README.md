@@ -1683,3 +1683,7 @@ The [local validity and replay pack](docs/gate-pass-validity-replay-protection.m
 ### Local Trust Receipt Verification
 
 [Local trust receipt verification](docs/local-trust-receipt-verification.md) requires receipts to be structurally valid, schema-supported, internally consistent, fresh, correctly scoped, replay-safe, and settlement-blocker eligible before reliance. Review and refusal receipts are never settlement eligible. This is local demo verification, not production cryptographic verification; no real payment, settlement, API call, or action execution occurs.
+
+### Local End-to-End Money Gate Proof Pack
+
+The [local end-to-end money gate proof](docs/local-end-to-end-money-gate-proof-pack.md) composes policy, receipts, trust verification, validity, replay protection, and the settlement blocker across ten synthetic scenarios. Exactly one approved in-scope request may become simulated eligible once; every missing-control, replay, expiry, scope-change, over-limit, pending-approval, and autonomous-execution case fails closed. No real payment, settlement, API call, signing, or action execution occurs.

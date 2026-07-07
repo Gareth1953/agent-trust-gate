@@ -1,0 +1,30 @@
+{
+  "proof_id": "p3-m099-local-money-gate-proof",
+  "request_id": "money-gate-proof-demo",
+  "agent_id": "synthetic-proof-agent",
+  "requested_action": "Evaluate a synthetic GBP 25 money movement without executing it",
+  "action_category": "money_movement",
+  "mandate": {
+    "present": true,
+    "scope": "synthetic local money-gate proof",
+    "expires_at": "2026-07-07T10:00:00.000Z"
+  },
+  "verified_intent": {
+    "present": true,
+    "source": "local_synthetic_fixture"
+  },
+  "evidence": {
+    "present": true,
+    "fresh": true,
+    "source": "local_synthetic_fixture"
+  },
+  "limits": {
+    "spend_amount_gbp": 25,
+    "max_allowed_gbp": 50
+  },
+  "approval": {
+    "required": true,
+    "status": "approved"
+  },
+  "checked_at": "2026-07-07T09:00:00.000Z"
+}
