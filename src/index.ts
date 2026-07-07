@@ -428,3 +428,5 @@ export { createLiveApiReadinessGate,createLiveApiReadinessGateId,renderLiveApiAb
 export { runLiveApiReadinessGateCli } from "./live-api-readiness-gate-cli.js";
 export { runLocalGatePassDemo } from "./local-gate-pass-demo.js";
 export type { LocalGatePassDemoInput,LocalGatePassDemoResult,LocalGatePassReceiptType,LocalGatePassVerdict } from "./local-gate-pass-demo.js";
+export { createLocalGatePassAuditReceipt,createLocalGatePassReceiptId,summariseLocalGatePassAudit } from "./local-gate-pass-receipt.js";
+export type { LocalApprovalAuditCheck,LocalAuditCheck,LocalEvidenceAuditCheck,LocalGatePassAuditReceipt,LocalGatePassAuditSummary,LocalGatePassRiskTier } from "./local-gate-pass-receipt.js";

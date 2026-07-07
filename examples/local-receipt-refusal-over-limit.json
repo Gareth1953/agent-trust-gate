@@ -1,0 +1,24 @@
+{
+  "receipt_id": "receipt_demo_d88d35940711332aac518894",
+  "request_id": "demo-over-limit",
+  "agent_id": "demo-agent",
+  "requested_action": "Review a synthetic purchase above its mandate limit",
+  "action_category": "money_review",
+  "verdict": "refuse_over_limit",
+  "allowed": false,
+  "settlement_allowed": false,
+  "settlement_executed": false,
+  "receipt_type": "refusal_receipt",
+  "risk_tier": "blocked",
+  "checks": {
+    "mandate": { "passed": true, "reason": "mandate_present_in_scope_and_current" },
+    "evidence": { "passed": true, "fresh": true, "reason": "evidence_present_and_fresh" },
+    "verified_intent": { "passed": true, "reason": "intent_verified" },
+    "limits": { "passed": false, "reason": "configured_limit_exceeded" },
+    "approval": { "passed": false, "required": true, "reason": "required_approval_missing_or_pending" }
+  },
+  "reason_codes": ["LIMIT_EXCEEDED"],
+  "checked_at": "2026-07-07T09:00:00.000Z",
+  "signature_metadata": { "signature_mode": "local_demo_placeholder", "algorithm": "none", "note": "Local demo placeholder only; not cryptographic signing." },
+  "audit_metadata": { "schema_version": "atg.local-gate-pass-receipt.v1", "source": "local_gate_pass_demo", "local_only": true, "private_data_included": false, "network_call_performed": false, "external_agent_contacted": false, "payment_triggered": false, "action_executed": false }
+}

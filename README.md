@@ -1651,3 +1651,7 @@ These items are strategy notes and future placeholders. They do not enable live 
 ### Local Gate Pass Demo Flow
 
 Agent request → mandate, evidence, intent, limits, approval, and risk checks → local signed gate pass, review receipt, or refusal receipt. This flow is local-only and does not execute actions, payments, or settlement. See `docs/local-gate-pass-demo-flow.md`.
+
+### Receipt and Audit Trail
+
+Every gate decision produces a local proof artifact showing what was checked, why the verdict was issued, and whether settlement remains blocked. This is local-only and does not execute actions, payments, settlement, or external agent contact. See `docs/receipt-audit-trail.md`.

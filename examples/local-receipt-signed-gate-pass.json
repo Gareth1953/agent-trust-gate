@@ -1,0 +1,24 @@
+{
+  "receipt_id": "receipt_demo_46e781c4d6994ce7bdce9ddf",
+  "request_id": "demo-low-risk-allow",
+  "agent_id": "demo-agent",
+  "requested_action": "Review a synthetic inventory status",
+  "action_category": "local_review",
+  "verdict": "allow_signed_gate_pass",
+  "allowed": true,
+  "settlement_allowed": true,
+  "settlement_executed": false,
+  "receipt_type": "signed_gate_pass",
+  "risk_tier": "low",
+  "checks": {
+    "mandate": { "passed": true, "reason": "mandate_present_in_scope_and_current" },
+    "evidence": { "passed": true, "fresh": true, "reason": "evidence_present_and_fresh" },
+    "verified_intent": { "passed": true, "reason": "intent_verified" },
+    "limits": { "passed": true, "reason": "within_configured_limit" },
+    "approval": { "passed": true, "required": false, "reason": "approval_not_required" }
+  },
+  "reason_codes": ["MANDATE_VALID", "EVIDENCE_FRESH", "INTENT_VERIFIED", "WITHIN_LIMITS", "APPROVAL_SATISFIED"],
+  "checked_at": "2026-07-07T09:00:00.000Z",
+  "signature_metadata": { "signature_mode": "local_demo_placeholder", "algorithm": "none", "note": "Local demo placeholder only; not cryptographic signing." },
+  "audit_metadata": { "schema_version": "atg.local-gate-pass-receipt.v1", "source": "local_gate_pass_demo", "local_only": true, "private_data_included": false, "network_call_performed": false, "external_agent_contacted": false, "payment_triggered": false, "action_executed": false }
+}
