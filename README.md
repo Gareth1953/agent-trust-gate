@@ -1675,3 +1675,7 @@ The local-only readiness pack documents the [capability statement](docs/agent-re
 ### Local Settlement Blocker Simulation
 
 The [local settlement blocker](docs/local-settlement-blocker-simulation.md) proves that review and refusal receipts block settlement, while a complete allow signed gate pass may only simulate eligibility. No real payment, settlement, API call, or action execution occurs.
+
+### Gate Pass Validity and Replay Protection
+
+The [local validity and replay pack](docs/gate-pass-validity-replay-protection.md) gives allow passes a maximum five-minute validity window and a process-local single-use replay key. Expired, not-yet-valid, malformed, and replayed passes fail closed. The in-memory store is a local simulation control, not production replay defense.

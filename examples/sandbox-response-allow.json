@@ -24,6 +24,8 @@
   },
   "reason_codes": ["MANDATE_VALID", "EVIDENCE_FRESH", "INTENT_VERIFIED", "WITHIN_LIMITS", "APPROVAL_SATISFIED"],
   "checked_at": "2026-07-07T09:00:00.000Z",
+  "gate_pass_validity": { "issued_at": "2026-07-07T09:00:00.000Z", "valid_from": "2026-07-07T09:00:00.000Z", "expires_at": "2026-07-07T09:05:00.000Z", "ttl_seconds": 300, "maximum_ttl_seconds": 300 },
+  "replay_protection": { "replay_key": "replay_demo_e4ddc58bbd082b265bc8317bd7d096b6", "single_use": true, "protection_mode": "local_in_memory_single_use" },
   "signature_metadata": { "signature_mode": "local_demo_placeholder", "algorithm": "none", "note": "Local demo placeholder only; not cryptographic signing." },
-  "audit_metadata": { "schema_version": "atg.local-gate-pass-receipt.v1", "source": "local_gate_pass_demo", "local_only": true, "private_data_included": false, "network_call_performed": false, "external_agent_contacted": false, "payment_triggered": false, "action_executed": false }
+  "audit_metadata": { "schema_version": "atg.local-gate-pass-receipt.v2", "source": "local_gate_pass_demo", "local_only": true, "private_data_included": false, "network_call_performed": false, "external_agent_contacted": false, "payment_triggered": false, "action_executed": false }
 }

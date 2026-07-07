@@ -11,9 +11,12 @@
 | Over limit | `refuse_over_limit` | `refusal_receipt` | false | No | `LIMIT_EXCEEDED` |
 | Unsupported unsafe action | refuse before execution | `refusal_receipt` | false | As separately determined | `UNSUPPORTED_UNSAFE_ACTION` |
 | Restricted authentication-material handling | `refuse_unsafe_action` | `refusal_receipt` | false | No | `UNSUPPORTED_UNSAFE_ACTION` |
+| Gate pass not yet valid | original allow receipt, settlement blocked | `signed_gate_pass` | false at evaluation | No | `gate_pass_not_yet_valid` |
+| Gate pass expired | original allow receipt, settlement blocked | `signed_gate_pass` | false at evaluation | No | `gate_pass_expired` |
+| Gate pass replay detected | original allow receipt, settlement blocked | `signed_gate_pass` | false after first use | No | `gate_pass_replay_detected` |
 
 Low risk can be fast-pathed only when every check passes. Medium risk is gated. High-risk money, legal, contractual, or customer-impacting work requires approval. Unsafe requests are refused. Speed never overrides trust.
 
 No signed gate pass means no settlement. This matrix documents local demo behavior and does not execute or authorize actions.
 
-The local settlement blocker enforces this in simulation: every review or refusal row produces `settlement_simulation: blocked`.
+The local settlement blocker enforces this in simulation: every review, refusal, invalid-time, expired, or replay row produces `settlement_simulation: blocked`.

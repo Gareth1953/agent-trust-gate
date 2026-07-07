@@ -20,10 +20,12 @@ The P3-M091 receipt layer produces a local audit artifact:
 | `checks` | Mandate, evidence, verified-intent, limits, and approval results with reasons. |
 | `reason_codes` | Stable reasons supporting the decision. |
 | `checked_at` | Local decision timestamp. |
+| `gate_pass_validity` | Allow-only issue, valid-from, exclusive expiry, and maximum-TTL metadata; null for review/refusal. |
+| `replay_protection` | Allow-only deterministic single-use local replay key; null for review/refusal. |
 | `signature_metadata` | Explicit non-cryptographic `local_demo_placeholder` metadata. |
 
 `settlement_allowed` means the local artifact says the trust gate would allow settlement in the demo. It does not execute settlement, move money, call a service, or authorize a production transaction. `settlement_executed` remains false.
 
 This is a local demo receipt schema, not a production response contract or signed legal record.
 
-The local settlement blocker requires a valid `signed_gate_pass`, allow verdict, both allow booleans, all critical checks passed, no refusal codes, and no human-review requirement. Any other receipt remains blocked.
+The v2 local receipt schema adds bounded validity and replay metadata. The local settlement blocker requires a current, unused `signed_gate_pass`, allow verdict, both allow booleans, all critical checks passed, no refusal codes, and no human-review requirement. Any other receipt remains blocked.

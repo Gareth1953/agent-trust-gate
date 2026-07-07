@@ -11,6 +11,7 @@ import {
   formatLocalSettlementBlockerSummary,
   simulateLocalSettlementBlocker,
 } from "./local-settlement-blocker.js";
+import { LocalGatePassReplayStore } from "./local-gate-pass-protection.js";
 
 export type LocalDemoCliErrorCode =
   | "MISSING_INPUT_FILE"
@@ -32,6 +33,7 @@ interface LocalDemoCliOptions {
   inputPath: string;
   full: boolean;
   simulateSettlementBlocker: boolean;
+  simulateReplayProtection: boolean;
   savePath?: string;
 }
 
@@ -61,6 +63,8 @@ export function runLocalDemoCli(
     const output = options.full ? JSON.stringify(receipt, null, 2) : formatLocalDemoAuditSummary(summary);
     const blocker = options.simulateSettlementBlocker
       ? `\n\n${formatLocalSettlementBlockerSummary(simulateLocalSettlementBlocker(receipt))}`
+      : options.simulateReplayProtection
+        ? formatReplayProtectionSimulation(receipt)
       : "";
     io.stdout(`${output}${blocker}`);
     return 0;
@@ -104,6 +108,8 @@ export function formatLocalDemoAuditSummary(summary: LocalGatePassAuditSummary):
     `Human review required: ${summary.human_review_required}`,
     `Fast path allowed: ${summary.fast_path_allowed}`,
     `Settlement allowed: ${summary.settlement_allowed}`,
+    `Gate pass expires: ${summary.gate_pass_expires_at ?? "not applicable"}`,
+    `Replay protection: ${summary.replay_protection}`,
     `Failed checks: ${summary.failed_checks.length === 0 ? "none" : summary.failed_checks.join(", ")}`,
     `Reason codes: ${summary.reason_codes.length === 0 ? "none" : summary.reason_codes.join(", ")}`,
     "Local proof only; no action or settlement was executed.",
@@ -124,6 +130,7 @@ function parseArgs(args: readonly string[]): LocalDemoCliOptions {
   let full = false;
   let summaryOnly = false;
   let simulateSettlementBlocker = false;
+  let simulateReplayProtection = false;
 
   for (let index = 0; index < args.length; index += 1) {
     const arg = args[index];
@@ -141,6 +148,8 @@ function parseArgs(args: readonly string[]): LocalDemoCliOptions {
       summaryOnly = true;
     } else if (arg === "--simulate-settlement-blocker") {
       simulateSettlementBlocker = true;
+    } else if (arg === "--simulate-replay-protection") {
+      simulateReplayProtection = true;
     } else {
       throw cliError("UNKNOWN_OPTION", "The local demo command contains an unsupported option.");
     }
@@ -149,7 +158,13 @@ function parseArgs(args: readonly string[]): LocalDemoCliOptions {
   if (full && summaryOnly) {
     throw cliError("CONFLICTING_OUTPUT_MODE", "Choose either --full or --summary-only.");
   }
-  if (full && simulateSettlementBlocker) {
+  if (simulateSettlementBlocker && simulateReplayProtection) {
+    throw cliError(
+      "CONFLICTING_OUTPUT_MODE",
+      "Choose either settlement blocker or replay protection simulation.",
+    );
+  }
+  if (full && (simulateSettlementBlocker || simulateReplayProtection)) {
     throw cliError(
       "CONFLICTING_OUTPUT_MODE",
       "Settlement blocker simulation uses summary output and cannot be combined with --full.",
@@ -158,9 +173,29 @@ function parseArgs(args: readonly string[]): LocalDemoCliOptions {
   if (inputPath === undefined || inputPath.trim() === "") {
     throw cliError("MISSING_INPUT_FILE", "Use --input with a local example JSON file.");
   }
-  const options: LocalDemoCliOptions = { inputPath, full, simulateSettlementBlocker };
+  const options: LocalDemoCliOptions = {
+    inputPath,
+    full,
+    simulateSettlementBlocker,
+    simulateReplayProtection,
+  };
   if (savePath !== undefined) options.savePath = savePath;
   return options;
+}
+
+function formatReplayProtectionSimulation(receipt: LocalGatePassAuditReceipt): string {
+  const replayStore = new LocalGatePassReplayStore();
+  const context = { evaluated_at: receipt.checked_at, replay_store: replayStore };
+  const first = simulateLocalSettlementBlocker(receipt, context);
+  const replay = simulateLocalSettlementBlocker(receipt, context);
+  return [
+    "",
+    "Gate pass replay protection simulation",
+    "First attempt:",
+    formatLocalSettlementBlockerSummary(first),
+    "Replay attempt:",
+    formatLocalSettlementBlockerSummary(replay),
+  ].join("\n");
 }
 
 function validateInput(value: unknown): LocalGatePassDemoInput {

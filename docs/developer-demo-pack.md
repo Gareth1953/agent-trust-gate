@@ -43,6 +43,8 @@ npm run demo:gate -- --input examples/local-demo-over-limit-refuse.json
 
 Add `--full` to print the complete receipt or `--save <local-path>` to save it locally.
 
+Use `--simulate-replay-protection` with the low-risk allow example to show a current pass accepted once and the immediate replay blocked by local in-memory state.
+
 ## E. How To Read The Output
 
 - `verdict`: the local decision, such as `allow_signed_gate_pass`, `review_required`, or a refusal.
@@ -53,6 +55,7 @@ Add `--full` to print the complete receipt or `--save <local-path>` to save it l
 - `signature_metadata`: a clearly labelled `local_demo_placeholder`; no cryptographic signature is created.
 - `risk_tier` and `applied_policy`: the local policy classification and rule that explain the verdict.
 - `fast_path_allowed` and `human_review_required`: whether the safe low-risk path passed or review is required.
+- `gate_pass_validity` and `replay_protection`: the allow-only maximum five-minute window and local single-use replay key.
 
 Low risk is fast only when every check passes. Medium risk is gated when uncertain. High-risk money, legal, contractual, or customer-impacting actions require explicit approval. Unsafe or prohibited actions are refused. Speed never overrides trust.
 
@@ -60,7 +63,7 @@ Low risk is fast only when every check passes. Medium risk is gated when uncerta
 
 `settlement_allowed` is a local trust artifact field. It does not move money, settle transactions, call APIs, contact agents, or execute actions. The receipt separately records `settlement_executed: false`.
 
-The local settlement blocker makes this boundary executable in the demo: a valid allow `signed_gate_pass` may simulate eligibility, while review and refusal receipts remain blocked. The simulation never performs payment or settlement.
+The local settlement blocker makes this boundary executable in the demo: only a current, unused allow `signed_gate_pass` may simulate eligibility, while review, refusal, expired, and replayed receipts remain blocked. The simulation never performs payment or settlement.
 
 ## G. What This Demo Does Not Do
 

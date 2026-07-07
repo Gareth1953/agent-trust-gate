@@ -7,6 +7,11 @@ import {
   type LocalGatePassVerdict,
 } from "./local-gate-pass-demo.js";
 import { explainLocalPolicy, type LocalPolicyRiskTier } from "./local-policy.js";
+import {
+  createLocalGatePassProtectionMetadata,
+  type LocalGatePassReplayMetadata,
+  type LocalGatePassValidityMetadata,
+} from "./local-gate-pass-protection.js";
 
 export type LocalGatePassRiskTier = LocalPolicyRiskTier | "blocked";
 
@@ -49,13 +54,15 @@ export interface LocalGatePassAuditReceipt {
   };
   reason_codes: string[];
   checked_at: string;
+  gate_pass_validity: LocalGatePassValidityMetadata | null;
+  replay_protection: LocalGatePassReplayMetadata | null;
   signature_metadata: {
     signature_mode: "local_demo_placeholder";
     algorithm: "none";
     note: "Local demo placeholder only; not cryptographic signing.";
   };
   audit_metadata: {
-    schema_version: "atg.local-gate-pass-receipt.v1";
+    schema_version: "atg.local-gate-pass-receipt.v2";
     source: "local_gate_pass_demo";
     local_only: true;
     private_data_included: false;
@@ -77,6 +84,8 @@ export interface LocalGatePassAuditSummary {
   fast_path_allowed: boolean;
   failed_checks: string[];
   reason_codes: string[];
+  gate_pass_expires_at: string | null;
+  replay_protection: "single_use" | "not_applicable";
 }
 
 export function createLocalGatePassAuditReceipt(
@@ -90,9 +99,18 @@ export function createLocalGatePassAuditReceipt(
   const verifiedIntent = checkVerifiedIntent(input);
   const limits = checkLimits(input);
   const approval = checkApproval(input, policy.requires_approval);
+  const receiptId = createLocalGatePassReceiptId(input.request_id, checkedAt);
+  const protection = decision.verdict === "allow_signed_gate_pass"
+    ? createLocalGatePassProtectionMetadata(
+      receiptId,
+      safeText(input.request_id, "demo_request", 80),
+      checkedAt,
+      input.mandate?.expires_at,
+    )
+    : undefined;
 
   return {
-    receipt_id: createLocalGatePassReceiptId(input.request_id, checkedAt),
+    receipt_id: receiptId,
     request_id: safeText(input.request_id, "demo_request", 80),
     agent_id: safeText(input.agent_id, "demo_agent", 80),
     requested_action: safeText(input.requested_action, "unspecified_local_demo_action", 160),
@@ -117,13 +135,15 @@ export function createLocalGatePassAuditReceipt(
     },
     reason_codes: [...decision.reason_codes],
     checked_at: checkedAt,
+    gate_pass_validity: protection?.validity ?? null,
+    replay_protection: protection?.replay ?? null,
     signature_metadata: {
       signature_mode: "local_demo_placeholder",
       algorithm: "none",
       note: "Local demo placeholder only; not cryptographic signing.",
     },
     audit_metadata: {
-      schema_version: "atg.local-gate-pass-receipt.v1",
+      schema_version: "atg.local-gate-pass-receipt.v2",
       source: "local_gate_pass_demo",
       local_only: true,
       private_data_included: false,
@@ -161,6 +181,10 @@ export function summariseLocalGatePassAudit(
       .filter(([, check]) => !check.passed)
       .map(([name]) => name),
     reason_codes: [...receipt.reason_codes],
+    gate_pass_expires_at: receipt.gate_pass_validity?.expires_at ?? null,
+    replay_protection: receipt.replay_protection?.single_use === true
+      ? "single_use"
+      : "not_applicable",
   };
 }
 

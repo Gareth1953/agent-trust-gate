@@ -435,4 +435,6 @@ export type { LocalDemoCliErrorCode,LocalDemoCliIo } from "./local-demo-cli.js";
 export { classifyLocalPolicy,explainLocalPolicy,LOCAL_POLICY_PACK_VERSION,summariseLocalPolicy } from "./local-policy.js";
 export type { LocalPolicyExplanation,LocalPolicyRiskTier,LocalPolicyRule,LocalPolicySummary } from "./local-policy.js";
 export { formatLocalSettlementBlockerSummary,isReceiptSettlementEligible,simulateLocalSettlementBlocker } from "./local-settlement-blocker.js";
-export type { LocalSettlementBlockerDecision,LocalSettlementBlockReason,LocalSettlementSimulation } from "./local-settlement-blocker.js";
+export type { LocalSettlementBlockerDecision,LocalSettlementBlockReason,LocalSettlementProtectionContext,LocalSettlementSimulation } from "./local-settlement-blocker.js";
+export { createLocalGatePassProtectionMetadata,createLocalGatePassReplayKey,evaluateLocalGatePassProtection,LOCAL_GATE_PASS_MAX_VALIDITY_SECONDS,LOCAL_GATE_PASS_PROTECTION_VERSION,LocalGatePassReplayStore } from "./local-gate-pass-protection.js";
+export type { LocalGatePassProtectionDecision,LocalGatePassProtectionReason,LocalGatePassProtectionReceipt,LocalGatePassReplayMetadata,LocalGatePassReplayStatus,LocalGatePassValidityMetadata,LocalGatePassValidityStatus } from "./local-gate-pass-protection.js";
