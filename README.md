@@ -1655,3 +1655,7 @@ Agent request â†’ mandate, evidence, intent, limits, approval, and risk checks â
 ### Receipt and Audit Trail
 
 Every gate decision produces a local proof artifact showing what was checked, why the verdict was issued, and whether settlement remains blocked. This is local-only and does not execute actions, payments, settlement, or external agent contact. See `docs/receipt-audit-trail.md`.
+
+### Local Developer CLI Demo
+
+Run `npm run demo:gate -- --input examples/local-demo-low-risk-allow.json` to print a local audit summary. The verdict describes the proof artifact only; no action, payment, or settlement is executed. See `docs/local-developer-cli.md`.

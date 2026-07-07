@@ -430,3 +430,5 @@ export { runLocalGatePassDemo } from "./local-gate-pass-demo.js";
 export type { LocalGatePassDemoInput,LocalGatePassDemoResult,LocalGatePassReceiptType,LocalGatePassVerdict } from "./local-gate-pass-demo.js";
 export { createLocalGatePassAuditReceipt,createLocalGatePassReceiptId,summariseLocalGatePassAudit } from "./local-gate-pass-receipt.js";
 export type { LocalApprovalAuditCheck,LocalAuditCheck,LocalEvidenceAuditCheck,LocalGatePassAuditReceipt,LocalGatePassAuditSummary,LocalGatePassRiskTier } from "./local-gate-pass-receipt.js";
+export { formatLocalDemoAuditSummary,readLocalDemoInput,runLocalDemoCli } from "./local-demo-cli.js";
+export type { LocalDemoCliErrorCode,LocalDemoCliIo } from "./local-demo-cli.js";
