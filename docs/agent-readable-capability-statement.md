@@ -49,4 +49,10 @@ Local demo action requests only. Inputs describe synthetic requests for local re
 
 The statement describes local proof-of-flow capability only. No real agent can connect, act, pay, settle, call tools, or execute through it. Future publication, hosted sandbox use, or agent-system integration requires separate Gareth approval and a separate readiness gate.
 
+## F. Code-Readable Integration Assets
+
+Future developers and agent systems can inspect the static agent-trust-gate.manifest.json, documentation schemas in schemas/, synthetic examples/integration-*.json files, and the [local money-gate proof](local-end-to-end-money-gate-proof-pack.md). The [code-readable integration pack](code-readable-developer-integration-pack.md) explains how these files fit together.
+
+These are local files only. They do not create a live API, hosted sandbox, external-agent connection, payment rail, settlement capability, or action executor.
+
 **No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**

@@ -1,0 +1,29 @@
+{
+  "request_id": "integration-demo-money-review",
+  "agent_id": "synthetic-integration-agent",
+  "requested_action": "Review a synthetic purchase request without moving money",
+  "action_category": "money_review",
+  "mandate": {
+    "present": true,
+    "scope": "synthetic local purchase review",
+    "expires_at": "2026-07-07T10:00:00.000Z"
+  },
+  "verified_intent": {
+    "present": true,
+    "source": "local_synthetic_fixture"
+  },
+  "evidence": {
+    "present": true,
+    "fresh": true,
+    "source": "local_synthetic_fixture"
+  },
+  "limits": {
+    "spend_amount_gbp": 25,
+    "max_allowed_gbp": 50
+  },
+  "approval": {
+    "required": true,
+    "status": "pending"
+  },
+  "checked_at": "2026-07-07T09:00:00.000Z"
+}

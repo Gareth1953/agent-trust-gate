@@ -1,0 +1,115 @@
+{
+  "title": "Agent Trust Gate Local Agent Action Request",
+  "description": "Documentation schema for a synthetic local Agent Trust Gate request. It is not a live API contract and grants no operational authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "request_id",
+    "agent_id",
+    "requested_action",
+    "action_category",
+    "mandate",
+    "verified_intent",
+    "evidence",
+    "limits",
+    "approval",
+    "checked_at"
+  ],
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Local identifier for a synthetic request."
+    },
+    "agent_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Placeholder identity used only by the local demonstration."
+    },
+    "requested_action": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Plain description of the action to review, never an instruction to execute it."
+    },
+    "action_category": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Local policy category used for deterministic risk classification."
+    },
+    "mandate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["present", "scope", "expires_at"],
+      "properties": {
+        "present": { "type": "boolean" },
+        "scope": { "type": "string", "minLength": 1 },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Deterministic local mandate expiry."
+        }
+      }
+    },
+    "verified_intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["present", "source"],
+      "properties": {
+        "present": { "type": "boolean" },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Local synthetic evidence label, not an external source."
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["present", "fresh", "source"],
+      "properties": {
+        "present": { "type": "boolean" },
+        "fresh": { "type": "boolean" },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Local synthetic evidence label, not an external lookup."
+        }
+      }
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["spend_amount_gbp", "max_allowed_gbp"],
+      "properties": {
+        "spend_amount_gbp": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Synthetic comparison amount only; no payment is initiated."
+        },
+        "max_allowed_gbp": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Synthetic local policy limit only."
+        }
+      }
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "status"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "status": {
+          "type": "string",
+          "enum": ["not_required", "pending", "approved", "rejected", "unknown"]
+        }
+      }
+    },
+    "checked_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Deterministic local evaluation time."
+    }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "title": "Agent Trust Gate Local Money-Gate Proof",
+  "description": "Documentation schema for the local P3-M099 money-gate proof summary or full CLI output. It proves local control behavior only and cannot authorize or execute payment or settlement.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "proof_version",
+    "proof_id",
+    "proof_type",
+    "request_id",
+    "rule",
+    "proof_status",
+    "proof_passed",
+    "scenario_count",
+    "controls_proven",
+    "simulated_settlement_eligible_count",
+    "failure_reasons",
+    "controls",
+    "local_only",
+    "input_data_retained",
+    "private_data_included",
+    "network_call_performed",
+    "external_agent_contacted",
+    "credential_created",
+    "cryptographic_signature_created",
+    "payment_triggered",
+    "settlement_executed",
+    "action_executed",
+    "note",
+    "checked_at"
+  ],
+  "properties": {
+    "proof_version": { "const": "atg.local-end-to-end-money-gate-proof.v1" },
+    "proof_id": { "type": "string", "minLength": 1 },
+    "proof_type": { "const": "local_end_to_end_money_gate" },
+    "request_id": { "type": "string", "minLength": 1 },
+    "rule": {
+      "const": "No mandate. No evidence. No verified intent. No signed gate pass. No settlement."
+    },
+    "proof_status": { "type": "string", "enum": ["passed", "failed"] },
+    "proof_passed": { "type": "boolean" },
+    "scenario_count": { "type": "integer", "minimum": 0 },
+    "controls_proven": { "type": "integer", "minimum": 0 },
+    "simulated_settlement_eligible_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Count of local simulated eligibility results, never executed settlements."
+    },
+    "failure_reasons": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "controls": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "approved_in_scope_request_allowed_once",
+        "replay_blocked",
+        "no_mandate_blocked",
+        "no_evidence_blocked",
+        "no_verified_intent_blocked",
+        "over_limit_blocked",
+        "missing_approval_blocked",
+        "expired_gate_pass_blocked",
+        "scope_mismatch_blocked",
+        "autonomous_execution_blocked"
+      ],
+      "properties": {
+        "approved_in_scope_request_allowed_once": { "type": "boolean" },
+        "replay_blocked": { "type": "boolean" },
+        "no_mandate_blocked": { "type": "boolean" },
+        "no_evidence_blocked": { "type": "boolean" },
+        "no_verified_intent_blocked": { "type": "boolean" },
+        "over_limit_blocked": { "type": "boolean" },
+        "missing_approval_blocked": { "type": "boolean" },
+        "expired_gate_pass_blocked": { "type": "boolean" },
+        "scope_mismatch_blocked": { "type": "boolean" },
+        "autonomous_execution_blocked": { "type": "boolean" }
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "description": "Optional full-output scenario evidence. Summary-only CLI output omits this field.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "scenario_type",
+          "request_id",
+          "gate_verdict",
+          "receipt_id",
+          "receipt_type",
+          "gate_checks",
+          "receipt_verified_for_settlement",
+          "receipt_structurally_valid",
+          "receipt_fresh",
+          "replay_safe",
+          "verification_reason_codes",
+          "settlement_blocker_invoked",
+          "settlement_outcome",
+          "settlement_block_reason_codes",
+          "control_proven",
+          "action_executed",
+          "payment_triggered",
+          "settlement_executed"
+        ],
+        "properties": {
+          "scenario_type": {
+            "type": "string",
+            "enum": [
+              "approved_first_use",
+              "replay_attempt",
+              "missing_mandate",
+              "missing_evidence",
+              "missing_verified_intent",
+              "over_limit",
+              "approval_pending",
+              "expired_gate_pass",
+              "scope_mismatch",
+              "autonomous_execution_prohibited"
+            ]
+          },
+          "request_id": { "type": "string", "minLength": 1 },
+          "gate_verdict": { "type": "string", "minLength": 1 },
+          "receipt_id": { "type": "string", "minLength": 1 },
+          "receipt_type": {
+            "type": "string",
+            "enum": ["signed_gate_pass", "review_receipt", "refusal_receipt"]
+          },
+          "gate_checks": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["mandate", "evidence", "verified_intent", "limits", "approval"],
+            "properties": {
+              "mandate": { "type": "boolean" },
+              "evidence": { "type": "boolean" },
+              "verified_intent": { "type": "boolean" },
+              "limits": { "type": "boolean" },
+              "approval": { "type": "boolean" }
+            }
+          },
+          "receipt_verified_for_settlement": { "type": "boolean" },
+          "receipt_structurally_valid": { "type": "boolean" },
+          "receipt_fresh": { "type": "boolean" },
+          "replay_safe": { "type": "boolean" },
+          "verification_reason_codes": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "settlement_blocker_invoked": { "type": "boolean" },
+          "settlement_outcome": {
+            "type": "string",
+            "enum": ["simulated_eligible", "blocked"]
+          },
+          "settlement_block_reason_codes": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "control_proven": { "type": "boolean" },
+          "action_executed": { "const": false },
+          "payment_triggered": { "const": false },
+          "settlement_executed": { "const": false }
+        }
+      }
+    },
+    "local_only": { "const": true },
+    "input_data_retained": { "const": false },
+    "private_data_included": { "const": false },
+    "network_call_performed": { "const": false },
+    "external_agent_contacted": { "const": false },
+    "credential_created": { "const": false },
+    "cryptographic_signature_created": { "const": false },
+    "payment_triggered": { "const": false },
+    "settlement_executed": { "const": false },
+    "action_executed": { "const": false },
+    "note": {
+      "type": "string",
+      "description": "Must state that the proof is local-only and non-executing."
+    },
+    "checked_at": { "type": "string", "format": "date-time" }
+  }
+}

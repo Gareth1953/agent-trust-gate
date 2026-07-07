@@ -1,0 +1,36 @@
+{
+  "manifest_version": "atg.code-readable-integration.v1",
+  "service_name": "Agent Trust Gate",
+  "project_status": "local_demo_only",
+  "purpose": "pre-action and pre-settlement trust enforcement for agent-led actions and payments",
+  "core_rule": "No mandate. No evidence. No verified intent. No signed gate pass. No settlement.",
+  "static_file_only": true,
+  "live_api": false,
+  "hosted_sandbox": false,
+  "network_calls": false,
+  "external_agent_contact": false,
+  "live_payments": false,
+  "live_settlement": false,
+  "action_execution": false,
+  "auc_integrated": false,
+  "agent_contact_system_integrated": false,
+  "public_outreach_automation": false,
+  "cryptographic_signing": "local_demo_placeholder_only",
+  "supported_local_flows": [
+    "gate_decision",
+    "receipt_generation",
+    "receipt_verification",
+    "gate_pass_validity_replay_check",
+    "settlement_blocker_simulation",
+    "end_to_end_money_gate_proof"
+  ],
+  "possible_outputs": [
+    "signed_gate_pass",
+    "review_receipt",
+    "refusal_receipt",
+    "money_gate_allowed",
+    "money_gate_blocked",
+    "money_gate_review_required"
+  ],
+  "safety_boundary": "Local demo only. No live payment, settlement, API, network call, external agent contact, or action execution."
+}

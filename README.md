@@ -1687,3 +1687,7 @@ The [local validity and replay pack](docs/gate-pass-validity-replay-protection.m
 ### Local End-to-End Money Gate Proof Pack
 
 The [local end-to-end money gate proof](docs/local-end-to-end-money-gate-proof-pack.md) composes policy, receipts, trust verification, validity, replay protection, and the settlement blocker across ten synthetic scenarios. Exactly one approved in-scope request may become simulated eligible once; every missing-control, replay, expiry, scope-change, over-limit, pending-approval, and autonomous-execution case fails closed. No real payment, settlement, API call, signing, or action execution occurs.
+
+### Code-Readable Developer Integration Pack
+
+Static local discovery is documented through the [manifest](agent-trust-gate.manifest.json), [integration pack](docs/code-readable-developer-integration-pack.md), [local discovery metadata](docs/local-discovery-metadata.md), [code-only contact readiness](docs/code-only-contact-readiness.md), and [developer checklist](docs/developer-integration-checklist.md). Documentation-only schemas cover the [local request](schemas/local-agent-action-request.schema.json), [trust receipt](schemas/local-trust-receipt.schema.json), and [money-gate proof](schemas/local-money-gate-proof.schema.json). These files create no live API, contact, payment, settlement, network call, signing, or action execution.

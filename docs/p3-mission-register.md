@@ -16,6 +16,7 @@
 | P3-M098 | Local Trust Receipt Verification Pack |
 | P3-M099 | Local End-to-End Money Gate Proof Pack |
 | P3-M100 | Local Release Readiness and Safety Audit |
+| P3-M101 | Code-Readable Developer Integration Pack |
 
 ## Current proof chain
 
