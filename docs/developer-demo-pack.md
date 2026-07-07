@@ -60,6 +60,8 @@ Low risk is fast only when every check passes. Medium risk is gated when uncerta
 
 `settlement_allowed` is a local trust artifact field. It does not move money, settle transactions, call APIs, contact agents, or execute actions. The receipt separately records `settlement_executed: false`.
 
+The local settlement blocker makes this boundary executable in the demo: a valid allow `signed_gate_pass` may simulate eligibility, while review and refusal receipts remain blocked. The simulation never performs payment or settlement.
+
 ## G. What This Demo Does Not Do
 
 - No live payments or settlement.

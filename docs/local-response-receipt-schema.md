@@ -25,3 +25,5 @@ The P3-M091 receipt layer produces a local audit artifact:
 `settlement_allowed` means the local artifact says the trust gate would allow settlement in the demo. It does not execute settlement, move money, call a service, or authorize a production transaction. `settlement_executed` remains false.
 
 This is a local demo receipt schema, not a production response contract or signed legal record.
+
+The local settlement blocker requires a valid `signed_gate_pass`, allow verdict, both allow booleans, all critical checks passed, no refusal codes, and no human-review requirement. Any other receipt remains blocked.

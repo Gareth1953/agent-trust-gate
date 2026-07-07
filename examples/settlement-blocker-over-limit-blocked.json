@@ -1,0 +1,18 @@
+{
+  "request_id": "demo-over-limit",
+  "receipt_id": "receipt_demo_d88d35940711332aac518894",
+  "receipt_type": "refusal_receipt",
+  "gate_verdict": "refuse_over_limit",
+  "gate_allowed": false,
+  "settlement_allowed_from_receipt": false,
+  "settlement_simulation": "blocked",
+  "blocked": true,
+  "block_reason_codes": ["no_signed_gate_pass", "receipt_type_not_allowed", "gate_verdict_not_allow", "settlement_not_allowed_by_gate", "refusal_receipt_blocks_settlement", "critical_check_failed", "refusal_reason_code_present"],
+  "checked_at": "2026-07-07T09:00:00.000Z",
+  "mode": "local_simulation_only",
+  "settlement_executed": false,
+  "payment_triggered": false,
+  "network_call_performed": false,
+  "action_executed": false,
+  "note": "No real settlement, payment, API call, or action execution occurred."
+}

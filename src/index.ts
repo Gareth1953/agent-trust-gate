@@ -434,3 +434,5 @@ export { formatLocalDemoAuditSummary,readLocalDemoInput,runLocalDemoCli } from "
 export type { LocalDemoCliErrorCode,LocalDemoCliIo } from "./local-demo-cli.js";
 export { classifyLocalPolicy,explainLocalPolicy,LOCAL_POLICY_PACK_VERSION,summariseLocalPolicy } from "./local-policy.js";
 export type { LocalPolicyExplanation,LocalPolicyRiskTier,LocalPolicyRule,LocalPolicySummary } from "./local-policy.js";
+export { formatLocalSettlementBlockerSummary,isReceiptSettlementEligible,simulateLocalSettlementBlocker } from "./local-settlement-blocker.js";
+export type { LocalSettlementBlockerDecision,LocalSettlementBlockReason,LocalSettlementSimulation } from "./local-settlement-blocker.js";

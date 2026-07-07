@@ -1,0 +1,18 @@
+{
+  "request_id": "policy-low-risk-allow",
+  "receipt_id": "receipt_demo_53a7b2d6123bef36cde75884",
+  "receipt_type": "signed_gate_pass",
+  "gate_verdict": "allow_signed_gate_pass",
+  "gate_allowed": true,
+  "settlement_allowed_from_receipt": true,
+  "settlement_simulation": "allowed",
+  "blocked": false,
+  "block_reason_codes": [],
+  "checked_at": "2026-07-07T09:00:00.000Z",
+  "mode": "local_simulation_only",
+  "settlement_executed": false,
+  "payment_triggered": false,
+  "network_call_performed": false,
+  "action_executed": false,
+  "note": "No real settlement, payment, API call, or action execution occurred."
+}

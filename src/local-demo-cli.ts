@@ -7,6 +7,10 @@ import {
   type LocalGatePassAuditReceipt,
   type LocalGatePassAuditSummary,
 } from "./local-gate-pass-receipt.js";
+import {
+  formatLocalSettlementBlockerSummary,
+  simulateLocalSettlementBlocker,
+} from "./local-settlement-blocker.js";
 
 export type LocalDemoCliErrorCode =
   | "MISSING_INPUT_FILE"
@@ -27,6 +31,7 @@ export interface LocalDemoCliIo {
 interface LocalDemoCliOptions {
   inputPath: string;
   full: boolean;
+  simulateSettlementBlocker: boolean;
   savePath?: string;
 }
 
@@ -53,7 +58,11 @@ export function runLocalDemoCli(
     const summary = summariseLocalGatePassAudit(receipt);
 
     if (options.savePath !== undefined) saveReceipt(options.savePath, receipt);
-    io.stdout(options.full ? JSON.stringify(receipt, null, 2) : formatLocalDemoAuditSummary(summary));
+    const output = options.full ? JSON.stringify(receipt, null, 2) : formatLocalDemoAuditSummary(summary);
+    const blocker = options.simulateSettlementBlocker
+      ? `\n\n${formatLocalSettlementBlockerSummary(simulateLocalSettlementBlocker(receipt))}`
+      : "";
+    io.stdout(`${output}${blocker}`);
     return 0;
   } catch (error) {
     const known = error instanceof LocalDemoCliError;
@@ -114,6 +123,7 @@ function parseArgs(args: readonly string[]): LocalDemoCliOptions {
   let savePath: string | undefined;
   let full = false;
   let summaryOnly = false;
+  let simulateSettlementBlocker = false;
 
   for (let index = 0; index < args.length; index += 1) {
     const arg = args[index];
@@ -129,6 +139,8 @@ function parseArgs(args: readonly string[]): LocalDemoCliOptions {
       full = true;
     } else if (arg === "--summary-only") {
       summaryOnly = true;
+    } else if (arg === "--simulate-settlement-blocker") {
+      simulateSettlementBlocker = true;
     } else {
       throw cliError("UNKNOWN_OPTION", "The local demo command contains an unsupported option.");
     }
@@ -137,10 +149,16 @@ function parseArgs(args: readonly string[]): LocalDemoCliOptions {
   if (full && summaryOnly) {
     throw cliError("CONFLICTING_OUTPUT_MODE", "Choose either --full or --summary-only.");
   }
+  if (full && simulateSettlementBlocker) {
+    throw cliError(
+      "CONFLICTING_OUTPUT_MODE",
+      "Settlement blocker simulation uses summary output and cannot be combined with --full.",
+    );
+  }
   if (inputPath === undefined || inputPath.trim() === "") {
     throw cliError("MISSING_INPUT_FILE", "Use --input with a local example JSON file.");
   }
-  const options: LocalDemoCliOptions = { inputPath, full };
+  const options: LocalDemoCliOptions = { inputPath, full, simulateSettlementBlocker };
   if (savePath !== undefined) options.savePath = savePath;
   return options;
 }

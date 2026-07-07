@@ -15,3 +15,5 @@
 Low risk can be fast-pathed only when every check passes. Medium risk is gated. High-risk money, legal, contractual, or customer-impacting work requires approval. Unsafe requests are refused. Speed never overrides trust.
 
 No signed gate pass means no settlement. This matrix documents local demo behavior and does not execute or authorize actions.
+
+The local settlement blocker enforces this in simulation: every review or refusal row produces `settlement_simulation: blocked`.

@@ -1671,3 +1671,7 @@ The local-only readiness pack documents the [capability statement](docs/agent-re
 ### Local Policy Pack and Risk Tiers
 
 [Local policy](docs/local-policy-pack.md) and the [risk-tier matrix](docs/risk-tier-matrix.md) define: low risk allows only after all checks pass, medium risk is reviewed when uncertain, high risk requires approval, and prohibited actions are refused. See the [refusal matrix](docs/refusal-condition-matrix.md). No signed gate pass means no settlement.
+
+### Local Settlement Blocker Simulation
+
+The [local settlement blocker](docs/local-settlement-blocker-simulation.md) proves that review and refusal receipts block settlement, while a complete allow signed gate pass may only simulate eligibility. No real payment, settlement, API call, or action execution occurs.

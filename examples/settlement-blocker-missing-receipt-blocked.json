@@ -1,0 +1,18 @@
+{
+  "request_id": "unknown",
+  "receipt_id": "unknown",
+  "receipt_type": "missing_receipt",
+  "gate_verdict": "unknown",
+  "gate_allowed": false,
+  "settlement_allowed_from_receipt": false,
+  "settlement_simulation": "blocked",
+  "blocked": true,
+  "block_reason_codes": ["missing_receipt"],
+  "checked_at": "1970-01-01T00:00:00.000Z",
+  "mode": "local_simulation_only",
+  "settlement_executed": false,
+  "payment_triggered": false,
+  "network_call_performed": false,
+  "action_executed": false,
+  "note": "No real settlement, payment, API call, or action execution occurred."
+}
