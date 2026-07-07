@@ -10,5 +10,8 @@
 | Missing verified intent | `refuse_no_verified_intent` | `refusal_receipt` | false | No | `VERIFIED_INTENT_REQUIRED` |
 | Over limit | `refuse_over_limit` | `refusal_receipt` | false | No | `LIMIT_EXCEEDED` |
 | Unsupported unsafe action | refuse before execution | `refusal_receipt` | false | As separately determined | `UNSUPPORTED_UNSAFE_ACTION` |
+| Restricted authentication-material handling | `refuse_unsafe_action` | `refusal_receipt` | false | No | `UNSUPPORTED_UNSAFE_ACTION` |
+
+Low risk can be fast-pathed only when every check passes. Medium risk is gated. High-risk money, legal, contractual, or customer-impacting work requires approval. Unsafe requests are refused. Speed never overrides trust.
 
 No signed gate pass means no settlement. This matrix documents local demo behavior and does not execute or authorize actions.

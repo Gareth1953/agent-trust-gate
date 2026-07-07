@@ -10,6 +10,11 @@
   "settlement_executed": false,
   "receipt_type": "review_receipt",
   "risk_tier": "high",
+  "policy_pack_version": "local-demo-v1",
+  "applied_policy": "high-risk-approval-required",
+  "risk_reason": "Money, legal, contractual, or customer-impacting category requires explicit approval.",
+  "fast_path_allowed": false,
+  "human_review_required": true,
   "checks": {
     "mandate": { "passed": true, "reason": "mandate_present_in_scope_and_current" },
     "evidence": { "passed": true, "fresh": true, "reason": "evidence_present_and_fresh" },

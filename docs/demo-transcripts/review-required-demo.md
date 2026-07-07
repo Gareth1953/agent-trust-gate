@@ -6,6 +6,10 @@ Agent Trust Gate Local Demo
 Request: demo-money-review
 Verdict: review_required
 Receipt: review_receipt
+Risk tier: high
+Applied policy: high-risk-approval-required
+Human review required: true
+Fast path allowed: false
 Settlement allowed: false
 Failed checks: approval
 Reason codes: HUMAN_REVIEW_REQUIRED

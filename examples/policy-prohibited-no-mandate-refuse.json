@@ -1,0 +1,12 @@
+{
+  "request_id": "policy-no-mandate-refuse",
+  "agent_id": "demo-agent",
+  "requested_action": "Review a synthetic unsupported action",
+  "action_category": "external_action_review",
+  "mandate": { "present": false, "scope": "none", "expires_at": "2026-01-01T00:00:00Z" },
+  "verified_intent": { "present": true, "source": "local_demo" },
+  "evidence": { "present": true, "fresh": true, "source": "local_demo" },
+  "limits": { "spend_amount_gbp": 0, "max_allowed_gbp": 0 },
+  "approval": { "required": true, "status": "pending" },
+  "checked_at": "2026-07-07T09:00:00Z"
+}

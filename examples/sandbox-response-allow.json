@@ -10,6 +10,11 @@
   "settlement_executed": false,
   "receipt_type": "signed_gate_pass",
   "risk_tier": "low",
+  "policy_pack_version": "local-demo-v1",
+  "applied_policy": "low-risk-local-demo",
+  "risk_reason": "Low-impact local category eligible for fast path only after all checks pass.",
+  "fast_path_allowed": true,
+  "human_review_required": false,
   "checks": {
     "mandate": { "passed": true, "reason": "mandate_present_in_scope_and_current" },
     "evidence": { "passed": true, "fresh": true, "reason": "evidence_present_and_fresh" },

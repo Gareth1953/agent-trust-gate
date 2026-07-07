@@ -6,6 +6,10 @@ Agent Trust Gate Local Demo
 Request: demo-low-risk-allow
 Verdict: allow_signed_gate_pass
 Receipt: signed_gate_pass
+Risk tier: low
+Applied policy: low-risk-local-demo
+Human review required: false
+Fast path allowed: true
 Settlement allowed: true
 Failed checks: none
 Reason codes: MANDATE_VALID, EVIDENCE_FRESH, INTENT_VERIFIED, WITHIN_LIMITS, APPROVAL_SATISFIED

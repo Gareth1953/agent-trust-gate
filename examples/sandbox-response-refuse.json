@@ -10,12 +10,17 @@
   "settlement_executed": false,
   "receipt_type": "refusal_receipt",
   "risk_tier": "blocked",
+  "policy_pack_version": "local-demo-v1",
+  "applied_policy": "refusal-no-mandate",
+  "risk_reason": "Uncertain or externally relevant category is gated for explicit review.",
+  "fast_path_allowed": false,
+  "human_review_required": false,
   "checks": {
     "mandate": { "passed": false, "reason": "mandate_missing" },
     "evidence": { "passed": true, "fresh": true, "reason": "evidence_present_and_fresh" },
     "verified_intent": { "passed": true, "reason": "intent_verified" },
     "limits": { "passed": true, "reason": "within_configured_limit" },
-    "approval": { "passed": true, "required": false, "reason": "approval_not_required" }
+    "approval": { "passed": false, "required": true, "reason": "required_approval_missing_or_pending" }
   },
   "reason_codes": ["MANDATE_REQUIRED"],
   "checked_at": "2026-07-07T09:00:00.000Z",

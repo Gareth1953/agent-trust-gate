@@ -11,7 +11,12 @@ The P3-M091 receipt layer produces a local audit artifact:
 | `allowed` | True only for `allow_signed_gate_pass`. |
 | `settlement_allowed` | Local trust-artifact eligibility, true only for the allow verdict. |
 | `receipt_type` | `signed_gate_pass`, `review_receipt`, or `refusal_receipt`. |
-| `risk_tier` | `low`, `high`, or `blocked`. |
+| `risk_tier` | Local policy tier (`low`, `medium`, or `high`) or `blocked` after refusal. |
+| `policy_pack_version` | Local policy contract version, currently `local-demo-v1`. |
+| `applied_policy` | Stable local rule explaining the verdict. |
+| `risk_reason` | Plain-language reason for the tier. |
+| `fast_path_allowed` | True only for a successful low-risk path. |
+| `human_review_required` | True for a review verdict. |
 | `checks` | Mandate, evidence, verified-intent, limits, and approval results with reasons. |
 | `reason_codes` | Stable reasons supporting the decision. |
 | `checked_at` | Local decision timestamp. |

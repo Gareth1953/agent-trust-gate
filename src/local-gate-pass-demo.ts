@@ -1,3 +1,5 @@
+import { classifyLocalPolicy } from "./local-policy.js";
+
 export type LocalGatePassVerdict =
   | "allow_signed_gate_pass"
   | "review_required"
@@ -6,7 +8,8 @@ export type LocalGatePassVerdict =
   | "refuse_stale_evidence"
   | "refuse_no_verified_intent"
   | "refuse_over_limit"
-  | "refuse_missing_approval";
+  | "refuse_missing_approval"
+  | "refuse_unsafe_action";
 
 export type LocalGatePassReceiptType =
   | "signed_gate_pass"
@@ -65,6 +68,11 @@ export interface LocalGatePassDemoResult {
 }
 
 export function runLocalGatePassDemo(input: LocalGatePassDemoInput): LocalGatePassDemoResult {
+  const policy = classifyLocalPolicy(input);
+  if (policy.risk_tier === "prohibited") {
+    return result(input, "refuse_unsafe_action", ["UNSUPPORTED_UNSAFE_ACTION"]);
+  }
+
   if (input.mandate?.present !== true) {
     return result(input, "refuse_no_mandate", ["MANDATE_REQUIRED"]);
   }
@@ -95,8 +103,8 @@ export function runLocalGatePassDemo(input: LocalGatePassDemoInput): LocalGatePa
     return result(input, "refuse_over_limit", ["LIMIT_EXCEEDED"]);
   }
 
-  if (input.approval?.required === true && input.approval.status !== "approved") {
-    const isReviewable = input.approval.status === "pending" || input.approval.status === "unknown";
+  if ((input.approval?.required === true || policy.requires_approval) && input.approval?.status !== "approved") {
+    const isReviewable = input.approval?.status === "pending" || input.approval?.status === "unknown";
     return result(
       input,
       isReviewable ? "review_required" : "refuse_missing_approval",

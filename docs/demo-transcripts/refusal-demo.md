@@ -6,6 +6,10 @@ Agent Trust Gate Local Demo
 Request: demo-no-mandate
 Verdict: refuse_no_mandate
 Receipt: refusal_receipt
+Risk tier: blocked
+Applied policy: refusal-no-mandate
+Human review required: false
+Fast path allowed: false
 Settlement allowed: false
 Failed checks: mandate
 Reason codes: MANDATE_REQUIRED

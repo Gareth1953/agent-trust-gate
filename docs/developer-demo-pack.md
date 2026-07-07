@@ -51,6 +51,10 @@ Add `--full` to print the complete receipt or `--save <local-path>` to save it l
 - `failed_checks`: checks that did not pass.
 - `reason_codes`: stable reasons supporting the verdict.
 - `signature_metadata`: a clearly labelled `local_demo_placeholder`; no cryptographic signature is created.
+- `risk_tier` and `applied_policy`: the local policy classification and rule that explain the verdict.
+- `fast_path_allowed` and `human_review_required`: whether the safe low-risk path passed or review is required.
+
+Low risk is fast only when every check passes. Medium risk is gated when uncertain. High-risk money, legal, contractual, or customer-impacting actions require explicit approval. Unsafe or prohibited actions are refused. Speed never overrides trust.
 
 ## F. What `settlement_allowed` Means
 

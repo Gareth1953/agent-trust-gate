@@ -432,3 +432,5 @@ export { createLocalGatePassAuditReceipt,createLocalGatePassReceiptId,summariseL
 export type { LocalApprovalAuditCheck,LocalAuditCheck,LocalEvidenceAuditCheck,LocalGatePassAuditReceipt,LocalGatePassAuditSummary,LocalGatePassRiskTier } from "./local-gate-pass-receipt.js";
 export { formatLocalDemoAuditSummary,readLocalDemoInput,runLocalDemoCli } from "./local-demo-cli.js";
 export type { LocalDemoCliErrorCode,LocalDemoCliIo } from "./local-demo-cli.js";
+export { classifyLocalPolicy,explainLocalPolicy,LOCAL_POLICY_PACK_VERSION,summariseLocalPolicy } from "./local-policy.js";
+export type { LocalPolicyExplanation,LocalPolicyRiskTier,LocalPolicyRule,LocalPolicySummary } from "./local-policy.js";

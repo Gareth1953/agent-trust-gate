@@ -6,8 +6,9 @@ import {
   type LocalGatePassReceiptType,
   type LocalGatePassVerdict,
 } from "./local-gate-pass-demo.js";
+import { explainLocalPolicy, type LocalPolicyRiskTier } from "./local-policy.js";
 
-export type LocalGatePassRiskTier = "low" | "high" | "blocked";
+export type LocalGatePassRiskTier = LocalPolicyRiskTier | "blocked";
 
 export interface LocalAuditCheck {
   passed: boolean;
@@ -34,6 +35,11 @@ export interface LocalGatePassAuditReceipt {
   settlement_executed: false;
   receipt_type: LocalGatePassReceiptType;
   risk_tier: LocalGatePassRiskTier;
+  policy_pack_version: "local-demo-v1";
+  applied_policy: string;
+  risk_reason: string;
+  fast_path_allowed: boolean;
+  human_review_required: boolean;
   checks: {
     mandate: LocalAuditCheck;
     evidence: LocalEvidenceAuditCheck;
@@ -65,6 +71,10 @@ export interface LocalGatePassAuditSummary {
   verdict: LocalGatePassVerdict;
   receipt_type: LocalGatePassReceiptType;
   settlement_allowed: boolean;
+  risk_tier: LocalGatePassRiskTier;
+  applied_policy: string;
+  human_review_required: boolean;
+  fast_path_allowed: boolean;
   failed_checks: string[];
   reason_codes: string[];
 }
@@ -74,11 +84,12 @@ export function createLocalGatePassAuditReceipt(
 ): LocalGatePassAuditReceipt {
   const decision = runLocalGatePassDemo(input);
   const checkedAt = decision.checked_at;
+  const policy = explainLocalPolicy(input, decision.verdict);
   const mandate = checkMandate(input, checkedAt);
   const evidence = checkEvidence(input);
   const verifiedIntent = checkVerifiedIntent(input);
   const limits = checkLimits(input);
-  const approval = checkApproval(input);
+  const approval = checkApproval(input, policy.requires_approval);
 
   return {
     receipt_id: createLocalGatePassReceiptId(input.request_id, checkedAt),
@@ -91,7 +102,12 @@ export function createLocalGatePassAuditReceipt(
     settlement_allowed: decision.verdict === "allow_signed_gate_pass",
     settlement_executed: false,
     receipt_type: decision.receipt_type,
-    risk_tier: riskTier(decision.verdict, input),
+    risk_tier: riskTier(decision.verdict, policy.risk_tier),
+    policy_pack_version: policy.policy_pack_version,
+    applied_policy: policy.applied_policy,
+    risk_reason: policy.risk_reason,
+    fast_path_allowed: policy.fast_path_allowed,
+    human_review_required: policy.human_review_required,
     checks: {
       mandate,
       evidence,
@@ -137,6 +153,10 @@ export function summariseLocalGatePassAudit(
     verdict: receipt.verdict,
     receipt_type: receipt.receipt_type,
     settlement_allowed: receipt.settlement_allowed,
+    risk_tier: receipt.risk_tier,
+    applied_policy: receipt.applied_policy,
+    human_review_required: receipt.human_review_required,
+    fast_path_allowed: receipt.fast_path_allowed,
     failed_checks: Object.entries(receipt.checks)
       .filter(([, check]) => !check.passed)
       .map(([name]) => name),
@@ -177,8 +197,11 @@ function checkLimits(input: LocalGatePassDemoInput): LocalAuditCheck {
   return { passed, reason: passed ? "within_configured_limit" : "configured_limit_exceeded" };
 }
 
-function checkApproval(input: LocalGatePassDemoInput): LocalApprovalAuditCheck {
-  const required = input.approval?.required === true;
+function checkApproval(
+  input: LocalGatePassDemoInput,
+  policyRequiresApproval: boolean,
+): LocalApprovalAuditCheck {
+  const required = input.approval?.required === true || policyRequiresApproval;
   const passed = !required || input.approval?.status === "approved";
   return {
     passed,
@@ -193,11 +216,10 @@ function checkApproval(input: LocalGatePassDemoInput): LocalApprovalAuditCheck {
 
 function riskTier(
   verdict: LocalGatePassVerdict,
-  input: LocalGatePassDemoInput,
+  policyTier: LocalPolicyRiskTier,
 ): LocalGatePassRiskTier {
   if (verdict.startsWith("refuse_")) return "blocked";
-  if (verdict === "review_required" || input.approval?.required === true) return "high";
-  return "low";
+  return policyTier;
 }
 
 function amount(value: unknown): number {

@@ -1667,3 +1667,7 @@ The five-minute local pack covers the [developer guide](docs/developer-demo-pack
 ### Agent Capability and Sandbox Readiness
 
 The local-only readiness pack documents the [capability statement](docs/agent-readable-capability-statement.md), [sandbox readiness](docs/sandbox-readiness-pack.md), [request schema](docs/local-request-schema.md), [receipt schema](docs/local-response-receipt-schema.md), [refusal matrix](docs/refusal-condition-matrix.md), and [integration boundary](docs/integration-readiness-note.md). No sandbox or integration is live.
+
+### Local Policy Pack and Risk Tiers
+
+[Local policy](docs/local-policy-pack.md) and the [risk-tier matrix](docs/risk-tier-matrix.md) define: low risk allows only after all checks pass, medium risk is reviewed when uncertain, high risk requires approval, and prohibited actions are refused. See the [refusal matrix](docs/refusal-condition-matrix.md). No signed gate pass means no settlement.
