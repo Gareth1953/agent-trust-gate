@@ -12,6 +12,10 @@ import {
   simulateLocalSettlementBlocker,
 } from "./local-settlement-blocker.js";
 import { LocalGatePassReplayStore } from "./local-gate-pass-protection.js";
+import {
+  formatLocalTrustReceiptVerification,
+  verifyLocalTrustReceipt,
+} from "./local-trust-receipt-verifier.js";
 
 export type LocalDemoCliErrorCode =
   | "MISSING_INPUT_FILE"
@@ -34,6 +38,7 @@ interface LocalDemoCliOptions {
   full: boolean;
   simulateSettlementBlocker: boolean;
   simulateReplayProtection: boolean;
+  verifyReceipt: boolean;
   savePath?: string;
 }
 
@@ -61,12 +66,21 @@ export function runLocalDemoCli(
 
     if (options.savePath !== undefined) saveReceipt(options.savePath, receipt);
     const output = options.full ? JSON.stringify(receipt, null, 2) : formatLocalDemoAuditSummary(summary);
-    const blocker = options.simulateSettlementBlocker
-      ? `\n\n${formatLocalSettlementBlockerSummary(simulateLocalSettlementBlocker(receipt))}`
-      : options.simulateReplayProtection
-        ? formatReplayProtectionSimulation(receipt)
-      : "";
-    io.stdout(`${output}${blocker}`);
+    const additions: string[] = [];
+    if (options.verifyReceipt) {
+      additions.push(formatLocalTrustReceiptVerification(verifyLocalTrustReceipt(receipt, {
+        expected_request_id: input.request_id,
+        expected_agent_id: input.agent_id,
+        expected_requested_action: input.requested_action,
+        current_time: receipt.checked_at,
+      })));
+    }
+    if (options.simulateSettlementBlocker) {
+      additions.push(formatLocalSettlementBlockerSummary(simulateLocalSettlementBlocker(receipt)));
+    } else if (options.simulateReplayProtection) {
+      additions.push(formatReplayProtectionSimulation(receipt));
+    }
+    io.stdout([output, ...additions].join("\n\n"));
     return 0;
   } catch (error) {
     const known = error instanceof LocalDemoCliError;
@@ -131,6 +145,7 @@ function parseArgs(args: readonly string[]): LocalDemoCliOptions {
   let summaryOnly = false;
   let simulateSettlementBlocker = false;
   let simulateReplayProtection = false;
+  let verifyReceipt = false;
 
   for (let index = 0; index < args.length; index += 1) {
     const arg = args[index];
@@ -150,6 +165,8 @@ function parseArgs(args: readonly string[]): LocalDemoCliOptions {
       simulateSettlementBlocker = true;
     } else if (arg === "--simulate-replay-protection") {
       simulateReplayProtection = true;
+    } else if (arg === "--verify-receipt") {
+      verifyReceipt = true;
     } else {
       throw cliError("UNKNOWN_OPTION", "The local demo command contains an unsupported option.");
     }
@@ -164,10 +181,10 @@ function parseArgs(args: readonly string[]): LocalDemoCliOptions {
       "Choose either settlement blocker or replay protection simulation.",
     );
   }
-  if (full && (simulateSettlementBlocker || simulateReplayProtection)) {
+  if (full && (simulateSettlementBlocker || simulateReplayProtection || verifyReceipt)) {
     throw cliError(
       "CONFLICTING_OUTPUT_MODE",
-      "Settlement blocker simulation uses summary output and cannot be combined with --full.",
+      "Verification and simulations use summary output and cannot be combined with --full.",
     );
   }
   if (inputPath === undefined || inputPath.trim() === "") {
@@ -178,6 +195,7 @@ function parseArgs(args: readonly string[]): LocalDemoCliOptions {
     full,
     simulateSettlementBlocker,
     simulateReplayProtection,
+    verifyReceipt,
   };
   if (savePath !== undefined) options.savePath = savePath;
   return options;
@@ -189,7 +207,6 @@ function formatReplayProtectionSimulation(receipt: LocalGatePassAuditReceipt): s
   const first = simulateLocalSettlementBlocker(receipt, context);
   const replay = simulateLocalSettlementBlocker(receipt, context);
   return [
-    "",
     "Gate pass replay protection simulation",
     "First attempt:",
     formatLocalSettlementBlockerSummary(first),

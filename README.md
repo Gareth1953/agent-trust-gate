@@ -1679,3 +1679,7 @@ The [local settlement blocker](docs/local-settlement-blocker-simulation.md) prov
 ### Gate Pass Validity and Replay Protection
 
 The [local validity and replay pack](docs/gate-pass-validity-replay-protection.md) gives allow passes a maximum five-minute validity window and a process-local single-use replay key. Expired, not-yet-valid, malformed, and replayed passes fail closed. The in-memory store is a local simulation control, not production replay defense.
+
+### Local Trust Receipt Verification
+
+[Local trust receipt verification](docs/local-trust-receipt-verification.md) requires receipts to be structurally valid, schema-supported, internally consistent, fresh, correctly scoped, replay-safe, and settlement-blocker eligible before reliance. Review and refusal receipts are never settlement eligible. This is local demo verification, not production cryptographic verification; no real payment, settlement, API call, or action execution occurs.

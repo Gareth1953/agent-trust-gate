@@ -18,6 +18,7 @@ local JSON request
 → limits / approval check
 → risk-tier decision
 → signed gate pass / review receipt / refusal receipt
+→ local receipt verification
 ```
 
 Every outcome is inspectable. The demo records what passed, what failed, and why. It never executes the requested action.
@@ -45,6 +46,8 @@ Add `--full` to print the complete receipt or `--save <local-path>` to save it l
 
 Use `--simulate-replay-protection` with the low-risk allow example to show a current pass accepted once and the immediate replay blocked by local in-memory state.
 
+Use `--verify-receipt` to prove the generated receipt is structurally valid, supported, internally consistent, fresh, scoped, replay-safe, and compatible with the settlement blocker.
+
 ## E. How To Read The Output
 
 - `verdict`: the local decision, such as `allow_signed_gate_pass`, `review_required`, or a refusal.
@@ -64,6 +67,8 @@ Low risk is fast only when every check passes. Medium risk is gated when uncerta
 `settlement_allowed` is a local trust artifact field. It does not move money, settle transactions, call APIs, contact agents, or execute actions. The receipt separately records `settlement_executed: false`.
 
 The local settlement blocker makes this boundary executable in the demo: only a current, unused allow `signed_gate_pass` may simulate eligibility, while review, refusal, expired, and replayed receipts remain blocked. The simulation never performs payment or settlement.
+
+A receipt is not trusted because it exists. Local trust receipt verification must pass before any signed gate pass can support the simulated settlement result. Review and refusal receipts may verify as decision artifacts but are never settlement eligible.
 
 ## G. What This Demo Does Not Do
 

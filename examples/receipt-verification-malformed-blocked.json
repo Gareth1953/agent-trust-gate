@@ -1,0 +1,19 @@
+{
+  "receipt_id": "unknown",
+  "request_id": "unknown",
+  "verified": false,
+  "valid_for_simulated_settlement": false,
+  "structurally_valid": false,
+  "schema_supported": false,
+  "internally_consistent": false,
+  "fresh": false,
+  "replay_safe": false,
+  "settlement_blocker_allowed": false,
+  "receipt_type": "unknown",
+  "verdict": "unknown",
+  "reason_codes": ["malformed_receipt"],
+  "warnings": [],
+  "checked_at": "2026-07-07T09:00:00.000Z",
+  "mode": "local_simulation_only",
+  "note": "Local receipt verification only; no real settlement, payment, API call, or action execution occurred."
+}

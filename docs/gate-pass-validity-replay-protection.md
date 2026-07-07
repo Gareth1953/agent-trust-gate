@@ -9,6 +9,8 @@ The expiry boundary is exclusive: a pass is expired when `evaluated_at >= expire
 
 Review and refusal receipts are not gate passes. Their `gate_pass_validity` and `replay_protection` fields are null.
 
+P3-M098 adds the next required layer: the whole receipt must also pass [local trust receipt verification](local-trust-receipt-verification.md). Validity and replay protection alone do not establish receipt trust or settlement eligibility.
+
 ## Local demonstration
 
 ```text

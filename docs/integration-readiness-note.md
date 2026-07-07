@@ -10,6 +10,7 @@
 - Agent-readable capability statement draft.
 - Local settlement blocker simulation.
 - Bounded local gate-pass validity and process-local replay simulation.
+- Local v2 trust receipt verification with scope and settlement-blocker checks.
 
 ## Not Ready
 
@@ -26,6 +27,6 @@
 
 Keep Agent Trust Gate™ at local developer/demo readiness until a later mission explicitly approves sandbox or integration work. Discoverability and documentation do not grant operational access.
 
-Settlement remains blocked unless the local receipt is a complete, current, unused allow `signed_gate_pass`. The replay store is not durable or distributed and is not production-ready. Even an allowed simulation does not execute settlement.
+Settlement remains blocked unless the local receipt is structurally valid, supported, internally consistent, fresh, scoped, replay-safe, blocker-eligible, and a complete allow `signed_gate_pass`. The verifier and replay store are local-only and are not production cryptographic or distributed controls. Even an allowed simulation does not execute settlement.
 
 **No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**

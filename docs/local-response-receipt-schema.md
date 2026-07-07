@@ -29,3 +29,5 @@ The P3-M091 receipt layer produces a local audit artifact:
 This is a local demo receipt schema, not a production response contract or signed legal record.
 
 The v2 local receipt schema adds bounded validity and replay metadata. The local settlement blocker requires a current, unused `signed_gate_pass`, allow verdict, both allow booleans, all critical checks passed, no refusal codes, and no human-review requirement. Any other receipt remains blocked.
+
+Before reliance, [local trust receipt verification](local-trust-receipt-verification.md) checks the complete v2 structure, schema support, type/verdict and allow-value consistency, policy metadata, critical checks, decisive reason codes, placeholder signature metadata, expected scope, freshness, replay safety, and settlement-blocker compatibility.

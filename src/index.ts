@@ -438,3 +438,5 @@ export { formatLocalSettlementBlockerSummary,isReceiptSettlementEligible,simulat
 export type { LocalSettlementBlockerDecision,LocalSettlementBlockReason,LocalSettlementProtectionContext,LocalSettlementSimulation } from "./local-settlement-blocker.js";
 export { createLocalGatePassProtectionMetadata,createLocalGatePassReplayKey,evaluateLocalGatePassProtection,LOCAL_GATE_PASS_MAX_VALIDITY_SECONDS,LOCAL_GATE_PASS_PROTECTION_VERSION,LocalGatePassReplayStore } from "./local-gate-pass-protection.js";
 export type { LocalGatePassProtectionDecision,LocalGatePassProtectionReason,LocalGatePassProtectionReceipt,LocalGatePassReplayMetadata,LocalGatePassReplayStatus,LocalGatePassValidityMetadata,LocalGatePassValidityStatus } from "./local-gate-pass-protection.js";
+export { formatLocalTrustReceiptVerification,LOCAL_TRUST_RECEIPT_VERIFIER_VERSION,SUPPORTED_LOCAL_TRUST_RECEIPT_SCHEMA,verifyLocalTrustReceipt } from "./local-trust-receipt-verifier.js";
+export type { LocalTrustReceiptVerificationDecision,LocalTrustReceiptVerificationReason,LocalTrustReceiptVerificationWarning,LocalTrustReceiptVerifierOptions } from "./local-trust-receipt-verifier.js";

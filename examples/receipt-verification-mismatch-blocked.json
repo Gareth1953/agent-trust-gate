@@ -1,0 +1,19 @@
+{
+  "receipt_id": "receipt_demo_53a7b2d6123bef36cde75884",
+  "request_id": "policy-low-risk-allow",
+  "verified": false,
+  "valid_for_simulated_settlement": false,
+  "structurally_valid": true,
+  "schema_supported": true,
+  "internally_consistent": true,
+  "fresh": true,
+  "replay_safe": true,
+  "settlement_blocker_allowed": true,
+  "receipt_type": "signed_gate_pass",
+  "verdict": "allow_signed_gate_pass",
+  "reason_codes": ["request_id_mismatch"],
+  "warnings": ["signature_not_cryptographic"],
+  "checked_at": "2026-07-07T09:00:00.000Z",
+  "mode": "local_simulation_only",
+  "note": "Local receipt verification only; no real settlement, payment, API call, or action execution occurred."
+}

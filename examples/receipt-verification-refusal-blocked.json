@@ -1,0 +1,23 @@
+{
+  "receipt_id": "receipt_demo_ebb54d69a6f28a0b63d7239c",
+  "request_id": "demo-no-mandate",
+  "verified": true,
+  "valid_for_simulated_settlement": false,
+  "structurally_valid": true,
+  "schema_supported": true,
+  "internally_consistent": true,
+  "fresh": true,
+  "replay_safe": true,
+  "settlement_blocker_allowed": false,
+  "receipt_type": "refusal_receipt",
+  "verdict": "refuse_no_mandate",
+  "reason_codes": [
+    "failed_critical_check",
+    "refusal_receipt_not_settlement_eligible",
+    "settlement_blocker_rejected"
+  ],
+  "warnings": ["signature_not_cryptographic"],
+  "checked_at": "2026-07-07T09:00:00.000Z",
+  "mode": "local_simulation_only",
+  "note": "Local receipt verification only; no real settlement, payment, API call, or action execution occurred."
+}

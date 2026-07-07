@@ -1,0 +1,23 @@
+{
+  "receipt_id": "receipt_demo_02d5341454b8d3818bf438af",
+  "request_id": "demo-money-review",
+  "verified": true,
+  "valid_for_simulated_settlement": false,
+  "structurally_valid": true,
+  "schema_supported": true,
+  "internally_consistent": true,
+  "fresh": true,
+  "replay_safe": true,
+  "settlement_blocker_allowed": false,
+  "receipt_type": "review_receipt",
+  "verdict": "review_required",
+  "reason_codes": [
+    "failed_critical_check",
+    "review_receipt_not_settlement_eligible",
+    "settlement_blocker_rejected"
+  ],
+  "warnings": ["signature_not_cryptographic"],
+  "checked_at": "2026-07-07T09:00:00.000Z",
+  "mode": "local_simulation_only",
+  "note": "Local receipt verification only; no real settlement, payment, API call, or action execution occurred."
+}

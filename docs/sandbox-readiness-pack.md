@@ -13,6 +13,7 @@ The sandbox is not live. There is no network access, hosted service, external-ag
 - [x] Response schema documented.
 - [x] Refusal rules documented.
 - [x] Receipt and audit model documented.
+- [x] Local v2 receipt verification and settlement-eligibility checks documented.
 - [x] Safety boundaries documented.
 - [x] No secrets included.
 - [x] No live payment rails included.
@@ -23,3 +24,5 @@ The sandbox is not live. There is no network access, hosted service, external-ag
 **No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
 
 Readiness documentation does not authorize deployment, networking, agent contact, or execution.
+
+Any future sandbox receipt would need to be structurally valid, internally consistent, fresh, scoped correctly, replay-safe, and settlement-blocker eligible before it could support even a simulated settlement decision.
