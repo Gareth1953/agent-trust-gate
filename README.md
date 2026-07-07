@@ -1659,3 +1659,7 @@ Every gate decision produces a local proof artifact showing what was checked, wh
 ### Local Developer CLI Demo
 
 Run `npm run demo:gate -- --input examples/local-demo-low-risk-allow.json` to print a local audit summary. The verdict describes the proof artifact only; no action, payment, or settlement is executed. See `docs/local-developer-cli.md`.
+
+### Local Developer Demo Pack
+
+The five-minute local pack covers the [developer guide](docs/developer-demo-pack.md), [quickstart](docs/quickstart-local-demo.md), [CLI](docs/local-developer-cli.md), [receipt audit trail](docs/receipt-audit-trail.md), and [agent-readable capability draft](docs/agent-readable-capability-statement.md). It adds no live infrastructure or execution.
