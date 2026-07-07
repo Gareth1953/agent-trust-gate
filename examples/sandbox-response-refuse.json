@@ -1,0 +1,24 @@
+{
+  "receipt_id": "receipt_demo_c2ff1bd004ee3881025a8f65",
+  "request_id": "sandbox-demo-refuse",
+  "agent_id": "demo-agent",
+  "requested_action": "Review a synthetic external action",
+  "action_category": "external_action_review",
+  "verdict": "refuse_no_mandate",
+  "allowed": false,
+  "settlement_allowed": false,
+  "settlement_executed": false,
+  "receipt_type": "refusal_receipt",
+  "risk_tier": "blocked",
+  "checks": {
+    "mandate": { "passed": false, "reason": "mandate_missing" },
+    "evidence": { "passed": true, "fresh": true, "reason": "evidence_present_and_fresh" },
+    "verified_intent": { "passed": true, "reason": "intent_verified" },
+    "limits": { "passed": true, "reason": "within_configured_limit" },
+    "approval": { "passed": true, "required": false, "reason": "approval_not_required" }
+  },
+  "reason_codes": ["MANDATE_REQUIRED"],
+  "checked_at": "2026-07-07T09:00:00.000Z",
+  "signature_metadata": { "signature_mode": "local_demo_placeholder", "algorithm": "none", "note": "Local demo placeholder only; not cryptographic signing." },
+  "audit_metadata": { "schema_version": "atg.local-gate-pass-receipt.v1", "source": "local_gate_pass_demo", "local_only": true, "private_data_included": false, "network_call_performed": false, "external_agent_contacted": false, "payment_triggered": false, "action_executed": false }
+}

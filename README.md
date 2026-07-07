@@ -1663,3 +1663,7 @@ Run `npm run demo:gate -- --input examples/local-demo-low-risk-allow.json` to pr
 ### Local Developer Demo Pack
 
 The five-minute local pack covers the [developer guide](docs/developer-demo-pack.md), [quickstart](docs/quickstart-local-demo.md), [CLI](docs/local-developer-cli.md), [receipt audit trail](docs/receipt-audit-trail.md), and [agent-readable capability draft](docs/agent-readable-capability-statement.md). It adds no live infrastructure or execution.
+
+### Agent Capability and Sandbox Readiness
+
+The local-only readiness pack documents the [capability statement](docs/agent-readable-capability-statement.md), [sandbox readiness](docs/sandbox-readiness-pack.md), [request schema](docs/local-request-schema.md), [receipt schema](docs/local-response-receipt-schema.md), [refusal matrix](docs/refusal-condition-matrix.md), and [integration boundary](docs/integration-readiness-note.md). No sandbox or integration is live.
