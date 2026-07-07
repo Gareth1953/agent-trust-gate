@@ -1,0 +1,12 @@
+{
+  "request_id": "demo-over-limit",
+  "agent_id": "demo-agent",
+  "requested_action": "Review a synthetic purchase above its mandate limit",
+  "action_category": "money_review",
+  "mandate": { "present": true, "scope": "synthetic purchase review", "expires_at": "2027-01-01T00:00:00Z" },
+  "verified_intent": { "present": true, "source": "local_demo" },
+  "evidence": { "present": true, "fresh": true, "source": "local_demo" },
+  "limits": { "spend_amount_gbp": 75, "max_allowed_gbp": 50 },
+  "approval": { "required": true, "status": "pending" },
+  "checked_at": "2026-07-07T09:00:00Z"
+}

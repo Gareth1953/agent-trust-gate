@@ -1647,3 +1647,7 @@ Agent Trust Gate™ is a pre-action and pre-settlement trust enforcement layer f
 - [Global agent outreach plan](docs/global-agent-outreach-plan.md)
 
 These items are strategy notes and future placeholders. They do not enable live APIs, real agents, payments, settlement, outreach, or action execution.
+
+### Local Gate Pass Demo Flow
+
+Agent request → mandate, evidence, intent, limits, approval, and risk checks → local signed gate pass, review receipt, or refusal receipt. This flow is local-only and does not execute actions, payments, or settlement. See `docs/local-gate-pass-demo-flow.md`.

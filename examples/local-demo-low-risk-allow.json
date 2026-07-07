@@ -1,0 +1,12 @@
+{
+  "request_id": "demo-low-risk-allow",
+  "agent_id": "demo-agent",
+  "requested_action": "Review a synthetic inventory status",
+  "action_category": "local_review",
+  "mandate": { "present": true, "scope": "synthetic inventory review", "expires_at": "2027-01-01T00:00:00Z" },
+  "verified_intent": { "present": true, "source": "local_demo" },
+  "evidence": { "present": true, "fresh": true, "source": "local_demo" },
+  "limits": { "spend_amount_gbp": 0, "max_allowed_gbp": 0 },
+  "approval": { "required": false, "status": "not_required" },
+  "checked_at": "2026-07-07T09:00:00Z"
+}

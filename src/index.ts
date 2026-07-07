@@ -426,3 +426,5 @@ export { createPaidTechnicalReviewPack,createPaidTechnicalReviewPackId,renderPai
 export { runPaidTechnicalReviewPackCli } from "./paid-technical-review-pack-cli.js";
 export { createLiveApiReadinessGate,createLiveApiReadinessGateId,renderLiveApiAbuseRulesMarkdown,renderLiveApiAuthenticationRulesMarkdown,renderLiveApiBlockedCapabilitiesMarkdown,renderLiveApiKillSwitchRulesMarkdown,renderLiveApiReadinessChecklistMarkdown,renderLiveApiReadinessGateJson,renderLiveApiReadinessGateMarkdown,summariseLiveApiReadinessGate } from "./live-api-readiness-gate.js";
 export { runLiveApiReadinessGateCli } from "./live-api-readiness-gate-cli.js";
+export { runLocalGatePassDemo } from "./local-gate-pass-demo.js";
+export type { LocalGatePassDemoInput,LocalGatePassDemoResult,LocalGatePassReceiptType,LocalGatePassVerdict } from "./local-gate-pass-demo.js";
