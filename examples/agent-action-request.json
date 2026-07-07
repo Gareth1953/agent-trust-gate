@@ -1,0 +1,18 @@
+{
+  "example_type": "local_agent_action_request",
+  "request_id": "demo_action_request_001",
+  "agent_id": "demo_agent_001",
+  "requested_action": "review a synthetic supplier record",
+  "intent": "local capability demonstration",
+  "mandate_status": "demo_verified",
+  "evidence_status": "synthetic_evidence_present",
+  "approval_status": "human_review_required",
+  "spend_limit": 0,
+  "signed_gate_pass_required": true,
+  "local_only": true,
+  "live_endpoint": false,
+  "real_agent": false,
+  "payment_enabled": false,
+  "settlement_enabled": false,
+  "action_executed": false
+}

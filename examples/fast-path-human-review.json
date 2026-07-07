@@ -1,0 +1,12 @@
+{
+  "example_type": "future_fast_path_decision",
+  "routing_tier": "human_review",
+  "risk_level": "high",
+  "impact_categories": ["money", "legal", "customer"],
+  "decision": "human_approval_required",
+  "future_placeholder": true,
+  "speed_overrides_trust": false,
+  "external_action_executed": false,
+  "payment_enabled": false,
+  "settlement_enabled": false
+}

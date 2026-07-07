@@ -1,0 +1,16 @@
+{
+  "example_type": "local_verified_result_receipt",
+  "receipt_id": "demo_verified_receipt_001",
+  "request_id": "demo_action_request_001",
+  "decision": "approved_for_local_review_only",
+  "result_status": "synthetic_result_verified",
+  "provenance": "local_demo_fixture",
+  "evidence_digest": "demo_digest_not_cryptographic_proof",
+  "rollback_status": "not_required_no_action_executed",
+  "audit_receipt_present": true,
+  "private_data_included": false,
+  "network_used": false,
+  "payment_enabled": false,
+  "settlement_enabled": false,
+  "action_executed": false
+}

@@ -1634,3 +1634,16 @@ The local pack defines buyer-facing technical review and fake-agent pilot output
 ### Live API Readiness Gate
 
 The local gate defines mandatory controls before any future controlled API design without creating an endpoint, key, secret, listener, live access, payment, or execution. See `docs/live-api-readiness-gate.md`.
+
+## Strategic Roadmap
+
+Agent Trust Gate™ is a pre-action and pre-settlement trust enforcement layer for agent-led actions and payments. Its core rule is: **No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
+- [Agent requirements signal](docs/agent-requirements-signal.md)
+- [Industry trust-gate convergence](docs/industry-trust-gate-convergence.md)
+- [Fast Reaction Trust Gate](docs/fast-reaction-trust-gate.md)
+- [Quantum readiness](docs/quantum-readiness.md)
+- [Agent Update Consortium bridge](docs/agent-update-consortium-bridge.md)
+- [Global agent outreach plan](docs/global-agent-outreach-plan.md)
+
+These items are strategy notes and future placeholders. They do not enable live APIs, real agents, payments, settlement, outreach, or action execution.

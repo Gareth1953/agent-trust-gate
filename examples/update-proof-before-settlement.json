@@ -1,0 +1,14 @@
+{
+  "example_type": "future_update_proof_before_settlement",
+  "agent_update_consortium_status": "separate_future_placeholder",
+  "update_check": "synthetic_latest_update_checked",
+  "update_proof": "demo_update_proof_only",
+  "trust_gate_verification": "local_demo_verified",
+  "signed_gate_pass": "demo_gate_pass_not_live",
+  "core_rule": "No mandate. No evidence. No verified intent. No signed gate pass. No settlement.",
+  "live_integration": false,
+  "real_agent_contacted": false,
+  "payment_enabled": false,
+  "settlement_enabled": false,
+  "action_executed": false
+}

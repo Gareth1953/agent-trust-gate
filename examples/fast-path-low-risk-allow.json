@@ -1,0 +1,15 @@
+{
+  "example_type": "future_fast_path_decision",
+  "routing_tier": "instant_allow",
+  "risk_level": "low",
+  "mandate_status": "demo_verified",
+  "intent_status": "demo_verified",
+  "evidence_freshness": "fresh_synthetic",
+  "repeatable_action": true,
+  "decision": "allow_local_simulation_only",
+  "future_placeholder": true,
+  "speed_overrides_trust": false,
+  "external_action_executed": false,
+  "payment_enabled": false,
+  "settlement_enabled": false
+}

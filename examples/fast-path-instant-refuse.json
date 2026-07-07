@@ -1,0 +1,11 @@
+{
+  "example_type": "future_fast_path_decision",
+  "routing_tier": "instant_refuse",
+  "risk_level": "unsafe",
+  "refusal_reasons": ["no_mandate", "stale_evidence", "over_budget"],
+  "decision": "refused",
+  "future_placeholder": true,
+  "external_action_executed": false,
+  "payment_enabled": false,
+  "settlement_enabled": false
+}
