@@ -11,6 +11,20 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Tests, build, and typecheck pass.
 - [ ] `.env`, generated logs, and private artifacts remain ignored.
 
+## Release-candidate checklist
+
+- [ ] Run `npm test`.
+- [ ] Run `npm run build`.
+- [ ] Run `npm run typecheck`.
+- [ ] Confirm JSON examples, schemas, and manifest validation.
+- [ ] Confirm local README links resolve.
+- [ ] Confirm no live integrations.
+- [ ] Confirm no real secrets or credentials.
+- [ ] Confirm no external agent contact.
+- [ ] Confirm no AUC merge; AUC is not integrated.
+- [ ] Confirm no Agent Contact System integration; Agent Contact System is not integrated.
+- [ ] No package publish or remote tag push.
+
 ## Required safety boundary
 
 - [ ] No live APIs.

@@ -2,10 +2,11 @@
 
 All notable project changes are recorded here. The package remains pre-release, private in package metadata, and `local_demo_only`.
 
-## Unreleased
+## Unreleased / Release Candidate
 
 ### Added
 
+- P3-M104 local release-candidate readiness, launch-bundle inventory, safe tag guidance, safety assertions, and focused tests.
 - P3-M103 global code launch readiness files, public repository hygiene guidance, launch positioning, and focused tests.
 
 ### Safety

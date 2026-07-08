@@ -86,6 +86,20 @@ service or operational integration.
 - [Public repository hygiene checklist](docs/public-repository-hygiene-checklist.md)
 - [Global launch positioning](docs/global-launch-positioning.md)
 
+## Release Candidate and Local Launch Bundle
+
+P3-M104 prepares the local-first project for release-candidate review and
+records the code-readable local launch bundle inventory.
+
+- [Public release-candidate readiness](docs/public-release-candidate-readiness.md)
+- [Local launch bundle inventory](docs/local-launch-bundle-inventory.md)
+- [Release-candidate tag guidance](docs/release-candidate-tag-guidance.md)
+- [Release-candidate safety assertions](docs/release-candidate-safety-assertions.md)
+
+This is release-candidate readiness only. No live deployment, payment,
+settlement, remote tag push, package publish, or external agent contact is
+performed.
+
 ## Current safety boundaries
 
 current_status: local_demo_only
@@ -122,8 +136,9 @@ mission and explicit approval.
 
 The implemented developer-readiness baseline reached P3-M101 with code-readable
 developer integration readiness. P3-M102 polished public README positioning,
-and the current P3-M103 milestone prepares the repository for global code-level
-review without changing runtime capability.
+P3-M103 prepared the repository for global code-level review, and the current
+P3-M104 milestone prepares local release-candidate assets without changing
+runtime capability.
 
 Recent proof and readiness milestones:
 
@@ -135,6 +150,7 @@ Recent proof and readiness milestones:
 - P3-M101: code-readable developer integration pack
 - P3-M102: public README and developer positioning polish
 - P3-M103: global code launch readiness
+- P3-M104: public release candidate tag and local launch bundle
 
 ## Developer review path
 
