@@ -6,6 +6,10 @@ The safe sequence extends one local-first Trust Gate core gradually. Completion 
 
 Prepare repository files, README, documentation, manifest, schemas, examples, local CLI proof, security policy, license, and release notes for human-approved code release.
 
+P3-M107 prepares the Public GitHub Release Execution Checklist for future human use.
+
+No remote push, tag, package publish, deployment, or live system activation is performed by P3-M107.
+
 ## Phase 2: Static developer landing page
 
 P3-M106 prepares the static developer landing page locally. It points developers to the same code, proof, and safety boundaries without scripts, forms, analytics, tracking, or external dependencies.

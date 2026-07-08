@@ -54,6 +54,14 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] AUC is not integrated.
 - [ ] Agent Contact System is not integrated.
 
+## Public GitHub Release Execution
+
+Use the human-controlled launch documents only after explicit Gareth approval:
+
+- [Public GitHub release execution checklist](docs/public-github-release-execution-checklist.md)
+- [GitHub repository profile](docs/github-repository-profile.md)
+- [Public launch post-checks](docs/public-launch-post-checks.md)
+
 ## Required safety boundary
 
 - [ ] No live APIs.

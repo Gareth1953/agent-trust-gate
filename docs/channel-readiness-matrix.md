@@ -4,7 +4,7 @@ This matrix records conservative local readiness. A status does not authorize de
 
 | Channel | Status | Purpose | Current Boundary | Future Possibility |
 |---|---|---|---|---|
-| GitHub public repo | ready for local/code launch | Public code review | Repository assets only; no push by this mission | Human-approved public repository release |
+| GitHub public repo | launch execution checklist prepared; human approval required before push | Public code review | No remote push performed by this mission | Human-approved public repository release |
 | README/docs | documentation-ready | Explain the product, proof, and limits | Static local documentation | Reuse across approved static surfaces |
 | manifest/schemas | ready for local/code launch | Code-readable capability and data shapes | Static files; no endpoint or transport | Versioned discovery assets |
 | CLI proof | ready for local/code launch | Run deterministic local trust proof | No action, payment, or settlement execution | Approved developer workflows |

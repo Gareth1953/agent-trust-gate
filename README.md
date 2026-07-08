@@ -128,6 +128,18 @@ file for future code-launch visibility.
 The landing page is prepared locally only. It is not deployed or hosted by
 this mission.
 
+## Public GitHub Release Execution Checklist
+
+P3-M107 prepares the project for a human-controlled public GitHub code launch.
+
+- [Public GitHub release execution checklist](docs/public-github-release-execution-checklist.md)
+- [GitHub repository profile](docs/github-repository-profile.md)
+- [Public launch post-checks](docs/public-launch-post-checks.md)
+
+This mission does not push, publish, deploy, tag remotely, create a GitHub
+repository, or activate live systems. Every remote step remains a future
+Gareth-approved human action.
+
 ## Current safety boundaries
 
 current_status: local_demo_only
@@ -166,8 +178,9 @@ The implemented developer-readiness baseline reached P3-M101 with code-readable
 developer integration readiness. P3-M102 polished public README positioning,
 P3-M103 prepared the repository for global code-level review, P3-M104 prepared
 local release-candidate assets, P3-M105 defined the code-first omnichannel
-architecture, and the current P3-M106 milestone prepares a static landing page
-without deploying or changing runtime capability.
+architecture, P3-M106 prepared a static landing page, and the current P3-M107
+milestone prepares human-controlled GitHub launch instructions without pushing,
+publishing, deploying, or changing runtime capability.
 
 Recent proof and readiness milestones:
 
@@ -182,6 +195,7 @@ Recent proof and readiness milestones:
 - P3-M104: public release candidate tag and local launch bundle
 - P3-M105: public omnichannel code launch plan
 - P3-M106: static global developer landing page
+- P3-M107: public GitHub release execution checklist
 
 ## Developer review path
 

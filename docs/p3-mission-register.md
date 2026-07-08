@@ -22,6 +22,7 @@
 | P3-M104 | Public Release Candidate Tag and Local Launch Bundle |
 | P3-M105 | Public Omnichannel Code Launch Plan |
 | P3-M106 | Static Global Developer Landing Page |
+| P3-M107 | Public GitHub Release Execution Checklist |
 
 ## Current proof chain
 
