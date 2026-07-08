@@ -8,7 +8,9 @@ Prepare repository files, README, documentation, manifest, schemas, examples, lo
 
 ## Phase 2: Static developer landing page
 
-Assess a static, non-interactive page that points developers to the same code and safety boundaries. No page is created or deployed by P3-M105.
+P3-M106 prepares the static developer landing page locally. It points developers to the same code, proof, and safety boundaries without scripts, forms, analytics, tracking, or external dependencies.
+
+Deployment is not performed. Hosting remains a separately reviewed future step.
 
 ## Phase 3: Code-readable discovery assets
 

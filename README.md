@@ -116,6 +116,18 @@ No live API, payment, settlement, external agent, AUC merge, or Agent Contact
 System integration is active. Future channels remain separately reviewed
 candidates only.
 
+## Static Global Developer Landing Page
+
+P3-M106 prepares a dependency-free developer landing page as a local static
+file for future code-launch visibility.
+
+- [Static landing page](public/index.html)
+- [Landing page documentation](docs/static-global-developer-landing-page.md)
+- [Reusable developer landing page copy](docs/developer-landing-page-copy.md)
+
+The landing page is prepared locally only. It is not deployed or hosted by
+this mission.
+
 ## Current safety boundaries
 
 current_status: local_demo_only
@@ -153,8 +165,9 @@ mission and explicit approval.
 The implemented developer-readiness baseline reached P3-M101 with code-readable
 developer integration readiness. P3-M102 polished public README positioning,
 P3-M103 prepared the repository for global code-level review, P3-M104 prepared
-local release-candidate assets, and the current P3-M105 milestone defines the
-code-first omnichannel architecture without changing runtime capability.
+local release-candidate assets, P3-M105 defined the code-first omnichannel
+architecture, and the current P3-M106 milestone prepares a static landing page
+without deploying or changing runtime capability.
 
 Recent proof and readiness milestones:
 
@@ -168,6 +181,7 @@ Recent proof and readiness milestones:
 - P3-M103: global code launch readiness
 - P3-M104: public release candidate tag and local launch bundle
 - P3-M105: public omnichannel code launch plan
+- P3-M106: static global developer landing page
 
 ## Developer review path
 

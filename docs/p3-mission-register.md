@@ -21,6 +21,7 @@
 | P3-M103 | Global Code Launch Readiness |
 | P3-M104 | Public Release Candidate Tag and Local Launch Bundle |
 | P3-M105 | Public Omnichannel Code Launch Plan |
+| P3-M106 | Static Global Developer Landing Page |
 
 ## Current proof chain
 

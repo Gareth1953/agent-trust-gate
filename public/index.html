@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Agent Trust Gate is a local-first trust enforcement layer for agent-led actions and payments.">
+    <title>Agent Trust Gate™ — Local-first trust enforcement</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="Agent Trust Gate home">ATG<span>™</span></a>
+      <nav aria-label="Page navigation">
+        <a href="#proof">Proof chain</a>
+        <a href="#run">Run locally</a>
+        <a href="#boundaries">Safety</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="eyebrow">Local-first trust infrastructure</p>
+        <h1 id="hero-title">Agent Trust Gate<span>™</span></h1>
+        <p class="subtitle">A local-first pre-action / pre-settlement trust enforcement layer for agent-led actions and payments.</p>
+        <p class="core-rule">No mandate. No evidence. No verified intent. No signed gate pass. No settlement.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../README.md">Review the code</a>
+          <a class="button secondary" href="#run">Run the local proof</a>
+        </div>
+        <p class="status-line"><span aria-hidden="true"></span> Local demo only · deterministic proof · no live integration</p>
+      </section>
+
+      <section class="section two-column" aria-labelledby="what-title">
+        <div>
+          <p class="section-label">What it does</p>
+          <h2 id="what-title">Trust checks before simulated settlement.</h2>
+        </div>
+        <p class="section-copy">Agent Trust Gate™ checks whether an agent-led action has the required mandate, evidence, verified intent, policy/risk tier, receipt validity, replay safety, and settlement-blocker eligibility before simulated settlement can be allowed.</p>
+      </section>
+
+      <section class="section proof-section" id="proof" aria-labelledby="proof-title">
+        <p class="section-label">Local proof chain</p>
+        <h2 id="proof-title">One inspectable decision path.</h2>
+        <ol class="proof-chain">
+          <li><span>01</span>Agent request</li>
+          <li><span>02</span>Gate decision</li>
+          <li><span>03</span>Receipt / audit artifact</li>
+          <li><span>04</span>Receipt verification</li>
+          <li><span>05</span>Gate pass validity / replay check</li>
+          <li><span>06</span>Settlement blocker simulation</li>
+          <li><span>07</span>Final money-gate proof decision</li>
+        </ol>
+      </section>
+
+      <section class="section run-section" id="run" aria-labelledby="run-title">
+        <div>
+          <p class="section-label">How to run locally</p>
+          <h2 id="run-title">Clone. Inspect. Prove.</h2>
+          <p>Run the existing package commands against synthetic local examples. Nothing is executed or settled.</p>
+        </div>
+        <pre aria-label="Local commands"><code>npm test
+npm run build
+npm run typecheck
+npm run demo:gate:allow
+npm run proof:money-gate</code></pre>
+      </section>
+
+      <section class="section" aria-labelledby="assets-title">
+        <p class="section-label">Code-readable assets</p>
+        <h2 id="assets-title">Built for technical review.</h2>
+        <div class="asset-grid">
+          <a href="../agent-trust-gate.manifest.json"><strong>Manifest</strong><span>Capabilities and disabled surfaces</span></a>
+          <a href="../schemas/"><strong>Schemas</strong><span>Request, receipt, and proof shapes</span></a>
+          <a href="../examples/"><strong>Examples</strong><span>Synthetic local fixtures</span></a>
+          <a href="../README.md"><strong>README / docs</strong><span>Architecture and safety boundaries</span></a>
+          <a href="#run"><strong>CLI proof</strong><span>Deterministic local commands</span></a>
+          <a href="../docs/agent-readable-capability-statement.md"><strong>Capability statement</strong><span>Agent-readable project status</span></a>
+        </div>
+      </section>
+
+      <section class="section boundaries" id="boundaries" aria-labelledby="boundaries-title">
+        <div>
+          <p class="section-label">Current safety boundaries</p>
+          <h2 id="boundaries-title">Local proof, clearly bounded.</h2>
+          <p>No signed gate pass means no settlement.</p>
+        </div>
+        <ul>
+          <li>Local demo only</li>
+          <li>No live API</li>
+          <li>No live payments</li>
+          <li>No real settlement</li>
+          <li>No x402 or AP2 activation</li>
+          <li>No banking or wallet logic</li>
+          <li>No cloud or network calls</li>
+          <li>No external agent contact</li>
+          <li>No AUC merge — AUC is not integrated</li>
+          <li>Agent Contact System is not integrated</li>
+          <li>No production cryptographic signing</li>
+          <li>No action execution</li>
+        </ul>
+      </section>
+
+      <section class="section direction" aria-labelledby="direction-title">
+        <p class="section-label">Omnichannel direction</p>
+        <h2 id="direction-title">One core, adaptable surfaces.</h2>
+        <p>Agent Trust Gate™ starts as a public code-readable proof, but is architected so the same Trust Gate core can later extend across developer, agent-readable, and future machine-to-machine channels. Those channels are not active today.</p>
+        <blockquote>One Trust Gate core. Many future surfaces. Same rules. Same receipts. Same safety boundary.</blockquote>
+      </section>
+    </main>
+
+    <footer>
+      <p>Agent Trust Gate™ · local-first · code-readable · reviewable</p>
+      <a href="../docs/static-global-developer-landing-page.md">Landing page notes</a>
+    </footer>
+  </body>
+</html>

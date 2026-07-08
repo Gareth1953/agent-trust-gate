@@ -40,6 +40,20 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Hosted sandbox not active.
 - [ ] Live payments/settlement not active.
 
+## Static landing page
+
+- [ ] `public/index.html` exists.
+- [ ] No external scripts.
+- [ ] No analytics.
+- [ ] No tracking.
+- [ ] No forms.
+- [ ] No external network dependencies.
+- [ ] No live API references.
+- [ ] No payment or settlement activation.
+- [ ] No external agent contact.
+- [ ] AUC is not integrated.
+- [ ] Agent Contact System is not integrated.
+
 ## Required safety boundary
 
 - [ ] No live APIs.

@@ -8,7 +8,7 @@ This matrix records conservative local readiness. A status does not authorize de
 | README/docs | documentation-ready | Explain the product, proof, and limits | Static local documentation | Reuse across approved static surfaces |
 | manifest/schemas | ready for local/code launch | Code-readable capability and data shapes | Static files; no endpoint or transport | Versioned discovery assets |
 | CLI proof | ready for local/code launch | Run deterministic local trust proof | No action, payment, or settlement execution | Approved developer workflows |
-| static developer page | future candidate | Present code-first developer navigation | Not created or deployed by P3-M105 | Separately approved static page |
+| static developer page | static page prepared locally, not deployed | Present code-first developer navigation | No hosting, no analytics, no contact forms, no live integrations | Separately approved static deployment assessment |
 | agent-readable capability statement | documentation-ready | Describe local capabilities and disabled features | Static statement only | Approved discovery metadata |
 | npm/package readiness | not approved | Possible package distribution | No package publish | Separate packaging assessment |
 | MCP/A2A adapter | future candidate | Possible interface to the shared core | No active MCP/A2A integration | Separate adapter assessment |
