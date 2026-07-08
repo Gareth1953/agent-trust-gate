@@ -1,18 +1,132 @@
-# Agent Trust Gate
+# Agent Trust Gate™
 
-Agent Trust Gate is a machine-to-machine AI internet utility concept for checking
-trust, risk, and approval boundaries before an automated system takes an
-important action.
+Agent Trust Gate™ is a local-first, pre-action and pre-settlement trust
+enforcement layer for agent-led actions and payments. It evaluates a proposed
+action before execution, records the decision as a structured receipt, and
+keeps settlement blocked unless the local trust chain passes.
 
-## First local purpose
+> **No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
 
-This initial version is a local, deterministic TypeScript engine. It accepts a
-proposed action, applies conservative risk rules, and returns a structured JSON
-receipt. It performs no network calls and takes no action itself.
+Current status: local_demo_only. The repository provides deterministic local
+software and proof artifacts, not a production service or payment system.
 
-The engine is intended to automate routine internal checks while keeping Gareth
-at the final safety gate for public, financial, legal, customer-facing, or
-externally binding actions.
+## Why this matters
+
+AI agents can request actions, delegate tasks, and call tools. Future systems
+may also ask agents to participate in buying or payment workflows. Before an
+action or settlement is considered, the surrounding system needs deterministic
+controls for mandate, evidence, intent, limits, approval, receipt integrity,
+freshness, and replay risk.
+
+Agent Trust Gate™ demonstrates those controls locally. It does not claim
+production adoption, legal or compliance certification, or live payment
+readiness.
+
+## What it proves locally
+
+    agent request
+    → gate decision
+    → receipt/audit artifact
+    → receipt verification
+    → gate pass validity/replay check
+    → settlement blocker simulation
+    → final money-gate proof decision
+
+The proof chain produces local, inspectable evidence of allow, review, refusal,
+expiry, replay, scope mismatch, and settlement-blocking behavior.
+
+- No action is executed.
+- No money is moved.
+- No payment rail is called.
+- No agents are contacted.
+- Only local proof artifacts are produced.
+
+## Quick local demo
+
+Install dependencies first, then use the existing project scripts:
+
+    npm test
+    npm run build
+    npm run typecheck
+    npm run demo:gate:allow
+    npm run proof:money-gate -- --input examples/local-end-to-end-money-gate-proof-input.json --summary-only
+
+Receipt verification and settlement controls can be inspected with supported
+local CLI flags:
+
+    npm run demo:gate -- --input examples/local-demo-low-risk-allow.json --verify-receipt
+    npm run demo:gate -- --input examples/local-demo-low-risk-allow.json --simulate-replay-protection
+    npm run demo:gate -- --input examples/local-demo-low-risk-allow.json --simulate-settlement-blocker
+
+These commands read local fixtures and print local results. They do not execute
+the requested action or settlement.
+
+## Code-readable assets
+
+- [Static manifest](agent-trust-gate.manifest.json)
+- [Local action-request schema](schemas/local-agent-action-request.schema.json)
+- [Local trust-receipt schema](schemas/local-trust-receipt.schema.json)
+- [Local money-gate proof schema](schemas/local-money-gate-proof.schema.json)
+- [Agent-readable capability statement](docs/agent-readable-capability-statement.md)
+- [Code-readable developer integration pack](docs/code-readable-developer-integration-pack.md)
+- [Developer integration checklist](docs/developer-integration-checklist.md)
+
+## Current safety boundaries
+
+current_status: local_demo_only
+
+The following capabilities are not active:
+
+- live APIs
+- live payments
+- real settlement
+- x402 or AP2 activation
+- banking or wallet logic
+- cloud or network calls
+- external agent contact
+- Agent Update Consortium merge
+- Agent Contact System integration
+- public outreach automation
+- production cryptographic signing
+- action execution
+
+No secret or credential is required for the proof path above.
+
+## What is separate
+
+Agent Update Consortium™ remains separate. AUC is not integrated.
+
+Agent Contact System remains separate and is not integrated.
+
+Future integrations may be assessed only if they strengthen trust, proof,
+receipt verification, replay protection, settlement blocking, developer
+clarity, and safety boundaries. Any such integration requires a separate
+mission and explicit approval.
+
+## Current milestone
+
+The implemented developer-readiness baseline has reached P3-M101:
+code-readable developer integration readiness. P3-M102 polishes public README
+positioning without changing runtime capability.
+
+Recent proof and readiness milestones:
+
+- P3-M096: settlement blocker simulation
+- P3-M097: validity and replay protection
+- P3-M098: trust receipt verification
+- P3-M099: end-to-end money-gate proof
+- P3-M100: local release readiness and safety audit
+- P3-M101: code-readable developer integration pack
+
+## Developer review path
+
+1. Read the [manifest](agent-trust-gate.manifest.json).
+2. Read the [capability statement](docs/agent-readable-capability-statement.md).
+3. Run the tests, build, and typecheck.
+4. Run the local gate demo.
+5. Inspect the static receipt examples in examples/.
+6. Run the local money-gate proof.
+7. Confirm the current safety boundaries before drawing conclusions.
 
 ## Usage
 
