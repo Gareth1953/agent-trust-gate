@@ -20,6 +20,7 @@
 | P3-M102 | Public README and Developer Positioning Polish |
 | P3-M103 | Global Code Launch Readiness |
 | P3-M104 | Public Release Candidate Tag and Local Launch Bundle |
+| P3-M105 | Public Omnichannel Code Launch Plan |
 
 ## Current proof chain
 

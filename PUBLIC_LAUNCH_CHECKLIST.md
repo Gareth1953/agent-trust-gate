@@ -25,6 +25,21 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Confirm no Agent Contact System integration; Agent Contact System is not integrated.
 - [ ] No package publish or remote tag push.
 
+## Omnichannel Code Launch
+
+- [ ] GitHub/repo assets ready.
+- [ ] README/docs ready.
+- [ ] Manifest/schemas ready.
+- [ ] Examples parse.
+- [ ] CLI proof works.
+- [ ] Static developer page not yet created.
+- [ ] npm/package readiness not yet approved.
+- [ ] MCP/A2A not yet active.
+- [ ] AUC bridge not yet integrated; AUC is not integrated.
+- [ ] Agent Contact System not integrated.
+- [ ] Hosted sandbox not active.
+- [ ] Live payments/settlement not active.
+
 ## Required safety boundary
 
 - [ ] No live APIs.

@@ -100,6 +100,22 @@ This is release-candidate readiness only. No live deployment, payment,
 settlement, remote tag push, package publish, or external agent contact is
 performed.
 
+## Public Omnichannel Code Launch Direction
+
+Omnichannel is an architectural direction, not a deployment mandate. The first
+launch surface is public code and documentation; future approved channels may
+reuse the same Trust Gate core without duplicating decision logic.
+
+- [Public omnichannel code launch plan](docs/public-omnichannel-code-launch-plan.md)
+- [Omnichannel architecture principles](docs/omnichannel-architecture-principles.md)
+- [Channel readiness matrix](docs/channel-readiness-matrix.md)
+- [Global code launch sequence](docs/global-code-launch-sequence.md)
+- [Code-first contact model](docs/code-first-contact-model.md)
+
+No live API, payment, settlement, external agent, AUC merge, or Agent Contact
+System integration is active. Future channels remain separately reviewed
+candidates only.
+
 ## Current safety boundaries
 
 current_status: local_demo_only
@@ -136,9 +152,9 @@ mission and explicit approval.
 
 The implemented developer-readiness baseline reached P3-M101 with code-readable
 developer integration readiness. P3-M102 polished public README positioning,
-P3-M103 prepared the repository for global code-level review, and the current
-P3-M104 milestone prepares local release-candidate assets without changing
-runtime capability.
+P3-M103 prepared the repository for global code-level review, P3-M104 prepared
+local release-candidate assets, and the current P3-M105 milestone defines the
+code-first omnichannel architecture without changing runtime capability.
 
 Recent proof and readiness milestones:
 
@@ -151,6 +167,7 @@ Recent proof and readiness milestones:
 - P3-M102: public README and developer positioning polish
 - P3-M103: global code launch readiness
 - P3-M104: public release candidate tag and local launch bundle
+- P3-M105: public omnichannel code launch plan
 
 ## Developer review path
 
