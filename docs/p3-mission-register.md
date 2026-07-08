@@ -18,6 +18,7 @@
 | P3-M100 | Local Release Readiness and Safety Audit |
 | P3-M101 | Code-Readable Developer Integration Pack |
 | P3-M102 | Public README and Developer Positioning Polish |
+| P3-M103 | Global Code Launch Readiness |
 
 ## Current proof chain
 

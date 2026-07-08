@@ -71,6 +71,21 @@ the requested action or settlement.
 - [Code-readable developer integration pack](docs/code-readable-developer-integration-pack.md)
 - [Developer integration checklist](docs/developer-integration-checklist.md)
 
+## Global Code Launch Readiness
+
+P3-M103 prepares the local-first code, documentation, schemas, examples,
+manifest, and CLI proof for global developer review without enabling a live
+service or operational integration.
+
+- [Security policy](SECURITY.md)
+- [Contributing guide](CONTRIBUTING.md)
+- [Changelog](CHANGELOG.md)
+- [Release notes](RELEASE_NOTES.md)
+- [Public launch checklist](PUBLIC_LAUNCH_CHECKLIST.md)
+- [Global code launch readiness](docs/global-code-launch-readiness.md)
+- [Public repository hygiene checklist](docs/public-repository-hygiene-checklist.md)
+- [Global launch positioning](docs/global-launch-positioning.md)
+
 ## Current safety boundaries
 
 current_status: local_demo_only
@@ -105,9 +120,10 @@ mission and explicit approval.
 
 ## Current milestone
 
-The implemented developer-readiness baseline has reached P3-M101:
-code-readable developer integration readiness. P3-M102 polishes public README
-positioning without changing runtime capability.
+The implemented developer-readiness baseline reached P3-M101 with code-readable
+developer integration readiness. P3-M102 polished public README positioning,
+and the current P3-M103 milestone prepares the repository for global code-level
+review without changing runtime capability.
 
 Recent proof and readiness milestones:
 
@@ -117,6 +133,8 @@ Recent proof and readiness milestones:
 - P3-M099: end-to-end money-gate proof
 - P3-M100: local release readiness and safety audit
 - P3-M101: code-readable developer integration pack
+- P3-M102: public README and developer positioning polish
+- P3-M103: global code launch readiness
 
 ## Developer review path
 
