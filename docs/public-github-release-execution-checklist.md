@@ -15,6 +15,7 @@ Human approval is required before any remote command. Do not run remote push aut
 - [ ] `agent-trust-gate.manifest.json` parses and reports `local_demo_only`.
 - [ ] All schema JSON files parse.
 - [ ] `public/index.html` exists.
+- [ ] Approved public contact email appears in README, SECURITY, manifest, and public landing page.
 - [ ] No real secrets, tokens, keys, or credentials are tracked.
 - [ ] No `.env` file is tracked.
 - [ ] No private logs or generated evidence records are tracked.
@@ -29,6 +30,7 @@ Human approval is required before any remote command. Do not run remote push aut
 - [ ] Create a public GitHub repository only after Gareth's approval.
 - [ ] Suggested repository name: `agent-trust-gate`.
 - [ ] Suggested description: Local-first pre-action / pre-settlement trust enforcement layer for agent-led actions and payments.
+- [ ] Suggested public contact: `gpmiddleton71@gmail.com` for developer, agent-system, integration, security, and public project enquiries only.
 - [ ] Review repository visibility, default branch, license display, security policy, and public issue settings before launch.
 
 Suggested topics:
@@ -45,6 +47,8 @@ Suggested topics:
 - `typescript`
 
 Topics describe discoverability only. They do not claim active MCP/A2A integration or production readiness.
+
+The public contact email is not a live API endpoint, automated agent contact route, autonomous outreach channel, live support SLA, payment channel, settlement channel, or hosted service availability claim.
 
 ## C. Remote setup commands — future human-approved examples only
 

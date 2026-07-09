@@ -7,6 +7,7 @@ These are human-copyable suggestions for a future approved repository setup. P3-
 - Suggested repository name: `agent-trust-gate`
 - Suggested short description: Local-first pre-action / pre-settlement trust enforcement for agent-led actions and payments.
 - Suggested pinned repository description: Code-readable local proof for mandate, evidence, verified intent, receipts, replay safety, and settlement blocking.
+- Suggested public contact: `gpmiddleton71@gmail.com` for developer, agent-system, integration, security, and public project enquiries only.
 
 ## Suggested long description
 
@@ -25,6 +26,7 @@ The `mcp` and `a2a` topics describe architectural relevance only. No MCP/A2A ada
 - Topics: use only the reviewed topic list.
 - Releases: enable only when Gareth approves a release.
 - Packages: do not publish a package as part of this mission.
+- Contact: use the approved public contact email only as human-readable project metadata. It is not a live API endpoint, automated agent contact route, outreach automation, support SLA, payment channel, settlement channel, or hosted service availability claim.
 
 ## Suggested first release
 

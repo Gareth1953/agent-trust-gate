@@ -71,6 +71,17 @@ the requested action or settlement.
 - [Code-readable developer integration pack](docs/code-readable-developer-integration-pack.md)
 - [Developer integration checklist](docs/developer-integration-checklist.md)
 
+## Public contact
+
+Public project contact: `gpmiddleton71@gmail.com`
+
+Use this email for developer, agent-system, integration, security, and public
+project enquiries. It is contact metadata only, not a live API endpoint,
+autonomous outreach channel, automated agent contact route, live support SLA,
+payment channel, settlement channel, or hosted service availability claim.
+
+See [public contact and identity hygiene](docs/public-contact-and-identity-hygiene.md).
+
 ## Global Code Launch Readiness
 
 P3-M103 prepares the local-first code, documentation, schemas, examples,
@@ -196,6 +207,7 @@ Recent proof and readiness milestones:
 - P3-M105: public omnichannel code launch plan
 - P3-M106: static global developer landing page
 - P3-M107: public GitHub release execution checklist
+- P3-M108A: public contact email and identity hygiene
 
 ## Developer review path
 

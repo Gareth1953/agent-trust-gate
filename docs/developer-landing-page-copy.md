@@ -22,4 +22,10 @@ Local demo only. No live API, payment, settlement, banking or wallet logic, clou
 
 Review the code, run the local proof, inspect the receipt.
 
+## Public contact copy
+
+Public project contact: `gpmiddleton71@gmail.com`
+
+Use this email for developer, agent-system, integration, security, and public project enquiries. It is not a live API endpoint, autonomous outreach channel, automated agent contact route, live support SLA, payment channel, settlement channel, or hosted service availability claim.
+
 This copy does not claim production readiness, official standard status, live payment readiness, legal certification, compliance certification, or deployment approval.

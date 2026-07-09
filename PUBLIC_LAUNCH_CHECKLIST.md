@@ -11,6 +11,14 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Tests, build, and typecheck pass.
 - [ ] `.env`, generated logs, and private artifacts remain ignored.
 
+## Public contact identity
+
+- [ ] Approved public contact email is `gpmiddleton71@gmail.com`.
+- [ ] README, SECURITY, manifest, and static landing page use the approved public contact email.
+- [ ] Public contact wording is limited to developer, agent-system, integration, security, and public project enquiries.
+- [ ] Public contact wording does not imply a live API endpoint, automated agent contact, autonomous outreach, live support SLA, payment channel, settlement channel, or hosted service availability.
+- [ ] Git commit identity remains `Agent Trust Gate <291836990+Gareth1953@users.noreply.github.com>`.
+
 ## Release-candidate checklist
 
 - [ ] Run `npm test`.

@@ -23,6 +23,7 @@
 | P3-M105 | Public Omnichannel Code Launch Plan |
 | P3-M106 | Static Global Developer Landing Page |
 | P3-M107 | Public GitHub Release Execution Checklist |
+| P3-M108A | Public Contact Email and Identity Hygiene Pack |
 
 ## Current proof chain
 

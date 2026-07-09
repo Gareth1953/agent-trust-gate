@@ -6,6 +6,9 @@ This is a future-facing, local, non-operational draft for review. It is not a li
 {
   "service_name": "Agent Trust Gate",
   "purpose": "Pre-action / pre-settlement trust enforcement",
+  "public_contact_email": "gpmiddleton71@gmail.com",
+  "public_contact_purpose": "Human developer, agent-system, integration, security, and public project enquiries only",
+  "public_contact_boundary": "Not a live API endpoint, automated agent contact route, outreach automation, support SLA, payment, settlement, or hosted service",
   "current_status": "local_demo_only",
   "live_payments": false,
   "live_settlement": false,
@@ -48,6 +51,8 @@ Local demo action requests only. Inputs describe synthetic requests for local re
 ## E. Safety Boundaries
 
 The statement describes local proof-of-flow capability only. No real agent can connect, act, pay, settle, call tools, or execute through it. Future publication, hosted sandbox use, or agent-system integration requires separate Gareth approval and a separate readiness gate.
+
+The public contact email is human-readable project metadata only. It does not activate autonomous outreach, automated agent contact, live support, payment, settlement, or hosted service availability.
 
 ## F. Code-Readable Integration Assets
 

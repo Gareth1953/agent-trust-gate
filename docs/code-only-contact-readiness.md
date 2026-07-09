@@ -2,6 +2,8 @@
 
 Gareth's operating principle is that any future contact with agents, systems, or integration partners should be through reviewed code-readable assets: schemas, manifests, examples, safe sandbox-style interfaces, and developer documentation. It should not depend on phone calls or manual sales outreach.
 
+The approved public project contact email is `gpmiddleton71@gmail.com`. It is for developer, agent-system, integration, security, and public project enquiries only. It is not a live API endpoint, automated agent contact route, autonomous outreach channel, live support SLA, payment channel, settlement channel, or hosted service availability claim.
+
 P3-M101 prepares those local assets. It does not activate contact.
 
 - No live contact is active today.

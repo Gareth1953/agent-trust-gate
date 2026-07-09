@@ -10,6 +10,8 @@ A future system can understand the current Agent Trust Gate™ demonstration by 
 6. schemas/*.schema.json for documentation-only machine-readable shapes.
 7. examples/integration-*.json for synthetic request, signed-pass, review, refusal, and money-gate proof examples.
 
+Approved public project contact metadata is `gpmiddleton71@gmail.com` for developer, agent-system, integration, security, and public project enquiries only. It is not a live API endpoint, automated agent contact route, autonomous outreach channel, live support SLA, payment channel, settlement channel, or hosted service availability claim.
+
 This is local file-based discovery only. Reading these files does not publish, broadcast, call, register, submit, announce, or contact any external system, agent, registry, consortium, or integration partner.
 
 No discovery service, live endpoint, hosted sandbox, network lookup, external agent contact, Agent Update Consortium integration, Agent Contact System integration, or outreach automation is active.
