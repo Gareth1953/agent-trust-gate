@@ -25,6 +25,10 @@ P3-M113 adds a public [paid pilot offer](paid-pilot-offer.md) and reusable
 commercial copy assets only. They do not create fixed pricing, payment
 processing, automatic access, settlement execution, or hosted service access.
 
+P3-M114 adds an [indicative pricing and paid pilot menu](pricing-and-paid-pilot-menu.md).
+The price bands are discussion ranges only, not offers, invoices, quotes, or
+guarantees. Payment remains human-approved and external to the repository.
+
 ## What the commercial offer is
 
 Agent Trust Gate™ can be discussed as a local-first commercial review or pilot

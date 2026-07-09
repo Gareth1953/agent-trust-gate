@@ -132,6 +132,18 @@ not create live payment processing, PayPal API integration, Stripe
 integration, checkout, webhooks, automatic access, settlement execution, or a
 hosted service.
 
+## Indicative paid pilot menu
+
+P3-M114 adds an indicative, non-binding GBP pricing and paid pilot menu draft
+for commercial review enquiries.
+
+- [Pricing and paid pilot menu](docs/pricing-and-paid-pilot-menu.md)
+
+The bands are discussion ranges only, not offers, invoices, quotes, or
+guarantees. Payment remains human-approved and external to the repo; no live
+payment processing, checkout, webhook, automatic access, or settlement
+execution is active.
+
 ## Global Code Launch Readiness
 
 P3-M103 prepares the local-first code, documentation, schemas, examples,
@@ -259,7 +271,8 @@ safety state. P3-M110 adds a public clone-and-run onboarding path for
 developers, agent-system builders, and integration reviewers, and P3-M111 adds
 public repo discovery polish. P3-M112 adds human-reviewed commercial enquiry
 guidance for paid pilots and reviews. P3-M113 adds paid pilot offer and
-contact copy, without changing runtime capability.
+contact copy. P3-M114 adds an indicative non-binding paid pilot menu, without
+changing runtime capability.
 
 Recent proof and readiness milestones:
 
@@ -282,6 +295,7 @@ Recent proof and readiness milestones:
 - P3-M111: public repo discovery polish
 - P3-M112: commercial payment-capture pack
 - P3-M113: paid pilot offer and contact copy
+- P3-M114: pricing and paid pilot menu draft
 
 ## Developer review path
 

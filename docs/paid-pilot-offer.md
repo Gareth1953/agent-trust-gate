@@ -20,8 +20,10 @@ The offer is simple: review the public code, local proof chain, schemas,
 examples, receipts, replay checks, and settlement blocker with Gareth, then
 decide whether a scoped local pilot or technical review is appropriate.
 
-No fixed prices are included yet. Any pricing, invoice, PayPal-request-ready
-route, timing, access, or deliverable must be separately human-approved.
+P3-M114 adds an [indicative pricing and paid pilot menu](pricing-and-paid-pilot-menu.md).
+Those GBP bands are discussion ranges only, not offers, invoices, quotes, or
+guarantees. Any pricing, invoice, PayPal-request-ready route, timing, access,
+or deliverable must be separately human-approved.
 
 ## Who should contact
 

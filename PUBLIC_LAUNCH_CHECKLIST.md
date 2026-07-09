@@ -11,6 +11,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Commercial payment-capture pack is present: [Commercial payment-capture pack](docs/commercial-payment-capture-pack.md).
 - [ ] Paid pilot offer is present: [Paid pilot offer](docs/paid-pilot-offer.md).
 - [ ] Commercial contact copy is present: [Commercial contact copy](docs/commercial-contact-copy.md).
+- [ ] Pricing and paid pilot menu draft is present: [Pricing and paid pilot menu](docs/pricing-and-paid-pilot-menu.md).
 - [ ] Manifest reports `local_demo_only`.
 - [ ] Schemas and JSON examples parse.
 - [ ] Tests, build, and typecheck pass.
@@ -36,6 +37,11 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Contact templates do not promise acceptance, availability, outcome, compliance, integration, payment activation, settlement, or automatic access.
 - [ ] Invoice-ready and PayPal-request-ready wording remains future human-approved and external to the repository.
 - [ ] No live payment processing, hosted checkout, webhook, settlement execution, wallet/banking logic, or automatic access is introduced by P3-M113.
+- [ ] P3-M114 indicative price bands are discussion ranges only.
+- [ ] P3-M114 price bands are not offers, invoices, quotes, or guarantees.
+- [ ] P3-M114 pricing remains subject to human review and separate agreement.
+- [ ] Payment remains external to the repository.
+- [ ] No checkout, payment API, webhook, wallet/banking logic, settlement execution, or automatic access is introduced by P3-M114.
 
 ## Release-candidate checklist
 

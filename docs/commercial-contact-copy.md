@@ -11,6 +11,10 @@ Payment is human-approved and external to the repo.
 
 **No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
 
+P3-M114 adds an [indicative pricing and paid pilot menu](pricing-and-paid-pilot-menu.md).
+Use it only as discussion context. The listed GBP bands are non-binding and
+must be confirmed by separate human agreement.
+
 ## Developer enquiry template
 
 Subject: `Agent Trust Gate technical review enquiry`

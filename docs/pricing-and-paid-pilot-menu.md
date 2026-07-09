@@ -1,0 +1,144 @@
+# Pricing and Paid Pilot Menu
+
+P3-M114 creates a public-facing pricing and paid pilot menu draft for Agent
+Trust Gate™ commercial enquiries.
+
+This is commercial documentation only. It does not create an offer, invoice,
+quote, checkout, payment link, payment processor, payment API, settlement
+system, hosted service, support SLA, or access entitlement.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
+## Purpose
+
+The purpose of this draft is to help interested developers, agent builders,
+governance teams, payment/integration reviewers, and enterprise evaluators
+understand possible paid review and pilot options before contacting Gareth.
+
+These GBP bands are indicative discussion ranges only. They are not offers,
+invoices, quotes, guarantees, fixed prices, service commitments, procurement
+commitments, compliance commitments, settlement commitments, or automatic
+access terms.
+
+Any pricing, scope, invoice, PayPal-request-ready route, timing, deliverable,
+or access condition must be confirmed by human review and separate agreement.
+
+## Who this is for
+
+This menu is for:
+
+- developers reviewing local trust-gate patterns;
+- agent builders reviewing mandate, evidence, verified intent, and receipts;
+- AI governance and trust/safety teams;
+- payment and integration reviewers;
+- enterprise evaluators considering a local pilot or technical review.
+
+## Enquiry route
+
+To request a paid pilot, pricing discussion, or commercial review, contact:
+`gpmiddleton71@gmail.com`
+
+Do not send secrets, credentials, private keys, wallet details, bank details,
+live payment details, production logs, personal data, or confidential material
+in the first email.
+
+## Indicative paid pilot options
+
+| Option | Indicative GBP band | What it may include |
+|---|---:|---|
+| Paid Technical Review | £250–£750 | Code, README, manifest, schemas, examples, local proof commands, and safety-boundary review. |
+| Developer Integration Feasibility Review | £500–£1,500 | Local integration fit, schema/example interpretation, CLI proof review, and integration questions. |
+| Local Trust Gate Pilot | £1,500–£5,000 | Scoped local pilot discussion, local proof-chain review, receipt/replay/settlement-blocker walkthrough, and pilot notes. |
+| Agent Payment / Pre-Settlement Review | £2,500–£7,500 | Pre-settlement trust review for agent-led or payment-adjacent workflows using local proof artifacts only. |
+| AI Governance and Safety Review | £1,000–£5,000 | Governance, risk, trust/safety, policy/risk tier, evidence, auditability, and safety-boundary review. |
+| Enterprise Evaluation Pack | £5,000+ by separate agreement | Broader enterprise evaluation scope, review agenda, stakeholder questions, and local proof walkthrough. |
+
+These are indicative discussion bands only, not offers, invoices, quotes, or
+guarantees.
+
+## What each option may include
+
+A separately agreed review or pilot may include:
+
+- walkthrough of the local proof chain;
+- review of mandate, evidence, verified intent, policy/risk tier, receipt
+  validity, replay safety, and settlement-blocker controls;
+- review of README, docs, manifest, schemas, and examples;
+- local CLI proof walkthrough;
+- integration feasibility discussion;
+- governance, trust/safety, or payment-adjacent review questions;
+- written summary notes if agreed in scope.
+
+## What each option does not include
+
+No option includes:
+
+- automatic acceptance;
+- automatic access;
+- live payment processing;
+- PayPal API integration;
+- Stripe integration;
+- hosted checkout;
+- webhooks;
+- wallet or banking functionality;
+- real settlement execution;
+- live API access;
+- hosted service availability;
+- cloud or network calls from the product;
+- external-agent contact;
+- production cryptographic signing;
+- AUC integration;
+- Agent Contact System integration;
+- public outreach automation;
+- action execution;
+- legal, financial, compliance, security, procurement, or settlement guarantee.
+
+## Human approval requirement
+
+Every pricing discussion, paid pilot, commercial review, invoice, manual
+payment route, PayPal-request-ready route, timing, deliverable, and access
+condition requires human review and separate agreement.
+
+Payment is human-approved and external to the repo. A commercial enquiry,
+proposed payment, invoice, or completed external payment does not grant
+automatic acceptance, automatic access, deployment, hosted service,
+payment activation, settlement execution, external-agent contact, AUC
+integration, Agent Contact System integration, production signing, outreach
+automation, or action execution.
+
+## Payment external to repo
+
+The repository does not process money, settle transactions, issue invoices,
+create payment requests, host checkout, store billing details, receive
+webhooks, call payment APIs, or automate access after payment.
+
+Any invoice-ready or PayPal-request-ready handling is future human-approved
+commercial administration outside this repository.
+
+## No guarantee language
+
+The indicative bands and option names do not create:
+
+- legal advice;
+- financial advice;
+- compliance certification;
+- security certification;
+- procurement approval;
+- settlement approval;
+- production readiness;
+- support availability;
+- guaranteed outcome.
+
+## Safety boundary
+
+Agent Trust Gate™ remains `local_demo_only`.
+
+No live APIs, hosted service, forms, tracking, analytics, telemetry, cloud or
+network calls in the product, live payment processing, PayPal API integration,
+Stripe integration, hosted checkout, webhooks, wallet/banking logic, real
+settlement execution, secrets, credentials, external-agent contact, outreach
+automation, Agent Update Consortium integration, Agent Contact System
+integration, production cryptographic signing, or action execution is added by
+this pricing draft.
+
+No signed gate pass means no settlement.

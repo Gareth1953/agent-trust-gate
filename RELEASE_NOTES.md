@@ -1,5 +1,20 @@
 # Release Notes
 
+## P3-M114: Pricing and Paid Pilot Menu Draft
+
+P3-M114 adds a public-facing indicative GBP pricing and paid pilot menu draft
+for commercial enquiries. The menu helps developers, agent builders,
+governance teams, payment/integration reviewers, and enterprise evaluators
+understand possible paid review and pilot options.
+
+All price bands are indicative discussion ranges only, not offers, invoices,
+quotes, guarantees, or automatic access terms. Payment remains human-approved
+and external to the repository. No live payment processing, PayPal API
+integration, Stripe integration, checkout, webhooks, wallet/banking logic,
+settlement execution, cloud/network call, or action execution is added.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M113: Paid Pilot Offer and Contact Copy
 
 P3-M113 adds a public paid pilot offer page and reusable commercial contact

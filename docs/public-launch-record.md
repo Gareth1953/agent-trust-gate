@@ -29,6 +29,11 @@ P3-M113 adds a paid pilot offer page and reusable commercial contact copy. It
 keeps payment human-approved and external to the repository, with no automatic
 access, fixed pricing, payment processing, checkout, webhook, or settlement.
 
+P3-M114 adds an indicative non-binding GBP pricing and paid pilot menu draft.
+It keeps all prices subject to human review and separate agreement, with no
+payment processing, checkout, webhook, automatic access, wallet/banking logic,
+or settlement execution.
+
 ## What was launched
 
 The public launch made the code-readable developer project available for review:
@@ -48,6 +53,7 @@ The public launch made the code-readable developer project available for review:
 - Commercial payment-capture enquiry guidance.
 - Paid pilot offer page.
 - Commercial contact copy.
+- Indicative pricing and paid pilot menu draft.
 
 The launch surface is public code and documentation. The product remains
 `local_demo_only`.
@@ -96,6 +102,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm `docs/commercial-payment-capture-pack.md` is visible and linked from README.
 - [ ] Confirm `docs/paid-pilot-offer.md` is visible and linked from README.
 - [ ] Confirm `docs/commercial-contact-copy.md` is visible and linked from README.
+- [ ] Confirm `docs/pricing-and-paid-pilot-menu.md` is visible and linked from README.
 - [ ] Confirm README, LICENSE, SECURITY, CHANGELOG, RELEASE_NOTES, and PUBLIC_LAUNCH_CHECKLIST render correctly.
 - [ ] Confirm `agent-trust-gate.manifest.json` is visible and still reports `local_demo_only`.
 - [ ] Confirm schemas and synthetic examples are visible.
@@ -106,6 +113,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm no live API, live payments, settlement execution, external-agent contact, AUC integration, Agent Contact System integration, cloud/network call, outreach automation, production signing, or action execution is active.
 - [ ] Confirm paid pilot and commercial review enquiries remain human-reviewed and external to the repository.
 - [ ] Confirm paid pilot offer and contact copy do not imply automatic acceptance, automatic access, fixed pricing, guaranteed outcome, payment activation, or settlement execution.
+- [ ] Confirm pricing bands remain indicative, non-binding, and subject to separate human agreement.
 - [ ] Confirm no git tag, package publish, or deployment has been performed unless separately approved later.
 
 ## Recommended next steps
