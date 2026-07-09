@@ -16,6 +16,8 @@ P3-M108 completes the public GitHub code launch on branch `main`.
 
 P3-M109 records the public launch and post-launch safety state. Tag/package publish/deployment remain future human-approved steps.
 
+P3-M111 adds public repo discovery polish for GitHub description, topics, audience, and first-impression wording. This remains metadata guidance only.
+
 ## Phase 2: Static developer landing page
 
 P3-M106 prepares the static developer landing page locally. It points developers to the same code, proof, and safety boundaries without scripts, forms, analytics, tracking, or external dependencies.

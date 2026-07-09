@@ -18,6 +18,9 @@ post-launch safety state.
 P3-M110 adds the public clone-and-run developer onboarding pack for new
 developers, agent-system builders, and integration reviewers.
 
+P3-M111 adds public repo discovery polish for GitHub description, topics,
+tagline, audience, summary, and first-impression safety wording.
+
 ## What was launched
 
 The public launch made the code-readable developer project available for review:
@@ -33,6 +36,7 @@ The public launch made the code-readable developer project available for review:
 - Public contact and identity hygiene documentation.
 - Public GitHub launch checklist and post-launch checks.
 - Public clone-and-run onboarding quickstart.
+- Public repo discovery polish guidance.
 
 The launch surface is public code and documentation. The product remains
 `local_demo_only`.
@@ -77,6 +81,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm the public repository page is visible.
 - [ ] Confirm the public repository default branch is `main`.
 - [ ] Confirm `docs/clone-and-run-quickstart.md` is visible and linked from README.
+- [ ] Confirm `docs/public-repo-discovery-polish.md` is visible and linked from README.
 - [ ] Confirm README, LICENSE, SECURITY, CHANGELOG, RELEASE_NOTES, and PUBLIC_LAUNCH_CHECKLIST render correctly.
 - [ ] Confirm `agent-trust-gate.manifest.json` is visible and still reports `local_demo_only`.
 - [ ] Confirm schemas and synthetic examples are visible.

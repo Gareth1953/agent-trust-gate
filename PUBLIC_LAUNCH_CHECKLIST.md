@@ -7,6 +7,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] README positioning and links are accurate.
 - [ ] License, security policy, contribution guide, changelog, and release notes are present.
 - [ ] Public launch record is present: [Public launch record](docs/public-launch-record.md).
+- [ ] Public repo discovery polish is present: [Public repo discovery polish](docs/public-repo-discovery-polish.md).
 - [ ] Manifest reports `local_demo_only`.
 - [ ] Schemas and JSON examples parse.
 - [ ] Tests, build, and typecheck pass.
@@ -48,6 +49,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Agent Contact System not integrated.
 - [ ] Hosted sandbox not active.
 - [ ] Live payments/settlement not active.
+- [ ] GitHub description and topics remain metadata only.
 
 ## Static landing page
 
@@ -81,6 +83,7 @@ human-approved steps.
 - [ ] Confirm the public branch is `main`.
 - [ ] Confirm the approved contact email remains `gpmiddleton71@gmail.com`.
 - [ ] Confirm no old or unapproved public contact email is present.
+- [ ] Confirm public repo description and topics match the discovery polish guidance.
 - [ ] Confirm no tag, package publish, or deployment has been performed unless separately approved.
 - [ ] Confirm no live API, payment, settlement, cloud/network call, external-agent contact, AUC merge, Agent Contact System integration, production signing, or action execution has been added.
 

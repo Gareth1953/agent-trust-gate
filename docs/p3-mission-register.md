@@ -27,6 +27,7 @@
 | P3-M108A | Public Contact Email and Identity Hygiene Pack |
 | P3-M109 | Public Launch Record and Post-Launch Safety Checklist |
 | P3-M110 | Public Clone-and-Run Developer Onboarding Pack |
+| P3-M111 | Public Repo Discovery Polish |
 
 ## Current proof chain
 

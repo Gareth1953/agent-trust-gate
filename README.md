@@ -22,6 +22,17 @@ commands, review assets, public contact, and the safety boundary. It does not
 activate a live API, payment, settlement, hosted service, external-agent
 contact, deployment, or action execution.
 
+## Repository profile
+
+P3-M111 records recommended GitHub description, topics, public tagline, public
+summary, audience, and safety-boundary wording for repository discoverability.
+
+- [Public repo discovery polish](docs/public-repo-discovery-polish.md)
+
+This is public metadata guidance only. It does not push, tag, publish, deploy,
+activate live APIs, enable payments, execute settlement, contact external
+agents, merge AUC, integrate Agent Contact System, or execute actions.
+
 ## Why this matters
 
 AI agents can request actions, delegate tasks, and call tools. Future systems
@@ -218,8 +229,8 @@ milestone prepares human-controlled GitHub launch instructions without pushing,
 publishing, deploying, or changing runtime capability. P3-M108 completed the
 public GitHub code launch, and P3-M109 records the launch and post-launch
 safety state. P3-M110 adds a public clone-and-run onboarding path for
-developers, agent-system builders, and integration reviewers without changing
-runtime capability.
+developers, agent-system builders, and integration reviewers, and P3-M111 adds
+public repo discovery polish, without changing runtime capability.
 
 Recent proof and readiness milestones:
 
@@ -239,6 +250,7 @@ Recent proof and readiness milestones:
 - P3-M108: public GitHub code launch complete
 - P3-M109: public launch record and post-launch safety checklist
 - P3-M110: public clone-and-run developer onboarding pack
+- P3-M111: public repo discovery polish
 
 ## Developer review path
 
