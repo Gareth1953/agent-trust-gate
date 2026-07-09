@@ -1,8 +1,10 @@
 # Public GitHub Release Execution Checklist
 
-This checklist prepares Gareth for a future human-controlled public GitHub code launch. P3-M107 does not create a repository, add a remote, push, tag, publish, deploy, contact an external system, or activate a live capability.
+This checklist prepared Gareth for the human-controlled public GitHub code launch. P3-M108 public GitHub launch is complete. P3-M109 records the current launch state in [Public launch record](public-launch-record.md).
 
-Human approval is required before any remote command. Do not run remote push automatically.
+P3-M107 did not create a repository, add a remote, push, tag, publish, deploy, contact an external system, or activate a live capability. P3-M109 does not push, tag, publish, deploy, contact an external system, or activate a live capability.
+
+Human approval remains required before any future remote command. Do not run remote push automatically.
 
 ## A. Pre-launch local checks
 
@@ -25,13 +27,13 @@ Human approval is required before any remote command. Do not run remote push aut
 - [ ] No settlement execution is active.
 - [ ] No external agent contact is active.
 
-## B. GitHub repository setup — manual human steps only
+## B. GitHub repository setup — completed manually in P3-M108
 
-- [ ] Create a public GitHub repository only after Gareth's approval.
-- [ ] Suggested repository name: `agent-trust-gate`.
-- [ ] Suggested description: Local-first pre-action / pre-settlement trust enforcement layer for agent-led actions and payments.
+- [x] Public GitHub launch is complete on branch `main`.
+- [x] Repository name: `agent-trust-gate`.
+- [x] Description remains: Local-first pre-action / pre-settlement trust enforcement layer for agent-led actions and payments.
 - [ ] Suggested public contact: `gpmiddleton71@gmail.com` for developer, agent-system, integration, security, and public project enquiries only.
-- [ ] Review repository visibility, default branch, license display, security policy, and public issue settings before launch.
+- [ ] Review repository visibility, default branch, license display, security policy, and public issue settings after launch and after future public updates.
 
 Suggested topics:
 
@@ -50,16 +52,16 @@ Topics describe discoverability only. They do not claim active MCP/A2A integrati
 
 The public contact email is not a live API endpoint, automated agent contact route, autonomous outreach channel, live support SLA, payment channel, settlement channel, or hosted service availability claim.
 
-## C. Remote setup commands — future human-approved examples only
+## C. Remote setup commands — historical/future human-approved examples only
 
-Do not run these commands automatically. Replace the placeholder only after Gareth creates and approves the repository.
+Do not run these commands automatically. The public launch is already complete; these remain examples for a future human-approved setup or recovery flow.
 
     git remote -v
     git remote add origin <GITHUB_REPO_URL>
-    git branch -M master
-    git push -u origin master
+    git branch -M main
+    git push -u origin main
 
-Stop before the push unless the local checks pass, the destination is verified, and Gareth gives explicit approval.
+Stop before any future push unless local checks pass, the destination is verified, and Gareth gives explicit approval.
 
 ## D. Release-candidate tag commands — future human-approved examples only
 
@@ -70,7 +72,7 @@ Do not run these commands automatically. Do not create or push a tag during P3-M
 
 Tagging and remote tag push require separate explicit approval.
 
-## E. GitHub page checks after a future launch
+## E. GitHub page checks after launch and after future public updates
 
 - [ ] README displays correctly.
 - [ ] License is visible.
@@ -91,6 +93,7 @@ Tagging and remote tag push require separate explicit approval.
 - No external agent contact.
 - No AUC integration. AUC is not integrated.
 - No Agent Contact System integration. Agent Contact System is not integrated.
+- Tag/package publish/deployment remain future human-approved steps.
 - No x402 or AP2 activation.
 - No production cryptographic signing.
 - No action execution.

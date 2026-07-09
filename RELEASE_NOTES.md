@@ -1,5 +1,13 @@
 # Release Notes
 
+## P3-M109: Public Launch Record
+
+P3-M108 public GitHub launch is complete on branch `main`. P3-M109 records the public launch state, public contact email, post-launch safety checklist, and unchanged local-demo-only product boundary.
+
+Tag/package publish/deployment remain future human-approved steps. No live API, payment, settlement, cloud or network call, external-agent contact, AUC integration, Agent Contact System integration, production signing, or action execution is active.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## Release Candidate Readiness
 
 P3-M104 prepares a local release-candidate review around the local end-to-end money-gate proof, receipt verification, replay protection, settlement blocker, code-readable manifest, schema/example assets, and public launch readiness documentation.

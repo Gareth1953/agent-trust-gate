@@ -1,8 +1,10 @@
 # Public Launch Post-Checks
 
-Use these checks manually only after a future Gareth-approved public repository launch. P3-M107 does not perform the launch or any network check.
+Use these checks manually after the P3-M108 public GitHub launch and after any future Gareth-approved public update. P3-M109 records the current launch state in [Public launch record](public-launch-record.md).
 
-## Repository files
+This checklist does not perform any network check, tag, package publish, deployment, or live-system activation.
+
+## Repository files and status
 
 - [ ] Open the public repository page manually.
 - [ ] Verify the README renders correctly.
@@ -11,6 +13,8 @@ Use these checks manually only after a future Gareth-approved public repository 
 - [ ] Verify `RELEASE_NOTES.md` is visible.
 - [ ] Verify `agent-trust-gate.manifest.json` is visible and still reports `local_demo_only`.
 - [ ] Verify the approved public contact email is visible in README, SECURITY, manifest, and the static landing page.
+- [ ] Verify the public launch record is visible.
+- [ ] Verify the public branch is `main`.
 - [ ] Verify the schema files are visible.
 - [ ] Verify the synthetic examples are visible.
 - [ ] Verify `public/index.html` is visible as a static repository file.
@@ -25,6 +29,7 @@ Use these checks manually only after a future Gareth-approved public repository 
 - [ ] Confirm Agent Contact System is not integrated.
 - [ ] Confirm no live API, hosted sandbox, banking or wallet logic, production signing, outreach automation, or action execution is active.
 - [ ] Confirm the public contact email is not presented as an API, automated agent contact route, support SLA, payment channel, settlement channel, or hosted service.
+- [ ] Confirm tag/package publish/deployment remain future human-approved steps.
 
 If any check fails, stop public launch work and correct the repository locally before any further human-approved push.
 

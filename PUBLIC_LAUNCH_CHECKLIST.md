@@ -6,6 +6,7 @@ This checklist covers global publication of the repository as code and documenta
 
 - [ ] README positioning and links are accurate.
 - [ ] License, security policy, contribution guide, changelog, and release notes are present.
+- [ ] Public launch record is present: [Public launch record](docs/public-launch-record.md).
 - [ ] Manifest reports `local_demo_only`.
 - [ ] Schemas and JSON examples parse.
 - [ ] Tests, build, and typecheck pass.
@@ -69,6 +70,19 @@ Use the human-controlled launch documents only after explicit Gareth approval:
 - [Public GitHub release execution checklist](docs/public-github-release-execution-checklist.md)
 - [GitHub repository profile](docs/github-repository-profile.md)
 - [Public launch post-checks](docs/public-launch-post-checks.md)
+
+P3-M108 public GitHub launch is complete. P3-M109 records the public launch and
+post-launch safety state. Tag/package publish/deployment remain future
+human-approved steps.
+
+## Post-launch safety checklist
+
+- [ ] Confirm the public launch record matches the public repository state.
+- [ ] Confirm the public branch is `main`.
+- [ ] Confirm the approved contact email remains `gpmiddleton71@gmail.com`.
+- [ ] Confirm no old or unapproved public contact email is present.
+- [ ] Confirm no tag, package publish, or deployment has been performed unless separately approved.
+- [ ] Confirm no live API, payment, settlement, cloud/network call, external-agent contact, AUC merge, Agent Contact System integration, production signing, or action execution has been added.
 
 ## Required safety boundary
 

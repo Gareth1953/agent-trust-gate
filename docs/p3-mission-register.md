@@ -23,7 +23,9 @@
 | P3-M105 | Public Omnichannel Code Launch Plan |
 | P3-M106 | Static Global Developer Landing Page |
 | P3-M107 | Public GitHub Release Execution Checklist |
+| P3-M108 | Public GitHub Code Launch Complete |
 | P3-M108A | Public Contact Email and Identity Hygiene Pack |
+| P3-M109 | Public Launch Record and Post-Launch Safety Checklist |
 
 ## Current proof chain
 
@@ -37,6 +39,6 @@ request
 
 ## Current safety status
 
-Still local-only.
+Public repository is launched. Product capability remains `local_demo_only`.
 
-No live APIs, payments, settlement execution, external-agent contact, AUC merge, cloud/network calls, outreach automation, secrets, credentials, or autonomous action execution.
+No live APIs, payments, settlement execution, external-agent contact, AUC merge, cloud/network calls, outreach automation, secrets, credentials, tag/package publish/deployment, or autonomous action execution. AUC is not integrated. Agent Contact System is not integrated.

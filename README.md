@@ -151,6 +151,18 @@ This mission does not push, publish, deploy, tag remotely, create a GitHub
 repository, or activate live systems. Every remote step remains a future
 Gareth-approved human action.
 
+## Public Launch Record
+
+P3-M108 public GitHub launch is complete on branch `main`. P3-M109 records the
+public launch state and post-launch safety checklist.
+
+- [Public launch record](docs/public-launch-record.md)
+
+Tag, package publish, and deployment remain future human-approved steps. No
+live API, payment, settlement, cloud/network call, external-agent contact, AUC
+merge, Agent Contact System integration, production signing, or action
+execution is active.
+
 ## Current safety boundaries
 
 current_status: local_demo_only
@@ -191,7 +203,9 @@ P3-M103 prepared the repository for global code-level review, P3-M104 prepared
 local release-candidate assets, P3-M105 defined the code-first omnichannel
 architecture, P3-M106 prepared a static landing page, and the current P3-M107
 milestone prepares human-controlled GitHub launch instructions without pushing,
-publishing, deploying, or changing runtime capability.
+publishing, deploying, or changing runtime capability. P3-M108 completed the
+public GitHub code launch, and P3-M109 records the launch and post-launch
+safety state.
 
 Recent proof and readiness milestones:
 
@@ -208,6 +222,8 @@ Recent proof and readiness milestones:
 - P3-M106: static global developer landing page
 - P3-M107: public GitHub release execution checklist
 - P3-M108A: public contact email and identity hygiene
+- P3-M108: public GitHub code launch complete
+- P3-M109: public launch record and post-launch safety checklist
 
 ## Developer review path
 

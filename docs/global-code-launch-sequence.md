@@ -12,6 +12,10 @@ No remote push, tag, package publish, deployment, or live system activation is p
 
 P3-M108A adds approved public contact email and identity hygiene for repository launch readiness. The email is human-readable contact metadata only; it does not activate a live API, automated agent contact, outreach automation, support SLA, payment, settlement, hosted service, remote push, package publish, or deployment.
 
+P3-M108 completes the public GitHub code launch on branch `main`.
+
+P3-M109 records the public launch and post-launch safety state. Tag/package publish/deployment remain future human-approved steps.
+
 ## Phase 2: Static developer landing page
 
 P3-M106 prepares the static developer landing page locally. It points developers to the same code, proof, and safety boundaries without scripts, forms, analytics, tracking, or external dependencies.
