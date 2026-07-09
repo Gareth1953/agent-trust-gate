@@ -21,6 +21,10 @@ developers, agent-system builders, and integration reviewers.
 P3-M111 adds public repo discovery polish for GitHub description, topics,
 tagline, audience, summary, and first-impression safety wording.
 
+P3-M112 adds a commercial payment-capture pack for human-reviewed paid pilot,
+commercial review, and integration discussion enquiries. It does not process
+money, automate access, execute settlement, or activate live payment systems.
+
 ## What was launched
 
 The public launch made the code-readable developer project available for review:
@@ -37,6 +41,7 @@ The public launch made the code-readable developer project available for review:
 - Public GitHub launch checklist and post-launch checks.
 - Public clone-and-run onboarding quickstart.
 - Public repo discovery polish guidance.
+- Commercial payment-capture enquiry guidance.
 
 The launch surface is public code and documentation. The product remains
 `local_demo_only`.
@@ -82,6 +87,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm the public repository default branch is `main`.
 - [ ] Confirm `docs/clone-and-run-quickstart.md` is visible and linked from README.
 - [ ] Confirm `docs/public-repo-discovery-polish.md` is visible and linked from README.
+- [ ] Confirm `docs/commercial-payment-capture-pack.md` is visible and linked from README.
 - [ ] Confirm README, LICENSE, SECURITY, CHANGELOG, RELEASE_NOTES, and PUBLIC_LAUNCH_CHECKLIST render correctly.
 - [ ] Confirm `agent-trust-gate.manifest.json` is visible and still reports `local_demo_only`.
 - [ ] Confirm schemas and synthetic examples are visible.
@@ -90,6 +96,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm no old or unapproved public contact email is present.
 - [ ] Confirm no secrets, credentials, `.env` file, private logs, or generated evidence artifacts are tracked.
 - [ ] Confirm no live API, live payments, settlement execution, external-agent contact, AUC integration, Agent Contact System integration, cloud/network call, outreach automation, production signing, or action execution is active.
+- [ ] Confirm paid pilot and commercial review enquiries remain human-reviewed and external to the repository.
 - [ ] Confirm no git tag, package publish, or deployment has been performed unless separately approved later.
 
 ## Recommended next steps

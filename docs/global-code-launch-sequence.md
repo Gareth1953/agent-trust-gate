@@ -18,6 +18,8 @@ P3-M109 records the public launch and post-launch safety state. Tag/package publ
 
 P3-M111 adds public repo discovery polish for GitHub description, topics, audience, and first-impression wording. This remains metadata guidance only.
 
+P3-M112 adds documentation-only commercial payment-capture guidance for human-reviewed paid pilot, commercial review, and integration discussion enquiries. Payment remains external to the repository; no checkout, webhook, payment API, settlement execution, automatic access, or live service activation is approved.
+
 ## Phase 2: Static developer landing page
 
 P3-M106 prepares the static developer landing page locally. It points developers to the same code, proof, and safety boundaries without scripts, forms, analytics, tracking, or external dependencies.

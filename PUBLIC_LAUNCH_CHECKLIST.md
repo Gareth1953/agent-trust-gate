@@ -8,6 +8,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] License, security policy, contribution guide, changelog, and release notes are present.
 - [ ] Public launch record is present: [Public launch record](docs/public-launch-record.md).
 - [ ] Public repo discovery polish is present: [Public repo discovery polish](docs/public-repo-discovery-polish.md).
+- [ ] Commercial payment-capture pack is present: [Commercial payment-capture pack](docs/commercial-payment-capture-pack.md).
 - [ ] Manifest reports `local_demo_only`.
 - [ ] Schemas and JSON examples parse.
 - [ ] Tests, build, and typecheck pass.
@@ -20,6 +21,14 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Public contact wording is limited to developer, agent-system, integration, security, and public project enquiries.
 - [ ] Public contact wording does not imply a live API endpoint, automated agent contact, autonomous outreach, live support SLA, payment channel, settlement channel, or hosted service availability.
 - [ ] Git commit identity remains `Agent Trust Gate <291836990+Gareth1953@users.noreply.github.com>`.
+
+## Commercial enquiries
+
+- [ ] P3-M112 commercial payment-capture pack is documentation only.
+- [ ] Paid pilot, commercial review, and integration discussion enquiries route to `gpmiddleton71@gmail.com`.
+- [ ] Payment remains human-approved and external to the repository.
+- [ ] No automatic acceptance or automatic access is implied.
+- [ ] No live payment processing, PayPal API integration, Stripe integration, checkout, webhook, settlement execution, wallet/banking logic, or payment rail is active.
 
 ## Release-candidate checklist
 

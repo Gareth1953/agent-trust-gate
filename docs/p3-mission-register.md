@@ -28,6 +28,7 @@
 | P3-M109 | Public Launch Record and Post-Launch Safety Checklist |
 | P3-M110 | Public Clone-and-Run Developer Onboarding Pack |
 | P3-M111 | Public Repo Discovery Polish |
+| P3-M112 | Commercial Payment Capture Pack |
 
 ## Current proof chain
 
@@ -42,5 +43,6 @@ request
 ## Current safety status
 
 Public repository is launched. Product capability remains `local_demo_only`.
+Commercial payment capture is documentation-only enquiry capture.
 
 No live APIs, payments, settlement execution, external-agent contact, AUC merge, cloud/network calls, outreach automation, secrets, credentials, tag/package publish/deployment, or autonomous action execution. AUC is not integrated. Agent Contact System is not integrated.

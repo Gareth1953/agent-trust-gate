@@ -6,6 +6,7 @@ All notable project changes are recorded here. The package remains pre-release, 
 
 ### Added
 
+- P3-M112 commercial payment-capture pack for human-reviewed paid pilot, commercial review, and integration discussion enquiries.
 - P3-M109 public launch record and post-launch safety checklist.
 - P3-M108 public GitHub code launch recorded as complete on branch `main`.
 - P3-M108A public contact email and identity hygiene.
@@ -14,6 +15,7 @@ All notable project changes are recorded here. The package remains pre-release, 
 
 ### Safety
 
+- Commercial payment capture remains documentation-only enquiry capture. Payment is external and human-approved; no checkout, webhook, API payment integration, settlement execution, wallet/banking logic, or automatic access was added.
 - No runtime capability, live integration, payment, settlement execution, external-agent contact, cloud or network call, outreach automation, or action execution was added.
 - Tag/package publish/deployment remain future human-approved steps.
 

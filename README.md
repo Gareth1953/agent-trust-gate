@@ -105,6 +105,18 @@ payment channel, settlement channel, or hosted service availability claim.
 
 See [public contact and identity hygiene](docs/public-contact-and-identity-hygiene.md).
 
+## Commercial enquiries
+
+P3-M112 documents how developers, agent builders, AI governance teams,
+payment/integration reviewers, and enterprise evaluators can request a paid
+pilot, commercial review, or integration discussion.
+
+- [Commercial payment-capture pack](docs/commercial-payment-capture-pack.md)
+
+Payment is human-approved and external to this repository. The repo does not
+process money, host checkout, automate access, execute settlement, call payment
+APIs, or provide live agent contact.
+
 ## Global Code Launch Readiness
 
 P3-M103 prepares the local-first code, documentation, schemas, examples,
@@ -230,7 +242,8 @@ publishing, deploying, or changing runtime capability. P3-M108 completed the
 public GitHub code launch, and P3-M109 records the launch and post-launch
 safety state. P3-M110 adds a public clone-and-run onboarding path for
 developers, agent-system builders, and integration reviewers, and P3-M111 adds
-public repo discovery polish, without changing runtime capability.
+public repo discovery polish. P3-M112 adds human-reviewed commercial enquiry
+guidance for paid pilots and reviews, without changing runtime capability.
 
 Recent proof and readiness milestones:
 
@@ -251,6 +264,7 @@ Recent proof and readiness milestones:
 - P3-M109: public launch record and post-launch safety checklist
 - P3-M110: public clone-and-run developer onboarding pack
 - P3-M111: public repo discovery polish
+- P3-M112: commercial payment-capture pack
 
 ## Developer review path
 

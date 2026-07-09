@@ -57,6 +57,10 @@ install dependencies, run the tests, run the local demos, inspect the schemas
 and examples, and verify the local proof chain without activating a hosted
 service.
 
+P3-M112 also documents a human-reviewed commercial enquiry route for paid
+pilots, commercial reviews, and integration discussions. That route is
+documentation-only and external to repository runtime behavior.
+
 ## Suggested “what this repo is not” wording
 
 This repository is not a hosted production system, live API, payment processor,
@@ -101,3 +105,9 @@ Use this email for developer, agent-system, integration, security, and public
 project enquiries. It is not a live API endpoint, automated agent contact route,
 autonomous outreach channel, live support SLA, payment channel, settlement
 channel, or hosted service availability claim.
+
+For paid pilot or commercial review enquiries, see
+[Commercial payment-capture pack](commercial-payment-capture-pack.md). Payment
+is human-approved and external to this repository; no automatic acceptance,
+automatic access, live payment processing, checkout, webhook, or settlement
+execution is provided.

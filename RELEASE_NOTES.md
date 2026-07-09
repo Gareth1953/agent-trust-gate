@@ -1,5 +1,21 @@
 # Release Notes
 
+## P3-M112: Commercial Payment Capture Pack
+
+P3-M112 adds a commercial payment-capture pack for human-reviewed paid pilot,
+commercial review, and integration discussion enquiries. Interested developers,
+agent builders, AI governance teams, payment/integration reviewers, and
+enterprise evaluators can use the documented public contact route to request a
+separately agreed commercial conversation.
+
+Payment remains human-approved and external to the repository. This release
+note does not add live payment processing, PayPal API integration, Stripe
+integration, hosted checkout, webhooks, settlement execution, wallet/banking
+logic, automated access, live support, external-agent contact, or action
+execution.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M109: Public Launch Record
 
 P3-M108 public GitHub launch is complete on branch `main`. P3-M109 records the public launch state, public contact email, post-launch safety checklist, and unchanged local-demo-only product boundary.
