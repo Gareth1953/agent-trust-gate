@@ -15,6 +15,9 @@ publish a package, deploy a site, or activate a live capability.
 P3-M108 public GitHub launch is complete. P3-M109 records the launch and the
 post-launch safety state.
 
+P3-M110 adds the public clone-and-run developer onboarding pack for new
+developers, agent-system builders, and integration reviewers.
+
 ## What was launched
 
 The public launch made the code-readable developer project available for review:
@@ -29,6 +32,7 @@ The public launch made the code-readable developer project available for review:
 - Static landing page files under `public/`.
 - Public contact and identity hygiene documentation.
 - Public GitHub launch checklist and post-launch checks.
+- Public clone-and-run onboarding quickstart.
 
 The launch surface is public code and documentation. The product remains
 `local_demo_only`.
@@ -72,6 +76,7 @@ No signed gate pass means no settlement.
 
 - [ ] Confirm the public repository page is visible.
 - [ ] Confirm the public repository default branch is `main`.
+- [ ] Confirm `docs/clone-and-run-quickstart.md` is visible and linked from README.
 - [ ] Confirm README, LICENSE, SECURITY, CHANGELOG, RELEASE_NOTES, and PUBLIC_LAUNCH_CHECKLIST render correctly.
 - [ ] Confirm `agent-trust-gate.manifest.json` is visible and still reports `local_demo_only`.
 - [ ] Confirm schemas and synthetic examples are visible.

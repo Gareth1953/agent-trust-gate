@@ -10,6 +10,18 @@ keeps settlement blocked unless the local trust chain passes.
 Current status: local_demo_only. The repository provides deterministic local
 software and proof artifacts, not a production service or payment system.
 
+## Clone and run locally
+
+New developers, agent-system builders, and integration reviewers can start with
+the public quickstart:
+
+- [Clone and run quickstart](docs/clone-and-run-quickstart.md)
+
+The quickstart covers clone, install, tests, build, typecheck, local demo
+commands, review assets, public contact, and the safety boundary. It does not
+activate a live API, payment, settlement, hosted service, external-agent
+contact, deployment, or action execution.
+
 ## Why this matters
 
 AI agents can request actions, delegate tasks, and call tools. Future systems
@@ -205,7 +217,9 @@ architecture, P3-M106 prepared a static landing page, and the current P3-M107
 milestone prepares human-controlled GitHub launch instructions without pushing,
 publishing, deploying, or changing runtime capability. P3-M108 completed the
 public GitHub code launch, and P3-M109 records the launch and post-launch
-safety state.
+safety state. P3-M110 adds a public clone-and-run onboarding path for
+developers, agent-system builders, and integration reviewers without changing
+runtime capability.
 
 Recent proof and readiness milestones:
 
@@ -224,6 +238,7 @@ Recent proof and readiness milestones:
 - P3-M108A: public contact email and identity hygiene
 - P3-M108: public GitHub code launch complete
 - P3-M109: public launch record and post-launch safety checklist
+- P3-M110: public clone-and-run developer onboarding pack
 
 ## Developer review path
 

@@ -26,6 +26,7 @@
 | P3-M108 | Public GitHub Code Launch Complete |
 | P3-M108A | Public Contact Email and Identity Hygiene Pack |
 | P3-M109 | Public Launch Record and Post-Launch Safety Checklist |
+| P3-M110 | Public Clone-and-Run Developer Onboarding Pack |
 
 ## Current proof chain
 
