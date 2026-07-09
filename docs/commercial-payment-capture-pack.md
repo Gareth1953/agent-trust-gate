@@ -20,6 +20,11 @@ This email is not a live API endpoint, hosted checkout, payment rail, live
 support SLA, automated agent contact route, autonomous outreach channel,
 settlement channel, or hosted service availability claim.
 
+P3-M113 adds a public [paid pilot offer](paid-pilot-offer.md) and reusable
+[commercial contact copy](commercial-contact-copy.md). These are human-reviewed
+commercial copy assets only. They do not create fixed pricing, payment
+processing, automatic access, settlement execution, or hosted service access.
+
 ## What the commercial offer is
 
 Agent Trust Gate™ can be discussed as a local-first commercial review or pilot

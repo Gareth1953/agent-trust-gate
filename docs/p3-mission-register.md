@@ -29,6 +29,7 @@
 | P3-M110 | Public Clone-and-Run Developer Onboarding Pack |
 | P3-M111 | Public Repo Discovery Polish |
 | P3-M112 | Commercial Payment Capture Pack |
+| P3-M113 | Paid Pilot Offer Page and Contact Copy |
 
 ## Current proof chain
 
@@ -44,5 +45,6 @@ request
 
 Public repository is launched. Product capability remains `local_demo_only`.
 Commercial payment capture is documentation-only enquiry capture.
+Paid pilot offer and contact copy are documentation-only commercial copy assets.
 
 No live APIs, payments, settlement execution, external-agent contact, AUC merge, cloud/network calls, outreach automation, secrets, credentials, tag/package publish/deployment, or autonomous action execution. AUC is not integrated. Agent Contact System is not integrated.

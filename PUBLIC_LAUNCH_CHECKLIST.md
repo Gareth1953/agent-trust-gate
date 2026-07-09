@@ -9,6 +9,8 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Public launch record is present: [Public launch record](docs/public-launch-record.md).
 - [ ] Public repo discovery polish is present: [Public repo discovery polish](docs/public-repo-discovery-polish.md).
 - [ ] Commercial payment-capture pack is present: [Commercial payment-capture pack](docs/commercial-payment-capture-pack.md).
+- [ ] Paid pilot offer is present: [Paid pilot offer](docs/paid-pilot-offer.md).
+- [ ] Commercial contact copy is present: [Commercial contact copy](docs/commercial-contact-copy.md).
 - [ ] Manifest reports `local_demo_only`.
 - [ ] Schemas and JSON examples parse.
 - [ ] Tests, build, and typecheck pass.
@@ -29,6 +31,11 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Payment remains human-approved and external to the repository.
 - [ ] No automatic acceptance or automatic access is implied.
 - [ ] No live payment processing, PayPal API integration, Stripe integration, checkout, webhook, settlement execution, wallet/banking logic, or payment rail is active.
+- [ ] P3-M113 paid pilot offer and commercial contact copy are documentation only.
+- [ ] Paid pilot option names are discussion labels, not fixed prices or binding service terms.
+- [ ] Contact templates do not promise acceptance, availability, outcome, compliance, integration, payment activation, settlement, or automatic access.
+- [ ] Invoice-ready and PayPal-request-ready wording remains future human-approved and external to the repository.
+- [ ] No live payment processing, hosted checkout, webhook, settlement execution, wallet/banking logic, or automatic access is introduced by P3-M113.
 
 ## Release-candidate checklist
 

@@ -117,6 +117,21 @@ Payment is human-approved and external to this repository. The repo does not
 process money, host checkout, automate access, execute settlement, call payment
 APIs, or provide live agent contact.
 
+## Paid pilot / commercial review
+
+P3-M113 adds a plain-English paid pilot offer page and reusable commercial
+contact copy for developers, agent builders, AI governance teams,
+payment/integration reviewers, and enterprise evaluators.
+
+- [Paid pilot offer](docs/paid-pilot-offer.md)
+- [Commercial contact copy](docs/commercial-contact-copy.md)
+- [Commercial payment-capture pack](docs/commercial-payment-capture-pack.md)
+
+Payment remains human-approved and external to the repo. These documents do
+not create live payment processing, PayPal API integration, Stripe
+integration, checkout, webhooks, automatic access, settlement execution, or a
+hosted service.
+
 ## Global Code Launch Readiness
 
 P3-M103 prepares the local-first code, documentation, schemas, examples,
@@ -243,7 +258,8 @@ public GitHub code launch, and P3-M109 records the launch and post-launch
 safety state. P3-M110 adds a public clone-and-run onboarding path for
 developers, agent-system builders, and integration reviewers, and P3-M111 adds
 public repo discovery polish. P3-M112 adds human-reviewed commercial enquiry
-guidance for paid pilots and reviews, without changing runtime capability.
+guidance for paid pilots and reviews. P3-M113 adds paid pilot offer and
+contact copy, without changing runtime capability.
 
 Recent proof and readiness milestones:
 
@@ -265,6 +281,7 @@ Recent proof and readiness milestones:
 - P3-M110: public clone-and-run developer onboarding pack
 - P3-M111: public repo discovery polish
 - P3-M112: commercial payment-capture pack
+- P3-M113: paid pilot offer and contact copy
 
 ## Developer review path
 

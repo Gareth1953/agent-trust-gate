@@ -25,6 +25,10 @@ P3-M112 adds a commercial payment-capture pack for human-reviewed paid pilot,
 commercial review, and integration discussion enquiries. It does not process
 money, automate access, execute settlement, or activate live payment systems.
 
+P3-M113 adds a paid pilot offer page and reusable commercial contact copy. It
+keeps payment human-approved and external to the repository, with no automatic
+access, fixed pricing, payment processing, checkout, webhook, or settlement.
+
 ## What was launched
 
 The public launch made the code-readable developer project available for review:
@@ -42,6 +46,8 @@ The public launch made the code-readable developer project available for review:
 - Public clone-and-run onboarding quickstart.
 - Public repo discovery polish guidance.
 - Commercial payment-capture enquiry guidance.
+- Paid pilot offer page.
+- Commercial contact copy.
 
 The launch surface is public code and documentation. The product remains
 `local_demo_only`.
@@ -88,6 +94,8 @@ No signed gate pass means no settlement.
 - [ ] Confirm `docs/clone-and-run-quickstart.md` is visible and linked from README.
 - [ ] Confirm `docs/public-repo-discovery-polish.md` is visible and linked from README.
 - [ ] Confirm `docs/commercial-payment-capture-pack.md` is visible and linked from README.
+- [ ] Confirm `docs/paid-pilot-offer.md` is visible and linked from README.
+- [ ] Confirm `docs/commercial-contact-copy.md` is visible and linked from README.
 - [ ] Confirm README, LICENSE, SECURITY, CHANGELOG, RELEASE_NOTES, and PUBLIC_LAUNCH_CHECKLIST render correctly.
 - [ ] Confirm `agent-trust-gate.manifest.json` is visible and still reports `local_demo_only`.
 - [ ] Confirm schemas and synthetic examples are visible.
@@ -97,6 +105,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm no secrets, credentials, `.env` file, private logs, or generated evidence artifacts are tracked.
 - [ ] Confirm no live API, live payments, settlement execution, external-agent contact, AUC integration, Agent Contact System integration, cloud/network call, outreach automation, production signing, or action execution is active.
 - [ ] Confirm paid pilot and commercial review enquiries remain human-reviewed and external to the repository.
+- [ ] Confirm paid pilot offer and contact copy do not imply automatic acceptance, automatic access, fixed pricing, guaranteed outcome, payment activation, or settlement execution.
 - [ ] Confirm no git tag, package publish, or deployment has been performed unless separately approved later.
 
 ## Recommended next steps

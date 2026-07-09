@@ -1,5 +1,20 @@
 # Release Notes
 
+## P3-M113: Paid Pilot Offer and Contact Copy
+
+P3-M113 adds a public paid pilot offer page and reusable commercial contact
+copy so developers, agent builders, AI governance teams, payment/integration
+reviewers, and enterprise evaluators can understand what to email for and what
+commercial review options exist.
+
+Payment remains human-approved and external to the repository. The added
+documents do not add fixed pricing, live payment processing, PayPal API
+integration, Stripe integration, checkout, webhooks, settlement execution,
+wallet/banking logic, automatic access, legal/financial/compliance/security
+guarantees, external-agent contact, or action execution.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M112: Commercial Payment Capture Pack
 
 P3-M112 adds a commercial payment-capture pack for human-reviewed paid pilot,
