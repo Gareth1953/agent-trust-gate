@@ -29,6 +29,10 @@ P3-M114 adds an [indicative pricing and paid pilot menu](pricing-and-paid-pilot-
 The price bands are discussion ranges only, not offers, invoices, quotes, or
 guarantees. Payment remains human-approved and external to the repository.
 
+P3-M115 adds an [external reviewer signal and hardening roadmap](external-reviewer-signal-and-hardening-roadmap.md).
+The feedback is recorded as signal only, not endorsement, sale, certification,
+market validation, paid-pilot readiness, or production readiness.
+
 ## What the commercial offer is
 
 Agent Trust Gate™ can be discussed as a local-first commercial review or pilot

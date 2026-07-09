@@ -1,5 +1,19 @@
 # Release Notes
 
+## P3-M115: External Reviewer Signal and Hardening Roadmap
+
+P3-M115 captures external AI reviewer feedback as useful market and technical
+signal only. It is not an endorsement, partnership, certification, sale,
+guarantee, official approval, proof of market validation, paid-pilot readiness,
+or production readiness claim.
+
+The mission converts the signal into a technical hardening roadmap covering
+schema formalisation, signed receipt/proof prototyping, adversarial evaluation,
+simplified developer CLI design, reference integration examples, and a later
+paid-pilot readiness review.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M114: Pricing and Paid Pilot Menu Draft
 
 P3-M114 adds a public-facing indicative GBP pricing and paid pilot menu draft

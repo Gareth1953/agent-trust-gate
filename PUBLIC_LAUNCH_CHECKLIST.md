@@ -12,6 +12,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Paid pilot offer is present: [Paid pilot offer](docs/paid-pilot-offer.md).
 - [ ] Commercial contact copy is present: [Commercial contact copy](docs/commercial-contact-copy.md).
 - [ ] Pricing and paid pilot menu draft is present: [Pricing and paid pilot menu](docs/pricing-and-paid-pilot-menu.md).
+- [ ] External reviewer signal and hardening roadmap is present: [External reviewer signal and hardening roadmap](docs/external-reviewer-signal-and-hardening-roadmap.md).
 - [ ] Manifest reports `local_demo_only`.
 - [ ] Schemas and JSON examples parse.
 - [ ] Tests, build, and typecheck pass.
@@ -42,6 +43,14 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] P3-M114 pricing remains subject to human review and separate agreement.
 - [ ] Payment remains external to the repository.
 - [ ] No checkout, payment API, webhook, wallet/banking logic, settlement execution, or automatic access is introduced by P3-M114.
+
+## External reviewer signal
+
+- [ ] P3-M115 reviewer feedback is framed as external AI reviewer signal only.
+- [ ] No endorsement, partnership, certification, sale, guarantee, official approval, or market validation is claimed.
+- [ ] Paid-pilot readiness is not overclaimed.
+- [ ] Technical hardening roadmap includes schemas, signed receipts/proofs, integration examples, CLI simplification, and adversarial evaluation.
+- [ ] No live capability, payment processing, deployment, external-agent contact, or production signing is introduced by P3-M115.
 
 ## Release-candidate checklist
 

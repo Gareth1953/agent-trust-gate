@@ -25,6 +25,10 @@ Those GBP bands are discussion ranges only, not offers, invoices, quotes, or
 guarantees. Any pricing, invoice, PayPal-request-ready route, timing, access,
 or deliverable must be separately human-approved.
 
+P3-M115 adds an [external reviewer signal and hardening roadmap](external-reviewer-signal-and-hardening-roadmap.md).
+It cautions that external feedback is not endorsement or paid-pilot readiness
+and identifies technical hardening work before stronger commercial claims.
+
 ## Who should contact
 
 Contact Gareth if you are a:

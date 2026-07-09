@@ -144,6 +144,19 @@ guarantees. Payment remains human-approved and external to the repo; no live
 payment processing, checkout, webhook, automatic access, or settlement
 execution is active.
 
+## External reviewer signal
+
+P3-M115 captures external AI reviewer feedback as market and technical signal,
+not endorsement, partnership, certification, sale, guarantee, or market
+validation.
+
+- [External reviewer signal and hardening roadmap](docs/external-reviewer-signal-and-hardening-roadmap.md)
+
+The feedback reinforces the local-first trust-before-action concept while
+identifying technical hardening needed before stronger paid-pilot claims:
+schemas, signed proofs, integration examples, CLI simplification, and
+adversarial evaluation.
+
 ## Global Code Launch Readiness
 
 P3-M103 prepares the local-first code, documentation, schemas, examples,
@@ -272,7 +285,9 @@ developers, agent-system builders, and integration reviewers, and P3-M111 adds
 public repo discovery polish. P3-M112 adds human-reviewed commercial enquiry
 guidance for paid pilots and reviews. P3-M113 adds paid pilot offer and
 contact copy. P3-M114 adds an indicative non-binding paid pilot menu, without
-changing runtime capability.
+changing runtime capability. P3-M115 captures external reviewer signal and
+converts it into a technical hardening roadmap without claiming endorsement or
+paid-pilot readiness.
 
 Recent proof and readiness milestones:
 
@@ -296,6 +311,7 @@ Recent proof and readiness milestones:
 - P3-M112: commercial payment-capture pack
 - P3-M113: paid pilot offer and contact copy
 - P3-M114: pricing and paid pilot menu draft
+- P3-M115: external reviewer signal and technical hardening roadmap
 
 ## Developer review path
 

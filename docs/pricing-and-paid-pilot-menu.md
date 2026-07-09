@@ -23,6 +23,10 @@ access terms.
 Any pricing, scope, invoice, PayPal-request-ready route, timing, deliverable,
 or access condition must be confirmed by human review and separate agreement.
 
+P3-M115 adds an [external reviewer signal and hardening roadmap](external-reviewer-signal-and-hardening-roadmap.md).
+That roadmap treats feedback as signal only and warns against pricing or
+paid-pilot readiness overclaiming before technical hardening.
+
 ## Who this is for
 
 This menu is for:

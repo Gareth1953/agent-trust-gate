@@ -34,6 +34,11 @@ It keeps all prices subject to human review and separate agreement, with no
 payment processing, checkout, webhook, automatic access, wallet/banking logic,
 or settlement execution.
 
+P3-M115 captures external AI reviewer signal and converts it into a technical
+hardening roadmap. It is not endorsement, partnership, certification, sale,
+market validation, paid-pilot readiness, production readiness, or guarantee.
+No runtime capability is added.
+
 ## What was launched
 
 The public launch made the code-readable developer project available for review:
@@ -54,6 +59,7 @@ The public launch made the code-readable developer project available for review:
 - Paid pilot offer page.
 - Commercial contact copy.
 - Indicative pricing and paid pilot menu draft.
+- External reviewer signal and technical hardening roadmap.
 
 The launch surface is public code and documentation. The product remains
 `local_demo_only`.
@@ -103,6 +109,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm `docs/paid-pilot-offer.md` is visible and linked from README.
 - [ ] Confirm `docs/commercial-contact-copy.md` is visible and linked from README.
 - [ ] Confirm `docs/pricing-and-paid-pilot-menu.md` is visible and linked from README.
+- [ ] Confirm `docs/external-reviewer-signal-and-hardening-roadmap.md` is visible and linked from README.
 - [ ] Confirm README, LICENSE, SECURITY, CHANGELOG, RELEASE_NOTES, and PUBLIC_LAUNCH_CHECKLIST render correctly.
 - [ ] Confirm `agent-trust-gate.manifest.json` is visible and still reports `local_demo_only`.
 - [ ] Confirm schemas and synthetic examples are visible.
@@ -114,6 +121,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm paid pilot and commercial review enquiries remain human-reviewed and external to the repository.
 - [ ] Confirm paid pilot offer and contact copy do not imply automatic acceptance, automatic access, fixed pricing, guaranteed outcome, payment activation, or settlement execution.
 - [ ] Confirm pricing bands remain indicative, non-binding, and subject to separate human agreement.
+- [ ] Confirm external reviewer signal is not presented as endorsement, certification, paid-pilot readiness, production readiness, or market validation.
 - [ ] Confirm no git tag, package publish, or deployment has been performed unless separately approved later.
 
 ## Recommended next steps
