@@ -456,3 +456,7 @@ export { createLocalTrustGateWrapper,REFERENCE_INTEGRATION_EXAMPLE_FILES,REFEREN
 export type { LocalTrustGateWrapper,ReferenceIntegrationPack,ReferenceIntegrationPackSummary,ReferenceIntegrationPatternId,ReferenceIntegrationResult,ReferenceIntegrationSafetyFlags,ReferenceIntegrationVerdict } from "./reference-integrations/index.js";
 export { runReferenceIntegrationsCli } from "./reference-integrations-cli.js";
 export type { ReferenceIntegrationsCliErrorCode,ReferenceIntegrationsCliIo } from "./reference-integrations-cli.js";
+export { SESSION_INTENT_EXAMPLE_FILES,SESSION_INTENT_GATE_RULE,SESSION_INTENT_GATE_VERSION,SESSION_INTENT_PUBLIC_CONTACT,SESSION_INTENT_SAFETY_FLAGS,createSessionIntentGateExampleInputs,evaluateSessionIntentGate,runSessionIntentGateExamples,runSessionIntentGateScenario,summariseSessionIntentGatePack } from "./session-intent-gate.js";
+export type { BehaviourSignal,ClaimedAgentType,FreshnessStatus,RequestVolumeTier,SessionIntentDecision,SessionIntentGateInput,SessionIntentGatePack,SessionIntentGatePackSummary,SessionIntentGateResult,SessionIntentGateSafetyFlags,SessionIntentScenarioId,SessionPattern,SessionRiskTier,VerifiedIntentStatus } from "./session-intent-gate.js";
+export { runSessionIntentGateCli } from "./session-intent-gate-cli.js";
+export type { SessionIntentGateCliErrorCode,SessionIntentGateCliIo } from "./session-intent-gate-cli.js";

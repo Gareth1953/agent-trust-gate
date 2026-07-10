@@ -1,6 +1,7 @@
 {
   "manifest_version": "atg.code-readable-integration.v1",
   "service_name": "Agent Trust Gate",
+  "latest_mission": "P3-M123",
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
   "project_status": "local_demo_only",
   "discovery_status": "readable_now_callable_later",
@@ -17,6 +18,15 @@
   "live_endpoint": false,
   "live_api": false,
   "mcp_server_functionality": false,
+  "live_traffic_monitoring": false,
+  "bot_detection_product": false,
+  "real_bot_detection": false,
+  "crawler_blocking": false,
+  "browser_fingerprinting": false,
+  "real_user_tracking": false,
+  "scraping": false,
+  "analytics_tracking": false,
+  "telemetry": false,
   "hosted_sandbox": false,
   "network_calls": false,
   "autonomous_authority": false,
@@ -41,7 +51,8 @@
     "receipt_verification",
     "gate_pass_validity_replay_check",
     "settlement_blocker_simulation",
-    "end_to_end_money_gate_proof"
+    "end_to_end_money_gate_proof",
+    "session_intent_gate_concept_model"
   ],
   "safe_local_commands": [
     "npm test",
@@ -52,6 +63,7 @@
     "npm run demo:adversarial",
     "npm run demo:integrations",
     "npm run demo:quickstart",
+    "npm run demo:session-intent",
     "npm run proof:money-gate"
   ],
   "discovery_docs": [
@@ -64,7 +76,10 @@
     "docs/adversarial-evaluation-pack.md",
     "docs/simplified-developer-cli.md",
     "docs/reference-integration-examples.md",
-    "docs/paid-pilot-readiness-review.md"
+    "docs/paid-pilot-readiness-review.md",
+    "docs/ai-agent-traffic-and-session-intent-gate.md",
+    "docs/spoofed-agent-risk-model.md",
+    "docs/session-specific-access-framework.md"
   ],
   "schemas": [
     "schemas/local-agent-action-request.schema.json",
@@ -93,6 +108,14 @@
     "Stripe integration",
     "checkout",
     "webhooks",
+    "live traffic monitoring",
+    "real bot detection",
+    "crawler blocking",
+    "browser fingerprinting",
+    "real user tracking",
+    "scraping",
+    "analytics/tracking pixels",
+    "telemetry",
     "real settlement execution",
     "production signing",
     "production key management",

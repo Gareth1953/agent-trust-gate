@@ -1,0 +1,50 @@
+{
+  "modelVersion": "atg.session-intent-gate.local-concept.v1",
+  "scenarioId": "high_risk_human_review",
+  "decision": "require_human_review",
+  "claimedAgentName": "EnterpriseAutomationAgent",
+  "claimedAgentType": "automation_client",
+  "claimedPurpose": "Enter a sensitive account-change flow.",
+  "sessionPattern": "sensitive_workflow",
+  "requestVolumeTier": "medium",
+  "riskTier": "high",
+  "freshnessStatus": "fresh",
+  "claimedIdentityAloneTrusted": false,
+  "trustBasis": [
+    "mandate_present",
+    "evidence_present",
+    "verified_intent",
+    "fresh_session_context",
+    "behaviour_matches_declared_purpose"
+  ],
+  "reasons": [
+    "claimed_identity_not_trust",
+    "risk_high_requires_human_review",
+    "sensitive_session_context"
+  ],
+  "requiredNextSteps": [
+    "pause_session",
+    "route_to_human_review"
+  ],
+  "publicContactEmail": "gpmiddleton71@gmail.com",
+  "note": "Local concept model only; no live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, tracking, payment, settlement, network call, external-agent contact, or action execution occurred.",
+  "localDemoOnly": true,
+  "localOnly": true,
+  "liveTrafficMonitoring": false,
+  "botDetectionProduct": false,
+  "realBotDetection": false,
+  "crawlerBlocking": false,
+  "browserFingerprinting": false,
+  "realUserTracking": false,
+  "scraping": false,
+  "analyticsTracking": false,
+  "telemetry": false,
+  "networkCallPerformed": false,
+  "cloudCallPerformed": false,
+  "externalAgentContacted": false,
+  "autonomousContact": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "productionSigning": false,
+  "actionExecution": false
+}

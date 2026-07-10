@@ -1,0 +1,50 @@
+{
+  "modelVersion": "atg.session-intent-gate.local-concept.v1",
+  "scenarioId": "extractive_pattern_throttled",
+  "decision": "throttle",
+  "claimedAgentName": "ResearchPreviewAgent",
+  "claimedAgentType": "crawler",
+  "claimedPurpose": "Review public documentation at high volume.",
+  "sessionPattern": "extractive_bulk",
+  "requestVolumeTier": "high",
+  "riskTier": "medium",
+  "freshnessStatus": "fresh",
+  "claimedIdentityAloneTrusted": false,
+  "trustBasis": [
+    "mandate_present",
+    "evidence_present",
+    "verified_intent",
+    "fresh_session_context",
+    "behaviour_matches_declared_purpose"
+  ],
+  "reasons": [
+    "claimed_identity_not_trust",
+    "extractive_session_pattern",
+    "high_request_volume"
+  ],
+  "requiredNextSteps": [
+    "reduce_local_request_rate",
+    "request_stronger_session_evidence"
+  ],
+  "publicContactEmail": "gpmiddleton71@gmail.com",
+  "note": "Local concept model only; no live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, tracking, payment, settlement, network call, external-agent contact, or action execution occurred.",
+  "localDemoOnly": true,
+  "localOnly": true,
+  "liveTrafficMonitoring": false,
+  "botDetectionProduct": false,
+  "realBotDetection": false,
+  "crawlerBlocking": false,
+  "browserFingerprinting": false,
+  "realUserTracking": false,
+  "scraping": false,
+  "analyticsTracking": false,
+  "telemetry": false,
+  "networkCallPerformed": false,
+  "cloudCallPerformed": false,
+  "externalAgentContacted": false,
+  "autonomousContact": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "productionSigning": false,
+  "actionExecution": false
+}

@@ -1,7 +1,8 @@
 # Example Agent Discovery Prompts
 
 P3-M122 adds safe prompts for AI agents, developer assistants, and integration
-reviewers inspecting Agent Trust Gate locally.
+reviewers inspecting Agent Trust Gate locally. P3-M123 extends those prompts
+with local-only AI agent traffic and session intent gate concept review prompts.
 
 Core rule:
 
@@ -32,6 +33,8 @@ Use prompts like:
 - "Inspect the reference integration examples and summarise where the trust gate is called before sensitive actions."
 - "Review the paid pilot readiness document and explain what is safe to say and what must not be claimed."
 - "Check whether claimed agent identity is treated as trust, or whether behaviour, mandate, evidence, verified intent, and session context decide access."
+- "Review the AI agent traffic/session intent concept pack and explain why it is not a bot detection product today."
+- "Inspect the local session intent examples and explain allow, throttle, block, escalate, and human-review outcomes."
 
 ## Safe Local Command Prompts
 
@@ -43,6 +46,7 @@ Use prompts like:
 - "Run `npm run cli -- help` and summarise the local commands."
 - "Run `npm run demo:adversarial` and summarise the local blocked scenarios."
 - "Run `npm run demo:integrations` and summarise the local reference patterns."
+- "Run `npm run demo:session-intent` and summarise the local session intent concept scenarios."
 
 Only use these commands in a local clone when the human operator asks for local
 inspection. Do not add network access, credentials, cloud calls, hosted calls,
@@ -59,9 +63,14 @@ Do not ask agents to:
 - create payment requests;
 - process payments;
 - execute settlement;
+- monitor live website traffic;
+- perform real bot detection;
+- block crawlers or browsers;
+- fingerprint browsers;
 - deploy or publish anything;
 - start a hosted service;
 - scrape or crawl external targets;
+- track users or add analytics;
 - send outreach;
 - create credentials or secrets;
 - execute actions.

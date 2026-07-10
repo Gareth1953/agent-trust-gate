@@ -1,6 +1,7 @@
 {
   "schema": "atg.agent-card.local-discovery.v1",
   "name": "Agent Trust Gate",
+  "latest_mission": "P3-M123",
   "description": "Local-first pre-action and pre-settlement trust gate for agent-led workflows.",
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
   "status": "local_demo_only",
@@ -16,7 +17,8 @@
     "local signed receipt and proof prototype",
     "local adversarial evaluation",
     "local reference integration examples",
-    "local developer CLI"
+    "local developer CLI",
+    "local AI agent traffic and session intent gate concept model"
   ],
   "non_capabilities": [
     "live API",
@@ -27,6 +29,14 @@
     "autonomous contact",
     "external-agent contact",
     "live payment processing",
+    "live traffic monitoring",
+    "real bot detection",
+    "crawler blocking",
+    "browser fingerprinting",
+    "real user tracking",
+    "scraping",
+    "analytics/tracking pixels",
+    "telemetry",
     "PayPal API integration",
     "Stripe integration",
     "checkout",
@@ -50,6 +60,7 @@
     "npm run demo:adversarial",
     "npm run demo:integrations",
     "npm run demo:quickstart",
+    "npm run demo:session-intent",
     "npm run proof:money-gate"
   ],
   "docs": [
@@ -63,7 +74,10 @@
     "docs/adversarial-evaluation-pack.md",
     "docs/simplified-developer-cli.md",
     "docs/reference-integration-examples.md",
-    "docs/paid-pilot-readiness-review.md"
+    "docs/paid-pilot-readiness-review.md",
+    "docs/ai-agent-traffic-and-session-intent-gate.md",
+    "docs/spoofed-agent-risk-model.md",
+    "docs/session-specific-access-framework.md"
   ],
   "schemas": [
     "schemas/local-agent-action-request.schema.json",
@@ -78,7 +92,9 @@
     "examples/adversarial-replay-blocked.json",
     "examples/adversarial-valid-control-allowed.json",
     "examples/reference-generic-agent-loop.json",
-    "examples/reference-pre-settlement-money-gate.json"
+    "examples/reference-pre-settlement-money-gate.json",
+    "examples/session-intent-spoofed-agent-blocked.json",
+    "examples/session-intent-valid-local-control.json"
   ],
   "contact": {
     "email": "gpmiddleton71@gmail.com",
@@ -101,6 +117,15 @@
     "settlement_authority": false,
     "live_payments": false,
     "live_settlement": false,
+    "live_traffic_monitoring": false,
+    "bot_detection_product": false,
+    "real_bot_detection": false,
+    "crawler_blocking": false,
+    "browser_fingerprinting": false,
+    "real_user_tracking": false,
+    "scraping": false,
+    "analytics_tracking": false,
+    "telemetry": false,
     "production_signing": false,
     "production_key_management": false,
     "cloud_network_calls": false,

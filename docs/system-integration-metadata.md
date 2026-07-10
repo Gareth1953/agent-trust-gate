@@ -1,7 +1,10 @@
 # System Integration Metadata
 
 P3-M122 provides a safe read order and local evaluation guide for developer
-assistants and integration reviewers.
+assistants and integration reviewers. P3-M123 adds local-only AI agent
+traffic and session intent gate concept guidance without live traffic
+monitoring, real bot detection, crawler blocking, browser fingerprinting,
+tracking, scraping, analytics, telemetry, or action execution.
 
 Core rule:
 
@@ -30,6 +33,9 @@ payments, settlement, or action execution.
 9. `docs/simplified-developer-cli.md`
 10. `docs/reference-integration-examples.md`
 11. `docs/paid-pilot-readiness-review.md`
+12. `docs/ai-agent-traffic-and-session-intent-gate.md`
+13. `docs/spoofed-agent-risk-model.md`
+14. `docs/session-specific-access-framework.md`
 
 ## Recommended Local Commands
 
@@ -42,6 +48,7 @@ npm run gate
 npm run demo:adversarial
 npm run demo:integrations
 npm run demo:quickstart
+npm run demo:session-intent
 npm run proof:money-gate
 ```
 
@@ -125,6 +132,28 @@ The readiness framing is cautious. Paid technical review and local pilot
 discussion may be reasonable, but production deployment readiness and live
 payment/settlement readiness remain `not yet`.
 
+## Where To Find The AI Agent Traffic Concept
+
+Use:
+
+- `docs/ai-agent-traffic-and-session-intent-gate.md`
+- `docs/spoofed-agent-risk-model.md`
+- `docs/session-specific-access-framework.md`
+
+The local model is in:
+
+- `src/session-intent-gate.ts`
+
+Run:
+
+```powershell
+npm run demo:session-intent
+```
+
+This is a concept demo only. It is not live traffic monitoring, real bot
+detection, crawler blocking, browser fingerprinting, scraping, tracking,
+analytics, telemetry, or production access control.
+
 ## What Not To Assume
 
 Do not assume:
@@ -139,6 +168,10 @@ Do not assume:
 - production signing exists;
 - external-agent contact is allowed;
 - action execution is available;
+- live traffic monitoring exists;
+- real bot detection exists;
+- crawler blocking, browser fingerprinting, scraping, tracking, analytics, or
+  telemetry is active;
 - paid pilot readiness means production readiness;
 - local proof artifacts are legal, financial, compliance, procurement,
   settlement, or security assurance.
@@ -148,13 +181,15 @@ Do not assume:
 This repository is readable by agents and systems, but it exposes no live
 agent endpoint and grants no autonomous authority.
 
-P3-M122 is metadata, documentation, and local discovery guidance only. It does
-not add live APIs, MCP server functionality, live agent-to-agent
+P3-M122 and P3-M123 are metadata, documentation, and local discovery/concept
+guidance only. They do not add live APIs, MCP server functionality, live agent-to-agent
 communication, agent negotiation, autonomous contact, external-agent contact,
 live payment processing, PayPal API integration, Stripe integration, checkout,
 webhooks, wallet/banking logic, real settlement execution, production signing,
 production key management, secrets, credentials, cloud/network calls, forms,
-tracking, analytics, telemetry, hosted calls, outreach automation, AUC
+live traffic monitoring, real bot detection, crawler blocking, browser
+fingerprinting, scraping, tracking, analytics, telemetry, hosted calls,
+outreach automation, AUC
 integration, Agent Contact System integration, or action execution.
 
 Public project contact: `gpmiddleton71@gmail.com`

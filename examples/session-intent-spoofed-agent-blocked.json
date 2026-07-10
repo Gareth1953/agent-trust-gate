@@ -1,0 +1,51 @@
+{
+  "modelVersion": "atg.session-intent-gate.local-concept.v1",
+  "scenarioId": "spoofed_agent_blocked",
+  "decision": "block",
+  "claimedAgentName": "KnownReferralAgent",
+  "claimedAgentType": "known_ai_agent",
+  "claimedPurpose": "Bulk copy public pages while claiming trusted agent identity.",
+  "sessionPattern": "spoofed_identity",
+  "requestVolumeTier": "burst",
+  "riskTier": "high",
+  "freshnessStatus": "fresh",
+  "claimedIdentityAloneTrusted": false,
+  "trustBasis": [
+    "mandate_present",
+    "evidence_present",
+    "fresh_session_context"
+  ],
+  "reasons": [
+    "claimed_identity_not_trust",
+    "verified_intent_conflicting",
+    "spoofed_agent_identity_blocked",
+    "extractive_session_pattern",
+    "burst_request_volume",
+    "risk_high_requires_human_review"
+  ],
+  "requiredNextSteps": [
+    "deny_local_session",
+    "require_verifiable_agent_context"
+  ],
+  "publicContactEmail": "gpmiddleton71@gmail.com",
+  "note": "Local concept model only; no live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, tracking, payment, settlement, network call, external-agent contact, or action execution occurred.",
+  "localDemoOnly": true,
+  "localOnly": true,
+  "liveTrafficMonitoring": false,
+  "botDetectionProduct": false,
+  "realBotDetection": false,
+  "crawlerBlocking": false,
+  "browserFingerprinting": false,
+  "realUserTracking": false,
+  "scraping": false,
+  "analyticsTracking": false,
+  "telemetry": false,
+  "networkCallPerformed": false,
+  "cloudCallPerformed": false,
+  "externalAgentContacted": false,
+  "autonomousContact": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "productionSigning": false,
+  "actionExecution": false
+}

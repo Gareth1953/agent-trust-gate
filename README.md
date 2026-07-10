@@ -118,6 +118,20 @@ The repository is readable by agents and systems, but it exposes no live agent
 endpoint and grants no autonomous authority, payment/settlement authority,
 external-agent contact, or action execution.
 
+## AI agent traffic and session intent gate concept
+
+P3-M123 adds a local-only concept pack for AI agent traffic, spoofed agent
+identity, agentic browser behaviour, and session-specific access decisions.
+
+- [AI agent traffic and session intent gate](docs/ai-agent-traffic-and-session-intent-gate.md)
+- [Spoofed agent risk model](docs/spoofed-agent-risk-model.md)
+- [Session-specific access framework](docs/session-specific-access-framework.md)
+
+Agent Trust Gate™ is not a bot detection product today. It does not monitor
+live website traffic, classify real traffic, block crawlers, fingerprint
+browsers, track users, scrape websites, or execute access-control decisions.
+This is a local-only concept pack and demo model.
+
 ## Public contact
 
 Public project contact: `gpmiddleton71@gmail.com`
@@ -426,7 +440,11 @@ claiming production readiness, live payment/settlement readiness, automatic
 acceptance, or automatic access. P3-M122 adds agent-readable discovery and
 system metadata while preserving the readable-now/callable-later boundary and
 adding no live endpoint, autonomous authority, payment/settlement authority,
-external-agent contact, or action execution.
+external-agent contact, or action execution. P3-M123 adds an AI agent traffic
+and session intent gate concept pack for spoofed identities and agentic
+browser/session behaviour without adding live traffic monitoring, real bot
+detection, crawler blocking, browser fingerprinting, tracking, scraping, or
+action execution.
 
 Recent proof and readiness milestones:
 
@@ -458,6 +476,7 @@ Recent proof and readiness milestones:
 - P3-M120: reference integration examples
 - P3-M121: paid pilot readiness review
 - P3-M122: agent-readable discovery and system metadata
+- P3-M123: AI agent traffic and session intent gate concept
 
 ## Developer review path
 
@@ -469,7 +488,8 @@ Recent proof and readiness milestones:
 6. Run the local gate demo.
 7. Inspect the static receipt examples in examples/.
 8. Run the local money-gate proof.
-9. Confirm the current safety boundaries before drawing conclusions.
+9. Run the local session intent concept demo if reviewing P3-M123.
+10. Confirm the current safety boundaries before drawing conclusions.
 
 ## Usage
 

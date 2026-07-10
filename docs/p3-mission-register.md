@@ -41,6 +41,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 | P3-M120 | Reference Integration Examples |
 | P3-M121 | Paid Pilot Readiness Review |
 | P3-M122 | Agent-Readable Discovery and System Integration Metadata Pack |
+| P3-M123 | AI Agent Traffic and Session Intent Gate Concept Pack |
 
 ## Current proof chain
 
@@ -66,5 +67,6 @@ P3-M119 adds a simplified local developer CLI for gate evaluation, receipt verif
 P3-M120 adds local-only reference integration examples for agent loops, tool-calling guardrails, human-in-the-loop escalation, pre-settlement checks, governance review, agent handoff gating, and a `trustGate.evaluate(request)` wrapper without official framework integration, external agents, live APIs, payments, settlement, production signing, or action execution.
 P3-M121 adds a cautious paid pilot readiness review after P3-M116 through P3-M120. Paid technical review and local pilot discussion are reasonable to consider, but production deployment readiness and live payment/settlement readiness remain not yet. No certification, guarantee, automatic acceptance, automatic access, live API, payment processing, settlement, production signing, or action execution is added.
 P3-M122 adds agent-readable discovery and system metadata through `llms.txt`, root manifest updates, agent card metadata, discovery docs, system integration metadata, and safe prompt examples. It preserves the readable-now/callable-later boundary and adds no live endpoint, MCP server functionality, autonomous authority, agent negotiation, payment/settlement authority, external-agent contact, production signing, or action execution.
+P3-M123 adds a local-only AI agent traffic and session intent gate concept pack for spoofed agent identities, agentic browser behaviour, and session-specific allow/throttle/block/escalate/human-review outcomes. It adds no live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, scraping, tracking, analytics, telemetry, live APIs, external-agent contact, payment/settlement authority, production signing, or action execution.
 
-No live APIs, payments, settlement execution, external-agent contact, AUC merge, cloud/network calls, MCP server functionality, outreach automation, secrets, credentials, tag/package publish/deployment, or autonomous action execution. AUC is not integrated. Agent Contact System is not integrated.
+No live APIs, payments, settlement execution, external-agent contact, AUC merge, cloud/network calls, MCP server functionality, live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, scraping, tracking, analytics, telemetry, outreach automation, secrets, credentials, tag/package publish/deployment, or autonomous action execution. AUC is not integrated. Agent Contact System is not integrated.

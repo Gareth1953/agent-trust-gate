@@ -49,6 +49,12 @@ local reference patterns safely. It does not create a live endpoint, MCP server
 functionality, autonomous authority, agent negotiation, external-agent contact,
 payment/settlement authority, or action execution.
 
+P3-M123 adds a local AI agent traffic and session intent gate concept. It
+extends the reference-pattern discussion toward pre-access and pre-session
+trust reasoning, but it does not add live traffic monitoring, real bot
+detection, crawler blocking, browser fingerprinting, scraping, tracking,
+analytics, telemetry, or production access control.
+
 ## Patterns Covered
 
 | Pattern | Local result |

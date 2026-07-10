@@ -213,6 +213,18 @@ endpoints, MCP server functionality, live agent-to-agent communication, agent
 negotiation, autonomous authority, payment/settlement authority,
 external-agent contact, production signing, or action execution.
 
+## AI agent traffic and session intent concept
+
+P3-M123 captures a future-direction concept for AI agent traffic, spoofed
+agent identities, agentic browser behaviour, and session-specific trust
+reasoning. It applies the same principle used elsewhere in Agent Trust Gate:
+claimed identity is not trust; behaviour, mandate, evidence, verified intent,
+and session context must decide access.
+
+This is local concept modelling only. It is not live traffic monitoring, real
+bot detection, crawler blocking, browser fingerprinting, scraping, tracking,
+analytics, telemetry, production web security, or action execution.
+
 ## Recommended next missions
 
 - P3-M116 — Schema Formalisation and Evidence Model Hardening. Completed as local-only schema/model hardening, not production signing or paid-pilot readiness.
@@ -228,10 +240,13 @@ external-agent contact, production signing, or action execution.
   Completed as cautious commercial/readiness assessment after P3-M116 through P3-M120, not production readiness, certification, live payment readiness, settlement readiness, automatic acceptance, or automatic access.
 - P3-M122 — Agent-Readable Discovery and System Integration Metadata Pack.
   Completed as local discovery metadata for agents, developer assistants, automated repo scanners, and integration reviewers, not a live endpoint, MCP server, autonomous authority, payment/settlement authority, external-agent contact, or action execution.
+- P3-M123 — AI Agent Traffic and Session Intent Gate Concept Pack.
+  Completed as local concept documentation and reference modelling for spoofed identities, agentic browser/session behaviour, and pre-session outcomes, not real bot detection, live traffic monitoring, crawler blocking, browser fingerprinting, tracking, scraping, or action execution.
 
 These roadmap items do not activate live APIs, payments, settlement,
 external-agent contact, deployment, hosted service, network calls, MCP server
-functionality, production signing, or action execution.
+functionality, live traffic monitoring, real bot detection, crawler blocking,
+browser fingerprinting, production signing, or action execution.
 
 ## Safety boundary
 

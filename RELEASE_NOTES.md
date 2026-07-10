@@ -1,5 +1,32 @@
 # Release Notes
 
+## P3-M123: AI Agent Traffic and Session Intent Gate Concept
+
+P3-M123 adds a local-only concept pack for AI agent traffic, spoofed agent
+identity, agentic browser behaviour, and session-specific access decisions.
+
+Added assets:
+
+- `docs/ai-agent-traffic-and-session-intent-gate.md`
+- `docs/spoofed-agent-risk-model.md`
+- `docs/session-specific-access-framework.md`
+- `src/session-intent-gate.ts`
+- `src/session-intent-gate-cli.ts`
+- `npm run demo:session-intent`
+- deterministic `examples/session-intent-*.json` outputs
+
+The core principle is that claimed agent identity is not trust. Behaviour,
+mandate, evidence, verified intent, and session context must decide access.
+
+This is concept documentation and local reference modelling only. Agent Trust
+Gate is not a web bot detection product today, does not monitor live website
+traffic, does not classify real traffic, does not block crawlers or browsers,
+and does not add browser fingerprinting, scraping, tracking, analytics,
+telemetry, live APIs, MCP server functionality, external-agent contact,
+payment/settlement authority, production signing, or action execution.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M122: Agent-Readable Discovery and System Metadata
 
 P3-M122 adds local agent-readable discovery and system integration metadata so

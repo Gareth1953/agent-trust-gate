@@ -8,6 +8,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 
 ### Added
 
+- P3-M123 AI agent traffic and session intent gate concept pack with local spoofed-agent risk docs, session-specific access framework, deterministic local model, CLI demo, and static session-intent examples.
 - P3-M122 agent-readable discovery and system integration metadata through `llms.txt`, root agent card metadata, root manifest updates, discovery docs, system integration metadata, and safe agent discovery prompts.
 - P3-M121 paid pilot readiness review after P3-M116 through P3-M120, with cautious staged readiness for paid technical review, local pilot discussion, and integration feasibility review.
 - P3-M120 local reference integration examples for generic agent loops, tool-calling guardrails, human-in-the-loop escalation, pre-settlement money-gate checks, governance reviewer flow, local handoff gating, and a `trustGate.evaluate(request)` wrapper.
@@ -27,6 +28,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 
 ### Safety
 
+- P3-M123 is concept documentation and local reference modelling only. It does not add live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, scraping, tracking, analytics, telemetry, live APIs, MCP server functionality, payment/settlement authority, external-agent contact, production signing, or action execution.
 - P3-M122 is metadata, documentation, and local discovery guidance only. It preserves the readable-now/callable-later boundary and does not add live endpoints, MCP server functionality, live agent-to-agent communication, agent negotiation, autonomous authority, payment/settlement authority, production signing, external-agent contact, cloud/network calls, AUC integration, Agent Contact System integration, outreach automation, or action execution.
 - P3-M121 is documentation, readiness assessment, and commercial positioning only. It does not add production readiness, certified security, legal/compliance approval, live APIs, payment processing, settlement execution, hosted verification, wallet/banking logic, production signing, automatic acceptance, automatic access, external-agent contact, outreach automation, or action execution.
 - P3-M120 is local reference-integration documentation and demo code only. It does not add official LangGraph, CrewAI, AutoGen, model-provider, cloud, payment, settlement, or external-agent integration, and it does not add live APIs, production signing, production key management, payment authorisation, settlement authorisation, cloud/network calls, external-agent contact, outreach automation, or action execution.

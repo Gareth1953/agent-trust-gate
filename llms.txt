@@ -26,6 +26,7 @@ Safe local commands:
 - npm run demo:adversarial
 - npm run demo:integrations
 - npm run demo:quickstart
+- npm run demo:session-intent
 - npm run proof:money-gate
 
 Important docs:
@@ -39,6 +40,9 @@ Important docs:
 - docs/simplified-developer-cli.md
 - docs/reference-integration-examples.md
 - docs/paid-pilot-readiness-review.md
+- docs/ai-agent-traffic-and-session-intent-gate.md
+- docs/spoofed-agent-risk-model.md
+- docs/session-specific-access-framework.md
 
 Important schemas:
 - schemas/local-agent-action-request.schema.json
@@ -54,6 +58,8 @@ Important examples:
 - examples/adversarial-valid-control-allowed.json
 - examples/reference-generic-agent-loop.json
 - examples/reference-pre-settlement-money-gate.json
+- examples/session-intent-spoofed-agent-blocked.json
+- examples/session-intent-valid-local-control.json
 
 Commercial/contact route:
 Human-reviewed developer, agent-system, integration, security, paid technical
@@ -72,3 +78,8 @@ webhooks, no wallet/banking logic, no real settlement execution, no production
 signing, no production key management, no cloud/network calls, no AUC
 integration, no Agent Contact System integration, no outreach automation, and
 no action execution.
+
+P3-M123 adds a local-only AI agent traffic and session intent gate concept. It
+is not a web bot detection product, does not monitor live website traffic, does
+not classify real traffic, does not block crawlers or browsers, and does not
+perform browser fingerprinting, scraping, tracking, analytics, or telemetry.

@@ -18,6 +18,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Reference integration examples are present: [Reference integration examples](docs/reference-integration-examples.md).
 - [ ] Paid pilot readiness review is present: [Paid pilot readiness review](docs/paid-pilot-readiness-review.md).
 - [ ] Agent-readable discovery metadata is present: [Agent-readable discovery and system metadata](docs/agent-readable-discovery-and-system-metadata.md), [system integration metadata](docs/system-integration-metadata.md), [example agent discovery prompts](docs/example-agent-discovery-prompts.md), [llms.txt](llms.txt), and [agent card metadata](agent-trust-gate.agent-card.json).
+- [ ] AI agent traffic and session intent concept pack is present: [AI agent traffic and session intent gate](docs/ai-agent-traffic-and-session-intent-gate.md), [spoofed agent risk model](docs/spoofed-agent-risk-model.md), and [session-specific access framework](docs/session-specific-access-framework.md).
 - [ ] Manifest reports `local_demo_only`.
 - [ ] Schemas and JSON examples parse.
 - [ ] Tests, build, and typecheck pass.
@@ -132,6 +133,18 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Claimed agent identity is not trust; behaviour, mandate, evidence, verified intent, and session context decide access.
 - [ ] No live endpoint, MCP server functionality, live agent-to-agent communication, agent negotiation, autonomous authority, payment/settlement authority, external-agent contact, or action execution is activated by P3-M122.
 
+## AI Agent Traffic and Session Intent Gate Concept
+
+- [ ] P3-M123 AI agent traffic/session intent gate is concept documentation and local reference modelling only.
+- [ ] Agent Trust Gate is not presented as a web bot detection product today.
+- [ ] Agent Trust Gate is not presented as live traffic monitoring or real traffic classification today.
+- [ ] Claimed agent identity is not trust; behaviour, mandate, evidence, verified intent, and session context decide access.
+- [ ] `npm run demo:session-intent` runs deterministic local examples only.
+- [ ] Local outcomes include allow, throttle, block, escalate, require evidence, and require human review.
+- [ ] `localDemoOnly` remains true.
+- [ ] `liveTrafficMonitoring`, `botDetectionProduct`, `paymentAuthorisation`, `settlementAuthorisation`, and `actionExecution` remain false.
+- [ ] No live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, scraping, tracking, analytics, telemetry, live API, MCP server functionality, payment processing, settlement execution, external-agent contact, production signing, or action execution is activated by P3-M123.
+
 ## Release-candidate checklist
 
 - [ ] Run `npm test`.
@@ -205,6 +218,7 @@ human-approved steps.
 - [ ] No real settlement or settlement execution.
 - [ ] No external agent contact.
 - [ ] No live endpoint, cloud call, or network call.
+- [ ] No live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, scraping, tracking, analytics, or telemetry.
 - [ ] No secret, token, or credential.
 - [ ] No banking or wallet logic.
 - [ ] No x402 or AP2 activation.

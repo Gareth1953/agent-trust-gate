@@ -233,6 +233,18 @@ claim beyond this document's cautious framing, and it does not add a live
 endpoint, MCP server functionality, autonomous authority, payment/settlement
 authority, external-agent contact, or action execution.
 
+## Relationship To P3-M123
+
+P3-M123 adds an AI agent traffic and session intent gate concept pack. It is a
+future-direction local model for spoofed agent identity, agentic browser
+behaviour, and pre-session trust reasoning.
+
+It does not increase paid pilot readiness beyond this review's cautious
+position. Agent Trust Gate is not a bot detection product today, does not
+monitor live traffic, does not classify real traffic, does not block crawlers
+or browsers, and does not add browser fingerprinting, scraping, tracking,
+analytics, telemetry, live APIs, external-agent contact, or action execution.
+
 ## Safety Boundary
 
 Agent Trust Gate™ remains local-first and `local_demo_only`.

@@ -1,0 +1,49 @@
+{
+  "modelVersion": "atg.session-intent-gate.local-concept.v1",
+  "scenarioId": "claimed_known_agent_allowed",
+  "decision": "allow",
+  "claimedAgentName": "KnownReferralAgent",
+  "claimedAgentType": "known_ai_agent",
+  "claimedPurpose": "Summarise public product documentation for a referred developer session.",
+  "sessionPattern": "beneficial_referral",
+  "requestVolumeTier": "low",
+  "riskTier": "low",
+  "freshnessStatus": "fresh",
+  "claimedIdentityAloneTrusted": false,
+  "trustBasis": [
+    "mandate_present",
+    "evidence_present",
+    "verified_intent",
+    "fresh_session_context",
+    "behaviour_matches_declared_purpose",
+    "referral_like_behaviour"
+  ],
+  "reasons": [
+    "claimed_identity_not_trust"
+  ],
+  "requiredNextSteps": [
+    "record_local_session_receipt",
+    "continue_local_demo_only"
+  ],
+  "publicContactEmail": "gpmiddleton71@gmail.com",
+  "note": "Local concept model only; no live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, tracking, payment, settlement, network call, external-agent contact, or action execution occurred.",
+  "localDemoOnly": true,
+  "localOnly": true,
+  "liveTrafficMonitoring": false,
+  "botDetectionProduct": false,
+  "realBotDetection": false,
+  "crawlerBlocking": false,
+  "browserFingerprinting": false,
+  "realUserTracking": false,
+  "scraping": false,
+  "analyticsTracking": false,
+  "telemetry": false,
+  "networkCallPerformed": false,
+  "cloudCallPerformed": false,
+  "externalAgentContacted": false,
+  "autonomousContact": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "productionSigning": false,
+  "actionExecution": false
+}

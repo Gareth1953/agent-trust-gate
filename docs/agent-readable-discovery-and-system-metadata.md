@@ -55,7 +55,8 @@ The local proof chain is:
 
 The repository includes local schemas, deterministic examples, local signed
 receipt/proof prototypes, adversarial cases, a simplified developer CLI,
-reference integration examples, and a cautious paid pilot readiness review.
+reference integration examples, a cautious paid pilot readiness review, and a
+local AI agent traffic/session intent concept pack.
 
 ## What It Is Not
 
@@ -184,6 +185,18 @@ Machine-readable local metadata is available in:
 
 These files are discovery metadata only. They expose no live endpoint and grant
 no autonomous authority.
+
+## Relationship To P3-M123
+
+P3-M123 adds a local-only AI agent traffic and session intent gate concept. It
+explores spoofed agent identity, agentic browser/session behaviour, and
+session-specific allow/throttle/block/escalate decisions.
+
+Agents should read it as future-direction concept modelling only. Agent Trust
+Gate is not a web bot detection product today, does not monitor live website
+traffic, does not classify real traffic, does not block crawlers or browsers,
+and does not perform browser fingerprinting, scraping, tracking, analytics, or
+telemetry.
 
 ## Readable-Now/Callable-Later Boundary
 
