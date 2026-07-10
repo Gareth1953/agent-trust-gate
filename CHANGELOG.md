@@ -8,6 +8,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 
 ### Added
 
+- P3-M120 local reference integration examples for generic agent loops, tool-calling guardrails, human-in-the-loop escalation, pre-settlement money-gate checks, governance reviewer flow, local handoff gating, and a `trustGate.evaluate(request)` wrapper.
 - P3-M119 simplified local developer CLI with `gate evaluate`, `receipt verify`, `proof money-gate`, `proof signed`, `demo adversarial`, and `demo quickstart` command paths.
 - P3-M118 local adversarial evaluation pack with deterministic blocked replay, forged evidence, expired gate pass, scope creep, missing mandate, tampered proof, unsigned proof, stale nonce/freshness, settlement blocker refusal, and valid local control examples.
 - P3-M117 local signed receipt and proof prototype with canonical payload signing, local verification, tamper-detection examples, and local-only signature metadata.
@@ -24,6 +25,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 
 ### Safety
 
+- P3-M120 is local reference-integration documentation and demo code only. It does not add official LangGraph, CrewAI, AutoGen, model-provider, cloud, payment, settlement, or external-agent integration, and it does not add live APIs, production signing, production key management, payment authorisation, settlement authorisation, cloud/network calls, external-agent contact, outreach automation, or action execution.
 - P3-M119 is local CLI/developer experience only. It does not add live integrations, production signing, production key management, payment authorisation, settlement authorisation, live APIs, payment processing, cloud/network calls, external-agent contact, outreach automation, or action execution.
 - P3-M118 is local adversarial testing only. It does not add production security certification, production signing, production key management, payment authorisation, settlement authorisation, live APIs, payment processing, cloud/network calls, external-agent contact, outreach automation, or action execution.
 - P3-M117 is a local prototype only. It does not add production signing, production key management, payment authorisation, settlement authorisation, live APIs, payment processing, cloud/network calls, external-agent contact, outreach automation, or action execution.

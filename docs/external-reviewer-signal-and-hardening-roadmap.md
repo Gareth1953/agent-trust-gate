@@ -127,16 +127,20 @@ and does not claim production signing, payment authorisation, or settlement auth
 
 ### 3. Reference integration patterns
 
-Add clearer local reference integration patterns for:
+P3-M120 adds clearer local reference integration patterns for:
 
 - agent loops;
 - tool-calling guardrails;
 - human-in-the-loop escalation;
 - pre-action checks;
-- settlement/pre-settlement checks.
+- settlement/pre-settlement checks;
+- governance receipt review;
+- local agent-to-agent handoff gates;
+- a `trustGate.evaluate(request)` wrapper.
 
-Do not claim real LangGraph, CrewAI, AutoGen, MCP/A2A, or live framework
-integration unless local-only examples are actually added and clearly bounded.
+The examples are local-only and do not claim real LangGraph, CrewAI, AutoGen,
+MCP/A2A, model-provider, cloud, payment, settlement, or live framework
+integration.
 
 ### 4. Simplified developer CLI
 
@@ -207,11 +211,13 @@ metrics.
 - P3-M119 — Simplified Developer CLI.
   Completed as a local-only command facade for core developer flows, not live integration, production signing, payment authorisation, settlement authorisation, or action execution.
 - P3-M120 — Reference Integration Examples.
+  Completed as local-only reference patterns for agent loops, tool calls, human review, pre-settlement checks, governance review, handoff gates, and a wrapper API, not official framework integration or live action execution.
 - P3-M121 — Paid Pilot Readiness Review.
 
-These are proposed future local missions only. They do not activate live APIs,
-payments, settlement, external-agent contact, deployment, hosted service,
-network calls, production signing, or action execution.
+P3-M121 remains a proposed future local mission only. These roadmap items do
+not activate live APIs, payments, settlement, external-agent contact,
+deployment, hosted service, network calls, production signing, or action
+execution.
 
 ## Safety boundary
 

@@ -1,0 +1,83 @@
+{
+  "integrationVersion": "atg.reference-integrations.v1",
+  "patternId": "generic_agent_loop",
+  "patternTitle": "Generic agent-loop pre-action gate",
+  "frameworkShape": "generic agent loop",
+  "trustGatePlacement": "Before the loop dispatches a proposed sensitive step.",
+  "requestedAction": "Prepare a local synthetic inventory summary for an agent loop.",
+  "sensitiveAction": "agent_loop_step_dispatch",
+  "result": "allow",
+  "blocked": false,
+  "allowedLocally": true,
+  "escalated": false,
+  "reasonCodes": [
+    "pre_action_gate_allowed_local_step",
+    "MANDATE_VALID",
+    "EVIDENCE_FRESH",
+    "INTENT_VERIFIED",
+    "WITHIN_LIMITS",
+    "APPROVAL_SATISFIED"
+  ],
+  "evidenceTrail": [
+    "agent_loop_proposed_step_captured",
+    "local_gate_verdict:allow_signed_gate_pass",
+    "sensitive_step_not_executed_by_example"
+  ],
+  "receipt": {
+    "requestId": "reference-generic-agent-loop",
+    "receiptId": "receipt_demo_a0a1047b9840485e83e8e423",
+    "verdict": "allow_signed_gate_pass",
+    "receiptType": "signed_gate_pass",
+    "settlementAllowedByGate": true,
+    "humanReviewRequired": false,
+    "failedChecks": [],
+    "reasonCodes": [
+      "MANDATE_VALID",
+      "EVIDENCE_FRESH",
+      "INTENT_VERIFIED",
+      "WITHIN_LIMITS",
+      "APPROVAL_SATISFIED"
+    ]
+  },
+  "receiptVerification": {
+    "verified": true,
+    "validForSimulatedSettlement": true,
+    "structurallyValid": true,
+    "fresh": true,
+    "replaySafe": true,
+    "settlementBlockerAllowed": true,
+    "mode": "local_simulation_only",
+    "reasonCodes": []
+  },
+  "rule": "No mandate. No evidence. No verified intent. No signed gate pass. No settlement.",
+  "publicContactEmail": "gpmiddleton71@gmail.com",
+  "note": "Local reference integration example only; no framework adapter, network call, payment, settlement, external-agent contact, production signing, or action execution occurred.",
+  "localDemoOnly": true,
+  "localOnly": true,
+  "productionSigning": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "privateDataIncluded": false,
+  "networkCallPerformed": false,
+  "cloudCallPerformed": false,
+  "externalFrameworkCalled": false,
+  "externalAgentContacted": false,
+  "paymentTriggered": false,
+  "settlementExecuted": false,
+  "actionExecuted": false,
+  "sensitiveActionExecuted": false,
+  "officialFrameworkIntegration": false,
+  "signedProof": {
+    "verified": true,
+    "signedPayloadType": "local_trust_receipt",
+    "payloadHashMatches": true,
+    "signatureValid": true,
+    "reasonCodes": [
+      "signature_valid"
+    ],
+    "localDemoOnly": true,
+    "productionSigning": false,
+    "paymentAuthorisation": false,
+    "settlementAuthorisation": false
+  }
+}

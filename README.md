@@ -74,6 +74,7 @@ Install dependencies first, then use the existing project scripts:
     npm run demo:gate:allow
     npm run proof:money-gate -- --input examples/local-end-to-end-money-gate-proof-input.json --summary-only
     npm run demo:adversarial
+    npm run demo:integrations
     npm run cli -- demo quickstart
 
 Receipt verification and settlement controls can be inspected with supported
@@ -232,6 +233,27 @@ This is local developer experience only. It does not add production signing,
 payment authorisation, settlement authorisation, live integration, hosted
 verification, or action execution.
 
+## Reference integration examples
+
+P3-M120 adds local-only reference integration examples showing where Agent
+Trust Gate™ fits in common agent-system patterns without adding live framework
+integrations or external agents.
+
+- [Reference integration examples](docs/reference-integration-examples.md)
+
+Run them locally with:
+
+```bash
+npm run demo:integrations
+```
+
+Covered patterns include generic agent loops, tool-calling guardrails,
+human-in-the-loop escalation, pre-settlement money-gate checks, governance
+review, agent-to-agent handoff gating, and a `trustGate.evaluate(request)`
+wrapper. They do not call LangGraph, CrewAI, AutoGen, model-provider APIs,
+cloud APIs, payment systems, settlement systems, or external agents, and they
+do not execute actions.
+
 ## Global Code Launch Readiness
 
 P3-M103 prepares the local-first code, documentation, schemas, examples,
@@ -362,7 +384,10 @@ guidance for paid pilots and reviews. P3-M113 adds paid pilot offer and
 contact copy. P3-M114 adds an indicative non-binding paid pilot menu, without
 changing runtime capability. P3-M115 captures external reviewer signal and
 converts it into a technical hardening roadmap without claiming endorsement or
-paid-pilot readiness.
+paid-pilot readiness. P3-M116 through P3-M120 add local schema/evidence
+hardening, local signed proofs, adversarial evaluation, simplified CLI
+ergonomics, and reference integration examples without changing runtime
+capability.
 
 Recent proof and readiness milestones:
 
@@ -387,6 +412,11 @@ Recent proof and readiness milestones:
 - P3-M113: paid pilot offer and contact copy
 - P3-M114: pricing and paid pilot menu draft
 - P3-M115: external reviewer signal and technical hardening roadmap
+- P3-M116: schema formalisation and evidence model hardening
+- P3-M117: local signed receipt and proof prototype
+- P3-M118: adversarial evaluation pack
+- P3-M119: simplified developer CLI
+- P3-M120: reference integration examples
 
 ## Developer review path
 

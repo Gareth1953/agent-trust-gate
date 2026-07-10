@@ -173,6 +173,14 @@ easier to run through `npm run cli -- demo adversarial` and the quickstart path
 `npm run cli -- demo quickstart`. It is developer experience only and does not
 change the local-only safety boundary.
 
+## Relationship To P3-M120
+
+P3-M120 adds local reference integration examples that show where adversarially
+hardened trust-gate checks can sit in agent loops, tool-call guards,
+human-review queues, pre-settlement workflows, governance review, handoff
+patterns, and a small developer wrapper. They remain local-only and are not
+official framework integrations.
+
 ## Safety Boundary
 
 Agent Trust Gate™ remains local-first and `local_demo_only`.

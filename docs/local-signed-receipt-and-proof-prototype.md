@@ -101,6 +101,15 @@ developer ergonomics only; it does not add production signing, payment
 authorisation, settlement authorisation, live verification, or action
 execution.
 
+## Relationship to P3-M120
+
+P3-M120 uses the local receipt/proof concepts in reference integration examples
+for agent loops, tool-call guardrails, human review, pre-settlement checks,
+governance review, handoff gating, and a `trustGate.evaluate(request)` wrapper.
+The examples remain local-only and do not add official framework adapters,
+external agents, payments, settlement, production signing, or action
+execution.
+
 ## Why this is not production signing
 
 The prototype uses clearly labelled local demo key material. It is non-secret,

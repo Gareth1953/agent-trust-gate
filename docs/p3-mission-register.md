@@ -38,6 +38,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 | P3-M117 | Local Signed Receipt and Proof Prototype |
 | P3-M118 | Adversarial Evaluation Pack |
 | P3-M119 | Simplified Developer CLI |
+| P3-M120 | Reference Integration Examples |
 
 ## Current proof chain
 
@@ -60,5 +61,6 @@ P3-M116 hardens the local schema and evidence model without production signing, 
 P3-M117 adds local-only signed receipt/proof tamper detection without production signing, payment authorisation, settlement authorisation, live integrations, or action execution.
 P3-M118 adds a local-only adversarial evaluation pack for replay, forged evidence, expired gate pass, scope creep, missing mandate, tampered proof, unsigned proof, stale freshness/nonce, settlement blocker refusal, and a valid local control without production security certification or live enforcement.
 P3-M119 adds a simplified local developer CLI for gate evaluation, receipt verification, money-gate proof, signed proof verification, adversarial demo, and quickstart flows without live integrations, production signing, payment authorisation, settlement authorisation, or action execution.
+P3-M120 adds local-only reference integration examples for agent loops, tool-calling guardrails, human-in-the-loop escalation, pre-settlement checks, governance review, agent handoff gating, and a `trustGate.evaluate(request)` wrapper without official framework integration, external agents, live APIs, payments, settlement, production signing, or action execution.
 
 No live APIs, payments, settlement execution, external-agent contact, AUC merge, cloud/network calls, outreach automation, secrets, credentials, tag/package publish/deployment, or autonomous action execution. AUC is not integrated. Agent Contact System is not integrated.

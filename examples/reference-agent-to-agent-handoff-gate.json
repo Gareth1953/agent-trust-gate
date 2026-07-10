@@ -1,0 +1,74 @@
+{
+  "integrationVersion": "atg.reference-integrations.v1",
+  "patternId": "agent_to_agent_handoff_gate",
+  "patternTitle": "Agent-to-agent handoff gate pattern",
+  "frameworkShape": "local agent-to-agent handoff",
+  "trustGatePlacement": "Before a simulated handoff message would be sent to another agent.",
+  "requestedAction": "Hand off a local task to another simulated agent without verified intent.",
+  "sensitiveAction": "agent_handoff_message",
+  "result": "block",
+  "blocked": true,
+  "allowedLocally": false,
+  "escalated": false,
+  "reasonCodes": [
+    "handoff_blocked_before_external_agent_contact",
+    "VERIFIED_INTENT_REQUIRED"
+  ],
+  "evidenceTrail": [
+    "handoff_request_prepared_locally",
+    "local_gate_verdict:refuse_no_verified_intent",
+    "handoff_message_not_sent"
+  ],
+  "receipt": {
+    "requestId": "reference-agent-to-agent-handoff-gate",
+    "receiptId": "receipt_demo_1618bf2c45243ffba2c412e6",
+    "verdict": "refuse_no_verified_intent",
+    "receiptType": "refusal_receipt",
+    "settlementAllowedByGate": false,
+    "humanReviewRequired": false,
+    "failedChecks": [
+      "verified_intent"
+    ],
+    "reasonCodes": [
+      "VERIFIED_INTENT_REQUIRED"
+    ]
+  },
+  "receiptVerification": {
+    "verified": false,
+    "validForSimulatedSettlement": false,
+    "structurallyValid": true,
+    "fresh": true,
+    "replaySafe": true,
+    "settlementBlockerAllowed": false,
+    "mode": "local_simulation_only",
+    "reasonCodes": [
+      "failed_critical_check",
+      "refusal_receipt_not_settlement_eligible",
+      "settlement_blocker_rejected"
+    ]
+  },
+  "rule": "No mandate. No evidence. No verified intent. No signed gate pass. No settlement.",
+  "publicContactEmail": "gpmiddleton71@gmail.com",
+  "note": "Local reference integration example only; no framework adapter, network call, payment, settlement, external-agent contact, production signing, or action execution occurred.",
+  "localDemoOnly": true,
+  "localOnly": true,
+  "productionSigning": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "privateDataIncluded": false,
+  "networkCallPerformed": false,
+  "cloudCallPerformed": false,
+  "externalFrameworkCalled": false,
+  "externalAgentContacted": false,
+  "paymentTriggered": false,
+  "settlementExecuted": false,
+  "actionExecuted": false,
+  "sensitiveActionExecuted": false,
+  "officialFrameworkIntegration": false,
+  "handoffSummary": {
+    "sourceAgent": "agent-agent-to-agent-handoff-gate",
+    "targetAgent": "simulated_target_agent_local_only",
+    "externalAgentContacted": false,
+    "handoffAllowed": false
+  }
+}

@@ -1,5 +1,30 @@
 # Release Notes
 
+## P3-M120: Reference Integration Examples
+
+P3-M120 adds local-only reference integration examples showing how Agent Trust
+Gate™ can sit inside common agent-system patterns:
+
+- generic agent-loop pre-action gate;
+- tool-calling guardrail;
+- human-in-the-loop escalation;
+- pre-settlement money-gate check;
+- governance reviewer receipt flow;
+- local agent-to-agent handoff gate;
+- `trustGate.evaluate(request)` wrapper.
+
+It also adds `docs/reference-integration-examples.md`,
+`npm run demo:integrations`, and deterministic `examples/reference-*.json`
+outputs.
+
+This is local reference code and documentation only. It is not official
+LangGraph, CrewAI, AutoGen, model-provider, cloud, payment, settlement, or
+external-agent integration. It does not add live APIs, production signing,
+payment authorisation, settlement authorisation, paid-pilot readiness, or
+action execution.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M119: Simplified Developer CLI
 
 P3-M119 adds a simplified local developer CLI for the most important Agent

@@ -1,0 +1,68 @@
+{
+  "integrationVersion": "atg.reference-integrations.v1",
+  "patternId": "tool_calling_guardrail",
+  "patternTitle": "Tool-calling guardrail before sensitive tool use",
+  "frameworkShape": "tool-calling agent guardrail",
+  "trustGatePlacement": "Immediately before a sensitive local tool invocation would be dispatched.",
+  "requestedAction": "Call a local simulated supplier-update tool without an active mandate.",
+  "sensitiveAction": "supplier_update_tool_call",
+  "result": "block",
+  "blocked": true,
+  "allowedLocally": false,
+  "escalated": false,
+  "reasonCodes": [
+    "tool_call_blocked_before_dispatch",
+    "MANDATE_REQUIRED"
+  ],
+  "evidenceTrail": [
+    "tool_call_arguments_prepared_locally",
+    "local_gate_verdict:refuse_no_mandate",
+    "tool_call_dispatch_skipped"
+  ],
+  "receipt": {
+    "requestId": "reference-tool-calling-guardrail",
+    "receiptId": "receipt_demo_e45f87f91ae37230a1f792bb",
+    "verdict": "refuse_no_mandate",
+    "receiptType": "refusal_receipt",
+    "settlementAllowedByGate": false,
+    "humanReviewRequired": false,
+    "failedChecks": [
+      "mandate"
+    ],
+    "reasonCodes": [
+      "MANDATE_REQUIRED"
+    ]
+  },
+  "receiptVerification": {
+    "verified": false,
+    "validForSimulatedSettlement": false,
+    "structurallyValid": true,
+    "fresh": true,
+    "replaySafe": true,
+    "settlementBlockerAllowed": false,
+    "mode": "local_simulation_only",
+    "reasonCodes": [
+      "failed_critical_check",
+      "refusal_receipt_not_settlement_eligible",
+      "settlement_blocker_rejected"
+    ]
+  },
+  "rule": "No mandate. No evidence. No verified intent. No signed gate pass. No settlement.",
+  "publicContactEmail": "gpmiddleton71@gmail.com",
+  "note": "Local reference integration example only; no framework adapter, network call, payment, settlement, external-agent contact, production signing, or action execution occurred.",
+  "localDemoOnly": true,
+  "localOnly": true,
+  "productionSigning": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "privateDataIncluded": false,
+  "networkCallPerformed": false,
+  "cloudCallPerformed": false,
+  "externalFrameworkCalled": false,
+  "externalAgentContacted": false,
+  "paymentTriggered": false,
+  "settlementExecuted": false,
+  "actionExecuted": false,
+  "sensitiveActionExecuted": false,
+  "officialFrameworkIntegration": false
+}

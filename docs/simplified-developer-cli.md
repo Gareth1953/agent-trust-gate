@@ -174,7 +174,19 @@ P3-M119 adds:
 - `npm run demo:quickstart`
 
 Existing specialised scripts remain available, including `demo:gate`,
-`proof:money-gate`, and `demo:adversarial`.
+`proof:money-gate`, `demo:adversarial`, and `demo:integrations`.
+
+## Relationship To P3-M120
+
+P3-M120 adds local reference integration examples for common agent-system
+patterns. They can be run with:
+
+```powershell
+npm run demo:integrations
+```
+
+The simplified CLI remains focused on the core trust-gate flows. The P3-M120
+runner is a specialised local demo script, not a live framework integration.
 
 ## Safety Boundary
 

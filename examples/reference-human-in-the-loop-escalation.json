@@ -1,0 +1,68 @@
+{
+  "integrationVersion": "atg.reference-integrations.v1",
+  "patternId": "human_in_the_loop_escalation",
+  "patternTitle": "Human-in-the-loop escalation for high-risk actions",
+  "frameworkShape": "human approval checkpoint",
+  "trustGatePlacement": "Before a high-risk action leaves the local review queue.",
+  "requestedAction": "Review a local high-risk purchase recommendation pending human approval.",
+  "sensitiveAction": "high_risk_purchase_authorization",
+  "result": "escalate",
+  "blocked": false,
+  "allowedLocally": false,
+  "escalated": true,
+  "reasonCodes": [
+    "human_review_escalation_recorded",
+    "HUMAN_REVIEW_REQUIRED"
+  ],
+  "evidenceTrail": [
+    "high_risk_action_detected",
+    "local_gate_verdict:review_required",
+    "queued_for_human_review_without_execution"
+  ],
+  "receipt": {
+    "requestId": "reference-human-in-the-loop-escalation",
+    "receiptId": "receipt_demo_9e58891b5e4e453229f2a806",
+    "verdict": "review_required",
+    "receiptType": "review_receipt",
+    "settlementAllowedByGate": false,
+    "humanReviewRequired": true,
+    "failedChecks": [
+      "approval"
+    ],
+    "reasonCodes": [
+      "HUMAN_REVIEW_REQUIRED"
+    ]
+  },
+  "receiptVerification": {
+    "verified": false,
+    "validForSimulatedSettlement": false,
+    "structurallyValid": true,
+    "fresh": true,
+    "replaySafe": true,
+    "settlementBlockerAllowed": false,
+    "mode": "local_simulation_only",
+    "reasonCodes": [
+      "failed_critical_check",
+      "review_receipt_not_settlement_eligible",
+      "settlement_blocker_rejected"
+    ]
+  },
+  "rule": "No mandate. No evidence. No verified intent. No signed gate pass. No settlement.",
+  "publicContactEmail": "gpmiddleton71@gmail.com",
+  "note": "Local reference integration example only; no framework adapter, network call, payment, settlement, external-agent contact, production signing, or action execution occurred.",
+  "localDemoOnly": true,
+  "localOnly": true,
+  "productionSigning": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "privateDataIncluded": false,
+  "networkCallPerformed": false,
+  "cloudCallPerformed": false,
+  "externalFrameworkCalled": false,
+  "externalAgentContacted": false,
+  "paymentTriggered": false,
+  "settlementExecuted": false,
+  "actionExecuted": false,
+  "sensitiveActionExecuted": false,
+  "officialFrameworkIntegration": false
+}

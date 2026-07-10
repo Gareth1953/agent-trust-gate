@@ -452,3 +452,7 @@ export { runLocalAdversarialEvaluationCli } from "./local-adversarial-evaluation
 export type { LocalAdversarialEvaluationCliErrorCode,LocalAdversarialEvaluationCliIo } from "./local-adversarial-evaluation-cli.js";
 export { DEVELOPER_CLI_PUBLIC_CONTACT,DEVELOPER_CLI_RULE,DEVELOPER_CLI_VERSION,formatDeveloperCliHelp,runDeveloperCli } from "./developer-cli.js";
 export type { DeveloperCliErrorCode,DeveloperCliErrorResult,DeveloperCliIo,DeveloperCliResult,DeveloperCliSafetyFlags } from "./developer-cli.js";
+export { createLocalTrustGateWrapper,REFERENCE_INTEGRATION_EXAMPLE_FILES,REFERENCE_INTEGRATIONS_PUBLIC_CONTACT,REFERENCE_INTEGRATIONS_RULE,REFERENCE_INTEGRATIONS_VERSION,runAgentToAgentHandoffGateReference,runGenericAgentLoopReference,runGovernanceReviewerFlowReference,runHumanInTheLoopEscalationReference,runPreSettlementMoneyGateReference,runReferenceIntegrationExamples,runReferenceIntegrationPattern,runReferenceIntegrationPatternResults,runToolCallingGuardrailReference,runTrustGateWrapperReference,summariseReferenceIntegrationExamples } from "./reference-integrations/index.js";
+export type { LocalTrustGateWrapper,ReferenceIntegrationPack,ReferenceIntegrationPackSummary,ReferenceIntegrationPatternId,ReferenceIntegrationResult,ReferenceIntegrationSafetyFlags,ReferenceIntegrationVerdict } from "./reference-integrations/index.js";
+export { runReferenceIntegrationsCli } from "./reference-integrations-cli.js";
+export type { ReferenceIntegrationsCliErrorCode,ReferenceIntegrationsCliIo } from "./reference-integrations-cli.js";

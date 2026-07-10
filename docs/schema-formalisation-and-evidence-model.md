@@ -182,6 +182,17 @@ This is CLI ergonomics only. It does not alter the schema safety boundary or
 activate live APIs, production signing, payment processing, settlement
 execution, external-agent contact, or action execution.
 
+## P3-M120 reference integration examples
+
+P3-M120 adds local reference integration examples showing how the schema-backed
+trust gate can sit inside common agent-system patterns: agent loops,
+tool-calling guardrails, human-in-the-loop escalation, pre-settlement checks,
+governance review, local agent handoffs, and a small developer wrapper.
+
+These are local examples only. They do not add official LangGraph, CrewAI,
+AutoGen, model-provider, cloud, payment, settlement, or external-agent
+integrations.
+
 ## Safety boundary
 
 Agent Trust Gate™ remains local-first and `local_demo_only`. The hardened

@@ -15,6 +15,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] External reviewer signal and hardening roadmap is present: [External reviewer signal and hardening roadmap](docs/external-reviewer-signal-and-hardening-roadmap.md).
 - [ ] Schema formalisation and evidence model hardening is present: [Schema formalisation and evidence model](docs/schema-formalisation-and-evidence-model.md).
 - [ ] Local signed receipt and proof prototype is present: [Local signed receipt and proof prototype](docs/local-signed-receipt-and-proof-prototype.md).
+- [ ] Reference integration examples are present: [Reference integration examples](docs/reference-integration-examples.md).
 - [ ] Manifest reports `local_demo_only`.
 - [ ] Schemas and JSON examples parse.
 - [ ] Tests, build, and typecheck pass.
@@ -94,6 +95,17 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] `productionSigning`, `paymentAuthorisation`, and `settlementAuthorisation` remain false where relevant.
 - [ ] `docs/simplified-developer-cli.md` is linked from README.
 - [ ] No live API, payment processing, settlement execution, hosted verification, wallet/banking logic, production signing, external-agent contact, or action execution is activated by P3-M119.
+
+## Reference Integration Examples
+
+- [ ] P3-M120 reference integration examples are local-demo-only.
+- [ ] `npm run demo:integrations` runs deterministic local summaries.
+- [ ] Generic agent-loop, tool-calling guardrail, human-in-the-loop escalation, pre-settlement money-gate, governance reviewer, agent handoff, and `trustGate.evaluate(request)` wrapper patterns are covered.
+- [ ] `localDemoOnly` remains true.
+- [ ] `productionSigning`, `paymentAuthorisation`, and `settlementAuthorisation` remain false where relevant.
+- [ ] `docs/reference-integration-examples.md` is linked from README.
+- [ ] The examples do not claim official LangGraph, CrewAI, AutoGen, model-provider, cloud, payment, settlement, or external-agent integration.
+- [ ] No live API, payment processing, settlement execution, hosted verification, wallet/banking logic, production signing, external-agent contact, or action execution is activated by P3-M120.
 
 ## Release-candidate checklist
 

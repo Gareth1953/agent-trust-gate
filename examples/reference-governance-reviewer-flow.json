@@ -1,0 +1,73 @@
+{
+  "integrationVersion": "atg.reference-integrations.v1",
+  "patternId": "governance_reviewer_flow",
+  "patternTitle": "Governance reviewer and audit receipt review flow",
+  "frameworkShape": "governance reviewer queue",
+  "trustGatePlacement": "Before a reviewer sees the proposed action as an auditable receipt.",
+  "requestedAction": "Prepare a local customer-impacting governance decision for review.",
+  "sensitiveAction": "customer_impacting_governance_decision",
+  "result": "escalate",
+  "blocked": false,
+  "allowedLocally": false,
+  "escalated": true,
+  "reasonCodes": [
+    "governance_review_receipt_created",
+    "HUMAN_REVIEW_REQUIRED"
+  ],
+  "evidenceTrail": [
+    "audit_receipt_created_locally",
+    "receipt_type:review_receipt",
+    "governance_review_summary_recorded"
+  ],
+  "receipt": {
+    "requestId": "reference-governance-reviewer-flow",
+    "receiptId": "receipt_demo_904a55c99529b01e5e03f9eb",
+    "verdict": "review_required",
+    "receiptType": "review_receipt",
+    "settlementAllowedByGate": false,
+    "humanReviewRequired": true,
+    "failedChecks": [
+      "approval"
+    ],
+    "reasonCodes": [
+      "HUMAN_REVIEW_REQUIRED"
+    ]
+  },
+  "receiptVerification": {
+    "verified": false,
+    "validForSimulatedSettlement": false,
+    "structurallyValid": true,
+    "fresh": true,
+    "replaySafe": true,
+    "settlementBlockerAllowed": false,
+    "mode": "local_simulation_only",
+    "reasonCodes": [
+      "failed_critical_check",
+      "review_receipt_not_settlement_eligible",
+      "settlement_blocker_rejected"
+    ]
+  },
+  "rule": "No mandate. No evidence. No verified intent. No signed gate pass. No settlement.",
+  "publicContactEmail": "gpmiddleton71@gmail.com",
+  "note": "Local reference integration example only; no framework adapter, network call, payment, settlement, external-agent contact, production signing, or action execution occurred.",
+  "localDemoOnly": true,
+  "localOnly": true,
+  "productionSigning": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "privateDataIncluded": false,
+  "networkCallPerformed": false,
+  "cloudCallPerformed": false,
+  "externalFrameworkCalled": false,
+  "externalAgentContacted": false,
+  "paymentTriggered": false,
+  "settlementExecuted": false,
+  "actionExecuted": false,
+  "sensitiveActionExecuted": false,
+  "officialFrameworkIntegration": false,
+  "reviewerSummary": {
+    "reviewQueue": "local_governance_review",
+    "reviewStatus": "queued_for_human_review",
+    "auditableReceipt": true
+  }
+}
