@@ -74,6 +74,7 @@ Install dependencies first, then use the existing project scripts:
     npm run demo:gate:allow
     npm run proof:money-gate -- --input examples/local-end-to-end-money-gate-proof-input.json --summary-only
     npm run demo:adversarial
+    npm run cli -- demo quickstart
 
 Receipt verification and settlement controls can be inspected with supported
 local CLI flags:
@@ -201,6 +202,34 @@ npm run demo:adversarial
 
 The pack is not production security certification, payment authorisation,
 settlement authorisation, production signing, live integration, hosted
+verification, or action execution.
+
+## Simplified developer CLI
+
+P3-M119 adds a simplified local developer CLI that groups the most important
+trust-gate flows under clearer commands.
+
+- [Simplified developer CLI](docs/simplified-developer-cli.md)
+
+Shortest useful path:
+
+```bash
+npm run cli -- demo quickstart
+```
+
+Key commands:
+
+```bash
+npm run cli -- help
+npm run cli -- gate evaluate
+npm run cli -- receipt verify
+npm run cli -- proof money-gate
+npm run cli -- proof signed
+npm run cli -- demo adversarial
+```
+
+This is local developer experience only. It does not add production signing,
+payment authorisation, settlement authorisation, live integration, hosted
 verification, or action execution.
 
 ## Global Code Launch Readiness

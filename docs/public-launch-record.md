@@ -56,6 +56,12 @@ being blocked, with one valid control allowed locally. It does not add
 production security certification, payment authorisation, settlement
 authorisation, live integrations, hosted verification, or action execution.
 
+P3-M119 adds a simplified local developer CLI. It groups the core local flows
+under `gate evaluate`, `receipt verify`, `proof money-gate`, `proof signed`,
+`demo adversarial`, and `demo quickstart`. It does not add live integrations,
+production signing, payment authorisation, settlement authorisation, hosted
+verification, or action execution.
+
 ## What was launched
 
 The public launch made the code-readable developer project available for review:
@@ -80,6 +86,7 @@ The public launch made the code-readable developer project available for review:
 - Schema formalisation and evidence model hardening documentation.
 - Local signed receipt and proof prototype documentation.
 - Local adversarial evaluation pack documentation and examples.
+- Simplified developer CLI documentation.
 
 The launch surface is public code and documentation. The product remains
 `local_demo_only`.
@@ -133,6 +140,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm `docs/schema-formalisation-and-evidence-model.md` is visible and linked from README.
 - [ ] Confirm `docs/local-signed-receipt-and-proof-prototype.md` is visible and linked from README.
 - [ ] Confirm `docs/adversarial-evaluation-pack.md` is visible and linked from README.
+- [ ] Confirm `docs/simplified-developer-cli.md` is visible and linked from README.
 - [ ] Confirm README, LICENSE, SECURITY, CHANGELOG, RELEASE_NOTES, and PUBLIC_LAUNCH_CHECKLIST render correctly.
 - [ ] Confirm `agent-trust-gate.manifest.json` is visible and still reports `local_demo_only`.
 - [ ] Confirm schemas and synthetic examples are visible.
@@ -148,6 +156,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm P3-M116 schema hardening is presented as local-only and not production signing, paid-pilot readiness, production readiness, or settlement assurance.
 - [ ] Confirm P3-M117 local signatures are presented as local-demo-only tamper detection, not production signing, payment authorisation, settlement authorisation, or legal/compliance proof.
 - [ ] Confirm P3-M118 adversarial evaluation is presented as local-only, not production security certification, payment authorisation, settlement authorisation, or live enforcement.
+- [ ] Confirm P3-M119 simplified developer CLI is presented as local-only developer experience, not live integration, production signing, payment authorisation, settlement authorisation, or action execution.
 - [ ] Confirm no git tag, package publish, or deployment has been performed unless separately approved later.
 
 ## Recommended next steps

@@ -144,14 +144,18 @@ The current repository has many proof, readiness, and governance scripts. A
 future developer-facing CLI should distinguish the core Trust Gate path from
 commercial and governance scaffolding.
 
-Potential future commands:
+P3-M119 adds that simplified local developer CLI. The implemented commands are:
 
 - `gate evaluate`;
 - `receipt verify`;
-- `proof money-gate`.
+- `proof money-gate`;
+- `proof signed`;
+- `demo adversarial`;
+- `demo quickstart`.
 
-These command names are roadmap suggestions only. They are not implemented by
-this mission.
+This is local developer experience only. It does not activate live APIs,
+payments, settlement, external-agent contact, production signing, deployment,
+hosted service, or action execution.
 
 ### 5. Money-gate proof flow hardening
 
@@ -201,6 +205,7 @@ metrics.
 - P3-M118 — Adversarial Evaluation Pack.
   Completed as a local-only fail-closed scenario pack, not production security certification, payment authorisation, settlement authorisation, or live enforcement.
 - P3-M119 — Simplified Developer CLI.
+  Completed as a local-only command facade for core developer flows, not live integration, production signing, payment authorisation, settlement authorisation, or action execution.
 - P3-M120 — Reference Integration Examples.
 - P3-M121 — Paid Pilot Readiness Review.
 

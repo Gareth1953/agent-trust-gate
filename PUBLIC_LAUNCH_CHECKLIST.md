@@ -83,6 +83,18 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] `npm run demo:adversarial` is a local deterministic command only.
 - [ ] No production security certification, production signing, live API, payment processing, settlement execution, hosted verification, wallet/banking logic, external-agent contact, or action execution is activated by P3-M118.
 
+## Simplified Developer CLI
+
+- [ ] P3-M119 simplified developer CLI is local-demo-only.
+- [ ] `npm run cli -- help` lists `gate evaluate`, `receipt verify`, `proof money-gate`, `proof signed`, `demo adversarial`, and `demo quickstart`.
+- [ ] `npm run cli -- demo quickstart` runs the shortest local developer path.
+- [ ] `npm run gate` runs local gate evaluation with a safe default fixture.
+- [ ] `npm run demo:quickstart` runs the simplified local quickstart.
+- [ ] `localDemoOnly` remains true.
+- [ ] `productionSigning`, `paymentAuthorisation`, and `settlementAuthorisation` remain false where relevant.
+- [ ] `docs/simplified-developer-cli.md` is linked from README.
+- [ ] No live API, payment processing, settlement execution, hosted verification, wallet/banking logic, production signing, external-agent contact, or action execution is activated by P3-M119.
+
 ## Release-candidate checklist
 
 - [ ] Run `npm test`.

@@ -93,6 +93,14 @@ proof cases being blocked locally while preserving `localDemoOnly: true`,
 `productionSigning: false`, `paymentAuthorisation: false`, and
 `settlementAuthorisation: false`.
 
+## Relationship to P3-M119
+
+P3-M119 exposes the local signed proof verifier through the simplified
+developer CLI command `npm run cli -- proof signed`. This improves local
+developer ergonomics only; it does not add production signing, payment
+authorisation, settlement authorisation, live verification, or action
+execution.
+
 ## Why this is not production signing
 
 The prototype uses clearly labelled local demo key material. It is non-secret,

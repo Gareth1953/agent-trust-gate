@@ -450,3 +450,5 @@ export { createLocalAdversarialScenarioInputs,LOCAL_ADVERSARIAL_EVALUATION_RULE,
 export type { LocalAdversarialEvaluationResult,LocalAdversarialEvaluationSummary,LocalAdversarialExpectedVerdict,LocalAdversarialReceiptVerificationEvidence,LocalAdversarialSafetyFlags,LocalAdversarialScenarioInput,LocalAdversarialScenarioResult,LocalAdversarialScenarioType,LocalAdversarialScenarioVerdict,LocalAdversarialSettlementBlockerEvidence,LocalAdversarialSignatureVerificationEvidence,LocalEvidenceIntegrityDecision,LocalNonceFreshnessDecision } from "./local-adversarial-evaluation.js";
 export { runLocalAdversarialEvaluationCli } from "./local-adversarial-evaluation-cli.js";
 export type { LocalAdversarialEvaluationCliErrorCode,LocalAdversarialEvaluationCliIo } from "./local-adversarial-evaluation-cli.js";
+export { DEVELOPER_CLI_PUBLIC_CONTACT,DEVELOPER_CLI_RULE,DEVELOPER_CLI_VERSION,formatDeveloperCliHelp,runDeveloperCli } from "./developer-cli.js";
+export type { DeveloperCliErrorCode,DeveloperCliErrorResult,DeveloperCliIo,DeveloperCliResult,DeveloperCliSafetyFlags } from "./developer-cli.js";

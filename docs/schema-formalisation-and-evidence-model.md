@@ -172,6 +172,16 @@ P3-M118 remains local-only. It does not add production signing, paid-pilot
 readiness, production readiness, live APIs, payment processing, settlement
 execution, cloud/network calls, external-agent contact, or action execution.
 
+## P3-M119 simplified developer CLI
+
+P3-M119 adds a simplified developer CLI that makes the local schema-backed
+flows easier to run through `gate evaluate`, `receipt verify`, `proof
+money-gate`, `proof signed`, `demo adversarial`, and `demo quickstart`.
+
+This is CLI ergonomics only. It does not alter the schema safety boundary or
+activate live APIs, production signing, payment processing, settlement
+execution, external-agent contact, or action execution.
+
 ## Safety boundary
 
 Agent Trust Gate™ remains local-first and `local_demo_only`. The hardened

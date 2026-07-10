@@ -166,6 +166,13 @@ Future missions could strengthen:
 - static analysis and coverage reporting;
 - reference integration examples that remain local-only.
 
+## Relationship To P3-M119
+
+P3-M119 adds the simplified developer CLI that makes this adversarial pack
+easier to run through `npm run cli -- demo adversarial` and the quickstart path
+`npm run cli -- demo quickstart`. It is developer experience only and does not
+change the local-only safety boundary.
+
 ## Safety Boundary
 
 Agent Trust Gate™ remains local-first and `local_demo_only`.

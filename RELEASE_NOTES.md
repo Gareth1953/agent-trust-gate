@@ -1,5 +1,26 @@
 # Release Notes
 
+## P3-M119: Simplified Developer CLI
+
+P3-M119 adds a simplified local developer CLI for the most important Agent
+Trust Gate™ flows:
+
+- `gate evaluate`
+- `receipt verify`
+- `proof money-gate`
+- `proof signed`
+- `demo adversarial`
+- `demo quickstart`
+
+It also adds `docs/simplified-developer-cli.md` and package scripts for
+`cli`, `gate`, and `demo:quickstart`.
+
+This is local developer experience only. It is not production signing, payment
+authorisation, settlement authorisation, live integration, hosted verification,
+paid-pilot readiness, or action execution.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M118: Adversarial Evaluation Pack
 
 P3-M118 adds a local-only adversarial evaluation pack. It demonstrates blocked
