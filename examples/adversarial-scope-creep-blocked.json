@@ -1,0 +1,45 @@
+{
+  "scenarioId": "adversarial-scope-creep-blocked",
+  "scenarioType": "scope_creep",
+  "title": "Scope creep blocked",
+  "attackSummary": "The requested action no longer matches the action bound into the local gate pass.",
+  "expectedVerdict": "blocked",
+  "verdict": "blocked",
+  "blocked": true,
+  "allowedLocally": false,
+  "controlSatisfied": true,
+  "reasonCodes": [
+    "requested_action_mismatch",
+    "scope_creep_blocked"
+  ],
+  "evidenceTrail": [
+    "signed_scope:Evaluate local simulated settlement eligibility for an approved demo request.",
+    "attempted_scope:Evaluate local simulated settlement eligibility for an approved demo request. plus unauthorised extra settlement scope",
+    "receipt_verifier:requested_action_mismatch"
+  ],
+  "localDemoOnly": true,
+  "localOnly": true,
+  "productionSigning": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "privateDataIncluded": false,
+  "networkCallPerformed": false,
+  "externalAgentContacted": false,
+  "paymentTriggered": false,
+  "settlementExecuted": false,
+  "actionExecuted": false,
+  "receiptVerification": {
+    "verified": false,
+    "validForSimulatedSettlement": false,
+    "structurallyValid": true,
+    "fresh": true,
+    "replaySafe": true,
+    "settlementBlockerAllowed": true,
+    "receiptType": "signed_gate_pass",
+    "verdict": "allow_signed_gate_pass",
+    "reasonCodes": [
+      "requested_action_mismatch"
+    ],
+    "mode": "local_simulation_only"
+  }
+}

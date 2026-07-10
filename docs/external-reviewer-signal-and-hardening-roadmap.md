@@ -175,10 +175,11 @@ Future attack scenarios should include:
 
 ### 6. Adversarial evaluation
 
-Add adversarial tests that show attacks being blocked, not only happy-path
-proofs. The goal is to prove fail-closed behavior around malformed receipts,
-forged evidence, replay, expiry, scope mismatch, missing approvals, and invalid
-proof chains.
+P3-M118 adds adversarial tests that show attacks being blocked, not only
+happy-path proofs. The local pack covers replay, forged evidence, expired gate
+pass, scope creep, missing mandate, tampered signed proof, unsigned proof,
+stale nonce/freshness, settlement blocker refusal, and one valid local control
+case.
 
 ## Paid-pilot readiness gap
 
@@ -198,6 +199,7 @@ metrics.
 - P3-M117 — Local Signed Receipt and Proof Prototype.
   Completed as a local-only tamper-detection prototype, not production cryptography, payment authorisation, or settlement authorisation.
 - P3-M118 — Adversarial Evaluation Pack.
+  Completed as a local-only fail-closed scenario pack, not production security certification, payment authorisation, settlement authorisation, or live enforcement.
 - P3-M119 — Simplified Developer CLI.
 - P3-M120 — Reference Integration Examples.
 - P3-M121 — Paid Pilot Readiness Review.

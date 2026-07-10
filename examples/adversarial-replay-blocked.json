@@ -1,0 +1,65 @@
+{
+  "scenarioId": "adversarial-replay-blocked",
+  "scenarioType": "replay_attempt",
+  "title": "Replay attempt blocked",
+  "attackSummary": "A previously consumed local signed gate pass is presented again.",
+  "expectedVerdict": "blocked",
+  "verdict": "blocked",
+  "blocked": true,
+  "allowedLocally": false,
+  "controlSatisfied": true,
+  "reasonCodes": [
+    "replay_risk_detected",
+    "settlement_blocker_rejected",
+    "gate_pass_replay_detected",
+    "no_signed_gate_pass"
+  ],
+  "evidenceTrail": [
+    "first_use_settlement_simulation:allowed",
+    "replay_store_size_after_first_use:1",
+    "receipt_verifier:replay_risk_detected,settlement_blocker_rejected",
+    "gate_pass_protection:gate_pass_replay_detected",
+    "settlement_blocker:no_signed_gate_pass,gate_pass_replay_detected"
+  ],
+  "localDemoOnly": true,
+  "localOnly": true,
+  "productionSigning": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "privateDataIncluded": false,
+  "networkCallPerformed": false,
+  "externalAgentContacted": false,
+  "paymentTriggered": false,
+  "settlementExecuted": false,
+  "actionExecuted": false,
+  "receiptVerification": {
+    "verified": false,
+    "validForSimulatedSettlement": false,
+    "structurallyValid": true,
+    "fresh": true,
+    "replaySafe": false,
+    "settlementBlockerAllowed": false,
+    "receiptType": "signed_gate_pass",
+    "verdict": "allow_signed_gate_pass",
+    "reasonCodes": [
+      "replay_risk_detected",
+      "settlement_blocker_rejected"
+    ],
+    "mode": "local_simulation_only"
+  },
+  "settlementBlocker": {
+    "settlementSimulation": "blocked",
+    "blocked": true,
+    "blockReasonCodes": [
+      "no_signed_gate_pass",
+      "gate_pass_replay_detected"
+    ],
+    "validityStatus": "valid",
+    "replayStatus": "replay_detected",
+    "settlementExecuted": false,
+    "paymentTriggered": false,
+    "networkCallPerformed": false,
+    "actionExecuted": false,
+    "mode": "local_simulation_only"
+  }
+}

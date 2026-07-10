@@ -1,5 +1,21 @@
 # Release Notes
 
+## P3-M118: Adversarial Evaluation Pack
+
+P3-M118 adds a local-only adversarial evaluation pack. It demonstrates blocked
+replay, forged evidence, expired gate pass, scope creep, missing mandate,
+tampered signed proof, unsigned proof, stale nonce/freshness, and settlement
+blocker refusal scenarios, plus one valid control allowed locally.
+
+The pack adds `npm run demo:adversarial`, deterministic local JSON examples,
+and `docs/adversarial-evaluation-pack.md`.
+
+This is not production security certification, production signing, payment
+authorisation, settlement authorisation, live integration, hosted verification,
+or action execution.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M117: Local Signed Receipt and Proof Prototype
 
 P3-M117 adds a local-only signed receipt and proof prototype. Local trust

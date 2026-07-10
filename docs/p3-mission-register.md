@@ -1,5 +1,7 @@
 # P3 Mission Register
 
+No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
+
 ## Completed recent missions
 
 | Mission | Purpose |
@@ -34,6 +36,7 @@
 | P3-M115 | External Reviewer Signal and Technical Hardening Roadmap |
 | P3-M116 | Schema Formalisation and Evidence Model Hardening |
 | P3-M117 | Local Signed Receipt and Proof Prototype |
+| P3-M118 | Adversarial Evaluation Pack |
 
 ## Current proof chain
 
@@ -54,5 +57,6 @@ Pricing and paid pilot bands are indicative, non-binding, and subject to separat
 External reviewer feedback is signal only, not endorsement or paid-pilot readiness.
 P3-M116 hardens the local schema and evidence model without production signing, live integrations, paid-pilot readiness, or settlement execution.
 P3-M117 adds local-only signed receipt/proof tamper detection without production signing, payment authorisation, settlement authorisation, live integrations, or action execution.
+P3-M118 adds a local-only adversarial evaluation pack for replay, forged evidence, expired gate pass, scope creep, missing mandate, tampered proof, unsigned proof, stale freshness/nonce, settlement blocker refusal, and a valid local control without production security certification or live enforcement.
 
 No live APIs, payments, settlement execution, external-agent contact, AUC merge, cloud/network calls, outreach automation, secrets, credentials, tag/package publish/deployment, or autonomous action execution. AUC is not integrated. Agent Contact System is not integrated.

@@ -1,0 +1,47 @@
+{
+  "scenarioId": "adversarial-tampered-signed-proof-blocked",
+  "scenarioType": "tampered_signed_proof",
+  "title": "Tampered signed proof blocked",
+  "attackSummary": "A locally signed money-gate proof payload is changed after signing.",
+  "expectedVerdict": "blocked",
+  "verdict": "blocked",
+  "blocked": true,
+  "allowedLocally": false,
+  "controlSatisfied": true,
+  "reasonCodes": [
+    "payload_hash_mismatch",
+    "signature_invalid"
+  ],
+  "evidenceTrail": [
+    "signed_payload_type:local_money_gate_proof",
+    "payload_hash_matches:false",
+    "signature_valid:false"
+  ],
+  "localDemoOnly": true,
+  "localOnly": true,
+  "productionSigning": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "privateDataIncluded": false,
+  "networkCallPerformed": false,
+  "externalAgentContacted": false,
+  "paymentTriggered": false,
+  "settlementExecuted": false,
+  "actionExecuted": false,
+  "signatureVerification": {
+    "verified": false,
+    "structurallyValid": true,
+    "payloadHashMatches": false,
+    "signatureValid": false,
+    "signedPayloadType": "local_money_gate_proof",
+    "algorithm": "ed25519-local-demo",
+    "keyId": "local-demo-ed25519-p3-m117",
+    "reasonCodes": [
+      "payload_hash_mismatch",
+      "signature_invalid"
+    ],
+    "productionSigning": false,
+    "paymentAuthorisation": false,
+    "settlementAuthorisation": false
+  }
+}

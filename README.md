@@ -73,6 +73,7 @@ Install dependencies first, then use the existing project scripts:
     npm run typecheck
     npm run demo:gate:allow
     npm run proof:money-gate -- --input examples/local-end-to-end-money-gate-proof-input.json --summary-only
+    npm run demo:adversarial
 
 Receipt verification and settlement controls can be inspected with supported
 local CLI flags:
@@ -182,6 +183,25 @@ tampered with.
 This is not production signing, payment authorisation, settlement
 authorisation, legal proof, compliance proof, hosted verification, or action
 execution.
+
+## Adversarial evaluation pack
+
+P3-M118 adds a local-only adversarial evaluation pack covering replay, forged
+evidence, expired gate pass, scope creep, missing mandate, tampered signed
+proof, unsigned proof, stale nonce/freshness, settlement blocker refusal, and
+one valid local control case.
+
+- [Adversarial evaluation pack](docs/adversarial-evaluation-pack.md)
+
+Run it locally with:
+
+```bash
+npm run demo:adversarial
+```
+
+The pack is not production security certification, payment authorisation,
+settlement authorisation, production signing, live integration, hosted
+verification, or action execution.
 
 ## Global Code Launch Readiness
 

@@ -49,6 +49,13 @@ money-gate proofs can be canonically signed, locally verified, and rejected if
 tampered with. It does not add production signing, payment authorisation,
 settlement authorisation, live integrations, hosted verification, or action execution.
 
+P3-M118 adds a local adversarial evaluation pack. It shows replay, forged
+evidence, expired gate pass, scope creep, missing mandate, tampered signed
+proof, unsigned proof, stale nonce/freshness, and settlement blocker refusal
+being blocked, with one valid control allowed locally. It does not add
+production security certification, payment authorisation, settlement
+authorisation, live integrations, hosted verification, or action execution.
+
 ## What was launched
 
 The public launch made the code-readable developer project available for review:
@@ -72,6 +79,7 @@ The public launch made the code-readable developer project available for review:
 - External reviewer signal and technical hardening roadmap.
 - Schema formalisation and evidence model hardening documentation.
 - Local signed receipt and proof prototype documentation.
+- Local adversarial evaluation pack documentation and examples.
 
 The launch surface is public code and documentation. The product remains
 `local_demo_only`.
@@ -124,6 +132,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm `docs/external-reviewer-signal-and-hardening-roadmap.md` is visible and linked from README.
 - [ ] Confirm `docs/schema-formalisation-and-evidence-model.md` is visible and linked from README.
 - [ ] Confirm `docs/local-signed-receipt-and-proof-prototype.md` is visible and linked from README.
+- [ ] Confirm `docs/adversarial-evaluation-pack.md` is visible and linked from README.
 - [ ] Confirm README, LICENSE, SECURITY, CHANGELOG, RELEASE_NOTES, and PUBLIC_LAUNCH_CHECKLIST render correctly.
 - [ ] Confirm `agent-trust-gate.manifest.json` is visible and still reports `local_demo_only`.
 - [ ] Confirm schemas and synthetic examples are visible.
@@ -138,6 +147,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm external reviewer signal is not presented as endorsement, certification, paid-pilot readiness, production readiness, or market validation.
 - [ ] Confirm P3-M116 schema hardening is presented as local-only and not production signing, paid-pilot readiness, production readiness, or settlement assurance.
 - [ ] Confirm P3-M117 local signatures are presented as local-demo-only tamper detection, not production signing, payment authorisation, settlement authorisation, or legal/compliance proof.
+- [ ] Confirm P3-M118 adversarial evaluation is presented as local-only, not production security certification, payment authorisation, settlement authorisation, or live enforcement.
 - [ ] Confirm no git tag, package publish, or deployment has been performed unless separately approved later.
 
 ## Recommended next steps

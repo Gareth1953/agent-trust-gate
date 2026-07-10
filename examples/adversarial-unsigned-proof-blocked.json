@@ -1,0 +1,45 @@
+{
+  "scenarioId": "adversarial-unsigned-proof-blocked",
+  "scenarioType": "unsigned_malformed_proof",
+  "title": "Unsigned or malformed proof blocked",
+  "attackSummary": "A money-gate proof payload is presented without a local signed-proof envelope.",
+  "expectedVerdict": "blocked",
+  "verdict": "blocked",
+  "blocked": true,
+  "allowedLocally": false,
+  "controlSatisfied": true,
+  "reasonCodes": [
+    "malformed_signed_proof"
+  ],
+  "evidenceTrail": [
+    "signed_payload_type:unknown",
+    "structurally_valid:false",
+    "signature_valid:false"
+  ],
+  "localDemoOnly": true,
+  "localOnly": true,
+  "productionSigning": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "privateDataIncluded": false,
+  "networkCallPerformed": false,
+  "externalAgentContacted": false,
+  "paymentTriggered": false,
+  "settlementExecuted": false,
+  "actionExecuted": false,
+  "signatureVerification": {
+    "verified": false,
+    "structurallyValid": false,
+    "payloadHashMatches": false,
+    "signatureValid": false,
+    "signedPayloadType": "unknown",
+    "algorithm": "",
+    "keyId": "",
+    "reasonCodes": [
+      "malformed_signed_proof"
+    ],
+    "productionSigning": false,
+    "paymentAuthorisation": false,
+    "settlementAuthorisation": false
+  }
+}

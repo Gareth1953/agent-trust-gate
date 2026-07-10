@@ -1,0 +1,63 @@
+{
+  "scenarioId": "adversarial-expired-gate-pass-blocked",
+  "scenarioType": "expired_gate_pass",
+  "title": "Expired gate pass blocked",
+  "attackSummary": "A valid local signed gate pass is presented at its expiry boundary.",
+  "expectedVerdict": "blocked",
+  "verdict": "blocked",
+  "blocked": true,
+  "allowedLocally": false,
+  "controlSatisfied": true,
+  "reasonCodes": [
+    "expired_receipt",
+    "settlement_blocker_rejected",
+    "no_signed_gate_pass",
+    "gate_pass_expired"
+  ],
+  "evidenceTrail": [
+    "evaluated_at:2026-07-10T09:05:00.000Z",
+    "receipt_verifier:expired_receipt,settlement_blocker_rejected",
+    "settlement_blocker:no_signed_gate_pass,gate_pass_expired"
+  ],
+  "localDemoOnly": true,
+  "localOnly": true,
+  "productionSigning": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "privateDataIncluded": false,
+  "networkCallPerformed": false,
+  "externalAgentContacted": false,
+  "paymentTriggered": false,
+  "settlementExecuted": false,
+  "actionExecuted": false,
+  "receiptVerification": {
+    "verified": false,
+    "validForSimulatedSettlement": false,
+    "structurallyValid": true,
+    "fresh": false,
+    "replaySafe": false,
+    "settlementBlockerAllowed": false,
+    "receiptType": "signed_gate_pass",
+    "verdict": "allow_signed_gate_pass",
+    "reasonCodes": [
+      "expired_receipt",
+      "settlement_blocker_rejected"
+    ],
+    "mode": "local_simulation_only"
+  },
+  "settlementBlocker": {
+    "settlementSimulation": "blocked",
+    "blocked": true,
+    "blockReasonCodes": [
+      "no_signed_gate_pass",
+      "gate_pass_expired"
+    ],
+    "validityStatus": "expired",
+    "replayStatus": "not_checked",
+    "settlementExecuted": false,
+    "paymentTriggered": false,
+    "networkCallPerformed": false,
+    "actionExecuted": false,
+    "mode": "local_simulation_only"
+  }
+}

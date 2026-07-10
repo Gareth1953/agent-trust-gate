@@ -1,0 +1,57 @@
+{
+  "scenarioId": "adversarial-settlement-blocker-refusal",
+  "scenarioType": "settlement_blocker_refusal",
+  "title": "Settlement blocker refusal recorded",
+  "attackSummary": "A refusal receipt is sent to the local settlement blocker and must remain blocked.",
+  "expectedVerdict": "blocked",
+  "verdict": "blocked",
+  "blocked": true,
+  "allowedLocally": false,
+  "controlSatisfied": true,
+  "reasonCodes": [
+    "MANDATE_REQUIRED",
+    "no_signed_gate_pass",
+    "receipt_type_not_allowed",
+    "gate_verdict_not_allow",
+    "settlement_not_allowed_by_gate",
+    "refusal_receipt_blocks_settlement",
+    "critical_check_failed",
+    "refusal_reason_code_present"
+  ],
+  "evidenceTrail": [
+    "gate_verdict:refuse_no_mandate",
+    "settlement_blocker:no_signed_gate_pass,receipt_type_not_allowed,gate_verdict_not_allow,settlement_not_allowed_by_gate,refusal_receipt_blocks_settlement,critical_check_failed,refusal_reason_code_present",
+    "settlement_executed:false"
+  ],
+  "localDemoOnly": true,
+  "localOnly": true,
+  "productionSigning": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "privateDataIncluded": false,
+  "networkCallPerformed": false,
+  "externalAgentContacted": false,
+  "paymentTriggered": false,
+  "settlementExecuted": false,
+  "actionExecuted": false,
+  "settlementBlocker": {
+    "settlementSimulation": "blocked",
+    "blocked": true,
+    "blockReasonCodes": [
+      "no_signed_gate_pass",
+      "receipt_type_not_allowed",
+      "gate_verdict_not_allow",
+      "settlement_not_allowed_by_gate",
+      "refusal_receipt_blocks_settlement",
+      "critical_check_failed",
+      "refusal_reason_code_present"
+    ],
+    "validityStatus": "not_applicable",
+    "replayStatus": "not_checked",
+    "settlementExecuted": false,
+    "paymentTriggered": false,
+    "networkCallPerformed": false,
+    "actionExecuted": false,
+    "mode": "local_simulation_only"
+  }
+}

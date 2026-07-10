@@ -85,6 +85,14 @@ payloads. The signature is only useful because the receipt and proof now carry
 clearer local fields for IDs, issuer/verifier references, nonce, expiry,
 freshness, replay, evidence, and proof status.
 
+## Relationship to P3-M118
+
+P3-M118 uses this local signed receipt/proof prototype inside the adversarial
+evaluation pack. The pack shows tampered signed proof and unsigned/malformed
+proof cases being blocked locally while preserving `localDemoOnly: true`,
+`productionSigning: false`, `paymentAuthorisation: false`, and
+`settlementAuthorisation: false`.
+
 ## Why this is not production signing
 
 The prototype uses clearly labelled local demo key material. It is non-secret,

@@ -72,6 +72,17 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] No production signing, production key management, live API, payment processing, settlement execution, hosted verification, wallet/banking logic, external-agent contact, or action execution is activated by P3-M117.
 - [ ] Demo key material is clearly labelled local-demo-only, non-secret, and not for production.
 
+## Adversarial Evaluation Pack
+
+- [ ] P3-M118 local adversarial evaluation pack is local-demo-only.
+- [ ] Replay, forged evidence, expired gate pass, scope creep, missing mandate, tampered signed proof, unsigned proof, stale nonce/freshness, and settlement blocker refusal cases are blocked.
+- [ ] Valid control case is allowed locally only.
+- [ ] `localDemoOnly` remains true.
+- [ ] `productionSigning`, `paymentAuthorisation`, and `settlementAuthorisation` remain false.
+- [ ] `docs/adversarial-evaluation-pack.md` is linked from README.
+- [ ] `npm run demo:adversarial` is a local deterministic command only.
+- [ ] No production security certification, production signing, live API, payment processing, settlement execution, hosted verification, wallet/banking logic, external-agent contact, or action execution is activated by P3-M118.
+
 ## Release-candidate checklist
 
 - [ ] Run `npm test`.

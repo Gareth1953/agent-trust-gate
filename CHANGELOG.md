@@ -2,10 +2,13 @@
 
 All notable project changes are recorded here. The package remains pre-release, private in package metadata, and `local_demo_only`.
 
+No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
+
 ## Unreleased / Release Candidate
 
 ### Added
 
+- P3-M118 local adversarial evaluation pack with deterministic blocked replay, forged evidence, expired gate pass, scope creep, missing mandate, tampered proof, unsigned proof, stale nonce/freshness, settlement blocker refusal, and valid local control examples.
 - P3-M117 local signed receipt and proof prototype with canonical payload signing, local verification, tamper-detection examples, and local-only signature metadata.
 - P3-M116 schema formalisation and evidence model hardening for local mandate, evidence, verified intent, risk, proof metadata, expiry, nonce, issuer/verifier, freshness, and replay fields.
 - P3-M115 external AI reviewer signal capture and technical hardening roadmap.
@@ -20,6 +23,7 @@ All notable project changes are recorded here. The package remains pre-release, 
 
 ### Safety
 
+- P3-M118 is local adversarial testing only. It does not add production security certification, production signing, production key management, payment authorisation, settlement authorisation, live APIs, payment processing, cloud/network calls, external-agent contact, outreach automation, or action execution.
 - P3-M117 is a local prototype only. It does not add production signing, production key management, payment authorisation, settlement authorisation, live APIs, payment processing, cloud/network calls, external-agent contact, outreach automation, or action execution.
 - P3-M116 is local schema/model hardening only. It does not add production signing, live APIs, payment processing, settlement execution, cloud/network calls, external-agent contact, outreach automation, or action execution.
 - External reviewer feedback is treated as signal only, not endorsement, certification, sale, market validation, paid-pilot readiness, production readiness, or guarantee; no runtime capability was added.

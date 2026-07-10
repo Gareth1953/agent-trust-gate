@@ -1,0 +1,59 @@
+{
+  "scenarioId": "adversarial-stale-nonce-blocked",
+  "scenarioType": "stale_nonce_freshness",
+  "title": "Stale nonce and freshness failure blocked",
+  "attackSummary": "A local gate pass is presented after the proof nonce freshness window.",
+  "expectedVerdict": "blocked",
+  "verdict": "blocked",
+  "blocked": true,
+  "allowedLocally": false,
+  "controlSatisfied": true,
+  "reasonCodes": [
+    "stale_nonce_freshness_window_exceeded",
+    "expired_receipt",
+    "settlement_blocker_rejected"
+  ],
+  "evidenceTrail": [
+    "nonce_created_at:2026-07-10T09:00:00.000Z",
+    "evaluated_at:2026-07-10T09:05:01.000Z",
+    "freshness_window_seconds:300",
+    "receipt_verifier:expired_receipt,settlement_blocker_rejected"
+  ],
+  "localDemoOnly": true,
+  "localOnly": true,
+  "productionSigning": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "privateDataIncluded": false,
+  "networkCallPerformed": false,
+  "externalAgentContacted": false,
+  "paymentTriggered": false,
+  "settlementExecuted": false,
+  "actionExecuted": false,
+  "receiptVerification": {
+    "verified": false,
+    "validForSimulatedSettlement": false,
+    "structurallyValid": true,
+    "fresh": false,
+    "replaySafe": false,
+    "settlementBlockerAllowed": false,
+    "receiptType": "signed_gate_pass",
+    "verdict": "allow_signed_gate_pass",
+    "reasonCodes": [
+      "expired_receipt",
+      "settlement_blocker_rejected"
+    ],
+    "mode": "local_simulation_only"
+  },
+  "nonceFreshness": {
+    "nonceMatched": true,
+    "fresh": false,
+    "createdAt": "2026-07-10T09:00:00.000Z",
+    "evaluatedAt": "2026-07-10T09:05:01.000Z",
+    "freshnessWindowSeconds": 300,
+    "reasonCodes": [
+      "stale_nonce_freshness_window_exceeded"
+    ],
+    "localOnly": true
+  }
+}

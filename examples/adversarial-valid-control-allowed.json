@@ -1,0 +1,74 @@
+{
+  "scenarioId": "adversarial-valid-control-allowed",
+  "scenarioType": "valid_control_allowed",
+  "title": "Valid control allowed locally",
+  "attackSummary": "A complete in-scope local control request passes the local verifier once.",
+  "expectedVerdict": "allowed_local_control",
+  "verdict": "allowed_local_control",
+  "blocked": false,
+  "allowedLocally": true,
+  "controlSatisfied": true,
+  "reasonCodes": [
+    "local_control_allowed",
+    "signature_valid"
+  ],
+  "evidenceTrail": [
+    "signature_verification:signature_valid",
+    "receipt_verifier:none",
+    "settlement_blocker:none",
+    "localDemoOnly:true",
+    "productionSigning:false",
+    "paymentAuthorisation:false",
+    "settlementAuthorisation:false"
+  ],
+  "localDemoOnly": true,
+  "localOnly": true,
+  "productionSigning": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "privateDataIncluded": false,
+  "networkCallPerformed": false,
+  "externalAgentContacted": false,
+  "paymentTriggered": false,
+  "settlementExecuted": false,
+  "actionExecuted": false,
+  "receiptVerification": {
+    "verified": true,
+    "validForSimulatedSettlement": true,
+    "structurallyValid": true,
+    "fresh": true,
+    "replaySafe": true,
+    "settlementBlockerAllowed": true,
+    "receiptType": "signed_gate_pass",
+    "verdict": "allow_signed_gate_pass",
+    "reasonCodes": [],
+    "mode": "local_simulation_only"
+  },
+  "settlementBlocker": {
+    "settlementSimulation": "allowed",
+    "blocked": false,
+    "blockReasonCodes": [],
+    "validityStatus": "valid",
+    "replayStatus": "consumed",
+    "settlementExecuted": false,
+    "paymentTriggered": false,
+    "networkCallPerformed": false,
+    "actionExecuted": false,
+    "mode": "local_simulation_only"
+  },
+  "signatureVerification": {
+    "verified": true,
+    "structurallyValid": true,
+    "payloadHashMatches": true,
+    "signatureValid": true,
+    "signedPayloadType": "local_trust_receipt",
+    "algorithm": "ed25519-local-demo",
+    "keyId": "local-demo-ed25519-p3-m117",
+    "reasonCodes": [
+      "signature_valid"
+    ],
+    "productionSigning": false,
+    "paymentAuthorisation": false,
+    "settlementAuthorisation": false
+  }
+}

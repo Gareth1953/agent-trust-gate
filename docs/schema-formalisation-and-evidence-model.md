@@ -160,6 +160,18 @@ if tampered with. It still avoids production cryptographic signing, payments,
 settlement execution, live APIs, cloud/network calls, external-agent contact,
 and action execution.
 
+## P3-M118 adversarial evaluation
+
+P3-M118 builds on the hardened schema/evidence fields and the P3-M117 local
+signed-proof prototype with a local adversarial evaluation pack. It covers
+replay, forged evidence, expired gate pass, scope creep, missing mandate,
+tampered signed proof, unsigned proof, stale nonce/freshness, settlement
+blocker refusal, and one valid local control case.
+
+P3-M118 remains local-only. It does not add production signing, paid-pilot
+readiness, production readiness, live APIs, payment processing, settlement
+execution, cloud/network calls, external-agent contact, or action execution.
+
 ## Safety boundary
 
 Agent Trust Gate™ remains local-first and `local_demo_only`. The hardened

@@ -1,0 +1,53 @@
+{
+  "scenarioId": "adversarial-forged-evidence-blocked",
+  "scenarioType": "forged_evidence",
+  "title": "Forged evidence blocked",
+  "attackSummary": "A local evidence claim presents a digest that does not match the observed local evidence fixture.",
+  "expectedVerdict": "blocked",
+  "verdict": "blocked",
+  "blocked": true,
+  "allowedLocally": false,
+  "controlSatisfied": true,
+  "reasonCodes": [
+    "evidence_hash_mismatch",
+    "forged_evidence_blocked"
+  ],
+  "evidenceTrail": [
+    "expected_evidence_hash:sha256:87866c1badd81ac91f8127650427f35142004c2cdd22d3a34507ed6988ca64ed",
+    "observed_evidence_hash:sha256:00393f97c14c7458b352024a3dca1cfb4631eaaa0f4d88676b4eb9c50b7e1dfc",
+    "receipt_verifier:none"
+  ],
+  "localDemoOnly": true,
+  "localOnly": true,
+  "productionSigning": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "privateDataIncluded": false,
+  "networkCallPerformed": false,
+  "externalAgentContacted": false,
+  "paymentTriggered": false,
+  "settlementExecuted": false,
+  "actionExecuted": false,
+  "receiptVerification": {
+    "verified": true,
+    "validForSimulatedSettlement": true,
+    "structurallyValid": true,
+    "fresh": true,
+    "replaySafe": true,
+    "settlementBlockerAllowed": true,
+    "receiptType": "signed_gate_pass",
+    "verdict": "allow_signed_gate_pass",
+    "reasonCodes": [],
+    "mode": "local_simulation_only"
+  },
+  "evidenceIntegrity": {
+    "expectedEvidenceHash": "sha256:87866c1badd81ac91f8127650427f35142004c2cdd22d3a34507ed6988ca64ed",
+    "observedEvidenceHash": "sha256:00393f97c14c7458b352024a3dca1cfb4631eaaa0f4d88676b4eb9c50b7e1dfc",
+    "hashMatched": false,
+    "reasonCodes": [
+      "evidence_hash_mismatch",
+      "forged_evidence_blocked"
+    ],
+    "localOnly": true
+  }
+}
