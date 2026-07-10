@@ -201,6 +201,18 @@ The cautious P3-M121 position is that paid technical review and local pilot
 discussion are reasonable, while production deployment readiness and live
 payment/settlement readiness are still `not yet`.
 
+## Agent-readable discovery gap
+
+P3-M122 adds agent-readable discovery and system metadata after the P3-M116 to
+P3-M121 hardening sequence. The goal is safer public-repository comprehension:
+agents and developer assistants can read `llms.txt`, the root manifest, the
+agent card metadata, schemas, docs, examples, and local command guidance.
+
+This is readable-now/callable-later metadata only. It does not add live
+endpoints, MCP server functionality, live agent-to-agent communication, agent
+negotiation, autonomous authority, payment/settlement authority,
+external-agent contact, production signing, or action execution.
+
 ## Recommended next missions
 
 - P3-M116 — Schema Formalisation and Evidence Model Hardening. Completed as local-only schema/model hardening, not production signing or paid-pilot readiness.
@@ -214,10 +226,12 @@ payment/settlement readiness are still `not yet`.
   Completed as local-only reference patterns for agent loops, tool calls, human review, pre-settlement checks, governance review, handoff gates, and a wrapper API, not official framework integration or live action execution.
 - P3-M121 — Paid Pilot Readiness Review.
   Completed as cautious commercial/readiness assessment after P3-M116 through P3-M120, not production readiness, certification, live payment readiness, settlement readiness, automatic acceptance, or automatic access.
+- P3-M122 — Agent-Readable Discovery and System Integration Metadata Pack.
+  Completed as local discovery metadata for agents, developer assistants, automated repo scanners, and integration reviewers, not a live endpoint, MCP server, autonomous authority, payment/settlement authority, external-agent contact, or action execution.
 
 These roadmap items do not activate live APIs, payments, settlement,
-external-agent contact, deployment, hosted service, network calls, production
-signing, or action execution.
+external-agent contact, deployment, hosted service, network calls, MCP server
+functionality, production signing, or action execution.
 
 ## Safety boundary
 

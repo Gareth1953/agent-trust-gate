@@ -1,0 +1,74 @@
+# Agent Trust Gate
+
+Public repo: https://github.com/Gareth1953/agent-trust-gate
+
+Agent Trust Gate is a local-first, pre-action and pre-settlement trust gate for
+agent-led workflows. It demonstrates local checks for mandate, evidence,
+verified intent, receipt/proof validity, replay protection, and settlement
+blocking before any sensitive action would proceed.
+
+Core line:
+No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
+
+Strategic boundary:
+Readable now. Callable later. Autonomous execution never without gate control.
+
+Key trust principle:
+Claimed agent identity is not trust. Behaviour, mandate, evidence, verified
+intent, and session context must decide access.
+
+Safe local commands:
+- npm test
+- npm run build
+- npm run typecheck
+- npm run cli -- help
+- npm run gate
+- npm run demo:adversarial
+- npm run demo:integrations
+- npm run demo:quickstart
+- npm run proof:money-gate
+
+Important docs:
+- README.md
+- docs/agent-readable-discovery-and-system-metadata.md
+- docs/system-integration-metadata.md
+- docs/example-agent-discovery-prompts.md
+- docs/schema-formalisation-and-evidence-model.md
+- docs/local-signed-receipt-and-proof-prototype.md
+- docs/adversarial-evaluation-pack.md
+- docs/simplified-developer-cli.md
+- docs/reference-integration-examples.md
+- docs/paid-pilot-readiness-review.md
+
+Important schemas:
+- schemas/local-agent-action-request.schema.json
+- schemas/local-trust-receipt.schema.json
+- schemas/local-money-gate-proof.schema.json
+
+Important examples:
+- examples/local-demo-low-risk-allow.json
+- examples/local-receipt-signed-gate-pass.json
+- examples/local-signed-trust-receipt-valid.json
+- examples/local-signed-money-gate-proof-valid.json
+- examples/adversarial-replay-blocked.json
+- examples/adversarial-valid-control-allowed.json
+- examples/reference-generic-agent-loop.json
+- examples/reference-pre-settlement-money-gate.json
+
+Commercial/contact route:
+Human-reviewed developer, agent-system, integration, security, paid technical
+review, local pilot discussion, and public project enquiries may use
+gpmiddleton71@gmail.com. This is contact metadata only and does not grant
+automatic acceptance, automatic access, hosted access, payment activation, or
+settlement capability.
+
+Safety boundary:
+This repository is readable by agents and systems, but it exposes no live agent
+endpoint and grants no autonomous authority. It has no live API access, no MCP
+server functionality, no live agent-to-agent communication, no agent
+negotiation, no autonomous contact, no external-agent contact, no live payment
+processing, no PayPal API integration, no Stripe integration, no checkout, no
+webhooks, no wallet/banking logic, no real settlement execution, no production
+signing, no production key management, no cloud/network calls, no AUC
+integration, no Agent Contact System integration, no outreach automation, and
+no action execution.

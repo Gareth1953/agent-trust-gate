@@ -74,6 +74,13 @@ feasibility review cautiously. It does not claim production readiness,
 certified security, live payment/settlement readiness, automatic acceptance,
 automatic access, legal/compliance approval, or action execution.
 
+P3-M122 adds agent-readable discovery and system integration metadata through
+`llms.txt`, root manifest updates, agent card metadata, discovery docs, system
+integration metadata, and safe prompt examples. It keeps the repo readable by
+agents and systems without adding a live endpoint, MCP server functionality,
+autonomous authority, payment/settlement authority, external-agent contact, or
+action execution.
+
 ## What was launched
 
 The public launch made the code-readable developer project available for review:
@@ -101,6 +108,9 @@ The public launch made the code-readable developer project available for review:
 - Simplified developer CLI documentation.
 - Reference integration examples documentation and local JSON examples.
 - Paid pilot readiness review documentation.
+- Agent-readable discovery and system metadata documentation.
+- Root `llms.txt`.
+- Root agent card metadata.
 
 The launch surface is public code and documentation. The product remains
 `local_demo_only`.
@@ -113,6 +123,10 @@ The public GitHub launch did not activate:
 - an npm/package publish;
 - deployment or hosting;
 - live APIs;
+- MCP server functionality;
+- live agent endpoints;
+- live agent-to-agent communication;
+- agent negotiation;
 - forms;
 - tracking, analytics, or telemetry;
 - hosted calls;
@@ -157,6 +171,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm `docs/simplified-developer-cli.md` is visible and linked from README.
 - [ ] Confirm `docs/reference-integration-examples.md` is visible and linked from README.
 - [ ] Confirm `docs/paid-pilot-readiness-review.md` is visible and linked from README.
+- [ ] Confirm `llms.txt`, `agent-trust-gate.agent-card.json`, `docs/agent-readable-discovery-and-system-metadata.md`, `docs/system-integration-metadata.md`, and `docs/example-agent-discovery-prompts.md` are visible and linked from README.
 - [ ] Confirm README, LICENSE, SECURITY, CHANGELOG, RELEASE_NOTES, and PUBLIC_LAUNCH_CHECKLIST render correctly.
 - [ ] Confirm `agent-trust-gate.manifest.json` is visible and still reports `local_demo_only`.
 - [ ] Confirm schemas and synthetic examples are visible.
@@ -175,12 +190,14 @@ No signed gate pass means no settlement.
 - [ ] Confirm P3-M119 simplified developer CLI is presented as local-only developer experience, not live integration, production signing, payment authorisation, settlement authorisation, or action execution.
 - [ ] Confirm P3-M120 reference integration examples are presented as local-only patterns, not official framework integrations, live APIs, external agents, payments, settlement, production signing, or action execution.
 - [ ] Confirm P3-M121 paid pilot readiness review is presented as cautious commercial positioning, not production readiness, certification, live payment/settlement readiness, automatic acceptance, automatic access, or a guarantee.
+- [ ] Confirm P3-M122 agent-readable discovery is presented as readable-now/callable-later metadata, not a live endpoint, MCP server, autonomous authority, payment/settlement authority, external-agent contact, or action execution.
 - [ ] Confirm no git tag, package publish, or deployment has been performed unless separately approved later.
 
 ## Recommended next steps
 
 Keep future changes local-first and reviewable. Any future git tag, package
 publish, static-site deployment, hosted sandbox, live API, payment activation,
-settlement activation, external-agent contact, AUC bridge, Agent Contact System
-integration, production signing, or action execution requires a separate
-human-approved mission and updated safety review.
+settlement activation, live agent endpoint, MCP server functionality,
+external-agent contact, AUC bridge, Agent Contact System integration,
+production signing, or action execution requires a separate human-approved
+mission and updated safety review.

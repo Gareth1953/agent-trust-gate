@@ -17,6 +17,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Local signed receipt and proof prototype is present: [Local signed receipt and proof prototype](docs/local-signed-receipt-and-proof-prototype.md).
 - [ ] Reference integration examples are present: [Reference integration examples](docs/reference-integration-examples.md).
 - [ ] Paid pilot readiness review is present: [Paid pilot readiness review](docs/paid-pilot-readiness-review.md).
+- [ ] Agent-readable discovery metadata is present: [Agent-readable discovery and system metadata](docs/agent-readable-discovery-and-system-metadata.md), [system integration metadata](docs/system-integration-metadata.md), [example agent discovery prompts](docs/example-agent-discovery-prompts.md), [llms.txt](llms.txt), and [agent card metadata](agent-trust-gate.agent-card.json).
 - [ ] Manifest reports `local_demo_only`.
 - [ ] Schemas and JSON examples parse.
 - [ ] Tests, build, and typecheck pass.
@@ -117,6 +118,19 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] No production readiness, certified security, legal/compliance approval, automatic acceptance, or automatic access is claimed.
 - [ ] `docs/paid-pilot-readiness-review.md` is linked from README.
 - [ ] No live API, payment processing, settlement execution, hosted verification, wallet/banking logic, production signing, external-agent contact, or action execution is activated by P3-M121.
+
+## Agent-Readable Discovery and System Metadata
+
+- [ ] P3-M122 agent-readable discovery metadata is documentation and local discovery guidance only.
+- [ ] `llms.txt` is present and concise.
+- [ ] `agent-trust-gate.agent-card.json` is present and valid JSON.
+- [ ] `agent-trust-gate.manifest.json` preserves `local_demo_only`.
+- [ ] `docs/agent-readable-discovery-and-system-metadata.md` is linked from README.
+- [ ] `docs/system-integration-metadata.md` is linked from README.
+- [ ] `docs/example-agent-discovery-prompts.md` is linked from README.
+- [ ] Readable now. Callable later. Autonomous execution never without gate control.
+- [ ] Claimed agent identity is not trust; behaviour, mandate, evidence, verified intent, and session context decide access.
+- [ ] No live endpoint, MCP server functionality, live agent-to-agent communication, agent negotiation, autonomous authority, payment/settlement authority, external-agent contact, or action execution is activated by P3-M122.
 
 ## Release-candidate checklist
 

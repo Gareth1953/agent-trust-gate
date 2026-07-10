@@ -221,6 +221,18 @@ Recommended next actions:
 - Do not move toward production signing, live APIs, payments, settlement, or
   hosted enforcement without a separate approved mission.
 
+## Relationship To P3-M122
+
+P3-M122 adds agent-readable discovery and system metadata so agents, developer
+assistants, automated repo scanners, and integration reviewers can understand
+the public repository safely.
+
+This supports paid technical review and local pilot discussion by making the
+repository easier to inspect. It does not strengthen the paid pilot readiness
+claim beyond this document's cautious framing, and it does not add a live
+endpoint, MCP server functionality, autonomous authority, payment/settlement
+authority, external-agent contact, or action execution.
+
 ## Safety Boundary
 
 Agent Trust Gate™ remains local-first and `local_demo_only`.

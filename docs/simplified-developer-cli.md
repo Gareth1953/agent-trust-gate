@@ -195,6 +195,15 @@ The CLI supports paid technical review and local pilot discussion by making
 local demos easier to run, but it does not create production readiness, live
 payments, settlement, hosted access, or action execution.
 
+## Relationship To P3-M122
+
+P3-M122 lists the simplified CLI in agent-readable discovery metadata so AI
+agents, developer assistants, and integration reviewers can find the safest
+local command path. Discovery metadata does not make the CLI callable by
+external agents and does not add live endpoints, MCP server functionality,
+autonomous authority, payment/settlement authority, external-agent contact, or
+action execution.
+
 ## Safety Boundary
 
 Agent Trust Gate™ remains local-first and `local_demo_only`.

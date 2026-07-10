@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 
 const manifestPath = "agent-trust-gate.manifest.json";
+const publicRepoUrl = "https://github.com/Gareth1953/agent-trust-gate";
 const schemaPaths = [
   "schemas/local-agent-action-request.schema.json",
   "schemas/local-trust-receipt.schema.json",
@@ -59,7 +60,12 @@ test("static manifest parses and keeps every live capability disabled", () => {
     "settlement_blocker_simulation",
     "end_to_end_money_gate_proof",
   ]);
-  assert.doesNotMatch(read(manifestPath), /https?:\/\/|endpoint[_-]?url|api[_-]?key|secret|wallet|bank[_-]?account/i);
+  assert.equal(manifest.public_repository_url, publicRepoUrl);
+  const manifestSource = read(manifestPath);
+  for (const url of manifestSource.match(/https?:\/\/[^\s",]+/g) ?? []) {
+    assert.equal(url, publicRepoUrl, url);
+  }
+  assert.doesNotMatch(manifestSource, /endpoint[_-]?url|api[_-]?key|secret|wallet|bank[_-]?account/i);
 });
 
 test("documentation schemas exist, parse, and declare local-only shapes", () => {

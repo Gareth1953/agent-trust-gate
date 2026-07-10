@@ -43,6 +43,12 @@ reference patterns do not create official framework integrations, live APIs,
 external agents, payments, settlement, hosted enforcement, or action
 execution.
 
+P3-M122 adds agent-readable discovery and system metadata so agents, developer
+assistants, automated repo scanners, and integration reviewers can find these
+local reference patterns safely. It does not create a live endpoint, MCP server
+functionality, autonomous authority, agent negotiation, external-agent contact,
+payment/settlement authority, or action execution.
+
 ## Patterns Covered
 
 | Pattern | Local result |

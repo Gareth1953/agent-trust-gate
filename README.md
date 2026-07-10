@@ -90,12 +90,33 @@ the requested action or settlement.
 ## Code-readable assets
 
 - [Static manifest](agent-trust-gate.manifest.json)
+- [Agent card metadata](agent-trust-gate.agent-card.json)
+- [llms.txt](llms.txt)
 - [Local action-request schema](schemas/local-agent-action-request.schema.json)
 - [Local trust-receipt schema](schemas/local-trust-receipt.schema.json)
 - [Local money-gate proof schema](schemas/local-money-gate-proof.schema.json)
 - [Agent-readable capability statement](docs/agent-readable-capability-statement.md)
+- [Agent-readable discovery and system metadata](docs/agent-readable-discovery-and-system-metadata.md)
+- [System integration metadata](docs/system-integration-metadata.md)
+- [Example agent discovery prompts](docs/example-agent-discovery-prompts.md)
 - [Code-readable developer integration pack](docs/code-readable-developer-integration-pack.md)
 - [Developer integration checklist](docs/developer-integration-checklist.md)
+
+## Agent-readable discovery
+
+P3-M122 adds local agent-readable discovery metadata for AI agents, developer
+assistants, automated repo scanners, and integration reviewers.
+
+- [llms.txt](llms.txt)
+- [Agent-readable discovery and system metadata](docs/agent-readable-discovery-and-system-metadata.md)
+- [System integration metadata](docs/system-integration-metadata.md)
+- [Example agent discovery prompts](docs/example-agent-discovery-prompts.md)
+- [Agent card metadata](agent-trust-gate.agent-card.json)
+
+Readable now. Callable later. Autonomous execution never without gate control.
+The repository is readable by agents and systems, but it exposes no live agent
+endpoint and grants no autonomous authority, payment/settlement authority,
+external-agent contact, or action execution.
 
 ## Public contact
 
@@ -402,7 +423,10 @@ hardening, local signed proofs, adversarial evaluation, simplified CLI
 ergonomics, and reference integration examples without changing runtime
 capability. P3-M121 adds a cautious paid pilot readiness review without
 claiming production readiness, live payment/settlement readiness, automatic
-acceptance, or automatic access.
+acceptance, or automatic access. P3-M122 adds agent-readable discovery and
+system metadata while preserving the readable-now/callable-later boundary and
+adding no live endpoint, autonomous authority, payment/settlement authority,
+external-agent contact, or action execution.
 
 Recent proof and readiness milestones:
 
@@ -433,16 +457,19 @@ Recent proof and readiness milestones:
 - P3-M119: simplified developer CLI
 - P3-M120: reference integration examples
 - P3-M121: paid pilot readiness review
+- P3-M122: agent-readable discovery and system metadata
 
 ## Developer review path
 
-1. Read the [manifest](agent-trust-gate.manifest.json).
-2. Read the [capability statement](docs/agent-readable-capability-statement.md).
-3. Run the tests, build, and typecheck.
-4. Run the local gate demo.
-5. Inspect the static receipt examples in examples/.
-6. Run the local money-gate proof.
-7. Confirm the current safety boundaries before drawing conclusions.
+1. Read [llms.txt](llms.txt).
+2. Read the [manifest](agent-trust-gate.manifest.json).
+3. Read the [agent card metadata](agent-trust-gate.agent-card.json).
+4. Read the [capability statement](docs/agent-readable-capability-statement.md).
+5. Run the tests, build, and typecheck.
+6. Run the local gate demo.
+7. Inspect the static receipt examples in examples/.
+8. Run the local money-gate proof.
+9. Confirm the current safety boundaries before drawing conclusions.
 
 ## Usage
 

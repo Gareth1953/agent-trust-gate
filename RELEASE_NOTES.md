@@ -1,5 +1,33 @@
 # Release Notes
 
+## P3-M122: Agent-Readable Discovery and System Metadata
+
+P3-M122 adds local agent-readable discovery and system integration metadata so
+AI agents, developer assistants, automated repo scanners, and integration
+reviewers can understand the public repository safely.
+
+Added assets:
+
+- `llms.txt`
+- `agent-trust-gate.agent-card.json`
+- updated `agent-trust-gate.manifest.json`
+- `docs/agent-readable-discovery-and-system-metadata.md`
+- `docs/system-integration-metadata.md`
+- `docs/example-agent-discovery-prompts.md`
+
+The boundary is: readable now, callable later, autonomous execution never
+without gate control. Claimed agent identity is not trust; behaviour, mandate,
+evidence, verified intent, and session context must decide access.
+
+This is metadata, documentation, and local discovery guidance only. It does
+not add a live endpoint, MCP server functionality, live agent-to-agent
+communication, agent negotiation, autonomous authority, external-agent contact,
+payment/settlement authority, production signing, production key management,
+cloud/network calls, AUC integration, Agent Contact System integration,
+outreach automation, or action execution.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M121: Paid Pilot Readiness Review
 
 P3-M121 adds `docs/paid-pilot-readiness-review.md`, a cautious readiness
