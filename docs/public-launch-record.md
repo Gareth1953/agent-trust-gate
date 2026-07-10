@@ -68,6 +68,12 @@ governance review, local handoff gates, and a `trustGate.evaluate(request)`
 wrapper. It does not add official framework integrations, live APIs, external
 agents, payments, settlement, production signing, or action execution.
 
+P3-M121 adds a paid pilot readiness review after P3-M116 through P3-M120. It
+frames paid technical review, local pilot discussion, and integration
+feasibility review cautiously. It does not claim production readiness,
+certified security, live payment/settlement readiness, automatic acceptance,
+automatic access, legal/compliance approval, or action execution.
+
 ## What was launched
 
 The public launch made the code-readable developer project available for review:
@@ -94,6 +100,7 @@ The public launch made the code-readable developer project available for review:
 - Local adversarial evaluation pack documentation and examples.
 - Simplified developer CLI documentation.
 - Reference integration examples documentation and local JSON examples.
+- Paid pilot readiness review documentation.
 
 The launch surface is public code and documentation. The product remains
 `local_demo_only`.
@@ -149,6 +156,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm `docs/adversarial-evaluation-pack.md` is visible and linked from README.
 - [ ] Confirm `docs/simplified-developer-cli.md` is visible and linked from README.
 - [ ] Confirm `docs/reference-integration-examples.md` is visible and linked from README.
+- [ ] Confirm `docs/paid-pilot-readiness-review.md` is visible and linked from README.
 - [ ] Confirm README, LICENSE, SECURITY, CHANGELOG, RELEASE_NOTES, and PUBLIC_LAUNCH_CHECKLIST render correctly.
 - [ ] Confirm `agent-trust-gate.manifest.json` is visible and still reports `local_demo_only`.
 - [ ] Confirm schemas and synthetic examples are visible.
@@ -166,6 +174,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm P3-M118 adversarial evaluation is presented as local-only, not production security certification, payment authorisation, settlement authorisation, or live enforcement.
 - [ ] Confirm P3-M119 simplified developer CLI is presented as local-only developer experience, not live integration, production signing, payment authorisation, settlement authorisation, or action execution.
 - [ ] Confirm P3-M120 reference integration examples are presented as local-only patterns, not official framework integrations, live APIs, external agents, payments, settlement, production signing, or action execution.
+- [ ] Confirm P3-M121 paid pilot readiness review is presented as cautious commercial positioning, not production readiness, certification, live payment/settlement readiness, automatic acceptance, automatic access, or a guarantee.
 - [ ] Confirm no git tag, package publish, or deployment has been performed unless separately approved later.
 
 ## Recommended next steps

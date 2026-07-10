@@ -16,6 +16,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Schema formalisation and evidence model hardening is present: [Schema formalisation and evidence model](docs/schema-formalisation-and-evidence-model.md).
 - [ ] Local signed receipt and proof prototype is present: [Local signed receipt and proof prototype](docs/local-signed-receipt-and-proof-prototype.md).
 - [ ] Reference integration examples are present: [Reference integration examples](docs/reference-integration-examples.md).
+- [ ] Paid pilot readiness review is present: [Paid pilot readiness review](docs/paid-pilot-readiness-review.md).
 - [ ] Manifest reports `local_demo_only`.
 - [ ] Schemas and JSON examples parse.
 - [ ] Tests, build, and typecheck pass.
@@ -106,6 +107,16 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] `docs/reference-integration-examples.md` is linked from README.
 - [ ] The examples do not claim official LangGraph, CrewAI, AutoGen, model-provider, cloud, payment, settlement, or external-agent integration.
 - [ ] No live API, payment processing, settlement execution, hosted verification, wallet/banking logic, production signing, external-agent contact, or action execution is activated by P3-M120.
+
+## Paid Pilot Readiness Review
+
+- [ ] P3-M121 paid pilot readiness review is documentation and commercial positioning only.
+- [ ] Paid technical review, local pilot discussion, and integration feasibility review are framed cautiously.
+- [ ] Production deployment readiness is `not yet`.
+- [ ] Live payment/settlement readiness is `not yet`.
+- [ ] No production readiness, certified security, legal/compliance approval, automatic acceptance, or automatic access is claimed.
+- [ ] `docs/paid-pilot-readiness-review.md` is linked from README.
+- [ ] No live API, payment processing, settlement execution, hosted verification, wallet/banking logic, production signing, external-agent contact, or action execution is activated by P3-M121.
 
 ## Release-candidate checklist
 

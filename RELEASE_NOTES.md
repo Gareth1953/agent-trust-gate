@@ -1,5 +1,22 @@
 # Release Notes
 
+## P3-M121: Paid Pilot Readiness Review
+
+P3-M121 adds `docs/paid-pilot-readiness-review.md`, a cautious readiness
+assessment after P3-M116 through P3-M120.
+
+The review says Agent Trust Gate™ is now reasonable for paid technical review,
+local pilot discussion, and integration feasibility review. It keeps production
+deployment readiness and live payment/settlement readiness at `not yet`.
+
+This is documentation, readiness assessment, and commercial positioning only.
+It is not production readiness, certified security, legal/compliance approval,
+payment authorisation, settlement authorisation, automatic paid-pilot
+acceptance, automatic access, live integration, hosted verification, or action
+execution.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M120: Reference Integration Examples
 
 P3-M120 adds local-only reference integration examples showing how Agent Trust

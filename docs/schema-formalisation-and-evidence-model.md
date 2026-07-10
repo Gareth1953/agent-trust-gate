@@ -193,6 +193,13 @@ These are local examples only. They do not add official LangGraph, CrewAI,
 AutoGen, model-provider, cloud, payment, settlement, or external-agent
 integrations.
 
+## P3-M121 paid pilot readiness review
+
+P3-M121 uses the P3-M116 schema/evidence hardening as one part of a cautious
+paid pilot readiness review. The assessment supports paid technical review and
+local pilot discussion, but production deployment readiness and live
+payment/settlement readiness remain `not yet`.
+
 ## Safety boundary
 
 Agent Trust Gate™ remains local-first and `local_demo_only`. The hardened

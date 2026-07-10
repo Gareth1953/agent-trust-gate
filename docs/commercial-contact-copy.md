@@ -15,6 +15,11 @@ P3-M114 adds an [indicative pricing and paid pilot menu](pricing-and-paid-pilot-
 Use it only as discussion context. The listed GBP bands are non-binding and
 must be confirmed by separate human agreement.
 
+P3-M121 adds a [paid pilot readiness review](paid-pilot-readiness-review.md).
+Use it to frame paid technical review and local pilot discussion cautiously.
+It does not approve production deployment, live payments, settlement, hosted
+access, or automatic access after payment.
+
 ## Developer enquiry template
 
 Subject: `Agent Trust Gate technical review enquiry`

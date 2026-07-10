@@ -188,6 +188,13 @@ npm run demo:integrations
 The simplified CLI remains focused on the core trust-gate flows. The P3-M120
 runner is a specialised local demo script, not a live framework integration.
 
+## Relationship To P3-M121
+
+P3-M121 uses the simplified CLI as part of the paid pilot readiness evidence.
+The CLI supports paid technical review and local pilot discussion by making
+local demos easier to run, but it does not create production readiness, live
+payments, settlement, hosted access, or action execution.
+
 ## Safety Boundary
 
 Agent Trust Gate™ remains local-first and `local_demo_only`.

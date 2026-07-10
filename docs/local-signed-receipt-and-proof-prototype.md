@@ -110,6 +110,14 @@ The examples remain local-only and do not add official framework adapters,
 external agents, payments, settlement, production signing, or action
 execution.
 
+## Relationship to P3-M121
+
+P3-M121 treats the local signed receipt/proof prototype as evidence that paid
+technical reviewers can inspect tamper detection and proof integrity locally.
+It still does not claim production signing, production key management, payment
+authorisation, settlement authorisation, legal proof, compliance proof, or
+security certification.
+
 ## Why this is not production signing
 
 The prototype uses clearly labelled local demo key material. It is non-secret,

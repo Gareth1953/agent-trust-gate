@@ -33,6 +33,12 @@ P3-M115 adds an [external reviewer signal and hardening roadmap](external-review
 The feedback is recorded as signal only, not endorsement, sale, certification,
 market validation, paid-pilot readiness, or production readiness.
 
+P3-M121 adds a [paid pilot readiness review](paid-pilot-readiness-review.md)
+after the P3-M116 to P3-M120 hardening sequence. It supports careful paid
+technical review and local pilot discussion only; it does not create a
+production service, live payment system, settlement system, hosted API,
+automatic acceptance, or automatic access after payment.
+
 ## What the commercial offer is
 
 Agent Trust Gate™ can be discussed as a local-first commercial review or pilot

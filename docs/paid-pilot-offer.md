@@ -29,6 +29,12 @@ P3-M115 adds an [external reviewer signal and hardening roadmap](external-review
 It cautions that external feedback is not endorsement or paid-pilot readiness
 and identifies technical hardening work before stronger commercial claims.
 
+P3-M121 adds a [paid pilot readiness review](paid-pilot-readiness-review.md)
+after P3-M116 through P3-M120. It supports cautious paid technical review,
+local pilot discussion, and integration feasibility review, but it does not
+claim production readiness, certified security, live payments, settlement, or
+automatic access.
+
 ## Who should contact
 
 Contact Gareth if you are a:

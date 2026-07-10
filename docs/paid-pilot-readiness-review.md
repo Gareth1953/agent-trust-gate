@@ -1,0 +1,236 @@
+# Paid Pilot Readiness Review
+
+P3-M121 reviews paid pilot readiness after the public hardening sequence from
+P3-M116 through P3-M120.
+
+Core rule:
+
+No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
+
+## Purpose
+
+This review assesses whether Agent Trust Gate™ is now credible enough to invite
+serious paid pilot enquiries while keeping the safety boundary intact.
+
+The conclusion is cautious: Agent Trust Gate™ is now stronger as a public
+proof-of-concept and is reasonable to discuss for paid technical review, local
+pilot discussion, and integration feasibility review. It is not production-ready,
+certified, a live payment or settlement system, a hosted enforcement service,
+or a source of legal, financial, compliance, procurement, settlement, or
+security guarantees.
+
+All commercial work remains human-reviewed and agreed separately.
+
+## Current Public Repo Status
+
+The public repository is available as local-first code and documentation. It
+contains deterministic local demos, schemas, examples, receipts, local proof
+artifacts, adversarial scenarios, CLI commands, and reference integration
+examples.
+
+The repository remains `local_demo_only`. It does not add live APIs, live
+payment processing, wallet/banking logic, real settlement execution, hosted
+calls, external-agent contact, production signing, production key management,
+cloud/network calls, outreach automation, AUC integration, Agent Contact
+System integration, or action execution.
+
+## What Improved After P3-M116 To P3-M120
+
+P3-M116 made the local schema and evidence model more explicit around mandate,
+evidence, verified intent, risk context, proof metadata, expiry, nonce,
+issuer/verifier references, freshness, replay, and local-only fields.
+
+P3-M117 added local signed receipt and proof verification with deterministic
+tamper detection. It preserves `productionSigning: false`,
+`paymentAuthorisation: false`, and `settlementAuthorisation: false`.
+
+P3-M118 added a local adversarial evaluation pack covering replay, forged
+evidence, expired gate pass, scope creep, missing mandate, tampered proof,
+unsigned proof, stale nonce/freshness, settlement blocker refusal, and one
+valid local control.
+
+P3-M119 added a simplified developer CLI for the main local trust-gate flows:
+gate evaluation, receipt verification, money-gate proof, signed proof
+verification, adversarial demo, and quickstart.
+
+P3-M120 added local reference integration examples for agent loops, tool-call
+guardrails, human review, pre-settlement money-gate checks, governance review,
+agent handoff gating, and a `trustGate.evaluate(request)` wrapper.
+
+Together, these missions answer the main reviewer criticisms: schemas were too
+high-level, proof integrity was underdeveloped, adversarial cases were missing,
+CLI ergonomics were noisy, and integration placement was unclear.
+
+## Paid-Pilot Readiness Assessment
+
+Agent Trust Gate™ is now credible for serious paid technical review and local
+pilot discussion. The repository gives a reviewer enough concrete material to
+inspect the trust chain, run local demos, review fail-closed examples, and
+discuss where the gate might fit in an agent or payment-adjacent workflow.
+
+The right commercial posture is:
+
+- paid technical review readiness is reasonable;
+- local pilot discussion readiness is emerging;
+- integration feasibility review is appropriate;
+- production deployment readiness is not yet;
+- live payment/settlement readiness is not yet.
+
+The project should not claim production readiness, certified security, legal
+assurance, financial assurance, compliance assurance, procurement approval,
+settlement assurance, or guaranteed suitability for any buyer.
+
+## Staged Readiness View
+
+| Stage | Readiness |
+| --- | --- |
+| Public proof-of-concept readiness | Strong |
+| Developer evaluation readiness | Strong |
+| Paid technical review readiness | Reasonable |
+| Local pilot discussion readiness | Emerging |
+| Production deployment readiness | Not yet |
+| Live payment/settlement readiness | Not yet |
+
+This staged view is a commercial and technical judgement for review scoping
+only. It is not a certification or guarantee.
+
+## Suitable Early Paid-Pilot Audiences
+
+The most appropriate audiences now are:
+
+- agent builders;
+- AI governance reviewers;
+- payment-adjacent integration teams;
+- enterprise automation reviewers;
+- developer tooling teams;
+- trust/safety reviewers.
+
+These audiences are likely to value a local proof chain, structured receipts,
+adversarial examples, CLI walkthroughs, and reference integration patterns
+without requiring immediate production deployment.
+
+## What Can Be Safely Offered Now
+
+Safe paid review offers can include:
+
+- local technical review;
+- schema, receipt, and proof review;
+- adversarial evaluation walkthrough;
+- simplified CLI walkthrough;
+- reference integration feasibility review;
+- governance and safety review;
+- pre-settlement trust workflow review;
+- written review notes if separately agreed.
+
+Any paid work should be scoped manually. No payment or enquiry grants automatic
+acceptance, automatic access, deployment, API access, hosted service, payment
+activation, settlement capability, external-agent contact, production signing,
+or action execution.
+
+## What Must Not Be Claimed
+
+Do not claim:
+
+- production readiness;
+- certified security;
+- legal, financial, compliance, procurement, settlement, or security guarantee;
+- live payment processing;
+- PayPal API integration;
+- Stripe integration;
+- checkout or webhook support;
+- wallet or banking integration;
+- real settlement execution;
+- hosted API availability;
+- production signing;
+- production key management;
+- automatic paid-pilot acceptance;
+- automatic access after payment;
+- external-agent contact;
+- AUC integration;
+- Agent Contact System integration;
+- autonomous action execution.
+
+## Remaining Technical Gaps
+
+Before production use, the project would need substantial additional work,
+including:
+
+- production threat model;
+- independent security review;
+- production key custody and signing policy, if ever approved;
+- durable replay protection;
+- production evidence provenance and custody model;
+- authenticated identity and tenant model;
+- hosted API design and abuse controls, if ever approved;
+- observability, incident response, and rollback plans;
+- legal, compliance, procurement, and data-protection review;
+- payment and settlement architecture review, if ever approved;
+- formal integration contracts and versioning;
+- operational support model.
+
+None of those production capabilities are added by this readiness review.
+
+## Suggested Paid Pilot Scope
+
+A suitable early paid pilot or commercial review could cover:
+
+1. Repository walkthrough and safety-boundary review.
+2. P3-M116 schema and evidence model review.
+3. P3-M117 local signed receipt/proof review.
+4. P3-M118 adversarial evaluation walkthrough.
+5. P3-M119 simplified CLI walkthrough.
+6. P3-M120 reference integration feasibility review.
+7. Local pre-settlement trust workflow discussion.
+8. Governance and trust/safety review questions.
+9. Written gap summary and recommended next steps, if separately agreed.
+
+The scope should remain local, review-based, and non-operational.
+
+## Suggested Paid Pilot Exclusions
+
+Exclude:
+
+- live payments;
+- real settlement;
+- wallet/banking integration;
+- production signing;
+- production key management;
+- legal/compliance certification;
+- security certification;
+- procurement approval;
+- autonomous action execution;
+- hosted API access;
+- cloud/network calls from the product;
+- external-agent contact;
+- outreach automation;
+- AUC integration;
+- Agent Contact System integration;
+- automatic acceptance;
+- automatic access after payment.
+
+## Recommended Next Actions
+
+Recommended next actions:
+
+- Use this document as the cautious commercial readiness framing.
+- Link paid enquiries to the current local review scopes, not production use.
+- Keep all paid pilot and commercial review work human-scoped and separately
+  agreed.
+- Continue strengthening threat modeling, auditability, coverage, and formal
+  integration contracts.
+- Do not move toward production signing, live APIs, payments, settlement, or
+  hosted enforcement without a separate approved mission.
+
+## Safety Boundary
+
+Agent Trust Gate™ remains local-first and `local_demo_only`.
+
+P3-M121 is documentation, readiness assessment, and commercial positioning
+only. It does not add live APIs, live payment processing, PayPal API
+integration, Stripe integration, checkout, webhooks, wallet/banking logic,
+real settlement execution, production signing, production key management,
+secrets, credentials, cloud/network calls, forms, tracking, analytics,
+telemetry, hosted calls, external-agent contact, outreach automation, AUC
+integration, Agent Contact System integration, or action execution.
+
+Public project contact: `gpmiddleton71@gmail.com`

@@ -191,15 +191,15 @@ case.
 
 ## Paid-pilot readiness gap
 
-The reviewer signal does not make the project paid-pilot-ready. The current
-state is better described as local-first public proof with commercial enquiry
-docs and a hardening roadmap.
+The reviewer signal alone does not make the project paid-pilot-ready. After
+P3-M116 through P3-M120, P3-M121 adds a separate paid pilot readiness review.
+The current state is better described as local-first public proof with stronger
+technical review evidence, commercial enquiry docs, and a bounded readiness
+assessment.
 
-Before stronger paid-pilot claims, the project should have stronger schemas,
-local signed receipt/proof prototype, adversarial test pack, simpler core CLI,
-reference integration examples, threat model, auditability evidence, coverage
-and static analysis posture, semantic versioning plan, and pilot success
-metrics.
+The cautious P3-M121 position is that paid technical review and local pilot
+discussion are reasonable, while production deployment readiness and live
+payment/settlement readiness are still `not yet`.
 
 ## Recommended next missions
 
@@ -213,11 +213,11 @@ metrics.
 - P3-M120 — Reference Integration Examples.
   Completed as local-only reference patterns for agent loops, tool calls, human review, pre-settlement checks, governance review, handoff gates, and a wrapper API, not official framework integration or live action execution.
 - P3-M121 — Paid Pilot Readiness Review.
+  Completed as cautious commercial/readiness assessment after P3-M116 through P3-M120, not production readiness, certification, live payment readiness, settlement readiness, automatic acceptance, or automatic access.
 
-P3-M121 remains a proposed future local mission only. These roadmap items do
-not activate live APIs, payments, settlement, external-agent contact,
-deployment, hosted service, network calls, production signing, or action
-execution.
+These roadmap items do not activate live APIs, payments, settlement,
+external-agent contact, deployment, hosted service, network calls, production
+signing, or action execution.
 
 ## Safety boundary
 

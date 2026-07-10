@@ -147,6 +147,19 @@ guarantees. Payment remains human-approved and external to the repo; no live
 payment processing, checkout, webhook, automatic access, or settlement
 execution is active.
 
+## Paid pilot readiness
+
+P3-M121 adds a cautious paid pilot readiness review after the P3-M116 to
+P3-M120 hardening sequence.
+
+- [Paid pilot readiness review](docs/paid-pilot-readiness-review.md)
+
+The review says Agent Trust Gate™ is now reasonable for paid technical review,
+local pilot discussion, and integration feasibility review. It does not claim
+production readiness, certified security, legal/compliance approval, live
+payments, settlement readiness, automatic acceptance, automatic access, or
+hosted enforcement.
+
 ## External reviewer signal
 
 P3-M115 captures external AI reviewer feedback as market and technical signal,
@@ -387,7 +400,9 @@ converts it into a technical hardening roadmap without claiming endorsement or
 paid-pilot readiness. P3-M116 through P3-M120 add local schema/evidence
 hardening, local signed proofs, adversarial evaluation, simplified CLI
 ergonomics, and reference integration examples without changing runtime
-capability.
+capability. P3-M121 adds a cautious paid pilot readiness review without
+claiming production readiness, live payment/settlement readiness, automatic
+acceptance, or automatic access.
 
 Recent proof and readiness milestones:
 
@@ -417,6 +432,7 @@ Recent proof and readiness milestones:
 - P3-M118: adversarial evaluation pack
 - P3-M119: simplified developer CLI
 - P3-M120: reference integration examples
+- P3-M121: paid pilot readiness review
 
 ## Developer review path
 

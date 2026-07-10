@@ -37,6 +37,12 @@ P3-M119 added the simplified developer CLI for the core local flows.
 P3-M120 shows how those local pieces can be arranged as reference patterns
 inside agent-system workflows without becoming official framework adapters.
 
+P3-M121 adds a paid pilot readiness review that uses these reference patterns
+as evidence for integration feasibility discussions. It remains cautious:
+reference patterns do not create official framework integrations, live APIs,
+external agents, payments, settlement, hosted enforcement, or action
+execution.
+
 ## Patterns Covered
 
 | Pattern | Local result |

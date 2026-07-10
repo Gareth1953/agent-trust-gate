@@ -181,6 +181,13 @@ human-review queues, pre-settlement workflows, governance review, handoff
 patterns, and a small developer wrapper. They remain local-only and are not
 official framework integrations.
 
+## Relationship To P3-M121
+
+P3-M121 treats this adversarial pack as one reason paid technical review is now
+reasonable to discuss. The pack is still local adversarial testing only. It is
+not production security certification, live enforcement, payment
+authorisation, settlement authorisation, or a security guarantee.
+
 ## Safety Boundary
 
 Agent Trust Gate™ remains local-first and `local_demo_only`.
