@@ -13,6 +13,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Commercial contact copy is present: [Commercial contact copy](docs/commercial-contact-copy.md).
 - [ ] Pricing and paid pilot menu draft is present: [Pricing and paid pilot menu](docs/pricing-and-paid-pilot-menu.md).
 - [ ] External reviewer signal and hardening roadmap is present: [External reviewer signal and hardening roadmap](docs/external-reviewer-signal-and-hardening-roadmap.md).
+- [ ] Schema formalisation and evidence model hardening is present: [Schema formalisation and evidence model](docs/schema-formalisation-and-evidence-model.md).
 - [ ] Manifest reports `local_demo_only`.
 - [ ] Schemas and JSON examples parse.
 - [ ] Tests, build, and typecheck pass.
@@ -51,6 +52,15 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Paid-pilot readiness is not overclaimed.
 - [ ] Technical hardening roadmap includes schemas, signed receipts/proofs, integration examples, CLI simplification, and adversarial evaluation.
 - [ ] No live capability, payment processing, deployment, external-agent contact, or production signing is introduced by P3-M115.
+
+## Schema Formalisation and Evidence Model
+
+- [ ] P3-M116 schema formalisation and evidence model hardening is local-only.
+- [ ] Local request schema includes mandate, evidence, verified intent, risk, proof metadata, expiry, nonce, issuer/verifier, freshness, replay, and local-only fields.
+- [ ] Local trust receipt schema includes proof metadata and local issuer/verifier references.
+- [ ] Local money-gate proof schema includes proof metadata and freshness/replay fields.
+- [ ] P3-M116 does not claim production signing, paid-pilot readiness, production readiness, legal/compliance certification, or settlement assurance.
+- [ ] No live API, payment processing, settlement execution, external-agent contact, AUC merge, Agent Contact System integration, production signing, or action execution is activated by this hardening.
 
 ## Release-candidate checklist
 

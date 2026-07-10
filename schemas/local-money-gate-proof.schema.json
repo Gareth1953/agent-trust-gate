@@ -8,6 +8,7 @@
     "proof_id",
     "proof_type",
     "request_id",
+    "proof_metadata",
     "rule",
     "proof_status",
     "proof_passed",
@@ -31,9 +32,68 @@
   ],
   "properties": {
     "proof_version": { "const": "atg.local-end-to-end-money-gate-proof.v1" },
-    "proof_id": { "type": "string", "minLength": 1 },
+    "proof_id": {
+      "type": "string",
+      "pattern": "^money_gate_proof_[a-f0-9]{24}$"
+    },
     "proof_type": { "const": "local_end_to_end_money_gate" },
-    "request_id": { "type": "string", "minLength": 1 },
+    "request_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{2,127}$"
+    },
+    "proof_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "proof_purpose",
+        "proof_status",
+        "issuer_ref",
+        "verifier_ref",
+        "created_at",
+        "expires_at",
+        "nonce",
+        "local_only",
+        "replay_freshness"
+      ],
+      "properties": {
+        "schema_version": { "const": "atg.local-proof-metadata.v1" },
+        "proof_purpose": { "const": "pre_settlement_money_gate" },
+        "proof_status": {
+          "type": "string",
+          "enum": ["passed", "failed"]
+        },
+        "issuer_ref": {
+          "type": "string",
+          "pattern": "^local_[A-Za-z0-9_.:-]{3,80}$"
+        },
+        "verifier_ref": {
+          "type": "string",
+          "pattern": "^local_[A-Za-z0-9_.:-]{3,80}$"
+        },
+        "created_at": { "type": "string", "format": "date-time" },
+        "expires_at": { "type": "string", "format": "date-time" },
+        "nonce": {
+          "type": "string",
+          "pattern": "^nonce_[A-Za-z0-9_-]{8,80}$"
+        },
+        "local_only": { "const": true },
+        "replay_freshness": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["nonce", "single_use", "freshness_window_seconds", "replay_protection"],
+          "properties": {
+            "nonce": {
+              "type": "string",
+              "pattern": "^nonce_[A-Za-z0-9_-]{8,80}$"
+            },
+            "single_use": { "const": true },
+            "freshness_window_seconds": { "type": "integer", "minimum": 1, "maximum": 86400 },
+            "replay_protection": { "const": "local_in_memory_single_use" }
+          }
+        }
+      }
+    },
     "rule": {
       "const": "No mandate. No evidence. No verified intent. No signed gate pass. No settlement."
     },

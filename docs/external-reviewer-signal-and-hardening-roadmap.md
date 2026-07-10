@@ -104,6 +104,10 @@ Evidence structure and verification method should be formalised so examples
 show what evidence is, who issued it, how it was checked, when it expires, and
 what proof object depends on it.
 
+P3-M116 begins this hardening by making the local request, receipt, and
+money-gate proof schemas stricter around mandate, evidence, verified intent,
+risk context, proof metadata, expiry, nonce, issuer/verifier, freshness, and replay fields.
+
 ### 2. Signed receipt and proof verification prototype
 
 The project currently uses local deterministic proof artifacts and explicitly
@@ -186,7 +190,7 @@ metrics.
 
 ## Recommended next missions
 
-- P3-M116 — Schema Formalisation and Evidence Model Hardening.
+- P3-M116 — Schema Formalisation and Evidence Model Hardening. Completed as local-only schema/model hardening, not production signing or paid-pilot readiness.
 - P3-M117 — Local Signed Receipt and Proof Prototype.
 - P3-M118 — Adversarial Evaluation Pack.
 - P3-M119 — Simplified Developer CLI.

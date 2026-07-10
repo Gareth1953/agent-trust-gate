@@ -3,10 +3,70 @@
   "agent_id": "demo-agent",
   "requested_action": "Review a synthetic external action",
   "action_category": "external_action_review",
-  "mandate": { "present": false, "scope": "none", "expires_at": "2026-01-01T00:00:00Z" },
-  "verified_intent": { "present": true, "source": "local_demo" },
-  "evidence": { "present": true, "fresh": true, "source": "local_demo" },
-  "limits": { "spend_amount_gbp": 0, "max_allowed_gbp": 0 },
-  "approval": { "required": false, "status": "not_required" },
-  "checked_at": "2026-07-07T09:00:00Z"
+  "mandate": {
+    "present": false,
+    "scope": "none",
+    "expires_at": "2026-01-01T00:00:00Z",
+    "mandate_id": "mandate_no_mandate_refuse",
+    "issuer_ref": "local_demo_issuer"
+  },
+  "verified_intent": {
+    "present": true,
+    "source": "local_demo",
+    "status": "verified",
+    "verifier_ref": "local_demo_verifier",
+    "verified_at": "2026-07-07T09:00:00Z"
+  },
+  "evidence": {
+    "present": true,
+    "fresh": true,
+    "source": "local_demo",
+    "evidence_id": "evidence_no_mandate_refuse",
+    "evidence_type": "local_fixture",
+    "local_reference": "examples/local-demo-no-mandate-refuse.json",
+    "evidence_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "verified_at": "2026-07-07T09:00:00Z",
+    "freshness": {
+      "checked_at": "2026-07-07T09:00:00Z",
+      "expires_at": "2026-01-01T00:00:00Z",
+      "max_age_seconds": 300
+    }
+  },
+  "limits": {
+    "spend_amount_gbp": 0,
+    "max_allowed_gbp": 0
+  },
+  "approval": {
+    "required": false,
+    "status": "not_required"
+  },
+  "checked_at": "2026-07-07T09:00:00Z",
+  "schema_version": "atg.local-agent-action-request.v2",
+  "action_id": "action_no_mandate_refuse",
+  "local_only": true,
+  "issuer_ref": "local_demo_issuer",
+  "verifier_ref": "local_demo_verifier",
+  "nonce": "nonce_no_mandate_refuse_0001",
+  "risk_context": {
+    "risk_tier": "blocked",
+    "policy_decision": "refuse",
+    "policy_pack_version": "local-demo-v1"
+  },
+  "proof_metadata": {
+    "schema_version": "atg.local-proof-metadata.v1",
+    "proof_purpose": "pre_action_trust_gate",
+    "proof_status": "candidate",
+    "issuer_ref": "local_demo_issuer",
+    "verifier_ref": "local_demo_verifier",
+    "created_at": "2026-07-07T09:00:00Z",
+    "expires_at": "2026-01-01T00:00:00Z",
+    "nonce": "nonce_no_mandate_refuse_0001",
+    "local_only": true,
+    "replay_freshness": {
+      "nonce": "nonce_no_mandate_refuse_0001",
+      "single_use": true,
+      "freshness_window_seconds": 300,
+      "replay_protection": "local_in_memory_single_use"
+    }
+  }
 }

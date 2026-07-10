@@ -76,11 +76,30 @@ export interface LocalMoneyGateProofControls {
   autonomous_execution_blocked: boolean;
 }
 
+export interface LocalMoneyGateProofMetadata {
+  schema_version: "atg.local-proof-metadata.v1";
+  proof_purpose: "pre_settlement_money_gate";
+  proof_status: "passed" | "failed";
+  issuer_ref: string;
+  verifier_ref: string;
+  created_at: string;
+  expires_at: string;
+  nonce: string;
+  local_only: true;
+  replay_freshness: {
+    nonce: string;
+    single_use: true;
+    freshness_window_seconds: number;
+    replay_protection: "local_in_memory_single_use";
+  };
+}
+
 export interface LocalEndToEndMoneyGateProofResult {
   proof_version: typeof LOCAL_END_TO_END_MONEY_GATE_PROOF_VERSION;
   proof_id: string;
   proof_type: "local_end_to_end_money_gate";
   request_id: string;
+  proof_metadata: LocalMoneyGateProofMetadata;
   rule: "No mandate. No evidence. No verified intent. No signed gate pass. No settlement.";
   proof_status: "passed" | "failed";
   proof_passed: boolean;
@@ -243,6 +262,7 @@ export function runLocalEndToEndMoneyGateProof(
     proof_id: createLocalEndToEndMoneyGateProofId(input.proof_id ?? input.request_id, input.checked_at),
     proof_type: "local_end_to_end_money_gate",
     request_id: safeIdentifier(input.request_id),
+    proof_metadata: createLocalMoneyGateProofMetadata(input, proofPassed ? "passed" : "failed"),
     rule: RULE,
     proof_status: proofPassed ? "passed" : "failed",
     proof_passed: proofPassed,
@@ -370,6 +390,46 @@ function scenarioInput(
   const suffix = `-${type}`;
   value.request_id = `${safeIdentifier(input.request_id).slice(0, 80 - suffix.length)}${suffix}`;
   return value;
+}
+
+function createLocalMoneyGateProofMetadata(
+  input: LocalEndToEndMoneyGateProofInput,
+  proofStatus: "passed" | "failed",
+): LocalMoneyGateProofMetadata {
+  const createdAt = safeTimestamp(input.proof_metadata?.created_at ?? input.checked_at);
+  const nonce = safeIdentifier(
+    input.proof_metadata?.nonce
+    ?? input.nonce
+    ?? createLocalProofNonce(input.proof_id ?? input.request_id, createdAt),
+  );
+  const expiresAt = safeTimestamp(
+    input.proof_metadata?.expires_at
+    ?? new Date(Date.parse(createdAt) + 300_000).toISOString(),
+  );
+  return {
+    schema_version: "atg.local-proof-metadata.v1",
+    proof_purpose: "pre_settlement_money_gate",
+    proof_status: proofStatus,
+    issuer_ref: safeIdentifier(input.proof_metadata?.issuer_ref ?? input.issuer_ref ?? "local_demo_issuer"),
+    verifier_ref: safeIdentifier(input.proof_metadata?.verifier_ref ?? input.verifier_ref ?? "local_demo_verifier"),
+    created_at: createdAt,
+    expires_at: expiresAt,
+    nonce,
+    local_only: true,
+    replay_freshness: {
+      nonce: safeIdentifier(input.proof_metadata?.replay_freshness?.nonce ?? nonce),
+      single_use: true,
+      freshness_window_seconds: 300,
+      replay_protection: "local_in_memory_single_use",
+    },
+  };
+}
+
+function createLocalProofNonce(seed: string, createdAt: string): string {
+  const digest = createHash("sha256")
+    .update(`${seed}|${createdAt}|money_gate_proof_metadata`, "utf8")
+    .digest("hex");
+  return `nonce_${digest.slice(0, 32)}`;
 }
 
 function safeAmount(value: unknown): number {

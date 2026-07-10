@@ -17,23 +17,44 @@ export type LocalGatePassReceiptType =
   | "refusal_receipt";
 
 export interface LocalGatePassDemoInput {
+  schema_version?: "atg.local-agent-action-request.v2";
   request_id: string;
+  action_id?: string;
   agent_id: string;
   requested_action: string;
   action_category: string;
+  local_only?: true;
+  issuer_ref?: string;
+  verifier_ref?: string;
+  nonce?: string;
   mandate?: {
     present?: boolean;
+    mandate_id?: string;
     scope?: string;
     expires_at?: string;
+    issuer_ref?: string;
   };
   verified_intent?: {
     present?: boolean;
+    status?: "verified" | "unverified" | "missing";
     source?: string;
+    verifier_ref?: string;
+    verified_at?: string;
   };
   evidence?: {
     present?: boolean;
     fresh?: boolean;
+    evidence_id?: string;
+    evidence_type?: "local_fixture" | "local_document" | "local_receipt" | "local_policy" | "synthetic_observation";
     source?: string;
+    local_reference?: string;
+    evidence_hash?: string;
+    verified_at?: string;
+    freshness?: {
+      checked_at?: string;
+      expires_at?: string;
+      max_age_seconds?: number;
+    };
   };
   limits?: {
     spend_amount_gbp?: number;
@@ -42,6 +63,28 @@ export interface LocalGatePassDemoInput {
   approval?: {
     required?: boolean;
     status?: "not_required" | "pending" | "approved" | "rejected" | "unknown";
+  };
+  risk_context?: {
+    risk_tier?: "low" | "medium" | "high" | "blocked";
+    policy_decision?: "allow" | "review_required" | "refuse";
+    policy_pack_version?: "local-demo-v1";
+  };
+  proof_metadata?: {
+    schema_version?: "atg.local-proof-metadata.v1";
+    proof_purpose?: "pre_action_trust_gate" | "pre_settlement_money_gate";
+    proof_status?: "candidate" | "verified" | "review_required" | "blocked";
+    issuer_ref?: string;
+    verifier_ref?: string;
+    created_at?: string;
+    expires_at?: string;
+    nonce?: string;
+    local_only?: true;
+    replay_freshness?: {
+      nonce?: string;
+      single_use?: true;
+      freshness_window_seconds?: number;
+      replay_protection?: "local_in_memory_single_use" | "not_applicable";
+    };
   };
   checked_at?: string;
 }

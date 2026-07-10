@@ -9,6 +9,7 @@ import {
 import { explainLocalPolicy, type LocalPolicyRiskTier } from "./local-policy.js";
 import {
   createLocalGatePassProtectionMetadata,
+  LOCAL_GATE_PASS_MAX_VALIDITY_SECONDS,
   type LocalGatePassReplayMetadata,
   type LocalGatePassValidityMetadata,
 } from "./local-gate-pass-protection.js";
@@ -28,18 +29,44 @@ export interface LocalApprovalAuditCheck extends LocalAuditCheck {
   required: boolean;
 }
 
+export interface LocalReceiptProofMetadata {
+  schema_version: "atg.local-proof-metadata.v1";
+  proof_purpose: "pre_action_trust_gate";
+  proof_status: "verified" | "review_required" | "blocked";
+  issuer_ref: string;
+  verifier_ref: string;
+  created_at: string;
+  expires_at: string;
+  nonce: string;
+  local_only: true;
+  replay_freshness: {
+    nonce: string;
+    single_use: true;
+    freshness_window_seconds: number;
+    replay_protection: "local_in_memory_single_use" | "not_applicable";
+  };
+}
+
 export interface LocalGatePassAuditReceipt {
+  schema_version: "atg.local-gate-pass-receipt.v2";
   receipt_id: string;
   request_id: string;
+  action_id: string;
   agent_id: string;
   requested_action: string;
   action_category: string;
+  mandate_id: string;
+  evidence_id: string;
   verdict: LocalGatePassVerdict;
   allowed: boolean;
   settlement_allowed: boolean;
   settlement_executed: false;
   receipt_type: LocalGatePassReceiptType;
   risk_tier: LocalGatePassRiskTier;
+  policy_decision: "allow" | "review_required" | "refuse";
+  issuer_ref: string;
+  verifier_ref: string;
+  proof_metadata: LocalReceiptProofMetadata;
   policy_pack_version: "local-demo-v1";
   applied_policy: string;
   risk_reason: string;
@@ -108,13 +135,31 @@ export function createLocalGatePassAuditReceipt(
       input.mandate?.expires_at,
     )
     : undefined;
+  const actionId = safeText(input.action_id ?? input.request_id, "demo_action", 80);
+  const mandateId = safeText(
+    input.mandate?.mandate_id ?? `${actionId}_mandate`,
+    "demo_mandate",
+    80,
+  );
+  const evidenceId = safeText(
+    input.evidence?.evidence_id ?? `${actionId}_evidence`,
+    "demo_evidence",
+    80,
+  );
+  const issuerRef = safeText(input.proof_metadata?.issuer_ref ?? input.issuer_ref ?? input.mandate?.issuer_ref ?? "local_demo_issuer", "local_demo_issuer", 80);
+  const verifierRef = safeText(input.proof_metadata?.verifier_ref ?? input.verifier_ref ?? input.verified_intent?.verifier_ref ?? "local_demo_verifier", "local_demo_verifier", 80);
+  const proofStatus = proofStatusForVerdict(decision.verdict);
 
   return {
+    schema_version: "atg.local-gate-pass-receipt.v2",
     receipt_id: receiptId,
     request_id: safeText(input.request_id, "demo_request", 80),
+    action_id: actionId,
     agent_id: safeText(input.agent_id, "demo_agent", 80),
     requested_action: safeText(input.requested_action, "unspecified_local_demo_action", 160),
     action_category: safeText(input.action_category, "unknown_local_category", 80),
+    mandate_id: mandateId,
+    evidence_id: evidenceId,
     verdict: decision.verdict,
     allowed: decision.allowed,
     settlement_allowed: decision.verdict === "allow_signed_gate_pass",
@@ -122,6 +167,10 @@ export function createLocalGatePassAuditReceipt(
     receipt_type: decision.receipt_type,
     risk_tier: riskTier(decision.verdict, policy.risk_tier),
     policy_pack_version: policy.policy_pack_version,
+    policy_decision: policyDecisionForVerdict(decision.verdict),
+    issuer_ref: issuerRef,
+    verifier_ref: verifierRef,
+    proof_metadata: createReceiptProofMetadata(input, checkedAt, issuerRef, verifierRef, proofStatus, protection?.validity.expires_at ?? null),
     applied_policy: policy.applied_policy,
     risk_reason: policy.risk_reason,
     fast_path_allowed: policy.fast_path_allowed,
@@ -244,6 +293,67 @@ function riskTier(
 ): LocalGatePassRiskTier {
   if (verdict.startsWith("refuse_")) return "blocked";
   return policyTier;
+}
+
+function policyDecisionForVerdict(
+  verdict: LocalGatePassVerdict,
+): "allow" | "review_required" | "refuse" {
+  if (verdict === "allow_signed_gate_pass") return "allow";
+  if (verdict === "review_required") return "review_required";
+  return "refuse";
+}
+
+function proofStatusForVerdict(
+  verdict: LocalGatePassVerdict,
+): "verified" | "review_required" | "blocked" {
+  if (verdict === "allow_signed_gate_pass") return "verified";
+  if (verdict === "review_required") return "review_required";
+  return "blocked";
+}
+
+function createReceiptProofMetadata(
+  input: LocalGatePassDemoInput,
+  checkedAt: string,
+  issuerRef: string,
+  verifierRef: string,
+  proofStatus: "verified" | "review_required" | "blocked",
+  gatePassExpiresAt: string | null,
+): LocalReceiptProofMetadata {
+  const nonce = safeText(
+    input.proof_metadata?.nonce ?? input.nonce ?? createLocalMetadataNonce(input.request_id, checkedAt),
+    "nonce_local_demo",
+    80,
+  );
+  return {
+    schema_version: "atg.local-proof-metadata.v1",
+    proof_purpose: "pre_action_trust_gate",
+    proof_status: proofStatus,
+    issuer_ref: issuerRef,
+    verifier_ref: verifierRef,
+    created_at: safeTimestampText(input.proof_metadata?.created_at ?? checkedAt, checkedAt),
+    expires_at: safeTimestampText(gatePassExpiresAt ?? input.proof_metadata?.expires_at ?? input.mandate?.expires_at ?? checkedAt, checkedAt),
+    nonce,
+    local_only: true,
+    replay_freshness: {
+      nonce: safeText(input.proof_metadata?.replay_freshness?.nonce ?? nonce, nonce, 80),
+      single_use: true,
+      freshness_window_seconds: LOCAL_GATE_PASS_MAX_VALIDITY_SECONDS,
+      replay_protection: gatePassExpiresAt === null ? "not_applicable" : "local_in_memory_single_use",
+    },
+  };
+}
+
+function createLocalMetadataNonce(seed: string, checkedAt: string): string {
+  const digest = createHash("sha256")
+    .update(`${seed}|${checkedAt}|proof_metadata`, "utf8")
+    .digest("hex");
+  return `nonce_${digest.slice(0, 32)}`;
+}
+
+function safeTimestampText(value: unknown, fallback: string): string {
+  if (typeof value !== "string") return fallback;
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.valueOf()) ? fallback : parsed.toISOString();
 }
 
 function amount(value: unknown): number {

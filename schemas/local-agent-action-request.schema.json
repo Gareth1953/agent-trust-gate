@@ -4,22 +4,40 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
+    "schema_version",
     "request_id",
+    "action_id",
     "agent_id",
     "requested_action",
     "action_category",
+    "local_only",
+    "issuer_ref",
+    "verifier_ref",
+    "nonce",
     "mandate",
     "verified_intent",
     "evidence",
     "limits",
     "approval",
+    "risk_context",
+    "proof_metadata",
     "checked_at"
   ],
   "properties": {
+    "schema_version": {
+      "const": "atg.local-agent-action-request.v2",
+      "description": "Explicit local action-request schema version."
+    },
     "request_id": {
       "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{2,127}$",
       "minLength": 1,
       "description": "Local identifier for a synthetic request."
+    },
+    "action_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{2,127}$",
+      "description": "Stable local action identifier correlated with the request, receipt, and proof artifacts."
     },
     "agent_id": {
       "type": "string",
@@ -36,44 +54,125 @@
       "minLength": 1,
       "description": "Local policy category used for deterministic risk classification."
     },
+    "local_only": {
+      "const": true,
+      "description": "The request is only a local proof input and grants no execution authority."
+    },
+    "issuer_ref": {
+      "type": "string",
+      "pattern": "^local_[A-Za-z0-9_.:-]{3,80}$",
+      "description": "Local issuer reference for the synthetic mandate/request bundle."
+    },
+    "verifier_ref": {
+      "type": "string",
+      "pattern": "^local_[A-Za-z0-9_.:-]{3,80}$",
+      "description": "Local verifier reference for deterministic proof review."
+    },
+    "nonce": {
+      "type": "string",
+      "pattern": "^nonce_[A-Za-z0-9_-]{8,80}$",
+      "description": "Local replay/freshness nonce. It is not a cryptographic production challenge."
+    },
     "mandate": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["present", "scope", "expires_at"],
+      "required": ["present", "mandate_id", "scope", "expires_at", "issuer_ref"],
       "properties": {
         "present": { "type": "boolean" },
+        "mandate_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{2,127}$"
+        },
         "scope": { "type": "string", "minLength": 1 },
         "expires_at": {
           "type": "string",
           "format": "date-time",
           "description": "Deterministic local mandate expiry."
+        },
+        "issuer_ref": {
+          "type": "string",
+          "pattern": "^local_[A-Za-z0-9_.:-]{3,80}$"
         }
       }
     },
     "verified_intent": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["present", "source"],
+      "required": ["present", "status", "source", "verifier_ref", "verified_at"],
       "properties": {
         "present": { "type": "boolean" },
+        "status": {
+          "type": "string",
+          "enum": ["verified", "unverified", "missing"]
+        },
         "source": {
           "type": "string",
           "minLength": 1,
           "description": "Local synthetic evidence label, not an external source."
+        },
+        "verifier_ref": {
+          "type": "string",
+          "pattern": "^local_[A-Za-z0-9_.:-]{3,80}$"
+        },
+        "verified_at": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
     "evidence": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["present", "fresh", "source"],
+      "required": [
+        "present",
+        "fresh",
+        "evidence_id",
+        "evidence_type",
+        "source",
+        "local_reference",
+        "evidence_hash",
+        "verified_at",
+        "freshness"
+      ],
       "properties": {
         "present": { "type": "boolean" },
         "fresh": { "type": "boolean" },
+        "evidence_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{2,127}$"
+        },
+        "evidence_type": {
+          "type": "string",
+          "enum": ["local_fixture", "local_document", "local_receipt", "local_policy", "synthetic_observation"]
+        },
         "source": {
           "type": "string",
           "minLength": 1,
           "description": "Local synthetic evidence label, not an external lookup."
+        },
+        "local_reference": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Local file/fixture reference only; not a URL or external lookup."
+        },
+        "evidence_hash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "Static local fixture hash reference, not production content signing."
+        },
+        "verified_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "freshness": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["checked_at", "expires_at", "max_age_seconds"],
+          "properties": {
+            "checked_at": { "type": "string", "format": "date-time" },
+            "expires_at": { "type": "string", "format": "date-time" },
+            "max_age_seconds": { "type": "integer", "minimum": 1, "maximum": 86400 }
+          }
         }
       }
     },
@@ -103,6 +202,66 @@
         "status": {
           "type": "string",
           "enum": ["not_required", "pending", "approved", "rejected", "unknown"]
+        }
+      }
+    },
+    "risk_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["risk_tier", "policy_decision", "policy_pack_version"],
+      "properties": {
+        "risk_tier": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "blocked"]
+        },
+        "policy_decision": {
+          "type": "string",
+          "enum": ["allow", "review_required", "refuse"]
+        },
+        "policy_pack_version": { "const": "local-demo-v1" }
+      }
+    },
+    "proof_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "proof_purpose",
+        "proof_status",
+        "issuer_ref",
+        "verifier_ref",
+        "created_at",
+        "expires_at",
+        "nonce",
+        "local_only",
+        "replay_freshness"
+      ],
+      "properties": {
+        "schema_version": { "const": "atg.local-proof-metadata.v1" },
+        "proof_purpose": {
+          "type": "string",
+          "enum": ["pre_action_trust_gate", "pre_settlement_money_gate"]
+        },
+        "proof_status": {
+          "type": "string",
+          "enum": ["candidate", "verified", "review_required", "blocked"]
+        },
+        "issuer_ref": { "type": "string", "pattern": "^local_[A-Za-z0-9_.:-]{3,80}$" },
+        "verifier_ref": { "type": "string", "pattern": "^local_[A-Za-z0-9_.:-]{3,80}$" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "expires_at": { "type": "string", "format": "date-time" },
+        "nonce": { "type": "string", "pattern": "^nonce_[A-Za-z0-9_-]{8,80}$" },
+        "local_only": { "const": true },
+        "replay_freshness": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["nonce", "single_use", "freshness_window_seconds", "replay_protection"],
+          "properties": {
+            "nonce": { "type": "string", "pattern": "^nonce_[A-Za-z0-9_-]{8,80}$" },
+            "single_use": { "const": true },
+            "freshness_window_seconds": { "type": "integer", "minimum": 1, "maximum": 86400 },
+            "replay_protection": { "enum": ["local_in_memory_single_use", "not_applicable"] }
+          }
         }
       }
     },

@@ -7,16 +7,31 @@
   "mandate": {
     "present": true,
     "scope": "synthetic local money-gate proof",
-    "expires_at": "2026-07-07T10:00:00.000Z"
+    "expires_at": "2026-07-07T10:00:00.000Z",
+    "mandate_id": "mandate_money_gate_proof",
+    "issuer_ref": "local_demo_issuer"
   },
   "verified_intent": {
     "present": true,
-    "source": "local_synthetic_fixture"
+    "source": "local_synthetic_fixture",
+    "status": "verified",
+    "verifier_ref": "local_demo_verifier",
+    "verified_at": "2026-07-07T09:00:00.000Z"
   },
   "evidence": {
     "present": true,
     "fresh": true,
-    "source": "local_synthetic_fixture"
+    "source": "local_synthetic_fixture",
+    "evidence_id": "evidence_money_gate_proof",
+    "evidence_type": "local_fixture",
+    "local_reference": "examples/local-end-to-end-money-gate-proof-input.json",
+    "evidence_hash": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "verified_at": "2026-07-07T09:00:00.000Z",
+    "freshness": {
+      "checked_at": "2026-07-07T09:00:00.000Z",
+      "expires_at": "2026-07-07T10:00:00.000Z",
+      "max_age_seconds": 300
+    }
   },
   "limits": {
     "spend_amount_gbp": 25,
@@ -26,5 +41,33 @@
     "required": true,
     "status": "approved"
   },
-  "checked_at": "2026-07-07T09:00:00.000Z"
+  "checked_at": "2026-07-07T09:00:00.000Z",
+  "schema_version": "atg.local-agent-action-request.v2",
+  "action_id": "action_money_gate_proof",
+  "local_only": true,
+  "issuer_ref": "local_demo_issuer",
+  "verifier_ref": "local_demo_verifier",
+  "nonce": "nonce_money_gate_proof_0001",
+  "risk_context": {
+    "risk_tier": "high",
+    "policy_decision": "allow",
+    "policy_pack_version": "local-demo-v1"
+  },
+  "proof_metadata": {
+    "schema_version": "atg.local-proof-metadata.v1",
+    "proof_purpose": "pre_settlement_money_gate",
+    "proof_status": "candidate",
+    "issuer_ref": "local_demo_issuer",
+    "verifier_ref": "local_demo_verifier",
+    "created_at": "2026-07-07T09:00:00.000Z",
+    "expires_at": "2026-07-07T10:00:00.000Z",
+    "nonce": "nonce_money_gate_proof_0001",
+    "local_only": true,
+    "replay_freshness": {
+      "nonce": "nonce_money_gate_proof_0001",
+      "single_use": true,
+      "freshness_window_seconds": 300,
+      "replay_protection": "local_in_memory_single_use"
+    }
+  }
 }

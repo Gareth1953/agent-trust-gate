@@ -157,6 +157,19 @@ identifying technical hardening needed before stronger paid-pilot claims:
 schemas, signed proofs, integration examples, CLI simplification, and
 adversarial evaluation.
 
+## Schema formalisation and evidence model
+
+P3-M116 hardens the local schemas and TypeScript models for mandate, evidence,
+verified intent, risk context, proof metadata, expiry, nonce, issuer/verifier
+references, freshness, and replay fields.
+
+- [Schema formalisation and evidence model](docs/schema-formalisation-and-evidence-model.md)
+
+This is local schema/model hardening only. It does not add production signing,
+live APIs, payment processing, settlement execution, external-agent contact,
+AUC integration, Agent Contact System integration, cloud/network calls, or
+action execution.
+
 ## Global Code Launch Readiness
 
 P3-M103 prepares the local-first code, documentation, schemas, examples,

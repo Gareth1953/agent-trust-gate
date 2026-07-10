@@ -20,6 +20,7 @@ export type LocalTrustReceiptVerificationReason =
   | "reason_codes_missing_for_failed_checks"
   | "missing_policy_metadata"
   | "missing_signature_metadata"
+  | "missing_proof_metadata"
   | "expired_receipt"
   | "receipt_not_yet_valid"
   | "invalid_receipt_timestamp"
@@ -70,19 +71,27 @@ const NOTE = "Local receipt verification only; no real settlement, payment, API 
 const FALLBACK_TIMESTAMP = "1970-01-01T00:00:00.000Z";
 const REQUIRED_FIELDS = [
   "receipt_id",
+  "schema_version",
   "request_id",
+  "action_id",
   "agent_id",
   "requested_action",
   "action_category",
+  "mandate_id",
+  "evidence_id",
   "verdict",
   "allowed",
   "settlement_allowed",
   "settlement_executed",
   "receipt_type",
   "risk_tier",
+  "policy_decision",
   "policy_pack_version",
   "applied_policy",
   "risk_reason",
+  "issuer_ref",
+  "verifier_ref",
+  "proof_metadata",
   "fast_path_allowed",
   "human_review_required",
   "checks",
@@ -138,6 +147,9 @@ export function verifyLocalTrustReceipt(
 
   const policyConsistent = hasValidPolicyMetadata(receipt);
   if (!policyConsistent) reasons.push("missing_policy_metadata");
+
+  const proofMetadataConsistent = hasValidProofMetadata(receipt.proof_metadata, receipt);
+  if (!proofMetadataConsistent) reasons.push("missing_proof_metadata");
 
   const reasonCodesConsistent = checksPresent && reasonCodesMatchChecks(receipt);
   if (!reasonCodesConsistent) reasons.push("reason_codes_missing_for_failed_checks");
@@ -213,6 +225,7 @@ export function verifyLocalTrustReceipt(
     && policyConsistent
     && checksPresent
     && reasonCodesConsistent
+    && proofMetadataConsistent
     && signatureValid
     && safetyMetadataConsistent;
   const fresh = freshness === "fresh" && (!isGatePass || gatePassValidityPassed);
@@ -299,15 +312,22 @@ function hasValidTopLevelTypes(value: Record<string, unknown>): boolean {
   return [
     "receipt_id",
     "request_id",
+    "schema_version",
+    "action_id",
     "agent_id",
     "requested_action",
     "action_category",
+    "mandate_id",
+    "evidence_id",
     "verdict",
     "receipt_type",
     "risk_tier",
+    "policy_decision",
     "policy_pack_version",
     "applied_policy",
     "risk_reason",
+    "issuer_ref",
+    "verifier_ref",
     "checked_at",
   ].every((field) => typeof value[field] === "string" && value[field].trim() !== "")
     && ["allowed", "settlement_allowed", "settlement_executed", "fast_path_allowed", "human_review_required"]
@@ -317,6 +337,7 @@ function hasValidTopLevelTypes(value: Record<string, unknown>): boolean {
     && (value.gate_pass_validity === null || isRecord(value.gate_pass_validity))
     && (value.replay_protection === null || isRecord(value.replay_protection))
     && isRecord(value.signature_metadata)
+    && isRecord(value.proof_metadata)
     && isRecord(value.audit_metadata);
 }
 
@@ -353,6 +374,8 @@ function hasValidPolicyMetadata(value: Record<string, unknown>): boolean {
     && nonEmpty(value.risk_reason)
     && typeof value.fast_path_allowed === "boolean"
     && typeof value.human_review_required === "boolean";
+  if (value.schema_version !== SUPPORTED_LOCAL_TRUST_RECEIPT_SCHEMA) return false;
+  if (value.policy_decision !== policyDecisionForVerdict(value.verdict)) return false;
   if (!basic) return false;
   if (typeof value.verdict !== "string") return false;
   if (value.verdict.startsWith("refuse_")) return value.risk_tier === "blocked" && value.fast_path_allowed === false;
@@ -414,6 +437,40 @@ function hasValidLocalSignatureMetadata(value: unknown): boolean {
     && value.algorithm === "none"
     && typeof value.note === "string"
     && /not cryptographic signing/i.test(value.note);
+}
+
+function hasValidProofMetadata(value: unknown, receipt: Record<string, unknown>): boolean {
+  if (!isRecord(value)) return false;
+  const replay = value.replay_freshness;
+  return value.schema_version === "atg.local-proof-metadata.v1"
+    && value.proof_purpose === "pre_action_trust_gate"
+    && value.proof_status === proofStatusForVerdict(receipt.verdict)
+    && value.issuer_ref === receipt.issuer_ref
+    && value.verifier_ref === receipt.verifier_ref
+    && nonEmpty(value.created_at)
+    && nonEmpty(value.expires_at)
+    && nonEmpty(value.nonce)
+    && value.local_only === true
+    && isRecord(replay)
+    && replay.single_use === true
+    && typeof replay.freshness_window_seconds === "number"
+    && replay.freshness_window_seconds > 0
+    && nonEmpty(replay.nonce)
+    && (replay.replay_protection === "local_in_memory_single_use" || replay.replay_protection === "not_applicable");
+}
+
+function policyDecisionForVerdict(verdict: unknown): "allow" | "review_required" | "refuse" | undefined {
+  if (verdict === "allow_signed_gate_pass") return "allow";
+  if (verdict === "review_required") return "review_required";
+  if (typeof verdict === "string" && verdict.startsWith("refuse_")) return "refuse";
+  return undefined;
+}
+
+function proofStatusForVerdict(verdict: unknown): "verified" | "review_required" | "blocked" | undefined {
+  if (verdict === "allow_signed_gate_pass") return "verified";
+  if (verdict === "review_required") return "review_required";
+  if (typeof verdict === "string" && verdict.startsWith("refuse_")) return "blocked";
+  return undefined;
 }
 
 function hasSafeAuditMetadata(value: unknown): boolean {

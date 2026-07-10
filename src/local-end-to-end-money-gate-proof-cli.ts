@@ -119,6 +119,23 @@ export function readLocalEndToEndMoneyGateProofInput(
     },
     checked_at: requiredString(value, "checked_at"),
   };
+  setIfDefined(input, "schema_version", optionalLiteral(value, "schema_version", "atg.local-agent-action-request.v2"));
+  setIfDefined(input, "action_id", optionalString(value, "action_id"));
+  setIfDefined(input, "local_only", optionalTrue(value, "local_only"));
+  setIfDefined(input, "issuer_ref", optionalString(value, "issuer_ref"));
+  setIfDefined(input, "verifier_ref", optionalString(value, "verifier_ref"));
+  setIfDefined(input, "nonce", optionalString(value, "nonce"));
+  setIfDefined(input.mandate!, "mandate_id", optionalNestedString(value, "mandate", "mandate_id"));
+  setIfDefined(input.mandate!, "issuer_ref", optionalNestedString(value, "mandate", "issuer_ref"));
+  setIfDefined(input.verified_intent!, "status", optionalIntentStatus(value));
+  setIfDefined(input.verified_intent!, "verifier_ref", optionalNestedString(value, "verified_intent", "verifier_ref"));
+  setIfDefined(input.verified_intent!, "verified_at", optionalNestedString(value, "verified_intent", "verified_at"));
+  Object.assign(input.evidence!, optionalEvidenceMetadata(value));
+
+  const riskContext = optionalRiskContext(value);
+  if (riskContext !== undefined) input.risk_context = riskContext;
+  const proofMetadata = optionalProofMetadata(value);
+  if (proofMetadata !== undefined) input.proof_metadata = proofMetadata;
   if (typeof value.proof_id === "string" && value.proof_id.trim() !== "") {
     input.proof_id = value.proof_id.trim().slice(0, 160);
   }
@@ -192,6 +209,114 @@ function nestedAmount(value: Record<string, unknown>, parent: string, key: strin
     throw cliError("INVALID_INPUT", `${parent}.${key} must be a non-negative number.`);
   }
   return item;
+}
+
+function optionalString(value: Record<string, unknown>, key: string): string | undefined {
+  const item = value[key];
+  return typeof item === "string" && item.trim() !== "" ? item.trim().slice(0, 256) : undefined;
+}
+
+function optionalLiteral<T extends string>(
+  value: Record<string, unknown>,
+  key: string,
+  expected: T,
+): T | undefined {
+  return value[key] === expected ? expected : undefined;
+}
+
+function optionalTrue(value: Record<string, unknown>, key: string): true | undefined {
+  return value[key] === true ? true : undefined;
+}
+
+function optionalNestedString(value: Record<string, unknown>, parent: string, key: string): string | undefined {
+  const item = value[parent];
+  if (!isRecord(item)) return undefined;
+  return optionalString(item, key);
+}
+
+function optionalIntentStatus(value: Record<string, unknown>): "verified" | "unverified" | "missing" | undefined {
+  const status = optionalNestedString(value, "verified_intent", "status");
+  return status === "verified" || status === "unverified" || status === "missing" ? status : undefined;
+}
+
+function optionalEvidenceMetadata(
+  value: Record<string, unknown>,
+): Partial<NonNullable<LocalEndToEndMoneyGateProofInput["evidence"]>> {
+  const evidence = nestedRecord(value, "evidence");
+  const type = optionalString(evidence, "evidence_type");
+  const freshness = isRecord(evidence.freshness) ? evidence.freshness : undefined;
+  const output: Partial<NonNullable<LocalEndToEndMoneyGateProofInput["evidence"]>> = {};
+  setIfDefined(output, "evidence_id", optionalString(evidence, "evidence_id"));
+  setIfDefined(
+    output,
+    "evidence_type",
+    type === "local_fixture" || type === "local_document" || type === "local_receipt" || type === "local_policy" || type === "synthetic_observation" ? type : undefined,
+  );
+  setIfDefined(output, "local_reference", optionalString(evidence, "local_reference"));
+  setIfDefined(output, "evidence_hash", optionalString(evidence, "evidence_hash"));
+  setIfDefined(output, "verified_at", optionalString(evidence, "verified_at"));
+  if (freshness !== undefined) {
+    const freshnessOutput: NonNullable<NonNullable<LocalEndToEndMoneyGateProofInput["evidence"]>["freshness"]> = {};
+    setIfDefined(freshnessOutput, "checked_at", optionalString(freshness, "checked_at"));
+    setIfDefined(freshnessOutput, "expires_at", optionalString(freshness, "expires_at"));
+    setIfDefined(freshnessOutput, "max_age_seconds", typeof freshness.max_age_seconds === "number" ? freshness.max_age_seconds : undefined);
+    output.freshness = freshnessOutput;
+  }
+  return output;
+}
+
+function optionalRiskContext(value: Record<string, unknown>): LocalEndToEndMoneyGateProofInput["risk_context"] | undefined {
+  const risk = value.risk_context;
+  if (!isRecord(risk)) return undefined;
+  const tier = optionalString(risk, "risk_tier");
+  const decision = optionalString(risk, "policy_decision");
+  if (!(tier === "low" || tier === "medium" || tier === "high" || tier === "blocked")) return undefined;
+  if (!(decision === "allow" || decision === "review_required" || decision === "refuse")) return undefined;
+  const output: NonNullable<LocalEndToEndMoneyGateProofInput["risk_context"]> = {
+    risk_tier: tier,
+    policy_decision: decision,
+  };
+  if (risk.policy_pack_version === "local-demo-v1") output.policy_pack_version = "local-demo-v1";
+  return output;
+}
+
+function optionalProofMetadata(value: Record<string, unknown>): LocalEndToEndMoneyGateProofInput["proof_metadata"] | undefined {
+  const metadata = value.proof_metadata;
+  if (!isRecord(metadata)) return undefined;
+  const purpose = optionalString(metadata, "proof_purpose");
+  const status = optionalString(metadata, "proof_status");
+  const freshness = isRecord(metadata.replay_freshness) ? metadata.replay_freshness : undefined;
+  const output: NonNullable<LocalEndToEndMoneyGateProofInput["proof_metadata"]> = {};
+  setIfDefined(output, "schema_version", metadata.schema_version === "atg.local-proof-metadata.v1" ? "atg.local-proof-metadata.v1" : undefined);
+  setIfDefined(output, "proof_purpose", purpose === "pre_action_trust_gate" || purpose === "pre_settlement_money_gate" ? purpose : undefined);
+  setIfDefined(output, "proof_status", status === "candidate" || status === "verified" || status === "review_required" || status === "blocked" ? status : undefined);
+  setIfDefined(output, "issuer_ref", optionalString(metadata, "issuer_ref"));
+  setIfDefined(output, "verifier_ref", optionalString(metadata, "verifier_ref"));
+  setIfDefined(output, "created_at", optionalString(metadata, "created_at"));
+  setIfDefined(output, "expires_at", optionalString(metadata, "expires_at"));
+  setIfDefined(output, "nonce", optionalString(metadata, "nonce"));
+  setIfDefined(output, "local_only", metadata.local_only === true ? true : undefined);
+  if (freshness !== undefined) {
+    const replay: NonNullable<NonNullable<LocalEndToEndMoneyGateProofInput["proof_metadata"]>["replay_freshness"]> = {};
+    setIfDefined(replay, "nonce", optionalString(freshness, "nonce"));
+    setIfDefined(replay, "single_use", freshness.single_use === true ? true : undefined);
+    setIfDefined(replay, "freshness_window_seconds", typeof freshness.freshness_window_seconds === "number" ? freshness.freshness_window_seconds : undefined);
+    setIfDefined(
+      replay,
+      "replay_protection",
+      freshness.replay_protection === "local_in_memory_single_use" || freshness.replay_protection === "not_applicable" ? freshness.replay_protection : undefined,
+    );
+    output.replay_freshness = replay;
+  }
+  return output;
+}
+
+function setIfDefined<T extends object, K extends keyof T>(
+  target: T,
+  key: K,
+  value: T[K] | undefined,
+): void {
+  if (value !== undefined) target[key] = value;
 }
 
 function requiredString(value: Record<string, unknown>, key: string): string {

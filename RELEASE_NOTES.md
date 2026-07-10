@@ -1,5 +1,19 @@
 # Release Notes
 
+## P3-M116: Schema Formalisation and Evidence Model Hardening
+
+P3-M116 hardens the local Agent Trust Gate™ schemas, TypeScript models, and
+examples for mandate, evidence, verified intent, risk context, proof metadata,
+expiry, nonce, issuer/verifier references, freshness, and replay fields.
+
+This moves the local demo away from trust-by-documentation toward stricter
+local schema/model enforcement. It is not production signing, paid-pilot
+readiness, production readiness, legal/compliance certification, live payment
+support, settlement execution, hosted service activation, or external-agent
+contact.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M115: External Reviewer Signal and Hardening Roadmap
 
 P3-M115 captures external AI reviewer feedback as useful market and technical

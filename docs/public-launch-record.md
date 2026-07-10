@@ -39,6 +39,11 @@ hardening roadmap. It is not endorsement, partnership, certification, sale,
 market validation, paid-pilot readiness, production readiness, or guarantee.
 No runtime capability is added.
 
+P3-M116 hardens the local schemas, TypeScript models, and examples for mandate,
+evidence, verified intent, risk context, proof metadata, expiry, nonce,
+issuer/verifier references, freshness, and replay fields. It does not add
+production signing, live integrations, paid-pilot readiness, or settlement.
+
 ## What was launched
 
 The public launch made the code-readable developer project available for review:
@@ -60,6 +65,7 @@ The public launch made the code-readable developer project available for review:
 - Commercial contact copy.
 - Indicative pricing and paid pilot menu draft.
 - External reviewer signal and technical hardening roadmap.
+- Schema formalisation and evidence model hardening documentation.
 
 The launch surface is public code and documentation. The product remains
 `local_demo_only`.
@@ -110,6 +116,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm `docs/commercial-contact-copy.md` is visible and linked from README.
 - [ ] Confirm `docs/pricing-and-paid-pilot-menu.md` is visible and linked from README.
 - [ ] Confirm `docs/external-reviewer-signal-and-hardening-roadmap.md` is visible and linked from README.
+- [ ] Confirm `docs/schema-formalisation-and-evidence-model.md` is visible and linked from README.
 - [ ] Confirm README, LICENSE, SECURITY, CHANGELOG, RELEASE_NOTES, and PUBLIC_LAUNCH_CHECKLIST render correctly.
 - [ ] Confirm `agent-trust-gate.manifest.json` is visible and still reports `local_demo_only`.
 - [ ] Confirm schemas and synthetic examples are visible.
@@ -122,6 +129,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm paid pilot offer and contact copy do not imply automatic acceptance, automatic access, fixed pricing, guaranteed outcome, payment activation, or settlement execution.
 - [ ] Confirm pricing bands remain indicative, non-binding, and subject to separate human agreement.
 - [ ] Confirm external reviewer signal is not presented as endorsement, certification, paid-pilot readiness, production readiness, or market validation.
+- [ ] Confirm P3-M116 schema hardening is presented as local-only and not production signing, paid-pilot readiness, production readiness, or settlement assurance.
 - [ ] Confirm no git tag, package publish, or deployment has been performed unless separately approved later.
 
 ## Recommended next steps

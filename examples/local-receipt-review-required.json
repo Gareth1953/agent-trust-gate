@@ -1,26 +1,87 @@
 {
+  "schema_version": "atg.local-gate-pass-receipt.v2",
   "receipt_id": "receipt_demo_02d5341454b8d3818bf438af",
   "request_id": "demo-money-review",
+  "action_id": "action_money_review",
   "agent_id": "demo-agent",
   "requested_action": "Review a synthetic purchase request without moving money",
   "action_category": "money_review",
+  "mandate_id": "mandate_money_review",
+  "evidence_id": "evidence_money_review",
   "verdict": "review_required",
   "allowed": false,
   "settlement_allowed": false,
   "settlement_executed": false,
   "receipt_type": "review_receipt",
   "risk_tier": "high",
-  "checks": {
-    "mandate": { "passed": true, "reason": "mandate_present_in_scope_and_current" },
-    "evidence": { "passed": true, "fresh": true, "reason": "evidence_present_and_fresh" },
-    "verified_intent": { "passed": true, "reason": "intent_verified" },
-    "limits": { "passed": true, "reason": "within_configured_limit" },
-    "approval": { "passed": false, "required": true, "reason": "required_approval_missing_or_pending" }
+  "policy_pack_version": "local-demo-v1",
+  "policy_decision": "review_required",
+  "issuer_ref": "local_demo_issuer",
+  "verifier_ref": "local_demo_verifier",
+  "proof_metadata": {
+    "schema_version": "atg.local-proof-metadata.v1",
+    "proof_purpose": "pre_action_trust_gate",
+    "proof_status": "review_required",
+    "issuer_ref": "local_demo_issuer",
+    "verifier_ref": "local_demo_verifier",
+    "created_at": "2026-07-07T09:00:00.000Z",
+    "expires_at": "2027-01-01T00:00:00.000Z",
+    "nonce": "nonce_money_review_0001",
+    "local_only": true,
+    "replay_freshness": {
+      "nonce": "nonce_money_review_0001",
+      "single_use": true,
+      "freshness_window_seconds": 300,
+      "replay_protection": "not_applicable"
+    }
   },
-  "reason_codes": ["HUMAN_REVIEW_REQUIRED"],
+  "applied_policy": "high-risk-approval-required",
+  "risk_reason": "Money, legal, contractual, or customer-impacting category requires explicit approval.",
+  "fast_path_allowed": false,
+  "human_review_required": true,
+  "checks": {
+    "mandate": {
+      "passed": true,
+      "reason": "mandate_present_in_scope_and_current"
+    },
+    "evidence": {
+      "passed": true,
+      "fresh": true,
+      "reason": "evidence_present_and_fresh"
+    },
+    "verified_intent": {
+      "passed": true,
+      "reason": "intent_verified"
+    },
+    "limits": {
+      "passed": true,
+      "reason": "within_configured_limit"
+    },
+    "approval": {
+      "passed": false,
+      "required": true,
+      "reason": "required_approval_missing_or_pending"
+    }
+  },
+  "reason_codes": [
+    "HUMAN_REVIEW_REQUIRED"
+  ],
   "checked_at": "2026-07-07T09:00:00.000Z",
   "gate_pass_validity": null,
   "replay_protection": null,
-  "signature_metadata": { "signature_mode": "local_demo_placeholder", "algorithm": "none", "note": "Local demo placeholder only; not cryptographic signing." },
-  "audit_metadata": { "schema_version": "atg.local-gate-pass-receipt.v2", "source": "local_gate_pass_demo", "local_only": true, "private_data_included": false, "network_call_performed": false, "external_agent_contacted": false, "payment_triggered": false, "action_executed": false }
+  "signature_metadata": {
+    "signature_mode": "local_demo_placeholder",
+    "algorithm": "none",
+    "note": "Local demo placeholder only; not cryptographic signing."
+  },
+  "audit_metadata": {
+    "schema_version": "atg.local-gate-pass-receipt.v2",
+    "source": "local_gate_pass_demo",
+    "local_only": true,
+    "private_data_included": false,
+    "network_call_performed": false,
+    "external_agent_contacted": false,
+    "payment_triggered": false,
+    "action_executed": false
+  }
 }

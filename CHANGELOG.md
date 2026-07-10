@@ -6,6 +6,7 @@ All notable project changes are recorded here. The package remains pre-release, 
 
 ### Added
 
+- P3-M116 schema formalisation and evidence model hardening for local mandate, evidence, verified intent, risk, proof metadata, expiry, nonce, issuer/verifier, freshness, and replay fields.
 - P3-M115 external AI reviewer signal capture and technical hardening roadmap.
 - P3-M114 indicative non-binding GBP pricing and paid pilot menu draft.
 - P3-M113 paid pilot offer page and reusable commercial contact copy.
@@ -18,6 +19,7 @@ All notable project changes are recorded here. The package remains pre-release, 
 
 ### Safety
 
+- P3-M116 is local schema/model hardening only. It does not add production signing, live APIs, payment processing, settlement execution, cloud/network calls, external-agent contact, outreach automation, or action execution.
 - External reviewer feedback is treated as signal only, not endorsement, certification, sale, market validation, paid-pilot readiness, production readiness, or guarantee; no runtime capability was added.
 - Pricing and paid pilot menu bands are indicative discussion ranges only, subject to human review and separate agreement; no payment processing, checkout, webhook, settlement execution, wallet/banking logic, automatic access, or guarantee was added.
 - Paid pilot and contact copy remain documentation-only. Payment is human-approved and external to the repo; no fixed prices, checkout, webhook, payment API integration, settlement execution, automatic access, or guarantee was added.
