@@ -1,0 +1,118 @@
+{
+  "signedPayloadType": "local_trust_receipt",
+  "payload": {
+    "schema_version": "atg.local-gate-pass-receipt.v2",
+    "receipt_id": "receipt_demo_46e781c4d6994ce7bdce9ddf",
+    "request_id": "demo-low-risk-allow",
+    "action_id": "action_low_risk_allow",
+    "agent_id": "demo-agent",
+    "requested_action": "Review a synthetic inventory status [tampered locally]",
+    "action_category": "local_review",
+    "mandate_id": "mandate_low_risk_allow",
+    "evidence_id": "evidence_low_risk_allow",
+    "verdict": "allow_signed_gate_pass",
+    "allowed": true,
+    "settlement_allowed": true,
+    "settlement_executed": false,
+    "receipt_type": "signed_gate_pass",
+    "risk_tier": "low",
+    "policy_pack_version": "local-demo-v1",
+    "policy_decision": "allow",
+    "issuer_ref": "local_demo_issuer",
+    "verifier_ref": "local_demo_verifier",
+    "proof_metadata": {
+      "schema_version": "atg.local-proof-metadata.v1",
+      "proof_purpose": "pre_action_trust_gate",
+      "proof_status": "verified",
+      "issuer_ref": "local_demo_issuer",
+      "verifier_ref": "local_demo_verifier",
+      "created_at": "2026-07-07T09:00:00.000Z",
+      "expires_at": "2026-07-07T09:05:00.000Z",
+      "nonce": "nonce_low_risk_allow_0001",
+      "local_only": true,
+      "replay_freshness": {
+        "nonce": "nonce_low_risk_allow_0001",
+        "single_use": true,
+        "freshness_window_seconds": 300,
+        "replay_protection": "local_in_memory_single_use"
+      }
+    },
+    "applied_policy": "low-risk-local-demo",
+    "risk_reason": "Low-impact local category eligible for fast path only after all checks pass.",
+    "fast_path_allowed": true,
+    "human_review_required": false,
+    "checks": {
+      "mandate": {
+        "passed": true,
+        "reason": "mandate_present_in_scope_and_current"
+      },
+      "evidence": {
+        "passed": true,
+        "fresh": true,
+        "reason": "evidence_present_and_fresh"
+      },
+      "verified_intent": {
+        "passed": true,
+        "reason": "intent_verified"
+      },
+      "limits": {
+        "passed": true,
+        "reason": "within_configured_limit"
+      },
+      "approval": {
+        "passed": true,
+        "required": false,
+        "reason": "approval_not_required"
+      }
+    },
+    "reason_codes": [
+      "MANDATE_VALID",
+      "EVIDENCE_FRESH",
+      "INTENT_VERIFIED",
+      "WITHIN_LIMITS",
+      "APPROVAL_SATISFIED"
+    ],
+    "checked_at": "2026-07-07T09:00:00.000Z",
+    "gate_pass_validity": {
+      "issued_at": "2026-07-07T09:00:00.000Z",
+      "valid_from": "2026-07-07T09:00:00.000Z",
+      "expires_at": "2026-07-07T09:05:00.000Z",
+      "ttl_seconds": 300,
+      "maximum_ttl_seconds": 300
+    },
+    "replay_protection": {
+      "replay_key": "replay_demo_666527a9faed8889f5b8065e6cb226bb",
+      "single_use": true,
+      "protection_mode": "local_in_memory_single_use"
+    },
+    "signature_metadata": {
+      "signature_mode": "local_demo_placeholder",
+      "algorithm": "none",
+      "note": "Local demo placeholder only; not cryptographic signing."
+    },
+    "audit_metadata": {
+      "schema_version": "atg.local-gate-pass-receipt.v2",
+      "source": "local_gate_pass_demo",
+      "local_only": true,
+      "private_data_included": false,
+      "network_call_performed": false,
+      "external_agent_contacted": false,
+      "payment_triggered": false,
+      "action_executed": false
+    }
+  },
+  "signatureMetadata": {
+    "signatureSchemaVersion": "atg.local-signed-proof.v1",
+    "algorithm": "ed25519-local-demo",
+    "keyId": "local-demo-ed25519-p3-m117",
+    "issuerReference": "local_demo_issuer",
+    "verifierReference": "local_demo_verifier",
+    "signedAt": "2026-07-07T09:00:00.000Z",
+    "payloadHash": "sha256:f81ee0b5a2b43e7a86aa42c7faaf3d47c1d2a283a19de35bf63d2a973daac62b",
+    "signature": "RwPda3Qc2AkH9iJJ3eKLpYnzcQ5O5s6tdhLFztzLGOW6tI1iZMMW9CfXiKpkNwSvVmu3j/+KV+FuguEOZD5AAg==",
+    "localDemoOnly": true,
+    "productionSigning": false,
+    "paymentAuthorisation": false,
+    "settlementAuthorisation": false
+  }
+}

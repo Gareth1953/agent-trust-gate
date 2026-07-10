@@ -154,9 +154,11 @@ timestamping.
 ## Future P3-M117
 
 P3-M117 should prototype local signed receipt/proof behaviour in a constrained,
-non-production way. It should still avoid production cryptographic signing,
-payments, settlement execution, live APIs, cloud/network calls, external-agent
-contact, and action execution unless separately approved in a later mission.
+non-production way. P3-M117 now adds that local signed receipt and proof
+prototype: payloads can be canonically signed, locally verified, and rejected
+if tampered with. It still avoids production cryptographic signing, payments,
+settlement execution, live APIs, cloud/network calls, external-agent contact,
+and action execution.
 
 ## Safety boundary
 

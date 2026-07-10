@@ -14,6 +14,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Pricing and paid pilot menu draft is present: [Pricing and paid pilot menu](docs/pricing-and-paid-pilot-menu.md).
 - [ ] External reviewer signal and hardening roadmap is present: [External reviewer signal and hardening roadmap](docs/external-reviewer-signal-and-hardening-roadmap.md).
 - [ ] Schema formalisation and evidence model hardening is present: [Schema formalisation and evidence model](docs/schema-formalisation-and-evidence-model.md).
+- [ ] Local signed receipt and proof prototype is present: [Local signed receipt and proof prototype](docs/local-signed-receipt-and-proof-prototype.md).
 - [ ] Manifest reports `local_demo_only`.
 - [ ] Schemas and JSON examples parse.
 - [ ] Tests, build, and typecheck pass.
@@ -61,6 +62,15 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Local money-gate proof schema includes proof metadata and freshness/replay fields.
 - [ ] P3-M116 does not claim production signing, paid-pilot readiness, production readiness, legal/compliance certification, or settlement assurance.
 - [ ] No live API, payment processing, settlement execution, external-agent contact, AUC merge, Agent Contact System integration, production signing, or action execution is activated by this hardening.
+
+## Local Signed Receipt and Proof Prototype
+
+- [ ] P3-M117 local signed receipt/proof prototype is local-demo-only.
+- [ ] Valid local signed trust receipt and money-gate proof examples verify locally.
+- [ ] Tampered local signed trust receipt and money-gate proof examples fail local verification.
+- [ ] `productionSigning`, `paymentAuthorisation`, and `settlementAuthorisation` remain false.
+- [ ] No production signing, production key management, live API, payment processing, settlement execution, hosted verification, wallet/banking logic, external-agent contact, or action execution is activated by P3-M117.
+- [ ] Demo key material is clearly labelled local-demo-only, non-secret, and not for production.
 
 ## Release-candidate checklist
 

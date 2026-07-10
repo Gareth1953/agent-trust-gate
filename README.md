@@ -170,6 +170,19 @@ live APIs, payment processing, settlement execution, external-agent contact,
 AUC integration, Agent Contact System integration, cloud/network calls, or
 action execution.
 
+## Local signed receipt and proof prototype
+
+P3-M117 adds a local-only signed receipt and proof prototype. It shows that a
+local trust receipt or local money-gate proof can be canonically signed,
+locally verified, and rejected if the payload or signature metadata is
+tampered with.
+
+- [Local signed receipt and proof prototype](docs/local-signed-receipt-and-proof-prototype.md)
+
+This is not production signing, payment authorisation, settlement
+authorisation, legal proof, compliance proof, hosted verification, or action
+execution.
+
 ## Global Code Launch Readiness
 
 P3-M103 prepares the local-first code, documentation, schemas, examples,

@@ -1,5 +1,19 @@
 # Release Notes
 
+## P3-M117: Local Signed Receipt and Proof Prototype
+
+P3-M117 adds a local-only signed receipt and proof prototype. Local trust
+receipts and local money-gate proofs can be canonically signed, locally
+verified, and rejected if the payload or signature metadata is malformed or
+tampered with.
+
+The prototype uses local demo signing material only. It is not production
+signing, production key management, legal proof, compliance proof, payment
+authorisation, settlement authorisation, hosted verification, live payment
+support, settlement execution, or action execution.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M116: Schema Formalisation and Evidence Model Hardening
 
 P3-M116 hardens the local Agent Trust Gate™ schemas, TypeScript models, and

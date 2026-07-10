@@ -33,6 +33,7 @@
 | P3-M114 | Pricing and Paid Pilot Menu Draft |
 | P3-M115 | External Reviewer Signal and Technical Hardening Roadmap |
 | P3-M116 | Schema Formalisation and Evidence Model Hardening |
+| P3-M117 | Local Signed Receipt and Proof Prototype |
 
 ## Current proof chain
 
@@ -52,5 +53,6 @@ Paid pilot offer and contact copy are documentation-only commercial copy assets.
 Pricing and paid pilot bands are indicative, non-binding, and subject to separate human agreement.
 External reviewer feedback is signal only, not endorsement or paid-pilot readiness.
 P3-M116 hardens the local schema and evidence model without production signing, live integrations, paid-pilot readiness, or settlement execution.
+P3-M117 adds local-only signed receipt/proof tamper detection without production signing, payment authorisation, settlement authorisation, live integrations, or action execution.
 
 No live APIs, payments, settlement execution, external-agent contact, AUC merge, cloud/network calls, outreach automation, secrets, credentials, tag/package publish/deployment, or autonomous action execution. AUC is not integrated. Agent Contact System is not integrated.

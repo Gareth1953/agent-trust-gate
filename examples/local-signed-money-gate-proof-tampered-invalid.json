@@ -1,0 +1,382 @@
+{
+  "signedPayloadType": "local_money_gate_proof",
+  "payload": {
+    "proof_version": "atg.local-end-to-end-money-gate-proof.v1",
+    "proof_id": "money_gate_proof_f939f7cd5293cc83350bea4d",
+    "proof_type": "local_end_to_end_money_gate",
+    "request_id": "money-gate-proof-demo",
+    "proof_metadata": {
+      "schema_version": "atg.local-proof-metadata.v1",
+      "proof_purpose": "pre_settlement_money_gate",
+      "proof_status": "passed",
+      "issuer_ref": "local_demo_issuer",
+      "verifier_ref": "local_demo_verifier",
+      "created_at": "2026-07-07T09:00:00.000Z",
+      "expires_at": "2026-07-07T10:00:00.000Z",
+      "nonce": "nonce_money_gate_proof_0001",
+      "local_only": true,
+      "replay_freshness": {
+        "nonce": "nonce_money_gate_proof_0001",
+        "single_use": true,
+        "freshness_window_seconds": 300,
+        "replay_protection": "local_in_memory_single_use"
+      }
+    },
+    "rule": "No mandate. No evidence. No verified intent. No signed gate pass. No settlement.",
+    "proof_status": "passed",
+    "proof_passed": true,
+    "scenario_count": 10,
+    "controls_proven": 9,
+    "simulated_settlement_eligible_count": 1,
+    "failure_reasons": [],
+    "controls": {
+      "approved_in_scope_request_allowed_once": true,
+      "replay_blocked": false,
+      "no_mandate_blocked": true,
+      "no_evidence_blocked": true,
+      "no_verified_intent_blocked": true,
+      "over_limit_blocked": true,
+      "missing_approval_blocked": true,
+      "expired_gate_pass_blocked": true,
+      "scope_mismatch_blocked": true,
+      "autonomous_execution_blocked": true
+    },
+    "scenarios": [
+      {
+        "scenario_type": "approved_first_use",
+        "request_id": "money-gate-proof-demo-approved_first_use",
+        "gate_verdict": "allow_signed_gate_pass",
+        "receipt_id": "receipt_demo_f6b7f259b85049d8b06b4ceb",
+        "receipt_type": "signed_gate_pass",
+        "gate_checks": {
+          "mandate": true,
+          "evidence": true,
+          "verified_intent": true,
+          "limits": true,
+          "approval": true
+        },
+        "receipt_verified_for_settlement": true,
+        "receipt_structurally_valid": true,
+        "receipt_fresh": true,
+        "replay_safe": true,
+        "verification_reason_codes": [],
+        "settlement_blocker_invoked": true,
+        "settlement_outcome": "simulated_eligible",
+        "settlement_block_reason_codes": [],
+        "control_proven": true,
+        "action_executed": false,
+        "payment_triggered": false,
+        "settlement_executed": false
+      },
+      {
+        "scenario_type": "replay_attempt",
+        "request_id": "money-gate-proof-demo-approved_first_use",
+        "gate_verdict": "allow_signed_gate_pass",
+        "receipt_id": "receipt_demo_f6b7f259b85049d8b06b4ceb",
+        "receipt_type": "signed_gate_pass",
+        "gate_checks": {
+          "mandate": true,
+          "evidence": true,
+          "verified_intent": true,
+          "limits": true,
+          "approval": true
+        },
+        "receipt_verified_for_settlement": false,
+        "receipt_structurally_valid": true,
+        "receipt_fresh": true,
+        "replay_safe": false,
+        "verification_reason_codes": [
+          "replay_risk_detected",
+          "settlement_blocker_rejected"
+        ],
+        "settlement_blocker_invoked": false,
+        "settlement_outcome": "blocked",
+        "settlement_block_reason_codes": [
+          "receipt_verification_failed"
+        ],
+        "control_proven": true,
+        "action_executed": false,
+        "payment_triggered": false,
+        "settlement_executed": false
+      },
+      {
+        "scenario_type": "missing_mandate",
+        "request_id": "money-gate-proof-demo-missing_mandate",
+        "gate_verdict": "refuse_no_mandate",
+        "receipt_id": "receipt_demo_1f5cb058ea63f9811d8ac396",
+        "receipt_type": "refusal_receipt",
+        "gate_checks": {
+          "mandate": false,
+          "evidence": true,
+          "verified_intent": true,
+          "limits": true,
+          "approval": true
+        },
+        "receipt_verified_for_settlement": false,
+        "receipt_structurally_valid": true,
+        "receipt_fresh": true,
+        "replay_safe": true,
+        "verification_reason_codes": [
+          "failed_critical_check",
+          "refusal_receipt_not_settlement_eligible",
+          "settlement_blocker_rejected"
+        ],
+        "settlement_blocker_invoked": false,
+        "settlement_outcome": "blocked",
+        "settlement_block_reason_codes": [
+          "receipt_verification_failed"
+        ],
+        "control_proven": true,
+        "action_executed": false,
+        "payment_triggered": false,
+        "settlement_executed": false
+      },
+      {
+        "scenario_type": "missing_evidence",
+        "request_id": "money-gate-proof-demo-missing_evidence",
+        "gate_verdict": "refuse_no_evidence",
+        "receipt_id": "receipt_demo_67a0dc09ddd85b57cc76d29f",
+        "receipt_type": "refusal_receipt",
+        "gate_checks": {
+          "mandate": true,
+          "evidence": false,
+          "verified_intent": true,
+          "limits": true,
+          "approval": true
+        },
+        "receipt_verified_for_settlement": false,
+        "receipt_structurally_valid": true,
+        "receipt_fresh": true,
+        "replay_safe": true,
+        "verification_reason_codes": [
+          "failed_critical_check",
+          "refusal_receipt_not_settlement_eligible",
+          "settlement_blocker_rejected"
+        ],
+        "settlement_blocker_invoked": false,
+        "settlement_outcome": "blocked",
+        "settlement_block_reason_codes": [
+          "receipt_verification_failed"
+        ],
+        "control_proven": true,
+        "action_executed": false,
+        "payment_triggered": false,
+        "settlement_executed": false
+      },
+      {
+        "scenario_type": "missing_verified_intent",
+        "request_id": "money-gate-proof-demo-missing_verified_intent",
+        "gate_verdict": "refuse_no_verified_intent",
+        "receipt_id": "receipt_demo_bb0e77e8270ada826e7aee15",
+        "receipt_type": "refusal_receipt",
+        "gate_checks": {
+          "mandate": true,
+          "evidence": true,
+          "verified_intent": false,
+          "limits": true,
+          "approval": true
+        },
+        "receipt_verified_for_settlement": false,
+        "receipt_structurally_valid": true,
+        "receipt_fresh": true,
+        "replay_safe": true,
+        "verification_reason_codes": [
+          "failed_critical_check",
+          "refusal_receipt_not_settlement_eligible",
+          "settlement_blocker_rejected"
+        ],
+        "settlement_blocker_invoked": false,
+        "settlement_outcome": "blocked",
+        "settlement_block_reason_codes": [
+          "receipt_verification_failed"
+        ],
+        "control_proven": true,
+        "action_executed": false,
+        "payment_triggered": false,
+        "settlement_executed": false
+      },
+      {
+        "scenario_type": "over_limit",
+        "request_id": "money-gate-proof-demo-over_limit",
+        "gate_verdict": "refuse_over_limit",
+        "receipt_id": "receipt_demo_88b6d0a14378cc1e80217008",
+        "receipt_type": "refusal_receipt",
+        "gate_checks": {
+          "mandate": true,
+          "evidence": true,
+          "verified_intent": true,
+          "limits": false,
+          "approval": true
+        },
+        "receipt_verified_for_settlement": false,
+        "receipt_structurally_valid": true,
+        "receipt_fresh": true,
+        "replay_safe": true,
+        "verification_reason_codes": [
+          "failed_critical_check",
+          "refusal_receipt_not_settlement_eligible",
+          "settlement_blocker_rejected"
+        ],
+        "settlement_blocker_invoked": false,
+        "settlement_outcome": "blocked",
+        "settlement_block_reason_codes": [
+          "receipt_verification_failed"
+        ],
+        "control_proven": true,
+        "action_executed": false,
+        "payment_triggered": false,
+        "settlement_executed": false
+      },
+      {
+        "scenario_type": "approval_pending",
+        "request_id": "money-gate-proof-demo-approval_pending",
+        "gate_verdict": "review_required",
+        "receipt_id": "receipt_demo_ae403915c41325bb509f0181",
+        "receipt_type": "review_receipt",
+        "gate_checks": {
+          "mandate": true,
+          "evidence": true,
+          "verified_intent": true,
+          "limits": true,
+          "approval": false
+        },
+        "receipt_verified_for_settlement": false,
+        "receipt_structurally_valid": true,
+        "receipt_fresh": true,
+        "replay_safe": true,
+        "verification_reason_codes": [
+          "failed_critical_check",
+          "review_receipt_not_settlement_eligible",
+          "settlement_blocker_rejected"
+        ],
+        "settlement_blocker_invoked": false,
+        "settlement_outcome": "blocked",
+        "settlement_block_reason_codes": [
+          "receipt_verification_failed"
+        ],
+        "control_proven": true,
+        "action_executed": false,
+        "payment_triggered": false,
+        "settlement_executed": false
+      },
+      {
+        "scenario_type": "expired_gate_pass",
+        "request_id": "money-gate-proof-demo-expired_gate_pass",
+        "gate_verdict": "allow_signed_gate_pass",
+        "receipt_id": "receipt_demo_e26b9362348f6a95c5b59ff7",
+        "receipt_type": "signed_gate_pass",
+        "gate_checks": {
+          "mandate": true,
+          "evidence": true,
+          "verified_intent": true,
+          "limits": true,
+          "approval": true
+        },
+        "receipt_verified_for_settlement": false,
+        "receipt_structurally_valid": true,
+        "receipt_fresh": false,
+        "replay_safe": false,
+        "verification_reason_codes": [
+          "expired_receipt",
+          "settlement_blocker_rejected"
+        ],
+        "settlement_blocker_invoked": false,
+        "settlement_outcome": "blocked",
+        "settlement_block_reason_codes": [
+          "receipt_verification_failed"
+        ],
+        "control_proven": true,
+        "action_executed": false,
+        "payment_triggered": false,
+        "settlement_executed": false
+      },
+      {
+        "scenario_type": "scope_mismatch",
+        "request_id": "money-gate-proof-demo-scope_mismatch",
+        "gate_verdict": "allow_signed_gate_pass",
+        "receipt_id": "receipt_demo_bf94a433eee34581a5708922",
+        "receipt_type": "signed_gate_pass",
+        "gate_checks": {
+          "mandate": true,
+          "evidence": true,
+          "verified_intent": true,
+          "limits": true,
+          "approval": true
+        },
+        "receipt_verified_for_settlement": false,
+        "receipt_structurally_valid": true,
+        "receipt_fresh": true,
+        "replay_safe": true,
+        "verification_reason_codes": [
+          "requested_action_mismatch"
+        ],
+        "settlement_blocker_invoked": false,
+        "settlement_outcome": "blocked",
+        "settlement_block_reason_codes": [
+          "receipt_verification_failed"
+        ],
+        "control_proven": true,
+        "action_executed": false,
+        "payment_triggered": false,
+        "settlement_executed": false
+      },
+      {
+        "scenario_type": "autonomous_execution_prohibited",
+        "request_id": "money-gate-proof-demo-autonomous_execution_prohibited",
+        "gate_verdict": "refuse_unsafe_action",
+        "receipt_id": "receipt_demo_c47379f46518a8803cca70cc",
+        "receipt_type": "refusal_receipt",
+        "gate_checks": {
+          "mandate": true,
+          "evidence": true,
+          "verified_intent": true,
+          "limits": true,
+          "approval": true
+        },
+        "receipt_verified_for_settlement": false,
+        "receipt_structurally_valid": true,
+        "receipt_fresh": true,
+        "replay_safe": true,
+        "verification_reason_codes": [
+          "refusal_receipt_not_settlement_eligible",
+          "settlement_blocker_rejected"
+        ],
+        "settlement_blocker_invoked": false,
+        "settlement_outcome": "blocked",
+        "settlement_block_reason_codes": [
+          "receipt_verification_failed"
+        ],
+        "control_proven": true,
+        "action_executed": false,
+        "payment_triggered": false,
+        "settlement_executed": false
+      }
+    ],
+    "local_only": true,
+    "input_data_retained": false,
+    "private_data_included": false,
+    "network_call_performed": false,
+    "external_agent_contacted": false,
+    "credential_created": false,
+    "cryptographic_signature_created": false,
+    "payment_triggered": false,
+    "settlement_executed": false,
+    "action_executed": false,
+    "note": "Local proof simulation only; no real payment, settlement, API call, signing, or action execution occurred.",
+    "checked_at": "2026-07-07T09:00:00.000Z"
+  },
+  "signatureMetadata": {
+    "signatureSchemaVersion": "atg.local-signed-proof.v1",
+    "algorithm": "ed25519-local-demo",
+    "keyId": "local-demo-ed25519-p3-m117",
+    "issuerReference": "local_demo_issuer",
+    "verifierReference": "local_demo_verifier",
+    "signedAt": "2026-07-07T09:00:00.000Z",
+    "payloadHash": "sha256:35c231f10021b74467f069cc86781df9b2c801643a438f3bcce2a485a3e3525c",
+    "signature": "oIihxwhuoqFzp94tZJG12jlEAxYwb0C6HbVbTIWBQL2MPtWeX/eoh2eIOOM6XfXz2AI4nriCn3y1RgzS4+WdDQ==",
+    "localDemoOnly": true,
+    "productionSigning": false,
+    "paymentAuthorisation": false,
+    "settlementAuthorisation": false
+  }
+}

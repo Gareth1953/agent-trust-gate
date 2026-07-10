@@ -1,0 +1,82 @@
+{
+  "title": "Agent Trust Gate Local Signed Proof Envelope",
+  "description": "Local-demo-only signed receipt/proof envelope. It is not production signing, payment authorisation, settlement authorisation, legal proof, compliance proof, or action execution.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "signedPayloadType",
+    "payload",
+    "signatureMetadata"
+  ],
+  "properties": {
+    "signedPayloadType": {
+      "type": "string",
+      "enum": ["local_trust_receipt", "local_money_gate_proof"]
+    },
+    "payload": {
+      "type": "object",
+      "description": "The local receipt or money-gate proof payload that was canonically signed. Payload details are validated by the matching local receipt/proof schema."
+    },
+    "signatureMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "signatureSchemaVersion",
+        "algorithm",
+        "keyId",
+        "issuerReference",
+        "verifierReference",
+        "signedAt",
+        "payloadHash",
+        "signature",
+        "localDemoOnly",
+        "productionSigning",
+        "paymentAuthorisation",
+        "settlementAuthorisation"
+      ],
+      "properties": {
+        "signatureSchemaVersion": {
+          "const": "atg.local-signed-proof.v1"
+        },
+        "algorithm": {
+          "const": "ed25519-local-demo"
+        },
+        "keyId": {
+          "const": "local-demo-ed25519-p3-m117"
+        },
+        "issuerReference": {
+          "type": "string",
+          "pattern": "^local_[A-Za-z0-9_.:-]{3,96}$"
+        },
+        "verifierReference": {
+          "type": "string",
+          "pattern": "^local_[A-Za-z0-9_.:-]{3,96}$"
+        },
+        "signedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "payloadHash": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "signature": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9+/]+={0,2}$"
+        },
+        "localDemoOnly": {
+          "const": true
+        },
+        "productionSigning": {
+          "const": false
+        },
+        "paymentAuthorisation": {
+          "const": false
+        },
+        "settlementAuthorisation": {
+          "const": false
+        }
+      }
+    }
+  }
+}

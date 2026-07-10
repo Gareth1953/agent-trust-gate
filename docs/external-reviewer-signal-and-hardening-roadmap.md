@@ -121,6 +121,10 @@ The distinction should remain clear:
 - local signed/verifiable proof prototype;
 - future production enforcement, if ever separately approved.
 
+P3-M117 adds the local signed receipt/proof prototype. It uses local demo
+signing material only, verifies canonical payloads locally, detects tampering,
+and does not claim production signing, payment authorisation, or settlement authorisation.
+
 ### 3. Reference integration patterns
 
 Add clearer local reference integration patterns for:
@@ -192,6 +196,7 @@ metrics.
 
 - P3-M116 — Schema Formalisation and Evidence Model Hardening. Completed as local-only schema/model hardening, not production signing or paid-pilot readiness.
 - P3-M117 — Local Signed Receipt and Proof Prototype.
+  Completed as a local-only tamper-detection prototype, not production cryptography, payment authorisation, or settlement authorisation.
 - P3-M118 — Adversarial Evaluation Pack.
 - P3-M119 — Simplified Developer CLI.
 - P3-M120 — Reference Integration Examples.
