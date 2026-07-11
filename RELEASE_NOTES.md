@@ -1,5 +1,31 @@
 # Release Notes
 
+## P3-M124: Public Reviewer and Paid Pilot Enquiry Pack
+
+P3-M124 adds human-approved public reviewer and paid pilot enquiry guidance for
+developers, agent builders, AI governance reviewers, payment/integration
+reviewers, enterprise automation reviewers, and trust/safety reviewers.
+
+Added assets:
+
+- `docs/public-reviewer-and-paid-pilot-enquiry-pack.md`
+- `docs/reviewer-enquiry-copy.md`
+- `docs/paid-pilot-enquiry-checklist.md`
+
+The pack explains what to inspect first, what feedback is useful, what paid
+technical review or local pilot discussion may cover, and how to route a
+serious human-reviewed enquiry.
+
+This is documentation and manual-use communication copy only. It does not add
+outreach automation, scraping, contact harvesting, forms, tracking, analytics,
+telemetry, live APIs, MCP server functionality, live agent-to-agent
+communication, live payment processing, PayPal API integration, Stripe
+integration, checkout, webhooks, wallet/banking logic, real settlement
+execution, production signing, external-agent contact, automatic acceptance,
+automatic access, or action execution.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M123: AI Agent Traffic and Session Intent Gate Concept
 
 P3-M123 adds a local-only concept pack for AI agent traffic, spoofed agent

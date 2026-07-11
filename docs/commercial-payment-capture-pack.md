@@ -39,6 +39,13 @@ technical review and local pilot discussion only; it does not create a
 production service, live payment system, settlement system, hosted API,
 automatic acceptance, or automatic access after payment.
 
+P3-M124 adds a [public reviewer and paid pilot enquiry pack](public-reviewer-and-paid-pilot-enquiry-pack.md),
+[manual reviewer enquiry copy](reviewer-enquiry-copy.md), and a
+[paid pilot enquiry checklist](paid-pilot-enquiry-checklist.md). These assets
+help humans ask better review questions; they do not send messages, automate
+outreach, scrape or harvest contacts, create forms, process payments, activate
+settlement, grant automatic access, or execute actions.
+
 ## What the commercial offer is
 
 Agent Trust Gate™ can be discussed as a local-first commercial review or pilot

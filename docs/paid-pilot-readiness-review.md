@@ -245,16 +245,30 @@ monitor live traffic, does not classify real traffic, does not block crawlers
 or browsers, and does not add browser fingerprinting, scraping, tracking,
 analytics, telemetry, live APIs, external-agent contact, or action execution.
 
+## Relationship To P3-M124
+
+P3-M124 adds a public reviewer and paid pilot enquiry pack, manual-use reviewer
+copy, and a paid pilot enquiry checklist. It makes this cautious readiness
+position easier for humans to inspect and discuss.
+
+It does not increase readiness beyond this review's staged view. It does not
+add outreach automation, scraping, contact harvesting, forms, tracking,
+analytics, live payments, settlement, live APIs, external-agent contact,
+automatic acceptance, automatic access, production signing, or action
+execution.
+
 ## Safety Boundary
 
 Agent Trust Gate™ remains local-first and `local_demo_only`.
 
 P3-M121 is documentation, readiness assessment, and commercial positioning
-only. It does not add live APIs, live payment processing, PayPal API
-integration, Stripe integration, checkout, webhooks, wallet/banking logic,
-real settlement execution, production signing, production key management,
-secrets, credentials, cloud/network calls, forms, tracking, analytics,
-telemetry, hosted calls, external-agent contact, outreach automation, AUC
-integration, Agent Contact System integration, or action execution.
+only. P3-M124 adds related human-approved reviewer/enquiry copy only. They do
+not add live APIs, live payment processing, PayPal API integration, Stripe
+integration, checkout, webhooks, wallet/banking logic, real settlement
+execution, production signing, production key management, secrets,
+credentials, cloud/network calls, forms, tracking, analytics, telemetry,
+hosted calls, external-agent contact, outreach automation, scraping, contact
+harvesting, AUC integration, Agent Contact System integration, or action
+execution.
 
 Public project contact: `gpmiddleton71@gmail.com`

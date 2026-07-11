@@ -32,6 +32,13 @@ after P3-M116 through P3-M120. It frames paid technical review and local pilot
 discussion as reasonable to consider, while keeping production deployment and
 live payment/settlement readiness at `not yet`.
 
+P3-M124 adds a [public reviewer and paid pilot enquiry pack](public-reviewer-and-paid-pilot-enquiry-pack.md),
+[manual reviewer enquiry copy](reviewer-enquiry-copy.md), and a
+[paid pilot enquiry checklist](paid-pilot-enquiry-checklist.md). These are
+human-approved communication aids only; they do not add outreach automation,
+scraping, contact harvesting, live payment processing, settlement, automatic
+acceptance, automatic access, or action execution.
+
 ## Who this is for
 
 This menu is for:

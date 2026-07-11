@@ -55,8 +55,9 @@ The local proof chain is:
 
 The repository includes local schemas, deterministic examples, local signed
 receipt/proof prototypes, adversarial cases, a simplified developer CLI,
-reference integration examples, a cautious paid pilot readiness review, and a
-local AI agent traffic/session intent concept pack.
+reference integration examples, a cautious paid pilot readiness review,
+human-approved public reviewer/enquiry guidance, and a local AI agent
+traffic/session intent concept pack.
 
 ## What It Is Not
 
@@ -174,6 +175,17 @@ feasibility review are reasonable to discuss. It does not claim production
 readiness, certified security, legal/compliance approval, live payment or
 settlement readiness, automatic acceptance, automatic access, or hosted
 enforcement.
+
+P3-M124 adds human-approved public reviewer and paid pilot enquiry guidance:
+
+- `docs/public-reviewer-and-paid-pilot-enquiry-pack.md`
+- `docs/reviewer-enquiry-copy.md`
+- `docs/paid-pilot-enquiry-checklist.md`
+
+Agents and developer assistants may summarise these documents for a human
+reviewer. They must not use them to contact anyone, send outreach, scrape or
+harvest contacts, create forms, process payments, activate settlement, call
+APIs, deploy anything, or execute actions.
 
 ## Agent/System Metadata
 

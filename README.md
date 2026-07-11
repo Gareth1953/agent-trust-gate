@@ -195,6 +195,21 @@ production readiness, certified security, legal/compliance approval, live
 payments, settlement readiness, automatic acceptance, automatic access, or
 hosted enforcement.
 
+## Reviewer and paid pilot enquiries
+
+P3-M124 adds a human-approved public reviewer and paid pilot enquiry pack for
+developers, agent builders, AI governance reviewers, payment/integration
+reviewers, enterprise automation reviewers, and trust/safety reviewers.
+
+- [Public reviewer and paid pilot enquiry pack](docs/public-reviewer-and-paid-pilot-enquiry-pack.md)
+- [Reviewer enquiry copy](docs/reviewer-enquiry-copy.md)
+- [Paid pilot enquiry checklist](docs/paid-pilot-enquiry-checklist.md)
+
+The copy is manual-use only. It does not add outreach automation, scraping,
+contact harvesting, forms, tracking, analytics, live payments, settlement,
+hosted access, automatic acceptance, automatic access, production readiness,
+or action execution.
+
 ## External reviewer signal
 
 P3-M115 captures external AI reviewer feedback as market and technical signal,
@@ -444,7 +459,10 @@ external-agent contact, or action execution. P3-M123 adds an AI agent traffic
 and session intent gate concept pack for spoofed identities and agentic
 browser/session behaviour without adding live traffic monitoring, real bot
 detection, crawler blocking, browser fingerprinting, tracking, scraping, or
-action execution.
+action execution. P3-M124 adds a human-approved public reviewer and paid pilot
+enquiry pack without adding outreach automation, scraping/contact harvesting,
+forms, tracking, analytics, live payments, settlement, live APIs,
+external-agent contact, production signing, or action execution.
 
 Recent proof and readiness milestones:
 
@@ -477,6 +495,7 @@ Recent proof and readiness milestones:
 - P3-M121: paid pilot readiness review
 - P3-M122: agent-readable discovery and system metadata
 - P3-M123: AI agent traffic and session intent gate concept
+- P3-M124: public reviewer and paid pilot enquiry pack
 
 ## Developer review path
 
@@ -489,7 +508,8 @@ Recent proof and readiness milestones:
 7. Inspect the static receipt examples in examples/.
 8. Run the local money-gate proof.
 9. Run the local session intent concept demo if reviewing P3-M123.
-10. Confirm the current safety boundaries before drawing conclusions.
+10. Read the reviewer/enquiry pack if assessing paid technical review or local pilot discussion fit.
+11. Confirm the current safety boundaries before drawing conclusions.
 
 ## Usage
 

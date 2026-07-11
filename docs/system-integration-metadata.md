@@ -33,9 +33,12 @@ payments, settlement, or action execution.
 9. `docs/simplified-developer-cli.md`
 10. `docs/reference-integration-examples.md`
 11. `docs/paid-pilot-readiness-review.md`
-12. `docs/ai-agent-traffic-and-session-intent-gate.md`
-13. `docs/spoofed-agent-risk-model.md`
-14. `docs/session-specific-access-framework.md`
+12. `docs/public-reviewer-and-paid-pilot-enquiry-pack.md`
+13. `docs/reviewer-enquiry-copy.md`
+14. `docs/paid-pilot-enquiry-checklist.md`
+15. `docs/ai-agent-traffic-and-session-intent-gate.md`
+16. `docs/spoofed-agent-risk-model.md`
+17. `docs/session-specific-access-framework.md`
 
 ## Recommended Local Commands
 
@@ -127,10 +130,18 @@ integrations and do not contact external systems.
 Use:
 
 - `docs/paid-pilot-readiness-review.md`
+- `docs/public-reviewer-and-paid-pilot-enquiry-pack.md`
+- `docs/reviewer-enquiry-copy.md`
+- `docs/paid-pilot-enquiry-checklist.md`
 
 The readiness framing is cautious. Paid technical review and local pilot
 discussion may be reasonable, but production deployment readiness and live
 payment/settlement readiness remain `not yet`.
+
+P3-M124 adds human-approved reviewer and paid pilot enquiry copy only. It does
+not add outreach automation, scraping, contact harvesting, forms, tracking,
+analytics, live payment processing, settlement, automatic acceptance,
+automatic access, or action execution.
 
 ## Where To Find The AI Agent Traffic Concept
 
@@ -181,15 +192,16 @@ Do not assume:
 This repository is readable by agents and systems, but it exposes no live
 agent endpoint and grants no autonomous authority.
 
-P3-M122 and P3-M123 are metadata, documentation, and local discovery/concept
-guidance only. They do not add live APIs, MCP server functionality, live agent-to-agent
+P3-M122, P3-M123, and P3-M124 are metadata, documentation, local
+discovery/concept guidance, and human-approved communication copy only. They
+do not add live APIs, MCP server functionality, live agent-to-agent
 communication, agent negotiation, autonomous contact, external-agent contact,
 live payment processing, PayPal API integration, Stripe integration, checkout,
 webhooks, wallet/banking logic, real settlement execution, production signing,
 production key management, secrets, credentials, cloud/network calls, forms,
 live traffic monitoring, real bot detection, crawler blocking, browser
-fingerprinting, scraping, tracking, analytics, telemetry, hosted calls,
-outreach automation, AUC
-integration, Agent Contact System integration, or action execution.
+fingerprinting, scraping, contact harvesting, tracking, analytics, telemetry,
+hosted calls, outreach automation, AUC integration, Agent Contact System
+integration, or action execution.
 
 Public project contact: `gpmiddleton71@gmail.com`

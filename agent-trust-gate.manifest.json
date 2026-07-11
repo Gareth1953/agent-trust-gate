@@ -1,7 +1,12 @@
 {
   "manifest_version": "atg.code-readable-integration.v1",
   "service_name": "Agent Trust Gate",
-  "latest_mission": "P3-M123",
+  "latest_mission": "P3-M124",
+  "recent_missions": [
+    "P3-M122",
+    "P3-M123",
+    "P3-M124"
+  ],
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
   "project_status": "local_demo_only",
   "discovery_status": "readable_now_callable_later",
@@ -10,8 +15,8 @@
   "strategy": "Readable now. Callable later. Autonomous execution never without gate control.",
   "identity_trust_principle": "Claimed agent identity is not trust. Behaviour, mandate, evidence, verified intent, and session context must decide access.",
   "public_contact_email": "gpmiddleton71@gmail.com",
-  "public_contact_purpose": "Developer, agent-system, integration, security, and public project enquiries.",
-  "public_contact_boundary": "Contact metadata only. Not a live API endpoint, autonomous outreach route, automated agent contact, live support SLA, payment, settlement, or hosted service availability.",
+  "public_contact_purpose": "Developer, agent-system, integration, security, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
+  "public_contact_boundary": "Contact metadata only. Not a live API endpoint, autonomous outreach route, automated agent contact, contact harvesting route, live support SLA, payment, settlement, automatic acceptance, automatic access, or hosted service availability.",
   "static_file_only": true,
   "readable_by_agents": true,
   "callable_interface": false,
@@ -77,6 +82,9 @@
     "docs/simplified-developer-cli.md",
     "docs/reference-integration-examples.md",
     "docs/paid-pilot-readiness-review.md",
+    "docs/public-reviewer-and-paid-pilot-enquiry-pack.md",
+    "docs/reviewer-enquiry-copy.md",
+    "docs/paid-pilot-enquiry-checklist.md",
     "docs/ai-agent-traffic-and-session-intent-gate.md",
     "docs/spoofed-agent-risk-model.md",
     "docs/session-specific-access-framework.md"
@@ -120,6 +128,7 @@
     "production signing",
     "production key management",
     "cloud/network calls",
+    "contact harvesting",
     "AUC integration",
     "Agent Contact System integration",
     "outreach automation",

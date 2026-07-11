@@ -1,7 +1,12 @@
 {
   "schema": "atg.agent-card.local-discovery.v1",
   "name": "Agent Trust Gate",
-  "latest_mission": "P3-M123",
+  "latest_mission": "P3-M124",
+  "recent_missions": [
+    "P3-M122",
+    "P3-M123",
+    "P3-M124"
+  ],
   "description": "Local-first pre-action and pre-settlement trust gate for agent-led workflows.",
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
   "status": "local_demo_only",
@@ -18,7 +23,8 @@
     "local adversarial evaluation",
     "local reference integration examples",
     "local developer CLI",
-    "local AI agent traffic and session intent gate concept model"
+    "local AI agent traffic and session intent gate concept model",
+    "human-approved public reviewer and paid pilot enquiry guidance"
   ],
   "non_capabilities": [
     "live API",
@@ -75,6 +81,9 @@
     "docs/simplified-developer-cli.md",
     "docs/reference-integration-examples.md",
     "docs/paid-pilot-readiness-review.md",
+    "docs/public-reviewer-and-paid-pilot-enquiry-pack.md",
+    "docs/reviewer-enquiry-copy.md",
+    "docs/paid-pilot-enquiry-checklist.md",
     "docs/ai-agent-traffic-and-session-intent-gate.md",
     "docs/spoofed-agent-risk-model.md",
     "docs/session-specific-access-framework.md"
@@ -98,8 +107,8 @@
   ],
   "contact": {
     "email": "gpmiddleton71@gmail.com",
-    "purpose": "Human-reviewed developer, agent-system, integration, security, paid technical review, local pilot discussion, and public project enquiries.",
-    "boundary": "Contact metadata only. No autonomous contact, automated agent contact, payment request, settlement request, support SLA, hosted service, automatic acceptance, or automatic access."
+    "purpose": "Human-reviewed developer, agent-system, integration, security, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
+    "boundary": "Contact metadata only. No autonomous contact, automated agent contact, outreach automation, scraping, contact harvesting, payment request, settlement request, support SLA, hosted service, automatic acceptance, or automatic access."
   },
   "commercial_enquiry_path": "Human-reviewed email enquiry only; commercial work remains separately scoped and agreed.",
   "safety_flags": {

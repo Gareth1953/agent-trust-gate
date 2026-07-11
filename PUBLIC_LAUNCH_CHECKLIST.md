@@ -19,6 +19,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Paid pilot readiness review is present: [Paid pilot readiness review](docs/paid-pilot-readiness-review.md).
 - [ ] Agent-readable discovery metadata is present: [Agent-readable discovery and system metadata](docs/agent-readable-discovery-and-system-metadata.md), [system integration metadata](docs/system-integration-metadata.md), [example agent discovery prompts](docs/example-agent-discovery-prompts.md), [llms.txt](llms.txt), and [agent card metadata](agent-trust-gate.agent-card.json).
 - [ ] AI agent traffic and session intent concept pack is present: [AI agent traffic and session intent gate](docs/ai-agent-traffic-and-session-intent-gate.md), [spoofed agent risk model](docs/spoofed-agent-risk-model.md), and [session-specific access framework](docs/session-specific-access-framework.md).
+- [ ] Public reviewer and paid pilot enquiry pack is present: [Public reviewer and paid pilot enquiry pack](docs/public-reviewer-and-paid-pilot-enquiry-pack.md), [reviewer enquiry copy](docs/reviewer-enquiry-copy.md), and [paid pilot enquiry checklist](docs/paid-pilot-enquiry-checklist.md).
 - [ ] Manifest reports `local_demo_only`.
 - [ ] Schemas and JSON examples parse.
 - [ ] Tests, build, and typecheck pass.
@@ -49,6 +50,9 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] P3-M114 pricing remains subject to human review and separate agreement.
 - [ ] Payment remains external to the repository.
 - [ ] No checkout, payment API, webhook, wallet/banking logic, settlement execution, or automatic access is introduced by P3-M114.
+- [ ] P3-M124 public reviewer and paid pilot enquiry guidance is manual-use documentation only.
+- [ ] Reviewer copy does not imply automated outreach, acceptance, availability, production readiness, certification, payment activation, settlement, or automatic access.
+- [ ] No outreach automation, scraping, contact harvesting, forms, tracking, analytics, live payment processing, settlement execution, external-agent contact, or action execution is introduced by P3-M124.
 
 ## External reviewer signal
 
@@ -145,6 +149,18 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] `liveTrafficMonitoring`, `botDetectionProduct`, `paymentAuthorisation`, `settlementAuthorisation`, and `actionExecution` remain false.
 - [ ] No live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, scraping, tracking, analytics, telemetry, live API, MCP server functionality, payment processing, settlement execution, external-agent contact, production signing, or action execution is activated by P3-M123.
 
+## Public Reviewer and Paid Pilot Enquiry Pack
+
+- [ ] P3-M124 public reviewer and paid pilot enquiry pack is documentation and human-approved communication copy only.
+- [ ] `docs/public-reviewer-and-paid-pilot-enquiry-pack.md` is linked from README.
+- [ ] `docs/reviewer-enquiry-copy.md` is linked from README.
+- [ ] `docs/paid-pilot-enquiry-checklist.md` is linked from README.
+- [ ] Short social copy remains under 360 characters.
+- [ ] Public contact email remains `gpmiddleton71@gmail.com`.
+- [ ] No old public email is present.
+- [ ] No production readiness, certified security, legal/compliance approval, automatic paid-pilot acceptance, automatic access, live payment processing, or settlement readiness is claimed.
+- [ ] No live API, MCP server functionality, live agent-to-agent communication, outreach automation, scraping/contact harvesting, forms, tracking, analytics, telemetry, hosted calls, cloud/network calls, external-agent contact, production signing, or action execution is activated by P3-M124.
+
 ## Release-candidate checklist
 
 - [ ] Run `npm test`.
@@ -219,6 +235,7 @@ human-approved steps.
 - [ ] No external agent contact.
 - [ ] No live endpoint, cloud call, or network call.
 - [ ] No live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, scraping, tracking, analytics, or telemetry.
+- [ ] No contact harvesting.
 - [ ] No secret, token, or credential.
 - [ ] No banking or wallet logic.
 - [ ] No x402 or AP2 activation.

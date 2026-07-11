@@ -1,0 +1,164 @@
+# Paid Pilot Enquiry Checklist
+
+P3-M124 adds a checklist for serious paid technical review, local pilot
+discussion, and integration feasibility enquiries.
+
+Core rule:
+
+No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
+
+This checklist is documentation only. It does not create forms, automate
+outreach, collect contacts, process payments, settle transactions, call APIs,
+or execute actions.
+
+## What A Serious Enquiry Should Provide
+
+A useful enquiry should include:
+
+- reviewer or organisation role;
+- problem area;
+- intended agent or workflow type;
+- sensitivity of the action;
+- whether money, payment-adjacent logic, or settlement is involved;
+- desired local review scope;
+- existing mandate, evidence, and verified intent requirements;
+- known risk tier or governance concerns;
+- expected output from the review;
+- constraints that must remain out of scope.
+
+## Problem Area
+
+Describe the problem in practical terms:
+
+- sensitive tool use;
+- agent-to-agent handoff;
+- human-in-the-loop approval;
+- pre-settlement or payment-adjacent review;
+- governance receipt/audit review;
+- AI agent traffic or session intent reasoning;
+- developer integration feasibility.
+
+## Intended Agent Or Workflow Type
+
+Describe the system being considered:
+
+- single agent;
+- multi-agent workflow;
+- agentic browser;
+- tool-calling agent;
+- enterprise automation workflow;
+- payment-adjacent workflow;
+- governance review workflow;
+- local developer prototype.
+
+Do not include secrets, credentials, private keys, customer data, payment
+details, wallet details, banking details, or production tokens.
+
+## Sensitivity Of Action
+
+State whether the workflow involves:
+
+- external impact;
+- money-like or settlement-like consequences;
+- account changes;
+- procurement or vendor decisions;
+- regulated or compliance-sensitive context;
+- customer data;
+- irreversible or difficult-to-reverse outcomes.
+
+## Whether Money Or Settlement Is Involved
+
+If money or settlement is involved, explain only the local review question.
+Agent Trust Gate can currently review pre-settlement trust patterns locally; it
+does not process payments, integrate PayPal or Stripe, host checkout, create
+webhooks, connect to wallets or banks, or execute settlement.
+
+## Desired Local Review Scope
+
+Examples of safe local scopes:
+
+- schema/receipt/proof review;
+- adversarial evaluation walkthrough;
+- simplified CLI walkthrough;
+- reference integration feasibility review;
+- local governance and safety review;
+- pre-settlement trust workflow review;
+- session intent concept discussion.
+
+## Evidence, Mandate, And Intent Requirements
+
+A useful enquiry should explain:
+
+- who or what grants mandate;
+- how scope is bounded;
+- what evidence exists;
+- how evidence freshness is checked;
+- what verifies intent;
+- when human review is required;
+- what should block or escalate;
+- how replay or stale requests should be handled.
+
+## What The Project Can Safely Review Now
+
+Agent Trust Gate can safely support discussion around:
+
+- local proof-of-concept behaviour;
+- local schema and example review;
+- local receipt/proof shape;
+- local adversarial scenarios;
+- local CLI ergonomics;
+- local reference integration patterns;
+- cautious paid technical review;
+- local pilot discussion;
+- integration feasibility review.
+
+All work remains human-reviewed and separately agreed.
+
+## What It Cannot Do Yet
+
+Agent Trust Gate cannot currently provide:
+
+- production deployment;
+- certified security;
+- legal, financial, compliance, procurement, settlement, or security
+  guarantees;
+- live APIs;
+- MCP server functionality;
+- live payment processing;
+- PayPal API integration;
+- Stripe integration;
+- checkout;
+- webhooks;
+- wallet or banking integration;
+- real settlement execution;
+- production signing;
+- production key management;
+- hosted access;
+- automatic acceptance;
+- automatic access after payment;
+- outreach automation;
+- scraping or contact harvesting;
+- external-agent contact;
+- action execution.
+
+## Human-Approved Next Step
+
+The next step for a serious enquiry is a human-reviewed email to:
+
+`gpmiddleton71@gmail.com`
+
+Include the checklist items above in plain text. Any scope, timing, fee,
+deliverable, access condition, or review output must be agreed separately.
+
+## Safety Boundary
+
+P3-M124 does not add live APIs, MCP server functionality, live
+agent-to-agent communication, external-agent contact, autonomous contact,
+outreach automation, scraping, contact harvesting, forms, tracking, analytics,
+telemetry, hosted calls, cloud/network calls, secrets, credentials, live
+payment processing, PayPal API integration, Stripe integration, checkout,
+webhooks, wallet/banking logic, real settlement execution, production signing,
+production key management, AUC integration, Agent Contact System integration,
+or action execution.
+
+Public project contact: `gpmiddleton71@gmail.com`

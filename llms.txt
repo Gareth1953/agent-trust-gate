@@ -40,6 +40,9 @@ Important docs:
 - docs/simplified-developer-cli.md
 - docs/reference-integration-examples.md
 - docs/paid-pilot-readiness-review.md
+- docs/public-reviewer-and-paid-pilot-enquiry-pack.md
+- docs/reviewer-enquiry-copy.md
+- docs/paid-pilot-enquiry-checklist.md
 - docs/ai-agent-traffic-and-session-intent-gate.md
 - docs/spoofed-agent-risk-model.md
 - docs/session-specific-access-framework.md
@@ -83,3 +86,10 @@ P3-M123 adds a local-only AI agent traffic and session intent gate concept. It
 is not a web bot detection product, does not monitor live website traffic, does
 not classify real traffic, does not block crawlers or browsers, and does not
 perform browser fingerprinting, scraping, tracking, analytics, or telemetry.
+
+P3-M124 adds human-approved public reviewer and paid pilot enquiry guidance.
+It is manual-use documentation and copy only. It does not add outreach
+automation, scraping or contact harvesting, forms, tracking, analytics,
+telemetry, live payment processing, settlement, live APIs, external-agent
+contact, automatic acceptance, automatic access, production signing, or action
+execution.

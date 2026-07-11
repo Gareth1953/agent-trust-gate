@@ -89,6 +89,14 @@ fingerprinting, scraping, tracking, analytics, telemetry, live APIs,
 external-agent contact, payment/settlement authority, production signing, or
 action execution.
 
+P3-M124 adds a public reviewer and paid pilot enquiry pack, manual-use reviewer
+copy, and a paid pilot enquiry checklist. It helps humans inspect the repo and
+prepare serious paid technical review or local pilot discussion enquiries. It
+does not add outreach automation, scraping, contact harvesting, forms,
+tracking, analytics, telemetry, live payment processing, settlement, live
+APIs, external-agent contact, automatic acceptance, automatic access,
+production signing, or action execution.
+
 ## What was launched
 
 The public launch made the code-readable developer project available for review:
@@ -121,6 +129,9 @@ The public launch made the code-readable developer project available for review:
 - Root agent card metadata.
 - AI agent traffic and session intent gate concept documentation.
 - Local session intent gate model and static examples.
+- Public reviewer and paid pilot enquiry pack.
+- Manual reviewer enquiry copy.
+- Paid pilot enquiry checklist.
 
 The launch surface is public code and documentation. The product remains
 `local_demo_only`.
@@ -142,6 +153,7 @@ The public GitHub launch did not activate:
 - crawler blocking;
 - browser fingerprinting;
 - scraping;
+- contact harvesting;
 - forms;
 - tracking, analytics, or telemetry;
 - hosted calls;
@@ -188,6 +200,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm `docs/paid-pilot-readiness-review.md` is visible and linked from README.
 - [ ] Confirm `llms.txt`, `agent-trust-gate.agent-card.json`, `docs/agent-readable-discovery-and-system-metadata.md`, `docs/system-integration-metadata.md`, and `docs/example-agent-discovery-prompts.md` are visible and linked from README.
 - [ ] Confirm `docs/ai-agent-traffic-and-session-intent-gate.md`, `docs/spoofed-agent-risk-model.md`, and `docs/session-specific-access-framework.md` are visible and linked from README.
+- [ ] Confirm `docs/public-reviewer-and-paid-pilot-enquiry-pack.md`, `docs/reviewer-enquiry-copy.md`, and `docs/paid-pilot-enquiry-checklist.md` are visible and linked from README.
 - [ ] Confirm README, LICENSE, SECURITY, CHANGELOG, RELEASE_NOTES, and PUBLIC_LAUNCH_CHECKLIST render correctly.
 - [ ] Confirm `agent-trust-gate.manifest.json` is visible and still reports `local_demo_only`.
 - [ ] Confirm schemas and synthetic examples are visible.
@@ -208,6 +221,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm P3-M121 paid pilot readiness review is presented as cautious commercial positioning, not production readiness, certification, live payment/settlement readiness, automatic acceptance, automatic access, or a guarantee.
 - [ ] Confirm P3-M122 agent-readable discovery is presented as readable-now/callable-later metadata, not a live endpoint, MCP server, autonomous authority, payment/settlement authority, external-agent contact, or action execution.
 - [ ] Confirm P3-M123 AI agent traffic/session intent is presented as local concept modelling, not a bot detection product, live traffic monitoring, crawler blocking, browser fingerprinting, scraping, tracking, analytics, telemetry, or production web security.
+- [ ] Confirm P3-M124 public reviewer and paid pilot enquiry guidance is presented as human-approved documentation and manual-use copy only, not outreach automation, scraping/contact harvesting, forms, tracking, analytics, live payment processing, settlement, automatic acceptance, automatic access, or action execution.
 - [ ] Confirm no git tag, package publish, or deployment has been performed unless separately approved later.
 
 ## Recommended next steps
@@ -215,6 +229,7 @@ No signed gate pass means no settlement.
 Keep future changes local-first and reviewable. Any future git tag, package
 publish, static-site deployment, hosted sandbox, live API, payment activation,
 settlement activation, live agent endpoint, MCP server functionality, live
-traffic monitoring, real bot detection, external-agent contact, AUC bridge,
-Agent Contact System integration, production signing, or action execution
+traffic monitoring, real bot detection, outreach automation, scraping/contact
+harvesting, external-agent contact, AUC bridge, Agent Contact System
+integration, production signing, or action execution
 requires a separate human-approved mission and updated safety review.

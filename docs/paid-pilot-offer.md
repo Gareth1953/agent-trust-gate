@@ -35,6 +35,13 @@ local pilot discussion, and integration feasibility review, but it does not
 claim production readiness, certified security, live payments, settlement, or
 automatic access.
 
+P3-M124 adds a [public reviewer and paid pilot enquiry pack](public-reviewer-and-paid-pilot-enquiry-pack.md),
+[manual reviewer enquiry copy](reviewer-enquiry-copy.md), and a
+[paid pilot enquiry checklist](paid-pilot-enquiry-checklist.md). The copy is
+for human-approved manual use only and does not automate outreach, harvest
+contacts, create forms, process payments, activate settlement, grant automatic
+acceptance, grant automatic access, or execute actions.
+
 ## Who should contact
 
 Contact Gareth if you are a:
