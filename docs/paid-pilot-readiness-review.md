@@ -282,6 +282,19 @@ readiness, live payment/settlement readiness, automatic acceptance, automatic
 access after payment, hosted services, outreach automation, scraping/contact
 harvesting, or action execution.
 
+## Relationship To P3-M127
+
+P3-M127 adds global code discovery and developer distribution guidance. It
+supports manual code-first discovery: a developer finds the repo, understands
+the trust problem, runs local demos, reviews paid-review relevance, and contacts
+Gareth manually if there is a serious fit.
+
+It does not change the readiness assessment. It does not claim guaranteed
+global discovery, guaranteed buyer demand, guaranteed paid-pilot conversion,
+production readiness, live payment/settlement readiness, automatic acceptance,
+automatic access after payment, hosted services, paid ads, tracking, analytics,
+outreach automation, scraping/contact harvesting, or action execution.
+
 ## Safety Boundary
 
 Agent Trust Gate™ remains local-first and `local_demo_only`.
@@ -289,12 +302,13 @@ Agent Trust Gate™ remains local-first and `local_demo_only`.
 P3-M121 is documentation, readiness assessment, and commercial positioning
 only. P3-M124 adds related human-approved reviewer/enquiry copy only. P3-M125
 adds commercial conversion navigation clarity only. P3-M126 adds buyer use
-case and revenue trigger documentation only. They do not add live APIs, live
+case and revenue trigger documentation only. P3-M127 adds code discovery and
+manual developer distribution guidance only. They do not add live APIs, live
 payment processing, PayPal API integration, Stripe integration, checkout,
 webhooks, wallet/banking logic, real settlement execution, production signing,
 production key management, secrets, credentials, cloud/network calls, forms,
-tracking, analytics, telemetry, hosted calls, external-agent contact, outreach
-automation, scraping, contact harvesting, AUC integration, Agent Contact System
-integration, or action execution.
+tracking, analytics, telemetry, hosted calls, paid ads, ad pixels,
+external-agent contact, outreach automation, scraping, contact harvesting, AUC
+integration, Agent Contact System integration, or action execution.
 
 Public project contact: `gpmiddleton71@gmail.com`

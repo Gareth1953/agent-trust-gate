@@ -19,6 +19,12 @@ This is documentation only. It does not add forms, tracking, analytics,
 outreach automation, scraping, contact harvesting, payment processing, live
 APIs, hosted services, settlement, or action execution.
 
+P3-M127 adds global code discovery and manual developer distribution guidance
+for sharing this trigger map safely. It does not add email automation, paid
+ads, ad pixels, tracking, analytics, outreach automation, scraping/contact
+harvesting, live APIs, hosted services, payment processing, settlement, or
+action execution.
+
 ## Trigger Map
 
 | Trigger | Problem | Risk | What Agent Trust Gate Can Review Locally | Possible Paid Review Angle | What Not To Claim |
@@ -68,3 +74,6 @@ secrets, credentials, live payment processing, PayPal API integration, Stripe
 integration, checkout, webhooks, wallet/banking logic, real settlement
 execution, production signing, production key management, AUC integration,
 Agent Contact System integration, or action execution.
+
+P3-M127 adds manual distribution guidance only and does not alter these
+boundaries.

@@ -8,6 +8,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 
 ### Added
 
+- P3-M127 global code discovery and developer distribution pack with GitHub metadata guidance, developer distribution checklist, manual sharing copy, agent-readable distribution note, and README links.
 - P3-M126 buyer use case and revenue trigger pack with buyer categories, a concrete trigger map, paid review scope examples, and README links for commercial review fit.
 - P3-M125 public repo commercial conversion review with README reviewer/start-here navigation and clearer human-reviewed enquiry path.
 - P3-M124 public reviewer and paid pilot enquiry pack with manual-use reviewer copy and a serious enquiry checklist.
@@ -31,6 +32,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 
 ### Safety
 
+- P3-M127 is documentation, code-discovery positioning, manual sharing copy, GitHub metadata guidance, and developer distribution planning only. It does not claim guaranteed global discovery, guaranteed buyer demand, guaranteed paid-pilot conversion, production readiness, live payment/settlement readiness, automatic acceptance, or automatic access after payment, and it does not add email automation, outreach automation, scraping, contact harvesting, forms, tracking, analytics, telemetry, paid ads, ad pixels, hosted services, live APIs, live payment processing, settlement execution, external-agent contact, production signing, or action execution.
 - P3-M126 is commercial documentation and positioning only. It does not claim guaranteed buyer demand, guaranteed revenue, guaranteed paid-pilot conversion, production readiness, live payment/settlement readiness, automatic acceptance, or automatic access after payment, and it does not add outreach automation, scraping, contact harvesting, forms, tracking, analytics, telemetry, hosted services, live APIs, live payment processing, settlement execution, external-agent contact, production signing, or action execution.
 - P3-M125 is documentation, navigation, and commercial conversion clarity only. It does not add outreach automation, scraping, contact harvesting, forms, tracking, analytics, telemetry, hosted services, live APIs, live payment processing, settlement execution, external-agent contact, automatic acceptance, automatic access, production signing, or action execution.
 - P3-M124 is documentation and human-approved communication copy only. It does not add outreach automation, scraping, contact harvesting, forms, tracking, analytics, telemetry, live APIs, live payment processing, settlement execution, external-agent contact, automatic acceptance, automatic access, production signing, or action execution.

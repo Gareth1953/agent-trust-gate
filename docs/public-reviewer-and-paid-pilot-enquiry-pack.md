@@ -31,6 +31,15 @@ human reviewer connect local trust-gate proof assets to concrete buyer risk
 triggers without claiming guaranteed demand, guaranteed revenue, production
 readiness, or live payment/settlement readiness.
 
+P3-M127 adds [global code discovery and developer distribution guidance](global-code-discovery-and-developer-distribution-pack.md),
+[GitHub metadata guidance](github-discovery-metadata-guide.md), a
+[developer distribution checklist](developer-distribution-checklist.md),
+[manual sharing copy](global-developer-sharing-copy.md), and an
+[agent-readable distribution note](agent-readable-distribution-note.md). These
+assets support manual code-first sharing only; they do not add automated
+outreach, scraping/contact harvesting, paid ads, tracking, analytics, or live
+distribution infrastructure.
+
 ## Who Should Review Agent Trust Gate
 
 Useful reviewers include:
@@ -87,6 +96,11 @@ Start with this short path:
 12. `docs/buyer-use-cases-and-revenue-triggers.md`
 13. `docs/revenue-trigger-map.md`
 14. `docs/paid-review-scope-examples.md`
+15. `docs/global-code-discovery-and-developer-distribution-pack.md`
+16. `docs/github-discovery-metadata-guide.md`
+17. `docs/developer-distribution-checklist.md`
+18. `docs/global-developer-sharing-copy.md`
+19. `docs/agent-readable-distribution-note.md`
 
 Then run the local commands from the quickstart if reviewing code behaviour:
 
@@ -239,5 +253,10 @@ P3-M126 adds commercial buyer/revenue trigger documentation only. It does not
 add outreach automation, scraping, contact harvesting, forms, tracking,
 analytics, live APIs, hosted services, payment processing, settlement,
 production signing, or action execution.
+
+P3-M127 adds code discovery and manual sharing guidance only. It does not add
+email automation, scraping, contact harvesting, forms, tracking, analytics,
+telemetry, paid ads, ad pixels, hosted services, live APIs, payment processing,
+settlement, production signing, or action execution.
 
 Public project contact: `gpmiddleton71@gmail.com`

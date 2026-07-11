@@ -40,9 +40,14 @@ payments, settlement, or action execution.
 16. `docs/buyer-use-cases-and-revenue-triggers.md`
 17. `docs/revenue-trigger-map.md`
 18. `docs/paid-review-scope-examples.md`
-19. `docs/ai-agent-traffic-and-session-intent-gate.md`
-20. `docs/spoofed-agent-risk-model.md`
-21. `docs/session-specific-access-framework.md`
+19. `docs/global-code-discovery-and-developer-distribution-pack.md`
+20. `docs/github-discovery-metadata-guide.md`
+21. `docs/developer-distribution-checklist.md`
+22. `docs/global-developer-sharing-copy.md`
+23. `docs/agent-readable-distribution-note.md`
+24. `docs/ai-agent-traffic-and-session-intent-gate.md`
+25. `docs/spoofed-agent-risk-model.md`
+26. `docs/session-specific-access-framework.md`
 
 ## Recommended Local Commands
 
@@ -141,6 +146,11 @@ Use:
 - `docs/buyer-use-cases-and-revenue-triggers.md`
 - `docs/revenue-trigger-map.md`
 - `docs/paid-review-scope-examples.md`
+- `docs/global-code-discovery-and-developer-distribution-pack.md`
+- `docs/github-discovery-metadata-guide.md`
+- `docs/developer-distribution-checklist.md`
+- `docs/global-developer-sharing-copy.md`
+- `docs/agent-readable-distribution-note.md`
 
 The readiness framing is cautious. Paid technical review and local pilot
 discussion may be reasonable, but production deployment readiness and live
@@ -148,10 +158,11 @@ payment/settlement readiness remain `not yet`.
 
 P3-M124 adds human-approved reviewer and paid pilot enquiry copy only. P3-M125
 adds public repo commercial conversion navigation clarity only. P3-M126 adds
-buyer use case and revenue trigger documentation only. They do not add outreach
-automation, scraping, contact harvesting, forms, tracking, analytics, live
-payment processing, settlement, automatic acceptance, automatic access, hosted
-services, or action execution.
+buyer use case and revenue trigger documentation only. P3-M127 adds global
+code discovery and manual developer distribution guidance only. They do not
+add outreach automation, scraping, contact harvesting, forms, tracking,
+analytics, paid ads, ad pixels, live payment processing, settlement, automatic
+acceptance, automatic access, hosted services, or action execution.
 
 ## Where To Find The AI Agent Traffic Concept
 
@@ -202,17 +213,19 @@ Do not assume:
 This repository is readable by agents and systems, but it exposes no live
 agent endpoint and grants no autonomous authority.
 
-P3-M122, P3-M123, P3-M124, P3-M125, and P3-M126 are metadata,
+P3-M122, P3-M123, P3-M124, P3-M125, P3-M126, and P3-M127 are metadata,
 documentation, local discovery/concept guidance, human-approved communication
-copy, navigation clarity, and buyer/revenue trigger guidance only. They do not
-add live APIs, MCP server functionality, live
-agent-to-agent communication, agent negotiation, autonomous contact,
+copy, navigation clarity, buyer/revenue trigger guidance, and manual developer
+distribution guidance only. They do not add live APIs, MCP server
+functionality, live agent-to-agent communication, agent negotiation, autonomous
+contact,
 external-agent contact, live payment processing, PayPal API integration,
 Stripe integration, checkout, webhooks, wallet/banking logic, real settlement
 execution, production signing, production key management, secrets,
 credentials, cloud/network calls, forms, live traffic monitoring, real bot
 detection, crawler blocking, browser fingerprinting, scraping, contact
-harvesting, tracking, analytics, telemetry, hosted calls, outreach automation,
-AUC integration, Agent Contact System integration, or action execution.
+harvesting, tracking, analytics, telemetry, hosted calls, paid ads, ad pixels,
+outreach automation, AUC integration, Agent Contact System integration, or
+action execution.
 
 Public project contact: `gpmiddleton71@gmail.com`

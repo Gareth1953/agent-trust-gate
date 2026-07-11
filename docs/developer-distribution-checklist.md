@@ -1,0 +1,95 @@
+# Developer Distribution Checklist
+
+P3-M127 adds a manual developer distribution checklist for Agent Trust Gate.
+
+Core rule:
+
+No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
+
+## Purpose
+
+This checklist supports global code-first discovery through manual, relevant,
+human-approved sharing. It does not add outreach automation, scraping, contact
+harvesting, forms, tracking, analytics, telemetry, paid ads, ad pixels, live
+APIs, hosted services, payment processing, settlement, or action execution.
+
+## Safe Manual Routes
+
+- [ ] Keep GitHub README clarity strong.
+- [ ] Keep the README start-here path near the top.
+- [ ] Keep GitHub topics aligned with actual local code and docs.
+- [ ] Use GitHub discussions or manual posts only if later enabled and
+      human-approved.
+- [ ] Share in developer communities only where self-sharing is allowed and
+      relevant.
+- [ ] Share in AI safety/governance communities only when the trust-gate
+      problem is on topic.
+- [ ] Share in agent framework communities only as a local reference pattern,
+      not an official integration.
+- [ ] Share in fintech/payment workflow reviewer communities only as a
+      pre-settlement review concept, not a payment product.
+- [ ] Prepare a technical blog/manual write-up that links to the repo and local
+      demo commands.
+- [ ] Use a LinkedIn manual post when human-approved.
+- [ ] Use an X manual post under 360 characters when human-approved.
+- [ ] Share the public repo link directly with known contacts only when
+      human-approved.
+- [ ] Route serious enquiries to `gpmiddleton71@gmail.com`.
+
+## Reviewer Path To Share
+
+- [ ] README.
+- [ ] Clone and run quickstart.
+- [ ] Simplified developer CLI.
+- [ ] Schema formalisation and evidence model.
+- [ ] Local signed receipt and proof prototype.
+- [ ] Adversarial evaluation pack.
+- [ ] Reference integration examples.
+- [ ] Buyer use cases and revenue triggers.
+- [ ] Paid pilot readiness review.
+- [ ] Public reviewer and paid pilot enquiry pack.
+- [ ] Agent-readable metadata.
+
+## Warnings
+
+Do not:
+
+- spam;
+- scrape contacts;
+- harvest contacts;
+- send mass cold email;
+- automate outreach;
+- use misleading claims;
+- claim production readiness;
+- claim certified security;
+- claim legal, financial, compliance, procurement, settlement, or security
+  guarantees;
+- claim live payment readiness;
+- claim settlement readiness;
+- claim guaranteed global discovery;
+- claim guaranteed buyer demand;
+- claim guaranteed paid-pilot conversion;
+- imply automatic paid-pilot acceptance;
+- imply automatic access after payment;
+- add forms, tracking, analytics, telemetry, paid ads, ad pixels, or hosted
+  calls.
+
+## Manual Approval Check
+
+Before any manual sharing:
+
+- [ ] Confirm the channel allows relevant project sharing.
+- [ ] Confirm the message is accurate and non-spammy.
+- [ ] Confirm the message links to the public repo or a specific doc.
+- [ ] Confirm no secrets, credentials, customer data, private keys, payment
+      details, wallet details, or banking details are included.
+- [ ] Confirm no production, certification, payment, settlement, or guarantee
+      claim is made.
+- [ ] Confirm the public contact email is `gpmiddleton71@gmail.com`.
+
+## Safety Boundary
+
+This checklist is manual distribution planning only. It does not send messages,
+collect contacts, scrape targets, create forms, track users, run analytics,
+place ads, call APIs, process payments, execute settlement, deploy services, or
+execute actions.

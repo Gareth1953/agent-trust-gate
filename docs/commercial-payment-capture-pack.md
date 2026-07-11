@@ -59,6 +59,15 @@ concrete risk triggers may justify a human-reviewed paid enquiry without
 claiming guaranteed buyer demand, guaranteed revenue, guaranteed paid-pilot
 conversion, production readiness, or live payment/settlement readiness.
 
+P3-M127 adds [global code discovery and developer distribution guidance](global-code-discovery-and-developer-distribution-pack.md),
+[GitHub metadata guidance](github-discovery-metadata-guide.md), a
+[developer distribution checklist](developer-distribution-checklist.md),
+[manual sharing copy](global-developer-sharing-copy.md), and an
+[agent-readable distribution note](agent-readable-distribution-note.md). These
+assets help manual sharing only; they do not add email automation, paid ads,
+tracking, analytics, outreach automation, scraping/contact harvesting, hosted
+services, payment processing, settlement, or action execution.
+
 ## What the commercial offer is
 
 Agent Trust Gate™ can be discussed as a local-first commercial review or pilot
@@ -189,3 +198,8 @@ P3-M126 adds commercial buyer and revenue trigger documentation only. It does
 not add outreach automation, scraping/contact harvesting, forms, tracking,
 analytics, live APIs, hosted services, payment processing, settlement,
 production signing, or action execution.
+
+P3-M127 adds global code discovery and manual developer distribution guidance
+only. It does not add email automation, paid ads, ad pixels, scraping/contact
+harvesting, forms, tracking, analytics, live APIs, hosted services, payment
+processing, settlement, production signing, or action execution.

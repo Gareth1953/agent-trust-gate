@@ -55,6 +55,15 @@ which concrete risk triggers may make a paid review worth discussing, without
 claiming guaranteed buyer demand, guaranteed revenue, or guaranteed paid-pilot
 conversion.
 
+P3-M127 adds [global code discovery and developer distribution guidance](global-code-discovery-and-developer-distribution-pack.md),
+[GitHub metadata guidance](github-discovery-metadata-guide.md), a
+[developer distribution checklist](developer-distribution-checklist.md),
+[manual sharing copy](global-developer-sharing-copy.md), and an
+[agent-readable distribution note](agent-readable-distribution-note.md). These
+docs support manual code-first sharing only and do not add outreach automation,
+email automation, paid ads, tracking, analytics, hosted services, payment
+processing, settlement, automatic acceptance, or automatic access.
+
 ## Who should contact
 
 Contact Gareth if you are a:
@@ -201,4 +210,10 @@ this offer page.
 P3-M126 adds commercial positioning docs only. It does not add outreach
 automation, scraping/contact harvesting, forms, tracking, analytics, live APIs,
 hosted services, payment processing, settlement, production signing, or action
+execution.
+
+P3-M127 adds manual discovery and developer distribution docs only. It does not
+add email automation, paid ads, ad pixels, outreach automation,
+scraping/contact harvesting, forms, tracking, analytics, live APIs, hosted
+services, payment processing, settlement, production signing, or action
 execution.

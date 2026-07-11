@@ -114,6 +114,15 @@ APIs, hosted services, payment processing, settlement, guaranteed buyer demand,
 guaranteed revenue, guaranteed paid-pilot conversion, production signing, or
 action execution.
 
+P3-M127 adds a global code discovery and developer distribution pack, GitHub
+metadata guidance, a developer distribution checklist, manual sharing copy, and
+an agent-readable distribution note. It supports manual code-first discovery
+only. It does not add outreach automation, email automation, scraping, contact
+harvesting, forms, tracking, analytics, telemetry, paid ads, ad pixels, hosted
+services, live APIs, payment processing, settlement, guaranteed global
+discovery, guaranteed buyer demand, guaranteed paid-pilot conversion,
+production signing, or action execution.
+
 ## What was launched
 
 The public launch made the code-readable developer project available for review:
@@ -153,6 +162,11 @@ The public launch made the code-readable developer project available for review:
 - Buyer use cases and revenue trigger pack.
 - Revenue trigger map.
 - Paid review scope examples.
+- Global code discovery and developer distribution pack.
+- GitHub discovery metadata guide.
+- Developer distribution checklist.
+- Global developer sharing copy.
+- Agent-readable distribution note.
 
 The launch surface is public code and documentation. The product remains
 `local_demo_only`.
@@ -224,6 +238,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm `docs/public-reviewer-and-paid-pilot-enquiry-pack.md`, `docs/reviewer-enquiry-copy.md`, and `docs/paid-pilot-enquiry-checklist.md` are visible and linked from README.
 - [ ] Confirm `docs/public-repo-commercial-conversion-review.md` is visible and linked from README.
 - [ ] Confirm `docs/buyer-use-cases-and-revenue-triggers.md`, `docs/revenue-trigger-map.md`, and `docs/paid-review-scope-examples.md` are visible and linked from README.
+- [ ] Confirm `docs/global-code-discovery-and-developer-distribution-pack.md`, `docs/github-discovery-metadata-guide.md`, `docs/developer-distribution-checklist.md`, `docs/global-developer-sharing-copy.md`, and `docs/agent-readable-distribution-note.md` are visible and linked from README.
 - [ ] Confirm README, LICENSE, SECURITY, CHANGELOG, RELEASE_NOTES, and PUBLIC_LAUNCH_CHECKLIST render correctly.
 - [ ] Confirm `agent-trust-gate.manifest.json` is visible and still reports `local_demo_only`.
 - [ ] Confirm schemas and synthetic examples are visible.
@@ -247,6 +262,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm P3-M124 public reviewer and paid pilot enquiry guidance is presented as human-approved documentation and manual-use copy only, not outreach automation, scraping/contact harvesting, forms, tracking, analytics, live payment processing, settlement, automatic acceptance, automatic access, or action execution.
 - [ ] Confirm P3-M125 public repo commercial conversion review is presented as documentation and navigation clarity only, not forms, tracking, analytics, hosted services, outreach automation, scraping/contact harvesting, live payment processing, settlement, live APIs, automatic access, or action execution.
 - [ ] Confirm P3-M126 buyer use cases and revenue triggers are presented as commercial documentation only, not guaranteed buyer demand, guaranteed revenue, guaranteed paid-pilot conversion, outreach automation, scraping/contact harvesting, live payment processing, settlement, live APIs, automatic access, or action execution.
+- [ ] Confirm P3-M127 global code discovery and developer distribution guidance is presented as manual documentation only, not guaranteed global discovery, paid ads, tracking, analytics, outreach automation, scraping/contact harvesting, live payment processing, settlement, live APIs, automatic access, or action execution.
 - [ ] Confirm no git tag, package publish, or deployment has been performed unless separately approved later.
 
 ## Recommended next steps

@@ -58,7 +58,8 @@ receipt/proof prototypes, adversarial cases, a simplified developer CLI,
 reference integration examples, a cautious paid pilot readiness review,
 human-approved public reviewer/enquiry guidance, public repo commercial
 conversion navigation guidance, buyer use case and revenue trigger guidance,
-and a local AI agent traffic/session intent concept pack.
+global code discovery and developer distribution guidance, and a local AI
+agent traffic/session intent concept pack.
 
 ## What It Is Not
 
@@ -203,6 +204,20 @@ Agents and developer assistants may summarise these documents for a human
 reviewer. They must not infer guaranteed buyer demand, guaranteed revenue,
 guaranteed paid-pilot conversion, production readiness, live
 payment/settlement readiness, automatic access, or autonomous authority.
+
+P3-M127 adds global code discovery and manual developer distribution guidance:
+
+- `docs/global-code-discovery-and-developer-distribution-pack.md`
+- `docs/github-discovery-metadata-guide.md`
+- `docs/developer-distribution-checklist.md`
+- `docs/global-developer-sharing-copy.md`
+- `docs/agent-readable-distribution-note.md`
+
+Agents and developer assistants may summarise these documents for a human
+operator. They must not infer guaranteed global discovery, outreach authority,
+email automation authority, paid ads authority, tracking/analytics authority,
+live API authority, payment/settlement authority, external contact authority,
+or action execution authority.
 
 ## Agent/System Metadata
 

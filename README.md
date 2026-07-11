@@ -24,6 +24,7 @@ For a fast public review, use this path:
 8. Inspect enquiry guidance: [public reviewer and paid pilot enquiry pack](docs/public-reviewer-and-paid-pilot-enquiry-pack.md) and [paid pilot enquiry checklist](docs/paid-pilot-enquiry-checklist.md).
 9. Inspect agent-readable metadata: [llms.txt](llms.txt) and [agent card metadata](agent-trust-gate.agent-card.json).
 10. Inspect buyer fit and commercial triggers: [buyer use cases and revenue triggers](docs/buyer-use-cases-and-revenue-triggers.md), [revenue trigger map](docs/revenue-trigger-map.md), and [paid review scope examples](docs/paid-review-scope-examples.md).
+11. Inspect global discovery and manual sharing guidance: [global code discovery and developer distribution pack](docs/global-code-discovery-and-developer-distribution-pack.md).
 
 P3-M125 adds the [public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md)
 to make this path easier to assess without adding forms, tracking, payment
@@ -31,6 +32,9 @@ processing, hosted services, outreach automation, or action execution.
 P3-M126 adds a buyer use case and revenue trigger pack to explain when a
 human-reviewed paid technical review, local pilot discussion, integration
 feasibility review, or governance/safety review may be commercially relevant.
+P3-M127 adds global code discovery and manual developer distribution guidance
+without adding outreach automation, paid ads, tracking, analytics, live APIs,
+hosted services, payment processing, settlement, or action execution.
 
 ## What to inspect first
 
@@ -295,6 +299,24 @@ conversion, production readiness, live payment/settlement readiness, automatic
 acceptance, automatic access after payment, outreach automation, or action
 execution.
 
+## Global code discovery and manual sharing
+
+P3-M127 adds global code-first discovery and manual developer distribution
+guidance for Agent Trust Gate.
+
+- [Global code discovery and developer distribution pack](docs/global-code-discovery-and-developer-distribution-pack.md)
+- [GitHub discovery metadata guide](docs/github-discovery-metadata-guide.md)
+- [Developer distribution checklist](docs/developer-distribution-checklist.md)
+- [Global developer sharing copy](docs/global-developer-sharing-copy.md)
+- [Agent-readable distribution note](docs/agent-readable-distribution-note.md)
+
+The path is manual and code-first: a developer finds the repo, understands the
+trust problem, runs the local demo, sees paid-review relevance, and contacts
+Gareth manually if there is a serious fit. These docs do not add outreach
+automation, scraping/contact harvesting, forms, paid ads, tracking, analytics,
+live APIs, hosted services, payment processing, settlement, or action
+execution.
+
 ## External reviewer signal
 
 P3-M115 captures external AI reviewer feedback as market and technical signal,
@@ -555,6 +577,10 @@ contact, production signing, or action execution. P3-M126 adds buyer use case
 and revenue trigger documentation without adding outreach automation, scraping,
 contact harvesting, forms, tracking, analytics, live APIs, hosted services,
 payment processing, settlement, production signing, or action execution.
+P3-M127 adds global code discovery and manual sharing guidance without adding
+email automation, paid ads, ad pixels, outreach automation, scraping/contact
+harvesting, forms, tracking, analytics, live APIs, hosted services, payment
+processing, settlement, production signing, or action execution.
 
 Recent proof and readiness milestones:
 
@@ -590,6 +616,7 @@ Recent proof and readiness milestones:
 - P3-M124: public reviewer and paid pilot enquiry pack
 - P3-M125: public repo commercial conversion review
 - P3-M126: buyer use cases and revenue triggers
+- P3-M127: global code discovery and developer distribution pack
 
 ## Developer review path
 
@@ -605,7 +632,8 @@ Recent proof and readiness milestones:
 10. Read the reviewer/enquiry pack if assessing paid technical review or local pilot discussion fit.
 11. Read the public repo commercial conversion review if assessing commercial fit.
 12. Read the buyer use case and revenue trigger pack if assessing buyer fit.
-13. Confirm the current safety boundaries before drawing conclusions.
+13. Read the global code discovery and developer distribution pack if assessing manual sharing fit.
+14. Confirm the current safety boundaries before drawing conclusions.
 
 ## Usage
 

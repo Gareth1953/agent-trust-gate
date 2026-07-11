@@ -45,6 +45,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 | P3-M124 | Public Reviewer and Paid Pilot Enquiry Pack |
 | P3-M125 | Public Repo Commercial Conversion Review |
 | P3-M126 | Buyer Use Case and Revenue Trigger Pack |
+| P3-M127 | Global Code Discovery and Developer Distribution Pack |
 
 ## Current proof chain
 
@@ -74,5 +75,6 @@ P3-M123 adds a local-only AI agent traffic and session intent gate concept pack 
 P3-M124 adds human-approved public reviewer and paid pilot enquiry guidance, manual-use reviewer copy, and a paid pilot enquiry checklist. It adds no outreach automation, scraping, contact harvesting, forms, tracking, analytics, telemetry, live APIs, live payment processing, settlement, external-agent contact, automatic acceptance, automatic access, production signing, or action execution.
 P3-M125 adds a public repo commercial conversion review and README reviewer start-path improvements. It adds no outreach automation, scraping, contact harvesting, forms, tracking, analytics, telemetry, hosted services, live APIs, live payment processing, settlement, external-agent contact, automatic acceptance, automatic access, production signing, or action execution.
 P3-M126 adds buyer use case and revenue trigger documentation, a revenue trigger map, and paid review scope examples. It adds no guaranteed buyer demand, guaranteed revenue, guaranteed paid-pilot conversion, outreach automation, scraping, contact harvesting, forms, tracking, analytics, telemetry, hosted services, live APIs, live payment processing, settlement, external-agent contact, automatic acceptance, automatic access, production signing, or action execution.
+P3-M127 adds global code discovery and manual developer distribution guidance, GitHub metadata guidance, a developer distribution checklist, manual sharing copy, and an agent-readable distribution note. It adds no guaranteed global discovery, guaranteed buyer demand, guaranteed paid-pilot conversion, outreach automation, email automation, scraping, contact harvesting, forms, tracking, analytics, telemetry, paid ads, ad pixels, hosted services, live APIs, live payment processing, settlement, external-agent contact, automatic acceptance, automatic access, production signing, or action execution.
 
 No live APIs, payments, settlement execution, external-agent contact, AUC merge, cloud/network calls, MCP server functionality, live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, scraping, contact harvesting, tracking, analytics, telemetry, outreach automation, secrets, credentials, hosted services, tag/package publish/deployment, or autonomous action execution. AUC is not integrated. Agent Contact System is not integrated.

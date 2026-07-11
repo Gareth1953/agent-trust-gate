@@ -47,6 +47,11 @@ Important docs:
 - docs/buyer-use-cases-and-revenue-triggers.md
 - docs/revenue-trigger-map.md
 - docs/paid-review-scope-examples.md
+- docs/global-code-discovery-and-developer-distribution-pack.md
+- docs/github-discovery-metadata-guide.md
+- docs/developer-distribution-checklist.md
+- docs/global-developer-sharing-copy.md
+- docs/agent-readable-distribution-note.md
 - docs/ai-agent-traffic-and-session-intent-gate.md
 - docs/spoofed-agent-risk-model.md
 - docs/session-specific-access-framework.md
@@ -111,5 +116,17 @@ conversion, production readiness, live payment/settlement readiness, automatic
 acceptance, automatic access after payment, or any legal, financial,
 compliance, procurement, settlement, or security guarantee. It adds no outreach
 automation, scraping or contact harvesting, forms, tracking, analytics, hosted
+services, live APIs, payment processing, settlement, external-agent contact,
+production signing, or action execution.
+
+P3-M127 adds global code discovery guidance, GitHub metadata guidance, a manual
+developer distribution checklist, manual sharing copy, and an agent-readable
+distribution note. It is documentation and manual distribution planning only.
+It does not claim guaranteed global discovery, guaranteed buyer demand,
+guaranteed paid-pilot conversion, production readiness, live
+payment/settlement readiness, automatic acceptance, automatic access after
+payment, or any legal, financial, compliance, procurement, settlement, or
+security guarantee. It adds no email automation, outreach automation, scraping
+or contact harvesting, forms, tracking, analytics, paid ads, ad pixels, hosted
 services, live APIs, payment processing, settlement, external-agent contact,
 production signing, or action execution.

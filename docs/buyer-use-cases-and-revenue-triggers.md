@@ -23,6 +23,12 @@ This is commercial documentation and positioning only. It does not add outreach
 automation, scraping, contact harvesting, forms, tracking, analytics, live APIs,
 payment processing, settlement, hosted services, or action execution.
 
+P3-M127 adds [global code discovery and developer distribution guidance](global-code-discovery-and-developer-distribution-pack.md)
+so this buyer/revenue framing can be shared manually and safely. It does not
+add outreach automation, scraping/contact harvesting, paid ads, tracking,
+analytics, hosted services, live APIs, payment processing, settlement, or
+action execution.
+
 ## Who Might Pay
 
 Near-term paid review interest may come from:
@@ -209,3 +215,6 @@ cloud/network calls, secrets, credentials, live payment processing, PayPal API
 integration, Stripe integration, checkout, webhooks, wallet/banking logic, real
 settlement execution, production signing, production key management, AUC
 integration, Agent Contact System integration, or action execution.
+
+P3-M127 does not change this commercial boundary. It adds manual code discovery
+and developer distribution guidance only.

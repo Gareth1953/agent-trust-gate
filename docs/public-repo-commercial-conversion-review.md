@@ -33,6 +33,15 @@ conversion path by explaining which concrete workflow risks may justify a
 human-reviewed paid technical review, integration feasibility review, local
 pilot discussion, or governance/safety review.
 
+P3-M127 adds a [global code discovery and developer distribution pack](global-code-discovery-and-developer-distribution-pack.md),
+[GitHub discovery metadata guide](github-discovery-metadata-guide.md),
+[developer distribution checklist](developer-distribution-checklist.md),
+[manual sharing copy](global-developer-sharing-copy.md), and an
+[agent-readable distribution note](agent-readable-distribution-note.md). It
+extends the public repo conversion path into manual code-first discovery without
+adding outreach automation, ads, tracking, analytics, hosted services, live
+APIs, payment processing, or action execution.
+
 ## Repo Buyer/Reviewer Journey
 
 A serious public reviewer should be able to move through the repo in this
@@ -97,8 +106,13 @@ Recommended start-here path:
 11. [Buyer use cases and revenue triggers](buyer-use-cases-and-revenue-triggers.md)
 12. [Revenue trigger map](revenue-trigger-map.md)
 13. [Paid review scope examples](paid-review-scope-examples.md)
-14. [llms.txt](../llms.txt)
-15. [Agent card metadata](../agent-trust-gate.agent-card.json)
+14. [Global code discovery and developer distribution pack](global-code-discovery-and-developer-distribution-pack.md)
+15. [GitHub discovery metadata guide](github-discovery-metadata-guide.md)
+16. [Developer distribution checklist](developer-distribution-checklist.md)
+17. [Global developer sharing copy](global-developer-sharing-copy.md)
+18. [Agent-readable distribution note](agent-readable-distribution-note.md)
+19. [llms.txt](../llms.txt)
+20. [Agent card metadata](../agent-trust-gate.agent-card.json)
 
 ## What A Serious Reviewer Should Inspect First
 
@@ -197,6 +211,8 @@ Recommended next actions:
   access, live APIs, or automation without a separate approved mission.
 - use the P3-M126 buyer trigger map to route commercial discussions toward
   concrete risk-reduction needs, not abstract theory.
+- use the P3-M127 distribution pack for manual code-first discovery guidance
+  without automating outreach, ads, tracking, or analytics.
 
 ## Commercial Enquiry Path
 
@@ -220,6 +236,8 @@ contact, or action execution.
 
 P3-M125 is documentation, navigation, and commercial conversion clarity only.
 P3-M126 adds buyer use case and revenue trigger documentation only.
+P3-M127 adds global code discovery and manual developer distribution guidance
+only.
 It does not add live APIs, MCP server functionality, live agent-to-agent
 communication, external-agent contact, autonomous contact, outreach
 automation, scraping, contact harvesting, forms, tracking, analytics,

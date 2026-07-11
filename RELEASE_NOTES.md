@@ -1,5 +1,38 @@
 # Release Notes
 
+## P3-M127: Global Code Discovery and Developer Distribution Pack
+
+P3-M127 adds global code discovery and developer distribution guidance for
+Agent Trust Gate.
+
+Added assets:
+
+- `docs/global-code-discovery-and-developer-distribution-pack.md`
+- `docs/github-discovery-metadata-guide.md`
+- `docs/developer-distribution-checklist.md`
+- `docs/global-developer-sharing-copy.md`
+- `docs/agent-readable-distribution-note.md`
+- README global code discovery and manual sharing links
+
+The pack supports a manual code-first path: developer finds repo, understands
+the trust problem, runs local demos, sees paid-review relevance, and contacts
+Gareth manually if there is a serious fit. It does not claim guaranteed global
+discovery, guaranteed buyer demand, guaranteed paid-pilot conversion,
+production readiness, live payment/settlement readiness, automatic acceptance,
+automatic access after payment, or any legal, financial, compliance,
+procurement, settlement, or security guarantee.
+
+This is documentation, code-discovery positioning, manual sharing copy, GitHub
+metadata guidance, and developer distribution planning only. It does not add
+outreach automation, email automation, scraping, contact harvesting, forms,
+tracking, analytics, telemetry, paid ads, ad pixels, hosted services, live
+APIs, MCP server functionality, live agent-to-agent communication, live payment
+processing, PayPal API integration, Stripe integration, checkout, webhooks,
+wallet/banking logic, real settlement execution, production signing,
+external-agent contact, or action execution.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M126: Buyer Use Cases and Revenue Triggers
 
 P3-M126 adds a commercial buyer use case and revenue trigger pack for Agent

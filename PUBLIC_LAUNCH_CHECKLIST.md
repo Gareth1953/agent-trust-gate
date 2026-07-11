@@ -183,6 +183,20 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] No guaranteed buyer demand, guaranteed revenue, guaranteed paid-pilot conversion, production readiness, automatic paid-pilot acceptance, automatic access after payment, live payment processing, or settlement readiness is claimed.
 - [ ] No live API, MCP server functionality, live agent-to-agent communication, outreach automation, scraping/contact harvesting, forms, tracking, analytics, telemetry, hosted calls, cloud/network calls, external-agent contact, production signing, or action execution is activated by P3-M126.
 
+## Global Code Discovery and Developer Distribution Pack
+
+- [ ] P3-M127 global code discovery and developer distribution pack is documentation, manual sharing copy, GitHub metadata guidance, and developer distribution planning only.
+- [ ] `docs/global-code-discovery-and-developer-distribution-pack.md` is linked from README.
+- [ ] `docs/github-discovery-metadata-guide.md` is linked from README.
+- [ ] `docs/developer-distribution-checklist.md` is linked from README.
+- [ ] `docs/global-developer-sharing-copy.md` is linked from README.
+- [ ] `docs/agent-readable-distribution-note.md` is linked from README.
+- [ ] GitHub topics/keywords guidance is manual guidance only and does not update GitHub settings automatically.
+- [ ] Manual sharing copy remains human-approved/manual-use only.
+- [ ] X/social copy remains under 360 characters.
+- [ ] No guaranteed global discovery, guaranteed buyer demand, guaranteed paid-pilot conversion, production readiness, automatic paid-pilot acceptance, automatic access after payment, live payment processing, or settlement readiness is claimed.
+- [ ] No live API, MCP server functionality, live agent-to-agent communication, email automation, outreach automation, scraping/contact harvesting, forms, tracking, analytics, telemetry, paid ads, ad pixels, hosted calls, cloud/network calls, external-agent contact, production signing, or action execution is activated by P3-M127.
+
 ## Release-candidate checklist
 
 - [ ] Run `npm test`.

@@ -20,6 +20,14 @@ a [revenue trigger map](revenue-trigger-map.md), and
 [paid review scope examples](paid-review-scope-examples.md). These docs help a
 serious enquiry state the practical risk trigger behind the review request.
 
+P3-M127 adds [global code discovery and developer distribution guidance](global-code-discovery-and-developer-distribution-pack.md),
+[GitHub metadata guidance](github-discovery-metadata-guide.md), a
+[developer distribution checklist](developer-distribution-checklist.md),
+[manual sharing copy](global-developer-sharing-copy.md), and an
+[agent-readable distribution note](agent-readable-distribution-note.md). These
+docs support manual discovery only; they do not add outreach automation,
+scraping/contact harvesting, paid ads, tracking, analytics, or automatic access.
+
 ## What A Serious Enquiry Should Provide
 
 A useful enquiry should include:
@@ -178,5 +186,10 @@ navigation clarity only.
 P3-M126 also stays inside that boundary. It adds buyer use case and revenue
 trigger documentation only, without claiming guaranteed revenue, guaranteed
 buyer demand, or guaranteed paid-pilot conversion.
+
+P3-M127 also stays inside that boundary. It adds global code discovery and
+manual developer distribution guidance only, without claiming guaranteed global
+discovery, guaranteed buyer demand, guaranteed paid-pilot conversion, automatic
+acceptance, or automatic access after payment.
 
 Public project contact: `gpmiddleton71@gmail.com`

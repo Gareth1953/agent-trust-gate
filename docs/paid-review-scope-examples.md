@@ -19,6 +19,11 @@ This document does not include payment links and does not add checkout,
 webhooks, payment processing, live APIs, hosted services, outreach automation,
 forms, tracking, analytics, settlement, or action execution.
 
+P3-M127 adds global code discovery and manual developer distribution guidance
+for sharing these scope examples safely. It does not add automated outreach,
+scraping/contact harvesting, paid ads, tracking, analytics, live APIs, hosted
+services, payment processing, settlement, or action execution.
+
 ## Scope Examples
 
 ### Agent Workflow Trust Review
@@ -215,3 +220,6 @@ cloud/network calls, secrets, credentials, live payment processing, PayPal API
 integration, Stripe integration, checkout, webhooks, wallet/banking logic, real
 settlement execution, production signing, production key management, AUC
 integration, Agent Contact System integration, or action execution.
+
+P3-M127 adds manual code discovery and developer distribution guidance only and
+does not change the local-only review boundary.
