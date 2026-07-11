@@ -52,6 +52,13 @@ technical review, local pilot discussion, and integration feasibility review
 without adding forms, tracking, analytics, payment processing, hosted services,
 outreach automation, scraping/contact harvesting, or action execution.
 
+P3-M126 adds [buyer use cases and revenue triggers](buyer-use-cases-and-revenue-triggers.md),
+a [revenue trigger map](revenue-trigger-map.md), and
+[paid review scope examples](paid-review-scope-examples.md). It clarifies which
+concrete risk triggers may justify a human-reviewed paid enquiry without
+claiming guaranteed buyer demand, guaranteed revenue, guaranteed paid-pilot
+conversion, production readiness, or live payment/settlement readiness.
+
 ## What the commercial offer is
 
 Agent Trust Gate™ can be discussed as a local-first commercial review or pilot
@@ -75,6 +82,8 @@ financial advice, or automatic access product.
 - Payment and integration reviewers assessing pre-settlement trust checks.
 - Enterprise evaluators considering a controlled local pilot or technical
   review.
+- Procurement/workflow automation reviewers assessing sensitive automated
+  actions.
 
 ## Commercial enquiry routes
 
@@ -175,3 +184,8 @@ cryptographic signing, or action execution is added by this pack.
 Payment is human-approved and external to the repo. The repo may describe paid
 pilots, commercial reviews, and invoice/PayPal-ready enquiries, but it must not
 process money, settle transactions, or automate access.
+
+P3-M126 adds commercial buyer and revenue trigger documentation only. It does
+not add outreach automation, scraping/contact harvesting, forms, tracking,
+analytics, live APIs, hosted services, payment processing, settlement,
+production signing, or action execution.

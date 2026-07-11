@@ -24,6 +24,13 @@ to make the reviewer journey and commercial enquiry path easier to scan. It
 does not add forms, tracking, analytics, payment processing, hosted services,
 outreach automation, scraping/contact harvesting, or action execution.
 
+P3-M126 adds [buyer use cases and revenue triggers](buyer-use-cases-and-revenue-triggers.md),
+a [revenue trigger map](revenue-trigger-map.md), and
+[paid review scope examples](paid-review-scope-examples.md). These docs help a
+human reviewer connect local trust-gate proof assets to concrete buyer risk
+triggers without claiming guaranteed demand, guaranteed revenue, production
+readiness, or live payment/settlement readiness.
+
 ## Who Should Review Agent Trust Gate
 
 Useful reviewers include:
@@ -77,6 +84,9 @@ Start with this short path:
 9. `llms.txt`
 10. `agent-trust-gate.agent-card.json`
 11. `docs/public-repo-commercial-conversion-review.md`
+12. `docs/buyer-use-cases-and-revenue-triggers.md`
+13. `docs/revenue-trigger-map.md`
+14. `docs/paid-review-scope-examples.md`
 
 Then run the local commands from the quickstart if reviewing code behaviour:
 
@@ -123,6 +133,7 @@ Useful reviewer feedback includes:
 - integration pattern clarity for agent builders;
 - governance and human review gaps;
 - pre-settlement trust workflow risks;
+- buyer use case and revenue trigger clarity;
 - places where wording could overclaim readiness or guarantees.
 
 ## Paid Technical Review Enquiry Route
@@ -223,5 +234,10 @@ payment processing, PayPal API integration, Stripe integration, checkout,
 webhooks, wallet/banking logic, real settlement execution, production signing,
 production key management, AUC integration, Agent Contact System integration,
 or action execution.
+
+P3-M126 adds commercial buyer/revenue trigger documentation only. It does not
+add outreach automation, scraping, contact harvesting, forms, tracking,
+analytics, live APIs, hosted services, payment processing, settlement,
+production signing, or action execution.
 
 Public project contact: `gpmiddleton71@gmail.com`

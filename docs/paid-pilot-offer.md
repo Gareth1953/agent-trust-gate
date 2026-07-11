@@ -48,6 +48,13 @@ adding forms, tracking, analytics, payment processing, hosted services,
 outreach automation, scraping/contact harvesting, settlement execution, or
 action execution.
 
+P3-M126 adds [buyer use cases and revenue triggers](buyer-use-cases-and-revenue-triggers.md),
+a [revenue trigger map](revenue-trigger-map.md), and
+[paid review scope examples](paid-review-scope-examples.md). These docs clarify
+which concrete risk triggers may make a paid review worth discussing, without
+claiming guaranteed buyer demand, guaranteed revenue, or guaranteed paid-pilot
+conversion.
+
 ## Who should contact
 
 Contact Gareth if you are a:
@@ -58,6 +65,8 @@ Contact Gareth if you are a:
 - AI governance or trust/safety team reviewing agent action controls;
 - payment or integration reviewer assessing pre-settlement safety;
 - enterprise evaluator considering a local pilot or technical review.
+- procurement/workflow automation reviewer assessing high-impact automated
+  decisions.
 
 ## What Agent Trust Gate™ helps review
 
@@ -188,3 +197,8 @@ settlement execution, secrets, credentials, external-agent contact, outreach
 automation, Agent Update Consortium integration, Agent Contact System
 integration, production cryptographic signing, or action execution is added by
 this offer page.
+
+P3-M126 adds commercial positioning docs only. It does not add outreach
+automation, scraping/contact harvesting, forms, tracking, analytics, live APIs,
+hosted services, payment processing, settlement, production signing, or action
+execution.

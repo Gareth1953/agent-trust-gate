@@ -44,6 +44,13 @@ and README navigation improvements. It clarifies the route from local proof
 review to a human-reviewed enquiry without adding forms, tracking, analytics,
 payment processing, settlement execution, hosted services, or automation.
 
+P3-M126 adds [buyer use cases and revenue triggers](buyer-use-cases-and-revenue-triggers.md),
+a [revenue trigger map](revenue-trigger-map.md), and
+[paid review scope examples](paid-review-scope-examples.md). These docs explain
+why a buyer might request a review, but they do not guarantee demand, revenue,
+paid-pilot conversion, availability, production readiness, or live
+payment/settlement readiness.
+
 ## Who this is for
 
 This menu is for:
@@ -53,6 +60,8 @@ This menu is for:
 - AI governance and trust/safety teams;
 - payment and integration reviewers;
 - enterprise evaluators considering a local pilot or technical review.
+- procurement/workflow automation reviewers assessing high-impact automated
+  decisions.
 
 ## Enquiry route
 
@@ -163,3 +172,8 @@ integration, production cryptographic signing, or action execution is added by
 this pricing draft.
 
 No signed gate pass means no settlement.
+
+P3-M126 adds buyer use case and revenue trigger documentation only. It does
+not add outreach automation, scraping/contact harvesting, forms, tracking,
+analytics, live APIs, hosted services, payment processing, settlement,
+production signing, or action execution.

@@ -1,11 +1,12 @@
 {
   "manifest_version": "atg.code-readable-integration.v1",
   "service_name": "Agent Trust Gate",
-  "latest_mission": "P3-M125",
+  "latest_mission": "P3-M126",
   "recent_missions": [
     "P3-M123",
     "P3-M124",
-    "P3-M125"
+    "P3-M125",
+    "P3-M126"
   ],
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
   "project_status": "local_demo_only",
@@ -86,6 +87,9 @@
     "docs/reviewer-enquiry-copy.md",
     "docs/paid-pilot-enquiry-checklist.md",
     "docs/public-repo-commercial-conversion-review.md",
+    "docs/buyer-use-cases-and-revenue-triggers.md",
+    "docs/revenue-trigger-map.md",
+    "docs/paid-review-scope-examples.md",
     "docs/ai-agent-traffic-and-session-intent-gate.md",
     "docs/spoofed-agent-risk-model.md",
     "docs/session-specific-access-framework.md"

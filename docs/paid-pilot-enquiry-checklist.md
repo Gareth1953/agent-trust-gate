@@ -15,6 +15,11 @@ P3-M125 adds a [public repo commercial conversion review](public-repo-commercial
 that uses this checklist as part of the manual paid technical review and local
 pilot discussion path.
 
+P3-M126 adds [buyer use cases and revenue triggers](buyer-use-cases-and-revenue-triggers.md),
+a [revenue trigger map](revenue-trigger-map.md), and
+[paid review scope examples](paid-review-scope-examples.md). These docs help a
+serious enquiry state the practical risk trigger behind the review request.
+
 ## What A Serious Enquiry Should Provide
 
 A useful enquiry should include:
@@ -25,6 +30,8 @@ A useful enquiry should include:
 - sensitivity of the action;
 - whether money, payment-adjacent logic, or settlement is involved;
 - desired local review scope;
+- concrete risk trigger, such as money, settlement, access, publication,
+  procurement, customer outcome, or sensitive tool impact;
 - existing mandate, evidence, and verified intent requirements;
 - known risk tier or governance concerns;
 - expected output from the review;
@@ -167,5 +174,9 @@ or action execution.
 
 P3-M125 does not change that boundary. It adds documentation and README
 navigation clarity only.
+
+P3-M126 also stays inside that boundary. It adds buyer use case and revenue
+trigger documentation only, without claiming guaranteed revenue, guaranteed
+buyer demand, or guaranteed paid-pilot conversion.
 
 Public project contact: `gpmiddleton71@gmail.com`

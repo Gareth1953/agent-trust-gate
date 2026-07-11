@@ -1,5 +1,37 @@
 # Release Notes
 
+## P3-M126: Buyer Use Cases and Revenue Triggers
+
+P3-M126 adds a commercial buyer use case and revenue trigger pack for Agent
+Trust Gate. It clarifies who might request a human-reviewed paid technical
+review, integration feasibility review, local pilot discussion, or
+governance/safety review, and which concrete risk triggers may justify a
+serious enquiry.
+
+Added assets:
+
+- `docs/buyer-use-cases-and-revenue-triggers.md`
+- `docs/revenue-trigger-map.md`
+- `docs/paid-review-scope-examples.md`
+- README buyer use case and revenue trigger links
+
+The pack frames commercial relevance around practical risk reduction before
+money, settlement, access, publication, procurement, customer outcomes,
+sensitive tools, or other high-impact actions. It does not claim guaranteed
+buyer demand, guaranteed revenue, guaranteed paid-pilot conversion, production
+readiness, live payment/settlement readiness, automatic acceptance, automatic
+access after payment, or any legal, financial, compliance, procurement,
+settlement, or security guarantee.
+
+This is commercial documentation and positioning only. It does not add
+outreach automation, scraping, contact harvesting, forms, tracking, analytics,
+telemetry, hosted services, live APIs, MCP server functionality, live
+agent-to-agent communication, live payment processing, PayPal API integration,
+Stripe integration, checkout, webhooks, wallet/banking logic, real settlement
+execution, production signing, external-agent contact, or action execution.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M125: Public Repo Commercial Conversion Review
 
 P3-M125 adds a public repo commercial conversion review and improves the README

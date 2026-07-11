@@ -26,6 +26,13 @@ only. It does not add outreach automation, email sending, scraping, contact
 harvesting, forms, tracking, analytics, telemetry, payment processing,
 settlement, live APIs, hosted services, or action execution.
 
+P3-M126 adds a [buyer use case and revenue trigger pack](buyer-use-cases-and-revenue-triggers.md),
+[revenue trigger map](revenue-trigger-map.md), and
+[paid review scope examples](paid-review-scope-examples.md). It builds on this
+conversion path by explaining which concrete workflow risks may justify a
+human-reviewed paid technical review, integration feasibility review, local
+pilot discussion, or governance/safety review.
+
 ## Repo Buyer/Reviewer Journey
 
 A serious public reviewer should be able to move through the repo in this
@@ -87,8 +94,11 @@ Recommended start-here path:
 8. [Paid pilot readiness review](paid-pilot-readiness-review.md)
 9. [Public reviewer and paid pilot enquiry pack](public-reviewer-and-paid-pilot-enquiry-pack.md)
 10. [Paid pilot enquiry checklist](paid-pilot-enquiry-checklist.md)
-11. [llms.txt](../llms.txt)
-12. [Agent card metadata](../agent-trust-gate.agent-card.json)
+11. [Buyer use cases and revenue triggers](buyer-use-cases-and-revenue-triggers.md)
+12. [Revenue trigger map](revenue-trigger-map.md)
+13. [Paid review scope examples](paid-review-scope-examples.md)
+14. [llms.txt](../llms.txt)
+15. [Agent card metadata](../agent-trust-gate.agent-card.json)
 
 ## What A Serious Reviewer Should Inspect First
 
@@ -144,6 +154,7 @@ The project can safely offer discussion around:
 - local reference integration feasibility;
 - governance and trust/safety review;
 - local pre-settlement trust workflow review;
+- buyer use case and revenue trigger review;
 - written observations, if separately agreed.
 
 All work remains human-reviewed and separately scoped.
@@ -184,6 +195,8 @@ Recommended next actions:
 - keep price, timing, access, and deliverables subject to separate agreement;
 - do not add forms, analytics, tracking, checkout, payment requests, hosted
   access, live APIs, or automation without a separate approved mission.
+- use the P3-M126 buyer trigger map to route commercial discussions toward
+  concrete risk-reduction needs, not abstract theory.
 
 ## Commercial Enquiry Path
 
@@ -206,6 +219,7 @@ contact, or action execution.
 ## Safety Boundary
 
 P3-M125 is documentation, navigation, and commercial conversion clarity only.
+P3-M126 adds buyer use case and revenue trigger documentation only.
 It does not add live APIs, MCP server functionality, live agent-to-agent
 communication, external-agent contact, autonomous contact, outreach
 automation, scraping, contact harvesting, forms, tracking, analytics,

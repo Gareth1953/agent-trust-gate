@@ -37,9 +37,12 @@ payments, settlement, or action execution.
 13. `docs/reviewer-enquiry-copy.md`
 14. `docs/paid-pilot-enquiry-checklist.md`
 15. `docs/public-repo-commercial-conversion-review.md`
-16. `docs/ai-agent-traffic-and-session-intent-gate.md`
-17. `docs/spoofed-agent-risk-model.md`
-18. `docs/session-specific-access-framework.md`
+16. `docs/buyer-use-cases-and-revenue-triggers.md`
+17. `docs/revenue-trigger-map.md`
+18. `docs/paid-review-scope-examples.md`
+19. `docs/ai-agent-traffic-and-session-intent-gate.md`
+20. `docs/spoofed-agent-risk-model.md`
+21. `docs/session-specific-access-framework.md`
 
 ## Recommended Local Commands
 
@@ -135,16 +138,20 @@ Use:
 - `docs/reviewer-enquiry-copy.md`
 - `docs/paid-pilot-enquiry-checklist.md`
 - `docs/public-repo-commercial-conversion-review.md`
+- `docs/buyer-use-cases-and-revenue-triggers.md`
+- `docs/revenue-trigger-map.md`
+- `docs/paid-review-scope-examples.md`
 
 The readiness framing is cautious. Paid technical review and local pilot
 discussion may be reasonable, but production deployment readiness and live
 payment/settlement readiness remain `not yet`.
 
 P3-M124 adds human-approved reviewer and paid pilot enquiry copy only. P3-M125
-adds public repo commercial conversion navigation clarity only. They do not
-add outreach automation, scraping, contact harvesting, forms, tracking,
-analytics, live payment processing, settlement, automatic acceptance,
-automatic access, hosted services, or action execution.
+adds public repo commercial conversion navigation clarity only. P3-M126 adds
+buyer use case and revenue trigger documentation only. They do not add outreach
+automation, scraping, contact harvesting, forms, tracking, analytics, live
+payment processing, settlement, automatic acceptance, automatic access, hosted
+services, or action execution.
 
 ## Where To Find The AI Agent Traffic Concept
 
@@ -195,9 +202,10 @@ Do not assume:
 This repository is readable by agents and systems, but it exposes no live
 agent endpoint and grants no autonomous authority.
 
-P3-M122, P3-M123, P3-M124, and P3-M125 are metadata, documentation, local
-discovery/concept guidance, human-approved communication copy, and navigation
-clarity only. They do not add live APIs, MCP server functionality, live
+P3-M122, P3-M123, P3-M124, P3-M125, and P3-M126 are metadata,
+documentation, local discovery/concept guidance, human-approved communication
+copy, navigation clarity, and buyer/revenue trigger guidance only. They do not
+add live APIs, MCP server functionality, live
 agent-to-agent communication, agent negotiation, autonomous contact,
 external-agent contact, live payment processing, PayPal API integration,
 Stripe integration, checkout, webhooks, wallet/banking logic, real settlement

@@ -44,6 +44,9 @@ Important docs:
 - docs/reviewer-enquiry-copy.md
 - docs/paid-pilot-enquiry-checklist.md
 - docs/public-repo-commercial-conversion-review.md
+- docs/buyer-use-cases-and-revenue-triggers.md
+- docs/revenue-trigger-map.md
+- docs/paid-review-scope-examples.md
 - docs/ai-agent-traffic-and-session-intent-gate.md
 - docs/spoofed-agent-risk-model.md
 - docs/session-specific-access-framework.md
@@ -100,3 +103,13 @@ start path improvements. It is documentation and navigation clarity only. It
 does not add forms, tracking, analytics, hosted services, outreach automation,
 scraping or contact harvesting, payment processing, settlement, live APIs,
 external-agent contact, production signing, or action execution.
+
+P3-M126 adds buyer use cases, a revenue trigger map, and paid review scope
+examples. It is commercial documentation and positioning only. It does not
+claim guaranteed buyer demand, guaranteed revenue, guaranteed paid-pilot
+conversion, production readiness, live payment/settlement readiness, automatic
+acceptance, automatic access after payment, or any legal, financial,
+compliance, procurement, settlement, or security guarantee. It adds no outreach
+automation, scraping or contact harvesting, forms, tracking, analytics, hosted
+services, live APIs, payment processing, settlement, external-agent contact,
+production signing, or action execution.

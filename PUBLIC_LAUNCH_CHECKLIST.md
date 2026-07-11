@@ -172,6 +172,17 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] No production deployment readiness, certified security, legal/compliance approval, automatic paid-pilot acceptance, automatic access after payment, live payment processing, settlement readiness, hosted service, or action execution is claimed.
 - [ ] No live API, MCP server functionality, live agent-to-agent communication, outreach automation, scraping/contact harvesting, forms, tracking, analytics, telemetry, hosted calls, cloud/network calls, external-agent contact, production signing, or action execution is activated by P3-M125.
 
+## Buyer Use Cases and Revenue Triggers
+
+- [ ] P3-M126 buyer use cases and revenue triggers are commercial documentation and positioning only.
+- [ ] `docs/buyer-use-cases-and-revenue-triggers.md` is linked from README.
+- [ ] `docs/revenue-trigger-map.md` is linked from README.
+- [ ] `docs/paid-review-scope-examples.md` is linked from README.
+- [ ] Buyer categories include agent builders, automation developers, governance consultants, enterprise reviewers, payment workflow reviewers, platform/tool developers, trust/safety reviewers, compliance-adjacent technical reviewers, and procurement/workflow automation reviewers.
+- [ ] Revenue triggers include approval gaps, pre-settlement mandate gaps, missing evidence proof, missing trust receipts, replay risk, ungated sensitive tool calls, missing audit trail, unclear intent, spoofed agent identity, high-risk escalation gaps, and enterprise local-proof needs.
+- [ ] No guaranteed buyer demand, guaranteed revenue, guaranteed paid-pilot conversion, production readiness, automatic paid-pilot acceptance, automatic access after payment, live payment processing, or settlement readiness is claimed.
+- [ ] No live API, MCP server functionality, live agent-to-agent communication, outreach automation, scraping/contact harvesting, forms, tracking, analytics, telemetry, hosted calls, cloud/network calls, external-agent contact, production signing, or action execution is activated by P3-M126.
+
 ## Release-candidate checklist
 
 - [ ] Run `npm test`.

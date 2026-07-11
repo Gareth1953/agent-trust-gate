@@ -269,18 +269,32 @@ analytics, hosted services, payment processing, settlement execution, live
 APIs, outreach automation, scraping/contact harvesting, automatic acceptance,
 automatic access, or action execution.
 
+## Relationship To P3-M126
+
+P3-M126 adds buyer use cases, revenue triggers, and paid review scope examples.
+It clarifies which concrete risks may justify a paid technical review,
+integration feasibility review, local pilot discussion, or governance/safety
+review.
+
+It does not change the readiness assessment. It does not claim guaranteed buyer
+demand, guaranteed revenue, guaranteed paid-pilot conversion, production
+readiness, live payment/settlement readiness, automatic acceptance, automatic
+access after payment, hosted services, outreach automation, scraping/contact
+harvesting, or action execution.
+
 ## Safety Boundary
 
 Agent Trust Gate™ remains local-first and `local_demo_only`.
 
 P3-M121 is documentation, readiness assessment, and commercial positioning
 only. P3-M124 adds related human-approved reviewer/enquiry copy only. P3-M125
-adds commercial conversion navigation clarity only. They do not add live APIs,
-live payment processing, PayPal API integration, Stripe integration, checkout,
+adds commercial conversion navigation clarity only. P3-M126 adds buyer use
+case and revenue trigger documentation only. They do not add live APIs, live
+payment processing, PayPal API integration, Stripe integration, checkout,
 webhooks, wallet/banking logic, real settlement execution, production signing,
 production key management, secrets, credentials, cloud/network calls, forms,
 tracking, analytics, telemetry, hosted calls, external-agent contact, outreach
-automation, scraping, contact harvesting, AUC integration, Agent Contact
-System integration, or action execution.
+automation, scraping, contact harvesting, AUC integration, Agent Contact System
+integration, or action execution.
 
 Public project contact: `gpmiddleton71@gmail.com`

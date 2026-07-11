@@ -23,10 +23,14 @@ For a fast public review, use this path:
 7. Inspect commercial readiness: [paid pilot readiness review](docs/paid-pilot-readiness-review.md).
 8. Inspect enquiry guidance: [public reviewer and paid pilot enquiry pack](docs/public-reviewer-and-paid-pilot-enquiry-pack.md) and [paid pilot enquiry checklist](docs/paid-pilot-enquiry-checklist.md).
 9. Inspect agent-readable metadata: [llms.txt](llms.txt) and [agent card metadata](agent-trust-gate.agent-card.json).
+10. Inspect buyer fit and commercial triggers: [buyer use cases and revenue triggers](docs/buyer-use-cases-and-revenue-triggers.md), [revenue trigger map](docs/revenue-trigger-map.md), and [paid review scope examples](docs/paid-review-scope-examples.md).
 
 P3-M125 adds the [public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md)
 to make this path easier to assess without adding forms, tracking, payment
 processing, hosted services, outreach automation, or action execution.
+P3-M126 adds a buyer use case and revenue trigger pack to explain when a
+human-reviewed paid technical review, local pilot discussion, integration
+feasibility review, or governance/safety review may be commercially relevant.
 
 ## What to inspect first
 
@@ -41,6 +45,8 @@ processing, hosted services, outreach automation, or action execution.
   sensitive actions without executing those actions.
 - The paid pilot readiness and reviewer enquiry docs before considering any
   commercial discussion.
+- The buyer use case and revenue trigger docs to connect local proof assets to
+  practical risk-reduction review needs.
 
 ## Commercial enquiry path
 
@@ -51,6 +57,10 @@ Human-reviewed enquiries may be sent to `gpmiddleton71@gmail.com` for:
 - integration feasibility review;
 - AI governance/safety review;
 - pre-settlement trust workflow review.
+
+The strongest enquiries name a concrete trigger: an agent or automated
+workflow may affect money, settlement, access, publication, procurement,
+customer outcomes, sensitive tools, or another high-impact action.
 
 All enquiries are human-reviewed and separately scoped. No enquiry or payment
 grants automatic acceptance, automatic access after payment, hosted access,
@@ -266,6 +276,24 @@ The copy is manual-use only. It does not add outreach automation, scraping,
 contact harvesting, forms, tracking, analytics, live payments, settlement,
 hosted access, automatic acceptance, automatic access, production readiness,
 or action execution.
+
+## Buyer use cases and revenue triggers
+
+P3-M126 adds a buyer use case and revenue trigger pack. Agent Trust Gate™ is
+most commercially relevant when an AI agent or automated workflow may affect
+money, settlement, access, publication, procurement, customer outcomes,
+sensitive tools, or other high-impact actions.
+
+- [Buyer use cases and revenue triggers](docs/buyer-use-cases-and-revenue-triggers.md)
+- [Revenue trigger map](docs/revenue-trigger-map.md)
+- [Paid review scope examples](docs/paid-review-scope-examples.md)
+
+These docs explain possible buyer/reviewer categories, practical triggers for
+a serious paid enquiry, and cautious paid review scope examples. They do not
+claim guaranteed buyer demand, guaranteed revenue, guaranteed paid-pilot
+conversion, production readiness, live payment/settlement readiness, automatic
+acceptance, automatic access after payment, outreach automation, or action
+execution.
 
 ## External reviewer signal
 
@@ -523,7 +551,10 @@ external-agent contact, production signing, or action execution. P3-M125 adds
 a public repo commercial conversion review and improves README navigation
 without adding forms, tracking, analytics, payment processing, hosted services,
 outreach automation, scraping/contact harvesting, live APIs, external-agent
-contact, production signing, or action execution.
+contact, production signing, or action execution. P3-M126 adds buyer use case
+and revenue trigger documentation without adding outreach automation, scraping,
+contact harvesting, forms, tracking, analytics, live APIs, hosted services,
+payment processing, settlement, production signing, or action execution.
 
 Recent proof and readiness milestones:
 
@@ -558,6 +589,7 @@ Recent proof and readiness milestones:
 - P3-M123: AI agent traffic and session intent gate concept
 - P3-M124: public reviewer and paid pilot enquiry pack
 - P3-M125: public repo commercial conversion review
+- P3-M126: buyer use cases and revenue triggers
 
 ## Developer review path
 
@@ -572,7 +604,8 @@ Recent proof and readiness milestones:
 9. Run the local session intent concept demo if reviewing P3-M123.
 10. Read the reviewer/enquiry pack if assessing paid technical review or local pilot discussion fit.
 11. Read the public repo commercial conversion review if assessing commercial fit.
-12. Confirm the current safety boundaries before drawing conclusions.
+12. Read the buyer use case and revenue trigger pack if assessing buyer fit.
+13. Confirm the current safety boundaries before drawing conclusions.
 
 ## Usage
 

@@ -57,8 +57,8 @@ The repository includes local schemas, deterministic examples, local signed
 receipt/proof prototypes, adversarial cases, a simplified developer CLI,
 reference integration examples, a cautious paid pilot readiness review,
 human-approved public reviewer/enquiry guidance, public repo commercial
-conversion navigation guidance, and a local AI agent traffic/session intent
-concept pack.
+conversion navigation guidance, buyer use case and revenue trigger guidance,
+and a local AI agent traffic/session intent concept pack.
 
 ## What It Is Not
 
@@ -192,6 +192,17 @@ APIs, deploy anything, or execute actions.
 P3-M125 adds the public repo commercial conversion review. It is navigation
 and clarity guidance only, not a form, checkout, hosted service, live API,
 tracking layer, outreach tool, or action interface.
+
+P3-M126 adds buyer use case and revenue trigger guidance:
+
+- `docs/buyer-use-cases-and-revenue-triggers.md`
+- `docs/revenue-trigger-map.md`
+- `docs/paid-review-scope-examples.md`
+
+Agents and developer assistants may summarise these documents for a human
+reviewer. They must not infer guaranteed buyer demand, guaranteed revenue,
+guaranteed paid-pilot conversion, production readiness, live
+payment/settlement readiness, automatic access, or autonomous authority.
 
 ## Agent/System Metadata
 
