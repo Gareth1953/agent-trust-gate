@@ -277,4 +277,9 @@ does not add outreach automation, scraping/contact harvesting, forms, tracking,
 analytics, paid ads, live APIs, payment processing, settlement, automatic
 access, production signing, or action execution.
 
+P3-M129 adds an Agent Trust Invitation and Prove-Yourself Protocol Pack for
+local proof-requirement review. It adds no live systems contact, direct bot
+messaging, payment processing, settlement, production certification, or action
+execution.
+
 Public project contact: `gpmiddleton71@gmail.com`

@@ -86,3 +86,6 @@ boundaries.
 
 P3-M128 adds controlled public visibility and paid enquiry positioning only and
 does not alter these boundaries.
+
+P3-M129 adds local agent proof-requirement and prove-yourself protocol guidance
+only and does not alter these boundaries.

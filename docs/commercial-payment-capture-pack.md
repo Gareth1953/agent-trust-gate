@@ -215,3 +215,8 @@ P3-M128 adds controlled public visibility and paid enquiry positioning only. It
 does not add outreach automation, email automation, scraping/contact
 harvesting, forms, tracking, analytics, paid ads, live APIs, hosted services,
 payment processing, settlement, production signing, or action execution.
+
+P3-M129 adds local proof-requirement positioning and prove-yourself protocol
+examples only. It does not add live systems contact, direct bot messaging,
+live APIs, live payment processing, settlement, checkout, production
+certification, production signing, or action execution.

@@ -26,6 +26,7 @@ For a fast public review, use this path:
 10. Inspect buyer fit and commercial triggers: [buyer use cases and revenue triggers](docs/buyer-use-cases-and-revenue-triggers.md), [revenue trigger map](docs/revenue-trigger-map.md), and [paid review scope examples](docs/paid-review-scope-examples.md).
 11. Inspect global discovery and manual sharing guidance: [global code discovery and developer distribution pack](docs/global-code-discovery-and-developer-distribution-pack.md).
 12. Inspect controlled visibility and paid enquiry positioning: [controlled public visibility and paid enquiry positioning](docs/controlled-public-visibility-and-paid-enquiry-positioning.md).
+13. Inspect agent trust proof requirements: [agent trust invitation and prove-yourself protocol](docs/agent-trust-invitation-and-prove-yourself-protocol.md).
 
 P3-M125 adds the [public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md)
 to make this path easier to assess without adding forms, tracking, payment
@@ -39,6 +40,10 @@ hosted services, payment processing, settlement, or action execution.
 P3-M128 adds controlled public visibility and paid enquiry positioning without
 adding outreach automation, paid ads, tracking, analytics, live APIs, payment
 processing, settlement, hosted services, or action execution.
+P3-M129 adds an Agent Trust Invitation and Prove-Yourself Protocol Pack without
+adding live systems contact, direct bot messaging, live agent-to-agent
+communication, live APIs, payment processing, settlement, hosted services,
+production signing, or action execution.
 
 ## What to inspect first
 
@@ -147,6 +152,7 @@ Install dependencies first, then use the existing project scripts:
     npm run proof:money-gate -- --input examples/local-end-to-end-money-gate-proof-input.json --summary-only
     npm run demo:adversarial
     npm run demo:integrations
+    npm run demo:prove-yourself
     npm run cli -- demo quickstart
 
 Receipt verification and settlement controls can be inspected with supported
@@ -203,6 +209,38 @@ Agent Trust Gate™ is not a bot detection product today. It does not monitor
 live website traffic, classify real traffic, block crawlers, fingerprint
 browsers, track users, scrape websites, or execute access-control decisions.
 This is a local-only concept pack and demo model.
+
+## Agent trust invitation and prove-yourself protocol
+
+P3-M129 adds a local-only prove-yourself protocol pack for agents, owners,
+developers, clients, and systems that need proof before trust.
+
+Core positioning:
+
+Do not trust the agent. Trust the gate pass.
+
+No proof. No permission.
+
+No mandate. No action.
+
+No signed gate pass. No settlement.
+
+- [Agent trust invitation and prove-yourself protocol](docs/agent-trust-invitation-and-prove-yourself-protocol.md)
+- [Agent proof requirements](docs/agent-proof-requirements.md)
+- [System-side agent verification guide](docs/system-side-agent-verification-guide.md)
+- [Agent owner trust presentation guide](docs/agent-owner-trust-presentation-guide.md)
+- [What a gate pass proves](docs/what-a-gate-pass-proves.md)
+
+Run the deterministic local examples:
+
+```text
+npm run demo:prove-yourself
+```
+
+This is local protocol modelling and proof-requirement guidance only. It does
+not add live systems contact, direct bot messaging, live agent-to-agent
+communication, live APIs, payment processing, settlement, hosted services,
+production signing, production certification, or action execution.
 
 ## Public contact
 
@@ -608,6 +646,11 @@ P3-M128 adds controlled public visibility and paid enquiry positioning without
 adding outreach automation, email automation, scraping/contact harvesting,
 forms, paid ads, tracking, analytics, live APIs, hosted services, payment
 processing, settlement, production signing, or action execution.
+P3-M129 adds an Agent Trust Invitation and Prove-Yourself Protocol Pack for
+local proof requirements, system-side verification, owner presentation,
+gate-pass meaning, deterministic examples, and a local demo without adding live
+systems contact, direct bot messaging, live agent-to-agent communication, live
+APIs, payment processing, settlement, production signing, or action execution.
 
 Recent proof and readiness milestones:
 
@@ -645,6 +688,7 @@ Recent proof and readiness milestones:
 - P3-M126: buyer use cases and revenue triggers
 - P3-M127: global code discovery and developer distribution pack
 - P3-M128: controlled public visibility and paid enquiry positioning
+- P3-M129: agent trust invitation and prove-yourself protocol pack
 
 ## Developer review path
 
@@ -662,7 +706,8 @@ Recent proof and readiness milestones:
 12. Read the buyer use case and revenue trigger pack if assessing buyer fit.
 13. Read the global code discovery and developer distribution pack if assessing manual sharing fit.
 14. Read the controlled public visibility and paid enquiry positioning pack if assessing public positioning.
-15. Confirm the current safety boundaries before drawing conclusions.
+15. Read the agent trust invitation and prove-yourself protocol if assessing proof requirements.
+16. Confirm the current safety boundaries before drawing conclusions.
 
 ## Usage
 

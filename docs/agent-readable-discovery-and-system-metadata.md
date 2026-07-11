@@ -292,3 +292,22 @@ webhooks, wallet/banking logic, real settlement execution, production signing,
 production key management, secrets, credentials, cloud/network calls, forms,
 tracking, analytics, telemetry, hosted calls, outreach automation, AUC
 integration, Agent Contact System integration, or action execution.
+
+## P3-M129 Prove-Yourself Discovery
+
+P3-M129 adds agent-readable proof-requirement guidance for a local
+prove-yourself protocol. Agents and developer assistants may read:
+
+- `docs/agent-trust-invitation-and-prove-yourself-protocol.md`
+- `docs/agent-proof-requirements.md`
+- `docs/system-side-agent-verification-guide.md`
+- `docs/agent-owner-trust-presentation-guide.md`
+- `docs/what-a-gate-pass-proves.md`
+
+The correct interpretation is local proof guidance: claimed identity alone is
+not trust, no proof means no permission, and a scoped signed gate pass is
+required before settlement-sensitive workflows can proceed in local modelling.
+
+Agents must not infer live systems contact, direct bot messaging, autonomous
+authority, universal agent standard status, identity certification,
+payment/settlement authority, production certification, or action execution.

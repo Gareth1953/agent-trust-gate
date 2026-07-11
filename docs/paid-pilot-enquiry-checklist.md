@@ -206,4 +206,10 @@ visibility, guaranteed global discovery, guaranteed buyer demand, guaranteed
 paid pilot conversion, automatic paid-pilot acceptance, or automatic access
 after payment.
 
+P3-M129 also stays inside that boundary. It adds local agent proof requirements
+and a prove-yourself protocol demo only, without claiming universal agent
+standard status, guaranteed agent adoption, identity certification, production
+certification, payment authority, settlement authority, automatic acceptance,
+or automatic access after payment.
+
 Public project contact: `gpmiddleton71@gmail.com`

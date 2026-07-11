@@ -90,3 +90,12 @@ This checklist is documentation and manual readiness review only. It does not
 send messages, scrape targets, collect contacts, create forms, track users, run
 analytics, place ads, call APIs, process payments, execute settlement, deploy
 services, or execute actions.
+
+## P3-M129 Follow-On Check
+
+- [ ] P3-M129 prove-yourself protocol docs are linked where relevant.
+- [ ] Public wording says: Do not trust the agent. Trust the gate pass.
+- [ ] Public wording says no proof means no permission.
+- [ ] Public wording does not imply live systems contact, direct bot messaging,
+      production certification, live payment readiness, settlement readiness, or
+      action execution.

@@ -231,3 +231,7 @@ does not change the local-only review boundary.
 
 P3-M128 adds controlled public visibility and paid enquiry positioning only and
 does not change the local-only review boundary.
+
+P3-M129 adds a possible local proof-requirement review angle: Agent Trust
+Invitation and Prove-Yourself Protocol review. It does not change the
+local-only review boundary.

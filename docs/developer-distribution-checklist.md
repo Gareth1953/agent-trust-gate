@@ -103,3 +103,12 @@ This checklist is manual distribution planning only. It does not send messages,
 collect contacts, scrape targets, create forms, track users, run analytics,
 place ads, call APIs, process payments, execute settlement, deploy services, or
 execute actions.
+
+## P3-M129 Checklist Addition
+
+- [ ] If sharing P3-M129, link to the prove-yourself protocol docs.
+- [ ] Explain that agent identity alone is not trust.
+- [ ] Explain that no proof means no permission.
+- [ ] Confirm no live systems contact, direct bot messaging, production
+      certification, payment/settlement authority, or action execution is
+      implied.

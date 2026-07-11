@@ -325,4 +325,9 @@ tracking, analytics, telemetry, hosted calls, paid ads, ad pixels,
 external-agent contact, outreach automation, scraping, contact harvesting, AUC
 integration, Agent Contact System integration, or action execution.
 
+P3-M129 adds local prove-yourself protocol guidance and proof-requirement
+examples only. It does not add live systems contact, direct bot messaging,
+live agent-to-agent communication, payment processing, settlement, production
+certification, production signing, or action execution.
+
 Public project contact: `gpmiddleton71@gmail.com`

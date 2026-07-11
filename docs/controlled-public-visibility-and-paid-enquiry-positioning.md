@@ -175,3 +175,12 @@ cloud/network calls, secrets, credentials, live payment processing, PayPal API
 integration, Stripe integration, checkout, webhooks, wallet/banking logic, real
 settlement execution, production signing, production key management, AUC
 integration, Agent Contact System integration, or action execution.
+
+## P3-M129 Follow-On
+
+P3-M129 adds an Agent Trust Invitation and Prove-Yourself Protocol Pack for
+local proof requirements, system-side verification, owner presentation,
+gate-pass meaning, deterministic examples, and a local demo. It preserves the
+same controlled-visibility boundary and adds no live systems contact, direct
+bot messaging, live APIs, payment processing, settlement, production signing,
+or action execution.

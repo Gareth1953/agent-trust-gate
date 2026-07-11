@@ -261,4 +261,9 @@ webhooks, wallet/banking logic, real settlement execution, production signing,
 production key management, AUC integration, Agent Contact System integration,
 or action execution.
 
+P3-M129 adds the Agent Trust Invitation and Prove-Yourself Protocol Pack as a
+local proof-requirement review path. It adds no live systems contact, direct
+bot messaging, payment processing, settlement, production certification,
+production signing, or action execution.
+
 Public project contact: `gpmiddleton71@gmail.com`

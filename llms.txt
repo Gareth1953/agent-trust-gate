@@ -27,6 +27,7 @@ Safe local commands:
 - npm run demo:integrations
 - npm run demo:quickstart
 - npm run demo:session-intent
+- npm run demo:prove-yourself
 - npm run proof:money-gate
 
 Important docs:
@@ -57,6 +58,11 @@ Important docs:
 - docs/paid-enquiry-positioning.md
 - docs/public-positioning-message-bank.md
 - docs/controlled-distribution-sequence.md
+- docs/agent-trust-invitation-and-prove-yourself-protocol.md
+- docs/agent-proof-requirements.md
+- docs/system-side-agent-verification-guide.md
+- docs/agent-owner-trust-presentation-guide.md
+- docs/what-a-gate-pass-proves.md
 - docs/ai-agent-traffic-and-session-intent-gate.md
 - docs/spoofed-agent-risk-model.md
 - docs/session-specific-access-framework.md
@@ -77,6 +83,8 @@ Important examples:
 - examples/reference-pre-settlement-money-gate.json
 - examples/session-intent-spoofed-agent-blocked.json
 - examples/session-intent-valid-local-control.json
+- examples/prove-yourself-claimed-identity-only-blocked.json
+- examples/prove-yourself-valid-local-control.json
 
 Commercial/contact route:
 Human-reviewed developer, agent-system, integration, security, paid technical
@@ -147,4 +155,16 @@ automatic access after payment, or any legal, financial, compliance,
 procurement, settlement, or security guarantee. It adds no outreach automation,
 email automation, scraping or contact harvesting, forms, tracking, analytics,
 paid ads, ad pixels, hosted services, live APIs, payment processing,
+settlement, external-agent contact, production signing, or action execution.
+
+P3-M129 adds an Agent Trust Invitation and Prove-Yourself Protocol Pack with
+local proof requirements, system-side verification guidance, agent-owner
+presentation guidance, gate-pass meaning, deterministic examples, and a local
+demo command. It states: Do not trust the agent. Trust the gate pass. No proof.
+No permission. No mandate. No action. No signed gate pass. No settlement. It
+does not claim universal agent standard status, guaranteed agent adoption,
+identity certification, production readiness, live payment/settlement
+readiness, legal/compliance/security certification, automatic acceptance, or
+automatic access after payment. It adds no live systems contact, direct bot
+messaging, live agent-to-agent communication, live APIs, payment processing,
 settlement, external-agent contact, production signing, or action execution.

@@ -1,0 +1,55 @@
+{
+  "protocolVersion": "atg.prove-yourself-protocol.local.v1",
+  "scenarioId": "missing_mandate_blocked",
+  "decision": "block",
+  "claimedAgentName": "WorkflowAgent",
+  "claimedAgentType": "tool_calling_agent",
+  "requestedAction": "Call a sensitive tool without an explicit mandate.",
+  "riskTier": "medium",
+  "settlementSensitive": false,
+  "claimedIdentityAloneTrusted": false,
+  "noProofMeansNoPermission": true,
+  "reasons": [
+    "claimed_identity_not_trust",
+    "mandate_missing"
+  ],
+  "requiredNextProof": [
+    "present_valid_mandate",
+    "present_scoped_proof_package"
+  ],
+  "gatePassMeaning": {
+    "mayProveLocally": [
+      "mandate_evidence_intent_and_scope_were_checked_locally",
+      "freshness_and_nonce_were_checked_locally",
+      "decision_was_recorded_as_local_demo_only",
+      "signed_proof_reference_was_present_locally"
+    ],
+    "doesNotProve": [
+      "universal_agent_identity",
+      "production_authentication",
+      "legal_compliance_or_security_certification",
+      "payment_or_settlement_authority",
+      "permission_to_execute_actions"
+    ]
+  },
+  "publicContactEmail": "gpmiddleton71@gmail.com",
+  "note": "Local prove-yourself protocol model only; no live systems contact, direct bot messaging, live agent-to-agent communication, outreach automation, payment, settlement, production certification, network call, or action execution occurred.",
+  "localDemoOnly": true,
+  "localOnly": true,
+  "liveSystemsContact": false,
+  "directBotMessaging": false,
+  "autonomousOutreach": false,
+  "outreachAutomation": false,
+  "liveAgentToAgentCommunication": false,
+  "externalAgentContact": false,
+  "liveApi": false,
+  "mcpServer": false,
+  "cloudNetworkCall": false,
+  "secretsOrCredentials": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "walletBankingLogic": false,
+  "productionSigning": false,
+  "productionCertification": false,
+  "actionExecution": false
+}

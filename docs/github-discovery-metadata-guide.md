@@ -115,3 +115,12 @@ tracking, scraping, contact harvesting, deployment, package publishing, or
 action execution.
 
 Public project contact: `gpmiddleton71@gmail.com`
+
+## P3-M129 Metadata Note
+
+P3-M129 can be described manually as a local prove-yourself protocol and
+gate-pass proof requirement pack. Suitable phrases include `prove-yourself
+protocol`, `agent proof requirements`, `gate-pass trust`, and `no proof no
+permission`. Do not use metadata that implies a universal agent standard,
+production certification, live systems contact, payment activation, settlement
+authority, or action execution.

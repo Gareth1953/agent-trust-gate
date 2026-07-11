@@ -21,6 +21,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] AI agent traffic and session intent concept pack is present: [AI agent traffic and session intent gate](docs/ai-agent-traffic-and-session-intent-gate.md), [spoofed agent risk model](docs/spoofed-agent-risk-model.md), and [session-specific access framework](docs/session-specific-access-framework.md).
 - [ ] Public reviewer and paid pilot enquiry pack is present: [Public reviewer and paid pilot enquiry pack](docs/public-reviewer-and-paid-pilot-enquiry-pack.md), [reviewer enquiry copy](docs/reviewer-enquiry-copy.md), and [paid pilot enquiry checklist](docs/paid-pilot-enquiry-checklist.md).
 - [ ] Public repo commercial conversion review is present: [Public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md).
+- [ ] Agent trust invitation and prove-yourself protocol pack is present: [Agent trust invitation and prove-yourself protocol](docs/agent-trust-invitation-and-prove-yourself-protocol.md), [agent proof requirements](docs/agent-proof-requirements.md), [system-side agent verification guide](docs/system-side-agent-verification-guide.md), [agent owner trust presentation guide](docs/agent-owner-trust-presentation-guide.md), and [what a gate pass proves](docs/what-a-gate-pass-proves.md).
 - [ ] Manifest reports `local_demo_only`.
 - [ ] Schemas and JSON examples parse.
 - [ ] Tests, build, and typecheck pass.
@@ -210,6 +211,19 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Controlled distribution sequence includes manual stages and stop conditions.
 - [ ] No guaranteed public visibility, guaranteed global discovery, guaranteed buyer demand, guaranteed paid-pilot conversion, production readiness, automatic paid-pilot acceptance, automatic access after payment, live payment processing, or settlement readiness is claimed.
 - [ ] No live API, MCP server functionality, live agent-to-agent communication, email automation, outreach automation, scraping/contact harvesting, forms, tracking, analytics, telemetry, paid ads, ad pixels, hosted calls, cloud/network calls, external-agent contact, production signing, or action execution is activated by P3-M128.
+
+## Agent Trust Invitation and Prove-Yourself Protocol
+
+- [ ] P3-M129 agent trust invitation and prove-yourself protocol is documentation, local protocol modelling, local examples, agent-readable guidance, and proof-requirement positioning only.
+- [ ] `docs/agent-trust-invitation-and-prove-yourself-protocol.md` is linked from README.
+- [ ] `docs/agent-proof-requirements.md` is linked from README.
+- [ ] `docs/system-side-agent-verification-guide.md` is linked from README.
+- [ ] `docs/agent-owner-trust-presentation-guide.md` is linked from README.
+- [ ] `docs/what-a-gate-pass-proves.md` is linked from README.
+- [ ] Core positioning remains: Do not trust the agent. Trust the gate pass. No proof. No permission. No mandate. No action. No signed gate pass. No settlement.
+- [ ] The local demo command is `npm run demo:prove-yourself`.
+- [ ] No universal agent standard, guaranteed agent adoption, guaranteed buyer demand, guaranteed paid-pilot conversion, identity certification, production readiness, legal/compliance/security certification, automatic acceptance, automatic access after payment, live payment processing, or settlement readiness is claimed.
+- [ ] No live systems contact, direct bot messaging, live API, MCP server functionality, live agent-to-agent communication, email automation, outreach automation, scraping/contact harvesting, forms, tracking, analytics, telemetry, paid ads, ad pixels, hosted calls, cloud/network calls, external-agent contact, production signing, or action execution is activated by P3-M129.
 
 ## Release-candidate checklist
 

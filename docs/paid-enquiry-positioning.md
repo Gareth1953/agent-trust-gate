@@ -107,3 +107,12 @@ processing, PayPal API integration, Stripe integration, checkout, webhooks,
 wallet/banking logic, real settlement execution, production signing,
 production key management, AUC integration, Agent Contact System integration,
 or action execution.
+
+## P3-M129 Follow-On
+
+P3-M129 adds a cautious paid-review discussion asset for proof requirements:
+an agent, owner, client, or system can ask what mandate, evidence, verified
+intent, freshness, nonce, human approval, and signed gate-pass proof should be
+present before trust. This supports local technical review only and does not
+create live systems contact, payment activation, settlement authority,
+production certification, or action execution.

@@ -142,3 +142,9 @@ This document is manual sharing copy only. It adds no outreach automation,
 scraping, contact harvesting, forms, tracking, analytics, telemetry, paid ads,
 ad pixels, live APIs, hosted services, payment processing, settlement,
 external-agent contact, production signing, or action execution.
+
+## P3-M129 Manual Sharing Add-On
+
+```text
+Agent Trust Gate now includes a local prove-yourself protocol pack: claimed agent identity is not trust, and no proof means no permission. It shows what mandate, evidence, verified intent, nonce, freshness, and signed gate-pass proof should be present before trust. Local demo only; no live contact, payment, settlement, or action execution.
+```

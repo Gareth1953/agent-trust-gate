@@ -1,0 +1,85 @@
+# Agent Owner Trust Presentation Guide
+
+P3-M129 adds guidance for agent owners and developers who want to present
+agent trustworthiness without overclaiming.
+
+Core rule:
+
+No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
+
+Core positioning:
+
+Do not trust the agent. Trust the gate pass.
+
+No proof. No permission.
+
+No mandate. No action.
+
+No signed gate pass. No settlement.
+
+## Purpose
+
+This guide helps an agent owner or developer explain how their workflow can be
+reviewed against Agent Trust Gate proof requirements.
+
+It is human-readable documentation and local positioning only. It does not
+certify an agent, prove legal/compliance/security status, grant automatic trust,
+or create live system integration.
+
+## Safe Statements
+
+An agent owner may safely say:
+
+- This agent can produce local trust receipts.
+- This workflow can be reviewed against mandate/evidence/intent requirements.
+- High-risk actions can be escalated before action.
+- Settlement-sensitive workflows can be modelled with pre-settlement blocking.
+- Local proof packages can be checked for freshness and replay risk.
+- Local signed proof references can be inspected where required.
+
+These statements should always be paired with the local-only boundary.
+
+## Statements To Avoid
+
+Avoid saying:
+
+- the agent is automatically trusted;
+- the agent is production certified;
+- the agent has legal/compliance/security approval;
+- the agent has payment or settlement authority;
+- the agent has universal identity proof;
+- the gate pass grants access everywhere;
+- payment grants automatic access;
+- Agent Trust Gate is a universal agent standard.
+
+## Presentation Pattern
+
+A careful agent-owner presentation can use this structure:
+
+1. Explain the proposed workflow.
+2. Identify the sensitive action or access point.
+3. Show the mandate and permitted scope.
+4. Show evidence and verified intent.
+5. Explain human review requirements.
+6. Show freshness, expiry, nonce, and replay controls.
+7. Show signed receipt/proof reference if required.
+8. Run the local prove-yourself demo or local gate flow.
+9. Explain what the result does and does not prove.
+
+## What This Does Not Prove
+
+This does not prove production readiness, identity certification,
+legal/compliance/security status, payment activation, settlement authority,
+hosted availability, external-agent contact, or permission to execute actions.
+
+## Public Contact
+
+Public project contact: `gpmiddleton71@gmail.com`
+
+## Safety Boundary
+
+This guide adds no live systems contact, direct bot messaging, live
+agent-to-agent communication, autonomous outreach, scraping, contact
+harvesting, forms, tracking, analytics, telemetry, paid ads, live APIs, payment
+processing, settlement execution, production signing, production key
+management, or action execution.

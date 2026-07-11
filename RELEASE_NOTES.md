@@ -1,5 +1,49 @@
 # Release Notes
 
+## P3-M129: Agent Trust Invitation and Prove-Yourself Protocol Pack
+
+P3-M129 adds an Agent Trust Invitation and Prove-Yourself Protocol Pack for
+Agent Trust Gate.
+
+Added assets:
+
+- `docs/agent-trust-invitation-and-prove-yourself-protocol.md`
+- `docs/agent-proof-requirements.md`
+- `docs/system-side-agent-verification-guide.md`
+- `docs/agent-owner-trust-presentation-guide.md`
+- `docs/what-a-gate-pass-proves.md`
+- `src/prove-yourself-protocol.ts`
+- `src/prove-yourself-protocol-cli.ts`
+- `examples/prove-yourself-*.json`
+- `npm run demo:prove-yourself`
+- focused prove-yourself protocol tests
+
+The pack defines local proof requirements for agents, agent owners, clients,
+systems, and reviewers. It states: Do not trust the agent. Trust the gate pass.
+No proof. No permission. No mandate. No action. No signed gate pass. No
+settlement.
+
+This is documentation, local protocol modelling, local examples,
+agent-readable guidance, and proof-requirement positioning only. It does not
+claim universal agent standard status, guaranteed agent adoption, guaranteed
+buyer demand, guaranteed paid pilot conversion, production readiness, live
+payment/settlement readiness, legal/compliance/security certification,
+identity certification, automatic paid-pilot acceptance, automatic access after
+payment, or any legal, financial, compliance, procurement, settlement, identity,
+authentication, or security guarantee.
+
+It does not add live systems contact, direct bot messaging, live APIs, MCP
+server functionality, live agent-to-agent communication, external-agent
+contact, autonomous contact, outreach automation, email automation, scraping,
+contact harvesting, forms, tracking, analytics, telemetry, hosted calls, paid
+ads, ad pixels, cloud/network calls, secrets, credentials, live payment
+processing, PayPal API integration, Stripe integration, checkout, webhooks,
+wallet/banking logic, real settlement execution, production signing,
+production key management, AUC integration, Agent Contact System integration,
+or action execution.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M128: Controlled Public Visibility and Paid Enquiry Positioning
 
 P3-M128 adds controlled public visibility and paid enquiry positioning for

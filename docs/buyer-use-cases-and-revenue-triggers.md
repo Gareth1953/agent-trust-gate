@@ -225,3 +225,8 @@ and developer distribution guidance only.
 
 P3-M128 also stays inside this boundary. It adds controlled public visibility
 and paid enquiry positioning only.
+
+P3-M129 also stays inside this boundary. It adds local prove-yourself protocol
+guidance for agent proof requirements, not live systems contact, direct bot
+messaging, payment activation, settlement authority, production certification,
+or action execution.

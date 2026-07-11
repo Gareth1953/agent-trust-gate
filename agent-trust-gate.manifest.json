@@ -1,14 +1,15 @@
 {
   "manifest_version": "atg.code-readable-integration.v1",
   "service_name": "Agent Trust Gate",
-  "latest_mission": "P3-M128",
+  "latest_mission": "P3-M129",
   "recent_missions": [
     "P3-M123",
     "P3-M124",
     "P3-M125",
     "P3-M126",
     "P3-M127",
-    "P3-M128"
+    "P3-M128",
+    "P3-M129"
   ],
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
   "project_status": "local_demo_only",
@@ -24,6 +25,7 @@
   "readable_by_agents": true,
   "callable_interface": false,
   "live_endpoint": false,
+  "live_systems_contact": false,
   "live_api": false,
   "mcp_server_functionality": false,
   "live_traffic_monitoring": false,
@@ -42,6 +44,7 @@
   "autonomous_authority": false,
   "agent_negotiation": false,
   "live_agent_to_agent_communication": false,
+  "direct_bot_messaging": false,
   "autonomous_contact": false,
   "external_agent_contact": false,
   "payment_authority": false,
@@ -49,6 +52,7 @@
   "live_payments": false,
   "live_settlement": false,
   "production_signing": false,
+  "production_certification": false,
   "production_key_management": false,
   "action_execution": false,
   "auc_integrated": false,
@@ -62,7 +66,8 @@
     "gate_pass_validity_replay_check",
     "settlement_blocker_simulation",
     "end_to_end_money_gate_proof",
-    "session_intent_gate_concept_model"
+    "session_intent_gate_concept_model",
+    "prove_yourself_protocol_model"
   ],
   "safe_local_commands": [
     "npm test",
@@ -74,6 +79,7 @@
     "npm run demo:integrations",
     "npm run demo:quickstart",
     "npm run demo:session-intent",
+    "npm run demo:prove-yourself",
     "npm run proof:money-gate"
   ],
   "discovery_docs": [
@@ -104,6 +110,11 @@
     "docs/paid-enquiry-positioning.md",
     "docs/public-positioning-message-bank.md",
     "docs/controlled-distribution-sequence.md",
+    "docs/agent-trust-invitation-and-prove-yourself-protocol.md",
+    "docs/agent-proof-requirements.md",
+    "docs/system-side-agent-verification-guide.md",
+    "docs/agent-owner-trust-presentation-guide.md",
+    "docs/what-a-gate-pass-proves.md",
     "docs/ai-agent-traffic-and-session-intent-gate.md",
     "docs/spoofed-agent-risk-model.md",
     "docs/session-specific-access-framework.md"
@@ -127,6 +138,8 @@
     "MCP server functionality",
     "live agent endpoint",
     "live agent-to-agent communication",
+    "live systems contact",
+    "direct bot messaging",
     "agent negotiation",
     "autonomous contact",
     "external-agent contact",
@@ -147,6 +160,7 @@
     "ad pixels",
     "real settlement execution",
     "production signing",
+    "production certification",
     "production key management",
     "cloud/network calls",
     "contact harvesting",

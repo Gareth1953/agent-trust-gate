@@ -240,3 +240,14 @@ outreach automation, AUC integration, Agent Contact System integration, or
 action execution.
 
 Public project contact: `gpmiddleton71@gmail.com`
+
+## P3-M129 Integration Review Note
+
+For P3-M129, integration reviewers should inspect the local prove-yourself
+protocol docs, `src/prove-yourself-protocol.ts`, the deterministic examples
+under `examples/prove-yourself-*.json`, and `npm run demo:prove-yourself`.
+The correct inference is proof-requirement guidance only: claimed agent
+identity is not trust, and no proof means no permission. Do not infer live
+systems contact, direct bot messaging, live agent-to-agent communication,
+identity certification, payment/settlement authority, production certification,
+or action execution.

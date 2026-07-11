@@ -102,3 +102,9 @@ This message bank is manual copy only. It adds no outreach automation, scraping,
 contact harvesting, forms, tracking, analytics, telemetry, paid ads, ad pixels,
 live APIs, hosted services, payment processing, settlement, external-agent
 contact, production signing, or action execution.
+
+## P3-M129 Manual Message Add-On
+
+```text
+Agent Trust Gate now includes a local prove-yourself protocol pack: do not trust the agent, trust the gate pass. It shows what mandate, evidence, verified intent, freshness, nonce, and signed proof an agent should present before trust. Local demo only: no live agent contact, payments, settlement, or action execution.
+```

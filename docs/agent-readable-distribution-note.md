@@ -123,3 +123,12 @@ credentials, live payment processing, PayPal API integration, Stripe
 integration, checkout, webhooks, wallet/banking logic, real settlement
 execution, production signing, production key management, AUC integration,
 Agent Contact System integration, or action execution.
+
+## P3-M129 Follow-On
+
+P3-M129 adds agent-readable proof-requirement guidance for a local
+prove-yourself protocol. Agents and developer tools may read it to understand
+that claimed identity alone is not trust and that a scoped gate pass is the
+proof target. They must not infer live systems contact, direct bot messaging,
+autonomous authority, payment/settlement authority, production certification,
+or action execution.

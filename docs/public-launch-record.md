@@ -134,6 +134,13 @@ visibility, guaranteed global discovery, guaranteed buyer demand, guaranteed
 paid pilot conversion, automatic paid-pilot acceptance, automatic access,
 production signing, or action execution.
 
+P3-M129 adds an Agent Trust Invitation and Prove-Yourself Protocol Pack. It
+defines local proof requirements, system-side verification guidance, agent-owner
+trust presentation guidance, gate-pass meaning, deterministic examples, and a
+local demo command. It does not add live systems contact, direct bot messaging,
+live agent-to-agent communication, live APIs, payment processing, settlement,
+production certification, production signing, or action execution.
+
 ## What was launched
 
 The public launch made the code-readable developer project available for review:
@@ -256,6 +263,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm `docs/buyer-use-cases-and-revenue-triggers.md`, `docs/revenue-trigger-map.md`, and `docs/paid-review-scope-examples.md` are visible and linked from README.
 - [ ] Confirm `docs/global-code-discovery-and-developer-distribution-pack.md`, `docs/github-discovery-metadata-guide.md`, `docs/developer-distribution-checklist.md`, `docs/global-developer-sharing-copy.md`, and `docs/agent-readable-distribution-note.md` are visible and linked from README.
 - [ ] Confirm `docs/controlled-public-visibility-and-paid-enquiry-positioning.md`, `docs/public-visibility-readiness-checklist.md`, `docs/paid-enquiry-positioning.md`, `docs/public-positioning-message-bank.md`, and `docs/controlled-distribution-sequence.md` are visible and linked from README.
+- [ ] Confirm `docs/agent-trust-invitation-and-prove-yourself-protocol.md`, `docs/agent-proof-requirements.md`, `docs/system-side-agent-verification-guide.md`, `docs/agent-owner-trust-presentation-guide.md`, and `docs/what-a-gate-pass-proves.md` are visible and linked from README.
 - [ ] Confirm README, LICENSE, SECURITY, CHANGELOG, RELEASE_NOTES, and PUBLIC_LAUNCH_CHECKLIST render correctly.
 - [ ] Confirm `agent-trust-gate.manifest.json` is visible and still reports `local_demo_only`.
 - [ ] Confirm schemas and synthetic examples are visible.
@@ -281,6 +289,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm P3-M126 buyer use cases and revenue triggers are presented as commercial documentation only, not guaranteed buyer demand, guaranteed revenue, guaranteed paid-pilot conversion, outreach automation, scraping/contact harvesting, live payment processing, settlement, live APIs, automatic access, or action execution.
 - [ ] Confirm P3-M127 global code discovery and developer distribution guidance is presented as manual documentation only, not guaranteed global discovery, paid ads, tracking, analytics, outreach automation, scraping/contact harvesting, live payment processing, settlement, live APIs, automatic access, or action execution.
 - [ ] Confirm P3-M128 controlled public visibility and paid enquiry positioning is presented as manual documentation only, not guaranteed public visibility, guaranteed global discovery, paid ads, tracking, analytics, outreach automation, scraping/contact harvesting, live payment processing, settlement, live APIs, automatic access, or action execution.
+- [ ] Confirm P3-M129 agent trust invitation and prove-yourself protocol is presented as local proof-requirement guidance only, not a universal agent standard, identity certification, live systems contact, direct bot messaging, live agent-to-agent communication, live payment processing, settlement, live APIs, production certification, or action execution.
 - [ ] Confirm no git tag, package publish, or deployment has been performed unless separately approved later.
 
 ## Recommended next steps

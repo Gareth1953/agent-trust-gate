@@ -224,3 +224,11 @@ execution, production signing, production key management, AUC integration,
 Agent Contact System integration, or action execution.
 
 Public project contact: `gpmiddleton71@gmail.com`
+
+## P3-M129 Follow-On
+
+P3-M129 adds an Agent Trust Invitation and Prove-Yourself Protocol Pack as a
+new code-first discovery target. Manual sharing may point reviewers to the
+local proof rule: do not trust the agent, trust the gate pass. This does not add
+live systems contact, direct bot messaging, live APIs, payment processing,
+settlement, production signing, or action execution.

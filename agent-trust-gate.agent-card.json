@@ -1,14 +1,15 @@
 {
   "schema": "atg.agent-card.local-discovery.v1",
   "name": "Agent Trust Gate",
-  "latest_mission": "P3-M128",
+  "latest_mission": "P3-M129",
   "recent_missions": [
     "P3-M123",
     "P3-M124",
     "P3-M125",
     "P3-M126",
     "P3-M127",
-    "P3-M128"
+    "P3-M128",
+    "P3-M129"
   ],
   "description": "Local-first pre-action and pre-settlement trust gate for agent-led workflows.",
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
@@ -31,13 +32,16 @@
     "public repo commercial conversion review and navigation guidance",
     "buyer use case and revenue trigger guidance",
     "global code discovery and manual developer distribution guidance",
-    "controlled public visibility and paid enquiry positioning guidance"
+    "controlled public visibility and paid enquiry positioning guidance",
+    "local prove-yourself protocol and agent proof requirement guidance"
   ],
   "non_capabilities": [
     "live API",
     "MCP server functionality",
     "live agent endpoint",
     "live agent-to-agent communication",
+    "live systems contact",
+    "direct bot messaging",
     "agent negotiation",
     "autonomous contact",
     "external-agent contact",
@@ -57,6 +61,7 @@
     "wallet/banking logic",
     "real settlement execution",
     "production signing",
+    "production certification",
     "production key management",
     "cloud/network calls",
     "AUC integration",
@@ -74,6 +79,7 @@
     "npm run demo:integrations",
     "npm run demo:quickstart",
     "npm run demo:session-intent",
+    "npm run demo:prove-yourself",
     "npm run proof:money-gate"
   ],
   "docs": [
@@ -105,6 +111,11 @@
     "docs/paid-enquiry-positioning.md",
     "docs/public-positioning-message-bank.md",
     "docs/controlled-distribution-sequence.md",
+    "docs/agent-trust-invitation-and-prove-yourself-protocol.md",
+    "docs/agent-proof-requirements.md",
+    "docs/system-side-agent-verification-guide.md",
+    "docs/agent-owner-trust-presentation-guide.md",
+    "docs/what-a-gate-pass-proves.md",
     "docs/ai-agent-traffic-and-session-intent-gate.md",
     "docs/spoofed-agent-risk-model.md",
     "docs/session-specific-access-framework.md"
@@ -124,11 +135,13 @@
     "examples/reference-generic-agent-loop.json",
     "examples/reference-pre-settlement-money-gate.json",
     "examples/session-intent-spoofed-agent-blocked.json",
-    "examples/session-intent-valid-local-control.json"
+    "examples/session-intent-valid-local-control.json",
+    "examples/prove-yourself-claimed-identity-only-blocked.json",
+    "examples/prove-yourself-valid-local-control.json"
   ],
   "contact": {
     "email": "gpmiddleton71@gmail.com",
-    "purpose": "Human-reviewed developer, agent-system, integration, security, buyer use case, revenue trigger, global code discovery, controlled public visibility, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
+    "purpose": "Human-reviewed developer, agent-system, integration, security, buyer use case, revenue trigger, global code discovery, controlled public visibility, prove-yourself protocol, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
     "boundary": "Contact metadata only. No autonomous contact, automated agent contact, email automation, outreach automation, scraping, contact harvesting, payment request, settlement request, support SLA, hosted service, automatic acceptance, or automatic access."
   },
   "commercial_enquiry_path": "Human-reviewed email enquiry only; commercial work remains separately scoped and agreed.",
@@ -136,11 +149,13 @@
     "local_demo_only": true,
     "readable_by_agents": true,
     "live_endpoint": false,
+    "live_systems_contact": false,
     "live_api": false,
     "mcp_server_functionality": false,
     "autonomous_authority": false,
     "agent_negotiation": false,
     "live_agent_to_agent_communication": false,
+    "direct_bot_messaging": false,
     "autonomous_contact": false,
     "external_agent_contact": false,
     "payment_authority": false,
@@ -159,6 +174,7 @@
     "ad_pixels": false,
     "telemetry": false,
     "production_signing": false,
+    "production_certification": false,
     "production_key_management": false,
     "cloud_network_calls": false,
     "action_execution": false

@@ -138,3 +138,11 @@ PayPal API integration, Stripe integration, checkout, webhooks, wallet/banking
 logic, real settlement execution, production signing, production key
 management, AUC integration, Agent Contact System integration, or action
 execution.
+
+## P3-M129 Sequence Note
+
+If P3-M129 is included in manual visibility, position it as a local proof-rule
+and prove-yourself protocol: agents should present mandate, evidence, verified
+intent, scoped permission, freshness, nonce, and signed proof where required.
+Stop if readers infer live systems contact, direct bot messaging, identity
+certification, payment activation, settlement authority, or action execution.

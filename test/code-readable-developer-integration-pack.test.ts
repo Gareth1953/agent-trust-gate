@@ -41,6 +41,8 @@ test("static manifest parses and keeps every live capability disabled", () => {
     "live_api",
     "hosted_sandbox",
     "network_calls",
+    "live_systems_contact",
+    "direct_bot_messaging",
     "external_agent_contact",
     "live_payments",
     "live_settlement",
@@ -60,6 +62,7 @@ test("static manifest parses and keeps every live capability disabled", () => {
     "settlement_blocker_simulation",
     "end_to_end_money_gate_proof",
     "session_intent_gate_concept_model",
+    "prove_yourself_protocol_model",
   ]);
   assert.equal(manifest.public_repository_url, publicRepoUrl);
   const manifestSource = read(manifestPath);
