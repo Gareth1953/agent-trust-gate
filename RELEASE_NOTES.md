@@ -1,5 +1,30 @@
 # Release Notes
 
+## P3-M125: Public Repo Commercial Conversion Review
+
+P3-M125 adds a public repo commercial conversion review and improves the README
+reviewer/start-here path for serious developers, agent builders, AI governance
+reviewers, payment/integration reviewers, enterprise automation reviewers, and
+trust/safety reviewers.
+
+Added assets:
+
+- `docs/public-repo-commercial-conversion-review.md`
+- clearer README reviewer/start-here path;
+- clearer README what-to-inspect-first checklist;
+- clearer README commercial enquiry path;
+- clearer README non-claim boundary.
+
+This is documentation, navigation, and commercial conversion clarity only. It
+does not add outreach automation, scraping, contact harvesting, forms,
+tracking, analytics, telemetry, hosted services, live APIs, MCP server
+functionality, live agent-to-agent communication, live payment processing,
+PayPal API integration, Stripe integration, checkout, webhooks, wallet/banking
+logic, real settlement execution, production signing, external-agent contact,
+automatic acceptance, automatic access, or action execution.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M124: Public Reviewer and Paid Pilot Enquiry Pack
 
 P3-M124 adds human-approved public reviewer and paid pilot enquiry guidance for

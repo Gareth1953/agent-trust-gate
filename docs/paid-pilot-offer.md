@@ -42,6 +42,12 @@ for human-approved manual use only and does not automate outreach, harvest
 contacts, create forms, process payments, activate settlement, grant automatic
 acceptance, grant automatic access, or execute actions.
 
+P3-M125 adds a [public repo commercial conversion review](public-repo-commercial-conversion-review.md).
+It improves the public review path and commercial enquiry navigation without
+adding forms, tracking, analytics, payment processing, hosted services,
+outreach automation, scraping/contact harvesting, settlement execution, or
+action execution.
+
 ## Who should contact
 
 Contact Gareth if you are a:

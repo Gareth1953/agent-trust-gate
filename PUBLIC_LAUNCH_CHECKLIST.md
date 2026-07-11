@@ -20,6 +20,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Agent-readable discovery metadata is present: [Agent-readable discovery and system metadata](docs/agent-readable-discovery-and-system-metadata.md), [system integration metadata](docs/system-integration-metadata.md), [example agent discovery prompts](docs/example-agent-discovery-prompts.md), [llms.txt](llms.txt), and [agent card metadata](agent-trust-gate.agent-card.json).
 - [ ] AI agent traffic and session intent concept pack is present: [AI agent traffic and session intent gate](docs/ai-agent-traffic-and-session-intent-gate.md), [spoofed agent risk model](docs/spoofed-agent-risk-model.md), and [session-specific access framework](docs/session-specific-access-framework.md).
 - [ ] Public reviewer and paid pilot enquiry pack is present: [Public reviewer and paid pilot enquiry pack](docs/public-reviewer-and-paid-pilot-enquiry-pack.md), [reviewer enquiry copy](docs/reviewer-enquiry-copy.md), and [paid pilot enquiry checklist](docs/paid-pilot-enquiry-checklist.md).
+- [ ] Public repo commercial conversion review is present: [Public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md).
 - [ ] Manifest reports `local_demo_only`.
 - [ ] Schemas and JSON examples parse.
 - [ ] Tests, build, and typecheck pass.
@@ -160,6 +161,16 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] No old public email is present.
 - [ ] No production readiness, certified security, legal/compliance approval, automatic paid-pilot acceptance, automatic access, live payment processing, or settlement readiness is claimed.
 - [ ] No live API, MCP server functionality, live agent-to-agent communication, outreach automation, scraping/contact harvesting, forms, tracking, analytics, telemetry, hosted calls, cloud/network calls, external-agent contact, production signing, or action execution is activated by P3-M124.
+
+## Public Repo Commercial Conversion Review
+
+- [ ] P3-M125 public repo commercial conversion review is documentation, navigation, and commercial conversion clarity only.
+- [ ] README includes a clear reviewer/start-here path near the top.
+- [ ] README links to the clone quickstart, simplified CLI, schema hardening, signed proof, adversarial pack, reference integrations, paid pilot readiness, reviewer enquiry pack, paid pilot enquiry checklist, `llms.txt`, and agent card metadata.
+- [ ] README commercial enquiry path is clear and routes to `gpmiddleton71@gmail.com`.
+- [ ] README what-this-repo-does-not-do boundary remains clear.
+- [ ] No production deployment readiness, certified security, legal/compliance approval, automatic paid-pilot acceptance, automatic access after payment, live payment processing, settlement readiness, hosted service, or action execution is claimed.
+- [ ] No live API, MCP server functionality, live agent-to-agent communication, outreach automation, scraping/contact harvesting, forms, tracking, analytics, telemetry, hosted calls, cloud/network calls, external-agent contact, production signing, or action execution is activated by P3-M125.
 
 ## Release-candidate checklist
 

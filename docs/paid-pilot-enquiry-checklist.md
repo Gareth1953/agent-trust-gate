@@ -11,6 +11,10 @@ This checklist is documentation only. It does not create forms, automate
 outreach, collect contacts, process payments, settle transactions, call APIs,
 or execute actions.
 
+P3-M125 adds a [public repo commercial conversion review](public-repo-commercial-conversion-review.md)
+that uses this checklist as part of the manual paid technical review and local
+pilot discussion path.
+
 ## What A Serious Enquiry Should Provide
 
 A useful enquiry should include:
@@ -160,5 +164,8 @@ payment processing, PayPal API integration, Stripe integration, checkout,
 webhooks, wallet/banking logic, real settlement execution, production signing,
 production key management, AUC integration, Agent Contact System integration,
 or action execution.
+
+P3-M125 does not change that boundary. It adds documentation and README
+navigation clarity only.
 
 Public project contact: `gpmiddleton71@gmail.com`

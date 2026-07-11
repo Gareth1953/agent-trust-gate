@@ -46,6 +46,12 @@ help humans ask better review questions; they do not send messages, automate
 outreach, scrape or harvest contacts, create forms, process payments, activate
 settlement, grant automatic access, or execute actions.
 
+P3-M125 adds a [public repo commercial conversion review](public-repo-commercial-conversion-review.md)
+and README start-here improvements. It clarifies the manual path to paid
+technical review, local pilot discussion, and integration feasibility review
+without adding forms, tracking, analytics, payment processing, hosted services,
+outreach automation, scraping/contact harvesting, or action execution.
+
 ## What the commercial offer is
 
 Agent Trust Gate™ can be discussed as a local-first commercial review or pilot

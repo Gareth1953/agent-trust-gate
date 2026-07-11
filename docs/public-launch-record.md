@@ -97,6 +97,14 @@ tracking, analytics, telemetry, live payment processing, settlement, live
 APIs, external-agent contact, automatic acceptance, automatic access,
 production signing, or action execution.
 
+P3-M125 adds a public repo commercial conversion review and improves the README
+reviewer/start-here path. It clarifies how a serious reviewer can inspect the
+repo, run local demos, understand what was hardened, and send a
+human-reviewed enquiry. It does not add outreach automation, scraping, contact
+harvesting, forms, tracking, analytics, telemetry, hosted services, live
+payment processing, settlement, live APIs, external-agent contact, automatic
+acceptance, automatic access, production signing, or action execution.
+
 ## What was launched
 
 The public launch made the code-readable developer project available for review:
@@ -132,6 +140,7 @@ The public launch made the code-readable developer project available for review:
 - Public reviewer and paid pilot enquiry pack.
 - Manual reviewer enquiry copy.
 - Paid pilot enquiry checklist.
+- Public repo commercial conversion review.
 
 The launch surface is public code and documentation. The product remains
 `local_demo_only`.
@@ -201,6 +210,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm `llms.txt`, `agent-trust-gate.agent-card.json`, `docs/agent-readable-discovery-and-system-metadata.md`, `docs/system-integration-metadata.md`, and `docs/example-agent-discovery-prompts.md` are visible and linked from README.
 - [ ] Confirm `docs/ai-agent-traffic-and-session-intent-gate.md`, `docs/spoofed-agent-risk-model.md`, and `docs/session-specific-access-framework.md` are visible and linked from README.
 - [ ] Confirm `docs/public-reviewer-and-paid-pilot-enquiry-pack.md`, `docs/reviewer-enquiry-copy.md`, and `docs/paid-pilot-enquiry-checklist.md` are visible and linked from README.
+- [ ] Confirm `docs/public-repo-commercial-conversion-review.md` is visible and linked from README.
 - [ ] Confirm README, LICENSE, SECURITY, CHANGELOG, RELEASE_NOTES, and PUBLIC_LAUNCH_CHECKLIST render correctly.
 - [ ] Confirm `agent-trust-gate.manifest.json` is visible and still reports `local_demo_only`.
 - [ ] Confirm schemas and synthetic examples are visible.
@@ -222,6 +232,7 @@ No signed gate pass means no settlement.
 - [ ] Confirm P3-M122 agent-readable discovery is presented as readable-now/callable-later metadata, not a live endpoint, MCP server, autonomous authority, payment/settlement authority, external-agent contact, or action execution.
 - [ ] Confirm P3-M123 AI agent traffic/session intent is presented as local concept modelling, not a bot detection product, live traffic monitoring, crawler blocking, browser fingerprinting, scraping, tracking, analytics, telemetry, or production web security.
 - [ ] Confirm P3-M124 public reviewer and paid pilot enquiry guidance is presented as human-approved documentation and manual-use copy only, not outreach automation, scraping/contact harvesting, forms, tracking, analytics, live payment processing, settlement, automatic acceptance, automatic access, or action execution.
+- [ ] Confirm P3-M125 public repo commercial conversion review is presented as documentation and navigation clarity only, not forms, tracking, analytics, hosted services, outreach automation, scraping/contact harvesting, live payment processing, settlement, live APIs, automatic access, or action execution.
 - [ ] Confirm no git tag, package publish, or deployment has been performed unless separately approved later.
 
 ## Recommended next steps
@@ -230,6 +241,6 @@ Keep future changes local-first and reviewable. Any future git tag, package
 publish, static-site deployment, hosted sandbox, live API, payment activation,
 settlement activation, live agent endpoint, MCP server functionality, live
 traffic monitoring, real bot detection, outreach automation, scraping/contact
-harvesting, external-agent contact, AUC bridge, Agent Contact System
-integration, production signing, or action execution
+harvesting, hosted services, external-agent contact, AUC bridge, Agent Contact
+System integration, production signing, or action execution
 requires a separate human-approved mission and updated safety review.

@@ -10,6 +10,60 @@ keeps settlement blocked unless the local trust chain passes.
 Current status: local_demo_only. The repository provides deterministic local
 software and proof artifacts, not a production service or payment system.
 
+## Start here for reviewers
+
+For a fast public review, use this path:
+
+1. Clone and run locally: [clone and run quickstart](docs/clone-and-run-quickstart.md).
+2. Run the simplified CLI: [simplified developer CLI](docs/simplified-developer-cli.md).
+3. Inspect schemas: [schema formalisation and evidence model](docs/schema-formalisation-and-evidence-model.md).
+4. Inspect signed local proof material: [local signed receipt and proof prototype](docs/local-signed-receipt-and-proof-prototype.md).
+5. Inspect attack cases: [adversarial evaluation pack](docs/adversarial-evaluation-pack.md).
+6. Inspect integration patterns: [reference integration examples](docs/reference-integration-examples.md).
+7. Inspect commercial readiness: [paid pilot readiness review](docs/paid-pilot-readiness-review.md).
+8. Inspect enquiry guidance: [public reviewer and paid pilot enquiry pack](docs/public-reviewer-and-paid-pilot-enquiry-pack.md) and [paid pilot enquiry checklist](docs/paid-pilot-enquiry-checklist.md).
+9. Inspect agent-readable metadata: [llms.txt](llms.txt) and [agent card metadata](agent-trust-gate.agent-card.json).
+
+P3-M125 adds the [public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md)
+to make this path easier to assess without adding forms, tracking, payment
+processing, hosted services, outreach automation, or action execution.
+
+## What to inspect first
+
+- The local commands: `npm run cli -- help`, `npm run demo:adversarial`,
+  `npm run demo:integrations`, and `npm run proof:money-gate`.
+- The hardened request, receipt, and money-gate proof schemas.
+- The local signed receipt/proof prototype and tamper examples.
+- The adversarial pack showing replay, forged evidence, expired pass, scope
+  creep, missing mandate, tampered proof, unsigned proof, stale freshness/nonce,
+  and settlement blocker refusal.
+- The reference integrations showing where the trust gate fits before
+  sensitive actions without executing those actions.
+- The paid pilot readiness and reviewer enquiry docs before considering any
+  commercial discussion.
+
+## Commercial enquiry path
+
+Human-reviewed enquiries may be sent to `gpmiddleton71@gmail.com` for:
+
+- paid technical review;
+- local pilot discussion;
+- integration feasibility review;
+- AI governance/safety review;
+- pre-settlement trust workflow review.
+
+All enquiries are human-reviewed and separately scoped. No enquiry or payment
+grants automatic acceptance, automatic access after payment, hosted access,
+payment activation, settlement capability, external-agent contact, or action
+execution.
+
+## What this repo does not do
+
+Agent Trust Gate™ is not ready for production deployment. This repo does not
+provide a live API, hosted service, live payment processing, settlement
+execution, wallet/banking logic, production signing, legal/compliance/security
+approval, or autonomous action execution.
+
 ## Clone and run locally
 
 New developers, agent-system builders, and integration reviewers can start with
@@ -200,10 +254,13 @@ hosted enforcement.
 P3-M124 adds a human-approved public reviewer and paid pilot enquiry pack for
 developers, agent builders, AI governance reviewers, payment/integration
 reviewers, enterprise automation reviewers, and trust/safety reviewers.
+P3-M125 reviews the public repo commercial conversion path and makes the
+reviewer start path clearer.
 
 - [Public reviewer and paid pilot enquiry pack](docs/public-reviewer-and-paid-pilot-enquiry-pack.md)
 - [Reviewer enquiry copy](docs/reviewer-enquiry-copy.md)
 - [Paid pilot enquiry checklist](docs/paid-pilot-enquiry-checklist.md)
+- [Public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md)
 
 The copy is manual-use only. It does not add outreach automation, scraping,
 contact harvesting, forms, tracking, analytics, live payments, settlement,
@@ -462,7 +519,11 @@ detection, crawler blocking, browser fingerprinting, tracking, scraping, or
 action execution. P3-M124 adds a human-approved public reviewer and paid pilot
 enquiry pack without adding outreach automation, scraping/contact harvesting,
 forms, tracking, analytics, live payments, settlement, live APIs,
-external-agent contact, production signing, or action execution.
+external-agent contact, production signing, or action execution. P3-M125 adds
+a public repo commercial conversion review and improves README navigation
+without adding forms, tracking, analytics, payment processing, hosted services,
+outreach automation, scraping/contact harvesting, live APIs, external-agent
+contact, production signing, or action execution.
 
 Recent proof and readiness milestones:
 
@@ -496,6 +557,7 @@ Recent proof and readiness milestones:
 - P3-M122: agent-readable discovery and system metadata
 - P3-M123: AI agent traffic and session intent gate concept
 - P3-M124: public reviewer and paid pilot enquiry pack
+- P3-M125: public repo commercial conversion review
 
 ## Developer review path
 
@@ -509,7 +571,8 @@ Recent proof and readiness milestones:
 8. Run the local money-gate proof.
 9. Run the local session intent concept demo if reviewing P3-M123.
 10. Read the reviewer/enquiry pack if assessing paid technical review or local pilot discussion fit.
-11. Confirm the current safety boundaries before drawing conclusions.
+11. Read the public repo commercial conversion review if assessing commercial fit.
+12. Confirm the current safety boundaries before drawing conclusions.
 
 ## Usage
 

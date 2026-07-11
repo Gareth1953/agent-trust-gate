@@ -1,11 +1,11 @@
 {
   "schema": "atg.agent-card.local-discovery.v1",
   "name": "Agent Trust Gate",
-  "latest_mission": "P3-M124",
+  "latest_mission": "P3-M125",
   "recent_missions": [
-    "P3-M122",
     "P3-M123",
-    "P3-M124"
+    "P3-M124",
+    "P3-M125"
   ],
   "description": "Local-first pre-action and pre-settlement trust gate for agent-led workflows.",
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
@@ -24,7 +24,8 @@
     "local reference integration examples",
     "local developer CLI",
     "local AI agent traffic and session intent gate concept model",
-    "human-approved public reviewer and paid pilot enquiry guidance"
+    "human-approved public reviewer and paid pilot enquiry guidance",
+    "public repo commercial conversion review and navigation guidance"
   ],
   "non_capabilities": [
     "live API",
@@ -84,6 +85,7 @@
     "docs/public-reviewer-and-paid-pilot-enquiry-pack.md",
     "docs/reviewer-enquiry-copy.md",
     "docs/paid-pilot-enquiry-checklist.md",
+    "docs/public-repo-commercial-conversion-review.md",
     "docs/ai-agent-traffic-and-session-intent-gate.md",
     "docs/spoofed-agent-risk-model.md",
     "docs/session-specific-access-framework.md"

@@ -257,18 +257,30 @@ analytics, live payments, settlement, live APIs, external-agent contact,
 automatic acceptance, automatic access, production signing, or action
 execution.
 
+## Relationship To P3-M125
+
+P3-M125 adds a public repo commercial conversion review and improves README
+navigation for serious reviewers. It clarifies how to move from local proof
+review to a human-approved paid technical review or local pilot discussion
+enquiry.
+
+It does not change the readiness assessment. It does not add forms, tracking,
+analytics, hosted services, payment processing, settlement execution, live
+APIs, outreach automation, scraping/contact harvesting, automatic acceptance,
+automatic access, or action execution.
+
 ## Safety Boundary
 
 Agent Trust Gate™ remains local-first and `local_demo_only`.
 
 P3-M121 is documentation, readiness assessment, and commercial positioning
-only. P3-M124 adds related human-approved reviewer/enquiry copy only. They do
-not add live APIs, live payment processing, PayPal API integration, Stripe
-integration, checkout, webhooks, wallet/banking logic, real settlement
-execution, production signing, production key management, secrets,
-credentials, cloud/network calls, forms, tracking, analytics, telemetry,
-hosted calls, external-agent contact, outreach automation, scraping, contact
-harvesting, AUC integration, Agent Contact System integration, or action
-execution.
+only. P3-M124 adds related human-approved reviewer/enquiry copy only. P3-M125
+adds commercial conversion navigation clarity only. They do not add live APIs,
+live payment processing, PayPal API integration, Stripe integration, checkout,
+webhooks, wallet/banking logic, real settlement execution, production signing,
+production key management, secrets, credentials, cloud/network calls, forms,
+tracking, analytics, telemetry, hosted calls, external-agent contact, outreach
+automation, scraping, contact harvesting, AUC integration, Agent Contact
+System integration, or action execution.
 
 Public project contact: `gpmiddleton71@gmail.com`

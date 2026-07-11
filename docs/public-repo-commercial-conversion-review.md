@@ -1,0 +1,218 @@
+# Public Repo Commercial Conversion Review
+
+P3-M125 reviews and improves the public GitHub repository commercial
+conversion path for Agent Trust Gate.
+
+Core rule:
+
+No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
+
+## Purpose
+
+This review helps a serious developer, agent builder, AI governance reviewer,
+payment/integration reviewer, enterprise automation reviewer, or trust/safety
+reviewer quickly understand:
+
+- what Agent Trust Gate is;
+- why it matters;
+- how to test it locally;
+- what has been hardened;
+- what is not claimed;
+- how to request a human-reviewed paid technical review or local pilot
+  discussion.
+
+This mission is documentation, navigation, and commercial conversion clarity
+only. It does not add outreach automation, email sending, scraping, contact
+harvesting, forms, tracking, analytics, telemetry, payment processing,
+settlement, live APIs, hosted services, or action execution.
+
+## Repo Buyer/Reviewer Journey
+
+A serious public reviewer should be able to move through the repo in this
+order:
+
+1. Understand the one-line purpose and the core rule from `README.md`.
+2. Confirm the repo is `local_demo_only`.
+3. Clone the repo and run the local commands.
+4. Inspect the simplified CLI and the deterministic demo outputs.
+5. Inspect schemas, local signed proof material, adversarial cases, and
+   reference integrations.
+6. Read the paid pilot readiness review and reviewer enquiry pack.
+7. Decide whether to send a human-reviewed enquiry by email.
+
+The conversion path is not payment checkout. The conversion path is informed
+technical confidence followed by a manual enquiry.
+
+## Current Commercial Conversion Strengths
+
+Current strengths:
+
+- the README states the core trust rule early;
+- clone-and-run instructions exist;
+- local proof commands are deterministic;
+- schema and evidence hardening is documented;
+- local signed receipt/proof examples demonstrate tamper detection;
+- adversarial examples show common failure modes blocked locally;
+- simplified CLI commands reduce developer friction;
+- reference integration examples show where the gate fits in agent workflows;
+- paid pilot readiness is framed cautiously;
+- reviewer enquiry documents explain manual next steps;
+- agent-readable metadata helps developer assistants and repo scanners.
+
+## Current Conversion Friction
+
+Current friction:
+
+- the top of the README contains the right material, but reviewers may need a
+  clearer single start-here path;
+- commercial enquiry material is spread across paid-pilot, pricing, readiness,
+  and reviewer pages;
+- a reviewer may not immediately know which proof assets to inspect first;
+- the safety boundary is strong, but repeated sections can make the quickest
+  route harder to scan;
+- conversion should stay human-reviewed, so the repo needs clarity without
+  adding forms, payment flows, tracking, or automated contact.
+
+## Recommended Public Repo Navigation Path
+
+Recommended start-here path:
+
+1. [README](../README.md)
+2. [Clone and run quickstart](clone-and-run-quickstart.md)
+3. [Simplified developer CLI](simplified-developer-cli.md)
+4. [Schema formalisation and evidence model](schema-formalisation-and-evidence-model.md)
+5. [Local signed receipt and proof prototype](local-signed-receipt-and-proof-prototype.md)
+6. [Adversarial evaluation pack](adversarial-evaluation-pack.md)
+7. [Reference integration examples](reference-integration-examples.md)
+8. [Paid pilot readiness review](paid-pilot-readiness-review.md)
+9. [Public reviewer and paid pilot enquiry pack](public-reviewer-and-paid-pilot-enquiry-pack.md)
+10. [Paid pilot enquiry checklist](paid-pilot-enquiry-checklist.md)
+11. [llms.txt](../llms.txt)
+12. [Agent card metadata](../agent-trust-gate.agent-card.json)
+
+## What A Serious Reviewer Should Inspect First
+
+Inspect these first:
+
+- `npm run cli -- help` for the simplified local command surface;
+- `npm run demo:adversarial` for blocked replay, forged evidence, expired
+  pass, scope creep, missing mandate, tampered proof, unsigned proof, stale
+  nonce/freshness, and settlement blocker refusal;
+- `npm run demo:integrations` for local reference integration patterns;
+- `npm run proof:money-gate` for the local pre-settlement proof path;
+- `schemas/local-agent-action-request.schema.json`;
+- `schemas/local-trust-receipt.schema.json`;
+- `schemas/local-money-gate-proof.schema.json`;
+- `examples/local-signed-trust-receipt-valid.json`;
+- `examples/local-signed-money-gate-proof-valid.json`;
+- `examples/adversarial-valid-control-allowed.json`;
+- `examples/session-intent-spoofed-agent-blocked.json`.
+
+The goal is to verify that the repo is concrete enough to review locally while
+remaining non-operational.
+
+## What A Paid Enquiry Should Ask For
+
+A serious paid enquiry should ask for one or more of:
+
+- paid technical review;
+- local pilot discussion;
+- integration feasibility review;
+- AI governance/safety review;
+- pre-settlement trust workflow review;
+- local adversarial evaluation walkthrough;
+- schema, receipt, and proof review.
+
+The enquiry should explain:
+
+- the role of the reviewer or organisation;
+- the agent/workflow type;
+- the sensitive action or payment-adjacent context;
+- desired local review scope;
+- mandate, evidence, and verified intent requirements;
+- known safety, governance, or integration constraints.
+
+## What The Project Can Safely Offer Now
+
+The project can safely offer discussion around:
+
+- local technical review;
+- schema and evidence model review;
+- local signed receipt/proof review;
+- adversarial evaluation walkthrough;
+- simplified CLI walkthrough;
+- local reference integration feasibility;
+- governance and trust/safety review;
+- local pre-settlement trust workflow review;
+- written observations, if separately agreed.
+
+All work remains human-reviewed and separately scoped.
+
+## What It Must Not Claim
+
+The repo must not claim:
+
+- production deployment readiness;
+- certified security;
+- legal/compliance approval;
+- financial, procurement, settlement, or security assurance;
+- live API availability;
+- hosted service availability;
+- live payment processing;
+- PayPal API integration;
+- Stripe integration;
+- checkout;
+- webhooks;
+- wallet/banking logic;
+- real settlement execution;
+- production signing;
+- production key management;
+- automatic paid-pilot acceptance;
+- automatic access after payment;
+- autonomous action execution.
+
+## Recommended Next Commercial Actions
+
+Recommended next actions:
+
+- keep the README start-here path short and visible;
+- keep all paid enquiry routes email-based and human-reviewed;
+- use the paid pilot enquiry checklist to qualify serious review requests;
+- ask prospects to identify the agent/workflow type and sensitive action;
+- continue routing technical reviewers to the CLI, schemas, proof examples,
+  adversarial pack, and reference integrations;
+- keep price, timing, access, and deliverables subject to separate agreement;
+- do not add forms, analytics, tracking, checkout, payment requests, hosted
+  access, live APIs, or automation without a separate approved mission.
+
+## Commercial Enquiry Path
+
+Human-reviewed enquiries may be sent to:
+
+`gpmiddleton71@gmail.com`
+
+Suitable enquiry types:
+
+- paid technical review;
+- local pilot discussion;
+- integration feasibility review;
+- AI governance/safety review;
+- pre-settlement trust workflow review.
+
+No enquiry or payment grants automatic acceptance, automatic access, hosted
+access, live payment activation, settlement capability, external-agent
+contact, or action execution.
+
+## Safety Boundary
+
+P3-M125 is documentation, navigation, and commercial conversion clarity only.
+It does not add live APIs, MCP server functionality, live agent-to-agent
+communication, external-agent contact, autonomous contact, outreach
+automation, scraping, contact harvesting, forms, tracking, analytics,
+telemetry, hosted calls, cloud/network calls, secrets, credentials, live
+payment processing, PayPal API integration, Stripe integration, checkout,
+webhooks, wallet/banking logic, real settlement execution, production signing,
+production key management, AUC integration, Agent Contact System integration,
+or action execution.
+
+Public project contact: `gpmiddleton71@gmail.com`

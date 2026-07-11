@@ -39,6 +39,11 @@ human-approved communication aids only; they do not add outreach automation,
 scraping, contact harvesting, live payment processing, settlement, automatic
 acceptance, automatic access, or action execution.
 
+P3-M125 adds a [public repo commercial conversion review](public-repo-commercial-conversion-review.md)
+and README navigation improvements. It clarifies the route from local proof
+review to a human-reviewed enquiry without adding forms, tracking, analytics,
+payment processing, settlement execution, hosted services, or automation.
+
 ## Who this is for
 
 This menu is for:

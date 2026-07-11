@@ -8,6 +8,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 
 ### Added
 
+- P3-M125 public repo commercial conversion review with README reviewer/start-here navigation and clearer human-reviewed enquiry path.
 - P3-M124 public reviewer and paid pilot enquiry pack with manual-use reviewer copy and a serious enquiry checklist.
 - P3-M123 AI agent traffic and session intent gate concept pack with local spoofed-agent risk docs, session-specific access framework, deterministic local model, CLI demo, and static session-intent examples.
 - P3-M122 agent-readable discovery and system integration metadata through `llms.txt`, root agent card metadata, root manifest updates, discovery docs, system integration metadata, and safe agent discovery prompts.
@@ -29,6 +30,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 
 ### Safety
 
+- P3-M125 is documentation, navigation, and commercial conversion clarity only. It does not add outreach automation, scraping, contact harvesting, forms, tracking, analytics, telemetry, hosted services, live APIs, live payment processing, settlement execution, external-agent contact, automatic acceptance, automatic access, production signing, or action execution.
 - P3-M124 is documentation and human-approved communication copy only. It does not add outreach automation, scraping, contact harvesting, forms, tracking, analytics, telemetry, live APIs, live payment processing, settlement execution, external-agent contact, automatic acceptance, automatic access, production signing, or action execution.
 - P3-M123 is concept documentation and local reference modelling only. It does not add live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, scraping, tracking, analytics, telemetry, live APIs, MCP server functionality, payment/settlement authority, external-agent contact, production signing, or action execution.
 - P3-M122 is metadata, documentation, and local discovery guidance only. It preserves the readable-now/callable-later boundary and does not add live endpoints, MCP server functionality, live agent-to-agent communication, agent negotiation, autonomous authority, payment/settlement authority, production signing, external-agent contact, cloud/network calls, AUC integration, Agent Contact System integration, outreach automation, or action execution.

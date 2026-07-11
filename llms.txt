@@ -43,6 +43,7 @@ Important docs:
 - docs/public-reviewer-and-paid-pilot-enquiry-pack.md
 - docs/reviewer-enquiry-copy.md
 - docs/paid-pilot-enquiry-checklist.md
+- docs/public-repo-commercial-conversion-review.md
 - docs/ai-agent-traffic-and-session-intent-gate.md
 - docs/spoofed-agent-risk-model.md
 - docs/session-specific-access-framework.md
@@ -93,3 +94,9 @@ automation, scraping or contact harvesting, forms, tracking, analytics,
 telemetry, live payment processing, settlement, live APIs, external-agent
 contact, automatic acceptance, automatic access, production signing, or action
 execution.
+
+P3-M125 adds a public repo commercial conversion review and README reviewer
+start path improvements. It is documentation and navigation clarity only. It
+does not add forms, tracking, analytics, hosted services, outreach automation,
+scraping or contact harvesting, payment processing, settlement, live APIs,
+external-agent contact, production signing, or action execution.

@@ -19,6 +19,11 @@ This is documentation and human-approved communication copy only. It does not
 send messages, automate outreach, collect contacts, process payments, create a
 form, start a hosted service, or execute any action.
 
+P3-M125 adds a [public repo commercial conversion review](public-repo-commercial-conversion-review.md)
+to make the reviewer journey and commercial enquiry path easier to scan. It
+does not add forms, tracking, analytics, payment processing, hosted services,
+outreach automation, scraping/contact harvesting, or action execution.
+
 ## Who Should Review Agent Trust Gate
 
 Useful reviewers include:
@@ -71,6 +76,7 @@ Start with this short path:
 8. `docs/paid-pilot-readiness-review.md`
 9. `llms.txt`
 10. `agent-trust-gate.agent-card.json`
+11. `docs/public-repo-commercial-conversion-review.md`
 
 Then run the local commands from the quickstart if reviewing code behaviour:
 
