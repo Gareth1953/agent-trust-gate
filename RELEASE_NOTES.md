@@ -1,5 +1,50 @@
 # Release Notes
 
+## P3-M133: Minimal GatePass Core Specification Pack
+
+P3-M133 adds a Minimal GatePass Core Specification Pack for Agent Trust Gate.
+
+Added assets:
+
+- `docs/minimal-gatepass-core-specification.md`
+- `docs/gatepass-field-guide.md`
+- `docs/gatepass-minimal-profile.md`
+- `docs/gatepass-proofpackage-consolidation.md`
+- `docs/why-minimal-gatepass-matters.md`
+- `schemas/gatepass-core.schema.json`
+- `src/gatepass-core.ts`
+- `src/gatepass-core-cli.ts`
+- `examples/gatepass-core-*.json`
+- `npm run demo:gatepass-core`
+- focused GatePass core tests
+
+The pack narrows the project around GatePass as the compact local proof
+primitive. It defines a minimal local field set, local profiles, validation
+helpers, deterministic examples, and the relationship between GatePass,
+ProofPackage, VerificationContract, Tool Gate, and Pre-Settlement Gate.
+
+This is local specification, schema, TypeScript modelling, examples,
+documentation, and tests only. It does not claim production integration,
+production readiness, production-grade crypto, universal agent standard
+status, guaranteed agent adoption, guaranteed buyer demand, guaranteed paid
+pilot conversion, identity/authentication certification, legal/compliance/
+security certification, live payment/settlement readiness, automatic
+paid-pilot acceptance, automatic access after payment, or any legal,
+financial, compliance, procurement, settlement, identity, authentication, or
+security guarantee.
+
+It does not add live APIs, MCP server functionality, live systems contact,
+direct bot messaging, live agent-to-agent communication, external-agent
+contact, autonomous contact, outreach automation, email automation, scraping,
+contact harvesting, forms, tracking, analytics, telemetry, hosted calls, paid
+ads, ad pixels, cloud/network calls, secrets, credentials, live payment
+processing, PayPal API integration, Stripe integration, checkout, webhooks,
+wallet/banking logic, real settlement execution, production signing,
+production key management, real tool execution, AUC integration, Agent Contact
+System integration, or action execution.
+
+**No mandate. No evidence. No verified intent. No signed GatePass. No settlement.**
+
 ## P3-M132: Enforceable Local Tool-Calling Gate Demo
 
 P3-M132 adds an enforceable local tool-calling gate demo for Agent Trust Gate.

@@ -1,0 +1,72 @@
+{
+  "version": "atg.gatepass-core.local.v1",
+  "iss": "issuer_local_gatepass_demo",
+  "sub": "local_demo_agent_or_workflow",
+  "aud": "agent_trust_gate_local_verifier",
+  "jti": "gatepass_core_high_risk_human_review_001",
+  "iat": "2026-07-11T09:00:00.000Z",
+  "exp": "2030-01-01T00:00:00.000Z",
+  "nonce": "nonce_gatepass_core_base_001",
+  "mandate": {
+    "id": "mandate_high_risk_access_review",
+    "allowedAction": "escalate_access_session_review",
+    "issuerReference": "issuer_local_gatepass_demo",
+    "status": "present"
+  },
+  "scope": {
+    "permittedActions": [
+      "escalate_access_session_review"
+    ],
+    "constraints": [
+      "local_demo_only",
+      "requires_human_review",
+      "no_access_change"
+    ],
+    "settlementSensitive": false
+  },
+  "evidence": {
+    "refs": [
+      "evidence_high_risk_access_review"
+    ],
+    "status": "present"
+  },
+  "intent": {
+    "status": "verified",
+    "context": "local demo intent verified for bounded review"
+  },
+  "risk": {
+    "tier": "high",
+    "sensitiveToolCall": true,
+    "highRiskAction": true
+  },
+  "approval": {
+    "required": true,
+    "status": "required_missing",
+    "approverReference": null
+  },
+  "signature": {
+    "status": "present",
+    "proofReference": "local_signed_gatepass_high_risk_demo",
+    "alg": "local-demo-placeholder",
+    "productionSigning": false
+  },
+  "localDemoOnly": true,
+  "localOnly": true,
+  "liveSystemsContact": false,
+  "directBotMessaging": false,
+  "autonomousOutreach": false,
+  "outreachAutomation": false,
+  "liveAgentToAgentCommunication": false,
+  "externalAgentContact": false,
+  "liveApi": false,
+  "mcpServer": false,
+  "cloudNetworkCall": false,
+  "secretsOrCredentials": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "walletBankingLogic": false,
+  "productionSigning": false,
+  "productionGradeCrypto": false,
+  "productionCertification": false,
+  "actionExecution": false
+}

@@ -30,6 +30,7 @@ For a fast public review, use this path:
 14. Inspect machine-readable proof contracts: [agent proof package schema and verification contract](docs/agent-proof-package-schema-and-verification-contract.md).
 15. Inspect proof-contract integration readiness: [agent proof contract integration readiness](docs/agent-proof-contract-integration-readiness.md).
 16. Run the enforceable local tool-calling gate demo: [enforceable local tool-calling gate demo](docs/enforceable-local-tool-calling-gate-demo.md).
+17. Inspect the minimal GatePass core: [minimal GatePass core specification](docs/minimal-gatepass-core-specification.md).
 
 P3-M125 adds the [public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md)
 to make this path easier to assess without adding forms, tracking, payment
@@ -63,6 +64,18 @@ mock sensitive tools, local interception, receipt-style results, and no real
 tool execution, live APIs, MCP server functionality, live systems contact,
 direct bot messaging, live agent-to-agent communication, payment processing,
 settlement execution, production signing, or action execution.
+P3-M133 adds the Minimal GatePass Core Specification Pack to make GatePass the
+central compact proof primitive with local schema, TypeScript model, examples,
+and demo command without adding live APIs, MCP server functionality, live
+systems contact, direct bot messaging, live agent-to-agent communication,
+payment processing, settlement execution, production signing,
+production-grade crypto, real tool execution, or action execution.
+P3-M133 adds the Minimal GatePass Core Specification Pack to narrow the project
+around GatePass as the compact local proof primitive for high-risk AI agent
+actions, sensitive tool calls, and pre-settlement workflows without adding live
+APIs, MCP server functionality, production signing, production-grade crypto,
+payment processing, settlement execution, real tool execution, or action
+execution.
 
 ## What to inspect first
 
@@ -87,6 +100,9 @@ settlement execution, production signing, or action execution.
   sensitive tool calls and the local gate intercept allow/block/escalate/
   require-evidence/require-human-review/require-signed-proof outcomes before
   any real tool can run.
+- The minimal GatePass core docs and schema to see the compact proof primitive
+  that ProofPackage, VerificationContract, Tool Gate, and Pre-Settlement Gate
+  should support.
 
 ## Commercial enquiry path
 
@@ -178,6 +194,7 @@ Install dependencies first, then use the existing project scripts:
     npm run demo:gate:allow
     npm run proof:money-gate -- --input examples/local-end-to-end-money-gate-proof-input.json --summary-only
     npm run demo:adversarial
+    npm run demo:gatepass-core
     npm run demo:integrations
     npm run demo:prove-yourself
     npm run demo:agent-proof-contract
@@ -379,6 +396,43 @@ preparation, procurement, access/session escalation, settlement instruction,
 and local control cases. It emits local receipt-style results while keeping
 `realToolExecuted`, `wouldExecute`, `mockToolInvoked`, and `actionExecution`
 false.
+
+## Minimal GatePass core
+
+P3-M133 narrows Agent Trust Gate around GatePass as the compact local proof
+primitive for high-risk AI agent actions, sensitive tool calls, and
+pre-settlement workflows.
+
+Core positioning:
+
+Do not trust the agent. Trust the GatePass.
+
+No proof. No permission.
+
+No mandate. No action.
+
+No signed GatePass. No settlement.
+
+- [Minimal GatePass core specification](docs/minimal-gatepass-core-specification.md)
+- [GatePass field guide](docs/gatepass-field-guide.md)
+- [GatePass minimal profile](docs/gatepass-minimal-profile.md)
+- [GatePass / ProofPackage consolidation](docs/gatepass-proofpackage-consolidation.md)
+- [Why minimal GatePass matters](docs/why-minimal-gatepass-matters.md)
+- [GatePass core schema](schemas/gatepass-core.schema.json)
+
+Run the deterministic local GatePass examples:
+
+```text
+npm run demo:gatepass-core
+npm run demo:gatepass-core -- --summary-only
+```
+
+GatePass is the core proof primitive. ProofPackage carries supporting
+evidence/mandate/context. VerificationContract checks it. Tool Gate enforces it
+before sensitive actions. Pre-Settlement Gate blocks settlement-sensitive flows
+without valid proof. This pack adds no live API, production signing,
+production-grade crypto, payment processing, settlement execution, real tool
+execution, or action execution.
 
 ## Public contact
 
@@ -846,6 +900,7 @@ Recent proof and readiness milestones:
 - P3-M130: agent proof package schema and verification contract pack
 - P3-M131: agent proof contract integration readiness pack
 - P3-M132: enforceable local tool-calling gate demo
+- P3-M133: minimal GatePass core specification pack
 
 ## Developer review path
 
@@ -867,7 +922,8 @@ Recent proof and readiness milestones:
 16. Read the agent proof package schema and verification contract if assessing machine-readable proof packages.
 17. Read the agent proof contract integration readiness pack if assessing local adapter placement.
 18. Run the enforceable local tool-calling gate demo if assessing runnable local enforcement.
-19. Confirm the current safety boundaries before drawing conclusions.
+19. Read the minimal GatePass core specification if assessing the central proof primitive.
+20. Confirm the current safety boundaries before drawing conclusions.
 
 ## Usage
 

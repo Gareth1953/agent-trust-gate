@@ -1,7 +1,7 @@
 {
   "manifest_version": "atg.code-readable-integration.v1",
   "service_name": "Agent Trust Gate",
-  "latest_mission": "P3-M132",
+  "latest_mission": "P3-M133",
   "recent_missions": [
     "P3-M122",
     "P3-M123",
@@ -13,13 +13,15 @@
     "P3-M129",
     "P3-M130",
     "P3-M131",
-    "P3-M132"
+    "P3-M132",
+    "P3-M133"
   ],
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
   "project_status": "local_demo_only",
   "discovery_status": "readable_now_callable_later",
   "purpose": "pre-action and pre-settlement trust enforcement for agent-led actions and payments",
   "core_rule": "No mandate. No evidence. No verified intent. No signed gate pass. No settlement.",
+  "gatepass_core_rule": "No mandate. No evidence. No verified intent. No signed GatePass. No settlement.",
   "strategy": "Readable now. Callable later. Autonomous execution never without gate control.",
   "identity_trust_principle": "Claimed agent identity is not trust. Behaviour, mandate, evidence, verified intent, and session context must decide access.",
   "public_contact_email": "gpmiddleton71@gmail.com",
@@ -56,6 +58,7 @@
   "live_payments": false,
   "live_settlement": false,
   "production_signing": false,
+  "production_grade_crypto": false,
   "production_certification": false,
   "real_tool_execution": false,
   "production_key_management": false,
@@ -75,7 +78,8 @@
     "prove_yourself_protocol_model",
     "agent_proof_contract_model",
     "agent_proof_integration_adapter_model",
-    "enforceable_tool_gate_demo"
+    "enforceable_tool_gate_demo",
+    "gatepass_core_model"
   ],
   "safe_local_commands": [
     "npm test",
@@ -91,6 +95,7 @@
     "npm run demo:agent-proof-contract",
     "npm run demo:agent-proof-integration",
     "npm run demo:enforceable-tool-gate",
+    "npm run demo:gatepass-core",
     "npm run proof:money-gate"
   ],
   "discovery_docs": [
@@ -139,6 +144,11 @@
     "docs/mock-sensitive-tools-catalog.md",
     "docs/tool-call-enforcement-scenarios.md",
     "docs/what-the-enforceable-tool-gate-demo-proves.md",
+    "docs/minimal-gatepass-core-specification.md",
+    "docs/gatepass-field-guide.md",
+    "docs/gatepass-minimal-profile.md",
+    "docs/gatepass-proofpackage-consolidation.md",
+    "docs/why-minimal-gatepass-matters.md",
     "docs/ai-agent-traffic-and-session-intent-gate.md",
     "docs/spoofed-agent-risk-model.md",
     "docs/session-specific-access-framework.md"
@@ -150,7 +160,8 @@
     "schemas/agent-proof-package.schema.json",
     "schemas/agent-proof-verification-request.schema.json",
     "schemas/agent-proof-verification-result.schema.json",
-    "schemas/gate-pass-challenge.schema.json"
+    "schemas/gate-pass-challenge.schema.json",
+    "schemas/gatepass-core.schema.json"
   ],
   "agent_card": "agent-trust-gate.agent-card.json",
   "possible_outputs": [
@@ -176,7 +187,12 @@
     "tool_gate_escalated",
     "tool_gate_requires_evidence",
     "tool_gate_requires_human_review",
-    "tool_gate_requires_signed_proof"
+    "tool_gate_requires_signed_proof",
+    "gatepass_core_allowed_locally",
+    "gatepass_core_blocked",
+    "gatepass_core_requires_evidence",
+    "gatepass_core_requires_human_review",
+    "gatepass_core_requires_signed_proof"
   ],
   "non_capabilities": [
     "live API",
@@ -206,6 +222,7 @@
     "ad pixels",
     "real settlement execution",
     "production signing",
+    "production-grade cryptography",
     "production certification",
     "production key management",
     "cloud/network calls",

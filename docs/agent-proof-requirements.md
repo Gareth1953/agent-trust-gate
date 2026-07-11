@@ -157,3 +157,6 @@ verification examples:
 The structured contract keeps the same rule: claimed identity alone is not
 sufficient proof, no proof means no permission, and settlement-sensitive local
 flows require signed proof before any allow decision.
+## P3-M133 Minimal GatePass Core Specification Pack
+
+P3-M133 narrows Agent Trust Gate(TM) around GatePass as the compact local proof primitive. ProofPackage carries supporting material, VerificationContract checks it, Tool Gate enforces it before sensitive actions, and Pre-Settlement Gate blocks settlement-sensitive flows without valid proof. This is local specification, schema, model, example, and test work only; it adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.

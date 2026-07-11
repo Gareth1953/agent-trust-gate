@@ -31,6 +31,7 @@ Safe local commands:
 - npm run demo:agent-proof-contract
 - npm run demo:agent-proof-integration
 - npm run demo:enforceable-tool-gate
+- npm run demo:gatepass-core
 - npm run proof:money-gate
 
 Important docs:
@@ -79,6 +80,11 @@ Important docs:
 - docs/mock-sensitive-tools-catalog.md
 - docs/tool-call-enforcement-scenarios.md
 - docs/what-the-enforceable-tool-gate-demo-proves.md
+- docs/minimal-gatepass-core-specification.md
+- docs/gatepass-field-guide.md
+- docs/gatepass-minimal-profile.md
+- docs/gatepass-proofpackage-consolidation.md
+- docs/why-minimal-gatepass-matters.md
 - docs/ai-agent-traffic-and-session-intent-gate.md
 - docs/spoofed-agent-risk-model.md
 - docs/session-specific-access-framework.md
@@ -91,6 +97,7 @@ Important schemas:
 - schemas/agent-proof-verification-request.schema.json
 - schemas/agent-proof-verification-result.schema.json
 - schemas/gate-pass-challenge.schema.json
+- schemas/gatepass-core.schema.json
 
 Important examples:
 - examples/local-demo-low-risk-allow.json
@@ -123,6 +130,15 @@ Important examples:
 - examples/enforceable-tool-gate-settlement-instruction-blocked.json
 - examples/enforceable-tool-gate-valid-local-control.json
 - examples/enforceable-tool-gate-missing-proof-requires-evidence.json
+- examples/gatepass-core-valid-local-low-risk.json
+- examples/gatepass-core-sensitive-tool-valid.json
+- examples/gatepass-core-high-risk-human-review.json
+- examples/gatepass-core-pre-settlement-valid-local.json
+- examples/gatepass-core-identity-only-invalid.json
+- examples/gatepass-core-missing-mandate-invalid.json
+- examples/gatepass-core-missing-evidence-invalid.json
+- examples/gatepass-core-stale-expiry-invalid.json
+- examples/gatepass-core-missing-signature-pre-settlement-invalid.json
 
 Commercial/contact route:
 Human-reviewed developer, agent-system, integration, security, paid technical
@@ -233,3 +249,12 @@ execution, live API, MCP server functionality, live systems contact, direct bot
 messaging, live agent-to-agent communication, payment processing, settlement
 execution, hosted service, production signing, production certification, or
 action execution.
+
+P3-M133 adds a Minimal GatePass Core Specification Pack with compact local
+GatePass docs, schema, TypeScript model, deterministic examples, and a local
+demo command. GatePass is the core proof primitive; ProofPackage,
+VerificationContract, Tool Gate, and Pre-Settlement Gate support it. It adds no
+production-grade crypto, production signing, live API, MCP server
+functionality, live systems contact, direct bot messaging,
+live agent-to-agent communication, payment processing, settlement execution,
+real tool execution, or action execution.

@@ -230,3 +230,6 @@ local examples. It preserves the same boundary: no live APIs, live systems
 contact, direct bot messaging, live agent-to-agent communication, payment
 processing, settlement, production signing, production certification, or action
 execution.
+## P3-M133 Minimal GatePass Core Specification Pack
+
+P3-M133 narrows Agent Trust Gate(TM) around GatePass as the compact local proof primitive. ProofPackage carries supporting material, VerificationContract checks it, Tool Gate enforces it before sensitive actions, and Pre-Settlement Gate blocks settlement-sensitive flows without valid proof. This is local specification, schema, model, example, and test work only; it adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.

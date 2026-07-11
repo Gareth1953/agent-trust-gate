@@ -1,0 +1,209 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Gareth1953/agent-trust-gate/schemas/gatepass-core.schema.json",
+  "title": "Agent Trust Gate Minimal GatePass Core",
+  "description": "Local-only minimal GatePass core model. This schema does not claim production signing, production-grade cryptography, live payment authority, settlement authority, or action execution.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "iss",
+    "sub",
+    "aud",
+    "jti",
+    "iat",
+    "exp",
+    "nonce",
+    "mandate",
+    "scope",
+    "evidence",
+    "intent",
+    "risk",
+    "approval",
+    "signature",
+    "localDemoOnly",
+    "localOnly",
+    "liveSystemsContact",
+    "directBotMessaging",
+    "autonomousOutreach",
+    "outreachAutomation",
+    "liveAgentToAgentCommunication",
+    "externalAgentContact",
+    "liveApi",
+    "mcpServer",
+    "cloudNetworkCall",
+    "secretsOrCredentials",
+    "paymentAuthorisation",
+    "settlementAuthorisation",
+    "walletBankingLogic",
+    "productionSigning",
+    "productionGradeCrypto",
+    "productionCertification",
+    "actionExecution"
+  ],
+  "properties": {
+    "version": {
+      "const": "atg.gatepass-core.local.v1",
+      "description": "Local GatePass core version."
+    },
+    "iss": {
+      "type": "string",
+      "description": "Issuer, owner, or authority reference."
+    },
+    "sub": {
+      "type": "string",
+      "description": "Agent or workflow subject. Claimed identity alone is not proof."
+    },
+    "aud": {
+      "type": "string",
+      "description": "Intended verifier or local system."
+    },
+    "jti": {
+      "type": "string",
+      "description": "Unique GatePass identifier for traceability and replay review."
+    },
+    "iat": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Issued-at timestamp."
+    },
+    "exp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Expiry timestamp."
+    },
+    "nonce": {
+      "type": "string",
+      "description": "Replay protection value."
+    },
+    "mandate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "allowedAction", "issuerReference", "status"],
+      "properties": {
+        "id": { "type": "string" },
+        "allowedAction": { "type": "string" },
+        "issuerReference": { "type": "string" },
+        "status": { "enum": ["present", "missing", "stale"] }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["permittedActions", "constraints", "settlementSensitive"],
+      "properties": {
+        "permittedActions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "constraints": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "settlementSensitive": { "type": "boolean" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["refs", "status"],
+      "properties": {
+        "refs": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "status": { "enum": ["present", "missing", "stale"] }
+      }
+    },
+    "intent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "context"],
+      "properties": {
+        "status": { "enum": ["verified", "unverified", "missing", "conflicting"] },
+        "context": { "type": "string" }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tier", "sensitiveToolCall", "highRiskAction"],
+      "properties": {
+        "tier": { "enum": ["low", "medium", "high", "critical"] },
+        "sensitiveToolCall": { "type": "boolean" },
+        "highRiskAction": { "type": "boolean" }
+      }
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "status", "approverReference"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "status": { "enum": ["approved", "not_required", "required_missing", "rejected"] },
+        "approverReference": {
+          "type": ["string", "null"],
+          "description": "Local human approval reference when required."
+        }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "proofReference", "alg", "productionSigning"],
+      "properties": {
+        "status": { "enum": ["present", "missing", "tampered", "malformed"] },
+        "proofReference": {
+          "type": ["string", "null"],
+          "description": "Local signed proof reference or placeholder value."
+        },
+        "alg": {
+          "const": "local-demo-placeholder",
+          "description": "Local placeholder only; not production signing."
+        },
+        "productionSigning": { "const": false }
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "preSettlement": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "settlementSensitive",
+            "requiresSignedGatePass",
+            "blockerReference",
+            "noSignedGatePassNoSettlement"
+          ],
+          "properties": {
+            "settlementSensitive": { "type": "boolean" },
+            "requiresSignedGatePass": { "type": "boolean" },
+            "blockerReference": { "type": "string" },
+            "noSignedGatePassNoSettlement": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "localDemoOnly": { "const": true },
+    "localOnly": { "const": true },
+    "liveSystemsContact": { "const": false },
+    "directBotMessaging": { "const": false },
+    "autonomousOutreach": { "const": false },
+    "outreachAutomation": { "const": false },
+    "liveAgentToAgentCommunication": { "const": false },
+    "externalAgentContact": { "const": false },
+    "liveApi": { "const": false },
+    "mcpServer": { "const": false },
+    "cloudNetworkCall": { "const": false },
+    "secretsOrCredentials": { "const": false },
+    "paymentAuthorisation": { "const": false },
+    "settlementAuthorisation": { "const": false },
+    "walletBankingLogic": { "const": false },
+    "productionSigning": { "const": false },
+    "productionGradeCrypto": { "const": false },
+    "productionCertification": { "const": false },
+    "actionExecution": { "const": false }
+  }
+}

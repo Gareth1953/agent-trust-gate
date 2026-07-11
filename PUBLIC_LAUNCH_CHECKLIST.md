@@ -308,6 +308,7 @@ human-approved steps.
 - [ ] Confirm public repo description and topics match the discovery polish guidance.
 - [ ] Confirm no tag, package publish, or deployment has been performed unless separately approved.
 - [ ] Confirm no live API, payment, settlement, cloud/network call, external-agent contact, AUC merge, Agent Contact System integration, production signing, or action execution has been added.
+- [ ] Confirm P3-M133 Minimal GatePass Core remains local specification/schema/model/example work only and does not add production-grade crypto, production signing, live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, payment processing, settlement execution, real tool execution, or action execution.
 
 ## Required safety boundary
 
