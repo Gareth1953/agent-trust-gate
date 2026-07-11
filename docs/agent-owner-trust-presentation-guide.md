@@ -1,5 +1,12 @@
 # Agent Owner Trust Presentation Guide
 
+P3-M132 update: the Enforceable Local Tool-Calling Gate Demo lets agent owners
+show a local mock tool-call gate without claiming production readiness or
+executing real tools. It adds no live APIs, MCP server functionality, live
+systems contact, direct bot messaging, live agent-to-agent communication,
+payment processing, settlement execution, production signing, or action
+execution.
+
 P3-M131 update: the Agent Proof Contract Integration Readiness Pack gives agent
 owners and developers local adapter examples for presenting proof before
 workflow, tool-call, approval, governance, session/access, and pre-settlement

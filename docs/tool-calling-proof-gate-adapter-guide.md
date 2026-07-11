@@ -1,5 +1,12 @@
 # Tool-Calling Proof Gate Adapter Guide
 
+P3-M132 update: the Enforceable Local Tool-Calling Gate Demo implements this
+local adapter concept as a runnable mock tool-call gate with receipt-style
+results. It adds no real tool execution, live APIs, MCP server functionality,
+live systems contact, direct bot messaging, live agent-to-agent communication,
+payment processing, settlement execution, production signing, or action
+execution.
+
 This guide explains how a local tool-calling layer could call the P3-M130 proof
 contract before allowing sensitive tool calls.
 

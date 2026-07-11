@@ -1,5 +1,12 @@
 # Local Agent Workflow Integration Guide
 
+P3-M132 update: the Enforceable Local Tool-Calling Gate Demo provides a
+runnable local mock-agent workflow where proposed sensitive tool calls are
+intercepted before action. It adds no real tool execution, live APIs, MCP server
+functionality, live systems contact, direct bot messaging, live agent-to-agent
+communication, payment processing, settlement execution, production signing, or
+action execution.
+
 This guide shows a safe local pattern for placing the P3-M130 proof contract
 inside a developer-owned agent workflow.
 

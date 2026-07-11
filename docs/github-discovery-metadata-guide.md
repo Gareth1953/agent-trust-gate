@@ -1,5 +1,11 @@
 # GitHub Discovery Metadata Guide
 
+P3-M132 update: GitHub metadata guidance may mention a runnable local
+tool-calling gate demo, provided wording stays clear that no real tool
+execution, live APIs, MCP server functionality, live systems contact, direct
+bot messaging, live agent-to-agent communication, payment processing,
+settlement execution, production signing, or action execution is added.
+
 P3-M131 update: GitHub metadata and README positioning may mention local
 proof-contract integration readiness for workflow, tool-call, approval,
 governance, session/access, and pre-settlement adapter review. This is manual

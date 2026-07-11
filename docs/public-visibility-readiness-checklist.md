@@ -1,5 +1,11 @@
 # Public Visibility Readiness Checklist
 
+P3-M132 update: visibility checks should include the enforceable local
+tool-calling gate demo, its README links, and its no-real-tool-execution
+boundary. It adds no live APIs, MCP server functionality, live systems contact,
+direct bot messaging, live agent-to-agent communication, payment processing,
+settlement execution, production signing, or action execution.
+
 P3-M131 update: public visibility should now point technical reviewers to the
 Agent Proof Contract Integration Readiness Pack for local adapter placement
 guidance. This adds no live APIs, MCP server functionality, live systems

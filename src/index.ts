@@ -472,3 +472,7 @@ export { AGENT_PROOF_INTEGRATION_ADAPTER_VERSION,AGENT_PROOF_INTEGRATION_CORE_LI
 export type { AgentProofIntegrationAdapterPack,AgentProofIntegrationAdapterPackSummary,AgentProofIntegrationAdapterType,AgentProofIntegrationScenarioId,AgentProofIntegrationToolCallType,LocalAgentProofIntegrationInput,LocalAgentProofIntegrationResult } from "./agent-proof-integration-adapter.js";
 export { runAgentProofIntegrationAdapterCli } from "./agent-proof-integration-adapter-cli.js";
 export type { AgentProofIntegrationAdapterCliErrorCode,AgentProofIntegrationAdapterCliIo } from "./agent-proof-integration-adapter-cli.js";
+export { ENFORCEABLE_TOOL_GATE_CORE_LINE,ENFORCEABLE_TOOL_GATE_EXAMPLE_FILES,ENFORCEABLE_TOOL_GATE_POSITIONING,ENFORCEABLE_TOOL_GATE_PUBLIC_CONTACT,ENFORCEABLE_TOOL_GATE_STRATEGIC_PRINCIPLE,ENFORCEABLE_TOOL_GATE_VERSION,createEnforceableToolGateScenarioInputs,evaluateEnforceableToolCall,gateMockToolCall,runEnforceableToolGateDemo,runEnforceableToolGateScenario,summariseEnforceableToolGateDemo } from "./enforceable-tool-gate.js";
+export type { EnforceableToolGateDemoPack,EnforceableToolGateDemoSummary,EnforceableToolGateInput,EnforceableToolGateReceiptSummary,EnforceableToolGateResult,EnforceableToolGateScenarioId,EnforceableToolRiskTier,MockSensitiveToolCall,MockSensitiveToolName,MockToolGatePolicy } from "./enforceable-tool-gate.js";
+export { runEnforceableToolGateCli } from "./enforceable-tool-gate-cli.js";
+export type { EnforceableToolGateCliErrorCode,EnforceableToolGateCliIo } from "./enforceable-tool-gate-cli.js";

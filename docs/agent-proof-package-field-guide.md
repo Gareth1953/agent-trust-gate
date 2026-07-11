@@ -1,5 +1,12 @@
 # Agent Proof Package Field Guide
 
+P3-M132 update: the Enforceable Local Tool-Calling Gate Demo shows how proof
+fields such as mandate, evidence, verified intent, freshness, nonce, approval,
+and signed proof affect local mock tool-call outcomes. It adds no real tool
+execution, live APIs, MCP server functionality, live systems contact, direct
+bot messaging, live agent-to-agent communication, payment processing,
+settlement execution, production signing, or action execution.
+
 P3-M131 update: the Agent Proof Contract Integration Readiness Pack shows how
 these P3-M130 fields can be used in local workflow, tool-call, approval,
 governance, session/access, and pre-settlement adapters without adding live

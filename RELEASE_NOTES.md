@@ -1,5 +1,48 @@
 # Release Notes
 
+## P3-M132: Enforceable Local Tool-Calling Gate Demo
+
+P3-M132 adds an enforceable local tool-calling gate demo for Agent Trust Gate.
+
+Added assets:
+
+- `docs/enforceable-local-tool-calling-gate-demo.md`
+- `docs/local-tool-call-gate-wrapper-guide.md`
+- `docs/mock-sensitive-tools-catalog.md`
+- `docs/tool-call-enforcement-scenarios.md`
+- `docs/what-the-enforceable-tool-gate-demo-proves.md`
+- `src/enforceable-tool-gate.ts`
+- `src/enforceable-tool-gate-cli.ts`
+- `examples/enforceable-tool-gate-*.json`
+- `npm run demo:enforceable-tool-gate`
+- focused enforceable tool gate tests
+
+The pack demonstrates a mock agent proposing sensitive local tool calls, the
+gate intercepting those calls, proof and policy checks running before action,
+and local receipt-style results explaining allow, block, escalate,
+require-evidence, require-human-review, and require-signed-proof outcomes.
+
+This is local runnable enforcement modelling only. It does not claim production
+integration, production readiness, universal agent standard status, guaranteed
+agent adoption, guaranteed buyer demand, guaranteed paid pilot conversion,
+identity/authentication certification, legal/compliance/security
+certification, live payment/settlement readiness, automatic paid-pilot
+acceptance, automatic access after payment, or any legal, financial,
+compliance, procurement, settlement, identity, authentication, or security
+guarantee.
+
+It does not add real tool execution, live APIs, MCP server functionality, live
+systems contact, direct bot messaging, live agent-to-agent communication,
+external-agent contact, autonomous contact, outreach automation, email
+automation, scraping, contact harvesting, forms, tracking, analytics,
+telemetry, hosted calls, paid ads, ad pixels, cloud/network calls, secrets,
+credentials, live payment processing, PayPal API integration, Stripe
+integration, checkout, webhooks, wallet/banking logic, real settlement
+execution, production signing, production key management, AUC integration,
+Agent Contact System integration, or action execution.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M131: Agent Proof Contract Integration Readiness Pack
 
 P3-M131 adds an Agent Proof Contract Integration Readiness Pack for Agent Trust

@@ -1,5 +1,11 @@
 # Paid Enquiry Positioning
 
+P3-M132 update: paid technical review positioning may include walkthrough of
+the enforceable local tool-calling gate demo as runnable local interception. It
+adds no real tool execution, live APIs, MCP server functionality, live systems
+contact, direct bot messaging, live agent-to-agent communication, payment
+processing, settlement execution, production signing, or action execution.
+
 P3-M131 update: paid technical review or local pilot feasibility discussions
 may now inspect the Agent Proof Contract Integration Readiness Pack as local
 adapter guidance for workflow, tool-call, approval, governance, session/access,

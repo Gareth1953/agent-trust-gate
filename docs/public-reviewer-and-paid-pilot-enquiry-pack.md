@@ -1,5 +1,12 @@
 # Public Reviewer And Paid Pilot Enquiry Pack
 
+P3-M132 update: reviewers may inspect the enforceable local tool-calling gate
+demo to see runnable local mock-agent interception before sensitive tool calls.
+It adds no real tool execution, live APIs, MCP server functionality, live
+systems contact, direct bot messaging, live agent-to-agent communication,
+payment processing, settlement execution, production signing, or action
+execution.
+
 P3-M131 update: reviewers may inspect the Agent Proof Contract Integration
 Readiness Pack to see how the proof contract fits before local workflow,
 tool-call, approval, governance, session/access, and pre-settlement

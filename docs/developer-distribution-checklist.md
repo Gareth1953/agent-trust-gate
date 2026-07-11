@@ -1,5 +1,12 @@
 # Developer Distribution Checklist
 
+P3-M132 update: manual developer distribution can include the enforceable local
+tool-calling gate demo as a runnable local proof point, while preserving the
+no-real-tool-execution boundary. It adds no live APIs, MCP server functionality,
+live systems contact, direct bot messaging, live agent-to-agent communication,
+payment processing, settlement execution, production signing, or action
+execution.
+
 P3-M131 update: manual developer distribution can include the Agent Proof
 Contract Integration Readiness Pack as a local adapter review asset for
 workflow, tool-call, approval, governance, session/access, and pre-settlement

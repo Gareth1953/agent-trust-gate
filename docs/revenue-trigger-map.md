@@ -1,5 +1,11 @@
 # Revenue Trigger Map
 
+P3-M132 update: triggers such as sensitive tool calls not being gated can now
+map to the enforceable local tool-calling gate demo. It adds no real tool
+execution, live APIs, MCP server functionality, live systems contact, direct
+bot messaging, live agent-to-agent communication, payment processing,
+settlement execution, production signing, or action execution.
+
 P3-M131 update: revenue triggers may reference local proof-contract integration
 readiness where a buyer needs to review workflow, tool-call, approval,
 governance, session/access, or pre-settlement checkpoints. It adds no live

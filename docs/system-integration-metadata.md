@@ -1,5 +1,12 @@
 # System Integration Metadata
 
+P3-M132 update: system integration metadata now points reviewers to the
+enforceable local tool-calling gate demo for runnable mock-agent interception
+before sensitive tool calls. It adds no real tool execution, live APIs, MCP
+server functionality, live systems contact, direct bot messaging, live
+agent-to-agent communication, payment processing, settlement execution,
+production signing, or action execution.
+
 P3-M131 update: system integration metadata now points reviewers to local
 proof-contract integration readiness guidance for workflow, tool-call, approval,
 governance, session/access, and pre-settlement checkpoints. It adds no live

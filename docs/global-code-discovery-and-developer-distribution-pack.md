@@ -1,5 +1,11 @@
 # Global Code Discovery And Developer Distribution Pack
 
+P3-M132 update: global code-first discovery can now include the enforceable
+local tool-calling gate demo as runnable local mock-agent interception. It adds
+no real tool execution, live APIs, MCP server functionality, live systems
+contact, direct bot messaging, live agent-to-agent communication, payment
+processing, settlement execution, production signing, or action execution.
+
 P3-M131 update: global code-first discovery can now direct developers to the
 Agent Proof Contract Integration Readiness Pack for local workflow, tool-call,
 approval, governance, session/access, and pre-settlement adapter examples. It

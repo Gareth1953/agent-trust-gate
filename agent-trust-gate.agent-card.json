@@ -1,7 +1,7 @@
 {
   "schema": "atg.agent-card.local-discovery.v1",
   "name": "Agent Trust Gate",
-  "latest_mission": "P3-M131",
+  "latest_mission": "P3-M132",
   "recent_missions": [
     "P3-M122",
     "P3-M123",
@@ -12,7 +12,8 @@
     "P3-M128",
     "P3-M129",
     "P3-M130",
-    "P3-M131"
+    "P3-M131",
+    "P3-M132"
   ],
   "description": "Local-first pre-action and pre-settlement trust gate for agent-led workflows.",
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
@@ -38,7 +39,8 @@
     "controlled public visibility and paid enquiry positioning guidance",
     "local prove-yourself protocol and agent proof requirement guidance",
     "local agent proof package schema and verification contract guidance",
-    "local agent proof contract integration readiness guidance and adapter examples"
+    "local agent proof contract integration readiness guidance and adapter examples",
+    "enforceable local tool-calling gate demo for mock sensitive tools"
   ],
   "non_capabilities": [
     "live API",
@@ -47,6 +49,7 @@
     "live agent-to-agent communication",
     "live systems contact",
     "direct bot messaging",
+    "real tool execution",
     "agent negotiation",
     "autonomous contact",
     "external-agent contact",
@@ -87,6 +90,7 @@
     "npm run demo:prove-yourself",
     "npm run demo:agent-proof-contract",
     "npm run demo:agent-proof-integration",
+    "npm run demo:enforceable-tool-gate",
     "npm run proof:money-gate"
   ],
   "docs": [
@@ -131,6 +135,11 @@
     "docs/tool-calling-proof-gate-adapter-guide.md",
     "docs/pre-settlement-proof-contract-integration.md",
     "docs/integration-readiness-checklist.md",
+    "docs/enforceable-local-tool-calling-gate-demo.md",
+    "docs/local-tool-call-gate-wrapper-guide.md",
+    "docs/mock-sensitive-tools-catalog.md",
+    "docs/tool-call-enforcement-scenarios.md",
+    "docs/what-the-enforceable-tool-gate-demo-proves.md",
     "docs/ai-agent-traffic-and-session-intent-gate.md",
     "docs/spoofed-agent-risk-model.md",
     "docs/session-specific-access-framework.md"
@@ -165,11 +174,20 @@
     "examples/agent-proof-integration-missing-proof-requires-evidence.json",
     "examples/agent-proof-integration-pre-settlement-requires-signed-proof.json",
     "examples/agent-proof-integration-high-risk-human-review.json",
-    "examples/agent-proof-integration-replayed-proof-blocked.json"
+    "examples/agent-proof-integration-replayed-proof-blocked.json",
+    "examples/enforceable-tool-gate-public-post-allowed-local.json",
+    "examples/enforceable-tool-gate-customer-message-escalated.json",
+    "examples/enforceable-tool-gate-data-export-blocked.json",
+    "examples/enforceable-tool-gate-prepare-payment-requires-signed-proof.json",
+    "examples/enforceable-tool-gate-procurement-stale-proof-blocked.json",
+    "examples/enforceable-tool-gate-high-risk-human-review.json",
+    "examples/enforceable-tool-gate-settlement-instruction-blocked.json",
+    "examples/enforceable-tool-gate-valid-local-control.json",
+    "examples/enforceable-tool-gate-missing-proof-requires-evidence.json"
   ],
   "contact": {
     "email": "gpmiddleton71@gmail.com",
-    "purpose": "Human-reviewed developer, agent-system, integration, security, buyer use case, revenue trigger, global code discovery, controlled public visibility, prove-yourself protocol, agent proof package contract, proof contract integration readiness, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
+    "purpose": "Human-reviewed developer, agent-system, integration, security, buyer use case, revenue trigger, global code discovery, controlled public visibility, prove-yourself protocol, agent proof package contract, proof contract integration readiness, enforceable local tool gate demo, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
     "boundary": "Contact metadata only. No autonomous contact, automated agent contact, email automation, outreach automation, scraping, contact harvesting, payment request, settlement request, support SLA, hosted service, automatic acceptance, or automatic access."
   },
   "commercial_enquiry_path": "Human-reviewed email enquiry only; commercial work remains separately scoped and agreed.",
@@ -203,6 +221,7 @@
     "telemetry": false,
     "production_signing": false,
     "production_certification": false,
+    "real_tool_execution": false,
     "production_key_management": false,
     "cloud_network_calls": false,
     "action_execution": false

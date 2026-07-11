@@ -1,5 +1,11 @@
 # Agent-Readable Distribution Note
 
+P3-M132 update: agent-readable distribution now includes the enforceable local
+tool-calling gate demo, its safe command, and its no-real-tool-execution
+boundary. It adds no live APIs, MCP server functionality, live systems contact,
+direct bot messaging, live agent-to-agent communication, payment processing,
+settlement execution, production signing, or action execution.
+
 P3-M131 update: agent-readable distribution now includes local proof-contract
 integration readiness metadata and docs for workflow, tool-call, approval,
 governance, session/access, and pre-settlement adapter review. It adds no live

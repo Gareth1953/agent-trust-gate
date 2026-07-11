@@ -1,5 +1,12 @@
 # Controlled Public Visibility And Paid Enquiry Positioning
 
+P3-M132 update: public positioning can now mention the enforceable local
+tool-calling gate demo as runnable local mock-agent interception, while making
+clear it adds no real tool execution, live APIs, MCP server functionality, live
+systems contact, direct bot messaging, live agent-to-agent communication,
+payment processing, settlement execution, production signing, or action
+execution.
+
 P3-M131 update: the Agent Proof Contract Integration Readiness Pack adds local
 adapter guidance for workflow, tool-call, approval, governance, session/access,
 and pre-settlement checkpoints without adding live APIs, MCP server

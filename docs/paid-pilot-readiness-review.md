@@ -1,5 +1,12 @@
 # Paid Pilot Readiness Review
 
+P3-M132 update: paid technical review readiness is strengthened by a runnable
+local mock tool-calling gate demo, while production readiness remains not
+claimed. The demo adds no real tool execution, live APIs, MCP server
+functionality, live systems contact, direct bot messaging, live agent-to-agent
+communication, payment processing, settlement execution, production signing, or
+action execution.
+
 P3-M131 update: paid technical review and local pilot discussion readiness can
 now reference the Agent Proof Contract Integration Readiness Pack as local
 adapter guidance for workflow, tool-call, approval, governance, session/access,

@@ -1,5 +1,11 @@
 # Buyer Use Cases And Revenue Triggers
 
+P3-M132 update: buyer triggers involving sensitive tools can now be reviewed
+against a runnable local mock tool-calling gate demo. It adds no real tool
+execution, live APIs, MCP server functionality, live systems contact, direct
+bot messaging, live agent-to-agent communication, payment processing,
+settlement execution, production signing, or action execution.
+
 P3-M131 update: buyer and reviewer triggers can now be mapped to local
 proof-contract adapter review for workflow, tool-call, approval, governance,
 session/access, and pre-settlement checkpoints. It adds no live APIs, MCP server

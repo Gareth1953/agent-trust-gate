@@ -1,5 +1,12 @@
 # Agent Proof Contract Integration Readiness
 
+P3-M132 update: the Enforceable Local Tool-Calling Gate Demo turns this
+integration-readiness pattern into a runnable local mock-agent tool-call gate.
+It intercepts mock sensitive tool calls, emits receipt-style results, and adds
+no real tool execution, live APIs, MCP server functionality, live systems
+contact, direct bot messaging, live agent-to-agent communication, payment
+processing, settlement execution, production signing, or action execution.
+
 P3-M131 explains how the P3-M130 agent proof package, verification request,
 verification result, and gate-pass challenge shapes can fit into local
 developer workflows.

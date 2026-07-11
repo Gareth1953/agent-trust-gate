@@ -1,5 +1,12 @@
 # Pre-Settlement Proof Contract Integration
 
+P3-M132 update: the Enforceable Local Tool-Calling Gate Demo includes
+settlement-sensitive mock tool calls that block or require signed proof before
+any local allow result. It adds no real settlement execution, real tool
+execution, live APIs, MCP server functionality, live systems contact, direct
+bot messaging, live agent-to-agent communication, payment processing,
+production signing, or action execution.
+
 This guide explains how the local proof contract can sit before
 settlement-sensitive workflows.
 

@@ -29,6 +29,7 @@ For a fast public review, use this path:
 13. Inspect agent trust proof requirements: [agent trust invitation and prove-yourself protocol](docs/agent-trust-invitation-and-prove-yourself-protocol.md).
 14. Inspect machine-readable proof contracts: [agent proof package schema and verification contract](docs/agent-proof-package-schema-and-verification-contract.md).
 15. Inspect proof-contract integration readiness: [agent proof contract integration readiness](docs/agent-proof-contract-integration-readiness.md).
+16. Run the enforceable local tool-calling gate demo: [enforceable local tool-calling gate demo](docs/enforceable-local-tool-calling-gate-demo.md).
 
 P3-M125 adds the [public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md)
 to make this path easier to assess without adding forms, tracking, payment
@@ -57,6 +58,11 @@ adapter code, deterministic examples, and a local demo without adding live
 APIs, MCP server functionality, live systems contact, direct bot messaging,
 live agent-to-agent communication, payment processing, settlement execution,
 production signing, or action execution.
+P3-M132 adds an enforceable local tool-calling gate demo with a mock agent,
+mock sensitive tools, local interception, receipt-style results, and no real
+tool execution, live APIs, MCP server functionality, live systems contact,
+direct bot messaging, live agent-to-agent communication, payment processing,
+settlement execution, production signing, or action execution.
 
 ## What to inspect first
 
@@ -77,6 +83,10 @@ production signing, or action execution.
   package, verification request/result, and gate-pass challenge fit before
   local workflow, tool-call, approval, governance, session/access, and
   pre-settlement checkpoints.
+- The enforceable local tool-calling gate demo to see a mock agent propose
+  sensitive tool calls and the local gate intercept allow/block/escalate/
+  require-evidence/require-human-review/require-signed-proof outcomes before
+  any real tool can run.
 
 ## Commercial enquiry path
 
@@ -172,6 +182,7 @@ Install dependencies first, then use the existing project scripts:
     npm run demo:prove-yourself
     npm run demo:agent-proof-contract
     npm run demo:agent-proof-integration
+    npm run demo:enforceable-tool-gate
     npm run cli -- demo quickstart
 
 Receipt verification and settlement controls can be inspected with supported
@@ -334,6 +345,40 @@ require-human-review/require-signed-proof outcomes while keeping tool calls,
 settlement, payment, live systems contact, direct bot messaging, live
 agent-to-agent communication, production certification, and action execution
 disabled.
+
+## Enforceable local tool-calling gate demo
+
+P3-M132 shows a runnable local mock agent workflow where proposed sensitive
+tool calls are intercepted by Agent Trust Gate before any action is allowed.
+
+Core positioning:
+
+Do not trust the agent. Trust the gate pass.
+
+No proof. No permission.
+
+No mandate. No action.
+
+No signed gate pass. No settlement.
+
+- [Enforceable local tool-calling gate demo](docs/enforceable-local-tool-calling-gate-demo.md)
+- [Local tool-call gate wrapper guide](docs/local-tool-call-gate-wrapper-guide.md)
+- [Mock sensitive tools catalog](docs/mock-sensitive-tools-catalog.md)
+- [Tool-call enforcement scenarios](docs/tool-call-enforcement-scenarios.md)
+- [What the enforceable tool gate demo proves](docs/what-the-enforceable-tool-gate-demo-proves.md)
+
+Run the deterministic local enforcement examples:
+
+```text
+npm run demo:enforceable-tool-gate
+npm run demo:enforceable-tool-gate -- --summary-only
+```
+
+The demo covers mock public posts, customer messages, data export, payment
+preparation, procurement, access/session escalation, settlement instruction,
+and local control cases. It emits local receipt-style results while keeping
+`realToolExecuted`, `wouldExecute`, `mockToolInvoked`, and `actionExecution`
+false.
 
 ## Public contact
 
@@ -755,6 +800,11 @@ pre-settlement checkpoints without adding live APIs, MCP server functionality,
 live systems contact, direct bot messaging, live agent-to-agent communication,
 payment processing, settlement execution, production signing, or action
 execution.
+P3-M132 adds an enforceable local tool-calling gate demo with a mock agent,
+mock sensitive tools, local interception, receipt-style results, and no real
+tool execution, live APIs, MCP server functionality, live systems contact,
+direct bot messaging, live agent-to-agent communication, payment processing,
+settlement execution, production signing, or action execution.
 
 Recent proof and readiness milestones:
 
@@ -795,6 +845,7 @@ Recent proof and readiness milestones:
 - P3-M129: agent trust invitation and prove-yourself protocol pack
 - P3-M130: agent proof package schema and verification contract pack
 - P3-M131: agent proof contract integration readiness pack
+- P3-M132: enforceable local tool-calling gate demo
 
 ## Developer review path
 
@@ -815,7 +866,8 @@ Recent proof and readiness milestones:
 15. Read the agent trust invitation and prove-yourself protocol if assessing proof requirements.
 16. Read the agent proof package schema and verification contract if assessing machine-readable proof packages.
 17. Read the agent proof contract integration readiness pack if assessing local adapter placement.
-18. Confirm the current safety boundaries before drawing conclusions.
+18. Run the enforceable local tool-calling gate demo if assessing runnable local enforcement.
+19. Confirm the current safety boundaries before drawing conclusions.
 
 ## Usage
 

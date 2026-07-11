@@ -1,5 +1,12 @@
 # Integration Readiness Checklist
 
+P3-M132 update: the Enforceable Local Tool-Calling Gate Demo gives reviewers a
+runnable local check for mock tool-call interception, proof evaluation,
+receipt-style results, and no real tool execution. It adds no live APIs, MCP
+server functionality, live systems contact, direct bot messaging, live
+agent-to-agent communication, payment processing, settlement execution,
+production signing, or action execution.
+
 Use this checklist before treating an agent proof contract as ready for local
 workflow review.
 

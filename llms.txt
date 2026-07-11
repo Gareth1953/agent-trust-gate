@@ -30,6 +30,7 @@ Safe local commands:
 - npm run demo:prove-yourself
 - npm run demo:agent-proof-contract
 - npm run demo:agent-proof-integration
+- npm run demo:enforceable-tool-gate
 - npm run proof:money-gate
 
 Important docs:
@@ -73,6 +74,11 @@ Important docs:
 - docs/tool-calling-proof-gate-adapter-guide.md
 - docs/pre-settlement-proof-contract-integration.md
 - docs/integration-readiness-checklist.md
+- docs/enforceable-local-tool-calling-gate-demo.md
+- docs/local-tool-call-gate-wrapper-guide.md
+- docs/mock-sensitive-tools-catalog.md
+- docs/tool-call-enforcement-scenarios.md
+- docs/what-the-enforceable-tool-gate-demo-proves.md
 - docs/ai-agent-traffic-and-session-intent-gate.md
 - docs/spoofed-agent-risk-model.md
 - docs/session-specific-access-framework.md
@@ -108,6 +114,15 @@ Important examples:
 - examples/agent-proof-integration-pre-settlement-requires-signed-proof.json
 - examples/agent-proof-integration-high-risk-human-review.json
 - examples/agent-proof-integration-replayed-proof-blocked.json
+- examples/enforceable-tool-gate-public-post-allowed-local.json
+- examples/enforceable-tool-gate-customer-message-escalated.json
+- examples/enforceable-tool-gate-data-export-blocked.json
+- examples/enforceable-tool-gate-prepare-payment-requires-signed-proof.json
+- examples/enforceable-tool-gate-procurement-stale-proof-blocked.json
+- examples/enforceable-tool-gate-high-risk-human-review.json
+- examples/enforceable-tool-gate-settlement-instruction-blocked.json
+- examples/enforceable-tool-gate-valid-local-control.json
+- examples/enforceable-tool-gate-missing-proof-requires-evidence.json
 
 Commercial/contact route:
 Human-reviewed developer, agent-system, integration, security, paid technical
@@ -123,7 +138,7 @@ server functionality, no live agent-to-agent communication, no agent
 negotiation, no autonomous contact, no external-agent contact, no live payment
 processing, no PayPal API integration, no Stripe integration, no checkout, no
 webhooks, no wallet/banking logic, no real settlement execution, no production
-signing, no production key management, no cloud/network calls, no AUC
+signing, no production key management, no real tool execution, no cloud/network calls, no AUC
 integration, no Agent Contact System integration, no outreach automation, and
 no action execution.
 
@@ -210,3 +225,11 @@ keeps the proof contract local-only and adds no live API, MCP server
 functionality, live systems contact, direct bot messaging, live agent-to-agent
 communication, payment processing, settlement execution, hosted service,
 production signing, production certification, or action execution.
+
+P3-M132 adds an Enforceable Local Tool-Calling Gate Demo with runnable local
+mock-agent tool-call interception, proof/policy checks, receipt-style results,
+deterministic examples, and a local demo command. It adds no real tool
+execution, live API, MCP server functionality, live systems contact, direct bot
+messaging, live agent-to-agent communication, payment processing, settlement
+execution, hosted service, production signing, production certification, or
+action execution.

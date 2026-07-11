@@ -1,5 +1,12 @@
 # Public Repo Commercial Conversion Review
 
+P3-M132 update: the public conversion path can now point serious reviewers to
+the enforceable local tool-calling gate demo as runnable mock-agent
+interception. It adds no real tool execution, live APIs, MCP server
+functionality, live systems contact, direct bot messaging, live agent-to-agent
+communication, payment processing, settlement execution, production signing, or
+action execution.
+
 P3-M131 update: the conversion path can now point reviewers to the Agent Proof
 Contract Integration Readiness Pack for local workflow, tool-call, approval,
 governance, session/access, and pre-settlement adapter review. It adds no live

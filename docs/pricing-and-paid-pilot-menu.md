@@ -1,5 +1,11 @@
 # Pricing and Paid Pilot Menu
 
+P3-M132 update: any future scoped technical review discussion may include the
+enforceable local tool-calling gate demo, with no claim of real tool execution,
+live APIs, MCP server functionality, live systems contact, direct bot
+messaging, live agent-to-agent communication, payment processing, settlement
+execution, production signing, or action execution.
+
 P3-M131 update: any future discussion of technical review scope may include
 local proof-contract integration readiness review for workflow, tool-call,
 approval, governance, session/access, and pre-settlement checkpoints. It adds

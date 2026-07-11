@@ -1,5 +1,11 @@
 # Agent Trust Invitation And Prove-Yourself Protocol
 
+P3-M132 update: the Enforceable Local Tool-Calling Gate Demo turns the
+prove-yourself rule into runnable local mock tool-call interception. It adds no
+real tool execution, live APIs, MCP server functionality, live systems contact,
+direct bot messaging, live agent-to-agent communication, payment processing,
+settlement execution, production signing, or action execution.
+
 P3-M131 update: the Agent Proof Contract Integration Readiness Pack shows how
 the prove-yourself rule can be placed before local workflow, tool-call,
 approval, governance, session/access, and pre-settlement checkpoints without

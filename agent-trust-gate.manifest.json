@@ -1,7 +1,7 @@
 {
   "manifest_version": "atg.code-readable-integration.v1",
   "service_name": "Agent Trust Gate",
-  "latest_mission": "P3-M131",
+  "latest_mission": "P3-M132",
   "recent_missions": [
     "P3-M122",
     "P3-M123",
@@ -12,7 +12,8 @@
     "P3-M128",
     "P3-M129",
     "P3-M130",
-    "P3-M131"
+    "P3-M131",
+    "P3-M132"
   ],
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
   "project_status": "local_demo_only",
@@ -56,6 +57,7 @@
   "live_settlement": false,
   "production_signing": false,
   "production_certification": false,
+  "real_tool_execution": false,
   "production_key_management": false,
   "action_execution": false,
   "auc_integrated": false,
@@ -72,7 +74,8 @@
     "session_intent_gate_concept_model",
     "prove_yourself_protocol_model",
     "agent_proof_contract_model",
-    "agent_proof_integration_adapter_model"
+    "agent_proof_integration_adapter_model",
+    "enforceable_tool_gate_demo"
   ],
   "safe_local_commands": [
     "npm test",
@@ -87,6 +90,7 @@
     "npm run demo:prove-yourself",
     "npm run demo:agent-proof-contract",
     "npm run demo:agent-proof-integration",
+    "npm run demo:enforceable-tool-gate",
     "npm run proof:money-gate"
   ],
   "discovery_docs": [
@@ -130,6 +134,11 @@
     "docs/tool-calling-proof-gate-adapter-guide.md",
     "docs/pre-settlement-proof-contract-integration.md",
     "docs/integration-readiness-checklist.md",
+    "docs/enforceable-local-tool-calling-gate-demo.md",
+    "docs/local-tool-call-gate-wrapper-guide.md",
+    "docs/mock-sensitive-tools-catalog.md",
+    "docs/tool-call-enforcement-scenarios.md",
+    "docs/what-the-enforceable-tool-gate-demo-proves.md",
     "docs/ai-agent-traffic-and-session-intent-gate.md",
     "docs/spoofed-agent-risk-model.md",
     "docs/session-specific-access-framework.md"
@@ -161,7 +170,13 @@
     "agent_proof_integration_escalated",
     "agent_proof_integration_requires_evidence",
     "agent_proof_integration_requires_human_review",
-    "agent_proof_integration_requires_signed_proof"
+    "agent_proof_integration_requires_signed_proof",
+    "tool_gate_allowed_locally",
+    "tool_gate_blocked",
+    "tool_gate_escalated",
+    "tool_gate_requires_evidence",
+    "tool_gate_requires_human_review",
+    "tool_gate_requires_signed_proof"
   ],
   "non_capabilities": [
     "live API",
@@ -170,6 +185,7 @@
     "live agent-to-agent communication",
     "live systems contact",
     "direct bot messaging",
+    "real tool execution",
     "agent negotiation",
     "autonomous contact",
     "external-agent contact",
