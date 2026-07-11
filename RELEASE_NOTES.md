@@ -1,5 +1,41 @@
 # Release Notes
 
+## P3-M128: Controlled Public Visibility and Paid Enquiry Positioning
+
+P3-M128 adds controlled public visibility and paid enquiry positioning for
+Agent Trust Gate.
+
+Added assets:
+
+- `docs/controlled-public-visibility-and-paid-enquiry-positioning.md`
+- `docs/public-visibility-readiness-checklist.md`
+- `docs/paid-enquiry-positioning.md`
+- `docs/public-positioning-message-bank.md`
+- `docs/controlled-distribution-sequence.md`
+- README controlled public visibility and paid enquiry links
+
+The pack supports this careful route: developer/reviewer discovers the repo,
+runs the local proof/demo, understands what is and is not claimed, sees a
+relevant paid-review use case, and sends a human-reviewed enquiry manually.
+The current paid positioning is paid technical review / local pilot feasibility
+/ integration assessment.
+
+This is documentation, positioning, manual public-visibility planning, and paid
+enquiry clarity only. It does not claim guaranteed public visibility,
+guaranteed global discovery, guaranteed buyer demand, guaranteed paid pilot
+conversion, production readiness, live payment/settlement readiness, automatic
+paid-pilot acceptance, automatic access after payment, or any legal, financial,
+compliance, procurement, settlement, or security guarantee.
+
+It does not add outreach automation, email automation, scraping, contact
+harvesting, forms, tracking, analytics, telemetry, paid ads, ad pixels, hosted
+services, live APIs, MCP server functionality, live agent-to-agent
+communication, live payment processing, PayPal API integration, Stripe
+integration, checkout, webhooks, wallet/banking logic, real settlement
+execution, production signing, external-agent contact, or action execution.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M127: Global Code Discovery and Developer Distribution Pack
 
 P3-M127 adds global code discovery and developer distribution guidance for

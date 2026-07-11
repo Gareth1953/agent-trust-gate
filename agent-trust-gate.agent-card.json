@@ -1,13 +1,14 @@
 {
   "schema": "atg.agent-card.local-discovery.v1",
   "name": "Agent Trust Gate",
-  "latest_mission": "P3-M127",
+  "latest_mission": "P3-M128",
   "recent_missions": [
     "P3-M123",
     "P3-M124",
     "P3-M125",
     "P3-M126",
-    "P3-M127"
+    "P3-M127",
+    "P3-M128"
   ],
   "description": "Local-first pre-action and pre-settlement trust gate for agent-led workflows.",
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
@@ -29,7 +30,8 @@
     "human-approved public reviewer and paid pilot enquiry guidance",
     "public repo commercial conversion review and navigation guidance",
     "buyer use case and revenue trigger guidance",
-    "global code discovery and manual developer distribution guidance"
+    "global code discovery and manual developer distribution guidance",
+    "controlled public visibility and paid enquiry positioning guidance"
   ],
   "non_capabilities": [
     "live API",
@@ -98,6 +100,11 @@
     "docs/developer-distribution-checklist.md",
     "docs/global-developer-sharing-copy.md",
     "docs/agent-readable-distribution-note.md",
+    "docs/controlled-public-visibility-and-paid-enquiry-positioning.md",
+    "docs/public-visibility-readiness-checklist.md",
+    "docs/paid-enquiry-positioning.md",
+    "docs/public-positioning-message-bank.md",
+    "docs/controlled-distribution-sequence.md",
     "docs/ai-agent-traffic-and-session-intent-gate.md",
     "docs/spoofed-agent-risk-model.md",
     "docs/session-specific-access-framework.md"
@@ -121,7 +128,7 @@
   ],
   "contact": {
     "email": "gpmiddleton71@gmail.com",
-    "purpose": "Human-reviewed developer, agent-system, integration, security, buyer use case, revenue trigger, global code discovery, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
+    "purpose": "Human-reviewed developer, agent-system, integration, security, buyer use case, revenue trigger, global code discovery, controlled public visibility, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
     "boundary": "Contact metadata only. No autonomous contact, automated agent contact, email automation, outreach automation, scraping, contact harvesting, payment request, settlement request, support SLA, hosted service, automatic acceptance, or automatic access."
   },
   "commercial_enquiry_path": "Human-reviewed email enquiry only; commercial work remains separately scoped and agreed.",

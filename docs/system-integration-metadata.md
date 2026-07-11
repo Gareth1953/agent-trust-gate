@@ -45,9 +45,14 @@ payments, settlement, or action execution.
 21. `docs/developer-distribution-checklist.md`
 22. `docs/global-developer-sharing-copy.md`
 23. `docs/agent-readable-distribution-note.md`
-24. `docs/ai-agent-traffic-and-session-intent-gate.md`
-25. `docs/spoofed-agent-risk-model.md`
-26. `docs/session-specific-access-framework.md`
+24. `docs/controlled-public-visibility-and-paid-enquiry-positioning.md`
+25. `docs/public-visibility-readiness-checklist.md`
+26. `docs/paid-enquiry-positioning.md`
+27. `docs/public-positioning-message-bank.md`
+28. `docs/controlled-distribution-sequence.md`
+29. `docs/ai-agent-traffic-and-session-intent-gate.md`
+30. `docs/spoofed-agent-risk-model.md`
+31. `docs/session-specific-access-framework.md`
 
 ## Recommended Local Commands
 
@@ -151,6 +156,11 @@ Use:
 - `docs/developer-distribution-checklist.md`
 - `docs/global-developer-sharing-copy.md`
 - `docs/agent-readable-distribution-note.md`
+- `docs/controlled-public-visibility-and-paid-enquiry-positioning.md`
+- `docs/public-visibility-readiness-checklist.md`
+- `docs/paid-enquiry-positioning.md`
+- `docs/public-positioning-message-bank.md`
+- `docs/controlled-distribution-sequence.md`
 
 The readiness framing is cautious. Paid technical review and local pilot
 discussion may be reasonable, but production deployment readiness and live
@@ -159,7 +169,8 @@ payment/settlement readiness remain `not yet`.
 P3-M124 adds human-approved reviewer and paid pilot enquiry copy only. P3-M125
 adds public repo commercial conversion navigation clarity only. P3-M126 adds
 buyer use case and revenue trigger documentation only. P3-M127 adds global
-code discovery and manual developer distribution guidance only. They do not
+code discovery and manual developer distribution guidance only. P3-M128 adds
+controlled public visibility and paid enquiry positioning only. They do not
 add outreach automation, scraping, contact harvesting, forms, tracking,
 analytics, paid ads, ad pixels, live payment processing, settlement, automatic
 acceptance, automatic access, hosted services, or action execution.
@@ -213,12 +224,12 @@ Do not assume:
 This repository is readable by agents and systems, but it exposes no live
 agent endpoint and grants no autonomous authority.
 
-P3-M122, P3-M123, P3-M124, P3-M125, P3-M126, and P3-M127 are metadata,
-documentation, local discovery/concept guidance, human-approved communication
-copy, navigation clarity, buyer/revenue trigger guidance, and manual developer
-distribution guidance only. They do not add live APIs, MCP server
-functionality, live agent-to-agent communication, agent negotiation, autonomous
-contact,
+P3-M122, P3-M123, P3-M124, P3-M125, P3-M126, P3-M127, and P3-M128 are
+metadata, documentation, local discovery/concept guidance, human-approved
+communication copy, navigation clarity, buyer/revenue trigger guidance, manual
+developer distribution guidance, and controlled public visibility guidance
+only. They do not add live APIs, MCP server functionality, live agent-to-agent
+communication, agent negotiation, autonomous contact,
 external-agent contact, live payment processing, PayPal API integration,
 Stripe integration, checkout, webhooks, wallet/banking logic, real settlement
 execution, production signing, production key management, secrets,

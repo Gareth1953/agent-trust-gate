@@ -68,6 +68,13 @@ assets help manual sharing only; they do not add email automation, paid ads,
 tracking, analytics, outreach automation, scraping/contact harvesting, hosted
 services, payment processing, settlement, or action execution.
 
+P3-M128 adds [controlled public visibility and paid enquiry positioning](controlled-public-visibility-and-paid-enquiry-positioning.md),
+a [public visibility readiness checklist](public-visibility-readiness-checklist.md),
+[paid enquiry positioning](paid-enquiry-positioning.md), a
+[public positioning message bank](public-positioning-message-bank.md), and a
+[controlled distribution sequence](controlled-distribution-sequence.md). It
+keeps commercial capture framed as human-reviewed enquiry capture only.
+
 ## What the commercial offer is
 
 Agent Trust Gate™ can be discussed as a local-first commercial review or pilot
@@ -203,3 +210,8 @@ P3-M127 adds global code discovery and manual developer distribution guidance
 only. It does not add email automation, paid ads, ad pixels, scraping/contact
 harvesting, forms, tracking, analytics, live APIs, hosted services, payment
 processing, settlement, production signing, or action execution.
+
+P3-M128 adds controlled public visibility and paid enquiry positioning only. It
+does not add outreach automation, email automation, scraping/contact
+harvesting, forms, tracking, analytics, paid ads, live APIs, hosted services,
+payment processing, settlement, production signing, or action execution.

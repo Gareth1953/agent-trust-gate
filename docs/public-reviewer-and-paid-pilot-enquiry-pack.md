@@ -40,6 +40,14 @@ assets support manual code-first sharing only; they do not add automated
 outreach, scraping/contact harvesting, paid ads, tracking, analytics, or live
 distribution infrastructure.
 
+P3-M128 adds [controlled public visibility and paid enquiry positioning](controlled-public-visibility-and-paid-enquiry-positioning.md),
+a [public visibility readiness checklist](public-visibility-readiness-checklist.md),
+[paid enquiry positioning](paid-enquiry-positioning.md), a
+[public positioning message bank](public-positioning-message-bank.md), and a
+[controlled distribution sequence](controlled-distribution-sequence.md). These
+assets clarify the paid enquiry route without adding automation, ads, tracking,
+analytics, live payments, settlement, or action execution.
+
 ## Who Should Review Agent Trust Gate
 
 Useful reviewers include:
@@ -101,6 +109,11 @@ Start with this short path:
 17. `docs/developer-distribution-checklist.md`
 18. `docs/global-developer-sharing-copy.md`
 19. `docs/agent-readable-distribution-note.md`
+20. `docs/controlled-public-visibility-and-paid-enquiry-positioning.md`
+21. `docs/public-visibility-readiness-checklist.md`
+22. `docs/paid-enquiry-positioning.md`
+23. `docs/public-positioning-message-bank.md`
+24. `docs/controlled-distribution-sequence.md`
 
 Then run the local commands from the quickstart if reviewing code behaviour:
 
@@ -258,5 +271,10 @@ P3-M127 adds code discovery and manual sharing guidance only. It does not add
 email automation, scraping, contact harvesting, forms, tracking, analytics,
 telemetry, paid ads, ad pixels, hosted services, live APIs, payment processing,
 settlement, production signing, or action execution.
+
+P3-M128 adds controlled public visibility and paid enquiry positioning only. It
+does not add outreach automation, scraping/contact harvesting, forms, tracking,
+analytics, paid ads, live APIs, payment processing, settlement, automatic
+access, production signing, or action execution.
 
 Public project contact: `gpmiddleton71@gmail.com`

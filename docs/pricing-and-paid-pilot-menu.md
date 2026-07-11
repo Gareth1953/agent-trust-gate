@@ -60,6 +60,14 @@ assets support manual code-first sharing only. They do not add paid ads, ad
 pixels, tracking, analytics, outreach automation, scraping/contact harvesting,
 payment processing, hosted services, or automatic access.
 
+P3-M128 adds [controlled public visibility and paid enquiry positioning](controlled-public-visibility-and-paid-enquiry-positioning.md),
+a [public visibility readiness checklist](public-visibility-readiness-checklist.md),
+[paid enquiry positioning](paid-enquiry-positioning.md), a
+[public positioning message bank](public-positioning-message-bank.md), and a
+[controlled distribution sequence](controlled-distribution-sequence.md). It
+keeps pricing discussions tied to paid technical review / local pilot
+feasibility / integration assessment, not production product access.
+
 ## Who this is for
 
 This menu is for:
@@ -191,3 +199,8 @@ P3-M127 adds manual discovery and developer distribution guidance only. It does
 not add email automation, paid ads, ad pixels, outreach automation, scraping,
 contact harvesting, forms, tracking, analytics, live APIs, hosted services,
 payment processing, settlement, production signing, or action execution.
+
+P3-M128 adds controlled public visibility and paid enquiry positioning only. It
+does not add paid ads, tracking, analytics, outreach automation,
+scraping/contact harvesting, forms, live APIs, hosted services, payment
+processing, settlement, production signing, or action execution.

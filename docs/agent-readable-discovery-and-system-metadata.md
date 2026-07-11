@@ -219,6 +219,21 @@ email automation authority, paid ads authority, tracking/analytics authority,
 live API authority, payment/settlement authority, external contact authority,
 or action execution authority.
 
+P3-M128 adds controlled public visibility and paid enquiry positioning:
+
+- `docs/controlled-public-visibility-and-paid-enquiry-positioning.md`
+- `docs/public-visibility-readiness-checklist.md`
+- `docs/paid-enquiry-positioning.md`
+- `docs/public-positioning-message-bank.md`
+- `docs/controlled-distribution-sequence.md`
+
+Agents and developer assistants may summarise these documents for a human
+operator. They must not infer guaranteed public visibility, guaranteed global
+discovery, guaranteed buyer demand, guaranteed paid pilot conversion, automatic
+paid-pilot acceptance, automatic access after payment, live API authority,
+payment/settlement authority, outreach authority, or action execution
+authority.
+
 ## Agent/System Metadata
 
 Machine-readable local metadata is available in:

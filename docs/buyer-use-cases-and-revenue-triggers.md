@@ -29,6 +29,10 @@ add outreach automation, scraping/contact harvesting, paid ads, tracking,
 analytics, hosted services, live APIs, payment processing, settlement, or
 action execution.
 
+P3-M128 adds [controlled public visibility and paid enquiry positioning](controlled-public-visibility-and-paid-enquiry-positioning.md).
+It keeps buyer use cases tied to a careful paid technical review / local pilot
+feasibility / integration assessment route, not a production product claim.
+
 ## Who Might Pay
 
 Near-term paid review interest may come from:
@@ -218,3 +222,6 @@ integration, Agent Contact System integration, or action execution.
 
 P3-M127 does not change this commercial boundary. It adds manual code discovery
 and developer distribution guidance only.
+
+P3-M128 also stays inside this boundary. It adds controlled public visibility
+and paid enquiry positioning only.

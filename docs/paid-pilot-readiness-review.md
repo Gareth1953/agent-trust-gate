@@ -295,6 +295,19 @@ production readiness, live payment/settlement readiness, automatic acceptance,
 automatic access after payment, hosted services, paid ads, tracking, analytics,
 outreach automation, scraping/contact harvesting, or action execution.
 
+## Relationship To P3-M128
+
+P3-M128 adds controlled public visibility and paid enquiry positioning. It
+clarifies the safest current public offer as paid technical review / local
+pilot feasibility / integration assessment.
+
+It does not change the readiness assessment. It does not claim production
+readiness, certified security, live payment/settlement readiness, legal,
+financial, compliance, procurement, settlement, or security guarantees,
+guaranteed public visibility, guaranteed global discovery, guaranteed buyer
+demand, guaranteed paid pilot conversion, automatic paid-pilot acceptance,
+automatic access after payment, or action execution.
+
 ## Safety Boundary
 
 Agent Trust Gate™ remains local-first and `local_demo_only`.
@@ -303,7 +316,8 @@ P3-M121 is documentation, readiness assessment, and commercial positioning
 only. P3-M124 adds related human-approved reviewer/enquiry copy only. P3-M125
 adds commercial conversion navigation clarity only. P3-M126 adds buyer use
 case and revenue trigger documentation only. P3-M127 adds code discovery and
-manual developer distribution guidance only. They do not add live APIs, live
+manual developer distribution guidance only. P3-M128 adds controlled public
+visibility and paid enquiry positioning only. They do not add live APIs, live
 payment processing, PayPal API integration, Stripe integration, checkout,
 webhooks, wallet/banking logic, real settlement execution, production signing,
 production key management, secrets, credentials, cloud/network calls, forms,

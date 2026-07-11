@@ -42,6 +42,14 @@ extends the public repo conversion path into manual code-first discovery without
 adding outreach automation, ads, tracking, analytics, hosted services, live
 APIs, payment processing, or action execution.
 
+P3-M128 adds [controlled public visibility and paid enquiry positioning](controlled-public-visibility-and-paid-enquiry-positioning.md),
+a [public visibility readiness checklist](public-visibility-readiness-checklist.md),
+[paid enquiry positioning](paid-enquiry-positioning.md), a
+[public positioning message bank](public-positioning-message-bank.md), and a
+[controlled distribution sequence](controlled-distribution-sequence.md). It
+clarifies how visibility should route toward human-reviewed paid technical
+review / local pilot feasibility / integration assessment without overclaiming.
+
 ## Repo Buyer/Reviewer Journey
 
 A serious public reviewer should be able to move through the repo in this
@@ -111,8 +119,13 @@ Recommended start-here path:
 16. [Developer distribution checklist](developer-distribution-checklist.md)
 17. [Global developer sharing copy](global-developer-sharing-copy.md)
 18. [Agent-readable distribution note](agent-readable-distribution-note.md)
-19. [llms.txt](../llms.txt)
-20. [Agent card metadata](../agent-trust-gate.agent-card.json)
+19. [Controlled public visibility and paid enquiry positioning](controlled-public-visibility-and-paid-enquiry-positioning.md)
+20. [Public visibility readiness checklist](public-visibility-readiness-checklist.md)
+21. [Paid enquiry positioning](paid-enquiry-positioning.md)
+22. [Public positioning message bank](public-positioning-message-bank.md)
+23. [Controlled distribution sequence](controlled-distribution-sequence.md)
+24. [llms.txt](../llms.txt)
+25. [Agent card metadata](../agent-trust-gate.agent-card.json)
 
 ## What A Serious Reviewer Should Inspect First
 
@@ -238,6 +251,7 @@ P3-M125 is documentation, navigation, and commercial conversion clarity only.
 P3-M126 adds buyer use case and revenue trigger documentation only.
 P3-M127 adds global code discovery and manual developer distribution guidance
 only.
+P3-M128 adds controlled public visibility and paid enquiry positioning only.
 It does not add live APIs, MCP server functionality, live agent-to-agent
 communication, external-agent contact, autonomous contact, outreach
 automation, scraping, contact harvesting, forms, tracking, analytics,

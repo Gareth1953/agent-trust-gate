@@ -64,6 +64,14 @@ docs support manual code-first sharing only and do not add outreach automation,
 email automation, paid ads, tracking, analytics, hosted services, payment
 processing, settlement, automatic acceptance, or automatic access.
 
+P3-M128 adds [controlled public visibility and paid enquiry positioning](controlled-public-visibility-and-paid-enquiry-positioning.md),
+a [public visibility readiness checklist](public-visibility-readiness-checklist.md),
+[paid enquiry positioning](paid-enquiry-positioning.md), a
+[public positioning message bank](public-positioning-message-bank.md), and a
+[controlled distribution sequence](controlled-distribution-sequence.md). The
+current public paid offer remains paid technical review / local pilot
+feasibility / integration assessment.
+
 ## Who should contact
 
 Contact Gareth if you are a:
@@ -217,3 +225,8 @@ add email automation, paid ads, ad pixels, outreach automation,
 scraping/contact harvesting, forms, tracking, analytics, live APIs, hosted
 services, payment processing, settlement, production signing, or action
 execution.
+
+P3-M128 adds controlled public visibility and paid enquiry positioning docs
+only. It does not add outreach automation, scraping/contact harvesting, forms,
+tracking, analytics, paid ads, live APIs, hosted services, payment processing,
+settlement, production signing, or action execution.

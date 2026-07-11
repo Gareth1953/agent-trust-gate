@@ -25,6 +25,12 @@ ads, ad pixels, tracking, analytics, outreach automation, scraping/contact
 harvesting, live APIs, hosted services, payment processing, settlement, or
 action execution.
 
+P3-M128 adds controlled public visibility and paid enquiry positioning for
+using this trigger map in careful manual review conversations. It does not
+claim guaranteed public visibility, guaranteed buyer demand, guaranteed paid
+pilot conversion, production readiness, live payment/settlement readiness, or
+automatic access after payment.
+
 ## Trigger Map
 
 | Trigger | Problem | Risk | What Agent Trust Gate Can Review Locally | Possible Paid Review Angle | What Not To Claim |
@@ -77,3 +83,6 @@ Agent Contact System integration, or action execution.
 
 P3-M127 adds manual distribution guidance only and does not alter these
 boundaries.
+
+P3-M128 adds controlled public visibility and paid enquiry positioning only and
+does not alter these boundaries.

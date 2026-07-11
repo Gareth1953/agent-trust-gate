@@ -28,6 +28,14 @@ P3-M127 adds [global code discovery and developer distribution guidance](global-
 docs support manual discovery only; they do not add outreach automation,
 scraping/contact harvesting, paid ads, tracking, analytics, or automatic access.
 
+P3-M128 adds [controlled public visibility and paid enquiry positioning](controlled-public-visibility-and-paid-enquiry-positioning.md),
+a [public visibility readiness checklist](public-visibility-readiness-checklist.md),
+[paid enquiry positioning](paid-enquiry-positioning.md), a
+[public positioning message bank](public-positioning-message-bank.md), and a
+[controlled distribution sequence](controlled-distribution-sequence.md). These
+docs clarify that the current paid route is paid technical review / local pilot
+feasibility / integration assessment.
+
 ## What A Serious Enquiry Should Provide
 
 A useful enquiry should include:
@@ -191,5 +199,11 @@ P3-M127 also stays inside that boundary. It adds global code discovery and
 manual developer distribution guidance only, without claiming guaranteed global
 discovery, guaranteed buyer demand, guaranteed paid-pilot conversion, automatic
 acceptance, or automatic access after payment.
+
+P3-M128 also stays inside that boundary. It adds controlled public visibility
+and paid enquiry positioning only, without claiming guaranteed public
+visibility, guaranteed global discovery, guaranteed buyer demand, guaranteed
+paid pilot conversion, automatic paid-pilot acceptance, or automatic access
+after payment.
 
 Public project contact: `gpmiddleton71@gmail.com`

@@ -25,6 +25,7 @@ For a fast public review, use this path:
 9. Inspect agent-readable metadata: [llms.txt](llms.txt) and [agent card metadata](agent-trust-gate.agent-card.json).
 10. Inspect buyer fit and commercial triggers: [buyer use cases and revenue triggers](docs/buyer-use-cases-and-revenue-triggers.md), [revenue trigger map](docs/revenue-trigger-map.md), and [paid review scope examples](docs/paid-review-scope-examples.md).
 11. Inspect global discovery and manual sharing guidance: [global code discovery and developer distribution pack](docs/global-code-discovery-and-developer-distribution-pack.md).
+12. Inspect controlled visibility and paid enquiry positioning: [controlled public visibility and paid enquiry positioning](docs/controlled-public-visibility-and-paid-enquiry-positioning.md).
 
 P3-M125 adds the [public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md)
 to make this path easier to assess without adding forms, tracking, payment
@@ -35,6 +36,9 @@ feasibility review, or governance/safety review may be commercially relevant.
 P3-M127 adds global code discovery and manual developer distribution guidance
 without adding outreach automation, paid ads, tracking, analytics, live APIs,
 hosted services, payment processing, settlement, or action execution.
+P3-M128 adds controlled public visibility and paid enquiry positioning without
+adding outreach automation, paid ads, tracking, analytics, live APIs, payment
+processing, settlement, hosted services, or action execution.
 
 ## What to inspect first
 
@@ -317,6 +321,25 @@ automation, scraping/contact harvesting, forms, paid ads, tracking, analytics,
 live APIs, hosted services, payment processing, settlement, or action
 execution.
 
+## Controlled public visibility and paid enquiries
+
+P3-M128 adds controlled public visibility and paid enquiry positioning. The
+intended route is careful: discover the repo, run the local proof/demo,
+understand what is and is not claimed, identify a relevant paid-review use
+case, then send a human-reviewed enquiry manually.
+
+- [Controlled public visibility and paid enquiry positioning](docs/controlled-public-visibility-and-paid-enquiry-positioning.md)
+- [Public visibility readiness checklist](docs/public-visibility-readiness-checklist.md)
+- [Paid enquiry positioning](docs/paid-enquiry-positioning.md)
+- [Public positioning message bank](docs/public-positioning-message-bank.md)
+- [Controlled distribution sequence](docs/controlled-distribution-sequence.md)
+
+The current paid positioning is paid technical review / local pilot feasibility
+/ integration assessment. These docs do not add outreach automation,
+scraping/contact harvesting, forms, paid ads, tracking, analytics, live APIs,
+payment processing, settlement, hosted services, automatic access, or action
+execution.
+
 ## External reviewer signal
 
 P3-M115 captures external AI reviewer feedback as market and technical signal,
@@ -581,6 +604,10 @@ P3-M127 adds global code discovery and manual sharing guidance without adding
 email automation, paid ads, ad pixels, outreach automation, scraping/contact
 harvesting, forms, tracking, analytics, live APIs, hosted services, payment
 processing, settlement, production signing, or action execution.
+P3-M128 adds controlled public visibility and paid enquiry positioning without
+adding outreach automation, email automation, scraping/contact harvesting,
+forms, paid ads, tracking, analytics, live APIs, hosted services, payment
+processing, settlement, production signing, or action execution.
 
 Recent proof and readiness milestones:
 
@@ -617,6 +644,7 @@ Recent proof and readiness milestones:
 - P3-M125: public repo commercial conversion review
 - P3-M126: buyer use cases and revenue triggers
 - P3-M127: global code discovery and developer distribution pack
+- P3-M128: controlled public visibility and paid enquiry positioning
 
 ## Developer review path
 
@@ -633,7 +661,8 @@ Recent proof and readiness milestones:
 11. Read the public repo commercial conversion review if assessing commercial fit.
 12. Read the buyer use case and revenue trigger pack if assessing buyer fit.
 13. Read the global code discovery and developer distribution pack if assessing manual sharing fit.
-14. Confirm the current safety boundaries before drawing conclusions.
+14. Read the controlled public visibility and paid enquiry positioning pack if assessing public positioning.
+15. Confirm the current safety boundaries before drawing conclusions.
 
 ## Usage
 

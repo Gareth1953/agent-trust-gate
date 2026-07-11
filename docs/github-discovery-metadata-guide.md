@@ -13,6 +13,12 @@ can find and understand Agent Trust Gate. It is manual guidance only. It does
 not update GitHub settings automatically, call the GitHub API, deploy anything,
 publish anything, add tracking, or run outreach.
 
+P3-M128 adds controlled public visibility and paid enquiry positioning. GitHub
+metadata should support careful manual discovery only; it must not imply
+guaranteed public visibility, guaranteed global discovery, guaranteed buyer
+demand, guaranteed paid pilot conversion, production readiness, live
+payment/settlement readiness, or automatic access after payment.
+
 ## Suggested GitHub About Description
 
 Suggested description:

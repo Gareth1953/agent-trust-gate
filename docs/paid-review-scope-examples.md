@@ -24,6 +24,11 @@ for sharing these scope examples safely. It does not add automated outreach,
 scraping/contact harvesting, paid ads, tracking, analytics, live APIs, hosted
 services, payment processing, settlement, or action execution.
 
+P3-M128 adds controlled public visibility and paid enquiry positioning. These
+scope examples support paid technical review / local pilot feasibility /
+integration assessment, not production deployment, payment activation,
+settlement authority, or automatic access after payment.
+
 ## Scope Examples
 
 ### Agent Workflow Trust Review
@@ -222,4 +227,7 @@ settlement execution, production signing, production key management, AUC
 integration, Agent Contact System integration, or action execution.
 
 P3-M127 adds manual code discovery and developer distribution guidance only and
+does not change the local-only review boundary.
+
+P3-M128 adds controlled public visibility and paid enquiry positioning only and
 does not change the local-only review boundary.

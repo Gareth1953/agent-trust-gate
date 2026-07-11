@@ -197,6 +197,20 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] No guaranteed global discovery, guaranteed buyer demand, guaranteed paid-pilot conversion, production readiness, automatic paid-pilot acceptance, automatic access after payment, live payment processing, or settlement readiness is claimed.
 - [ ] No live API, MCP server functionality, live agent-to-agent communication, email automation, outreach automation, scraping/contact harvesting, forms, tracking, analytics, telemetry, paid ads, ad pixels, hosted calls, cloud/network calls, external-agent contact, production signing, or action execution is activated by P3-M127.
 
+## Controlled Public Visibility and Paid Enquiry Positioning
+
+- [ ] P3-M128 controlled public visibility and paid enquiry positioning is documentation, positioning, manual public-visibility planning, and paid enquiry clarity only.
+- [ ] `docs/controlled-public-visibility-and-paid-enquiry-positioning.md` is linked from README.
+- [ ] `docs/public-visibility-readiness-checklist.md` is linked from README.
+- [ ] `docs/paid-enquiry-positioning.md` is linked from README.
+- [ ] `docs/public-positioning-message-bank.md` is linked from README.
+- [ ] `docs/controlled-distribution-sequence.md` is linked from README.
+- [ ] Paid enquiry positioning remains paid technical review / local pilot feasibility / integration assessment.
+- [ ] X/social copy remains under 360 characters.
+- [ ] Controlled distribution sequence includes manual stages and stop conditions.
+- [ ] No guaranteed public visibility, guaranteed global discovery, guaranteed buyer demand, guaranteed paid-pilot conversion, production readiness, automatic paid-pilot acceptance, automatic access after payment, live payment processing, or settlement readiness is claimed.
+- [ ] No live API, MCP server functionality, live agent-to-agent communication, email automation, outreach automation, scraping/contact harvesting, forms, tracking, analytics, telemetry, paid ads, ad pixels, hosted calls, cloud/network calls, external-agent contact, production signing, or action execution is activated by P3-M128.
+
 ## Release-candidate checklist
 
 - [ ] Run `npm test`.

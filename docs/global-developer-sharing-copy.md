@@ -17,6 +17,10 @@ Do not use this copy to promise production readiness, certified security,
 legal/compliance/security status, payment activation, settlement, official
 integration, acceptance, automatic access, or guaranteed paid-pilot conversion.
 
+P3-M128 adds a controlled public positioning message bank. Prefer that message
+bank when the goal is paid enquiry positioning rather than general developer
+distribution.
+
 ## Short X Post
 
 ```text

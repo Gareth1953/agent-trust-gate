@@ -13,6 +13,11 @@ human-approved sharing. It does not add outreach automation, scraping, contact
 harvesting, forms, tracking, analytics, telemetry, paid ads, ad pixels, live
 APIs, hosted services, payment processing, settlement, or action execution.
 
+P3-M128 adds controlled public visibility and paid enquiry positioning. Use
+that pack before any broader manual sharing so messages stay clear, cautious,
+and tied to paid technical review / local pilot feasibility / integration
+assessment.
+
 ## Safe Manual Routes
 
 - [ ] Keep GitHub README clarity strong.
@@ -49,6 +54,11 @@ APIs, hosted services, payment processing, settlement, or action execution.
 - [ ] Paid pilot readiness review.
 - [ ] Public reviewer and paid pilot enquiry pack.
 - [ ] Agent-readable metadata.
+- [ ] Controlled public visibility and paid enquiry positioning.
+- [ ] Public visibility readiness checklist.
+- [ ] Paid enquiry positioning.
+- [ ] Public positioning message bank.
+- [ ] Controlled distribution sequence.
 
 ## Warnings
 

@@ -52,6 +52,11 @@ Important docs:
 - docs/developer-distribution-checklist.md
 - docs/global-developer-sharing-copy.md
 - docs/agent-readable-distribution-note.md
+- docs/controlled-public-visibility-and-paid-enquiry-positioning.md
+- docs/public-visibility-readiness-checklist.md
+- docs/paid-enquiry-positioning.md
+- docs/public-positioning-message-bank.md
+- docs/controlled-distribution-sequence.md
 - docs/ai-agent-traffic-and-session-intent-gate.md
 - docs/spoofed-agent-risk-model.md
 - docs/session-specific-access-framework.md
@@ -130,3 +135,16 @@ security guarantee. It adds no email automation, outreach automation, scraping
 or contact harvesting, forms, tracking, analytics, paid ads, ad pixels, hosted
 services, live APIs, payment processing, settlement, external-agent contact,
 production signing, or action execution.
+
+P3-M128 adds controlled public visibility and paid enquiry positioning, a
+public visibility readiness checklist, paid enquiry positioning, a public
+message bank, and a controlled distribution sequence. It is documentation,
+positioning, manual public-visibility planning, and paid enquiry clarity only.
+It does not claim guaranteed public visibility, guaranteed global discovery,
+guaranteed buyer demand, guaranteed paid pilot conversion, production
+readiness, live payment/settlement readiness, automatic paid-pilot acceptance,
+automatic access after payment, or any legal, financial, compliance,
+procurement, settlement, or security guarantee. It adds no outreach automation,
+email automation, scraping or contact harvesting, forms, tracking, analytics,
+paid ads, ad pixels, hosted services, live APIs, payment processing,
+settlement, external-agent contact, production signing, or action execution.

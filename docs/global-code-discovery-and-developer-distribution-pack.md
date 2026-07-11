@@ -20,6 +20,15 @@ outreach automation, scraping, contact harvesting, forms, tracking, analytics,
 telemetry, live APIs, payment processing, settlement, hosted services, paid
 ads, ad pixels, cloud/network calls, or action execution.
 
+P3-M128 adds [controlled public visibility and paid enquiry positioning](controlled-public-visibility-and-paid-enquiry-positioning.md),
+a [public visibility readiness checklist](public-visibility-readiness-checklist.md),
+[paid enquiry positioning](paid-enquiry-positioning.md), a
+[public positioning message bank](public-positioning-message-bank.md), and a
+[controlled distribution sequence](controlled-distribution-sequence.md). It
+uses this distribution pack as the manual code-first visibility base while
+adding no outreach automation, paid ads, tracking, analytics, live APIs,
+payment processing, settlement, hosted services, or action execution.
+
 ## Global Code-First Discovery Strategy
 
 The preferred discovery path is code-first and manual:
