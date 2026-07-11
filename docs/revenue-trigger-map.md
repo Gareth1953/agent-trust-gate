@@ -1,5 +1,12 @@
 # Revenue Trigger Map
 
+P3-M131 update: revenue triggers may reference local proof-contract integration
+readiness where a buyer needs to review workflow, tool-call, approval,
+governance, session/access, or pre-settlement checkpoints. It adds no live
+APIs, MCP server functionality, live systems contact, direct bot messaging,
+live agent-to-agent communication, payment processing, settlement execution,
+production signing, or action execution.
+
 P3-M126 maps practical buyer problems to possible human-reviewed enquiry types
 for Agent Trust Gate.
 

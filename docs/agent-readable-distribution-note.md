@@ -1,5 +1,12 @@
 # Agent-Readable Distribution Note
 
+P3-M131 update: agent-readable distribution now includes local proof-contract
+integration readiness metadata and docs for workflow, tool-call, approval,
+governance, session/access, and pre-settlement adapter review. It adds no live
+APIs, MCP server functionality, live systems contact, direct bot messaging,
+live agent-to-agent communication, payment processing, settlement execution,
+production signing, or action execution.
+
 P3-M127 adds an agent-readable distribution note for Agent Trust Gate.
 
 Core rule:

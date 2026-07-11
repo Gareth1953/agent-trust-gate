@@ -1,5 +1,12 @@
 # Agent Owner Trust Presentation Guide
 
+P3-M131 update: the Agent Proof Contract Integration Readiness Pack gives agent
+owners and developers local adapter examples for presenting proof before
+workflow, tool-call, approval, governance, session/access, and pre-settlement
+checkpoints without adding live APIs, MCP server functionality, live systems
+contact, direct bot messaging, live agent-to-agent communication, payment
+processing, settlement execution, production signing, or action execution.
+
 P3-M129 adds guidance for agent owners and developers who want to present
 agent trustworthiness without overclaiming.
 

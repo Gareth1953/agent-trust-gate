@@ -1,5 +1,12 @@
 # Paid Review Scope Examples
 
+P3-M131 update: paid review scopes may include local proof-contract integration
+readiness review for workflow, tool-call, approval, governance, session/access,
+and pre-settlement checkpoints. It adds no live APIs, MCP server functionality,
+live systems contact, direct bot messaging, live agent-to-agent communication,
+payment processing, settlement execution, production signing, or action
+execution.
+
 P3-M126 adds careful example scopes for human-reviewed paid technical review,
 integration feasibility review, local pilot discussion, and governance/safety
 review conversations around Agent Trust Gate.

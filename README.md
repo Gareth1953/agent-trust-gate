@@ -28,6 +28,7 @@ For a fast public review, use this path:
 12. Inspect controlled visibility and paid enquiry positioning: [controlled public visibility and paid enquiry positioning](docs/controlled-public-visibility-and-paid-enquiry-positioning.md).
 13. Inspect agent trust proof requirements: [agent trust invitation and prove-yourself protocol](docs/agent-trust-invitation-and-prove-yourself-protocol.md).
 14. Inspect machine-readable proof contracts: [agent proof package schema and verification contract](docs/agent-proof-package-schema-and-verification-contract.md).
+15. Inspect proof-contract integration readiness: [agent proof contract integration readiness](docs/agent-proof-contract-integration-readiness.md).
 
 P3-M125 adds the [public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md)
 to make this path easier to assess without adding forms, tracking, payment
@@ -51,6 +52,11 @@ contract demo without adding live APIs, MCP server functionality, live systems
 contact, direct bot messaging, live agent-to-agent communication, payment
 processing, settlement, hosted services, production signing, or action
 execution.
+P3-M131 adds proof-contract integration readiness guidance, local reference
+adapter code, deterministic examples, and a local demo without adding live
+APIs, MCP server functionality, live systems contact, direct bot messaging,
+live agent-to-agent communication, payment processing, settlement execution,
+production signing, or action execution.
 
 ## What to inspect first
 
@@ -67,6 +73,10 @@ execution.
   commercial discussion.
 - The buyer use case and revenue trigger docs to connect local proof assets to
   practical risk-reduction review needs.
+- The proof-contract integration readiness docs to see how the P3-M130 proof
+  package, verification request/result, and gate-pass challenge fit before
+  local workflow, tool-call, approval, governance, session/access, and
+  pre-settlement checkpoints.
 
 ## Commercial enquiry path
 
@@ -161,6 +171,7 @@ Install dependencies first, then use the existing project scripts:
     npm run demo:integrations
     npm run demo:prove-yourself
     npm run demo:agent-proof-contract
+    npm run demo:agent-proof-integration
     npm run cli -- demo quickstart
 
 Receipt verification and settlement controls can be inspected with supported
@@ -288,6 +299,41 @@ documentation, and tests only. It does not add live APIs, live systems contact,
 direct bot messaging, live agent-to-agent communication, payment processing,
 settlement, hosted services, production signing, production certification, or
 action execution.
+
+## Agent proof contract integration readiness
+
+P3-M131 shows how the local P3-M130 proof package, verification request/result,
+and gate-pass challenge can be placed before local agent workflows, local
+tool-calling gates, local human approval flows, local governance review, local
+session/access review, and local pre-settlement review.
+
+Core positioning:
+
+Do not trust the agent. Trust the gate pass.
+
+No proof. No permission.
+
+No mandate. No action.
+
+No signed gate pass. No settlement.
+
+- [Agent proof contract integration readiness](docs/agent-proof-contract-integration-readiness.md)
+- [Local agent workflow integration guide](docs/local-agent-workflow-integration-guide.md)
+- [Tool-calling proof gate adapter guide](docs/tool-calling-proof-gate-adapter-guide.md)
+- [Pre-settlement proof contract integration](docs/pre-settlement-proof-contract-integration.md)
+- [Integration readiness checklist](docs/integration-readiness-checklist.md)
+
+Run the deterministic local adapter examples:
+
+```text
+npm run demo:agent-proof-integration
+```
+
+The adapter demonstrates local allow/block/escalate/require-evidence/
+require-human-review/require-signed-proof outcomes while keeping tool calls,
+settlement, payment, live systems contact, direct bot messaging, live
+agent-to-agent communication, production certification, and action execution
+disabled.
 
 ## Public contact
 
@@ -698,6 +744,17 @@ local proof requirements, system-side verification, owner presentation,
 gate-pass meaning, deterministic examples, and a local demo without adding live
 systems contact, direct bot messaging, live agent-to-agent communication, live
 APIs, payment processing, settlement, production signing, or action execution.
+P3-M130 adds machine-readable local agent proof package, verification request/
+result, and gate-pass challenge schemas with a deterministic local proof
+contract demo without adding live APIs, MCP server functionality, live systems
+contact, direct bot messaging, live agent-to-agent communication, payment
+processing, settlement, production signing, or action execution.
+P3-M131 adds proof-contract integration readiness guidance and a local adapter
+demo for workflow, tool-call, approval, governance, session/access, and
+pre-settlement checkpoints without adding live APIs, MCP server functionality,
+live systems contact, direct bot messaging, live agent-to-agent communication,
+payment processing, settlement execution, production signing, or action
+execution.
 
 Recent proof and readiness milestones:
 
@@ -736,6 +793,8 @@ Recent proof and readiness milestones:
 - P3-M127: global code discovery and developer distribution pack
 - P3-M128: controlled public visibility and paid enquiry positioning
 - P3-M129: agent trust invitation and prove-yourself protocol pack
+- P3-M130: agent proof package schema and verification contract pack
+- P3-M131: agent proof contract integration readiness pack
 
 ## Developer review path
 
@@ -754,7 +813,9 @@ Recent proof and readiness milestones:
 13. Read the global code discovery and developer distribution pack if assessing manual sharing fit.
 14. Read the controlled public visibility and paid enquiry positioning pack if assessing public positioning.
 15. Read the agent trust invitation and prove-yourself protocol if assessing proof requirements.
-16. Confirm the current safety boundaries before drawing conclusions.
+16. Read the agent proof package schema and verification contract if assessing machine-readable proof packages.
+17. Read the agent proof contract integration readiness pack if assessing local adapter placement.
+18. Confirm the current safety boundaries before drawing conclusions.
 
 ## Usage
 

@@ -1,5 +1,12 @@
 # Controlled Distribution Sequence
 
+P3-M131 update: controlled distribution can include the Agent Proof Contract
+Integration Readiness Pack as a local adapter review path for workflow,
+tool-call, approval, governance, session/access, and pre-settlement
+checkpoints. It adds no live APIs, MCP server functionality, live systems
+contact, direct bot messaging, live agent-to-agent communication, payment
+processing, settlement execution, production signing, or action execution.
+
 P3-M128 adds a controlled distribution sequence for Agent Trust Gate.
 
 Core rule:

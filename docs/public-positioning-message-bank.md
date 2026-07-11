@@ -1,5 +1,12 @@
 # Public Positioning Message Bank
 
+P3-M131 update: manual messages may mention local proof-contract integration
+readiness for workflow, tool-call, approval, governance, session/access, and
+pre-settlement adapter review. This remains manual-use copy only and adds no
+live APIs, MCP server functionality, live systems contact, direct bot
+messaging, live agent-to-agent communication, payment processing, settlement
+execution, production signing, or action execution.
+
 P3-M128 adds a manual public positioning message bank for Agent Trust Gate.
 
 Core rule:

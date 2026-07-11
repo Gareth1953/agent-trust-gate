@@ -1,5 +1,12 @@
 # System Integration Metadata
 
+P3-M131 update: system integration metadata now points reviewers to local
+proof-contract integration readiness guidance for workflow, tool-call, approval,
+governance, session/access, and pre-settlement checkpoints. It adds no live
+APIs, MCP server functionality, live systems contact, direct bot messaging,
+live agent-to-agent communication, payment processing, settlement execution,
+production signing, or action execution.
+
 P3-M122 provides a safe read order and local evaluation guide for developer
 assistants and integration reviewers. P3-M123 adds local-only AI agent
 traffic and session intent gate concept guidance without live traffic

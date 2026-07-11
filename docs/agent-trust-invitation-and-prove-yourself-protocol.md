@@ -1,5 +1,12 @@
 # Agent Trust Invitation And Prove-Yourself Protocol
 
+P3-M131 update: the Agent Proof Contract Integration Readiness Pack shows how
+the prove-yourself rule can be placed before local workflow, tool-call,
+approval, governance, session/access, and pre-settlement checkpoints without
+adding live APIs, MCP server functionality, live systems contact, direct bot
+messaging, live agent-to-agent communication, payment processing, settlement
+execution, production signing, or action execution.
+
 P3-M129 adds an Agent Trust Invitation and Prove-Yourself Protocol Pack for
 Agent Trust Gate.
 

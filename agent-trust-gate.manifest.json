@@ -1,7 +1,7 @@
 {
   "manifest_version": "atg.code-readable-integration.v1",
   "service_name": "Agent Trust Gate",
-  "latest_mission": "P3-M130",
+  "latest_mission": "P3-M131",
   "recent_missions": [
     "P3-M122",
     "P3-M123",
@@ -11,7 +11,8 @@
     "P3-M127",
     "P3-M128",
     "P3-M129",
-    "P3-M130"
+    "P3-M130",
+    "P3-M131"
   ],
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
   "project_status": "local_demo_only",
@@ -70,7 +71,8 @@
     "end_to_end_money_gate_proof",
     "session_intent_gate_concept_model",
     "prove_yourself_protocol_model",
-    "agent_proof_contract_model"
+    "agent_proof_contract_model",
+    "agent_proof_integration_adapter_model"
   ],
   "safe_local_commands": [
     "npm test",
@@ -84,6 +86,7 @@
     "npm run demo:session-intent",
     "npm run demo:prove-yourself",
     "npm run demo:agent-proof-contract",
+    "npm run demo:agent-proof-integration",
     "npm run proof:money-gate"
   ],
   "discovery_docs": [
@@ -122,6 +125,11 @@
     "docs/agent-proof-package-schema-and-verification-contract.md",
     "docs/agent-proof-package-field-guide.md",
     "docs/gate-pass-challenge-and-response-flow.md",
+    "docs/agent-proof-contract-integration-readiness.md",
+    "docs/local-agent-workflow-integration-guide.md",
+    "docs/tool-calling-proof-gate-adapter-guide.md",
+    "docs/pre-settlement-proof-contract-integration.md",
+    "docs/integration-readiness-checklist.md",
     "docs/ai-agent-traffic-and-session-intent-gate.md",
     "docs/spoofed-agent-risk-model.md",
     "docs/session-specific-access-framework.md"
@@ -147,7 +155,13 @@
     "agent_proof_blocked",
     "agent_proof_requires_evidence",
     "agent_proof_requires_human_review",
-    "agent_proof_requires_signed_proof"
+    "agent_proof_requires_signed_proof",
+    "agent_proof_integration_allowed_locally",
+    "agent_proof_integration_blocked",
+    "agent_proof_integration_escalated",
+    "agent_proof_integration_requires_evidence",
+    "agent_proof_integration_requires_human_review",
+    "agent_proof_integration_requires_signed_proof"
   ],
   "non_capabilities": [
     "live API",

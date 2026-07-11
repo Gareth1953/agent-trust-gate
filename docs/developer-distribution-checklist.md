@@ -1,5 +1,12 @@
 # Developer Distribution Checklist
 
+P3-M131 update: manual developer distribution can include the Agent Proof
+Contract Integration Readiness Pack as a local adapter review asset for
+workflow, tool-call, approval, governance, session/access, and pre-settlement
+checkpoints. It adds no live APIs, MCP server functionality, live systems
+contact, direct bot messaging, live agent-to-agent communication, payment
+processing, settlement execution, production signing, or action execution.
+
 P3-M127 adds a manual developer distribution checklist for Agent Trust Gate.
 
 Core rule:

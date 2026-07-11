@@ -1,5 +1,12 @@
 # Public Repo Commercial Conversion Review
 
+P3-M131 update: the conversion path can now point reviewers to the Agent Proof
+Contract Integration Readiness Pack for local workflow, tool-call, approval,
+governance, session/access, and pre-settlement adapter review. It adds no live
+APIs, MCP server functionality, live systems contact, direct bot messaging,
+live agent-to-agent communication, payment processing, settlement execution,
+production signing, or action execution.
+
 P3-M125 reviews and improves the public GitHub repository commercial
 conversion path for Agent Trust Gate.
 

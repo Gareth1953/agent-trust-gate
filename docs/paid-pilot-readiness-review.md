@@ -1,5 +1,13 @@
 # Paid Pilot Readiness Review
 
+P3-M131 update: paid technical review and local pilot discussion readiness can
+now reference the Agent Proof Contract Integration Readiness Pack as local
+adapter guidance for workflow, tool-call, approval, governance, session/access,
+and pre-settlement checkpoints. It adds no live APIs, MCP server functionality,
+live systems contact, direct bot messaging, live agent-to-agent communication,
+payment processing, settlement execution, production signing, or action
+execution.
+
 P3-M121 reviews paid pilot readiness after the public hardening sequence from
 P3-M116 through P3-M120.
 

@@ -1,5 +1,12 @@
 # System-Side Agent Verification Guide
 
+P3-M131 update: the Agent Proof Contract Integration Readiness Pack shows how
+system-side verification questions map into local workflow, tool-call,
+approval, governance, session/access, and pre-settlement adapters without
+adding live APIs, MCP server functionality, live systems contact, direct bot
+messaging, live agent-to-agent communication, payment processing, settlement
+execution, production signing, or action execution.
+
 P3-M129 adds a local system-side verification guide for clients, systems,
 marketplaces, payment workflows, enterprise reviewers, and developer tools.
 

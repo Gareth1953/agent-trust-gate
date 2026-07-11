@@ -1,5 +1,12 @@
 # What A Gate Pass Proves
 
+P3-M131 update: the Agent Proof Contract Integration Readiness Pack shows where
+a local gate pass may be checked before workflow, tool-call, approval,
+governance, session/access, and pre-settlement checkpoints without adding live
+APIs, MCP server functionality, live systems contact, direct bot messaging,
+live agent-to-agent communication, payment processing, settlement execution,
+production signing, or action execution.
+
 P3-M129 adds this gate-pass meaning note for Agent Trust Gate.
 
 Core rule:

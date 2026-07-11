@@ -29,6 +29,7 @@ Safe local commands:
 - npm run demo:session-intent
 - npm run demo:prove-yourself
 - npm run demo:agent-proof-contract
+- npm run demo:agent-proof-integration
 - npm run proof:money-gate
 
 Important docs:
@@ -67,6 +68,11 @@ Important docs:
 - docs/agent-proof-package-schema-and-verification-contract.md
 - docs/agent-proof-package-field-guide.md
 - docs/gate-pass-challenge-and-response-flow.md
+- docs/agent-proof-contract-integration-readiness.md
+- docs/local-agent-workflow-integration-guide.md
+- docs/tool-calling-proof-gate-adapter-guide.md
+- docs/pre-settlement-proof-contract-integration.md
+- docs/integration-readiness-checklist.md
 - docs/ai-agent-traffic-and-session-intent-gate.md
 - docs/spoofed-agent-risk-model.md
 - docs/session-specific-access-framework.md
@@ -96,6 +102,12 @@ Important examples:
 - examples/agent-proof-package-valid-local-control.json
 - examples/agent-proof-package-identity-only-invalid.json
 - examples/agent-proof-verification-result-allowed-local.json
+- examples/agent-proof-integration-valid-local-workflow.json
+- examples/agent-proof-integration-sensitive-tool-call-escalated.json
+- examples/agent-proof-integration-missing-proof-requires-evidence.json
+- examples/agent-proof-integration-pre-settlement-requires-signed-proof.json
+- examples/agent-proof-integration-high-risk-human-review.json
+- examples/agent-proof-integration-replayed-proof-blocked.json
 
 Commercial/contact route:
 Human-reviewed developer, agent-system, integration, security, paid technical
@@ -190,3 +202,11 @@ proof. It adds no live API, MCP server functionality, live systems contact,
 direct bot messaging, live agent-to-agent communication, payment processing,
 settlement, hosted service, production signing, production certification, or
 action execution.
+
+P3-M131 adds an Agent Proof Contract Integration Readiness Pack with local
+workflow, tool-call, approval, governance, session/access, and pre-settlement
+adapter guidance, deterministic local examples, and a local demo command. It
+keeps the proof contract local-only and adds no live API, MCP server
+functionality, live systems contact, direct bot messaging, live agent-to-agent
+communication, payment processing, settlement execution, hosted service,
+production signing, production certification, or action execution.

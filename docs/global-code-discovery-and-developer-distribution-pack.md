@@ -1,5 +1,12 @@
 # Global Code Discovery And Developer Distribution Pack
 
+P3-M131 update: global code-first discovery can now direct developers to the
+Agent Proof Contract Integration Readiness Pack for local workflow, tool-call,
+approval, governance, session/access, and pre-settlement adapter examples. It
+adds no live APIs, MCP server functionality, live systems contact, direct bot
+messaging, live agent-to-agent communication, payment processing, settlement
+execution, production signing, or action execution.
+
 P3-M127 adds a global code discovery and developer distribution pack for
 Agent Trust Gate.
 

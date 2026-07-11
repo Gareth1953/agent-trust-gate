@@ -1,5 +1,12 @@
 # Agent Proof Package Field Guide
 
+P3-M131 update: the Agent Proof Contract Integration Readiness Pack shows how
+these P3-M130 fields can be used in local workflow, tool-call, approval,
+governance, session/access, and pre-settlement adapters without adding live
+APIs, MCP server functionality, live systems contact, direct bot messaging,
+live agent-to-agent communication, payment processing, settlement execution,
+production signing, or action execution.
+
 This P3-M130 field guide explains the local agent proof package fields in plain
 English. The fields are used by `schemas/agent-proof-package.schema.json` and
 `src/agent-proof-contract.ts`.

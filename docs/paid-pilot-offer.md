@@ -1,5 +1,12 @@
 # Paid Pilot Offer
 
+P3-M131 update: the cautious paid technical review route can include local
+proof-contract integration readiness review for workflow, tool-call, approval,
+governance, session/access, and pre-settlement checkpoints. It adds no live
+APIs, MCP server functionality, live systems contact, direct bot messaging,
+live agent-to-agent communication, payment processing, settlement execution,
+production signing, or action execution.
+
 P3-M113 provides a plain-English paid pilot and commercial review page for
 Agent Trust Gate™.
 

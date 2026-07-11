@@ -1,5 +1,12 @@
 # GitHub Discovery Metadata Guide
 
+P3-M131 update: GitHub metadata and README positioning may mention local
+proof-contract integration readiness for workflow, tool-call, approval,
+governance, session/access, and pre-settlement adapter review. This is manual
+guidance only and adds no live APIs, MCP server functionality, live systems
+contact, direct bot messaging, live agent-to-agent communication, payment
+processing, settlement execution, production signing, or action execution.
+
 P3-M127 adds manual GitHub discovery metadata guidance for Agent Trust Gate.
 
 Core rule:

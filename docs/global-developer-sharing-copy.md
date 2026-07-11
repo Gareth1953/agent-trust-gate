@@ -1,5 +1,12 @@
 # Global Developer Sharing Copy
 
+P3-M131 update: manual sharing copy can reference local proof-contract
+integration readiness for workflow, tool-call, approval, governance,
+session/access, and pre-settlement adapter review. The copy remains manual-use
+only and adds no live APIs, MCP server functionality, live systems contact,
+direct bot messaging, live agent-to-agent communication, payment processing,
+settlement execution, production signing, or action execution.
+
 P3-M127 adds reusable manual sharing copy for Agent Trust Gate.
 
 Core rule:

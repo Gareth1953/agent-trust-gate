@@ -1,5 +1,12 @@
 # Agent Proof Package Schema and Verification Contract
 
+P3-M131 update: the Agent Proof Contract Integration Readiness Pack shows how
+this P3-M130 proof contract can be used in local workflow, tool-call, approval,
+governance, session/access, and pre-settlement adapters without adding live
+APIs, MCP server functionality, live systems contact, direct bot messaging,
+live agent-to-agent communication, payment processing, settlement execution,
+production signing, or action execution.
+
 P3-M130 turns the P3-M129 prove-yourself protocol into local, structured,
 machine-readable proof package schemas, verification request/result schemas,
 challenge examples, TypeScript helpers, and deterministic local demo output.

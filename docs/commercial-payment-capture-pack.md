@@ -1,5 +1,12 @@
 # Commercial Payment Capture Pack
 
+P3-M131 update: human-reviewed enquiries may ask about local proof-contract
+integration readiness review for workflow, tool-call, approval, governance,
+session/access, and pre-settlement checkpoints. It adds no live APIs, MCP server
+functionality, live systems contact, direct bot messaging, live agent-to-agent
+communication, payment processing, settlement execution, production signing, or
+action execution.
+
 P3-M112 documents how interested developers, agent builders, AI governance
 teams, payment/integration reviewers, and enterprise evaluators can request a
 paid pilot, commercial review, or integration discussion for Agent Trust Gate™.

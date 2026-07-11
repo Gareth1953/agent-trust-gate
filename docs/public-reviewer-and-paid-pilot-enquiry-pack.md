@@ -1,5 +1,12 @@
 # Public Reviewer And Paid Pilot Enquiry Pack
 
+P3-M131 update: reviewers may inspect the Agent Proof Contract Integration
+Readiness Pack to see how the proof contract fits before local workflow,
+tool-call, approval, governance, session/access, and pre-settlement
+checkpoints. It adds no live APIs, MCP server functionality, live systems
+contact, direct bot messaging, live agent-to-agent communication, payment
+processing, settlement execution, production signing, or action execution.
+
 P3-M124 adds a human-approved public reviewer and paid pilot enquiry pack for
 Agent Trust Gate.
 

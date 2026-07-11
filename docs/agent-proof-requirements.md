@@ -1,5 +1,12 @@
 # Agent Proof Requirements
 
+P3-M131 update: the Agent Proof Contract Integration Readiness Pack shows how
+these proof requirements can be used by local workflow, tool-call, approval,
+governance, session/access, and pre-settlement adapters without adding live
+APIs, MCP server functionality, live systems contact, direct bot messaging,
+live agent-to-agent communication, payment processing, settlement execution,
+production signing, or action execution.
+
 P3-M129 defines local proof requirements for an agent or owner that wants trust
 from Agent Trust Gate.
 
