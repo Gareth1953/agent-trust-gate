@@ -235,3 +235,8 @@ does not change the local-only review boundary.
 P3-M129 adds a possible local proof-requirement review angle: Agent Trust
 Invitation and Prove-Yourself Protocol review. It does not change the
 local-only review boundary.
+
+P3-M130 adds another local review angle: Agent Proof Package Schema and
+Verification Contract review. It can examine proof fields, required verifier
+items, challenge/response flow, and local result meaning without changing the
+local-only review boundary.

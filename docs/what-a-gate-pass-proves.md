@@ -104,3 +104,12 @@ This document is local gate-pass meaning guidance only. It does not add live
 systems contact, direct bot messaging, live agent-to-agent communication, live
 APIs, payment processing, settlement execution, production signing, production
 certification, legal/compliance/security approval, or action execution.
+
+## P3-M130 Schema Note
+
+P3-M130 makes the local gate-pass meaning machine-readable through proof package,
+verification request/result, and gate-pass challenge schemas. A local gate pass
+may show that required proof items were checked, but it still does not prove
+universal identity, production authentication, legal/compliance/security
+certification, payment authority, settlement authority, or permission to execute
+actions.

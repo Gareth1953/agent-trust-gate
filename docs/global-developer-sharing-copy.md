@@ -148,3 +148,9 @@ external-agent contact, production signing, or action execution.
 ```text
 Agent Trust Gate now includes a local prove-yourself protocol pack: claimed agent identity is not trust, and no proof means no permission. It shows what mandate, evidence, verified intent, nonce, freshness, and signed gate-pass proof should be present before trust. Local demo only; no live contact, payment, settlement, or action execution.
 ```
+
+## P3-M130 Manual Sharing Add-On
+
+```text
+Agent Trust Gate now has local agent proof package schemas and a verification contract. It shows what an agent/owner should present before trust: mandate, evidence, verified intent, freshness, nonce, signed proof, and session context. Local demo only; no live API, payments, settlement, or action execution.
+```

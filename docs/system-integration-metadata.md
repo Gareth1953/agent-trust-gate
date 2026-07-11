@@ -251,3 +251,21 @@ identity is not trust, and no proof means no permission. Do not infer live
 systems contact, direct bot messaging, live agent-to-agent communication,
 identity certification, payment/settlement authority, production certification,
 or action execution.
+
+## P3-M130 Integration Review Note
+
+For P3-M130, integration reviewers should inspect the local proof contract docs,
+schemas, `src/agent-proof-contract.ts`, deterministic examples under
+`examples/agent-proof-*.json` and `examples/gate-pass-challenge-*.json`, and:
+
+```powershell
+npm run demo:agent-proof-contract
+```
+
+The correct inference is structured local proof-contract guidance only: claimed
+identity alone is not sufficient proof, missing mandate/evidence fails or
+escalates, stale/replayed proof fails, settlement-sensitive requests require
+signed proof, and valid controls allow locally only. Do not infer live APIs, MCP
+server functionality, live systems contact, direct bot messaging, live
+agent-to-agent communication, identity/authentication certification,
+payment/settlement authority, production certification, or action execution.

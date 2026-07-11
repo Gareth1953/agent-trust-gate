@@ -232,3 +232,12 @@ new code-first discovery target. Manual sharing may point reviewers to the
 local proof rule: do not trust the agent, trust the gate pass. This does not add
 live systems contact, direct bot messaging, live APIs, payment processing,
 settlement, production signing, or action execution.
+
+## P3-M130 Discovery Follow-On
+
+P3-M130 adds a machine-readable agent proof package schema and verification
+contract pack. Code-first reviewers can inspect the schemas, deterministic
+examples, `src/agent-proof-contract.ts`, and `npm run demo:agent-proof-contract`.
+This is still local discovery and review material only, not a live endpoint,
+MCP server, live systems contact, payment/settlement capability, production
+signing, or action execution.

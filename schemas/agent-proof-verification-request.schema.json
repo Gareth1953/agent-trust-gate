@@ -1,0 +1,82 @@
+{
+  "title": "Agent Trust Gate Agent Proof Verification Request",
+  "description": "Local-only verifier request declaring which proof items are required before an agent proof package can be evaluated.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "requestId",
+    "contractVersion",
+    "verifierReference",
+    "systemReference",
+    "requestedVerificationPurpose",
+    "requiredProofItems",
+    "riskTolerance",
+    "humanReviewRequired",
+    "settlementSensitive",
+    "localDemoOnly"
+  ],
+  "properties": {
+    "requestId": {
+      "type": "string",
+      "pattern": "^agent_proof_verify_[A-Za-z0-9_-]{3,120}$"
+    },
+    "contractVersion": {
+      "const": "atg.agent-proof-contract.local.v1"
+    },
+    "verifierReference": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 160
+    },
+    "systemReference": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 160
+    },
+    "requestedVerificationPurpose": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 240
+    },
+    "requiredProofItems": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "claimedAgentName",
+          "claimedAgentType",
+          "ownerReference",
+          "issuerReference",
+          "mandateReference",
+          "permittedActionScope",
+          "requestedAction",
+          "evidenceReference",
+          "verifiedIntentStatus",
+          "humanApprovalStatus",
+          "riskTier",
+          "freshnessStatus",
+          "nonce",
+          "nonceStatus",
+          "signedProofReference",
+          "signedProofStatus",
+          "sessionContextReference"
+        ]
+      }
+    },
+    "riskTolerance": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "humanReviewRequired": {
+      "type": "boolean"
+    },
+    "settlementSensitive": {
+      "type": "boolean"
+    },
+    "localDemoOnly": {
+      "const": true
+    }
+  }
+}

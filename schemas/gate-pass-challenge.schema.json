@@ -1,0 +1,68 @@
+{
+  "title": "Agent Trust Gate Gate Pass Challenge",
+  "description": "Local-only challenge describing the proof a system asks an agent or owner to present before a gate-pass decision.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "challengeId",
+    "contractVersion",
+    "verifierReference",
+    "requestedAction",
+    "requiredMandate",
+    "requiredEvidence",
+    "requiredIntentVerification",
+    "requiredHumanApproval",
+    "requiredFreshness",
+    "requiredNonce",
+    "requiredSignedProof",
+    "expiry",
+    "localDemoOnly"
+  ],
+  "properties": {
+    "challengeId": {
+      "type": "string",
+      "pattern": "^gate_pass_challenge_[A-Za-z0-9_-]{3,120}$"
+    },
+    "contractVersion": {
+      "const": "atg.agent-proof-contract.local.v1"
+    },
+    "verifierReference": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 160
+    },
+    "requestedAction": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 300
+    },
+    "requiredMandate": {
+      "type": "boolean"
+    },
+    "requiredEvidence": {
+      "type": "boolean"
+    },
+    "requiredIntentVerification": {
+      "type": "boolean"
+    },
+    "requiredHumanApproval": {
+      "type": "boolean"
+    },
+    "requiredFreshness": {
+      "type": "boolean"
+    },
+    "requiredNonce": {
+      "type": "boolean"
+    },
+    "requiredSignedProof": {
+      "type": "boolean"
+    },
+    "expiry": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "localDemoOnly": {
+      "const": true
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "challengeId": "gate_pass_challenge_basic",
+  "contractVersion": "atg.agent-proof-contract.local.v1",
+  "verifierReference": "verifier_local_gate",
+  "requestedAction": "Present proof before local review access is allowed.",
+  "requiredMandate": true,
+  "requiredEvidence": true,
+  "requiredIntentVerification": true,
+  "requiredHumanApproval": false,
+  "requiredFreshness": true,
+  "requiredNonce": true,
+  "requiredSignedProof": true,
+  "expiry": "2030-01-01T00:00:00.000Z",
+  "localDemoOnly": true
+}

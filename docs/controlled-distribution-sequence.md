@@ -146,3 +146,11 @@ and prove-yourself protocol: agents should present mandate, evidence, verified
 intent, scoped permission, freshness, nonce, and signed proof where required.
 Stop if readers infer live systems contact, direct bot messaging, identity
 certification, payment activation, settlement authority, or action execution.
+
+## P3-M130 Sequence Note
+
+If P3-M130 is included in manual visibility, position it as local proof package
+schema and verification contract material. Stop if readers infer a live
+endpoint, MCP server, production authentication, identity certification,
+payment activation, settlement authority, external-agent contact, or action
+execution.

@@ -282,4 +282,10 @@ local proof-requirement review. It adds no live systems contact, direct bot
 messaging, payment processing, settlement, production certification, or action
 execution.
 
+P3-M130 adds local proof package schemas, verification request/result schemas,
+gate-pass challenge schemas, examples, and a demo for structured proof-contract
+review. It adds no live APIs, MCP server functionality, live systems contact,
+direct bot messaging, live agent-to-agent communication, payment processing,
+settlement, production signing, production certification, or action execution.
+
 Public project contact: `gpmiddleton71@gmail.com`

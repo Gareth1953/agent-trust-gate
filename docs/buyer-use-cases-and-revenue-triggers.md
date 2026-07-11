@@ -230,3 +230,9 @@ P3-M129 also stays inside this boundary. It adds local prove-yourself protocol
 guidance for agent proof requirements, not live systems contact, direct bot
 messaging, payment activation, settlement authority, production certification,
 or action execution.
+
+P3-M130 also stays inside this boundary. It adds local proof package schemas
+and a verification contract for technical review, not live APIs, MCP server
+functionality, live systems contact, direct bot messaging, payment activation,
+settlement authority, production signing, production certification, or action
+execution.

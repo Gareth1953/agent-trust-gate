@@ -330,4 +330,10 @@ examples only. It does not add live systems contact, direct bot messaging,
 live agent-to-agent communication, payment processing, settlement, production
 certification, production signing, or action execution.
 
+P3-M130 adds local proof package schemas, verification contract examples, and a
+gate-pass challenge/response model only. It does not add live APIs, MCP server
+functionality, live systems contact, direct bot messaging, live
+agent-to-agent communication, payment processing, settlement, production
+certification, production signing, hosted services, or action execution.
+
 Public project contact: `gpmiddleton71@gmail.com`

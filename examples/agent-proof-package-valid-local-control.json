@@ -1,0 +1,23 @@
+{
+  "packageId": "agent_proof_pkg_valid_local_control",
+  "contractVersion": "atg.agent-proof-contract.local.v1",
+  "claimedAgentName": "LocalGatePassAgent",
+  "claimedAgentType": "tool_calling_agent",
+  "ownerReference": "owner_local_demo",
+  "issuerReference": "issuer_local_gate",
+  "mandateReference": "mandate_valid_local_control",
+  "permittedActionScope": "read_public_docs_only",
+  "requestedAction": "Read public repository documentation for a local technical review.",
+  "evidenceReference": "evidence_valid_local_control",
+  "verifiedIntentStatus": "verified",
+  "humanApprovalStatus": "not_required",
+  "riskTier": "low",
+  "freshnessStatus": "present",
+  "nonce": "nonce_agent_proof_valid_001",
+  "nonceStatus": "present",
+  "signedProofReference": "signed_proof_valid_local_control",
+  "signedProofStatus": "present",
+  "sessionContextReference": "session_context_local_review",
+  "settlementSensitive": false,
+  "localDemoOnly": true
+}

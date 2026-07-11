@@ -1,0 +1,23 @@
+{
+  "packageId": "agent_proof_pkg_identity_only_invalid",
+  "contractVersion": "atg.agent-proof-contract.local.v1",
+  "claimedAgentName": "TrustedAgentName",
+  "claimedAgentType": "automation_agent",
+  "ownerReference": null,
+  "issuerReference": null,
+  "mandateReference": null,
+  "permittedActionScope": null,
+  "requestedAction": "Use a sensitive tool because the agent claims a trusted name.",
+  "evidenceReference": null,
+  "verifiedIntentStatus": "missing",
+  "humanApprovalStatus": "required_missing",
+  "riskTier": "medium",
+  "freshnessStatus": "missing",
+  "nonce": null,
+  "nonceStatus": "missing",
+  "signedProofReference": null,
+  "signedProofStatus": "missing",
+  "sessionContextReference": null,
+  "settlementSensitive": false,
+  "localDemoOnly": true
+}

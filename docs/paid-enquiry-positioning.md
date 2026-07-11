@@ -116,3 +116,13 @@ intent, freshness, nonce, human approval, and signed gate-pass proof should be
 present before trust. This supports local technical review only and does not
 create live systems contact, payment activation, settlement authority,
 production certification, or action execution.
+
+## P3-M130 Paid Enquiry Angle
+
+P3-M130 supports a safer paid technical review angle: review a local agent proof
+package schema, verification request, verification result, and gate-pass
+challenge against a client's proposed workflow. This remains paid technical
+review / local pilot feasibility / integration assessment only. It does not
+produce a production deployment, payment activation, settlement authority,
+legal/compliance/security certification, automatic access, or guaranteed
+commercial result.

@@ -1,0 +1,114 @@
+{
+  "title": "Agent Trust Gate Agent Proof Package",
+  "description": "Local-only proof package an agent or owner can present before trust is granted. Claimed identity alone is not sufficient proof.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "packageId",
+    "contractVersion",
+    "claimedAgentName",
+    "claimedAgentType",
+    "ownerReference",
+    "issuerReference",
+    "mandateReference",
+    "permittedActionScope",
+    "requestedAction",
+    "evidenceReference",
+    "verifiedIntentStatus",
+    "humanApprovalStatus",
+    "riskTier",
+    "freshnessStatus",
+    "nonce",
+    "nonceStatus",
+    "signedProofReference",
+    "signedProofStatus",
+    "sessionContextReference",
+    "settlementSensitive",
+    "localDemoOnly"
+  ],
+  "properties": {
+    "packageId": {
+      "type": "string",
+      "pattern": "^agent_proof_pkg_[A-Za-z0-9_-]{3,120}$"
+    },
+    "contractVersion": {
+      "const": "atg.agent-proof-contract.local.v1"
+    },
+    "claimedAgentName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "claimedAgentType": {
+      "type": "string",
+      "enum": ["agentic_browser", "automation_agent", "tool_calling_agent", "agent_owner_claim", "unknown"]
+    },
+    "ownerReference": {
+      "type": ["string", "null"],
+      "maxLength": 160
+    },
+    "issuerReference": {
+      "type": ["string", "null"],
+      "maxLength": 160
+    },
+    "mandateReference": {
+      "type": ["string", "null"],
+      "maxLength": 160
+    },
+    "permittedActionScope": {
+      "type": ["string", "null"],
+      "maxLength": 240
+    },
+    "requestedAction": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300
+    },
+    "evidenceReference": {
+      "type": ["string", "null"],
+      "maxLength": 160
+    },
+    "verifiedIntentStatus": {
+      "type": "string",
+      "enum": ["verified", "unverified", "missing", "conflicting"]
+    },
+    "humanApprovalStatus": {
+      "type": "string",
+      "enum": ["approved", "required_missing", "not_required", "rejected"]
+    },
+    "riskTier": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "freshnessStatus": {
+      "type": "string",
+      "enum": ["present", "missing", "stale", "replayed", "tampered", "malformed"]
+    },
+    "nonce": {
+      "type": ["string", "null"],
+      "maxLength": 160
+    },
+    "nonceStatus": {
+      "type": "string",
+      "enum": ["present", "missing", "stale", "replayed", "tampered", "malformed"]
+    },
+    "signedProofReference": {
+      "type": ["string", "null"],
+      "maxLength": 160
+    },
+    "signedProofStatus": {
+      "type": "string",
+      "enum": ["present", "missing", "stale", "replayed", "tampered", "malformed"]
+    },
+    "sessionContextReference": {
+      "type": ["string", "null"],
+      "maxLength": 160
+    },
+    "settlementSensitive": {
+      "type": "boolean"
+    },
+    "localDemoOnly": {
+      "const": true
+    }
+  }
+}

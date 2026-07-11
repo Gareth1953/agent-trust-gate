@@ -1,0 +1,15 @@
+{
+  "challengeId": "gate_pass_challenge_settlement_sensitive",
+  "contractVersion": "atg.agent-proof-contract.local.v1",
+  "verifierReference": "verifier_local_gate",
+  "requestedAction": "Present signed proof before a simulated settlement-sensitive workflow proceeds.",
+  "requiredMandate": true,
+  "requiredEvidence": true,
+  "requiredIntentVerification": true,
+  "requiredHumanApproval": true,
+  "requiredFreshness": true,
+  "requiredNonce": true,
+  "requiredSignedProof": true,
+  "expiry": "2030-01-01T00:00:00.000Z",
+  "localDemoOnly": true
+}

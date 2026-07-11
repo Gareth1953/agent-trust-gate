@@ -212,4 +212,10 @@ standard status, guaranteed agent adoption, identity certification, production
 certification, payment authority, settlement authority, automatic acceptance,
 or automatic access after payment.
 
+P3-M130 also stays inside that boundary. It adds local proof package schemas and
+a verification contract demo only, without claiming universal agent standard
+status, guaranteed agent adoption, identity certification, production
+certification, payment authority, settlement authority, automatic acceptance,
+or automatic access after payment.
+
 Public project contact: `gpmiddleton71@gmail.com`

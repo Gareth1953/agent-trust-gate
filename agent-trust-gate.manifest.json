@@ -1,15 +1,17 @@
 {
   "manifest_version": "atg.code-readable-integration.v1",
   "service_name": "Agent Trust Gate",
-  "latest_mission": "P3-M129",
+  "latest_mission": "P3-M130",
   "recent_missions": [
+    "P3-M122",
     "P3-M123",
     "P3-M124",
     "P3-M125",
     "P3-M126",
     "P3-M127",
     "P3-M128",
-    "P3-M129"
+    "P3-M129",
+    "P3-M130"
   ],
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
   "project_status": "local_demo_only",
@@ -67,7 +69,8 @@
     "settlement_blocker_simulation",
     "end_to_end_money_gate_proof",
     "session_intent_gate_concept_model",
-    "prove_yourself_protocol_model"
+    "prove_yourself_protocol_model",
+    "agent_proof_contract_model"
   ],
   "safe_local_commands": [
     "npm test",
@@ -80,6 +83,7 @@
     "npm run demo:quickstart",
     "npm run demo:session-intent",
     "npm run demo:prove-yourself",
+    "npm run demo:agent-proof-contract",
     "npm run proof:money-gate"
   ],
   "discovery_docs": [
@@ -115,6 +119,9 @@
     "docs/system-side-agent-verification-guide.md",
     "docs/agent-owner-trust-presentation-guide.md",
     "docs/what-a-gate-pass-proves.md",
+    "docs/agent-proof-package-schema-and-verification-contract.md",
+    "docs/agent-proof-package-field-guide.md",
+    "docs/gate-pass-challenge-and-response-flow.md",
     "docs/ai-agent-traffic-and-session-intent-gate.md",
     "docs/spoofed-agent-risk-model.md",
     "docs/session-specific-access-framework.md"
@@ -122,7 +129,11 @@
   "schemas": [
     "schemas/local-agent-action-request.schema.json",
     "schemas/local-trust-receipt.schema.json",
-    "schemas/local-money-gate-proof.schema.json"
+    "schemas/local-money-gate-proof.schema.json",
+    "schemas/agent-proof-package.schema.json",
+    "schemas/agent-proof-verification-request.schema.json",
+    "schemas/agent-proof-verification-result.schema.json",
+    "schemas/gate-pass-challenge.schema.json"
   ],
   "agent_card": "agent-trust-gate.agent-card.json",
   "possible_outputs": [
@@ -131,7 +142,12 @@
     "refusal_receipt",
     "money_gate_allowed",
     "money_gate_blocked",
-    "money_gate_review_required"
+    "money_gate_review_required",
+    "agent_proof_allowed",
+    "agent_proof_blocked",
+    "agent_proof_requires_evidence",
+    "agent_proof_requires_human_review",
+    "agent_proof_requires_signed_proof"
   ],
   "non_capabilities": [
     "live API",

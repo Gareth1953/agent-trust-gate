@@ -22,6 +22,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Public reviewer and paid pilot enquiry pack is present: [Public reviewer and paid pilot enquiry pack](docs/public-reviewer-and-paid-pilot-enquiry-pack.md), [reviewer enquiry copy](docs/reviewer-enquiry-copy.md), and [paid pilot enquiry checklist](docs/paid-pilot-enquiry-checklist.md).
 - [ ] Public repo commercial conversion review is present: [Public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md).
 - [ ] Agent trust invitation and prove-yourself protocol pack is present: [Agent trust invitation and prove-yourself protocol](docs/agent-trust-invitation-and-prove-yourself-protocol.md), [agent proof requirements](docs/agent-proof-requirements.md), [system-side agent verification guide](docs/system-side-agent-verification-guide.md), [agent owner trust presentation guide](docs/agent-owner-trust-presentation-guide.md), and [what a gate pass proves](docs/what-a-gate-pass-proves.md).
+- [ ] Agent proof package schema and verification contract pack is present: [agent proof package schema and verification contract](docs/agent-proof-package-schema-and-verification-contract.md), [agent proof package field guide](docs/agent-proof-package-field-guide.md), [gate-pass challenge and response flow](docs/gate-pass-challenge-and-response-flow.md), [agent proof package schema](schemas/agent-proof-package.schema.json), [agent proof verification request schema](schemas/agent-proof-verification-request.schema.json), [agent proof verification result schema](schemas/agent-proof-verification-result.schema.json), and [gate-pass challenge schema](schemas/gate-pass-challenge.schema.json).
 - [ ] Manifest reports `local_demo_only`.
 - [ ] Schemas and JSON examples parse.
 - [ ] Tests, build, and typecheck pass.
@@ -224,6 +225,21 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] The local demo command is `npm run demo:prove-yourself`.
 - [ ] No universal agent standard, guaranteed agent adoption, guaranteed buyer demand, guaranteed paid-pilot conversion, identity certification, production readiness, legal/compliance/security certification, automatic acceptance, automatic access after payment, live payment processing, or settlement readiness is claimed.
 - [ ] No live systems contact, direct bot messaging, live API, MCP server functionality, live agent-to-agent communication, email automation, outreach automation, scraping/contact harvesting, forms, tracking, analytics, telemetry, paid ads, ad pixels, hosted calls, cloud/network calls, external-agent contact, production signing, or action execution is activated by P3-M129.
+
+## Agent Proof Package Schema and Verification Contract
+
+- [ ] P3-M130 agent proof package schema and verification contract is local schema modelling, local verification contract design, examples, documentation, and tests only.
+- [ ] `docs/agent-proof-package-schema-and-verification-contract.md` is linked from README.
+- [ ] `docs/agent-proof-package-field-guide.md` is linked from README.
+- [ ] `docs/gate-pass-challenge-and-response-flow.md` is linked from README.
+- [ ] `schemas/agent-proof-package.schema.json` is linked from README.
+- [ ] `schemas/agent-proof-verification-request.schema.json` is linked from README.
+- [ ] `schemas/agent-proof-verification-result.schema.json` is linked from README.
+- [ ] `schemas/gate-pass-challenge.schema.json` is linked from README.
+- [ ] Core positioning remains: Do not trust the agent. Trust the gate pass. No proof. No permission. No mandate. No action. No signed gate pass. No settlement.
+- [ ] The local demo command is `npm run demo:agent-proof-contract`.
+- [ ] No universal agent standard, guaranteed agent adoption, guaranteed buyer demand, guaranteed paid-pilot conversion, identity/authentication certification, production readiness, legal/compliance/security certification, automatic acceptance, automatic access after payment, live payment processing, or settlement readiness is claimed.
+- [ ] No live API, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, email automation, outreach automation, scraping/contact harvesting, forms, tracking, analytics, telemetry, paid ads, ad pixels, hosted calls, cloud/network calls, external-agent contact, payment processing, settlement, production signing, production certification, or action execution is activated by P3-M130.
 
 ## Release-candidate checklist
 

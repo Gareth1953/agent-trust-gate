@@ -112,3 +112,12 @@ execute actions.
 - [ ] Confirm no live systems contact, direct bot messaging, production
       certification, payment/settlement authority, or action execution is
       implied.
+
+## P3-M130 Checklist Addition
+
+- [ ] If sharing P3-M130, link to the proof package schema and verification
+      contract docs.
+- [ ] Mention `npm run demo:agent-proof-contract` as a local-only demo.
+- [ ] Confirm readers understand schemas and examples are local modelling only.
+- [ ] Confirm no live API, MCP server, production authentication, payment,
+      settlement, external-agent contact, or action execution is implied.

@@ -1,5 +1,52 @@
 # Release Notes
 
+## P3-M130: Agent Proof Package Schema and Verification Contract Pack
+
+P3-M130 adds an Agent Proof Package Schema and Verification Contract Pack for
+Agent Trust Gate.
+
+Added assets:
+
+- `docs/agent-proof-package-schema-and-verification-contract.md`
+- `docs/agent-proof-package-field-guide.md`
+- `docs/gate-pass-challenge-and-response-flow.md`
+- `schemas/agent-proof-package.schema.json`
+- `schemas/agent-proof-verification-request.schema.json`
+- `schemas/agent-proof-verification-result.schema.json`
+- `schemas/gate-pass-challenge.schema.json`
+- `src/agent-proof-contract.ts`
+- `src/agent-proof-contract-cli.ts`
+- `examples/agent-proof-*.json`
+- `examples/gate-pass-challenge-*.json`
+- `npm run demo:agent-proof-contract`
+- focused agent proof contract tests
+
+The pack turns the P3-M129 prove-yourself protocol into local structured proof
+packages, verification requests, verification results, and gate-pass challenges.
+It states: Do not trust the agent. Trust the gate pass. No proof. No permission.
+No mandate. No action. No signed gate pass. No settlement.
+
+This is local schema modelling, local verification contract design, examples,
+documentation, and tests only. It does not claim universal agent standard
+status, guaranteed agent adoption, guaranteed buyer demand, guaranteed paid
+pilot conversion, production readiness, live payment/settlement readiness,
+legal/compliance/security certification, identity/authentication certification,
+automatic paid-pilot acceptance, automatic access after payment, or any legal,
+financial, compliance, procurement, settlement, identity, authentication, or
+security guarantee.
+
+It does not add live APIs, MCP server functionality, live systems contact,
+direct bot messaging, live agent-to-agent communication, external-agent
+contact, autonomous contact, outreach automation, email automation, scraping,
+contact harvesting, forms, tracking, analytics, telemetry, hosted calls, paid
+ads, ad pixels, cloud/network calls, secrets, credentials, live payment
+processing, PayPal API integration, Stripe integration, checkout, webhooks,
+wallet/banking logic, real settlement execution, production signing,
+production key management, AUC integration, Agent Contact System integration,
+or action execution.
+
+**No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+
 ## P3-M129: Agent Trust Invitation and Prove-Yourself Protocol Pack
 
 P3-M129 adds an Agent Trust Invitation and Prove-Yourself Protocol Pack for

@@ -266,4 +266,10 @@ local proof-requirement review path. It adds no live systems contact, direct
 bot messaging, payment processing, settlement, production certification,
 production signing, or action execution.
 
+P3-M130 adds the Agent Proof Package Schema and Verification Contract Pack as a
+machine-readable local review path. It adds no live APIs, MCP server
+functionality, live systems contact, direct bot messaging, live agent-to-agent
+communication, payment processing, settlement, production signing, production
+certification, hosted service, or action execution.
+
 Public project contact: `gpmiddleton71@gmail.com`

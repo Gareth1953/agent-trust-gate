@@ -184,3 +184,11 @@ gate-pass meaning, deterministic examples, and a local demo. It preserves the
 same controlled-visibility boundary and adds no live systems contact, direct
 bot messaging, live APIs, payment processing, settlement, production signing,
 or action execution.
+
+## P3-M130 Follow-On
+
+P3-M130 adds agent proof package schemas, verification request/result schemas,
+gate-pass challenge schemas, deterministic examples, and a local demo. Public
+visibility should position it as local schema modelling and verification
+contract design only, not a live API, live agent endpoint, production signing,
+payment rail, settlement rail, hosted service, or action executor.

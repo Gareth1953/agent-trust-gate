@@ -28,6 +28,7 @@ Safe local commands:
 - npm run demo:quickstart
 - npm run demo:session-intent
 - npm run demo:prove-yourself
+- npm run demo:agent-proof-contract
 - npm run proof:money-gate
 
 Important docs:
@@ -63,6 +64,9 @@ Important docs:
 - docs/system-side-agent-verification-guide.md
 - docs/agent-owner-trust-presentation-guide.md
 - docs/what-a-gate-pass-proves.md
+- docs/agent-proof-package-schema-and-verification-contract.md
+- docs/agent-proof-package-field-guide.md
+- docs/gate-pass-challenge-and-response-flow.md
 - docs/ai-agent-traffic-and-session-intent-gate.md
 - docs/spoofed-agent-risk-model.md
 - docs/session-specific-access-framework.md
@@ -71,6 +75,10 @@ Important schemas:
 - schemas/local-agent-action-request.schema.json
 - schemas/local-trust-receipt.schema.json
 - schemas/local-money-gate-proof.schema.json
+- schemas/agent-proof-package.schema.json
+- schemas/agent-proof-verification-request.schema.json
+- schemas/agent-proof-verification-result.schema.json
+- schemas/gate-pass-challenge.schema.json
 
 Important examples:
 - examples/local-demo-low-risk-allow.json
@@ -85,6 +93,9 @@ Important examples:
 - examples/session-intent-valid-local-control.json
 - examples/prove-yourself-claimed-identity-only-blocked.json
 - examples/prove-yourself-valid-local-control.json
+- examples/agent-proof-package-valid-local-control.json
+- examples/agent-proof-package-identity-only-invalid.json
+- examples/agent-proof-verification-result-allowed-local.json
 
 Commercial/contact route:
 Human-reviewed developer, agent-system, integration, security, paid technical
@@ -168,3 +179,14 @@ readiness, legal/compliance/security certification, automatic acceptance, or
 automatic access after payment. It adds no live systems contact, direct bot
 messaging, live agent-to-agent communication, live APIs, payment processing,
 settlement, external-agent contact, production signing, or action execution.
+
+P3-M130 adds an Agent Proof Package Schema and Verification Contract Pack with
+local proof package schemas, verification request/result schemas, gate-pass
+challenge schemas, deterministic local examples, and a local demo command. It
+turns the prove-yourself protocol into machine-readable local proof contracts:
+claimed identity alone is not sufficient proof, no proof means no permission,
+stale or replayed proof fails, and settlement-sensitive requests require signed
+proof. It adds no live API, MCP server functionality, live systems contact,
+direct bot messaging, live agent-to-agent communication, payment processing,
+settlement, hosted service, production signing, production certification, or
+action execution.

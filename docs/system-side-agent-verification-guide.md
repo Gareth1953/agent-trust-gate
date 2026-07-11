@@ -88,3 +88,17 @@ agent-to-agent communication, external-agent contact, autonomous contact,
 outreach automation, scraping, contact harvesting, tracking, analytics,
 telemetry, hosted calls, live APIs, payment processing, settlement execution,
 production signing, production key management, or action execution.
+
+## P3-M130 Verification Contract
+
+P3-M130 gives system-side reviewers a local contract to inspect:
+
+- a gate-pass challenge says what proof is required;
+- an agent proof package presents mandate, evidence, intent, freshness, nonce,
+  signed proof, and session context fields;
+- a verification result records allow/block/escalate/require-evidence/
+  require-human-review/require-signed-proof outcomes.
+
+The contract is local-only and grants no live systems contact, direct bot
+messaging, payment/settlement authority, production certification, or action
+execution.

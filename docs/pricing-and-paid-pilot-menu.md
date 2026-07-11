@@ -209,3 +209,9 @@ P3-M129 adds local prove-yourself protocol docs, proof requirements, examples,
 and a demo script only. It does not add live systems contact, direct bot
 messaging, live APIs, payment processing, settlement, production certification,
 production signing, or action execution.
+
+P3-M130 adds local agent proof package schemas, verification contract docs,
+examples, and a demo script only. It does not add live APIs, MCP server
+functionality, live systems contact, direct bot messaging, live
+agent-to-agent communication, payment processing, settlement, production
+certification, production signing, or action execution.

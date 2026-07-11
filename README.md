@@ -27,6 +27,7 @@ For a fast public review, use this path:
 11. Inspect global discovery and manual sharing guidance: [global code discovery and developer distribution pack](docs/global-code-discovery-and-developer-distribution-pack.md).
 12. Inspect controlled visibility and paid enquiry positioning: [controlled public visibility and paid enquiry positioning](docs/controlled-public-visibility-and-paid-enquiry-positioning.md).
 13. Inspect agent trust proof requirements: [agent trust invitation and prove-yourself protocol](docs/agent-trust-invitation-and-prove-yourself-protocol.md).
+14. Inspect machine-readable proof contracts: [agent proof package schema and verification contract](docs/agent-proof-package-schema-and-verification-contract.md).
 
 P3-M125 adds the [public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md)
 to make this path easier to assess without adding forms, tracking, payment
@@ -44,6 +45,12 @@ P3-M129 adds an Agent Trust Invitation and Prove-Yourself Protocol Pack without
 adding live systems contact, direct bot messaging, live agent-to-agent
 communication, live APIs, payment processing, settlement, hosted services,
 production signing, or action execution.
+P3-M130 adds agent proof package schemas, gate-pass challenge schemas,
+verification result schemas, deterministic local examples, and a local proof
+contract demo without adding live APIs, MCP server functionality, live systems
+contact, direct bot messaging, live agent-to-agent communication, payment
+processing, settlement, hosted services, production signing, or action
+execution.
 
 ## What to inspect first
 
@@ -153,6 +160,7 @@ Install dependencies first, then use the existing project scripts:
     npm run demo:adversarial
     npm run demo:integrations
     npm run demo:prove-yourself
+    npm run demo:agent-proof-contract
     npm run cli -- demo quickstart
 
 Receipt verification and settlement controls can be inspected with supported
@@ -173,6 +181,10 @@ the requested action or settlement.
 - [Local action-request schema](schemas/local-agent-action-request.schema.json)
 - [Local trust-receipt schema](schemas/local-trust-receipt.schema.json)
 - [Local money-gate proof schema](schemas/local-money-gate-proof.schema.json)
+- [Agent proof package schema](schemas/agent-proof-package.schema.json)
+- [Agent proof verification request schema](schemas/agent-proof-verification-request.schema.json)
+- [Agent proof verification result schema](schemas/agent-proof-verification-result.schema.json)
+- [Gate-pass challenge schema](schemas/gate-pass-challenge.schema.json)
 - [Agent-readable capability statement](docs/agent-readable-capability-statement.md)
 - [Agent-readable discovery and system metadata](docs/agent-readable-discovery-and-system-metadata.md)
 - [System integration metadata](docs/system-integration-metadata.md)
@@ -241,6 +253,41 @@ This is local protocol modelling and proof-requirement guidance only. It does
 not add live systems contact, direct bot messaging, live agent-to-agent
 communication, live APIs, payment processing, settlement, hosted services,
 production signing, production certification, or action execution.
+
+## Agent proof package and verification contract
+
+P3-M130 turns the prove-yourself protocol into local, machine-readable proof
+package and verifier contract artifacts.
+
+Core positioning:
+
+Do not trust the agent. Trust the gate pass.
+
+No proof. No permission.
+
+No mandate. No action.
+
+No signed gate pass. No settlement.
+
+- [Agent proof package schema and verification contract](docs/agent-proof-package-schema-and-verification-contract.md)
+- [Agent proof package field guide](docs/agent-proof-package-field-guide.md)
+- [Gate-pass challenge and response flow](docs/gate-pass-challenge-and-response-flow.md)
+- [Agent proof package schema](schemas/agent-proof-package.schema.json)
+- [Agent proof verification request schema](schemas/agent-proof-verification-request.schema.json)
+- [Agent proof verification result schema](schemas/agent-proof-verification-result.schema.json)
+- [Gate-pass challenge schema](schemas/gate-pass-challenge.schema.json)
+
+Run the deterministic local contract examples:
+
+```text
+npm run demo:agent-proof-contract
+```
+
+This is local schema modelling, local verification contract design, examples,
+documentation, and tests only. It does not add live APIs, live systems contact,
+direct bot messaging, live agent-to-agent communication, payment processing,
+settlement, hosted services, production signing, production certification, or
+action execution.
 
 ## Public contact
 

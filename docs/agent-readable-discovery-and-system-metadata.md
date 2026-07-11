@@ -311,3 +311,24 @@ required before settlement-sensitive workflows can proceed in local modelling.
 Agents must not infer live systems contact, direct bot messaging, autonomous
 authority, universal agent standard status, identity certification,
 payment/settlement authority, production certification, or action execution.
+
+## P3-M130 Proof Contract Discovery
+
+P3-M130 adds machine-readable local proof contract assets:
+
+- `docs/agent-proof-package-schema-and-verification-contract.md`
+- `docs/agent-proof-package-field-guide.md`
+- `docs/gate-pass-challenge-and-response-flow.md`
+- `schemas/agent-proof-package.schema.json`
+- `schemas/agent-proof-verification-request.schema.json`
+- `schemas/agent-proof-verification-result.schema.json`
+- `schemas/gate-pass-challenge.schema.json`
+- `src/agent-proof-contract.ts`
+- `npm run demo:agent-proof-contract`
+
+Agents and developer assistants may read these files to understand how a local
+proof package, verifier request, verification result, and gate-pass challenge
+fit the prove-yourself protocol. They must not infer a live API, MCP server,
+live systems contact, direct bot messaging, live agent-to-agent communication,
+identity/authentication certification, payment/settlement authority, production
+signing, production certification, or action execution.

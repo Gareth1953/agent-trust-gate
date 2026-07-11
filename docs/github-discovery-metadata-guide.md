@@ -124,3 +124,11 @@ protocol`, `agent proof requirements`, `gate-pass trust`, and `no proof no
 permission`. Do not use metadata that implies a universal agent standard,
 production certification, live systems contact, payment activation, settlement
 authority, or action execution.
+
+## P3-M130 Metadata Note
+
+P3-M130 can be described manually as `agent proof package schemas`, `verification
+contract`, `gate-pass challenge`, and `local proof contract`. Do not use
+metadata that implies a live API, MCP server, official agent standard,
+production authentication, identity certification, payment activation,
+settlement authority, or action execution.

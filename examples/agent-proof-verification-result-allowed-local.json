@@ -1,0 +1,58 @@
+{
+  "resultId": "agent_proof_result_008f6594be63d7d4815ea3e3",
+  "contractVersion": "atg.agent-proof-contract.local.v1",
+  "packageId": "agent_proof_pkg_valid_local_control",
+  "requestId": "agent_proof_verify_basic",
+  "challengeId": "gate_pass_challenge_basic",
+  "decision": "allow",
+  "reasons": [
+    "proof_contract_local_only",
+    "claimed_identity_not_trust",
+    "challenge_requires_signed_proof"
+  ],
+  "missingProofItems": [],
+  "requiredNextProof": [
+    "record_local_verification_result",
+    "continue_local_demo_only"
+  ],
+  "gatePassMeaning": {
+    "mayProveLocally": [
+      "required_proof_items_were_checked_against_a_local_verification_request",
+      "claimed_identity_was_not_treated_as_sufficient_proof",
+      "mandate_evidence_intent_scope_freshness_nonce_and_signed_proof_status_were_checked_locally",
+      "local_decision_allow",
+      "signed_proof_reference_was_present_locally",
+      "challenge_required_signed_proof_before_local_allow_decision"
+    ],
+    "doesNotProve": [
+      "universal_agent_identity",
+      "production_authentication",
+      "legal_compliance_or_security_certification",
+      "payment_or_settlement_authority",
+      "permission_to_execute_actions",
+      "live_systems_contact_or_agent_to_agent_communication"
+    ]
+  },
+  "claimedIdentityAloneSufficient": false,
+  "noProofMeansNoPermission": true,
+  "publicContactEmail": "gpmiddleton71@gmail.com",
+  "note": "Local agent proof contract model only; no live systems contact, direct bot messaging, live agent-to-agent communication, outreach automation, payment, settlement, production certification, network call, or action execution occurred.",
+  "localDemoOnly": true,
+  "localOnly": true,
+  "liveSystemsContact": false,
+  "directBotMessaging": false,
+  "autonomousOutreach": false,
+  "outreachAutomation": false,
+  "liveAgentToAgentCommunication": false,
+  "externalAgentContact": false,
+  "liveApi": false,
+  "mcpServer": false,
+  "cloudNetworkCall": false,
+  "secretsOrCredentials": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "walletBankingLogic": false,
+  "productionSigning": false,
+  "productionCertification": false,
+  "actionExecution": false
+}

@@ -83,3 +83,12 @@ agent-to-agent communication, autonomous outreach, scraping, contact
 harvesting, forms, tracking, analytics, telemetry, paid ads, live APIs, payment
 processing, settlement execution, production signing, production key
 management, or action execution.
+
+## P3-M130 Presentation Note
+
+Agent owners can now point reviewers to the P3-M130 local proof package schemas
+and verification contract examples. Safe wording: "This workflow can present a
+local proof package for mandate, evidence, verified intent, freshness, nonce,
+signed proof status, and session context review." Do not present this as
+production certification, live integration, identity certification, payment
+activation, settlement authority, or permission to execute actions.

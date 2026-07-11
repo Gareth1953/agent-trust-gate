@@ -132,3 +132,12 @@ that claimed identity alone is not trust and that a scoped gate pass is the
 proof target. They must not infer live systems contact, direct bot messaging,
 autonomous authority, payment/settlement authority, production certification,
 or action execution.
+
+## P3-M130 Agent-Readable Contract Note
+
+P3-M130 adds agent-readable proof package schemas, verification request/result
+schemas, gate-pass challenge schemas, and deterministic local examples. Agents
+and developer tools may read these files to understand the local proof contract.
+They must not infer a live API, MCP server, live systems contact, direct bot
+messaging, live agent-to-agent communication, payment/settlement authority,
+production signing, production certification, or action execution.

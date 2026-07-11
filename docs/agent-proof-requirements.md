@@ -129,3 +129,17 @@ This is proof-requirement documentation only. It does not add live systems
 contact, direct bot messaging, live agent-to-agent communication, live APIs,
 payment processing, settlement execution, production signing, production
 certification, or action execution.
+
+## P3-M130 Structured Proof Contract
+
+P3-M130 turns these proof requirements into local JSON schemas and deterministic
+verification examples:
+
+- `schemas/agent-proof-package.schema.json`
+- `schemas/agent-proof-verification-request.schema.json`
+- `schemas/agent-proof-verification-result.schema.json`
+- `schemas/gate-pass-challenge.schema.json`
+
+The structured contract keeps the same rule: claimed identity alone is not
+sufficient proof, no proof means no permission, and settlement-sensitive local
+flows require signed proof before any allow decision.

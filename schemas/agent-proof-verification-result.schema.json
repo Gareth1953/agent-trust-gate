@@ -1,0 +1,175 @@
+{
+  "title": "Agent Trust Gate Agent Proof Verification Result",
+  "description": "Local-only verification result for an agent proof package. It grants no live API, payment, settlement, production signing, or action execution authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "resultId",
+    "contractVersion",
+    "packageId",
+    "requestId",
+    "decision",
+    "reasons",
+    "missingProofItems",
+    "requiredNextProof",
+    "gatePassMeaning",
+    "claimedIdentityAloneSufficient",
+    "noProofMeansNoPermission",
+    "publicContactEmail",
+    "note",
+    "localDemoOnly",
+    "localOnly",
+    "liveSystemsContact",
+    "directBotMessaging",
+    "autonomousOutreach",
+    "outreachAutomation",
+    "liveAgentToAgentCommunication",
+    "externalAgentContact",
+    "liveApi",
+    "mcpServer",
+    "cloudNetworkCall",
+    "secretsOrCredentials",
+    "paymentAuthorisation",
+    "settlementAuthorisation",
+    "walletBankingLogic",
+    "productionSigning",
+    "productionCertification",
+    "actionExecution"
+  ],
+  "properties": {
+    "resultId": {
+      "type": "string",
+      "pattern": "^agent_proof_result_[a-f0-9]{24}$"
+    },
+    "contractVersion": {
+      "const": "atg.agent-proof-contract.local.v1"
+    },
+    "packageId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "requestId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "challengeId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["allow", "block", "escalate", "require_evidence", "require_human_review", "require_signed_proof"]
+    },
+    "reasons": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "missingProofItems": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "requiredNextProof": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "gatePassMeaning": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mayProveLocally", "doesNotProve"],
+      "properties": {
+        "mayProveLocally": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "doesNotProve": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "claimedIdentityAloneSufficient": {
+      "const": false
+    },
+    "noProofMeansNoPermission": {
+      "const": true
+    },
+    "publicContactEmail": {
+      "const": "gpmiddleton71@gmail.com"
+    },
+    "note": {
+      "type": "string",
+      "minLength": 1
+    },
+    "localDemoOnly": {
+      "const": true
+    },
+    "localOnly": {
+      "const": true
+    },
+    "liveSystemsContact": {
+      "const": false
+    },
+    "directBotMessaging": {
+      "const": false
+    },
+    "autonomousOutreach": {
+      "const": false
+    },
+    "outreachAutomation": {
+      "const": false
+    },
+    "liveAgentToAgentCommunication": {
+      "const": false
+    },
+    "externalAgentContact": {
+      "const": false
+    },
+    "liveApi": {
+      "const": false
+    },
+    "mcpServer": {
+      "const": false
+    },
+    "cloudNetworkCall": {
+      "const": false
+    },
+    "secretsOrCredentials": {
+      "const": false
+    },
+    "paymentAuthorisation": {
+      "const": false
+    },
+    "settlementAuthorisation": {
+      "const": false
+    },
+    "walletBankingLogic": {
+      "const": false
+    },
+    "productionSigning": {
+      "const": false
+    },
+    "productionCertification": {
+      "const": false
+    },
+    "actionExecution": {
+      "const": false
+    }
+  }
+}

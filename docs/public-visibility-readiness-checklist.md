@@ -99,3 +99,13 @@ services, or execute actions.
 - [ ] Public wording does not imply live systems contact, direct bot messaging,
       production certification, live payment readiness, settlement readiness, or
       action execution.
+
+## P3-M130 Follow-On Check
+
+- [ ] P3-M130 proof package schemas and verification contract docs are linked
+      where relevant.
+- [ ] Public wording says claimed identity alone is not sufficient proof.
+- [ ] Public wording says settlement-sensitive local flows require signed proof.
+- [ ] Public wording does not imply live APIs, MCP server functionality, live
+      systems contact, direct bot messaging, production certification,
+      payment/settlement authority, or action execution.

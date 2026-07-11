@@ -207,3 +207,13 @@ live payment processing, PayPal API integration, Stripe integration, checkout,
 webhooks, wallet/banking logic, real settlement execution, production signing,
 production key management, AUC integration, Agent Contact System integration, or
 action execution.
+
+## P3-M130 Follow-On
+
+P3-M130 adds a local Agent Proof Package Schema and Verification Contract Pack
+for this prove-yourself protocol. It defines machine-readable proof package,
+verification request/result, and gate-pass challenge schemas plus deterministic
+local examples. It preserves the same boundary: no live APIs, live systems
+contact, direct bot messaging, live agent-to-agent communication, payment
+processing, settlement, production signing, production certification, or action
+execution.

@@ -89,3 +89,6 @@ does not alter these boundaries.
 
 P3-M129 adds local agent proof-requirement and prove-yourself protocol guidance
 only and does not alter these boundaries.
+
+P3-M130 adds local agent proof package schema and verification contract guidance
+only and does not alter these boundaries.

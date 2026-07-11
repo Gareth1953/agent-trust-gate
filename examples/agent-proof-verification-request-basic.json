@@ -1,0 +1,28 @@
+{
+  "requestId": "agent_proof_verify_basic",
+  "contractVersion": "atg.agent-proof-contract.local.v1",
+  "verifierReference": "verifier_local_gate",
+  "systemReference": "system_local_review",
+  "requestedVerificationPurpose": "local_agent_proof_package_review",
+  "requiredProofItems": [
+    "claimedAgentName",
+    "claimedAgentType",
+    "ownerReference",
+    "issuerReference",
+    "mandateReference",
+    "permittedActionScope",
+    "requestedAction",
+    "evidenceReference",
+    "verifiedIntentStatus",
+    "freshnessStatus",
+    "nonce",
+    "nonceStatus",
+    "signedProofReference",
+    "signedProofStatus",
+    "sessionContextReference"
+  ],
+  "riskTolerance": "medium",
+  "humanReviewRequired": false,
+  "settlementSensitive": false,
+  "localDemoOnly": true
+}
