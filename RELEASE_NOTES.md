@@ -1,5 +1,43 @@
 # Release Notes
 
+## P3-M141: Paid Pilot and Commercial Entry Pack
+
+P3-M141 adds a focused paid-pilot commercial entry pack for Agent Trust Gate.
+
+Added assets:
+
+- `docs/paid-pilot-commercial-entry.md`
+- `docs/paid-pilot-scope-and-deliverables.md`
+- `docs/buyer-evaluation-journey.md`
+- `docs/paid-pilot-pricing-boundary.md`
+- `docs/paid-pilot-enquiry-template.md`
+- `examples/paid-pilot-offer.json`
+- `src/paid-pilot-offer.ts`
+- `src/paid-pilot-offer-cli.ts`
+- `npm run demo:paid-pilot`
+- focused paid pilot offer tests
+
+The pack defines the Agent Trust Gate(TM) Paid Evaluation Pilot as a local,
+manual-input only, human-approved, non-production, non-custodial,
+non-autonomous, advisory evaluation route. It keeps the reviewer kit as the
+recommended first experience and keeps GatePass as the headline proof
+primitive.
+
+Indicative pricing starts from £1,500 for a defined local evaluation pilot,
+subject to scope and written agreement. Larger or customised evaluations are
+quoted separately.
+
+This is commercial packaging and local deterministic offer modelling only. It
+does not add checkout, payment links, PayPal API integration, Stripe
+integration, live invoices, webhooks, wallet/banking logic, real payment
+processing, settlement execution, production signing, live APIs, MCP server
+functionality, network calls, real tool execution, action execution,
+production readiness, security certification, legal/compliance/security
+certification, guaranteed safety, guaranteed trust, guaranteed commercial
+results, automatic paid-pilot acceptance, or automatic access after payment.
+
+**No mandate. No evidence. No verified intent. No signed GatePass. No settlement.**
+
 ## P3-M133: Minimal GatePass Core Specification Pack
 
 P3-M133 adds a Minimal GatePass Core Specification Pack for Agent Trust Gate.

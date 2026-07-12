@@ -62,6 +62,15 @@ a [public visibility readiness checklist](public-visibility-readiness-checklist.
 assets clarify the paid enquiry route without adding automation, ads, tracking,
 analytics, live payments, settlement, or action execution.
 
+P3-M141 adds the [paid pilot commercial entry](paid-pilot-commercial-entry.md),
+[paid pilot scope and deliverables](paid-pilot-scope-and-deliverables.md),
+[buyer evaluation journey](buyer-evaluation-journey.md),
+[paid pilot pricing boundary](paid-pilot-pricing-boundary.md), and
+[paid pilot enquiry template](paid-pilot-enquiry-template.md). The reviewer
+kit remains the recommended first experience, and the paid evaluation pilot
+remains local, manual-input only, human-approved, non-production,
+non-custodial, non-autonomous, advisory, and demonstrative.
+
 ## Who Should Review Agent Trust Gate
 
 Useful reviewers include:

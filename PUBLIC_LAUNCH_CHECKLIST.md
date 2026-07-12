@@ -10,6 +10,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Public repo discovery polish is present: [Public repo discovery polish](docs/public-repo-discovery-polish.md).
 - [ ] Commercial payment-capture pack is present: [Commercial payment-capture pack](docs/commercial-payment-capture-pack.md).
 - [ ] Paid pilot offer is present: [Paid pilot offer](docs/paid-pilot-offer.md).
+- [ ] P3-M141 paid pilot commercial entry pack is present: [paid pilot commercial entry](docs/paid-pilot-commercial-entry.md), [paid pilot scope and deliverables](docs/paid-pilot-scope-and-deliverables.md), [buyer evaluation journey](docs/buyer-evaluation-journey.md), [paid pilot pricing boundary](docs/paid-pilot-pricing-boundary.md), [paid pilot enquiry template](docs/paid-pilot-enquiry-template.md), and [machine-readable paid pilot offer](examples/paid-pilot-offer.json).
 - [ ] Commercial contact copy is present: [Commercial contact copy](docs/commercial-contact-copy.md).
 - [ ] Pricing and paid pilot menu draft is present: [Pricing and paid pilot menu](docs/pricing-and-paid-pilot-menu.md).
 - [ ] External reviewer signal and hardening roadmap is present: [External reviewer signal and hardening roadmap](docs/external-reviewer-signal-and-hardening-roadmap.md).
@@ -45,6 +46,8 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Payment remains human-approved and external to the repository.
 - [ ] No automatic acceptance or automatic access is implied.
 - [ ] No live payment processing, PayPal API integration, Stripe integration, checkout, webhook, settlement execution, wallet/banking logic, or payment rail is active.
+- [ ] P3-M141 paid evaluation pilot wording is local, manual-input only, human-approved, non-production, non-custodial, non-autonomous, advisory, and demonstrative.
+- [ ] P3-M141 indicative pricing starts from £1,500 subject to scope and written agreement, with no guaranteed price, result, production integration, automatic acceptance, automatic access, checkout, payment links, or payment integration.
 - [ ] P3-M113 paid pilot offer and commercial contact copy are documentation only.
 - [ ] Paid pilot option names are discussion labels, not fixed prices or binding service terms.
 - [ ] Contact templates do not promise acceptance, availability, outcome, compliance, integration, payment activation, settlement, or automatic access.

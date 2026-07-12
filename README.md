@@ -64,6 +64,40 @@ npm run demo:gatepass-wrapper
 - Confirm the claims boundary is restrained: local-only, no production readiness, no production benchmark, no security certification, no legal/compliance/security assurance.
 - Use the public contact email only for human-reviewed technical review, local pilot, or integration feasibility discussion.
 
+## Paid Evaluation Pilot
+
+P3-M141 adds a concise commercial entry route without changing the reviewer-first
+technical path:
+
+1. **SEE IT** - run `npm run demo:reviewer-kit`.
+2. **TEST IT** - evaluate the local GatePass round trip, scorecard, and wrapper.
+3. **BUY A PILOT** - request a human-approved, non-production **Agent Trust Gate(TM) Paid Evaluation Pilot**.
+
+The paid pilot is a local, manual-input only, controlled evaluation of how
+proposed AI-agent actions can be checked for mandate, evidence, intent,
+approval status, scope, value or spend limits, GatePass validity, refusal
+reasons, and audit/trust-receipt output. Indicative pricing starts from
+**£1,500** for a defined local evaluation pilot, subject to scope and written
+agreement.
+
+- [Paid pilot commercial entry](docs/paid-pilot-commercial-entry.md)
+- [Paid pilot scope and deliverables](docs/paid-pilot-scope-and-deliverables.md)
+- [Buyer evaluation journey](docs/buyer-evaluation-journey.md)
+- [Paid pilot pricing boundary](docs/paid-pilot-pricing-boundary.md)
+- [Paid pilot enquiry template](docs/paid-pilot-enquiry-template.md)
+- [Machine-readable paid pilot offer](examples/paid-pilot-offer.json)
+
+```powershell
+npm run demo:paid-pilot
+npm run demo:paid-pilot -- --summary-only
+npm run demo:paid-pilot -- --json
+```
+
+This is not production middleware, not a payment or settlement system, not
+production signing, not legal/compliance/security certification, and not a
+guarantee of safety, trust, integration success, commercial result, acceptance,
+or access after payment.
+
 ## Core proof flow
 
 ```text
@@ -157,6 +191,7 @@ mission.
 - P3-M139 made GatePass reviewer-friendly with a one-command reviewer kit.
 - P3-M140A sharpens this README so the reviewer kit is the recommended first run and the public claims boundary is explicit.
 - P3-M140 adds a local-only strategic foresight advisory layer with manual-input sample signals and human approval required before any future build mission.
+- P3-M141 adds a paid pilot and commercial entry pack for a human-approved, local, non-production Agent Trust Gate(TM) Paid Evaluation Pilot.
 
 ## Start here for reviewers
 

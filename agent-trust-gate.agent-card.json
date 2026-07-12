@@ -1,7 +1,7 @@
 {
   "schema": "atg.agent-card.local-discovery.v1",
   "name": "Agent Trust Gate",
-  "latest_mission": "P3-M140",
+  "latest_mission": "P3-M141",
   "recent_missions": [
     "P3-M123",
     "P3-M124",
@@ -21,7 +21,8 @@
     "P3-M138",
     "P3-M139",
     "P3-M140A",
-    "P3-M140"
+    "P3-M140",
+    "P3-M141"
   ],
   "description": "Local-first pre-action and pre-settlement trust gate for agent-led workflows.",
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
@@ -57,7 +58,8 @@
     "local GatePass adversarial metrics and latency scorecard",
     "local GatePass developer wrapper and framework-style integration example",
     "local one-command GatePass reviewer demo kit",
-    "local strategic foresight advisory layer for manual sample signals"
+    "local strategic foresight advisory layer for manual sample signals",
+    "human-reviewed paid evaluation pilot entry route"
   ],
   "non_capabilities": [
     "live API",
@@ -109,7 +111,12 @@
     "autonomous code changes",
     "prediction guarantee",
     "guaranteed trust",
-    "proven safe claim"
+    "proven safe claim",
+    "payment links",
+    "payment buttons",
+    "live invoices",
+    "automatic renewal",
+    "guaranteed commercial results"
   ],
   "safe_commands": [
     "npm test",
@@ -132,7 +139,8 @@
     "npm run demo:gatepass-scorecard",
     "npm run demo:gatepass-wrapper",
     "npm run demo:reviewer-kit",
-    "npm run demo:foresight"
+    "npm run demo:foresight",
+    "npm run demo:paid-pilot"
   ],
   "docs": [
     "README.md",
@@ -227,7 +235,12 @@
     "docs/foresight-signal-categories.md",
     "docs/foresight-recommendation-scoring-guide.md",
     "docs/foresight-human-approval-workflow.md",
-    "docs/foresight-sample-market-radar-report.md"
+    "docs/foresight-sample-market-radar-report.md",
+    "docs/paid-pilot-commercial-entry.md",
+    "docs/paid-pilot-scope-and-deliverables.md",
+    "docs/buyer-evaluation-journey.md",
+    "docs/paid-pilot-pricing-boundary.md",
+    "docs/paid-pilot-enquiry-template.md"
   ],
   "schemas": [
     "schemas/local-agent-action-request.schema.json",
@@ -295,11 +308,12 @@
     "examples/gatepass-developer-wrapper-demo.json",
     "examples/gatepass-reviewer-kit-report.json",
     "examples/public-reviewer-positioning-summary.json",
-    "examples/atg-strategic-foresight-report.json"
+    "examples/atg-strategic-foresight-report.json",
+    "examples/paid-pilot-offer.json"
   ],
   "contact": {
     "email": "gpmiddleton71@gmail.com",
-    "purpose": "Human-reviewed developer, agent-system, integration, security, buyer use case, revenue trigger, global code discovery, controlled public visibility, prove-yourself protocol, agent proof package contract, proof contract integration readiness, enforceable local tool gate demo, minimal GatePass core review, GatePass round trip review, GatePass scorecard review, GatePass developer wrapper review, GatePass reviewer kit review, GatePass benefit review, GatePass proof vocabulary review, public reviewer positioning review, strategic foresight advisory review, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
+    "purpose": "Human-reviewed developer, agent-system, integration, security, buyer use case, revenue trigger, global code discovery, controlled public visibility, prove-yourself protocol, agent proof package contract, proof contract integration readiness, enforceable local tool gate demo, minimal GatePass core review, GatePass round trip review, GatePass scorecard review, GatePass developer wrapper review, GatePass reviewer kit review, GatePass benefit review, GatePass proof vocabulary review, public reviewer positioning review, strategic foresight advisory review, paid evaluation pilot, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
     "boundary": "Contact metadata only. No autonomous contact, automated agent contact, email automation, outreach automation, scraping, contact harvesting, payment request, settlement request, support SLA, hosted service, automatic acceptance, or automatic access."
   },
   "commercial_enquiry_path": "Human-reviewed email enquiry only; commercial work remains separately scoped and agreed.",
@@ -354,6 +368,15 @@
     "autonomous_code_changes": false,
     "prediction_guarantee": false,
     "human_approval_required": true,
+    "paid_pilot_indicative_starting_price_gbp": 1500,
+    "paid_pilot_payment_integration": false,
+    "paid_pilot_live_invoice_generation": false,
+    "paid_pilot_automatic_renewal": false,
+    "paid_pilot_guaranteed_results": false,
+    "paid_pilot_automatic_acceptance": false,
+    "paid_pilot_automatic_access_after_payment": false,
+    "paid_pilot_non_custodial": true,
+    "paid_pilot_non_autonomous": true,
     "autonomous_marketing": false,
     "hidden_viral_distribution": false,
     "unsolicited_agent_contact": false,
@@ -376,9 +399,14 @@
   "agent_trust_language_role": "supporting_material_only",
   "public_reviewer_positioning_boundary": "P3-M140A recommends npm run demo:reviewer-kit as the first run and keeps GatePass as the headline proof primitive. Agent Trust Language remains supporting material. localDemoOnly is true; realToolExecution, actionExecution, networkCalls, productionMiddleware, productionBenchmark, productionCertification, securityCertification, legalComplianceGuarantee, paymentAuthorisation, and settlementAuthorisation remain false.",
   "strategic_foresight_boundary": "P3-M140 is a local-only strategic foresight advisory layer for manual-input signals. advisoryOnly, manualInputOnly, localDemoOnly, and humanApprovalRequired are true; liveMonitoring, autonomousLearning, autonomousProductChanges, autonomousRoadmapChanges, autonomousCodeChanges, autonomousOutreach, scraping, networkCalls, liveAgentContact, directBotMessaging, actionExecution, and predictionGuarantee remain false.",
+  "paid_pilot_offer_boundary": "P3-M141 defines the Agent Trust Gate Paid Evaluation Pilot as a local, manual-input only, human-approved, non-production, non-custodial, non-autonomous, advisory evaluation route. It starts from GBP 1500 subject to scope and written agreement. No checkout, payment links, PayPal API integration, Stripe integration, live invoices, webhooks, wallet or banking logic, live payment processing, settlement execution, production signing, production certification, security certification, legal/compliance/security guarantee, automatic paid-pilot acceptance, automatic access after payment, network calls, real tool execution, or action execution is introduced.",
   "localDemoOnly": true,
   "advisoryOnly": true,
   "manualInputOnly": true,
+  "humanApproved": true,
+  "nonProduction": true,
+  "nonCustodial": true,
+  "nonAutonomous": true,
   "liveMonitoring": false,
   "autonomousLearning": false,
   "autonomousProductChanges": false,
@@ -392,6 +420,15 @@
   "realToolExecution": false,
   "actionExecution": false,
   "networkCalls": false,
+  "paymentIntegration": false,
+  "paymentLinks": false,
+  "checkout": false,
+  "livePaymentProcessing": false,
+  "paypalApiIntegration": false,
+  "stripeIntegration": false,
+  "webhookIntegration": false,
+  "walletBankingLogic": false,
+  "settlementExecution": false,
   "productionMiddleware": false,
   "productionBenchmark": false,
   "productionCertification": false,

@@ -514,3 +514,7 @@ export { ATG_STRATEGIC_FORESIGHT_CONTACT,ATG_STRATEGIC_FORESIGHT_CORE_PHRASES,AT
 export type { ForesightCategory,ForesightRecommendation,ForesightReport,ForesightSafetyFlags,ForesightScore,ForesightSignal } from "./atg-strategic-foresight.js";
 export { runStrategicForesightCli } from "./atg-strategic-foresight-cli.js";
 export type { StrategicForesightCliErrorCode,StrategicForesightCliIo } from "./atg-strategic-foresight-cli.js";
+export { PAID_PILOT_OFFER_CONTACT,PAID_PILOT_OFFER_CORE_PHRASES,PAID_PILOT_OFFER_FIRST_COMMAND,PAID_PILOT_OFFER_ID,PAID_PILOT_OFFER_SAFETY_FLAGS,PAID_PILOT_OFFER_VERSION,getPaidPilotOffer,getPaidPilotSafetyBoundary,summarisePaidPilotOffer } from "./paid-pilot-offer.js";
+export type { PaidPilotOffer,PaidPilotOfferSafetyFlags } from "./paid-pilot-offer.js";
+export { runPaidPilotOfferCli } from "./paid-pilot-offer-cli.js";
+export type { PaidPilotOfferCliErrorCode,PaidPilotOfferCliIo } from "./paid-pilot-offer-cli.js";

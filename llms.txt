@@ -38,6 +38,7 @@ Safe local commands:
 - npm run demo:gatepass-scorecard
 - npm run demo:gatepass-wrapper
 - npm run demo:reviewer-kit
+- npm run demo:paid-pilot
 - npm run proof:money-gate
 
 Important docs:
@@ -54,6 +55,11 @@ Important docs:
 - docs/public-reviewer-and-paid-pilot-enquiry-pack.md
 - docs/reviewer-enquiry-copy.md
 - docs/paid-pilot-enquiry-checklist.md
+- docs/paid-pilot-commercial-entry.md
+- docs/paid-pilot-scope-and-deliverables.md
+- docs/buyer-evaluation-journey.md
+- docs/paid-pilot-pricing-boundary.md
+- docs/paid-pilot-enquiry-template.md
 - docs/public-repo-commercial-conversion-review.md
 - docs/buyer-use-cases-and-revenue-triggers.md
 - docs/revenue-trigger-map.md
@@ -186,13 +192,15 @@ Important examples:
 - examples/gatepass-adversarial-scorecard.json
 - examples/gatepass-developer-wrapper-demo.json
 - examples/gatepass-reviewer-kit-report.json
+- examples/paid-pilot-offer.json
 
 Commercial/contact route:
-Human-reviewed developer, agent-system, integration, security, paid technical
-review, local pilot discussion, and public project enquiries may use
-gpmiddleton71@gmail.com. This is contact metadata only and does not grant
-automatic acceptance, automatic access, hosted access, payment activation, or
-settlement capability.
+Human-reviewed developer, agent-system, integration, security, paid evaluation
+pilot, paid technical review, local pilot discussion, and public project
+enquiries may use gpmiddleton71@gmail.com. This is contact metadata only and
+does not grant automatic acceptance, automatic access, hosted access, payment
+activation, payment links, checkout, live invoices, PayPal API integration,
+Stripe integration, or settlement capability.
 
 Safety boundary:
 This repository is readable by agents and systems, but it exposes no live agent
@@ -204,6 +212,39 @@ webhooks, no wallet/banking logic, no real settlement execution, no production
 signing, no production key management, no real tool execution, no cloud/network calls, no AUC
 integration, no Agent Contact System integration, no outreach automation, and
 no action execution.
+
+## P3-M141 - Paid Pilot and Commercial Entry Pack
+
+P3-M141 adds the Agent Trust Gate Paid Evaluation Pilot as a human-reviewed,
+local, manual-input only, non-production, non-custodial, non-autonomous,
+advisory evaluation route. The reviewer kit remains the recommended first
+experience; GatePass remains the headline proof primitive; Agent Trust
+Language remains supporting material only. Indicative pricing starts from
+£1,500 for a defined local evaluation pilot, subject to scope and written
+agreement.
+
+Paid pilot command:
+`npm run demo:paid-pilot`
+
+Paid pilot docs:
+- `docs/paid-pilot-commercial-entry.md`
+- `docs/paid-pilot-scope-and-deliverables.md`
+- `docs/buyer-evaluation-journey.md`
+- `docs/paid-pilot-pricing-boundary.md`
+- `docs/paid-pilot-enquiry-template.md`
+- `examples/paid-pilot-offer.json`
+
+Paid pilot safety flags: localDemoOnly true, manualInputOnly true,
+humanApproved true, nonProduction true, nonCustodial true, nonAutonomous true,
+advisoryOnly true, realToolExecution false, actionExecution false,
+networkCalls false, liveApi false, mcpServerFunctionality false,
+paymentIntegration false, paymentLinks false, checkout false,
+livePaymentProcessing false, paypalApiIntegration false, stripeIntegration
+false, webhookIntegration false, walletBankingLogic false, settlementExecution
+false, productionSigning false, productionCertification false,
+securityCertification false, legalComplianceGuarantee false,
+guaranteedResults false, automaticAcceptance false, and
+automaticAccessAfterPayment false.
 
 Agent-readable GatePass benefit boundary:
 Agents may explain GatePass only in relevant trust, proof, authorisation,

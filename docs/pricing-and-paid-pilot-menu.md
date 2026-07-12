@@ -246,3 +246,15 @@ P3-M138 adds a local deterministic GatePass developer wrapper and local framewor
 
 ## P3-M139 - One-Command Reviewer Demo Kit
 P3-M139 adds a local deterministic one-command reviewer demo kit for the GatePass lifecycle, adversarial scorecard, developer wrapper, local integration summary, safety boundary, and JSON report output. It uses GatePass proof vocabulary and GatePass claims vocabulary as supporting material only, and adds no production middleware claim, production benchmark claim, security certification claim, production readiness claim, live tool execution, network calls, payment authorisation, settlement authorisation, or action execution.
+
+## P3-M141 - Paid Pilot and Commercial Entry Pack
+
+P3-M141 narrows the buyer-facing commercial entry route around the Agent Trust
+Gate(TM) Paid Evaluation Pilot. The current public route is: see the reviewer
+kit, test the local GatePass demos, then request a human-approved,
+non-production evaluation pilot. Indicative pricing starts from £1,500 for a
+defined local evaluation pilot, subject to scope and written agreement; larger
+or customised evaluations are quoted separately. No checkout, payment links,
+PayPal API integration, Stripe integration, live invoices, payment processing,
+settlement execution, production signing, automatic acceptance, automatic
+access, or action execution is added.
