@@ -31,7 +31,7 @@ pilot conversion, identity/authentication certification, legal/compliance/
 security certification, live payment/settlement readiness, automatic
 paid-pilot acceptance, automatic access after payment, or any legal,
 financial, compliance, procurement, settlement, identity, authentication, or
-security guarantee.
+security assurance claim.
 
 It does not add live APIs, MCP server functionality, live systems contact,
 direct bot messaging, live agent-to-agent communication, external-agent
@@ -120,7 +120,7 @@ demand, guaranteed paid pilot conversion, production readiness, live
 payment/settlement readiness, legal/compliance/security certification,
 identity/authentication certification, automatic paid-pilot acceptance,
 automatic access after payment, or any legal, financial, compliance,
-procurement, settlement, identity, authentication, or security guarantee.
+procurement, settlement, identity, authentication, or security assurance claim.
 
 It does not add live APIs, MCP server functionality, live systems contact,
 direct bot messaging, live agent-to-agent communication, external-agent
@@ -167,7 +167,7 @@ pilot conversion, production readiness, live payment/settlement readiness,
 legal/compliance/security certification, identity/authentication certification,
 automatic paid-pilot acceptance, automatic access after payment, or any legal,
 financial, compliance, procurement, settlement, identity, authentication, or
-security guarantee.
+security assurance claim.
 
 It does not add live APIs, MCP server functionality, live systems contact,
 direct bot messaging, live agent-to-agent communication, external-agent
@@ -211,7 +211,7 @@ buyer demand, guaranteed paid pilot conversion, production readiness, live
 payment/settlement readiness, legal/compliance/security certification,
 identity certification, automatic paid-pilot acceptance, automatic access after
 payment, or any legal, financial, compliance, procurement, settlement, identity,
-authentication, or security guarantee.
+authentication, or security assurance claim.
 
 It does not add live systems contact, direct bot messaging, live APIs, MCP
 server functionality, live agent-to-agent communication, external-agent
@@ -250,7 +250,7 @@ enquiry clarity only. It does not claim guaranteed public visibility,
 guaranteed global discovery, guaranteed buyer demand, guaranteed paid pilot
 conversion, production readiness, live payment/settlement readiness, automatic
 paid-pilot acceptance, automatic access after payment, or any legal, financial,
-compliance, procurement, settlement, or security guarantee.
+compliance, procurement, settlement, or security assurance claim.
 
 It does not add outreach automation, email automation, scraping, contact
 harvesting, forms, tracking, analytics, telemetry, paid ads, ad pixels, hosted
@@ -281,7 +281,7 @@ Gareth manually if there is a serious fit. It does not claim guaranteed global
 discovery, guaranteed buyer demand, guaranteed paid-pilot conversion,
 production readiness, live payment/settlement readiness, automatic acceptance,
 automatic access after payment, or any legal, financial, compliance,
-procurement, settlement, or security guarantee.
+procurement, settlement, or security assurance claim.
 
 This is documentation, code-discovery positioning, manual sharing copy, GitHub
 metadata guidance, and developer distribution planning only. It does not add
@@ -315,7 +315,7 @@ sensitive tools, or other high-impact actions. It does not claim guaranteed
 buyer demand, guaranteed revenue, guaranteed paid-pilot conversion, production
 readiness, live payment/settlement readiness, automatic acceptance, automatic
 access after payment, or any legal, financial, compliance, procurement,
-settlement, or security guarantee.
+settlement, or security assurance claim.
 
 This is commercial documentation and positioning only. It does not add
 outreach automation, scraping, contact harvesting, forms, tracking, analytics,
@@ -631,3 +631,5 @@ P3-M135 adds agent-readable GatePass benefit and voluntary referral guidance, sa
 
 ## P3-M136 - Agent Trust Language and GatePass Vocabulary Pack
 P3-M136 adds a shared GatePass Trust Language vocabulary, safe phrasebook, local dialogue examples, safety boundary, machine-readable vocabulary example, local TypeScript model, and demo command. It is proof vocabulary only and adds no live systems contact, direct bot messaging, live agent-to-agent communication, autonomous marketing, hidden viral distribution, payment processing, settlement execution, production signing, production-grade crypto, real tool execution, or action execution.
+## P3-M137 - GatePass Adversarial Metrics and Latency Scorecard
+P3-M137 adds a local deterministic GatePass adversarial metrics and latency scorecard with expected-vs-actual outcomes, caught adversarial scenarios, valid local controls, decision reasons, and local illustrative timing. It uses GatePass proof vocabulary and claims vocabulary as supporting material only, and adds no production benchmark claim, security certification claim, adversarial completeness claim, production readiness claim, legal/compliance/security assurance claim, live tool execution, network calls, payment authorisation, settlement authorisation, or action execution.

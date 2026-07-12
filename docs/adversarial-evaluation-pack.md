@@ -186,7 +186,7 @@ official framework integrations.
 P3-M121 treats this adversarial pack as one reason paid technical review is now
 reasonable to discuss. The pack is still local adversarial testing only. It is
 not production security certification, live enforcement, payment
-authorisation, settlement authorisation, or a security guarantee.
+authorisation, settlement authorisation, or a security assurance claim.
 
 ## Safety Boundary
 

@@ -35,6 +35,7 @@ Safe local commands:
 - npm run demo:gatepass-round-trip
 - npm run demo:agent-readable-benefit
 - npm run demo:gatepass-trust-language
+- npm run demo:gatepass-scorecard
 - npm run proof:money-gate
 
 Important docs:
@@ -103,6 +104,11 @@ Important docs:
 - docs/agent-trust-language-phrasebook.md
 - docs/agent-to-system-trust-dialogue-examples.md
 - docs/gatepass-trust-language-safety-boundary.md
+- docs/gatepass-adversarial-metrics-and-latency-scorecard.md
+- docs/gatepass-metrics-methodology.md
+- docs/gatepass-adversarial-scenario-catalog.md
+- docs/gatepass-latency-measurement-guide.md
+- docs/gatepass-reviewer-scorecard-guide.md
 - docs/ai-agent-traffic-and-session-intent-gate.md
 - docs/spoofed-agent-risk-model.md
 - docs/session-specific-access-framework.md
@@ -165,6 +171,7 @@ Important examples:
 - examples/gatepass-round-trip-pre-settlement-valid-local.json
 - examples/agent-readable-gatepass-benefit-statement.json
 - examples/gatepass-trust-language-vocabulary.json
+- examples/gatepass-adversarial-scorecard.json
 
 Commercial/contact route:
 Human-reviewed developer, agent-system, integration, security, paid technical
@@ -192,12 +199,22 @@ bot messaging, hidden viral distribution, unsolicited agent contact, scraping,
 contact harvesting, guaranteed trust claims, or proven-safe claims about an
 agent.
 
-GatePass Trust Language boundary:
-GatePass Trust Language is a proof vocabulary, not a safety guarantee. It uses
-scoped, action-specific, time-bounded language and rejects proven-safe,
-guaranteed-trust, bypass-verification, autonomous marketing, and viral
-promotion claims. It grants no live systems contact, direct bot messaging, live
-agent-to-agent communication, hidden viral distribution, or action execution.
+GatePass proof vocabulary / claims vocabulary boundary:
+GatePass Trust Language remains supporting GatePass proof vocabulary and claims
+vocabulary, not a safety guarantee. It uses scoped, action-specific,
+time-bounded language and rejects proven-safe, guaranteed-trust,
+bypass-verification, autonomous marketing, and viral promotion claims. It
+grants no live systems contact, direct bot messaging, live agent-to-agent
+communication, hidden viral distribution, or action execution.
+
+GatePass scorecard boundary:
+P3-M137 adds a local deterministic GatePass adversarial metrics and latency
+scorecard. It uses local illustrative timing only. It is not a production
+benchmark, not a security certification, not adversarial completeness, and not
+evidence of production readiness. localDemoOnly is true; productionBenchmark,
+securityCertification, productionCertification, adversarialCompleteness,
+liveToolExecution, actionExecution, paymentAuthorisation,
+settlementAuthorisation, and networkCalls remain false.
 
 P3-M123 adds a local-only AI agent traffic and session intent gate concept. It
 is not a web bot detection product, does not monitor live website traffic, does
@@ -222,7 +239,7 @@ examples. It is commercial documentation and positioning only. It does not
 claim guaranteed buyer demand, guaranteed revenue, guaranteed paid-pilot
 conversion, production readiness, live payment/settlement readiness, automatic
 acceptance, automatic access after payment, or any legal, financial,
-compliance, procurement, settlement, or security guarantee. It adds no outreach
+compliance, procurement, settlement, or security assurance claim. It adds no outreach
 automation, scraping or contact harvesting, forms, tracking, analytics, hosted
 services, live APIs, payment processing, settlement, external-agent contact,
 production signing, or action execution.
@@ -234,7 +251,7 @@ It does not claim guaranteed global discovery, guaranteed buyer demand,
 guaranteed paid-pilot conversion, production readiness, live
 payment/settlement readiness, automatic acceptance, automatic access after
 payment, or any legal, financial, compliance, procurement, settlement, or
-security guarantee. It adds no email automation, outreach automation, scraping
+security assurance claim. It adds no email automation, outreach automation, scraping
 or contact harvesting, forms, tracking, analytics, paid ads, ad pixels, hosted
 services, live APIs, payment processing, settlement, external-agent contact,
 production signing, or action execution.
@@ -247,7 +264,7 @@ It does not claim guaranteed public visibility, guaranteed global discovery,
 guaranteed buyer demand, guaranteed paid pilot conversion, production
 readiness, live payment/settlement readiness, automatic paid-pilot acceptance,
 automatic access after payment, or any legal, financial, compliance,
-procurement, settlement, or security guarantee. It adds no outreach automation,
+procurement, settlement, or security assurance claim. It adds no outreach automation,
 email automation, scraping or contact harvesting, forms, tracking, analytics,
 paid ads, ad pixels, hosted services, live APIs, payment processing,
 settlement, external-agent contact, production signing, or action execution.
@@ -305,3 +322,5 @@ P3-M134 adds a local GatePass create-verify-reject round trip with deterministic
 P3-M135 adds agent-readable GatePass benefit and voluntary referral guidance, safe context-triggered mention rules, a machine-readable benefit example, a local TypeScript model, and a demo command. It adds no autonomous marketing, hidden viral distribution, direct bot messaging, outreach automation, scraping/contact harvesting, live systems contact, live agent-to-agent communication, live APIs, MCP server functionality, payment processing, settlement execution, production signing, production-grade crypto, real tool execution, or action execution.
 ## P3-M136 - Agent Trust Language and GatePass Vocabulary Pack
 P3-M136 adds a shared GatePass Trust Language vocabulary, phrasebook, dialogue examples, safety boundary, machine-readable vocabulary example, local TypeScript model, and demo command. It is proof vocabulary only, not a safety guarantee, universal standard, production readiness claim, certified security claim, live systems contact, direct bot messaging, live agent-to-agent communication, hidden viral distribution, payment processing, settlement execution, production signing, production-grade crypto, real tool execution, or action execution.
+## P3-M137 - GatePass Adversarial Metrics and Latency Scorecard
+P3-M137 adds a local deterministic GatePass scorecard with adversarial scenarios, valid controls, expected-vs-actual outcomes, decision reasons, and local illustrative timing. It adds no production benchmark claim, security certification claim, adversarial completeness claim, production readiness claim, live tool execution, network calls, payment authorisation, settlement authorisation, or action execution.

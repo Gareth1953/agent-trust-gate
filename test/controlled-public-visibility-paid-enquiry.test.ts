@@ -71,7 +71,7 @@ test("public visibility readiness checklist includes safety and commercial check
     "Safety boundary is visible",
     "\"Not production-ready\" boundary is visible",
     "No live payment or settlement claims",
-    "No legal/compliance/security guarantees",
+    "No legal/compliance/security assurance claims",
     "No automated outreach",
     "No scraping or contact harvesting",
     "No tracking or analytics",

@@ -113,7 +113,7 @@ This risk model does not claim:
 - production access control;
 - web security certification;
 - legal, financial, compliance, procurement, settlement, bot-detection, or
-  security guarantee.
+  security assurance claim.
 
 It is local concept documentation only.
 

@@ -32,8 +32,9 @@ For a fast public review, use this path:
 16. Run the enforceable local tool-calling gate demo: [enforceable local tool-calling gate demo](docs/enforceable-local-tool-calling-gate-demo.md).
 17. Inspect the minimal GatePass core: [minimal GatePass core specification](docs/minimal-gatepass-core-specification.md).
 18. Run the GatePass create-verify-reject round trip: [GatePass create-verify-reject round trip](docs/gatepass-create-verify-reject-round-trip.md).
-19. Inspect agent-readable GatePass benefit and voluntary referral guidance: [agent-readable GatePass benefit and voluntary referral](docs/agent-readable-gatepass-benefit-and-voluntary-referral.md).
-20. Inspect the shared proof vocabulary: [Agent Trust Language and GatePass vocabulary](docs/agent-trust-language-and-gatepass-vocabulary.md).
+19. Run the GatePass scorecard: [GatePass adversarial metrics and latency scorecard](docs/gatepass-adversarial-metrics-and-latency-scorecard.md).
+20. Inspect supporting GatePass proof vocabulary and claims vocabulary: [Agent Trust Language and GatePass vocabulary](docs/agent-trust-language-and-gatepass-vocabulary.md).
+21. Inspect supporting agent-readable GatePass benefit and voluntary referral guidance: [agent-readable GatePass benefit and voluntary referral](docs/agent-readable-gatepass-benefit-and-voluntary-referral.md).
 
 P3-M125 adds the [public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md)
 to make this path easier to assess without adding forms, tracking, payment
@@ -88,11 +89,17 @@ P3-M135 adds agent-readable GatePass benefit and voluntary referral guidance
 without adding autonomous marketing, hidden viral distribution, direct bot
 messaging, outreach automation, live systems contact, payment processing,
 settlement execution, real tool execution, or action execution.
-P3-M136 adds Agent Trust Language and GatePass vocabulary guidance without
+P3-M136 adds supporting GatePass proof vocabulary and claims vocabulary guidance without
 adding live systems contact, direct bot messaging, live agent-to-agent
 communication, autonomous marketing, hidden viral distribution, payment
 processing, settlement execution, production signing, production-grade crypto,
 real tool execution, or action execution.
+P3-M137 adds a local deterministic GatePass adversarial metrics and latency
+scorecard for reviewer-friendly expected-vs-actual outcomes and local
+illustrative timing without claiming production benchmarks, security
+certification, adversarial completeness, production readiness, legal/compliance/
+security assurance claims, live tool execution, payment or settlement authority,
+network calls, or action execution.
 
 ## What to inspect first
 
@@ -123,11 +130,12 @@ real tool execution, or action execution.
 - The GatePass round-trip demo to see local create, verify, reject, and
   explanation paths for valid, stale, replayed, tampered, missing-mandate,
   missing-evidence, high-risk, and pre-settlement GatePasses.
-- The agent-readable GatePass benefit docs to see when agents may explain
-  GatePass in relevant trust/proof contexts and when they must not mention it.
-- The Agent Trust Language docs to see the controlled proof vocabulary for
+- The GatePass scorecard to see local expected-vs-actual outcomes, caught
+  adversarial scenarios, allowed valid controls, decision reasons, and local
+  illustrative timing.
+- The GatePass proof vocabulary and claims vocabulary docs to see supporting controlled terms for
   mandate, evidence, intent, approval, freshness, nonce, scope, GatePass status,
-  and review outcomes.
+  review outcomes, and rejected unsafe claims.
 
 ## Commercial enquiry path
 
@@ -495,6 +503,39 @@ high-risk human review, pre-settlement signed-GatePass requirement, and valid
 local pre-settlement control. `realToolExecuted`, `paymentAuthorisation`,
 `settlementAuthorisation`, and `actionExecution` remain false.
 
+## GatePass adversarial metrics and latency scorecard
+
+P3-M137 adds a reviewer-friendly local deterministic scorecard for GatePass
+attack and control scenarios. It reports expected-vs-actual outcomes, decision
+reasons, caught adversarial scenarios, valid scenarios allowed locally, and
+local illustrative timing.
+
+GatePass is a scoped, time-bound, action-specific proof primitive for agent actions.
+GatePass provides a common, machine-readable format for expressing authority, mandate, scope, freshness, and evidence.
+No signed GatePass. No settlement.
+Do not trust the agent. Trust the GatePass.
+No proof. No permission.
+No mandate. No action.
+
+- [GatePass adversarial metrics and latency scorecard](docs/gatepass-adversarial-metrics-and-latency-scorecard.md)
+- [GatePass metrics methodology](docs/gatepass-metrics-methodology.md)
+- [GatePass adversarial scenario catalog](docs/gatepass-adversarial-scenario-catalog.md)
+- [GatePass latency measurement guide](docs/gatepass-latency-measurement-guide.md)
+- [GatePass reviewer scorecard guide](docs/gatepass-reviewer-scorecard-guide.md)
+- [GatePass adversarial scorecard JSON](examples/gatepass-adversarial-scorecard.json)
+
+Run the local scorecard:
+
+```text
+npm run demo:gatepass-scorecard
+npm run demo:gatepass-scorecard -- --summary-only
+npm run demo:gatepass-scorecard -- --json
+```
+
+This is a local deterministic scorecard, not a production benchmark or
+security certification. It is not adversarial completeness and not evidence of
+production readiness.
+
 ## Agent-readable GatePass benefit and voluntary referral
 
 P3-M135 explains why GatePass helps agents and owners present scoped proof, and
@@ -527,11 +568,13 @@ mandate, evidence, sensitive tool use, auditability, pre-settlement, or
 verification contexts. Spam, unsolicited contact, autonomous marketing, direct
 bot messaging, and hidden viral distribution are rejected.
 
-## Agent Trust Language and GatePass vocabulary
+## GatePass proof vocabulary and claims vocabulary
 
-P3-M136 defines a shared proof vocabulary for agents, owners, clients, systems,
+P3-M136 supports the GatePass core with a shared proof vocabulary for agents,
+owners, clients, systems,
 marketplaces, payment workflows, tool layers, and other agentic systems to
-express proof requirements before action.
+express proof requirements before action. Agent Trust Language is supporting
+material only; the headline primitive remains GatePass.
 
 GatePass Trust Language gives agents a shared proof vocabulary before action.
 This agent has presented proof for this specific action, under this specific scope, at this specific time.

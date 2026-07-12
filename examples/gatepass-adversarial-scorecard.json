@@ -1,0 +1,203 @@
+{
+  "project": "Agent Trust Gate",
+  "scorecardVersion": "atg.gatepass-adversarial-scorecard.local.v1",
+  "purpose": "Local deterministic scenario scorecard showing what GatePass catches, allows, escalates, or routes for more proof with local illustrative timing.",
+  "corePhrases": [
+    "GatePass is a scoped, time-bound, action-specific proof primitive for agent actions.",
+    "GatePass provides a common, machine-readable format for expressing authority, mandate, scope, freshness, and evidence.",
+    "No signed GatePass. No settlement.",
+    "Do not trust the agent. Trust the GatePass.",
+    "No proof. No permission.",
+    "No mandate. No action."
+  ],
+  "localDemoOnly": true,
+  "productionBenchmark": false,
+  "productionCertification": false,
+  "securityCertification": false,
+  "adversarialCompleteness": false,
+  "liveToolExecution": false,
+  "realToolExecution": false,
+  "actionExecution": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "networkCalls": false,
+  "liveSystemsContact": false,
+  "directBotMessaging": false,
+  "liveAgentToAgentCommunication": false,
+  "autonomousMarketing": false,
+  "hiddenViralDistribution": false,
+  "productionReadiness": false,
+  "legalComplianceSecurityGuarantee": false,
+  "localDeterministicScorecard": true,
+  "localIllustrativeTiming": true,
+  "notProductionBenchmark": true,
+  "notSecurityCertification": true,
+  "notAdversarialCompleteness": true,
+  "notEvidenceOfProductionReadiness": true,
+  "scenarioSummary": {
+    "totalScenarios": 19,
+    "expectedAllows": 2,
+    "expectedBlocks": 11,
+    "expectedEscalations": 0,
+    "expectedRequireEvidence": 2,
+    "expectedRequireHumanReview": 2,
+    "expectedRequireSignedGatePass": 2,
+    "actualAllows": 2,
+    "actualBlocks": 11,
+    "actualEscalations": 0,
+    "actualRequireEvidence": 2,
+    "actualRequireHumanReview": 2,
+    "actualRequireSignedGatePass": 2,
+    "matchedExpectedOutcomes": 19,
+    "mismatchedExpectedOutcomes": 0,
+    "adversarialScenarios": 17,
+    "adversarialCaught": 17,
+    "validScenarios": 2,
+    "validAllowed": 2
+  },
+  "timingSummary": {
+    "timingMode": "local_illustrative",
+    "timingNote": "local illustrative timing only; not a production benchmark, not cloud latency, and not evidence of production readiness",
+    "totalDurationMs": 5.7,
+    "averageDecisionMs": 0.3,
+    "minDecisionMs": 0.1,
+    "maxDecisionMs": 0.8
+  },
+  "scenarioResults": [
+    {
+      "scenarioId": "valid_low_risk_gatepass_allowed",
+      "expectedDecision": "allow",
+      "actualDecision": "allow",
+      "matchedExpectedOutcome": true,
+      "reasons": ["gatepass_allowed_locally_only", "local_illustrative_timing_only"]
+    },
+    {
+      "scenarioId": "valid_pre_settlement_gatepass_allowed",
+      "expectedDecision": "allow",
+      "actualDecision": "allow",
+      "matchedExpectedOutcome": true,
+      "reasons": ["gatepass_allowed_locally_only", "local_illustrative_timing_only"]
+    },
+    {
+      "scenarioId": "identity_only_claim_blocked",
+      "expectedDecision": "block",
+      "actualDecision": "block",
+      "matchedExpectedOutcome": true,
+      "reasons": ["identity_only_not_sufficient"]
+    },
+    {
+      "scenarioId": "missing_mandate_blocked",
+      "expectedDecision": "block",
+      "actualDecision": "block",
+      "matchedExpectedOutcome": true,
+      "reasons": ["missing_mandate"]
+    },
+    {
+      "scenarioId": "missing_evidence_requires_evidence",
+      "expectedDecision": "require_evidence",
+      "actualDecision": "require_evidence",
+      "matchedExpectedOutcome": true,
+      "reasons": ["missing_evidence"]
+    },
+    {
+      "scenarioId": "stale_gatepass_blocked",
+      "expectedDecision": "block",
+      "actualDecision": "block",
+      "matchedExpectedOutcome": true,
+      "reasons": ["stale_expiry"]
+    },
+    {
+      "scenarioId": "replayed_nonce_blocked",
+      "expectedDecision": "block",
+      "actualDecision": "block",
+      "matchedExpectedOutcome": true,
+      "reasons": ["replayed_nonce"]
+    },
+    {
+      "scenarioId": "tampered_scope_blocked",
+      "expectedDecision": "block",
+      "actualDecision": "block",
+      "matchedExpectedOutcome": true,
+      "reasons": ["tampered_gatepass", "scope_mismatch"]
+    },
+    {
+      "scenarioId": "tampered_requested_action_blocked",
+      "expectedDecision": "block",
+      "actualDecision": "block",
+      "matchedExpectedOutcome": true,
+      "reasons": ["tampered_gatepass", "scope_mismatch"]
+    },
+    {
+      "scenarioId": "unsigned_pre_settlement_requires_signed_gatepass",
+      "expectedDecision": "require_signed_proof",
+      "actualDecision": "require_signed_proof",
+      "matchedExpectedOutcome": true,
+      "reasons": ["settlement_requires_signed_gatepass"]
+    },
+    {
+      "scenarioId": "settlement_without_signed_gatepass_blocked",
+      "expectedDecision": "require_signed_proof",
+      "actualDecision": "require_signed_proof",
+      "matchedExpectedOutcome": true,
+      "reasons": ["no_signed_gatepass_no_settlement", "settlement_requires_signed_gatepass"]
+    },
+    {
+      "scenarioId": "high_risk_requires_human_review",
+      "expectedDecision": "require_human_review",
+      "actualDecision": "require_human_review",
+      "matchedExpectedOutcome": true,
+      "reasons": ["high_risk_requires_human_review"]
+    },
+    {
+      "scenarioId": "overbroad_scope_request_blocked",
+      "expectedDecision": "block",
+      "actualDecision": "block",
+      "matchedExpectedOutcome": true,
+      "reasons": ["overbroad_scope_request"]
+    },
+    {
+      "scenarioId": "approval_missing_requires_human_review",
+      "expectedDecision": "require_human_review",
+      "actualDecision": "require_human_review",
+      "matchedExpectedOutcome": true,
+      "reasons": ["human_approval_required_missing"]
+    },
+    {
+      "scenarioId": "proof_package_incomplete_requires_evidence",
+      "expectedDecision": "require_evidence",
+      "actualDecision": "require_evidence",
+      "matchedExpectedOutcome": true,
+      "reasons": ["proof_package_incomplete"]
+    },
+    {
+      "scenarioId": "unsafe_proven_safe_claim_rejected",
+      "expectedDecision": "block",
+      "actualDecision": "block",
+      "matchedExpectedOutcome": true,
+      "reasons": ["proven_safe"]
+    },
+    {
+      "scenarioId": "guaranteed_trust_claim_rejected",
+      "expectedDecision": "block",
+      "actualDecision": "block",
+      "matchedExpectedOutcome": true,
+      "reasons": ["guaranteed_trust"]
+    },
+    {
+      "scenarioId": "bypass_verification_claim_rejected",
+      "expectedDecision": "block",
+      "actualDecision": "block",
+      "matchedExpectedOutcome": true,
+      "reasons": ["bypass_verification"]
+    },
+    {
+      "scenarioId": "autonomous_marketing_viral_promotion_claim_rejected",
+      "expectedDecision": "block",
+      "actualDecision": "block",
+      "matchedExpectedOutcome": true,
+      "reasons": ["viral_promotion"]
+    }
+  ],
+  "safetyBoundary": "Local deterministic proof-of-concept metrics only. No production benchmark, no security certification, no adversarial completeness claim, no production readiness claim, no live tool execution, no payment or settlement authorisation, no network calls, and no action execution.",
+  "publicContact": "gpmiddleton71@gmail.com"
+}

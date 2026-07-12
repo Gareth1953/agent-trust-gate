@@ -129,7 +129,7 @@ Safe limitations: local demo signing only; no production signing or production
 key management.
 
 What is not included: certified cryptography, production key custody, durable
-distributed replay protection, or security guarantee.
+distributed replay protection, or security assurance claim.
 
 ### Sensitive Tool-Call Gate Review
 
@@ -264,3 +264,5 @@ P3-M135 adds agent-readable GatePass benefit and voluntary referral guidance, sa
 
 ## P3-M136 - Agent Trust Language and GatePass Vocabulary Pack
 P3-M136 adds a shared GatePass Trust Language vocabulary, safe phrasebook, local dialogue examples, safety boundary, machine-readable vocabulary example, local TypeScript model, and demo command. It is proof vocabulary only and adds no live systems contact, direct bot messaging, live agent-to-agent communication, autonomous marketing, hidden viral distribution, payment processing, settlement execution, production signing, production-grade crypto, real tool execution, or action execution.
+## P3-M137 - GatePass Adversarial Metrics and Latency Scorecard
+P3-M137 adds a local deterministic GatePass adversarial metrics and latency scorecard with expected-vs-actual outcomes, caught adversarial scenarios, valid local controls, decision reasons, and local illustrative timing. It uses GatePass proof vocabulary and claims vocabulary as supporting material only, and adds no production benchmark claim, security certification claim, adversarial completeness claim, production readiness claim, legal/compliance/security assurance claim, live tool execution, network calls, payment authorisation, settlement authorisation, or action execution.

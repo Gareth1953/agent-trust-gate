@@ -115,3 +115,5 @@ Unsafe phrase:
 > This agent is proven safe.
 
 Public contact: gpmiddleton71@gmail.com
+## P3-M137 - GatePass Adversarial Metrics and Latency Scorecard
+P3-M137 adds a local deterministic GatePass adversarial metrics and latency scorecard with expected-vs-actual outcomes, caught adversarial scenarios, valid local controls, decision reasons, and local illustrative timing. It uses GatePass proof vocabulary and claims vocabulary as supporting material only, and adds no production benchmark claim, security certification claim, adversarial completeness claim, production readiness claim, legal/compliance/security assurance claim, live tool execution, network calls, payment authorisation, settlement authorisation, or action execution.

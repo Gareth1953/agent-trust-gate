@@ -48,7 +48,7 @@ I have published Agent Trust Gate as a public local-first TypeScript project for
 
 It demonstrates mandate, evidence, verified intent, local trust receipts, local signed proof prototypes, replay checks, adversarial cases, reference integration patterns, and pre-settlement blocker logic.
 
-It is not production-ready, not a live API, not a payment or settlement system, and not a legal/compliance/security guarantee. The repo is designed for local technical review, integration feasibility discussion, and governance/safety review.
+It is not production-ready, not a live API, not a payment or settlement system, and not a legal/compliance/security assurance claim. The repo is designed for local technical review, integration feasibility discussion, and governance/safety review.
 
 Public repo:
 https://github.com/Gareth1953/agent-trust-gate
@@ -141,7 +141,7 @@ Agent Trust Gate is a local-first trust-gate proof-of-concept for AI agent actio
 ## Reply: Is This Production-Ready?
 
 ```text
-No. Agent Trust Gate is local-demo-only. It is not production-ready, not certified security, not a live API, not a hosted service, not a payment or settlement system, and not a legal/compliance/security guarantee. It is suitable for local technical review and cautious feasibility discussion.
+No. Agent Trust Gate is local-demo-only. It is not production-ready, not certified security, not a live API, not a hosted service, not a payment or settlement system, and not a legal/compliance/security assurance claim. It is suitable for local technical review and cautious feasibility discussion.
 ```
 
 ## Reply: Can We Pay For A Review?
@@ -178,3 +178,5 @@ P3-M135 adds agent-readable GatePass benefit and voluntary referral guidance, sa
 
 ## P3-M136 - Agent Trust Language and GatePass Vocabulary Pack
 P3-M136 adds a shared GatePass Trust Language vocabulary, safe phrasebook, local dialogue examples, safety boundary, machine-readable vocabulary example, local TypeScript model, and demo command. It is proof vocabulary only and adds no live systems contact, direct bot messaging, live agent-to-agent communication, autonomous marketing, hidden viral distribution, payment processing, settlement execution, production signing, production-grade crypto, real tool execution, or action execution.
+## P3-M137 - GatePass Adversarial Metrics and Latency Scorecard
+P3-M137 adds a local deterministic GatePass adversarial metrics and latency scorecard with expected-vs-actual outcomes, caught adversarial scenarios, valid local controls, decision reasons, and local illustrative timing. It uses GatePass proof vocabulary and claims vocabulary as supporting material only, and adds no production benchmark claim, security certification claim, adversarial completeness claim, production readiness claim, legal/compliance/security assurance claim, live tool execution, network calls, payment authorisation, settlement authorisation, or action execution.

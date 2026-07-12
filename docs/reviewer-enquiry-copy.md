@@ -126,7 +126,7 @@ schemas, receipts, local signed proof examples, adversarial cases, CLI flows,
 and reference integration patterns.
 
 It does not provide legal, financial, compliance, procurement, settlement, or
-security guarantees. Any production path would require separate architecture,
+security assurance claims. Any production path would require separate architecture,
 security, privacy, legal/compliance, abuse-control, and implementation review.
 
 ## Short Paid Pilot Discussion Next Step Reply
