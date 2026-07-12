@@ -58,6 +58,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 | P3-M137 | GatePass Adversarial Metrics and Latency Scorecard |
 | P3-M138 | GatePass Developer Wrapper and Local Integration Example |
 | P3-M139 | One-Command Reviewer Demo Kit |
+| P3-M140A | Public README / Reviewer Positioning Polish |
 
 ## Current proof chain
 
@@ -97,6 +98,7 @@ P3-M133 adds a Minimal GatePass Core Specification Pack with compact GatePass sc
 P3-M134 adds a GatePass Create-Verify-Reject Round Trip Pack with deterministic local creation, verification, rejection, explanation, receipt-style results, examples, and a demo command. It makes GatePass operational as a local primitive and adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
 P3-M135 adds an Agent-Readable GatePass Benefit and Voluntary Referral Pack with safe context-triggered mention rules, a machine-readable benefit statement, a local model, and a demo command. It adds no autonomous marketing, hidden viral distribution, direct bot messaging, outreach automation, scraping/contact harvesting, live systems contact, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
 P3-M136 adds an Agent Trust Language and GatePass Vocabulary Pack with controlled proof terms, a safe phrasebook, local dialogue examples, a safety boundary, a machine-readable vocabulary example, a local model, and a demo command. It is proof vocabulary only and adds no live systems contact, direct bot messaging, live agent-to-agent communication, autonomous marketing, hidden viral distribution, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
+P3-M140A polishes the public README, reviewer-first positioning, claims boundary, metadata, and deterministic public reviewer positioning summary so `npm run demo:reviewer-kit` is the recommended first run. GatePass remains the headline proof primitive; Agent Trust Language remains supporting material only. It adds no feature layer, external integration, production middleware claim, production benchmark claim, security certification claim, legal/compliance/security assurance, real tool execution, network calls, payment authorisation, settlement authorisation, or action execution.
 
 No live APIs, payments, settlement execution, external-agent contact, AUC merge, cloud/network calls, MCP server functionality, live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, scraping, contact harvesting, tracking, analytics, telemetry, outreach automation, secrets, credentials, hosted services, tag/package publish/deployment, or autonomous action execution. AUC is not integrated. Agent Contact System is not integrated.
 ## P3-M134 - GatePass Create-Verify-Reject Round Trip
@@ -108,3 +110,6 @@ P3-M137 adds a local deterministic GatePass adversarial metrics and latency scor
 
 ## P3-M138 - GatePass Developer Wrapper and Local Integration Example
 P3-M138 adds a local deterministic GatePass developer wrapper and local framework-style integration example. It shows `wrapGatePassTool` gating local mock tool calls before action, uses GatePass proof vocabulary and GatePass claims vocabulary as supporting material only, and adds no production middleware claim, production readiness claim, security certification claim, live framework execution, real tool execution, network calls, payment authorisation, settlement authorisation, or action execution.
+
+## P3-M140A - Public README / Reviewer Positioning Polish
+P3-M140A sharpens the public README and reviewer-facing positioning so the recommended first run is `npm run demo:reviewer-kit`, GatePass remains the headline proof primitive, and Agent Trust Language remains supporting material only. It adds no feature layer, external integration, production middleware claim, production benchmark claim, security certification claim, legal/compliance/security assurance, real tool execution, network calls, payment authorisation, settlement authorisation, or action execution.

@@ -33,7 +33,7 @@ Use this checklist when reviewing the one-command reviewer demo kit.
 - Are safety boundaries clear?
 - Are production claims avoided?
 - Is pre-settlement wording clear: No signed GatePass. No settlement?
-- Are production middleware, production benchmark, security certification, and legal/compliance/security guarantee claims avoided?
+- Are production middleware, production benchmark, security certification, and legal/compliance/security assurance claims avoided?
 
 ## What A Reviewer Might Ask For Next
 
@@ -43,3 +43,7 @@ Use this checklist when reviewing the one-command reviewer demo kit.
 - More reviewer-friendly examples for specific high-risk workflows.
 
 Public contact: gpmiddleton71@gmail.com
+
+## P3-M140A - Public README / Reviewer Positioning Polish
+
+P3-M140A sharpens the public README and reviewer-facing positioning so the recommended first run is `npm run demo:reviewer-kit`, GatePass remains the headline proof primitive, and Agent Trust Language remains supporting material only. It uses GatePass proof vocabulary and GatePass claims vocabulary as supporting material and adds no feature layer, external integration, production middleware claim, production benchmark claim, security certification claim, legal/compliance/security assurance, real tool execution, network calls, payment authorisation, settlement authorisation, or action execution.

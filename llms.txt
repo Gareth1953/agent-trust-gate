@@ -363,3 +363,18 @@ P3-M137 adds a local deterministic GatePass scorecard with adversarial scenarios
 
 ## P3-M138 - GatePass Developer Wrapper and Local Integration Example
 P3-M138 adds a local deterministic GatePass developer wrapper and local framework-style integration example. It shows `wrapGatePassTool` gating local mock tool calls before action, uses GatePass proof vocabulary and GatePass claims vocabulary as supporting material only, and adds no production middleware claim, production readiness claim, security certification claim, live framework execution, real tool execution, network calls, payment authorisation, settlement authorisation, or action execution.
+
+## P3-M140A - Public README / Reviewer Positioning Polish
+P3-M140A polishes the public README and reviewer-facing metadata so `npm run demo:reviewer-kit` is the recommended first run. GatePass remains the headline scoped, time-bound, action-specific proof primitive. Agent Trust Language remains supporting material only through GatePass proof vocabulary and GatePass claims vocabulary. The public positioning summary is localDemoOnly true; realToolExecution, actionExecution, networkCalls, productionMiddleware, productionBenchmark, productionCertification, securityCertification, legalComplianceGuarantee, paymentAuthorisation, and settlementAuthorisation remain false. It adds no feature layer, external integration, production middleware claim, production benchmark claim, security certification claim, legal/compliance/security assurance, real tool execution, network calls, payment authorisation, settlement authorisation, or action execution.
+
+Recommended first reviewer command:
+`npm run demo:reviewer-kit`
+
+Public positioning command:
+`npm run demo:public-positioning`
+
+Public reviewer positioning docs:
+- `docs/public-readme-reviewer-positioning-polish.md`
+- `docs/reviewer-first-public-positioning.md`
+- `docs/public-positioning-claims-boundary.md`
+- `examples/public-reviewer-positioning-summary.json`

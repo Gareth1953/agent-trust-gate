@@ -1,7 +1,7 @@
 {
   "schema": "atg.agent-card.local-discovery.v1",
   "name": "Agent Trust Gate",
-  "latest_mission": "P3-M139",
+  "latest_mission": "P3-M140A",
   "recent_missions": [
     "P3-M123",
     "P3-M124",
@@ -19,7 +19,8 @@
     "P3-M136",
     "P3-M137",
     "P3-M138",
-    "P3-M139"
+    "P3-M139",
+    "P3-M140A"
   ],
   "description": "Local-first pre-action and pre-settlement trust gate for agent-led workflows.",
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
@@ -208,7 +209,10 @@
     "docs/reviewer-demo-kit-quickstart.md",
     "docs/reviewer-demo-output-guide.md",
     "docs/reviewer-demo-limitations-and-safety-boundary.md",
-    "docs/reviewer-evaluation-checklist.md"
+    "docs/reviewer-evaluation-checklist.md",
+    "docs/public-readme-reviewer-positioning-polish.md",
+    "docs/reviewer-first-public-positioning.md",
+    "docs/public-positioning-claims-boundary.md"
   ],
   "schemas": [
     "schemas/local-agent-action-request.schema.json",
@@ -274,11 +278,12 @@
     "examples/gatepass-trust-language-vocabulary.json",
     "examples/gatepass-adversarial-scorecard.json",
     "examples/gatepass-developer-wrapper-demo.json",
-    "examples/gatepass-reviewer-kit-report.json"
+    "examples/gatepass-reviewer-kit-report.json",
+    "examples/public-reviewer-positioning-summary.json"
   ],
   "contact": {
     "email": "gpmiddleton71@gmail.com",
-    "purpose": "Human-reviewed developer, agent-system, integration, security, buyer use case, revenue trigger, global code discovery, controlled public visibility, prove-yourself protocol, agent proof package contract, proof contract integration readiness, enforceable local tool gate demo, minimal GatePass core review, GatePass round trip review, GatePass scorecard review, GatePass developer wrapper review, GatePass reviewer kit review, GatePass benefit review, GatePass proof vocabulary review, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
+    "purpose": "Human-reviewed developer, agent-system, integration, security, buyer use case, revenue trigger, global code discovery, controlled public visibility, prove-yourself protocol, agent proof package contract, proof contract integration readiness, enforceable local tool gate demo, minimal GatePass core review, GatePass round trip review, GatePass scorecard review, GatePass developer wrapper review, GatePass reviewer kit review, GatePass benefit review, GatePass proof vocabulary review, public reviewer positioning review, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
     "boundary": "Contact metadata only. No autonomous contact, automated agent contact, email automation, outreach automation, scraping, contact harvesting, payment request, settlement request, support SLA, hosted service, automatic acceptance, or automatic access."
   },
   "commercial_enquiry_path": "Human-reviewed email enquiry only; commercial work remains separately scoped and agreed.",
@@ -340,5 +345,20 @@
   "gatepass_trust_language_boundary": "GatePass Trust Language remains supporting GatePass proof vocabulary and GatePass claims vocabulary, not a safety guarantee. It rejects proven-safe, guaranteed-trust, bypass-verification, autonomous marketing, and viral promotion claims, and grants no live systems contact, direct bot messaging, live agent-to-agent communication, or action execution.",
   "gatepass_adversarial_scorecard_boundary": "P3-M137 is a local deterministic scorecard with local illustrative timing only. productionBenchmark, securityCertification, productionCertification, adversarialCompleteness, liveToolExecution, actionExecution, paymentAuthorisation, settlementAuthorisation, and networkCalls remain false.",
   "gatepass_developer_wrapper_boundary": "P3-M138 is a local deterministic developer wrapper and local framework-style integration example. localDemoOnly and mockToolExecutionOnly are true; realToolExecution, actionExecution, networkCalls, productionMiddleware, productionCertification, securityCertification, paymentAuthorisation, and settlementAuthorisation remain false.",
-  "gatepass_reviewer_kit_boundary": "P3-M139 is a local deterministic one-command reviewer demo kit. localDemoOnly and mockToolExecutionOnly are true; realToolExecution, actionExecution, networkCalls, productionMiddleware, productionBenchmark, productionCertification, securityCertification, legalComplianceGuarantee, paymentAuthorisation, settlementAuthorisation, and liveAgentToAgentCommunication remain false."
+  "gatepass_reviewer_kit_boundary": "P3-M139 is a local deterministic one-command reviewer demo kit. localDemoOnly and mockToolExecutionOnly are true; realToolExecution, actionExecution, networkCalls, productionMiddleware, productionBenchmark, productionCertification, securityCertification, legalComplianceGuarantee, paymentAuthorisation, settlementAuthorisation, and liveAgentToAgentCommunication remain false.",
+  "recommended_first_run": "npm run demo:reviewer-kit",
+  "gatepass_headline": "GatePass is the headline scoped, time-bound, action-specific proof primitive.",
+  "agent_trust_language_role": "supporting_material_only",
+  "public_reviewer_positioning_boundary": "P3-M140A recommends npm run demo:reviewer-kit as the first run and keeps GatePass as the headline proof primitive. Agent Trust Language remains supporting material. localDemoOnly is true; realToolExecution, actionExecution, networkCalls, productionMiddleware, productionBenchmark, productionCertification, securityCertification, legalComplianceGuarantee, paymentAuthorisation, and settlementAuthorisation remain false.",
+  "localDemoOnly": true,
+  "realToolExecution": false,
+  "actionExecution": false,
+  "networkCalls": false,
+  "productionMiddleware": false,
+  "productionBenchmark": false,
+  "productionCertification": false,
+  "securityCertification": false,
+  "legalComplianceGuarantee": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false
 }

@@ -55,7 +55,7 @@ Fast local rejection matters for pre-action gates because a gate should be able 
 
 ## Safety Boundary
 
-The methodology is local proof-of-concept scoring only. It does not provide production readiness, production-grade crypto, security certification, legal/compliance/security guarantee, payment authorisation, settlement authorisation, or action execution.
+The methodology is local proof-of-concept scoring only. It does not provide production readiness, production-grade crypto, security certification, legal/compliance/security assurance, payment authorisation, settlement authorisation, or action execution.
 
 Public contact: gpmiddleton71@gmail.com
 
@@ -64,3 +64,7 @@ P3-M138 adds a local deterministic GatePass developer wrapper and local framewor
 
 ## P3-M139 - One-Command Reviewer Demo Kit
 P3-M139 adds a local deterministic one-command reviewer demo kit for the GatePass lifecycle, adversarial scorecard, developer wrapper, local integration summary, safety boundary, and JSON report output. It uses GatePass proof vocabulary and GatePass claims vocabulary as supporting material only, and adds no production middleware claim, production benchmark claim, security certification claim, production readiness claim, live tool execution, network calls, payment authorisation, settlement authorisation, or action execution.
+
+## P3-M140A - Public README / Reviewer Positioning Polish
+
+P3-M140A sharpens the public README and reviewer-facing positioning so the recommended first run is `npm run demo:reviewer-kit`, GatePass remains the headline proof primitive, and Agent Trust Language remains supporting material only. It uses GatePass proof vocabulary and GatePass claims vocabulary as supporting material and adds no feature layer, external integration, production middleware claim, production benchmark claim, security certification claim, legal/compliance/security assurance, real tool execution, network calls, payment authorisation, settlement authorisation, or action execution.

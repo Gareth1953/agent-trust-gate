@@ -1,14 +1,135 @@
 # Agent Trust Gate™
 
-Agent Trust Gate™ is a local-first, pre-action and pre-settlement trust
-enforcement layer for agent-led actions and payments. It evaluates a proposed
-action before execution, records the decision as a structured receipt, and
-keeps settlement blocked unless the local trust chain passes.
+Agent Trust Gate™ is a local-first proof-of-concept for checking whether an AI
+agent or automated workflow has enough scoped proof before a sensitive action.
+It remains a local-first, pre-action and pre-settlement trust enforcement layer
+for local demo review, with no production or live execution authority.
 
-> **No mandate. No evidence. No verified intent. No signed gate pass. No settlement.**
+GatePass is a scoped, time-bound, action-specific proof primitive for agent
+actions. GatePass provides a common, machine-readable format for expressing
+authority, mandate, scope, freshness, and evidence.
+
+> **No signed GatePass. No settlement. Do not trust the agent. Trust the GatePass. No proof. No permission. No mandate. No action.**
 
 Current status: local_demo_only. The repository provides deterministic local
-software and proof artifacts, not a production service or payment system.
+software and proof artifacts, not a production service, production middleware,
+production benchmark, security certification, legal/compliance/security
+guarantee, payment system, settlement system, hosted service, or live API.
+
+## 30-second reviewer summary
+
+Agent Trust Gate™ is now centered on GatePass: a scoped, time-bound,
+action-specific proof object for AI agent actions, sensitive tool calls, and
+pre-settlement workflows. Reviewers can run one command to see the GatePass
+lifecycle, adversarial scorecard, and developer wrapper demo locally. The demo
+is local-only proof-of-concept code: it executes no real tools, authorises no
+payment, authorises no settlement, and claims no production benchmark or
+security certification.
+
+## What to run first
+
+```powershell
+npm run demo:reviewer-kit
+npm run demo:reviewer-kit -- --summary-only
+npm run demo:reviewer-kit -- --json
+```
+
+The reviewer kit runs local deterministic demos only. It shows what GatePass
+allows locally, what it blocks, what requires evidence, what requires human
+review, what requires a signed GatePass, and where the safety boundary sits.
+
+Secondary commands:
+
+```powershell
+npm run demo:gatepass-round-trip
+npm run demo:gatepass-scorecard
+npm run demo:gatepass-wrapper
+```
+
+## Reviewer quickstart
+
+1. Run the [one-command reviewer demo kit](docs/one-command-reviewer-demo-kit.md).
+2. Inspect the [GatePass create-verify-reject round trip](docs/gatepass-create-verify-reject-round-trip.md).
+3. Inspect the [GatePass adversarial metrics and latency scorecard](docs/gatepass-adversarial-metrics-and-latency-scorecard.md).
+4. Inspect the [GatePass developer wrapper and local integration example](docs/gatepass-developer-wrapper-and-local-integration-example.md).
+5. Read the [reviewer demo limitations and safety boundary](docs/reviewer-demo-limitations-and-safety-boundary.md).
+6. Contact `gpmiddleton71@gmail.com` for a human-reviewed paid technical review or local pilot discussion, with no automatic paid-pilot acceptance and no automatic access after payment.
+
+## Reviewer path
+
+- Start with `npm run demo:reviewer-kit`.
+- Confirm the lifecycle demo shows create, verify, reject, and explanation paths.
+- Confirm the scorecard catches adversarial cases and reports local illustrative timing only.
+- Confirm `wrapGatePassTool` gates local mock tool calls before action.
+- Confirm the claims boundary is restrained: local-only, no production readiness, no production benchmark, no security certification, no legal/compliance/security assurance.
+- Use the public contact email only for human-reviewed technical review, local pilot, or integration feasibility discussion.
+
+## Core proof flow
+
+```text
+requested action
+-> GatePass / proof package checked
+-> policy evaluation
+-> allow locally / block / require evidence / require human review / require signed GatePass
+-> local receipt / report
+```
+
+## What this proves locally
+
+- A GatePass can be created, verified, rejected, and explained locally.
+- Invalid, stale, replayed, tampered, identity-only, missing-mandate, and missing-evidence cases can fail closed in deterministic examples.
+- Local adversarial scenarios can be counted against expected outcomes with local illustrative timing.
+- A developer wrapper can gate local mock tool calls before action.
+
+## What this does not prove
+
+- It does not prove production readiness, production middleware, production signing, production-grade crypto, security certification, legal/compliance/security status, real-world benchmark performance, complete adversarial coverage, payment readiness, settlement readiness, or live integration readiness.
+- It does not execute real tools, call networks, contact live systems, send messages, process payments, create settlement instructions, or perform action execution.
+- It does not claim an agent is proven safe or that trust is guaranteed.
+
+## Core demos
+
+- [GatePass round trip](docs/gatepass-create-verify-reject-round-trip.md): create, verify, reject, and explain local GatePass decisions.
+- [GatePass scorecard](docs/gatepass-adversarial-metrics-and-latency-scorecard.md): local deterministic adversarial scenarios, expected-vs-actual outcomes, and local illustrative timing.
+- [GatePass developer wrapper](docs/gatepass-developer-wrapper-and-local-integration-example.md): copy-paste style `wrapGatePassTool` pattern for local mock tool gating.
+- [One-command reviewer kit](docs/one-command-reviewer-demo-kit.md): lifecycle, scorecard, wrapper, safety boundary, and JSON report in one local command.
+
+## Why GatePass exists
+
+Claimed agent identity is not enough. A receiving system needs scoped proof of
+authority, mandate, evidence, intent, freshness, approval where required, and
+signed GatePass status before sensitive action. GatePass proof vocabulary and
+GatePass claims vocabulary support this machine-readable proof format; Agent
+Trust Language remains supporting material only, not the public headline.
+
+## Safety boundary
+
+This is local-only proof-of-concept code. The reviewer kit runs local
+deterministic demos only. No real tool execution occurs. No network calls occur.
+No payment or settlement is authorised. No production benchmark or security certification is claimed.
+
+## Public contact
+
+Human-reviewed technical review, local pilot, and integration feasibility
+enquiries may be sent to `gpmiddleton71@gmail.com`. Contact does not imply
+availability, acceptance, hosted access, automatic access after payment,
+payment activation, settlement authority, or production integration.
+
+## Public reviewer positioning
+
+P3-M140A records the reviewer-first README polish and claims boundary:
+
+- [Public README / reviewer positioning polish](docs/public-readme-reviewer-positioning-polish.md)
+- [Reviewer-first public positioning](docs/reviewer-first-public-positioning.md)
+- [Public positioning claims boundary](docs/public-positioning-claims-boundary.md)
+- [Machine-readable public reviewer positioning summary](examples/public-reviewer-positioning-summary.json)
+
+## What changed recently
+
+- P3-M137 made GatePass measurable with a local adversarial scorecard.
+- P3-M138 made GatePass developer-useful with `wrapGatePassTool`.
+- P3-M139 made GatePass reviewer-friendly with a one-command reviewer kit.
+- P3-M140A sharpens this README so the reviewer kit is the recommended first run and the public claims boundary is explicit.
 
 ## Start here for reviewers
 

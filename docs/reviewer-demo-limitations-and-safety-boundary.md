@@ -37,3 +37,7 @@ No proof. No permission.
 No mandate. No action.
 
 Public contact: gpmiddleton71@gmail.com
+
+## P3-M140A - Public README / Reviewer Positioning Polish
+
+P3-M140A sharpens the public README and reviewer-facing positioning so the recommended first run is `npm run demo:reviewer-kit`, GatePass remains the headline proof primitive, and Agent Trust Language remains supporting material only. It uses GatePass proof vocabulary and GatePass claims vocabulary as supporting material and adds no feature layer, external integration, production middleware claim, production benchmark claim, security certification claim, legal/compliance/security assurance, real tool execution, network calls, payment authorisation, settlement authorisation, or action execution.

@@ -1,7 +1,7 @@
 {
   "manifest_version": "atg.code-readable-integration.v1",
   "service_name": "Agent Trust Gate",
-  "latest_mission": "P3-M139",
+  "latest_mission": "P3-M140A",
   "recent_missions": [
     "P3-M123",
     "P3-M124",
@@ -19,7 +19,8 @@
     "P3-M136",
     "P3-M137",
     "P3-M138",
-    "P3-M139"
+    "P3-M139",
+    "P3-M140A"
   ],
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
   "project_status": "local_demo_only",
@@ -30,7 +31,7 @@
   "strategy": "Readable now. Callable later. Autonomous execution never without gate control.",
   "identity_trust_principle": "Claimed agent identity is not trust. Behaviour, mandate, evidence, verified intent, and session context must decide access.",
   "public_contact_email": "gpmiddleton71@gmail.com",
-  "public_contact_purpose": "Developer, agent-system, integration, security, GatePass round trip review, GatePass scorecard review, GatePass developer wrapper review, GatePass reviewer kit review, GatePass benefit review, GatePass proof vocabulary review, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
+  "public_contact_purpose": "Developer, agent-system, integration, security, GatePass round trip review, GatePass scorecard review, GatePass developer wrapper review, GatePass reviewer kit review, GatePass benefit review, GatePass proof vocabulary review, public reviewer positioning review, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
   "public_contact_boundary": "Contact metadata only. Not a live API endpoint, autonomous outreach route, automated agent contact, email automation route, contact harvesting route, live support SLA, payment, settlement, automatic acceptance, automatic access, or hosted service availability.",
   "static_file_only": true,
   "readable_by_agents": true,
@@ -121,7 +122,8 @@
     "npm run demo:gatepass-trust-language",
     "npm run demo:gatepass-scorecard",
     "npm run demo:gatepass-wrapper",
-    "npm run demo:reviewer-kit"
+    "npm run demo:reviewer-kit",
+    "npm run demo:public-positioning"
   ],
   "discovery_docs": [
     "llms.txt",
@@ -206,7 +208,10 @@
     "docs/reviewer-demo-kit-quickstart.md",
     "docs/reviewer-demo-output-guide.md",
     "docs/reviewer-demo-limitations-and-safety-boundary.md",
-    "docs/reviewer-evaluation-checklist.md"
+    "docs/reviewer-evaluation-checklist.md",
+    "docs/public-readme-reviewer-positioning-polish.md",
+    "docs/reviewer-first-public-positioning.md",
+    "docs/public-positioning-claims-boundary.md"
   ],
   "schemas": [
     "schemas/local-agent-action-request.schema.json",
@@ -271,7 +276,8 @@
     "gatepass_reviewer_kit_report",
     "gatepass_reviewer_kit_lifecycle_summary",
     "gatepass_reviewer_kit_scorecard_summary",
-    "gatepass_reviewer_kit_wrapper_summary"
+    "gatepass_reviewer_kit_wrapper_summary",
+    "public_reviewer_positioning_summary"
   ],
   "non_capabilities": [
     "live API",
@@ -332,5 +338,19 @@
   "gatepass_trust_language_boundary": "GatePass Trust Language remains supporting GatePass proof vocabulary and GatePass claims vocabulary, not a safety guarantee. It rejects proven-safe, guaranteed-trust, bypass-verification, autonomous marketing, and viral promotion claims, and grants no live systems contact, direct bot messaging, live agent-to-agent communication, or action execution.",
   "gatepass_adversarial_scorecard_boundary": "P3-M137 is a local deterministic scorecard with local illustrative timing only. productionBenchmark, securityCertification, productionCertification, adversarialCompleteness, liveToolExecution, actionExecution, paymentAuthorisation, settlementAuthorisation, and networkCalls remain false.",
   "gatepass_developer_wrapper_boundary": "P3-M138 is a local deterministic developer wrapper and local framework-style integration example. localDemoOnly and mockToolExecutionOnly are true; realToolExecution, actionExecution, networkCalls, productionMiddleware, productionCertification, securityCertification, paymentAuthorisation, and settlementAuthorisation remain false.",
-  "gatepass_reviewer_kit_boundary": "P3-M139 is a local deterministic one-command reviewer demo kit. localDemoOnly and mockToolExecutionOnly are true; realToolExecution, actionExecution, networkCalls, productionMiddleware, productionBenchmark, productionCertification, securityCertification, legalComplianceGuarantee, paymentAuthorisation, settlementAuthorisation, and liveAgentToAgentCommunication remain false."
+  "gatepass_reviewer_kit_boundary": "P3-M139 is a local deterministic one-command reviewer demo kit. localDemoOnly and mockToolExecutionOnly are true; realToolExecution, actionExecution, networkCalls, productionMiddleware, productionBenchmark, productionCertification, securityCertification, legalComplianceGuarantee, paymentAuthorisation, settlementAuthorisation, and liveAgentToAgentCommunication remain false.",
+  "recommended_first_run": "npm run demo:reviewer-kit",
+  "gatepass_headline": "GatePass is the headline scoped, time-bound, action-specific proof primitive.",
+  "agent_trust_language_role": "supporting_material_only",
+  "public_reviewer_positioning_boundary": "P3-M140A recommends npm run demo:reviewer-kit as the first run and keeps GatePass as the headline proof primitive. Agent Trust Language remains supporting material. localDemoOnly is true; realToolExecution, actionExecution, networkCalls, productionMiddleware, productionBenchmark, productionCertification, securityCertification, legalComplianceGuarantee, paymentAuthorisation, and settlementAuthorisation remain false.",
+  "localDemoOnly": true,
+  "realToolExecution": false,
+  "actionExecution": false,
+  "networkCalls": false,
+  "productionMiddleware": false,
+  "productionBenchmark": false,
+  "productionCertification": false,
+  "securityCertification": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false
 }

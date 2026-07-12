@@ -506,3 +506,7 @@ export { GATEPASS_REVIEWER_KIT_CORE_PHRASES,GATEPASS_REVIEWER_KIT_EXAMPLE_FILE,G
 export type { GatePassReviewerDecisionHighlights,GatePassReviewerKitReport,GatePassReviewerKitSafetyFlags,GatePassReviewerKitSummary,GatePassReviewerLifecycleSummary,GatePassReviewerScorecardSummary,GatePassReviewerWrapperSummary } from "./gatepass-reviewer-kit.js";
 export { runGatePassReviewerKitCli } from "./gatepass-reviewer-kit-cli.js";
 export type { GatePassReviewerKitCliErrorCode,GatePassReviewerKitCliIo } from "./gatepass-reviewer-kit-cli.js";
+export { PUBLIC_REVIEWER_POSITIONING_CONTACT,PUBLIC_REVIEWER_POSITIONING_CORE_PHRASES,PUBLIC_REVIEWER_POSITIONING_FIRST_COMMAND,PUBLIC_REVIEWER_POSITIONING_SAFETY_FLAGS,PUBLIC_REVIEWER_POSITIONING_VERSION,getPublicReviewerPositioningSummary,summarisePublicReviewerPositioning } from "./public-reviewer-positioning.js";
+export type { PublicReviewerPositioningSafetyFlags,PublicReviewerPositioningSummary } from "./public-reviewer-positioning.js";
+export { runPublicReviewerPositioningCli } from "./public-reviewer-positioning-cli.js";
+export type { PublicReviewerPositioningCliErrorCode,PublicReviewerPositioningCliIo } from "./public-reviewer-positioning-cli.js";
