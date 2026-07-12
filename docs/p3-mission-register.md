@@ -52,6 +52,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 | P3-M131 | Agent Proof Contract Integration Readiness Pack |
 | P3-M132 | Enforceable Local Tool-Calling Gate Demo |
 | P3-M133 | Minimal GatePass Core Specification Pack |
+| P3-M134 | GatePass Create-Verify-Reject Round Trip |
 
 ## Current proof chain
 
@@ -88,5 +89,8 @@ P3-M130 adds an Agent Proof Package Schema and Verification Contract Pack with l
 P3-M131 adds an Agent Proof Contract Integration Readiness Pack with local workflow, tool-call, approval, governance, session/access, and pre-settlement adapter guidance, deterministic examples, and a local demo. It adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, payment processing, settlement execution, production signing, production certification, or action execution.
 P3-M132 adds an Enforceable Local Tool-Calling Gate Demo with mock agent tool-call interception, local proof evaluation, receipt-style results, deterministic examples, and a local demo. It adds no real tool execution, live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, payment processing, settlement execution, production signing, production certification, or action execution.
 P3-M133 adds a Minimal GatePass Core Specification Pack with compact GatePass schema, TypeScript model, deterministic examples, and a local demo command. It narrows the project around GatePass as the core proof primitive and adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
+P3-M134 adds a GatePass Create-Verify-Reject Round Trip Pack with deterministic local creation, verification, rejection, explanation, receipt-style results, examples, and a demo command. It makes GatePass operational as a local primitive and adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
 
 No live APIs, payments, settlement execution, external-agent contact, AUC merge, cloud/network calls, MCP server functionality, live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, scraping, contact harvesting, tracking, analytics, telemetry, outreach automation, secrets, credentials, hosted services, tag/package publish/deployment, or autonomous action execution. AUC is not integrated. Agent Contact System is not integrated.
+## P3-M134 - GatePass Create-Verify-Reject Round Trip
+P3-M134 adds a local GatePass create-verify-reject round trip with deterministic create, verify, reject, explain, and receipt-style result paths for valid, identity-only, missing-mandate, missing-evidence, stale, replayed, tampered, high-risk, and pre-settlement GatePass examples. It adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.

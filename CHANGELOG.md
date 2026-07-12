@@ -67,3 +67,5 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 
 - P3-M089 through P3-M102 local proof, safety, developer integration, and public README milestones.
 - Static manifest, JSON schemas, synthetic examples, deterministic local CLI proof, receipts, verification, replay checks, and settlement-blocker simulation.
+## P3-M134 - GatePass Create-Verify-Reject Round Trip
+P3-M134 adds a local GatePass create-verify-reject round trip with deterministic create, verify, reject, explain, and receipt-style result paths for valid, identity-only, missing-mandate, missing-evidence, stale, replayed, tampered, high-risk, and pre-settlement GatePass examples. It adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.

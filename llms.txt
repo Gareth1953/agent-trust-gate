@@ -32,6 +32,7 @@ Safe local commands:
 - npm run demo:agent-proof-integration
 - npm run demo:enforceable-tool-gate
 - npm run demo:gatepass-core
+- npm run demo:gatepass-round-trip
 - npm run proof:money-gate
 
 Important docs:
@@ -85,6 +86,11 @@ Important docs:
 - docs/gatepass-minimal-profile.md
 - docs/gatepass-proofpackage-consolidation.md
 - docs/why-minimal-gatepass-matters.md
+- docs/gatepass-create-verify-reject-round-trip.md
+- docs/gatepass-round-trip-developer-guide.md
+- docs/gatepass-rejection-reason-catalog.md
+- docs/gatepass-round-trip-threat-model.md
+- docs/what-the-gatepass-round-trip-proves.md
 - docs/ai-agent-traffic-and-session-intent-gate.md
 - docs/spoofed-agent-risk-model.md
 - docs/session-specific-access-framework.md
@@ -139,6 +145,12 @@ Important examples:
 - examples/gatepass-core-missing-evidence-invalid.json
 - examples/gatepass-core-stale-expiry-invalid.json
 - examples/gatepass-core-missing-signature-pre-settlement-invalid.json
+- examples/gatepass-round-trip-valid-allow-local.json
+- examples/gatepass-round-trip-identity-only-rejected.json
+- examples/gatepass-round-trip-replayed-nonce-rejected.json
+- examples/gatepass-round-trip-tampered-scope-rejected.json
+- examples/gatepass-round-trip-pre-settlement-requires-signed-proof.json
+- examples/gatepass-round-trip-pre-settlement-valid-local.json
 
 Commercial/contact route:
 Human-reviewed developer, agent-system, integration, security, paid technical
@@ -258,3 +270,5 @@ production-grade crypto, production signing, live API, MCP server
 functionality, live systems contact, direct bot messaging,
 live agent-to-agent communication, payment processing, settlement execution,
 real tool execution, or action execution.
+## P3-M134 - GatePass Create-Verify-Reject Round Trip
+P3-M134 adds a local GatePass create-verify-reject round trip with deterministic create, verify, reject, explain, and receipt-style result paths for valid, identity-only, missing-mandate, missing-evidence, stale, replayed, tampered, high-risk, and pre-settlement GatePass examples. It adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.

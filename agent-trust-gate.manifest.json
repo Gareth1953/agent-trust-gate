@@ -1,7 +1,7 @@
 {
   "manifest_version": "atg.code-readable-integration.v1",
   "service_name": "Agent Trust Gate",
-  "latest_mission": "P3-M133",
+  "latest_mission": "P3-M134",
   "recent_missions": [
     "P3-M122",
     "P3-M123",
@@ -14,7 +14,8 @@
     "P3-M130",
     "P3-M131",
     "P3-M132",
-    "P3-M133"
+    "P3-M133",
+    "P3-M134"
   ],
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
   "project_status": "local_demo_only",
@@ -25,7 +26,7 @@
   "strategy": "Readable now. Callable later. Autonomous execution never without gate control.",
   "identity_trust_principle": "Claimed agent identity is not trust. Behaviour, mandate, evidence, verified intent, and session context must decide access.",
   "public_contact_email": "gpmiddleton71@gmail.com",
-  "public_contact_purpose": "Developer, agent-system, integration, security, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
+  "public_contact_purpose": "Developer, agent-system, integration, security, GatePass round trip review, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
   "public_contact_boundary": "Contact metadata only. Not a live API endpoint, autonomous outreach route, automated agent contact, email automation route, contact harvesting route, live support SLA, payment, settlement, automatic acceptance, automatic access, or hosted service availability.",
   "static_file_only": true,
   "readable_by_agents": true,
@@ -79,7 +80,8 @@
     "agent_proof_contract_model",
     "agent_proof_integration_adapter_model",
     "enforceable_tool_gate_demo",
-    "gatepass_core_model"
+    "gatepass_core_model",
+    "gatepass_round_trip_model"
   ],
   "safe_local_commands": [
     "npm test",
@@ -96,7 +98,8 @@
     "npm run demo:agent-proof-integration",
     "npm run demo:enforceable-tool-gate",
     "npm run demo:gatepass-core",
-    "npm run proof:money-gate"
+    "npm run proof:money-gate",
+    "npm run demo:gatepass-round-trip"
   ],
   "discovery_docs": [
     "llms.txt",
@@ -151,7 +154,12 @@
     "docs/why-minimal-gatepass-matters.md",
     "docs/ai-agent-traffic-and-session-intent-gate.md",
     "docs/spoofed-agent-risk-model.md",
-    "docs/session-specific-access-framework.md"
+    "docs/session-specific-access-framework.md",
+    "docs/gatepass-create-verify-reject-round-trip.md",
+    "docs/gatepass-round-trip-developer-guide.md",
+    "docs/gatepass-rejection-reason-catalog.md",
+    "docs/gatepass-round-trip-threat-model.md",
+    "docs/what-the-gatepass-round-trip-proves.md"
   ],
   "schemas": [
     "schemas/local-agent-action-request.schema.json",
@@ -192,7 +200,12 @@
     "gatepass_core_blocked",
     "gatepass_core_requires_evidence",
     "gatepass_core_requires_human_review",
-    "gatepass_core_requires_signed_proof"
+    "gatepass_core_requires_signed_proof",
+    "gatepass_round_trip_allowed_locally",
+    "gatepass_round_trip_blocked",
+    "gatepass_round_trip_requires_evidence",
+    "gatepass_round_trip_requires_human_review",
+    "gatepass_round_trip_requires_signed_proof"
   ],
   "non_capabilities": [
     "live API",

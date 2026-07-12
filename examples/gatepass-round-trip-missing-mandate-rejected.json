@@ -1,0 +1,238 @@
+{
+  "roundTripVersion": "atg.gatepass-round-trip.local.v1",
+  "scenarioId": "missing_mandate_rejected",
+  "gatePassId": "gatepass_round_trip_missing_mandate_rejected_001",
+  "gatePass": {
+    "version": "atg.gatepass-core.local.v1",
+    "iss": "issuer_local_gatepass_round_trip",
+    "sub": "local_demo_agent_or_workflow",
+    "aud": "agent_trust_gate_local_verifier",
+    "jti": "gatepass_round_trip_missing_mandate_rejected_001",
+    "iat": "2026-07-11T09:30:00.000Z",
+    "exp": "2030-01-01T00:00:00.000Z",
+    "nonce": "nonce_gatepass_round_trip_missing_mandate_rejected_001",
+    "mandate": {
+      "id": "",
+      "allowedAction": "",
+      "issuerReference": "",
+      "status": "missing"
+    },
+    "scope": {
+      "permittedActions": [
+        "export_data"
+      ],
+      "constraints": [
+        "local_demo_only",
+        "no_action_execution"
+      ],
+      "settlementSensitive": false
+    },
+    "evidence": {
+      "refs": [
+        "evidence_missing_mandate_rejected"
+      ],
+      "status": "present"
+    },
+    "intent": {
+      "status": "verified",
+      "context": "local intent context for export_data"
+    },
+    "risk": {
+      "tier": "medium",
+      "sensitiveToolCall": true,
+      "highRiskAction": false
+    },
+    "approval": {
+      "required": true,
+      "status": "approved",
+      "approverReference": "local_human_review_round_trip_001"
+    },
+    "signature": {
+      "status": "present",
+      "proofReference": "local_signed_gatepass_round_trip_missing_mandate_rejected",
+      "alg": "local-demo-placeholder",
+      "productionSigning": false
+    },
+    "localDemoOnly": true,
+    "localOnly": true,
+    "liveSystemsContact": false,
+    "directBotMessaging": false,
+    "autonomousOutreach": false,
+    "outreachAutomation": false,
+    "liveAgentToAgentCommunication": false,
+    "externalAgentContact": false,
+    "liveApi": false,
+    "mcpServer": false,
+    "cloudNetworkCall": false,
+    "secretsOrCredentials": false,
+    "paymentAuthorisation": false,
+    "settlementAuthorisation": false,
+    "walletBankingLogic": false,
+    "productionSigning": false,
+    "productionGradeCrypto": false,
+    "productionCertification": false,
+    "actionExecution": false
+  },
+  "verificationContext": {
+    "scenarioId": "missing_mandate_rejected",
+    "expectedAudience": "agent_trust_gate_local_verifier",
+    "expectedAction": "export_data",
+    "expectedIntegrityHash": "25db2f1add0c0ded2a460d52d7c1dcf89e1b9c7450e41148b103f7e6ac339993",
+    "consumedNonces": [],
+    "settlementSensitive": false,
+    "requireSignedGatePass": false,
+    "localDemoOnly": true,
+    "localOnly": true,
+    "liveSystemsContact": false,
+    "directBotMessaging": false,
+    "autonomousOutreach": false,
+    "outreachAutomation": false,
+    "liveAgentToAgentCommunication": false,
+    "externalAgentContact": false,
+    "liveApi": false,
+    "mcpServer": false,
+    "cloudNetworkCall": false,
+    "secretsOrCredentials": false,
+    "paymentAuthorisation": false,
+    "settlementAuthorisation": false,
+    "walletBankingLogic": false,
+    "productionSigning": false,
+    "productionGradeCrypto": false,
+    "productionCertification": false,
+    "actionExecution": false,
+    "realToolExecuted": false
+  },
+  "coreValidation": {
+    "resultId": "gatepass_core_result_e6729e539973164a69d73212",
+    "gatePassVersion": "atg.gatepass-core.local.v1",
+    "gatePassId": "gatepass_round_trip_missing_mandate_rejected_001",
+    "profile": "sensitive_tool_call",
+    "decision": "block",
+    "validLocally": false,
+    "reasons": [
+      "gatepass_core_local_only",
+      "claimed_identity_not_trust",
+      "profile_sensitive_tool_call",
+      "missing_mandate"
+    ],
+    "missingFields": [
+      "mandate"
+    ],
+    "requiredNextProof": [
+      "stop_request",
+      "present_fresh_non_replayed_scoped_gatepass",
+      "provide_mandate"
+    ],
+    "gatePassMeaning": {
+      "mayProveLocally": [
+        "gatepass_core_fields_were_checked_locally",
+        "claimed_agent_identity_was_not_treated_as_sufficient_trust",
+        "mandate_scope_evidence_intent_risk_approval_freshness_nonce_and_signature_status_were_reviewed",
+        "local_profile_sensitive_tool_call",
+        "local_decision_block",
+        "signed_gatepass_reference_was_present_locally"
+      ],
+      "doesNotProve": [
+        "production_identity_or_authentication",
+        "production_grade_crypto",
+        "legal_financial_compliance_procurement_settlement_or_security_certification",
+        "payment_or_settlement_authority",
+        "permission_to_execute_real_tools_or_actions",
+        "live_systems_contact_or_agent_to_agent_communication",
+        "universal_agent_standard_status"
+      ]
+    },
+    "noProofMeansNoPermission": true,
+    "claimedIdentityAloneSufficient": false,
+    "publicContactEmail": "gpmiddleton71@gmail.com",
+    "note": "Minimal GatePass core local model only; no production signing, production-grade crypto, live systems contact, direct bot messaging, live agent-to-agent communication, payment, settlement, network call, real tool execution, or action execution occurred.",
+    "localDemoOnly": true,
+    "localOnly": true,
+    "liveSystemsContact": false,
+    "directBotMessaging": false,
+    "autonomousOutreach": false,
+    "outreachAutomation": false,
+    "liveAgentToAgentCommunication": false,
+    "externalAgentContact": false,
+    "liveApi": false,
+    "mcpServer": false,
+    "cloudNetworkCall": false,
+    "secretsOrCredentials": false,
+    "paymentAuthorisation": false,
+    "settlementAuthorisation": false,
+    "walletBankingLogic": false,
+    "productionSigning": false,
+    "productionGradeCrypto": false,
+    "productionCertification": false,
+    "actionExecution": false
+  },
+  "decision": "block",
+  "validLocallyOnly": false,
+  "reasons": [
+    "gatepass_created_locally",
+    "gatepass_verified_locally",
+    "gatepass_rejected_or_requires_more_proof_locally",
+    "no_real_tool_execution",
+    "no_action_execution",
+    "gatepass_core_local_only",
+    "claimed_identity_not_trust",
+    "profile_sensitive_tool_call",
+    "missing_mandate"
+  ],
+  "rejectionReasons": [
+    "missing_mandate"
+  ],
+  "requiredNextProof": [
+    "stop_request",
+    "present_fresh_non_replayed_scoped_gatepass",
+    "provide_mandate",
+    "bind_mandate_to_requested_action"
+  ],
+  "explanation": [
+    "GatePass gatepass_round_trip_missing_mandate_rejected_001 was created locally for export_data.",
+    "The verifier checked mandate, evidence, intent, expiry, nonce, scope, signature status, and local safety flags.",
+    "Claimed agent identity alone was not treated as trust.",
+    "The local decision is block.",
+    "No real tool, payment, settlement, network call, live system contact, or action execution occurred.",
+    "missing_mandate: The GatePass does not show what authority permits the requested action."
+  ],
+  "noProofMeansNoPermission": true,
+  "claimedIdentityAloneSufficient": false,
+  "publicContactEmail": "gpmiddleton71@gmail.com",
+  "note": "GatePass create-verify-reject round trip local model only; no production signing, production-grade crypto, live systems contact, direct bot messaging, live agent-to-agent communication, payment, settlement, network call, real tool execution, or action execution occurred.",
+  "localDemoOnly": true,
+  "localOnly": true,
+  "liveSystemsContact": false,
+  "directBotMessaging": false,
+  "autonomousOutreach": false,
+  "outreachAutomation": false,
+  "liveAgentToAgentCommunication": false,
+  "externalAgentContact": false,
+  "liveApi": false,
+  "mcpServer": false,
+  "cloudNetworkCall": false,
+  "secretsOrCredentials": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "walletBankingLogic": false,
+  "productionSigning": false,
+  "productionGradeCrypto": false,
+  "productionCertification": false,
+  "actionExecution": false,
+  "realToolExecuted": false,
+  "receiptSummary": {
+    "receiptId": "gatepass_round_trip_receipt_20b8d6b6e79d129780a62e6f",
+    "lifecycle": [
+      "create",
+      "verify",
+      "decide",
+      "explain"
+    ],
+    "createdLocally": true,
+    "verifiedLocally": true,
+    "rejectedLocally": true,
+    "wouldAllowLocally": false,
+    "realToolExecuted": false,
+    "actionExecution": false
+  }
+}

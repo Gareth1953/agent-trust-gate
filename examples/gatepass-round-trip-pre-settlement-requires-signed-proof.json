@@ -1,0 +1,254 @@
+{
+  "roundTripVersion": "atg.gatepass-round-trip.local.v1",
+  "scenarioId": "pre_settlement_requires_signed_proof",
+  "gatePassId": "gatepass_round_trip_pre_settlement_requires_signed_proof_001",
+  "gatePass": {
+    "version": "atg.gatepass-core.local.v1",
+    "iss": "issuer_local_gatepass_round_trip",
+    "sub": "local_demo_agent_or_workflow",
+    "aud": "agent_trust_gate_local_verifier",
+    "jti": "gatepass_round_trip_pre_settlement_requires_signed_proof_001",
+    "iat": "2026-07-11T09:30:00.000Z",
+    "exp": "2030-01-01T00:00:00.000Z",
+    "nonce": "nonce_gatepass_round_trip_pre_settlement_requires_signed_proof_001",
+    "mandate": {
+      "id": "mandate_pre_settlement_requires_signed_proof",
+      "allowedAction": "pre_settlement_review",
+      "issuerReference": "issuer_local_gatepass_round_trip",
+      "status": "present"
+    },
+    "scope": {
+      "permittedActions": [
+        "pre_settlement_review"
+      ],
+      "constraints": [
+        "local_demo_only",
+        "no_real_settlement",
+        "signed_gatepass_required"
+      ],
+      "settlementSensitive": true
+    },
+    "evidence": {
+      "refs": [
+        "evidence_pre_settlement_requires_signed_proof"
+      ],
+      "status": "present"
+    },
+    "intent": {
+      "status": "verified",
+      "context": "local intent context for pre_settlement_review"
+    },
+    "risk": {
+      "tier": "critical",
+      "sensitiveToolCall": true,
+      "highRiskAction": true
+    },
+    "approval": {
+      "required": true,
+      "status": "approved",
+      "approverReference": "local_human_pre_settlement_review_round_trip_001"
+    },
+    "signature": {
+      "status": "missing",
+      "proofReference": null,
+      "alg": "local-demo-placeholder",
+      "productionSigning": false
+    },
+    "localDemoOnly": true,
+    "localOnly": true,
+    "liveSystemsContact": false,
+    "directBotMessaging": false,
+    "autonomousOutreach": false,
+    "outreachAutomation": false,
+    "liveAgentToAgentCommunication": false,
+    "externalAgentContact": false,
+    "liveApi": false,
+    "mcpServer": false,
+    "cloudNetworkCall": false,
+    "secretsOrCredentials": false,
+    "paymentAuthorisation": false,
+    "settlementAuthorisation": false,
+    "walletBankingLogic": false,
+    "productionSigning": false,
+    "productionGradeCrypto": false,
+    "productionCertification": false,
+    "actionExecution": false,
+    "extensions": {
+      "preSettlement": {
+        "settlementSensitive": true,
+        "requiresSignedGatePass": true,
+        "blockerReference": "local_round_trip_pre_settlement_blocker",
+        "noSignedGatePassNoSettlement": true
+      }
+    }
+  },
+  "verificationContext": {
+    "scenarioId": "pre_settlement_requires_signed_proof",
+    "expectedAudience": "agent_trust_gate_local_verifier",
+    "expectedAction": "pre_settlement_review",
+    "expectedIntegrityHash": "cf205986e7567a5565414da99d2246a542b59a57cee85ed8cd765da5ec88103e",
+    "consumedNonces": [],
+    "settlementSensitive": true,
+    "requireSignedGatePass": true,
+    "localDemoOnly": true,
+    "localOnly": true,
+    "liveSystemsContact": false,
+    "directBotMessaging": false,
+    "autonomousOutreach": false,
+    "outreachAutomation": false,
+    "liveAgentToAgentCommunication": false,
+    "externalAgentContact": false,
+    "liveApi": false,
+    "mcpServer": false,
+    "cloudNetworkCall": false,
+    "secretsOrCredentials": false,
+    "paymentAuthorisation": false,
+    "settlementAuthorisation": false,
+    "walletBankingLogic": false,
+    "productionSigning": false,
+    "productionGradeCrypto": false,
+    "productionCertification": false,
+    "actionExecution": false,
+    "realToolExecuted": false
+  },
+  "coreValidation": {
+    "resultId": "gatepass_core_result_75bb7979f11af0f9c2287055",
+    "gatePassVersion": "atg.gatepass-core.local.v1",
+    "gatePassId": "gatepass_round_trip_pre_settlement_requires_signed_proof_001",
+    "profile": "pre_settlement",
+    "decision": "require_signed_proof",
+    "validLocally": false,
+    "reasons": [
+      "gatepass_core_local_only",
+      "claimed_identity_not_trust",
+      "profile_pre_settlement",
+      "missing_signature",
+      "signature_missing",
+      "pre_settlement_signed_gatepass_required"
+    ],
+    "missingFields": [
+      "signature"
+    ],
+    "requiredNextProof": [
+      "present_signed_gatepass",
+      "prove_pre_settlement_scope_freshness_and_nonce",
+      "provide_signature"
+    ],
+    "gatePassMeaning": {
+      "mayProveLocally": [
+        "gatepass_core_fields_were_checked_locally",
+        "claimed_agent_identity_was_not_treated_as_sufficient_trust",
+        "mandate_scope_evidence_intent_risk_approval_freshness_nonce_and_signature_status_were_reviewed",
+        "local_profile_pre_settlement",
+        "local_decision_require_signed_proof",
+        "pre_settlement_profile_requires_signed_gatepass_before_any_settlement_sensitive_flow"
+      ],
+      "doesNotProve": [
+        "production_identity_or_authentication",
+        "production_grade_crypto",
+        "legal_financial_compliance_procurement_settlement_or_security_certification",
+        "payment_or_settlement_authority",
+        "permission_to_execute_real_tools_or_actions",
+        "live_systems_contact_or_agent_to_agent_communication",
+        "universal_agent_standard_status"
+      ]
+    },
+    "noProofMeansNoPermission": true,
+    "claimedIdentityAloneSufficient": false,
+    "publicContactEmail": "gpmiddleton71@gmail.com",
+    "note": "Minimal GatePass core local model only; no production signing, production-grade crypto, live systems contact, direct bot messaging, live agent-to-agent communication, payment, settlement, network call, real tool execution, or action execution occurred.",
+    "localDemoOnly": true,
+    "localOnly": true,
+    "liveSystemsContact": false,
+    "directBotMessaging": false,
+    "autonomousOutreach": false,
+    "outreachAutomation": false,
+    "liveAgentToAgentCommunication": false,
+    "externalAgentContact": false,
+    "liveApi": false,
+    "mcpServer": false,
+    "cloudNetworkCall": false,
+    "secretsOrCredentials": false,
+    "paymentAuthorisation": false,
+    "settlementAuthorisation": false,
+    "walletBankingLogic": false,
+    "productionSigning": false,
+    "productionGradeCrypto": false,
+    "productionCertification": false,
+    "actionExecution": false
+  },
+  "decision": "require_signed_proof",
+  "validLocallyOnly": false,
+  "reasons": [
+    "gatepass_created_locally",
+    "gatepass_verified_locally",
+    "gatepass_rejected_or_requires_more_proof_locally",
+    "no_real_tool_execution",
+    "no_action_execution",
+    "gatepass_core_local_only",
+    "claimed_identity_not_trust",
+    "profile_pre_settlement",
+    "missing_signature",
+    "signature_missing",
+    "pre_settlement_signed_gatepass_required",
+    "round_trip_settlement_requires_signed_gatepass"
+  ],
+  "rejectionReasons": [
+    "settlement_requires_signed_gatepass",
+    "missing_signature"
+  ],
+  "requiredNextProof": [
+    "present_signed_gatepass",
+    "prove_pre_settlement_scope_freshness_and_nonce",
+    "provide_signature",
+    "bind_signature_to_scope_expiry_and_nonce"
+  ],
+  "explanation": [
+    "GatePass gatepass_round_trip_pre_settlement_requires_signed_proof_001 was created locally for pre_settlement_review.",
+    "The verifier checked mandate, evidence, intent, expiry, nonce, scope, signature status, and local safety flags.",
+    "Claimed agent identity alone was not treated as trust.",
+    "The local decision is require_signed_proof.",
+    "No real tool, payment, settlement, network call, live system contact, or action execution occurred.",
+    "settlement_requires_signed_gatepass: The requested workflow is settlement-sensitive and requires a signed GatePass before proceeding locally.",
+    "missing_signature: The GatePass lacks a local signed proof reference."
+  ],
+  "noProofMeansNoPermission": true,
+  "claimedIdentityAloneSufficient": false,
+  "publicContactEmail": "gpmiddleton71@gmail.com",
+  "note": "GatePass create-verify-reject round trip local model only; no production signing, production-grade crypto, live systems contact, direct bot messaging, live agent-to-agent communication, payment, settlement, network call, real tool execution, or action execution occurred.",
+  "localDemoOnly": true,
+  "localOnly": true,
+  "liveSystemsContact": false,
+  "directBotMessaging": false,
+  "autonomousOutreach": false,
+  "outreachAutomation": false,
+  "liveAgentToAgentCommunication": false,
+  "externalAgentContact": false,
+  "liveApi": false,
+  "mcpServer": false,
+  "cloudNetworkCall": false,
+  "secretsOrCredentials": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "walletBankingLogic": false,
+  "productionSigning": false,
+  "productionGradeCrypto": false,
+  "productionCertification": false,
+  "actionExecution": false,
+  "realToolExecuted": false,
+  "receiptSummary": {
+    "receiptId": "gatepass_round_trip_receipt_1c8d44b9e326226eef1f0893",
+    "lifecycle": [
+      "create",
+      "verify",
+      "decide",
+      "explain"
+    ],
+    "createdLocally": true,
+    "verifiedLocally": true,
+    "rejectedLocally": true,
+    "wouldAllowLocally": false,
+    "realToolExecuted": false,
+    "actionExecution": false
+  }
+}

@@ -1,7 +1,7 @@
 {
   "schema": "atg.agent-card.local-discovery.v1",
   "name": "Agent Trust Gate",
-  "latest_mission": "P3-M133",
+  "latest_mission": "P3-M134",
   "recent_missions": [
     "P3-M122",
     "P3-M123",
@@ -14,7 +14,8 @@
     "P3-M130",
     "P3-M131",
     "P3-M132",
-    "P3-M133"
+    "P3-M133",
+    "P3-M134"
   ],
   "description": "Local-first pre-action and pre-settlement trust gate for agent-led workflows.",
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
@@ -43,7 +44,8 @@
     "local agent proof package schema and verification contract guidance",
     "local agent proof contract integration readiness guidance and adapter examples",
     "enforceable local tool-calling gate demo for mock sensitive tools",
-    "minimal local GatePass core specification, schema, model, examples, and demo"
+    "minimal local GatePass core specification, schema, model, examples, and demo",
+    "local GatePass create-verify-reject round trip model, examples, and demo"
   ],
   "non_capabilities": [
     "live API",
@@ -152,7 +154,12 @@
     "docs/why-minimal-gatepass-matters.md",
     "docs/ai-agent-traffic-and-session-intent-gate.md",
     "docs/spoofed-agent-risk-model.md",
-    "docs/session-specific-access-framework.md"
+    "docs/session-specific-access-framework.md",
+    "docs/gatepass-create-verify-reject-round-trip.md",
+    "docs/gatepass-round-trip-developer-guide.md",
+    "docs/gatepass-rejection-reason-catalog.md",
+    "docs/gatepass-round-trip-threat-model.md",
+    "docs/what-the-gatepass-round-trip-proves.md"
   ],
   "schemas": [
     "schemas/local-agent-action-request.schema.json",
@@ -203,11 +210,21 @@
     "examples/gatepass-core-missing-mandate-invalid.json",
     "examples/gatepass-core-missing-evidence-invalid.json",
     "examples/gatepass-core-stale-expiry-invalid.json",
-    "examples/gatepass-core-missing-signature-pre-settlement-invalid.json"
+    "examples/gatepass-core-missing-signature-pre-settlement-invalid.json",
+    "examples/gatepass-round-trip-valid-allow-local.json",
+    "examples/gatepass-round-trip-identity-only-rejected.json",
+    "examples/gatepass-round-trip-missing-mandate-rejected.json",
+    "examples/gatepass-round-trip-missing-evidence-requires-evidence.json",
+    "examples/gatepass-round-trip-stale-expiry-rejected.json",
+    "examples/gatepass-round-trip-replayed-nonce-rejected.json",
+    "examples/gatepass-round-trip-tampered-scope-rejected.json",
+    "examples/gatepass-round-trip-high-risk-human-review.json",
+    "examples/gatepass-round-trip-pre-settlement-requires-signed-proof.json",
+    "examples/gatepass-round-trip-pre-settlement-valid-local.json"
   ],
   "contact": {
     "email": "gpmiddleton71@gmail.com",
-    "purpose": "Human-reviewed developer, agent-system, integration, security, buyer use case, revenue trigger, global code discovery, controlled public visibility, prove-yourself protocol, agent proof package contract, proof contract integration readiness, enforceable local tool gate demo, minimal GatePass core review, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
+    "purpose": "Human-reviewed developer, agent-system, integration, security, buyer use case, revenue trigger, global code discovery, controlled public visibility, prove-yourself protocol, agent proof package contract, proof contract integration readiness, enforceable local tool gate demo, minimal GatePass core review, GatePass round trip review, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
     "boundary": "Contact metadata only. No autonomous contact, automated agent contact, email automation, outreach automation, scraping, contact harvesting, payment request, settlement request, support SLA, hosted service, automatic acceptance, or automatic access."
   },
   "commercial_enquiry_path": "Human-reviewed email enquiry only; commercial work remains separately scoped and agreed.",

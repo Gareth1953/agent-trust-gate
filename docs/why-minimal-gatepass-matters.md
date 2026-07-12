@@ -60,4 +60,5 @@ Useful hardening areas include:
 ## Safety Boundary
 
 Minimal GatePass Core is local specification, schema, TypeScript modelling, examples, and tests only. It does not add live APIs, live systems contact, production-grade cryptography, production signing, live payment processing, settlement execution, real tool execution, or action execution.
-
+## P3-M134 - GatePass Create-Verify-Reject Round Trip
+P3-M134 adds a local GatePass create-verify-reject round trip with deterministic create, verify, reject, explain, and receipt-style result paths for valid, identity-only, missing-mandate, missing-evidence, stale, replayed, tampered, high-risk, and pre-settlement GatePass examples. It adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.

@@ -31,6 +31,7 @@ For a fast public review, use this path:
 15. Inspect proof-contract integration readiness: [agent proof contract integration readiness](docs/agent-proof-contract-integration-readiness.md).
 16. Run the enforceable local tool-calling gate demo: [enforceable local tool-calling gate demo](docs/enforceable-local-tool-calling-gate-demo.md).
 17. Inspect the minimal GatePass core: [minimal GatePass core specification](docs/minimal-gatepass-core-specification.md).
+18. Run the GatePass create-verify-reject round trip: [GatePass create-verify-reject round trip](docs/gatepass-create-verify-reject-round-trip.md).
 
 P3-M125 adds the [public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md)
 to make this path easier to assess without adding forms, tracking, payment
@@ -76,6 +77,11 @@ actions, sensitive tool calls, and pre-settlement workflows without adding live
 APIs, MCP server functionality, production signing, production-grade crypto,
 payment processing, settlement execution, real tool execution, or action
 execution.
+P3-M134 adds the GatePass Create-Verify-Reject Round Trip Pack to create,
+verify, reject, and explain GatePass decisions locally without adding live
+APIs, MCP server functionality, production signing, production-grade crypto,
+payment processing, settlement execution, real tool execution, or action
+execution.
 
 ## What to inspect first
 
@@ -103,6 +109,9 @@ execution.
 - The minimal GatePass core docs and schema to see the compact proof primitive
   that ProofPackage, VerificationContract, Tool Gate, and Pre-Settlement Gate
   should support.
+- The GatePass round-trip demo to see local create, verify, reject, and
+  explanation paths for valid, stale, replayed, tampered, missing-mandate,
+  missing-evidence, high-risk, and pre-settlement GatePasses.
 
 ## Commercial enquiry path
 
@@ -433,6 +442,42 @@ before sensitive actions. Pre-Settlement Gate blocks settlement-sensitive flows
 without valid proof. This pack adds no live API, production signing,
 production-grade crypto, payment processing, settlement execution, real tool
 execution, or action execution.
+
+## GatePass create-verify-reject round trip
+
+P3-M134 makes GatePass operational in a deterministic local lifecycle:
+create GatePass locally, verify GatePass locally, reject invalid GatePasses
+locally with clear reasons, and emit a local receipt-style result while
+executing no real tool or action.
+
+Core positioning:
+
+Do not trust the agent. Trust the GatePass.
+
+No proof. No permission.
+
+No mandate. No action.
+
+No signed GatePass. No settlement.
+
+- [GatePass create-verify-reject round trip](docs/gatepass-create-verify-reject-round-trip.md)
+- [GatePass round trip developer guide](docs/gatepass-round-trip-developer-guide.md)
+- [GatePass rejection reason catalog](docs/gatepass-rejection-reason-catalog.md)
+- [GatePass round trip threat model](docs/gatepass-round-trip-threat-model.md)
+- [What the GatePass round trip proves](docs/what-the-gatepass-round-trip-proves.md)
+
+Run the deterministic local round-trip examples:
+
+```text
+npm run demo:gatepass-round-trip
+npm run demo:gatepass-round-trip -- --summary-only
+```
+
+The demo covers valid local allowance, identity-only rejection, missing
+mandate, missing evidence, stale expiry, replayed nonce, tampered scope,
+high-risk human review, pre-settlement signed-GatePass requirement, and valid
+local pre-settlement control. `realToolExecuted`, `paymentAuthorisation`,
+`settlementAuthorisation`, and `actionExecution` remain false.
 
 ## Public contact
 

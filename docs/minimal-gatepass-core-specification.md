@@ -145,4 +145,5 @@ This repo does not execute settlement.
 ## Local-Only Boundary
 
 P3-M133 is specification, schema, TypeScript modelling, examples, and tests only. It adds no live APIs, no live systems contact, no direct bot messaging, no live agent-to-agent communication, no payment processing, no real settlement execution, no production signing, no production key management, no real tool execution, and no action execution.
-
+## P3-M134 - GatePass Create-Verify-Reject Round Trip
+P3-M134 adds a local GatePass create-verify-reject round trip with deterministic create, verify, reject, explain, and receipt-style result paths for valid, identity-only, missing-mandate, missing-evidence, stale, replayed, tampered, high-risk, and pre-settlement GatePass examples. It adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
