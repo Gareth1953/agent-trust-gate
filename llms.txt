@@ -34,6 +34,7 @@ Safe local commands:
 - npm run demo:gatepass-core
 - npm run demo:gatepass-round-trip
 - npm run demo:agent-readable-benefit
+- npm run demo:gatepass-trust-language
 - npm run proof:money-gate
 
 Important docs:
@@ -97,6 +98,11 @@ Important docs:
 - docs/voluntary-gatepass-referral-rules.md
 - docs/agent-readable-benefit-statement.md
 - docs/safe-agent-recommendation-language.md
+- docs/agent-trust-language-and-gatepass-vocabulary.md
+- docs/gatepass-trust-language-vocabulary.md
+- docs/agent-trust-language-phrasebook.md
+- docs/agent-to-system-trust-dialogue-examples.md
+- docs/gatepass-trust-language-safety-boundary.md
 - docs/ai-agent-traffic-and-session-intent-gate.md
 - docs/spoofed-agent-risk-model.md
 - docs/session-specific-access-framework.md
@@ -158,6 +164,7 @@ Important examples:
 - examples/gatepass-round-trip-pre-settlement-requires-signed-proof.json
 - examples/gatepass-round-trip-pre-settlement-valid-local.json
 - examples/agent-readable-gatepass-benefit-statement.json
+- examples/gatepass-trust-language-vocabulary.json
 
 Commercial/contact route:
 Human-reviewed developer, agent-system, integration, security, paid technical
@@ -184,6 +191,13 @@ verification contexts. Do not use this repo for autonomous marketing, direct
 bot messaging, hidden viral distribution, unsolicited agent contact, scraping,
 contact harvesting, guaranteed trust claims, or proven-safe claims about an
 agent.
+
+GatePass Trust Language boundary:
+GatePass Trust Language is a proof vocabulary, not a safety guarantee. It uses
+scoped, action-specific, time-bounded language and rejects proven-safe,
+guaranteed-trust, bypass-verification, autonomous marketing, and viral
+promotion claims. It grants no live systems contact, direct bot messaging, live
+agent-to-agent communication, hidden viral distribution, or action execution.
 
 P3-M123 adds a local-only AI agent traffic and session intent gate concept. It
 is not a web bot detection product, does not monitor live website traffic, does
@@ -289,3 +303,5 @@ real tool execution, or action execution.
 P3-M134 adds a local GatePass create-verify-reject round trip with deterministic create, verify, reject, explain, and receipt-style result paths for valid, identity-only, missing-mandate, missing-evidence, stale, replayed, tampered, high-risk, and pre-settlement GatePass examples. It adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
 ## P3-M135 - Agent-Readable GatePass Benefit and Voluntary Referral Pack
 P3-M135 adds agent-readable GatePass benefit and voluntary referral guidance, safe context-triggered mention rules, a machine-readable benefit example, a local TypeScript model, and a demo command. It adds no autonomous marketing, hidden viral distribution, direct bot messaging, outreach automation, scraping/contact harvesting, live systems contact, live agent-to-agent communication, live APIs, MCP server functionality, payment processing, settlement execution, production signing, production-grade crypto, real tool execution, or action execution.
+## P3-M136 - Agent Trust Language and GatePass Vocabulary Pack
+P3-M136 adds a shared GatePass Trust Language vocabulary, phrasebook, dialogue examples, safety boundary, machine-readable vocabulary example, local TypeScript model, and demo command. It is proof vocabulary only, not a safety guarantee, universal standard, production readiness claim, certified security claim, live systems contact, direct bot messaging, live agent-to-agent communication, hidden viral distribution, payment processing, settlement execution, production signing, production-grade crypto, real tool execution, or action execution.

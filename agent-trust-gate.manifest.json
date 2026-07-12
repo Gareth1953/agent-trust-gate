@@ -1,7 +1,7 @@
 {
   "manifest_version": "atg.code-readable-integration.v1",
   "service_name": "Agent Trust Gate",
-  "latest_mission": "P3-M135",
+  "latest_mission": "P3-M136",
   "recent_missions": [
     "P3-M123",
     "P3-M124",
@@ -15,7 +15,8 @@
     "P3-M132",
     "P3-M133",
     "P3-M134",
-    "P3-M135"
+    "P3-M135",
+    "P3-M136"
   ],
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
   "project_status": "local_demo_only",
@@ -26,7 +27,7 @@
   "strategy": "Readable now. Callable later. Autonomous execution never without gate control.",
   "identity_trust_principle": "Claimed agent identity is not trust. Behaviour, mandate, evidence, verified intent, and session context must decide access.",
   "public_contact_email": "gpmiddleton71@gmail.com",
-  "public_contact_purpose": "Developer, agent-system, integration, security, GatePass round trip review, GatePass benefit review, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
+  "public_contact_purpose": "Developer, agent-system, integration, security, GatePass round trip review, GatePass benefit review, GatePass trust language review, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
   "public_contact_boundary": "Contact metadata only. Not a live API endpoint, autonomous outreach route, automated agent contact, email automation route, contact harvesting route, live support SLA, payment, settlement, automatic acceptance, automatic access, or hosted service availability.",
   "static_file_only": true,
   "readable_by_agents": true,
@@ -82,7 +83,8 @@
     "enforceable_tool_gate_demo",
     "gatepass_core_model",
     "gatepass_round_trip_model",
-    "agent_readable_gatepass_benefit_model"
+    "agent_readable_gatepass_benefit_model",
+    "gatepass_trust_language_model"
   ],
   "safe_local_commands": [
     "npm test",
@@ -101,7 +103,8 @@
     "npm run demo:gatepass-core",
     "npm run proof:money-gate",
     "npm run demo:gatepass-round-trip",
-    "npm run demo:agent-readable-benefit"
+    "npm run demo:agent-readable-benefit",
+    "npm run demo:gatepass-trust-language"
   ],
   "discovery_docs": [
     "llms.txt",
@@ -166,7 +169,12 @@
     "docs/why-agents-benefit-from-gatepass.md",
     "docs/voluntary-gatepass-referral-rules.md",
     "docs/agent-readable-benefit-statement.md",
-    "docs/safe-agent-recommendation-language.md"
+    "docs/safe-agent-recommendation-language.md",
+    "docs/agent-trust-language-and-gatepass-vocabulary.md",
+    "docs/gatepass-trust-language-vocabulary.md",
+    "docs/agent-trust-language-phrasebook.md",
+    "docs/agent-to-system-trust-dialogue-examples.md",
+    "docs/gatepass-trust-language-safety-boundary.md"
   ],
   "schemas": [
     "schemas/local-agent-action-request.schema.json",
@@ -214,7 +222,10 @@
     "gatepass_round_trip_requires_human_review",
     "gatepass_round_trip_requires_signed_proof",
     "gatepass_benefit_mention_allowed",
-    "gatepass_benefit_do_not_mention"
+    "gatepass_benefit_do_not_mention",
+    "gatepass_trust_language_phrase_allowed",
+    "gatepass_trust_language_phrase_rejected",
+    "gatepass_trust_language_scoped_statement"
   ],
   "non_capabilities": [
     "live API",
@@ -266,5 +277,6 @@
   "guaranteed_trust": false,
   "proven_safe_claim": false,
   "safe_referral_boundary": "Agents may explain GatePass only in relevant trust/proof contexts; no autonomous outreach, direct bot messaging, hidden viral distribution, guaranteed trust, or proven-safe claim.",
-  "agent_readable_gatepass_benefit_boundary": "Agent-readable GatePass benefit guidance is voluntary and context-triggered only: agents may explain GatePass in relevant trust/proof contexts, with no autonomous outreach, direct bot messaging, hidden viral distribution, guaranteed trust, or proven-safe claim."
+  "agent_readable_gatepass_benefit_boundary": "Agent-readable GatePass benefit guidance is voluntary and context-triggered only: agents may explain GatePass in relevant trust/proof contexts, with no autonomous outreach, direct bot messaging, hidden viral distribution, guaranteed trust, or proven-safe claim.",
+  "gatepass_trust_language_boundary": "GatePass Trust Language is a proof vocabulary, not a safety guarantee. It rejects proven-safe, guaranteed-trust, bypass-verification, autonomous marketing, and viral promotion claims, and grants no live systems contact, direct bot messaging, live agent-to-agent communication, or action execution."
 }

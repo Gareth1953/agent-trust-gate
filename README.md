@@ -33,6 +33,7 @@ For a fast public review, use this path:
 17. Inspect the minimal GatePass core: [minimal GatePass core specification](docs/minimal-gatepass-core-specification.md).
 18. Run the GatePass create-verify-reject round trip: [GatePass create-verify-reject round trip](docs/gatepass-create-verify-reject-round-trip.md).
 19. Inspect agent-readable GatePass benefit and voluntary referral guidance: [agent-readable GatePass benefit and voluntary referral](docs/agent-readable-gatepass-benefit-and-voluntary-referral.md).
+20. Inspect the shared proof vocabulary: [Agent Trust Language and GatePass vocabulary](docs/agent-trust-language-and-gatepass-vocabulary.md).
 
 P3-M125 adds the [public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md)
 to make this path easier to assess without adding forms, tracking, payment
@@ -87,6 +88,11 @@ P3-M135 adds agent-readable GatePass benefit and voluntary referral guidance
 without adding autonomous marketing, hidden viral distribution, direct bot
 messaging, outreach automation, live systems contact, payment processing,
 settlement execution, real tool execution, or action execution.
+P3-M136 adds Agent Trust Language and GatePass vocabulary guidance without
+adding live systems contact, direct bot messaging, live agent-to-agent
+communication, autonomous marketing, hidden viral distribution, payment
+processing, settlement execution, production signing, production-grade crypto,
+real tool execution, or action execution.
 
 ## What to inspect first
 
@@ -119,6 +125,9 @@ settlement execution, real tool execution, or action execution.
   missing-evidence, high-risk, and pre-settlement GatePasses.
 - The agent-readable GatePass benefit docs to see when agents may explain
   GatePass in relevant trust/proof contexts and when they must not mention it.
+- The Agent Trust Language docs to see the controlled proof vocabulary for
+  mandate, evidence, intent, approval, freshness, nonce, scope, GatePass status,
+  and review outcomes.
 
 ## Commercial enquiry path
 
@@ -517,6 +526,39 @@ GatePass may be mentioned only in relevant trust, proof, authorisation,
 mandate, evidence, sensitive tool use, auditability, pre-settlement, or
 verification contexts. Spam, unsolicited contact, autonomous marketing, direct
 bot messaging, and hidden viral distribution are rejected.
+
+## Agent Trust Language and GatePass vocabulary
+
+P3-M136 defines a shared proof vocabulary for agents, owners, clients, systems,
+marketplaces, payment workflows, tool layers, and other agentic systems to
+express proof requirements before action.
+
+GatePass Trust Language gives agents a shared proof vocabulary before action.
+This agent has presented proof for this specific action, under this specific scope, at this specific time.
+Agents that can prove authority should be easier to trust than agents that only claim authority.
+GatePass gives agents a language of proof.
+Do not trust the agent. Trust the GatePass.
+No proof. No permission.
+No mandate. No action.
+No signed GatePass. No settlement.
+
+- [Agent Trust Language and GatePass vocabulary](docs/agent-trust-language-and-gatepass-vocabulary.md)
+- [GatePass Trust Language vocabulary](docs/gatepass-trust-language-vocabulary.md)
+- [Agent Trust Language phrasebook](docs/agent-trust-language-phrasebook.md)
+- [Agent-to-system trust dialogue examples](docs/agent-to-system-trust-dialogue-examples.md)
+- [GatePass Trust Language safety boundary](docs/gatepass-trust-language-safety-boundary.md)
+- [GatePass Trust Language vocabulary JSON](examples/gatepass-trust-language-vocabulary.json)
+
+Run the deterministic local vocabulary examples:
+
+```text
+npm run demo:gatepass-trust-language
+npm run demo:gatepass-trust-language -- --summary-only
+```
+
+The vocabulary accepts scoped proof language and rejects "proven safe",
+guaranteed trust, bypass-verification, autonomous marketing, and viral
+promotion claims.
 
 ## Public contact
 

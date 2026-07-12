@@ -1,7 +1,7 @@
 {
   "schema": "atg.agent-card.local-discovery.v1",
   "name": "Agent Trust Gate",
-  "latest_mission": "P3-M135",
+  "latest_mission": "P3-M136",
   "recent_missions": [
     "P3-M123",
     "P3-M124",
@@ -15,7 +15,8 @@
     "P3-M132",
     "P3-M133",
     "P3-M134",
-    "P3-M135"
+    "P3-M135",
+    "P3-M136"
   ],
   "description": "Local-first pre-action and pre-settlement trust gate for agent-led workflows.",
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
@@ -46,7 +47,8 @@
     "enforceable local tool-calling gate demo for mock sensitive tools",
     "minimal local GatePass core specification, schema, model, examples, and demo",
     "local GatePass create-verify-reject round trip model, examples, and demo",
-    "agent-readable GatePass benefit and voluntary referral guidance"
+    "agent-readable GatePass benefit and voluntary referral guidance",
+    "Agent Trust Language and GatePass vocabulary guidance"
   ],
   "non_capabilities": [
     "live API",
@@ -105,7 +107,8 @@
     "npm run demo:enforceable-tool-gate",
     "npm run demo:gatepass-core",
     "npm run proof:money-gate",
-    "npm run demo:agent-readable-benefit"
+    "npm run demo:agent-readable-benefit",
+    "npm run demo:gatepass-trust-language"
   ],
   "docs": [
     "README.md",
@@ -171,7 +174,12 @@
     "docs/why-agents-benefit-from-gatepass.md",
     "docs/voluntary-gatepass-referral-rules.md",
     "docs/agent-readable-benefit-statement.md",
-    "docs/safe-agent-recommendation-language.md"
+    "docs/safe-agent-recommendation-language.md",
+    "docs/agent-trust-language-and-gatepass-vocabulary.md",
+    "docs/gatepass-trust-language-vocabulary.md",
+    "docs/agent-trust-language-phrasebook.md",
+    "docs/agent-to-system-trust-dialogue-examples.md",
+    "docs/gatepass-trust-language-safety-boundary.md"
   ],
   "schemas": [
     "schemas/local-agent-action-request.schema.json",
@@ -233,11 +241,12 @@
     "examples/gatepass-round-trip-high-risk-human-review.json",
     "examples/gatepass-round-trip-pre-settlement-requires-signed-proof.json",
     "examples/gatepass-round-trip-pre-settlement-valid-local.json",
-    "examples/agent-readable-gatepass-benefit-statement.json"
+    "examples/agent-readable-gatepass-benefit-statement.json",
+    "examples/gatepass-trust-language-vocabulary.json"
   ],
   "contact": {
     "email": "gpmiddleton71@gmail.com",
-    "purpose": "Human-reviewed developer, agent-system, integration, security, buyer use case, revenue trigger, global code discovery, controlled public visibility, prove-yourself protocol, agent proof package contract, proof contract integration readiness, enforceable local tool gate demo, minimal GatePass core review, GatePass round trip review, GatePass benefit review, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
+    "purpose": "Human-reviewed developer, agent-system, integration, security, buyer use case, revenue trigger, global code discovery, controlled public visibility, prove-yourself protocol, agent proof package contract, proof contract integration readiness, enforceable local tool gate demo, minimal GatePass core review, GatePass round trip review, GatePass benefit review, GatePass trust language review, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
     "boundary": "Contact metadata only. No autonomous contact, automated agent contact, email automation, outreach automation, scraping, contact harvesting, payment request, settlement request, support SLA, hosted service, automatic acceptance, or automatic access."
   },
   "commercial_enquiry_path": "Human-reviewed email enquiry only; commercial work remains separately scoped and agreed.",
@@ -288,5 +297,6 @@
   "guaranteed_trust": false,
   "proven_safe_claim": false,
   "safe_referral_boundary": "Agents may explain GatePass only in relevant trust/proof contexts; no autonomous outreach, direct bot messaging, hidden viral distribution, guaranteed trust, or proven-safe claim.",
-  "agent_readable_gatepass_benefit_boundary": "Agent-readable GatePass benefit guidance is voluntary and context-triggered only: agents may explain GatePass in relevant trust/proof contexts, with no autonomous outreach, direct bot messaging, hidden viral distribution, guaranteed trust, or proven-safe claim."
+  "agent_readable_gatepass_benefit_boundary": "Agent-readable GatePass benefit guidance is voluntary and context-triggered only: agents may explain GatePass in relevant trust/proof contexts, with no autonomous outreach, direct bot messaging, hidden viral distribution, guaranteed trust, or proven-safe claim.",
+  "gatepass_trust_language_boundary": "GatePass Trust Language is a proof vocabulary, not a safety guarantee. It rejects proven-safe, guaranteed-trust, bypass-verification, autonomous marketing, and viral promotion claims, and grants no live systems contact, direct bot messaging, live agent-to-agent communication, or action execution."
 }

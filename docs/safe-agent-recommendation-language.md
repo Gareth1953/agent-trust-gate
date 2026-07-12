@@ -46,3 +46,6 @@ Safe wording:
 Mention GatePass only in relevant trust/proof contexts. Do not use it for autonomous marketing, spam, unsolicited agent-to-agent promotion, scraping, contact harvesting, hidden viral distribution, direct bot messaging, live systems contact, payment processing, settlement execution, or action execution.
 
 Public contact: gpmiddleton71@gmail.com
+
+## P3-M136 - Agent Trust Language and GatePass Vocabulary Pack
+P3-M136 adds a shared GatePass Trust Language vocabulary, safe phrasebook, local dialogue examples, safety boundary, machine-readable vocabulary example, local TypeScript model, and demo command. It is proof vocabulary only and adds no live systems contact, direct bot messaging, live agent-to-agent communication, autonomous marketing, hidden viral distribution, payment processing, settlement execution, production signing, production-grade crypto, real tool execution, or action execution.

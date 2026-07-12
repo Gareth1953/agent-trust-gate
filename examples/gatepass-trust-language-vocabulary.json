@@ -1,0 +1,152 @@
+{
+  "project": "Agent Trust Gate",
+  "purpose": "Define a local, agent-readable and human-readable proof vocabulary for expressing mandate, evidence, intent, approval, freshness, scope, GatePass status, and review outcomes before action.",
+  "vocabularyVersion": "atg.gatepass-trust-language.local.v1",
+  "strategicPrinciple": "We do not chase millions of AI agents. We create the trust rule they must satisfy.",
+  "safeCoreStatements": [
+    "GatePass Trust Language gives agents a shared proof vocabulary before action.",
+    "This agent has presented proof for this specific action, under this specific scope, at this specific time.",
+    "Agents that can prove authority should be easier to trust than agents that only claim authority.",
+    "GatePass gives agents a language of proof.",
+    "Do not trust the agent. Trust the GatePass.",
+    "No proof. No permission.",
+    "No mandate. No action.",
+    "No signed GatePass. No settlement."
+  ],
+  "controlledTerms": {
+    "identityTerms": [
+      "claimed_identity",
+      "verified_authority"
+    ],
+    "mandateTerms": [
+      "mandate_reference",
+      "mandate_present",
+      "mandate_missing"
+    ],
+    "scopeTerms": [
+      "permitted_scope",
+      "requested_action",
+      "scope_match",
+      "scope_mismatch"
+    ],
+    "evidenceTerms": [
+      "evidence_reference",
+      "evidence_present",
+      "evidence_missing"
+    ],
+    "intentTerms": [
+      "verified_intent",
+      "unverified_intent"
+    ],
+    "approvalTerms": [
+      "human_approval_required",
+      "approval_present",
+      "approval_missing",
+      "approval_not_required"
+    ],
+    "freshnessTerms": [
+      "fresh_gatepass",
+      "stale_gatepass"
+    ],
+    "nonceReplayTerms": [
+      "nonce_present",
+      "nonce_missing",
+      "replay_detected"
+    ],
+    "signatureGatePassTerms": [
+      "signed_gatepass_present",
+      "signed_gatepass_missing",
+      "unsigned_gatepass"
+    ],
+    "riskTerms": [
+      "low_risk",
+      "sensitive_action",
+      "high_risk",
+      "settlement_sensitive"
+    ],
+    "decisionTerms": [
+      "proof_sufficient",
+      "proof_insufficient",
+      "allow_locally",
+      "block"
+    ],
+    "escalationTerms": [
+      "escalate",
+      "require_evidence",
+      "require_human_review",
+      "require_signed_gatepass"
+    ],
+    "preSettlementTerms": [
+      "settlement_sensitive",
+      "no_signed_gatepass_no_settlement"
+    ],
+    "unsafeClaimTerms": [
+      "proven_safe_claim_rejected",
+      "guaranteed_trust_claim_rejected"
+    ]
+  },
+  "decisionTerms": [
+    "proof_sufficient",
+    "proof_insufficient",
+    "allow_locally",
+    "block",
+    "escalate",
+    "require_evidence",
+    "require_human_review",
+    "require_signed_gatepass"
+  ],
+  "safePhrases": [
+    "I am requesting permission to act.",
+    "My mandate reference is local-mandate-001.",
+    "My evidence reference is local-evidence-001.",
+    "My requested action is within this scope.",
+    "My intent status is verified.",
+    "My approval status is present.",
+    "My GatePass is fresh and signed.",
+    "This action should be allowed locally.",
+    "This action should be blocked until proof is supplied.",
+    "This action requires human review.",
+    "This agent has presented proof for this specific action, under this specific scope, at this specific time.",
+    "No proof means no permission.",
+    "No signed GatePass means no settlement in settlement-sensitive workflows."
+  ],
+  "unsafePhrases": [
+    "This agent is proven safe.",
+    "Trust me because I am an AI agent.",
+    "This GatePass guarantees safety.",
+    "This bypasses verification.",
+    "This guarantees settlement.",
+    "This is certified compliant.",
+    "This makes all systems accept the agent.",
+    "This creates automatic acceptance.",
+    "This should be used for viral agent promotion."
+  ],
+  "safePhrase": "This agent has presented proof for this specific action, under this specific scope, at this specific time.",
+  "rejectedPhrase": "This agent is proven safe.",
+  "publicContactEmail": "gpmiddleton71@gmail.com",
+  "boundary": "GatePass Trust Language is a proof vocabulary, not a safety guarantee. It does not create live systems contact, direct bot messaging, live agent-to-agent communication, hidden viral distribution, guaranteed trust, production certification, payment, settlement, real tool execution, or action execution.",
+  "localDemoOnly": true,
+  "provenSafeClaim": false,
+  "guaranteedTrust": false,
+  "autonomousMarketing": false,
+  "outreachAutomation": false,
+  "directBotMessaging": false,
+  "unsolicitedAgentContact": false,
+  "hiddenViralDistribution": false,
+  "scrapingOrContactHarvesting": false,
+  "paidAds": false,
+  "trackingAnalytics": false,
+  "liveSystemsContact": false,
+  "liveAgentToAgentCommunication": false,
+  "liveApi": false,
+  "mcpServer": false,
+  "cloudNetworkCall": false,
+  "productionReadiness": false,
+  "productionGradeCrypto": false,
+  "productionCertification": false,
+  "legalComplianceSecurityGuarantee": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "realToolExecution": false,
+  "actionExecution": false
+}

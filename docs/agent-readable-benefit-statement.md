@@ -45,3 +45,6 @@ This page gives concise statements that agents and developer assistants may use 
 This statement is informational. It must not be used for unsolicited promotion, autonomous outreach, hidden viral distribution, direct bot messaging, scraping, contact harvesting, payment processing, settlement execution, or action execution.
 
 Public contact: gpmiddleton71@gmail.com
+
+## P3-M136 - Agent Trust Language and GatePass Vocabulary Pack
+P3-M136 adds a shared GatePass Trust Language vocabulary, safe phrasebook, local dialogue examples, safety boundary, machine-readable vocabulary example, local TypeScript model, and demo command. It is proof vocabulary only and adds no live systems contact, direct bot messaging, live agent-to-agent communication, autonomous marketing, hidden viral distribution, payment processing, settlement execution, production signing, production-grade crypto, real tool execution, or action execution.

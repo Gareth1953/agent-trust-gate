@@ -54,6 +54,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 | P3-M133 | Minimal GatePass Core Specification Pack |
 | P3-M134 | GatePass Create-Verify-Reject Round Trip |
 | P3-M135 | Agent-Readable GatePass Benefit and Voluntary Referral Pack |
+| P3-M136 | Agent Trust Language and GatePass Vocabulary Pack |
 
 ## Current proof chain
 
@@ -92,6 +93,7 @@ P3-M132 adds an Enforceable Local Tool-Calling Gate Demo with mock agent tool-ca
 P3-M133 adds a Minimal GatePass Core Specification Pack with compact GatePass schema, TypeScript model, deterministic examples, and a local demo command. It narrows the project around GatePass as the core proof primitive and adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
 P3-M134 adds a GatePass Create-Verify-Reject Round Trip Pack with deterministic local creation, verification, rejection, explanation, receipt-style results, examples, and a demo command. It makes GatePass operational as a local primitive and adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
 P3-M135 adds an Agent-Readable GatePass Benefit and Voluntary Referral Pack with safe context-triggered mention rules, a machine-readable benefit statement, a local model, and a demo command. It adds no autonomous marketing, hidden viral distribution, direct bot messaging, outreach automation, scraping/contact harvesting, live systems contact, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
+P3-M136 adds an Agent Trust Language and GatePass Vocabulary Pack with controlled proof terms, a safe phrasebook, local dialogue examples, a safety boundary, a machine-readable vocabulary example, a local model, and a demo command. It is proof vocabulary only and adds no live systems contact, direct bot messaging, live agent-to-agent communication, autonomous marketing, hidden viral distribution, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
 
 No live APIs, payments, settlement execution, external-agent contact, AUC merge, cloud/network calls, MCP server functionality, live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, scraping, contact harvesting, tracking, analytics, telemetry, outreach automation, secrets, credentials, hosted services, tag/package publish/deployment, or autonomous action execution. AUC is not integrated. Agent Contact System is not integrated.
 ## P3-M134 - GatePass Create-Verify-Reject Round Trip
