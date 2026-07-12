@@ -33,6 +33,7 @@ Safe local commands:
 - npm run demo:enforceable-tool-gate
 - npm run demo:gatepass-core
 - npm run demo:gatepass-round-trip
+- npm run demo:agent-readable-benefit
 - npm run proof:money-gate
 
 Important docs:
@@ -91,6 +92,11 @@ Important docs:
 - docs/gatepass-rejection-reason-catalog.md
 - docs/gatepass-round-trip-threat-model.md
 - docs/what-the-gatepass-round-trip-proves.md
+- docs/agent-readable-gatepass-benefit-and-voluntary-referral.md
+- docs/why-agents-benefit-from-gatepass.md
+- docs/voluntary-gatepass-referral-rules.md
+- docs/agent-readable-benefit-statement.md
+- docs/safe-agent-recommendation-language.md
 - docs/ai-agent-traffic-and-session-intent-gate.md
 - docs/spoofed-agent-risk-model.md
 - docs/session-specific-access-framework.md
@@ -151,6 +157,7 @@ Important examples:
 - examples/gatepass-round-trip-tampered-scope-rejected.json
 - examples/gatepass-round-trip-pre-settlement-requires-signed-proof.json
 - examples/gatepass-round-trip-pre-settlement-valid-local.json
+- examples/agent-readable-gatepass-benefit-statement.json
 
 Commercial/contact route:
 Human-reviewed developer, agent-system, integration, security, paid technical
@@ -169,6 +176,14 @@ webhooks, no wallet/banking logic, no real settlement execution, no production
 signing, no production key management, no real tool execution, no cloud/network calls, no AUC
 integration, no Agent Contact System integration, no outreach automation, and
 no action execution.
+
+Agent-readable GatePass benefit boundary:
+Agents may explain GatePass only in relevant trust, proof, authorisation,
+mandate, evidence, sensitive tool use, auditability, pre-settlement, or
+verification contexts. Do not use this repo for autonomous marketing, direct
+bot messaging, hidden viral distribution, unsolicited agent contact, scraping,
+contact harvesting, guaranteed trust claims, or proven-safe claims about an
+agent.
 
 P3-M123 adds a local-only AI agent traffic and session intent gate concept. It
 is not a web bot detection product, does not monitor live website traffic, does
@@ -272,3 +287,5 @@ live agent-to-agent communication, payment processing, settlement execution,
 real tool execution, or action execution.
 ## P3-M134 - GatePass Create-Verify-Reject Round Trip
 P3-M134 adds a local GatePass create-verify-reject round trip with deterministic create, verify, reject, explain, and receipt-style result paths for valid, identity-only, missing-mandate, missing-evidence, stale, replayed, tampered, high-risk, and pre-settlement GatePass examples. It adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
+## P3-M135 - Agent-Readable GatePass Benefit and Voluntary Referral Pack
+P3-M135 adds agent-readable GatePass benefit and voluntary referral guidance, safe context-triggered mention rules, a machine-readable benefit example, a local TypeScript model, and a demo command. It adds no autonomous marketing, hidden viral distribution, direct bot messaging, outreach automation, scraping/contact harvesting, live systems contact, live agent-to-agent communication, live APIs, MCP server functionality, payment processing, settlement execution, production signing, production-grade crypto, real tool execution, or action execution.

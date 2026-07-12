@@ -484,3 +484,7 @@ export { GATEPASS_REJECTION_REASON_GUIDE,GATEPASS_ROUND_TRIP_CORE_LINE,GATEPASS_
 export type { GatePassCreateInput,GatePassRoundTripDemoPack,GatePassRoundTripDemoSummary,GatePassRoundTripReceiptSummary,GatePassRoundTripRejectionReason,GatePassRoundTripResult,GatePassRoundTripSafetyFlags,GatePassRoundTripScenarioId,GatePassVerificationContext } from "./gatepass-round-trip.js";
 export { runGatePassRoundTripCli } from "./gatepass-round-trip-cli.js";
 export type { GatePassRoundTripCliErrorCode,GatePassRoundTripCliIo } from "./gatepass-round-trip-cli.js";
+export { AGENT_READABLE_GATEPASS_BENEFIT_CORE_PHRASES,AGENT_READABLE_GATEPASS_BENEFIT_PUBLIC_CONTACT,AGENT_READABLE_GATEPASS_BENEFIT_SAFE_SELF_SPREAD_PRINCIPLE,AGENT_READABLE_GATEPASS_BENEFIT_SAFETY_FLAGS,AGENT_READABLE_GATEPASS_BENEFIT_STRATEGIC_PRINCIPLE,AGENT_READABLE_GATEPASS_BENEFIT_VERSION,explainSafeReferralBoundary,getAgentReadableGatePassBenefit,shouldMentionGatePass,summariseAgentReadableGatePassBenefit } from "./agent-readable-gatepass-benefit.js";
+export type { GatePassBenefitMentionDecision,GatePassBenefitPack,GatePassBenefitPackSummary,GatePassBenefitRejectedContext,GatePassBenefitRelevantContext,GatePassBenefitSafetyFlags,GatePassMentionContext,GatePassMentionDecisionResult } from "./agent-readable-gatepass-benefit.js";
+export { runAgentReadableGatePassBenefitCli } from "./agent-readable-gatepass-benefit-cli.js";
+export type { AgentReadableGatePassBenefitCliErrorCode,AgentReadableGatePassBenefitCliIo } from "./agent-readable-gatepass-benefit-cli.js";

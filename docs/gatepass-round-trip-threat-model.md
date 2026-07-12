@@ -36,3 +36,5 @@ No signed GatePass. No settlement.
 This is a local threat model only. It is not production security certification, not production-grade cryptography, not a legal/compliance/security guarantee, and not a live traffic, bot-detection, identity, authentication, payment, settlement, or tool-execution system.
 
 Public contact: gpmiddleton71@gmail.com
+## P3-M135 - Agent-Readable GatePass Benefit and Voluntary Referral Pack
+P3-M135 adds agent-readable GatePass benefit and voluntary referral guidance, safe context-triggered mention rules, a machine-readable benefit example, a local TypeScript model, and a demo command. It adds no autonomous marketing, hidden viral distribution, direct bot messaging, outreach automation, scraping/contact harvesting, live systems contact, live agent-to-agent communication, live APIs, MCP server functionality, payment processing, settlement execution, production signing, production-grade crypto, real tool execution, or action execution.

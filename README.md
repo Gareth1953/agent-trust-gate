@@ -32,6 +32,7 @@ For a fast public review, use this path:
 16. Run the enforceable local tool-calling gate demo: [enforceable local tool-calling gate demo](docs/enforceable-local-tool-calling-gate-demo.md).
 17. Inspect the minimal GatePass core: [minimal GatePass core specification](docs/minimal-gatepass-core-specification.md).
 18. Run the GatePass create-verify-reject round trip: [GatePass create-verify-reject round trip](docs/gatepass-create-verify-reject-round-trip.md).
+19. Inspect agent-readable GatePass benefit and voluntary referral guidance: [agent-readable GatePass benefit and voluntary referral](docs/agent-readable-gatepass-benefit-and-voluntary-referral.md).
 
 P3-M125 adds the [public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md)
 to make this path easier to assess without adding forms, tracking, payment
@@ -82,6 +83,10 @@ verify, reject, and explain GatePass decisions locally without adding live
 APIs, MCP server functionality, production signing, production-grade crypto,
 payment processing, settlement execution, real tool execution, or action
 execution.
+P3-M135 adds agent-readable GatePass benefit and voluntary referral guidance
+without adding autonomous marketing, hidden viral distribution, direct bot
+messaging, outreach automation, live systems contact, payment processing,
+settlement execution, real tool execution, or action execution.
 
 ## What to inspect first
 
@@ -112,6 +117,8 @@ execution.
 - The GatePass round-trip demo to see local create, verify, reject, and
   explanation paths for valid, stale, replayed, tampered, missing-mandate,
   missing-evidence, high-risk, and pre-settlement GatePasses.
+- The agent-readable GatePass benefit docs to see when agents may explain
+  GatePass in relevant trust/proof contexts and when they must not mention it.
 
 ## Commercial enquiry path
 
@@ -478,6 +485,38 @@ mandate, missing evidence, stale expiry, replayed nonce, tampered scope,
 high-risk human review, pre-settlement signed-GatePass requirement, and valid
 local pre-settlement control. `realToolExecuted`, `paymentAuthorisation`,
 `settlementAuthorisation`, and `actionExecution` remain false.
+
+## Agent-readable GatePass benefit and voluntary referral
+
+P3-M135 explains why GatePass helps agents and owners present scoped proof, and
+why clients, systems, marketplaces, payment workflows, and tool layers may ask
+for that proof before sensitive action.
+
+Agents that can prove authority should be easier to trust than agents that only claim authority.
+GatePass gives agents a language of proof.
+Do not trust the agent. Trust the GatePass.
+No proof. No permission.
+No mandate. No action.
+No signed GatePass. No settlement.
+
+- [Agent-readable GatePass benefit and voluntary referral](docs/agent-readable-gatepass-benefit-and-voluntary-referral.md)
+- [Why agents benefit from GatePass](docs/why-agents-benefit-from-gatepass.md)
+- [Voluntary GatePass referral rules](docs/voluntary-gatepass-referral-rules.md)
+- [Agent-readable benefit statement](docs/agent-readable-benefit-statement.md)
+- [Safe agent recommendation language](docs/safe-agent-recommendation-language.md)
+- [Agent-readable benefit statement JSON](examples/agent-readable-gatepass-benefit-statement.json)
+
+Run the deterministic local benefit/referral examples:
+
+```text
+npm run demo:agent-readable-benefit
+npm run demo:agent-readable-benefit -- --summary-only
+```
+
+GatePass may be mentioned only in relevant trust, proof, authorisation,
+mandate, evidence, sensitive tool use, auditability, pre-settlement, or
+verification contexts. Spam, unsolicited contact, autonomous marketing, direct
+bot messaging, and hidden viral distribution are rejected.
 
 ## Public contact
 

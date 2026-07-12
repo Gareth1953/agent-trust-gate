@@ -68,6 +68,7 @@ test("static manifest parses and keeps every live capability disabled", () => {
     "enforceable_tool_gate_demo",
     "gatepass_core_model",
     "gatepass_round_trip_model",
+    "agent_readable_gatepass_benefit_model",
   ]);
   assert.equal(manifest.public_repository_url, publicRepoUrl);
   const manifestSource = read(manifestPath);
