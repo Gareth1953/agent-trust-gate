@@ -1,0 +1,89 @@
+{
+  "project": "Agent Trust Gate",
+  "purpose": "Local deterministic GatePass developer wrapper example showing wrapGatePassTool gating local mock tool calls before action.",
+  "wrapperPattern": "wrapGatePassTool(mockTool, policy).call({ input, gatePass, proofPackage, localDemoOnly: true })",
+  "corePhrases": [
+    "GatePass is a scoped, time-bound, action-specific proof primitive for agent actions.",
+    "GatePass provides a common, machine-readable format for expressing authority, mandate, scope, freshness, and evidence.",
+    "No signed GatePass. No settlement.",
+    "Do not trust the agent. Trust the GatePass.",
+    "No proof. No permission.",
+    "No mandate. No action."
+  ],
+  "localDemoOnly": true,
+  "mockToolExecutionOnly": true,
+  "realToolExecution": false,
+  "actionExecution": false,
+  "networkCalls": false,
+  "liveAgentFrameworkDependency": false,
+  "productionMiddleware": false,
+  "productionCertification": false,
+  "securityCertification": false,
+  "legalComplianceGuarantee": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "scenarios": [
+    {
+      "scenarioId": "valid_low_risk_local_mock_allowed",
+      "expectedOutcome": "allow",
+      "localMockExecuted": true
+    },
+    {
+      "scenarioId": "identity_only_blocks",
+      "expectedOutcome": "block",
+      "localMockExecuted": false
+    },
+    {
+      "scenarioId": "missing_mandate_blocks",
+      "expectedOutcome": "block",
+      "localMockExecuted": false
+    },
+    {
+      "scenarioId": "missing_evidence_requires_evidence",
+      "expectedOutcome": "require_evidence",
+      "localMockExecuted": false
+    },
+    {
+      "scenarioId": "stale_gatepass_blocks",
+      "expectedOutcome": "block",
+      "localMockExecuted": false
+    },
+    {
+      "scenarioId": "replayed_nonce_blocks",
+      "expectedOutcome": "block",
+      "localMockExecuted": false
+    },
+    {
+      "scenarioId": "tampered_scope_blocks",
+      "expectedOutcome": "block",
+      "localMockExecuted": false
+    },
+    {
+      "scenarioId": "tampered_action_blocks",
+      "expectedOutcome": "block",
+      "localMockExecuted": false
+    },
+    {
+      "scenarioId": "high_risk_requires_human_review",
+      "expectedOutcome": "require_human_review",
+      "localMockExecuted": false
+    },
+    {
+      "scenarioId": "settlement_sensitive_requires_signed_gatepass",
+      "expectedOutcome": "require_signed_proof",
+      "localMockExecuted": false
+    },
+    {
+      "scenarioId": "unsafe_proven_safe_claim_blocks",
+      "expectedOutcome": "block",
+      "localMockExecuted": false
+    },
+    {
+      "scenarioId": "guaranteed_trust_claim_blocks",
+      "expectedOutcome": "block",
+      "localMockExecuted": false
+    }
+  ],
+  "safetyBoundary": "Local wrapper proof-of-concept only. Valid proof may allow a deterministic local mock handler, but no real external tool, live framework, network call, payment, settlement, production middleware, or action execution occurs.",
+  "publicContact": "gpmiddleton71@gmail.com"
+}

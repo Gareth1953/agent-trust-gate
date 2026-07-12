@@ -77,3 +77,6 @@ npm run demo:gatepass-scorecard -- --json
 This is local deterministic proof-of-concept scoring only. It adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, outreach automation, autonomous marketing, hidden viral distribution, scraping, tracking, analytics, paid ads, live payment processing, wallet/banking logic, settlement execution, production signing, production-grade crypto, real tool execution, or action execution.
 
 Public contact: gpmiddleton71@gmail.com
+
+## P3-M138 - GatePass Developer Wrapper and Local Integration Example
+P3-M138 adds a local deterministic GatePass developer wrapper and local framework-style integration example. It shows `wrapGatePassTool` gating local mock tool calls before action, uses GatePass proof vocabulary and GatePass claims vocabulary as supporting material only, and adds no production middleware claim, production readiness claim, security certification claim, live framework execution, real tool execution, network calls, payment authorisation, settlement authorisation, or action execution.

@@ -36,6 +36,7 @@ Safe local commands:
 - npm run demo:agent-readable-benefit
 - npm run demo:gatepass-trust-language
 - npm run demo:gatepass-scorecard
+- npm run demo:gatepass-wrapper
 - npm run proof:money-gate
 
 Important docs:
@@ -109,6 +110,11 @@ Important docs:
 - docs/gatepass-adversarial-scenario-catalog.md
 - docs/gatepass-latency-measurement-guide.md
 - docs/gatepass-reviewer-scorecard-guide.md
+- docs/gatepass-developer-wrapper-and-local-integration-example.md
+- docs/gatepass-wrap-tool-developer-guide.md
+- docs/local-agent-framework-integration-example.md
+- docs/gatepass-wrapper-policy-guide.md
+- docs/gatepass-wrapper-limitations-and-safety-boundary.md
 - docs/ai-agent-traffic-and-session-intent-gate.md
 - docs/spoofed-agent-risk-model.md
 - docs/session-specific-access-framework.md
@@ -215,6 +221,16 @@ evidence of production readiness. localDemoOnly is true; productionBenchmark,
 securityCertification, productionCertification, adversarialCompleteness,
 liveToolExecution, actionExecution, paymentAuthorisation,
 settlementAuthorisation, and networkCalls remain false.
+
+GatePass developer wrapper boundary:
+P3-M138 adds a local deterministic GatePass developer wrapper and local
+framework-style integration example. It shows wrapGatePassTool gating local
+mock tool calls before action. localDemoOnly and mockToolExecutionOnly are
+true; realToolExecution, actionExecution, networkCalls,
+liveAgentFrameworkDependency, productionMiddleware, productionCertification,
+securityCertification, paymentAuthorisation, and settlementAuthorisation
+remain false. It is not production middleware, not a live framework
+integration, and not real tool execution.
 
 P3-M123 adds a local-only AI agent traffic and session intent gate concept. It
 is not a web bot detection product, does not monitor live website traffic, does
@@ -324,3 +340,6 @@ P3-M135 adds agent-readable GatePass benefit and voluntary referral guidance, sa
 P3-M136 adds a shared GatePass Trust Language vocabulary, phrasebook, dialogue examples, safety boundary, machine-readable vocabulary example, local TypeScript model, and demo command. It is proof vocabulary only, not a safety guarantee, universal standard, production readiness claim, certified security claim, live systems contact, direct bot messaging, live agent-to-agent communication, hidden viral distribution, payment processing, settlement execution, production signing, production-grade crypto, real tool execution, or action execution.
 ## P3-M137 - GatePass Adversarial Metrics and Latency Scorecard
 P3-M137 adds a local deterministic GatePass scorecard with adversarial scenarios, valid controls, expected-vs-actual outcomes, decision reasons, and local illustrative timing. It adds no production benchmark claim, security certification claim, adversarial completeness claim, production readiness claim, live tool execution, network calls, payment authorisation, settlement authorisation, or action execution.
+
+## P3-M138 - GatePass Developer Wrapper and Local Integration Example
+P3-M138 adds a local deterministic GatePass developer wrapper and local framework-style integration example. It shows `wrapGatePassTool` gating local mock tool calls before action, uses GatePass proof vocabulary and GatePass claims vocabulary as supporting material only, and adds no production middleware claim, production readiness claim, security certification claim, live framework execution, real tool execution, network calls, payment authorisation, settlement authorisation, or action execution.

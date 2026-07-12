@@ -56,6 +56,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 | P3-M135 | Agent-Readable GatePass Benefit and Voluntary Referral Pack |
 | P3-M136 | Agent Trust Language and GatePass Vocabulary Pack |
 | P3-M137 | GatePass Adversarial Metrics and Latency Scorecard |
+| P3-M138 | GatePass Developer Wrapper and Local Integration Example |
 
 ## Current proof chain
 
@@ -103,3 +104,6 @@ P3-M134 adds a local GatePass create-verify-reject round trip with deterministic
 P3-M135 adds agent-readable GatePass benefit and voluntary referral guidance, safe context-triggered mention rules, a machine-readable benefit example, a local TypeScript model, and a demo command. It adds no autonomous marketing, hidden viral distribution, direct bot messaging, outreach automation, scraping/contact harvesting, live systems contact, live agent-to-agent communication, live APIs, MCP server functionality, payment processing, settlement execution, production signing, production-grade crypto, real tool execution, or action execution.
 ## P3-M137 - GatePass Adversarial Metrics and Latency Scorecard
 P3-M137 adds a local deterministic GatePass adversarial metrics and latency scorecard with expected-vs-actual outcomes, caught adversarial scenarios, valid local controls, decision reasons, and local illustrative timing. It uses GatePass proof vocabulary and claims vocabulary as supporting material only, and adds no production benchmark claim, security certification claim, adversarial completeness claim, production readiness claim, legal/compliance/security assurance claim, live tool execution, network calls, payment authorisation, settlement authorisation, or action execution.
+
+## P3-M138 - GatePass Developer Wrapper and Local Integration Example
+P3-M138 adds a local deterministic GatePass developer wrapper and local framework-style integration example. It shows `wrapGatePassTool` gating local mock tool calls before action, uses GatePass proof vocabulary and GatePass claims vocabulary as supporting material only, and adds no production middleware claim, production readiness claim, security certification claim, live framework execution, real tool execution, network calls, payment authorisation, settlement authorisation, or action execution.

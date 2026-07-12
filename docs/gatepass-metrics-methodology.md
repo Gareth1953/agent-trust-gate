@@ -58,3 +58,6 @@ Fast local rejection matters for pre-action gates because a gate should be able 
 The methodology is local proof-of-concept scoring only. It does not provide production readiness, production-grade crypto, security certification, legal/compliance/security guarantee, payment authorisation, settlement authorisation, or action execution.
 
 Public contact: gpmiddleton71@gmail.com
+
+## P3-M138 - GatePass Developer Wrapper and Local Integration Example
+P3-M138 adds a local deterministic GatePass developer wrapper and local framework-style integration example. It shows `wrapGatePassTool` gating local mock tool calls before action, uses GatePass proof vocabulary and GatePass claims vocabulary as supporting material only, and adds no production middleware claim, production readiness claim, security certification claim, live framework execution, real tool execution, network calls, payment authorisation, settlement authorisation, or action execution.

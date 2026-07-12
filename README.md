@@ -33,8 +33,9 @@ For a fast public review, use this path:
 17. Inspect the minimal GatePass core: [minimal GatePass core specification](docs/minimal-gatepass-core-specification.md).
 18. Run the GatePass create-verify-reject round trip: [GatePass create-verify-reject round trip](docs/gatepass-create-verify-reject-round-trip.md).
 19. Run the GatePass scorecard: [GatePass adversarial metrics and latency scorecard](docs/gatepass-adversarial-metrics-and-latency-scorecard.md).
-20. Inspect supporting GatePass proof vocabulary and claims vocabulary: [Agent Trust Language and GatePass vocabulary](docs/agent-trust-language-and-gatepass-vocabulary.md).
-21. Inspect supporting agent-readable GatePass benefit and voluntary referral guidance: [agent-readable GatePass benefit and voluntary referral](docs/agent-readable-gatepass-benefit-and-voluntary-referral.md).
+20. Inspect the developer wrapper: [GatePass developer wrapper and local integration example](docs/gatepass-developer-wrapper-and-local-integration-example.md).
+21. Inspect supporting GatePass proof vocabulary and GatePass claims vocabulary: [Agent Trust Language and GatePass vocabulary](docs/agent-trust-language-and-gatepass-vocabulary.md).
+22. Inspect supporting agent-readable GatePass benefit and voluntary referral guidance: [agent-readable GatePass benefit and voluntary referral](docs/agent-readable-gatepass-benefit-and-voluntary-referral.md).
 
 P3-M125 adds the [public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md)
 to make this path easier to assess without adding forms, tracking, payment
@@ -89,7 +90,7 @@ P3-M135 adds agent-readable GatePass benefit and voluntary referral guidance
 without adding autonomous marketing, hidden viral distribution, direct bot
 messaging, outreach automation, live systems contact, payment processing,
 settlement execution, real tool execution, or action execution.
-P3-M136 adds supporting GatePass proof vocabulary and claims vocabulary guidance without
+P3-M136 adds supporting GatePass proof vocabulary and GatePass claims vocabulary guidance without
 adding live systems contact, direct bot messaging, live agent-to-agent
 communication, autonomous marketing, hidden viral distribution, payment
 processing, settlement execution, production signing, production-grade crypto,
@@ -100,6 +101,11 @@ illustrative timing without claiming production benchmarks, security
 certification, adversarial completeness, production readiness, legal/compliance/
 security assurance claims, live tool execution, payment or settlement authority,
 network calls, or action execution.
+P3-M138 adds a local deterministic GatePass developer wrapper and local
+framework-style integration example so developers can see `wrapGatePassTool`
+gate local mock tool calls before action without adding production middleware,
+live framework execution, real tool execution, network calls, payment,
+settlement, or action execution.
 
 ## What to inspect first
 
@@ -133,6 +139,9 @@ network calls, or action execution.
 - The GatePass scorecard to see local expected-vs-actual outcomes, caught
   adversarial scenarios, allowed valid controls, decision reasons, and local
   illustrative timing.
+- The GatePass developer wrapper to see a copy-paste style `wrapGatePassTool`
+  pattern that allows only deterministic local mock execution when proof is
+  valid.
 - The GatePass proof vocabulary and claims vocabulary docs to see supporting controlled terms for
   mandate, evidence, intent, approval, freshness, nonce, scope, GatePass status,
   review outcomes, and rejected unsafe claims.
@@ -535,6 +544,43 @@ npm run demo:gatepass-scorecard -- --json
 This is a local deterministic scorecard, not a production benchmark or
 security certification. It is not adversarial completeness and not evidence of
 production readiness.
+
+## GatePass developer wrapper and local integration example
+
+P3-M138 adds a developer-facing local wrapper that shows how a sensitive action
+can be gated in a few lines:
+
+```ts
+const wrappedTool = wrapGatePassTool(mockTool, policy);
+const result = wrappedTool.call({ input, gatePass, proofPackage, localDemoOnly: true });
+```
+
+GatePass is a scoped, time-bound, action-specific proof primitive for agent actions.
+GatePass provides a common, machine-readable format for expressing authority, mandate, scope, freshness, and evidence.
+No signed GatePass. No settlement.
+This is a local deterministic developer wrapper example, not production middleware.
+
+- [GatePass developer wrapper and local integration example](docs/gatepass-developer-wrapper-and-local-integration-example.md)
+- [GatePass wrapTool developer guide](docs/gatepass-wrap-tool-developer-guide.md)
+- [Local agent framework integration example](docs/local-agent-framework-integration-example.md)
+- [GatePass wrapper policy guide](docs/gatepass-wrapper-policy-guide.md)
+- [GatePass wrapper limitations and safety boundary](docs/gatepass-wrapper-limitations-and-safety-boundary.md)
+- [GatePass developer wrapper demo JSON](examples/gatepass-developer-wrapper-demo.json)
+
+Run the local wrapper demo:
+
+```text
+npm run demo:gatepass-wrapper
+npm run demo:gatepass-wrapper -- --summary-only
+npm run demo:gatepass-wrapper -- --json
+```
+
+Valid low-risk GatePass proof allows deterministic local mock tool execution
+only. Identity-only, missing mandate, missing evidence, stale, replayed,
+tampered, high-risk, settlement-sensitive, unsafe proven-safe, and guaranteed
+trust cases block or route to the required local review/proof outcome. No real
+tool, network call, payment, settlement, production middleware, or action
+execution occurs.
 
 ## Agent-readable GatePass benefit and voluntary referral
 

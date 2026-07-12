@@ -34,3 +34,6 @@ GatePass provides a common, machine-readable format for expressing authority, ma
 This is a local deterministic scenario catalog, not adversarial completeness, not a security certification, and not production readiness.
 
 Public contact: gpmiddleton71@gmail.com
+
+## P3-M138 - GatePass Developer Wrapper and Local Integration Example
+P3-M138 adds a local deterministic GatePass developer wrapper and local framework-style integration example. It shows `wrapGatePassTool` gating local mock tool calls before action, uses GatePass proof vocabulary and GatePass claims vocabulary as supporting material only, and adds no production middleware claim, production readiness claim, security certification claim, live framework execution, real tool execution, network calls, payment authorisation, settlement authorisation, or action execution.
