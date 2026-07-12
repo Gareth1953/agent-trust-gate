@@ -57,6 +57,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 | P3-M136 | Agent Trust Language and GatePass Vocabulary Pack |
 | P3-M137 | GatePass Adversarial Metrics and Latency Scorecard |
 | P3-M138 | GatePass Developer Wrapper and Local Integration Example |
+| P3-M139 | One-Command Reviewer Demo Kit |
 
 ## Current proof chain
 

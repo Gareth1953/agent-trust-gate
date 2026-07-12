@@ -502,3 +502,7 @@ export { LOCAL_AGENT_FRAMEWORK_INTEGRATION_VERSION,createLocalAgentFrameworkStep
 export type { LocalAgentFrameworkIntegrationDemo,LocalAgentFrameworkIntegrationStepId,LocalAgentFrameworkIntegrationSummary,LocalAgentFrameworkStepRequest,LocalAgentFrameworkStepResult } from "./local-agent-framework-integration.js";
 export { runGatePassToolWrapperCli } from "./gatepass-tool-wrapper-cli.js";
 export type { GatePassToolWrapperCliErrorCode,GatePassToolWrapperCliIo,GatePassToolWrapperCliOutput } from "./gatepass-tool-wrapper-cli.js";
+export { GATEPASS_REVIEWER_KIT_CORE_PHRASES,GATEPASS_REVIEWER_KIT_EXAMPLE_FILE,GATEPASS_REVIEWER_KIT_ONE_COMMAND,GATEPASS_REVIEWER_KIT_PUBLIC_CONTACT,GATEPASS_REVIEWER_KIT_SAFETY_FLAGS,GATEPASS_REVIEWER_KIT_VERSION,buildReviewerKitJsonReport,buildReviewerKitOutputForJson,buildReviewerKitSummary,getReviewerKitSafetyBoundary,runGatePassReviewerKit,summariseGatePassReviewerKit,summariseReviewerKitComponents } from "./gatepass-reviewer-kit.js";
+export type { GatePassReviewerDecisionHighlights,GatePassReviewerKitReport,GatePassReviewerKitSafetyFlags,GatePassReviewerKitSummary,GatePassReviewerLifecycleSummary,GatePassReviewerScorecardSummary,GatePassReviewerWrapperSummary } from "./gatepass-reviewer-kit.js";
+export { runGatePassReviewerKitCli } from "./gatepass-reviewer-kit-cli.js";
+export type { GatePassReviewerKitCliErrorCode,GatePassReviewerKitCliIo } from "./gatepass-reviewer-kit-cli.js";

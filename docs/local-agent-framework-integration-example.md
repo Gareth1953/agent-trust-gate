@@ -32,3 +32,6 @@ contact, no direct bot messaging, no live agent-to-agent communication, and no
 action execution.
 
 Public contact: gpmiddleton71@gmail.com
+
+## P3-M139 - One-Command Reviewer Demo Kit
+P3-M139 adds a local deterministic one-command reviewer demo kit for the GatePass lifecycle, adversarial scorecard, developer wrapper, local integration summary, safety boundary, and JSON report output. It uses GatePass proof vocabulary and GatePass claims vocabulary as supporting material only, and adds no production middleware claim, production benchmark claim, security certification claim, production readiness claim, live tool execution, network calls, payment authorisation, settlement authorisation, or action execution.

@@ -1,0 +1,88 @@
+{
+  "project": "Agent Trust Gate",
+  "purpose": "One-command local reviewer kit that runs GatePass lifecycle, adversarial scorecard, developer wrapper, and local integration summaries without live execution.",
+  "kitVersion": "atg.gatepass-reviewer-kit.local.v1",
+  "localDemoOnly": true,
+  "oneCommand": "npm run demo:reviewer-kit",
+  "includedDemos": [
+    "GatePass round trip",
+    "GatePass adversarial scorecard",
+    "GatePass developer wrapper",
+    "Local framework-style integration example"
+  ],
+  "corePhrases": [
+    "GatePass is a scoped, time-bound, action-specific proof primitive for agent actions.",
+    "GatePass provides a common, machine-readable format for expressing authority, mandate, scope, freshness, and evidence.",
+    "No signed GatePass. No settlement.",
+    "Do not trust the agent. Trust the GatePass.",
+    "No proof. No permission.",
+    "No mandate. No action."
+  ],
+  "lifecycleSummary": {
+    "demo": "GatePass create / verify / reject round trip",
+    "source": "gatepass_round_trip",
+    "scenarioCount": 10,
+    "allowsLocally": [
+      "valid_allow_local",
+      "pre_settlement_valid_local"
+    ],
+    "blocks": [
+      "identity_only_rejected",
+      "missing_mandate_rejected",
+      "stale_expiry_rejected",
+      "replayed_nonce_rejected",
+      "tampered_scope_rejected"
+    ],
+    "requiresEvidence": [
+      "missing_evidence_requires_evidence"
+    ],
+    "requiresHumanReview": [
+      "high_risk_human_review"
+    ],
+    "requiresSignedGatePass": [
+      "pre_settlement_requires_signed_proof"
+    ]
+  },
+  "scorecardSummary": {
+    "demo": "GatePass adversarial metrics and latency scorecard",
+    "source": "gatepass_adversarial_scorecard",
+    "totalScenarios": 19,
+    "matchedExpectedOutcomes": 19,
+    "mismatchedExpectedOutcomes": 0,
+    "adversarialScenarios": 17,
+    "adversarialCaught": 17,
+    "validScenarios": 2,
+    "validAllowed": 2,
+    "timingMode": "local_illustrative",
+    "timingSummary": {
+      "totalDurationMs": 0,
+      "averageDecisionMs": 0,
+      "minDecisionMs": 0,
+      "maxDecisionMs": 0,
+      "note": "Local illustrative timing only; values vary by machine and run and are not a production benchmark."
+    }
+  },
+  "wrapperSummary": {
+    "demo": "GatePass developer wrapper and local integration example",
+    "source": "gatepass_tool_wrapper",
+    "wrapperPattern": "wrapGatePassTool(mockTool, policy).call({ input, gatePass, proofPackage })",
+    "wrapperScenarioCount": 12,
+    "localFrameworkStepCount": 5,
+    "mockToolExecutionOnly": true,
+    "realToolExecution": false
+  },
+  "safetyBoundary": "Local deterministic reviewer kit only. No real tool execution, action execution, network calls, production middleware, production benchmark, security certification, payment authorisation, or settlement authorisation.",
+  "publicContact": "gpmiddleton71@gmail.com",
+  "productionBenchmark": false,
+  "productionMiddleware": false,
+  "productionCertification": false,
+  "securityCertification": false,
+  "legalComplianceGuarantee": false,
+  "realToolExecution": false,
+  "mockToolExecutionOnly": true,
+  "actionExecution": false,
+  "paymentAuthorisation": false,
+  "settlementAuthorisation": false,
+  "networkCalls": false,
+  "liveAgentToAgentCommunication": false
+}

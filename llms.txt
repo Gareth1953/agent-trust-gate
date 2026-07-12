@@ -37,6 +37,7 @@ Safe local commands:
 - npm run demo:gatepass-trust-language
 - npm run demo:gatepass-scorecard
 - npm run demo:gatepass-wrapper
+- npm run demo:reviewer-kit
 - npm run proof:money-gate
 
 Important docs:
@@ -115,6 +116,11 @@ Important docs:
 - docs/local-agent-framework-integration-example.md
 - docs/gatepass-wrapper-policy-guide.md
 - docs/gatepass-wrapper-limitations-and-safety-boundary.md
+- docs/one-command-reviewer-demo-kit.md
+- docs/reviewer-demo-kit-quickstart.md
+- docs/reviewer-demo-output-guide.md
+- docs/reviewer-demo-limitations-and-safety-boundary.md
+- docs/reviewer-evaluation-checklist.md
 - docs/ai-agent-traffic-and-session-intent-gate.md
 - docs/spoofed-agent-risk-model.md
 - docs/session-specific-access-framework.md
@@ -178,6 +184,8 @@ Important examples:
 - examples/agent-readable-gatepass-benefit-statement.json
 - examples/gatepass-trust-language-vocabulary.json
 - examples/gatepass-adversarial-scorecard.json
+- examples/gatepass-developer-wrapper-demo.json
+- examples/gatepass-reviewer-kit-report.json
 
 Commercial/contact route:
 Human-reviewed developer, agent-system, integration, security, paid technical
@@ -231,6 +239,18 @@ liveAgentFrameworkDependency, productionMiddleware, productionCertification,
 securityCertification, paymentAuthorisation, and settlementAuthorisation
 remain false. It is not production middleware, not a live framework
 integration, and not real tool execution.
+
+GatePass reviewer kit boundary:
+P3-M139 adds a local deterministic one-command reviewer demo kit. It runs the
+GatePass lifecycle summary, adversarial scorecard summary, developer wrapper
+summary, local integration summary, safety boundary, and JSON report output.
+localDemoOnly and mockToolExecutionOnly are true; realToolExecution,
+actionExecution, networkCalls, productionMiddleware, productionBenchmark,
+productionCertification, securityCertification, legalComplianceGuarantee,
+paymentAuthorisation, settlementAuthorisation, and
+liveAgentToAgentCommunication remain false. It is not production middleware,
+not a production benchmark, not security certification, and not production
+readiness.
 
 P3-M123 adds a local-only AI agent traffic and session intent gate concept. It
 is not a web bot detection product, does not monitor live website traffic, does

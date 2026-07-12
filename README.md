@@ -33,9 +33,10 @@ For a fast public review, use this path:
 17. Inspect the minimal GatePass core: [minimal GatePass core specification](docs/minimal-gatepass-core-specification.md).
 18. Run the GatePass create-verify-reject round trip: [GatePass create-verify-reject round trip](docs/gatepass-create-verify-reject-round-trip.md).
 19. Run the GatePass scorecard: [GatePass adversarial metrics and latency scorecard](docs/gatepass-adversarial-metrics-and-latency-scorecard.md).
-20. Inspect the developer wrapper: [GatePass developer wrapper and local integration example](docs/gatepass-developer-wrapper-and-local-integration-example.md).
-21. Inspect supporting GatePass proof vocabulary and GatePass claims vocabulary: [Agent Trust Language and GatePass vocabulary](docs/agent-trust-language-and-gatepass-vocabulary.md).
-22. Inspect supporting agent-readable GatePass benefit and voluntary referral guidance: [agent-readable GatePass benefit and voluntary referral](docs/agent-readable-gatepass-benefit-and-voluntary-referral.md).
+20. Run the one-command reviewer kit: [one-command reviewer demo kit](docs/one-command-reviewer-demo-kit.md).
+21. Inspect the developer wrapper: [GatePass developer wrapper and local integration example](docs/gatepass-developer-wrapper-and-local-integration-example.md).
+22. Inspect supporting GatePass proof vocabulary and GatePass claims vocabulary: [Agent Trust Language and GatePass vocabulary](docs/agent-trust-language-and-gatepass-vocabulary.md).
+23. Inspect supporting agent-readable GatePass benefit and voluntary referral guidance: [agent-readable GatePass benefit and voluntary referral](docs/agent-readable-gatepass-benefit-and-voluntary-referral.md).
 
 P3-M125 adds the [public repo commercial conversion review](docs/public-repo-commercial-conversion-review.md)
 to make this path easier to assess without adding forms, tracking, payment
@@ -106,6 +107,36 @@ framework-style integration example so developers can see `wrapGatePassTool`
 gate local mock tool calls before action without adding production middleware,
 live framework execution, real tool execution, network calls, payment,
 settlement, or action execution.
+P3-M139 adds a one-command reviewer demo kit that runs the GatePass lifecycle,
+local adversarial scorecard, developer wrapper, local integration summary, and
+JSON report output without adding production middleware, production benchmark
+claims, security certification claims, live tool execution, network calls,
+payment, settlement, or action execution.
+
+## One-command reviewer demo kit
+
+For a fast local technical review, run:
+
+```powershell
+npm run demo:reviewer-kit
+npm run demo:reviewer-kit -- --summary-only
+npm run demo:reviewer-kit -- --json
+```
+
+The reviewer kit links the core proof flow in one place:
+
+- [One-command reviewer demo kit](docs/one-command-reviewer-demo-kit.md)
+- [Reviewer demo kit quickstart](docs/reviewer-demo-kit-quickstart.md)
+- [Reviewer demo output guide](docs/reviewer-demo-output-guide.md)
+- [Reviewer demo limitations and safety boundary](docs/reviewer-demo-limitations-and-safety-boundary.md)
+- [Reviewer evaluation checklist](docs/reviewer-evaluation-checklist.md)
+- [Machine-readable reviewer kit report](examples/gatepass-reviewer-kit-report.json)
+
+GatePass is a scoped, time-bound, action-specific proof primitive for agent
+actions. No signed GatePass. No settlement.
+
+This is a local deterministic reviewer kit, not production middleware, not a
+production benchmark, and not security certification.
 
 ## What to inspect first
 
@@ -139,6 +170,9 @@ settlement, or action execution.
 - The GatePass scorecard to see local expected-vs-actual outcomes, caught
   adversarial scenarios, allowed valid controls, decision reasons, and local
   illustrative timing.
+- The one-command reviewer kit to run GatePass lifecycle, scorecard, wrapper,
+  local integration, safety summary, and JSON report output from one local
+  command.
 - The GatePass developer wrapper to see a copy-paste style `wrapGatePassTool`
   pattern that allows only deterministic local mock execution when proof is
   valid.
