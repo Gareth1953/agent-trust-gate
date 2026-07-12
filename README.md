@@ -124,12 +124,39 @@ P3-M140A records the reviewer-first README polish and claims boundary:
 - [Public positioning claims boundary](docs/public-positioning-claims-boundary.md)
 - [Machine-readable public reviewer positioning summary](examples/public-reviewer-positioning-summary.json)
 
+## ATG Strategic Foresight Layer
+
+P3-M140 adds a local advisory layer for manually supplied AI-agent market,
+protocol, AGI/agent-risk, quantum/post-quantum, standards, and reviewer signals.
+It helps identify possible future GatePass missions without changing the
+roadmap or product automatically.
+
+- [ATG Strategic Foresight Layer](docs/atg-strategic-foresight-layer.md)
+- [Agent market radar methodology](docs/agent-market-radar-methodology.md)
+- [Foresight signal categories](docs/foresight-signal-categories.md)
+- [Foresight recommendation scoring guide](docs/foresight-recommendation-scoring-guide.md)
+- [Foresight human approval workflow](docs/foresight-human-approval-workflow.md)
+- [Foresight sample market radar report](docs/foresight-sample-market-radar-report.md)
+- [Machine-readable foresight report](examples/atg-strategic-foresight-report.json)
+
+```powershell
+npm run demo:foresight
+npm run demo:foresight -- --summary-only
+npm run demo:foresight -- --json
+```
+
+This is a local advisory layer only. It does not fetch live market data. It
+does not scrape. It does not monitor in the background. It does not change the
+roadmap or product automatically. Gareth approval is required before any build
+mission.
+
 ## What changed recently
 
 - P3-M137 made GatePass measurable with a local adversarial scorecard.
 - P3-M138 made GatePass developer-useful with `wrapGatePassTool`.
 - P3-M139 made GatePass reviewer-friendly with a one-command reviewer kit.
 - P3-M140A sharpens this README so the reviewer kit is the recommended first run and the public claims boundary is explicit.
+- P3-M140 adds a local-only strategic foresight advisory layer with manual-input sample signals and human approval required before any future build mission.
 
 ## Start here for reviewers
 

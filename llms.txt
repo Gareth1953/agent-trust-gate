@@ -378,3 +378,35 @@ Public reviewer positioning docs:
 - `docs/reviewer-first-public-positioning.md`
 - `docs/public-positioning-claims-boundary.md`
 - `examples/public-reviewer-positioning-summary.json`
+
+## P3-M140 - ATG Strategic Foresight Layer
+
+P3-M140 adds a local-only strategic foresight advisory layer for manually supplied
+AI-agent market, protocol, AGI/agent-risk, quantum/post-quantum, standards, and
+reviewer/developer feedback signals. The recommended first reviewer run remains
+`npm run demo:reviewer-kit`; GatePass remains the headline scoped,
+time-bound, action-specific proof primitive; Agent Trust Language remains
+supporting material only through GatePass proof vocabulary and GatePass claims
+vocabulary.
+
+Workflow:
+Watch -> Analyse -> Compare -> Recommend -> Gareth approves -> Dave creates build mission -> Codex implements locally
+
+Foresight command:
+`npm run demo:foresight`
+
+Foresight docs:
+- `docs/atg-strategic-foresight-layer.md`
+- `docs/agent-market-radar-methodology.md`
+- `docs/foresight-signal-categories.md`
+- `docs/foresight-recommendation-scoring-guide.md`
+- `docs/foresight-human-approval-workflow.md`
+- `docs/foresight-sample-market-radar-report.md`
+- `examples/atg-strategic-foresight-report.json`
+
+Foresight safety flags: localDemoOnly true, advisoryOnly true, manualInputOnly
+true, humanApprovalRequired true, liveMonitoring false, autonomousLearning
+false, autonomousProductChanges false, autonomousRoadmapChanges false,
+autonomousCodeChanges false, autonomousOutreach false, scraping false,
+networkCalls false, liveAgentContact false, directBotMessaging false,
+actionExecution false, predictionGuarantee false.

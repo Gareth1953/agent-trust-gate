@@ -510,3 +510,7 @@ export { PUBLIC_REVIEWER_POSITIONING_CONTACT,PUBLIC_REVIEWER_POSITIONING_CORE_PH
 export type { PublicReviewerPositioningSafetyFlags,PublicReviewerPositioningSummary } from "./public-reviewer-positioning.js";
 export { runPublicReviewerPositioningCli } from "./public-reviewer-positioning-cli.js";
 export type { PublicReviewerPositioningCliErrorCode,PublicReviewerPositioningCliIo } from "./public-reviewer-positioning-cli.js";
+export { ATG_STRATEGIC_FORESIGHT_CONTACT,ATG_STRATEGIC_FORESIGHT_CORE_PHRASES,ATG_STRATEGIC_FORESIGHT_SAFETY_FLAGS,ATG_STRATEGIC_FORESIGHT_VERSION,ATG_STRATEGIC_FORESIGHT_WORKFLOW,buildForesightRecommendation,buildStrategicForesightReport,createForesightSampleSignals,getForesightSafetyBoundary,getForesightSignalCategories,scoreForesightSignal,summariseStrategicForesightReport } from "./atg-strategic-foresight.js";
+export type { ForesightCategory,ForesightRecommendation,ForesightReport,ForesightSafetyFlags,ForesightScore,ForesightSignal } from "./atg-strategic-foresight.js";
+export { runStrategicForesightCli } from "./atg-strategic-foresight-cli.js";
+export type { StrategicForesightCliErrorCode,StrategicForesightCliIo } from "./atg-strategic-foresight-cli.js";

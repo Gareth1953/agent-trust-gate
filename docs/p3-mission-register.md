@@ -59,6 +59,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 | P3-M138 | GatePass Developer Wrapper and Local Integration Example |
 | P3-M139 | One-Command Reviewer Demo Kit |
 | P3-M140A | Public README / Reviewer Positioning Polish |
+| P3-M140 | ATG Strategic Foresight Layer |
 
 ## Current proof chain
 
@@ -99,6 +100,7 @@ P3-M134 adds a GatePass Create-Verify-Reject Round Trip Pack with deterministic 
 P3-M135 adds an Agent-Readable GatePass Benefit and Voluntary Referral Pack with safe context-triggered mention rules, a machine-readable benefit statement, a local model, and a demo command. It adds no autonomous marketing, hidden viral distribution, direct bot messaging, outreach automation, scraping/contact harvesting, live systems contact, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
 P3-M136 adds an Agent Trust Language and GatePass Vocabulary Pack with controlled proof terms, a safe phrasebook, local dialogue examples, a safety boundary, a machine-readable vocabulary example, a local model, and a demo command. It is proof vocabulary only and adds no live systems contact, direct bot messaging, live agent-to-agent communication, autonomous marketing, hidden viral distribution, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
 P3-M140A polishes the public README, reviewer-first positioning, claims boundary, metadata, and deterministic public reviewer positioning summary so `npm run demo:reviewer-kit` is the recommended first run. GatePass remains the headline proof primitive; Agent Trust Language remains supporting material only. It adds no feature layer, external integration, production middleware claim, production benchmark claim, security certification claim, legal/compliance/security assurance, real tool execution, network calls, payment authorisation, settlement authorisation, or action execution.
+P3-M140 adds a local-only strategic foresight advisory layer for manually supplied market, protocol, agent, AGI/agent-risk, quantum/post-quantum, standards, and reviewer/developer feedback signals. It follows Watch -> Analyse -> Compare -> Recommend -> Gareth approves -> Dave creates build mission -> Codex implements locally. It recommends only and adds no live monitoring, scraping, autonomous learning, autonomous outreach, autonomous product changes, autonomous roadmap changes, autonomous code changes, prediction guarantee, network calls, payment authorisation, settlement authorisation, real tool execution, or action execution.
 
 No live APIs, payments, settlement execution, external-agent contact, AUC merge, cloud/network calls, MCP server functionality, live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, scraping, contact harvesting, tracking, analytics, telemetry, outreach automation, secrets, credentials, hosted services, tag/package publish/deployment, or autonomous action execution. AUC is not integrated. Agent Contact System is not integrated.
 ## P3-M134 - GatePass Create-Verify-Reject Round Trip
@@ -113,3 +115,6 @@ P3-M138 adds a local deterministic GatePass developer wrapper and local framewor
 
 ## P3-M140A - Public README / Reviewer Positioning Polish
 P3-M140A sharpens the public README and reviewer-facing positioning so the recommended first run is `npm run demo:reviewer-kit`, GatePass remains the headline proof primitive, and Agent Trust Language remains supporting material only. It adds no feature layer, external integration, production middleware claim, production benchmark claim, security certification claim, legal/compliance/security assurance, real tool execution, network calls, payment authorisation, settlement authorisation, or action execution.
+
+## P3-M140 - ATG Strategic Foresight Layer
+P3-M140 adds a local-only strategic foresight advisory layer for manually supplied market, protocol, agent, AGI/agent-risk, quantum/post-quantum, standards, and reviewer/developer feedback signals. It follows Watch -> Analyse -> Compare -> Recommend -> Gareth approves -> Dave creates build mission -> Codex implements locally. It recommends only and adds no live monitoring, scraping, autonomous learning, autonomous outreach, autonomous product changes, autonomous roadmap changes, autonomous code changes, prediction guarantee, network calls, payment authorisation, settlement authorisation, real tool execution, or action execution.

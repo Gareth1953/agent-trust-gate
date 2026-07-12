@@ -1,0 +1,105 @@
+{
+  "project": "Agent Trust Gate",
+  "purpose": "Local deterministic strategic foresight advisory report for manually supplied AI-agent market, protocol, risk, and readiness signals.",
+  "layerName": "ATG Strategic Foresight Layer",
+  "version": "atg.strategic-foresight.local.v1",
+  "localDemoOnly": true,
+  "advisoryOnly": true,
+  "manualInputOnly": true,
+  "liveMonitoring": false,
+  "autonomousLearning": false,
+  "autonomousProductChanges": false,
+  "autonomousRoadmapChanges": false,
+  "autonomousCodeChanges": false,
+  "autonomousOutreach": false,
+  "scraping": false,
+  "networkCalls": false,
+  "liveAgentContact": false,
+  "directBotMessaging": false,
+  "actionExecution": false,
+  "predictionGuarantee": false,
+  "humanApprovalRequired": true,
+  "workflow": [
+    "Watch",
+    "Analyse",
+    "Compare",
+    "Recommend",
+    "Gareth approves",
+    "Dave creates build mission",
+    "Codex implements locally"
+  ],
+  "signalCategories": [
+    "AI agent frameworks",
+    "tool-calling patterns",
+    "developer wrapper patterns",
+    "MCP-style protocols",
+    "agent-to-agent protocols",
+    "AI payment protocols",
+    "machine-to-machine payment signals",
+    "pre-settlement trust signals",
+    "agent security/governance competitors",
+    "enterprise agent adoption",
+    "developer integration trends",
+    "AGI and agent-risk signals",
+    "quantum computing signals",
+    "post-quantum security signals",
+    "standards and regulation signals",
+    "reviewer/developer feedback signals"
+  ],
+  "sampleSignals": [
+    {
+      "id": "manual_wrapper_demand",
+      "category": "developer wrapper patterns",
+      "title": "Developer wrapper demand increasing",
+      "summary": "Manual sample signal: reviewers and developers value a small wrapTool-style pattern before sensitive actions.",
+      "sourceType": "manual_sample"
+    },
+    {
+      "id": "manual_pre_settlement_trust",
+      "category": "pre-settlement trust signals",
+      "title": "Pre-settlement trust remains central",
+      "summary": "Manual sample signal: settlement-sensitive workflows should keep requiring mandate, evidence, freshness, nonce, and signed GatePass checks.",
+      "sourceType": "manual_sample"
+    },
+    {
+      "id": "manual_agent_protocol_movement",
+      "category": "agent-to-agent protocols",
+      "title": "Agent-to-agent protocol discussion should be watched",
+      "summary": "Manual sample signal: delegation and claimed identity may need local proof challenge examples, without live agent-to-agent communication.",
+      "sourceType": "manual_sample"
+    },
+    {
+      "id": "manual_post_quantum_watch",
+      "category": "post-quantum security signals",
+      "title": "Post-quantum readiness should be watched but not claimed",
+      "summary": "Manual sample signal: future signed proof designs may need crypto-agility planning, while current code makes no production-grade crypto claim.",
+      "sourceType": "manual_sample"
+    },
+    {
+      "id": "manual_reviewer_focus",
+      "category": "reviewer/developer feedback signals",
+      "title": "Reviewer feedback favours measurable demos",
+      "summary": "Manual sample signal: keep GatePass measurable, reviewer-friendly, and copy-paste useful rather than expanding broad concepts.",
+      "sourceType": "manual_sample"
+    }
+  ],
+  "recommendedMissions": [
+    {
+      "id": "future_mission_candidate_manual_wrapper_demand",
+      "title": "Consider a future local wrapper ergonomics mission",
+      "status": "advisory_requires_gareth_approval",
+      "humanApprovalRequired": true,
+      "buildAutomatically": false
+    },
+    {
+      "id": "future_mission_candidate_manual_pre_settlement_trust",
+      "title": "Consider a future pre-settlement GatePass hardening mission",
+      "status": "advisory_requires_gareth_approval",
+      "humanApprovalRequired": true,
+      "buildAutomatically": false
+    }
+  ],
+  "safetyBoundary": "Local advisory layer only. No live monitoring, scraping, autonomous learning, autonomous outreach, autonomous product changes, autonomous roadmap changes, autonomous code changes, prediction guarantee, network calls, live agent contact, direct bot messaging, or action execution.",
+  "publicContact": "gpmiddleton71@gmail.com"
+}
+

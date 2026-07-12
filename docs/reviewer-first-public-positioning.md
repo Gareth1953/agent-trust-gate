@@ -71,3 +71,6 @@ trust, live integration readiness, real payment readiness, real settlement
 readiness, automatic access after payment, or action execution authority.
 
 Public contact: `gpmiddleton71@gmail.com`.
+
+## P3-M140 - ATG Strategic Foresight Layer
+P3-M140 adds a local-only strategic foresight advisory layer for manually supplied market, protocol, agent, AGI/agent-risk, quantum/post-quantum, standards, and reviewer/developer feedback signals. It follows Watch -> Analyse -> Compare -> Recommend -> Gareth approves -> Dave creates build mission -> Codex implements locally. It recommends only and adds no live monitoring, scraping, autonomous learning, autonomous outreach, autonomous product changes, autonomous roadmap changes, autonomous code changes, prediction guarantee, network calls, payment authorisation, settlement authorisation, real tool execution, or action execution.

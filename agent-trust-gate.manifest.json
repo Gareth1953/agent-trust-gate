@@ -1,7 +1,7 @@
 {
   "manifest_version": "atg.code-readable-integration.v1",
   "service_name": "Agent Trust Gate",
-  "latest_mission": "P3-M140A",
+  "latest_mission": "P3-M140",
   "recent_missions": [
     "P3-M123",
     "P3-M124",
@@ -20,7 +20,8 @@
     "P3-M137",
     "P3-M138",
     "P3-M139",
-    "P3-M140A"
+    "P3-M140A",
+    "P3-M140"
   ],
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
   "project_status": "local_demo_only",
@@ -31,7 +32,7 @@
   "strategy": "Readable now. Callable later. Autonomous execution never without gate control.",
   "identity_trust_principle": "Claimed agent identity is not trust. Behaviour, mandate, evidence, verified intent, and session context must decide access.",
   "public_contact_email": "gpmiddleton71@gmail.com",
-  "public_contact_purpose": "Developer, agent-system, integration, security, GatePass round trip review, GatePass scorecard review, GatePass developer wrapper review, GatePass reviewer kit review, GatePass benefit review, GatePass proof vocabulary review, public reviewer positioning review, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
+  "public_contact_purpose": "Developer, agent-system, integration, security, GatePass round trip review, GatePass scorecard review, GatePass developer wrapper review, GatePass reviewer kit review, GatePass benefit review, GatePass proof vocabulary review, public reviewer positioning review, strategic foresight advisory review, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
   "public_contact_boundary": "Contact metadata only. Not a live API endpoint, autonomous outreach route, automated agent contact, email automation route, contact harvesting route, live support SLA, payment, settlement, automatic acceptance, automatic access, or hosted service availability.",
   "static_file_only": true,
   "readable_by_agents": true,
@@ -79,6 +80,15 @@
   "auc_integrated": false,
   "agent_contact_system_integrated": false,
   "public_outreach_automation": false,
+  "advisory_only": true,
+  "manual_input_only": true,
+  "live_monitoring": false,
+  "autonomous_learning": false,
+  "autonomous_product_changes": false,
+  "autonomous_roadmap_changes": false,
+  "autonomous_code_changes": false,
+  "prediction_guarantee": false,
+  "human_approval_required": true,
   "cryptographic_signing": "local_demo_placeholder_only",
   "supported_local_flows": [
     "gate_decision",
@@ -123,7 +133,8 @@
     "npm run demo:gatepass-scorecard",
     "npm run demo:gatepass-wrapper",
     "npm run demo:reviewer-kit",
-    "npm run demo:public-positioning"
+    "npm run demo:public-positioning",
+    "npm run demo:foresight"
   ],
   "discovery_docs": [
     "llms.txt",
@@ -211,7 +222,13 @@
     "docs/reviewer-evaluation-checklist.md",
     "docs/public-readme-reviewer-positioning-polish.md",
     "docs/reviewer-first-public-positioning.md",
-    "docs/public-positioning-claims-boundary.md"
+    "docs/public-positioning-claims-boundary.md",
+    "docs/atg-strategic-foresight-layer.md",
+    "docs/agent-market-radar-methodology.md",
+    "docs/foresight-signal-categories.md",
+    "docs/foresight-recommendation-scoring-guide.md",
+    "docs/foresight-human-approval-workflow.md",
+    "docs/foresight-sample-market-radar-report.md"
   ],
   "schemas": [
     "schemas/local-agent-action-request.schema.json",
@@ -277,7 +294,8 @@
     "gatepass_reviewer_kit_lifecycle_summary",
     "gatepass_reviewer_kit_scorecard_summary",
     "gatepass_reviewer_kit_wrapper_summary",
-    "public_reviewer_positioning_summary"
+    "public_reviewer_positioning_summary",
+    "strategic_foresight_report"
   ],
   "non_capabilities": [
     "live API",
@@ -321,6 +339,12 @@
     "autonomous marketing",
     "hidden viral distribution",
     "unsolicited agent contact",
+    "live monitoring",
+    "autonomous learning",
+    "autonomous product changes",
+    "autonomous roadmap changes",
+    "autonomous code changes",
+    "prediction guarantee",
     "guaranteed trust",
     "proven safe claim",
     "production benchmark claim",
@@ -343,7 +367,20 @@
   "gatepass_headline": "GatePass is the headline scoped, time-bound, action-specific proof primitive.",
   "agent_trust_language_role": "supporting_material_only",
   "public_reviewer_positioning_boundary": "P3-M140A recommends npm run demo:reviewer-kit as the first run and keeps GatePass as the headline proof primitive. Agent Trust Language remains supporting material. localDemoOnly is true; realToolExecution, actionExecution, networkCalls, productionMiddleware, productionBenchmark, productionCertification, securityCertification, legalComplianceGuarantee, paymentAuthorisation, and settlementAuthorisation remain false.",
+  "strategic_foresight_boundary": "P3-M140 is a local-only strategic foresight advisory layer for manual-input signals. advisoryOnly, manualInputOnly, localDemoOnly, and humanApprovalRequired are true; liveMonitoring, autonomousLearning, autonomousProductChanges, autonomousRoadmapChanges, autonomousCodeChanges, autonomousOutreach, scraping, networkCalls, liveAgentContact, directBotMessaging, actionExecution, and predictionGuarantee remain false.",
   "localDemoOnly": true,
+  "advisoryOnly": true,
+  "manualInputOnly": true,
+  "liveMonitoring": false,
+  "autonomousLearning": false,
+  "autonomousProductChanges": false,
+  "autonomousRoadmapChanges": false,
+  "autonomousCodeChanges": false,
+  "autonomousOutreach": false,
+  "liveAgentContact": false,
+  "directBotMessaging": false,
+  "predictionGuarantee": false,
+  "humanApprovalRequired": true,
   "realToolExecution": false,
   "actionExecution": false,
   "networkCalls": false,
