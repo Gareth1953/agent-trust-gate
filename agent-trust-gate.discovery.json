@@ -60,6 +60,9 @@
     "a2aServer": false,
     "mcpServer": false,
     "npmPublished": false,
+    "githubPagesWorkflowPrepared": true,
+    "githubPagesActivationPending": true,
+    "githubPagesLiveVerificationPending": true,
     "githubPagesDeploymentActive": false,
     "authenticationActive": false,
     "networkEndpointActive": false,
@@ -81,10 +84,38 @@
     "mcpServerStatus": "not_implemented_no_live_mcp_server_no_tools",
     "mcpRegistryStatus": "not_published_not_ready_until_real_server_exists",
     "npmPublicationStatus": "not_published_package_private",
-    "githubPagesDeploymentStatus": "prepared_but_inactive_static_source_only",
+    "githubPagesDeploymentStatus": "deployment_workflow_prepared_activation_pending_live_verification_pending",
     "networkEndpointStatus": "no_live_endpoint",
     "paymentSettlementStatus": "no_real_payment_or_settlement_execution",
     "actionExecutionStatus": "no_live_autonomous_action_execution"
+  },
+  "githubPagesPassiveDiscovery": {
+    "expectedUrl": "https://gareth1953.github.io/agent-trust-gate/",
+    "basePath": "/agent-trust-gate/",
+    "deploymentWorkflow": ".github/workflows/deploy-discovery-pages.yml",
+    "workflowPrepared": true,
+    "activationStatus": "activation_prepared_live_verification_pending",
+    "manualEnablementRequired": true,
+    "liveVerificationPending": true,
+    "currentLiveStatusClaim": "not_claimed_live",
+    "artifactIncludes": [
+      "discovery-site contents",
+      "agent-trust-gate.discovery.json",
+      "agent-trust-gate.agent-card.json",
+      "agent-trust-gate.manifest.json",
+      "llms.txt"
+    ],
+    "artifactExcludes": [
+      ".git",
+      ".github source files",
+      "test files",
+      "TypeScript source not needed by the site",
+      "package-lock files",
+      "credentials",
+      "receipts",
+      "environment files",
+      "internal build artefacts"
+    ]
   },
   "claimsBoundary": [
     "local deterministic evaluation only",
@@ -94,7 +125,7 @@
     "no live MCP server",
     "not listed in the MCP Registry",
     "not published on npm",
-    "GitHub Pages source is prepared but not deployed",
+    "GitHub Pages deployment workflow is prepared, but activation and live verification are pending",
     "no real payment or settlement execution",
     "no live autonomous action execution",
     "no guaranteed safety, compliance, buyer demand, or paid-pilot conversion"
@@ -109,11 +140,17 @@
     "examplesDirectory": "examples/",
     "reviewerKitReportExample": "examples/gatepass-reviewer-kit-report.json",
     "paidPilotOfferExample": "examples/paid-pilot-offer.json",
-    "machineDiscoveryReportExample": "examples/machine-discovery-report.json"
+    "machineDiscoveryReportExample": "examples/machine-discovery-report.json",
+    "expectedPagesUrl": "https://gareth1953.github.io/agent-trust-gate/",
+    "expectedPagesDiscoveryRecord": "https://gareth1953.github.io/agent-trust-gate/agent-trust-gate.discovery.json",
+    "expectedPagesLlms": "https://gareth1953.github.io/agent-trust-gate/llms.txt",
+    "expectedPagesAgentCard": "https://gareth1953.github.io/agent-trust-gate/agent-trust-gate.agent-card.json",
+    "expectedPagesManifest": "https://gareth1953.github.io/agent-trust-gate/agent-trust-gate.manifest.json"
   },
   "recommendedCommands": [
     "npm run demo:reviewer-kit",
     "npm run demo:discovery",
+    "npm run validate:discovery-site",
     "npm run demo:gatepass-round-trip",
     "npm run demo:gatepass-scorecard",
     "npm run demo:gatepass-wrapper",
@@ -121,9 +158,9 @@
   ],
   "coreCommercialPosition": "No mandate. No evidence. No verified intent. No signed GatePass. No settlement.",
   "lastReviewed": {
-    "mission": "P3-M142",
+    "mission": "P3-M143",
     "date": "2026-07-13",
-    "reviewType": "local_machine_discovery_and_registry_readiness",
+    "reviewType": "passive_discovery_activation_prepared_live_verification_pending",
     "reviewedBy": "Agent Trust Gate local repository metadata"
   }
 }

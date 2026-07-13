@@ -3,16 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Agent Trust Gate - Machine Discovery</title>
-  <meta name="description" content="Passive machine-discovery page for Agent Trust Gate, a local GatePass proof-of-concept.">
+  <title>Agent Trust Gate - Passive GatePass Discovery</title>
+  <meta name="description" content="Passive discovery page for Agent Trust Gate, a local deterministic GatePass proof-of-concept for reviewing proof before sensitive AI-agent actions.">
+  <link rel="canonical" href="https://gareth1953.github.io/agent-trust-gate/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Agent Trust Gate - Passive GatePass Discovery">
+  <meta property="og:description" content="Reviewer-first, local deterministic GatePass discovery route. No live A2A server, MCP server, payment processing, settlement execution, or autonomous action execution.">
+  <meta property="og:url" content="https://gareth1953.github.io/agent-trust-gate/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Agent Trust Gate - Passive GatePass Discovery">
+  <meta name="twitter:description" content="GatePass is a scoped, time-bound, action-specific proof primitive for agent actions. Reviewer kit first; activation prepared, live verification pending.">
   <style>
     :root {
       color-scheme: light;
-      --ink: #172033;
+      --ink: #18202f;
       --muted: #596172;
-      --line: #d8dde8;
-      --panel: #f6f8fb;
-      --accent: #0f6b5f;
+      --line: #d7deea;
+      --panel: #f5f8fb;
+      --accent: #0a6a5c;
+      --accent-dark: #074f45;
     }
     * {
       box-sizing: border-box;
@@ -25,42 +34,64 @@
       line-height: 1.55;
     }
     main {
-      width: min(980px, calc(100% - 32px));
+      width: min(1040px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 40px 0 56px;
+      padding: 38px 0 56px;
     }
     header {
       border-bottom: 1px solid var(--line);
       padding-bottom: 24px;
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
     h1 {
-      font-size: 2rem;
+      font-size: 2.25rem;
+      line-height: 1.15;
       margin: 0 0 10px;
     }
     h2 {
-      font-size: 1.2rem;
-      margin: 28px 0 10px;
+      font-size: 1.25rem;
+      margin: 30px 0 10px;
     }
     p {
       margin: 0 0 12px;
     }
-    ul {
+    ul,
+    ol {
       margin-top: 8px;
+      padding-left: 24px;
+    }
+    li {
+      margin: 6px 0;
     }
     code {
       background: var(--panel);
+      border: 1px solid var(--line);
       padding: 2px 5px;
       border-radius: 4px;
     }
     a {
-      color: var(--accent);
+      color: var(--accent-dark);
     }
-    .notice {
+    .notice,
+    .grid > section {
       border: 1px solid var(--line);
       background: var(--panel);
-      padding: 14px 16px;
+      padding: 15px 17px;
       border-radius: 6px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .status {
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      font-size: 0.82rem;
+      margin-bottom: 6px;
     }
   </style>
   <script type="application/ld+json">
@@ -68,57 +99,101 @@
     "@context": "https://schema.org",
     "@type": "SoftwareSourceCode",
     "name": "Agent Trust Gate",
+    "url": "https://gareth1953.github.io/agent-trust-gate/",
     "codeRepository": "https://github.com/Gareth1953/agent-trust-gate",
     "programmingLanguage": "TypeScript",
     "license": "https://github.com/Gareth1953/agent-trust-gate/blob/main/LICENSE",
-    "description": "Local-first GatePass proof-of-concept for checking scoped authority, mandate, evidence, intent, freshness, and approval before sensitive AI-agent actions.",
+    "description": "Local deterministic GatePass proof-of-concept for checking scoped authority, mandate, evidence, intent, freshness, and approval before sensitive AI-agent actions.",
     "applicationCategory": "DeveloperApplication",
     "isAccessibleForFree": true,
     "runtimePlatform": "Node.js",
-    "keywords": "GatePass, AI agents, trust gate, proof package, local deterministic evaluation",
-    "conditionsOfAccess": "Local demo only. No live A2A server, MCP server, payment processing, settlement execution, or action execution."
+    "keywords": [
+      "GatePass",
+      "AI agents",
+      "proof package",
+      "local deterministic evaluation",
+      "machine-readable discovery"
+    ],
+    "conditionsOfAccess": "Passive discovery and local demo route only. No live A2A server, MCP server, payment processing, settlement execution, or action execution.",
+    "sameAs": [
+      "https://github.com/Gareth1953/agent-trust-gate"
+    ]
   }
   </script>
 </head>
 <body>
   <main>
     <header>
+      <p class="status">Activation prepared - live verification pending</p>
       <h1>Agent Trust Gate</h1>
-      <p>Passive machine-discovery source for a local GatePass proof-of-concept.</p>
+      <p>Passive discovery route for a local deterministic GatePass proof-of-concept.</p>
     </header>
 
-    <section class="notice" aria-label="Safety boundary">
+    <section class="notice" aria-label="Core safety boundary">
       <p><strong>GatePass is a scoped, time-bound, action-specific proof primitive for agent actions.</strong></p>
+      <p>No mandate. No evidence. No verified intent. No signed GatePass. No settlement.</p>
       <p>No signed GatePass. No settlement. Do not trust the agent. Trust the GatePass. No proof. No permission. No mandate. No action.</p>
-      <p>This source is non-production and human-approved. No live A2A server, MCP server, live API, payment processing, settlement execution, or real action execution is active.</p>
+      <p>This is non-production, local deterministic evaluation material. Human approval is required. No live A2A endpoint, MCP server, real payment execution, settlement execution, autonomous action execution, analytics, tracking, cookies, forms, payment URLs, or transaction controls are provided.</p>
+    </section>
+
+    <section>
+      <h2>Discovery Route</h2>
+      <ol>
+        <li>Understand Agent Trust Gate.</li>
+        <li>Open the machine-readable discovery record.</li>
+        <li>Run the reviewer kit locally.</li>
+        <li>Inspect GatePass and the proof boundary.</li>
+        <li>Review technical and commercial boundaries.</li>
+        <li>Request a Paid Evaluation Pilot by human email if relevant.</li>
+      </ol>
     </section>
 
     <section>
       <h2>Start Here</h2>
+      <div class="grid">
+        <section>
+          <h3>Repository</h3>
+          <p><a href="https://github.com/Gareth1953/agent-trust-gate">Public GitHub repository</a></p>
+          <p><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/README.md">README and reviewer-first path</a></p>
+        </section>
+        <section>
+          <h3>Reviewer Kit</h3>
+          <p><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/one-command-reviewer-demo-kit.md">One-command reviewer demo kit</a></p>
+          <p><code>npm run demo:reviewer-kit</code></p>
+        </section>
+        <section>
+          <h3>GatePass</h3>
+          <p><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/minimal-gatepass-core-specification.md">Minimal GatePass core specification</a></p>
+          <p><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/gatepass-create-verify-reject-round-trip.md">GatePass create-verify-reject round trip</a></p>
+        </section>
+        <section>
+          <h3>Commercial Route</h3>
+          <p><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/paid-pilot-commercial-entry.md">Paid Evaluation Pilot</a></p>
+          <p><a href="mailto:gpmiddleton71@gmail.com">gpmiddleton71@gmail.com</a></p>
+        </section>
+      </div>
+    </section>
+
+    <section>
+      <h2>Machine-Readable Files</h2>
       <ul>
-        <li><a href="../agent-trust-gate.discovery.json">Canonical discovery record</a></li>
-        <li><a href="../README.md">README and reviewer-first path</a></li>
-        <li><a href="../docs/one-command-reviewer-demo-kit.md">One-command reviewer demo kit</a></li>
-        <li><a href="../docs/machine-discovery-and-registry-readiness.md">Machine discovery and registry readiness</a></li>
-        <li><a href="../docs/paid-pilot-commercial-entry.md">Paid Evaluation Pilot</a></li>
+        <li><a href="agent-trust-gate.discovery.json">Canonical discovery record</a></li>
+        <li><a href="llms.txt">llms.txt</a></li>
+        <li><a href="agent-trust-gate.agent-card.json">Agent card metadata</a></li>
+        <li><a href="agent-trust-gate.manifest.json">Project manifest</a></li>
       </ul>
+      <p>Expected public path after manual Pages activation: <code>https://gareth1953.github.io/agent-trust-gate/</code>. Live verification remains pending until the repository owner enables and verifies GitHub Pages.</p>
     </section>
 
     <section>
-      <h2>Recommended Local Command</h2>
-      <p><code>npm run demo:reviewer-kit</code></p>
-      <p>The reviewer kit runs deterministic local demos only. It does not call networks, execute real tools, process payments, authorise settlement, or provide production certification.</p>
-    </section>
-
-    <section>
-      <h2>Discovery Status</h2>
+      <h2>Current Status</h2>
       <ul>
-        <li>A2A server: not implemented.</li>
-        <li>MCP server: not implemented.</li>
-        <li>npm publication: not published.</li>
-        <li>GitHub Pages deployment: not active from repository evidence.</li>
-        <li>Real action execution: inactive.</li>
-        <li>Real payment or settlement execution: inactive.</li>
+        <li>GitHub Pages workflow: prepared for manual activation and verification.</li>
+        <li>A2A server: not implemented; no operational endpoint is published.</li>
+        <li>MCP server: not implemented; no MCP Registry publication exists.</li>
+        <li>npm package: private and not published.</li>
+        <li>Payment and settlement: no real execution, payment URLs, or transaction controls.</li>
+        <li>Action execution: no autonomous or real tool execution.</li>
       </ul>
     </section>
   </main>

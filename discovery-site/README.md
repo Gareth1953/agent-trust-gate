@@ -1,22 +1,17 @@
-# Discovery Site Source
+# Agent Trust Gate Discovery Site Source
 
-This directory contains a minimal static discovery-site source for future manual review.
+This directory contains the static source prepared for the Agent Trust Gate passive discovery site.
 
-Current status: prepared but inactive.
+Status: activation prepared, live verification pending. The expected GitHub Pages project URL is `https://gareth1953.github.io/agent-trust-gate/`, but repository metadata must not mark it active until the owner enables Pages, runs the workflow, and verifies the live site.
 
-It does not deploy GitHub Pages, create a workflow, create a custom domain, or claim an active Pages URL.
+The deployment workflow publishes only:
 
-The page uses:
+- the contents of `discovery-site/`;
+- `agent-trust-gate.discovery.json`;
+- `agent-trust-gate.agent-card.json`;
+- `agent-trust-gate.manifest.json`;
+- `llms.txt`.
 
-- no framework;
-- no external JavaScript;
-- no analytics;
-- no tracking;
-- no cookies;
-- no external fonts;
-- no third-party images;
-- no forms;
-- no checkout;
-- no payment links.
+The site uses no external JavaScript, analytics, tracking, cookies, forms, checkout, payment links, external fonts, third-party images, videos, iframes, live chat, or remote API calls.
 
-Future publication requires Gareth approval and a separate approved mission.
+It is passive discovery material only. It is not a live A2A endpoint, not an MCP server, not an npm publication, not a payment route, not a settlement route, and not an action-execution service.

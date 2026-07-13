@@ -1,0 +1,71 @@
+name: Deploy discovery Pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - discovery-site/**
+      - agent-trust-gate.discovery.json
+      - agent-trust-gate.agent-card.json
+      - agent-trust-gate.manifest.json
+      - llms.txt
+      - .github/workflows/deploy-discovery-pages.yml
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: discovery-pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build discovery artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare selected static files
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          mkdir -p _site
+          cp -R discovery-site/. _site/
+          cp agent-trust-gate.discovery.json _site/
+          cp agent-trust-gate.agent-card.json _site/
+          cp agent-trust-gate.manifest.json _site/
+          cp llms.txt _site/
+          test -f _site/index.html
+          test -f _site/agent-trust-gate.discovery.json
+          test -f _site/agent-trust-gate.agent-card.json
+          test -f _site/agent-trust-gate.manifest.json
+          test -f _site/llms.txt
+          test ! -e _site/.git
+          test ! -e _site/.github
+          find _site -maxdepth 2 -type f | sort
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    name: Deploy discovery Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy Pages artifact
+        id: deployment
+        uses: actions/deploy-pages@v4

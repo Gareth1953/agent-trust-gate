@@ -5,6 +5,7 @@ import test from "node:test";
 
 const root = process.cwd();
 const publicRepoUrl = "https://github.com/Gareth1953/agent-trust-gate";
+const expectedPagesUrl = "https://gareth1953.github.io/agent-trust-gate/";
 const contactEmail = "gpmiddleton71@gmail.com";
 const oldEmail = ["legalintelligencerecruitment", "outlook.com"].join("@");
 const coreLine = "No mandate. No evidence. No verified intent. No signed gate pass. No settlement.";
@@ -72,9 +73,10 @@ test("public contact hygiene is preserved", () => {
 
 test("launch record contains only the approved public URL and no sensitive operational values", () => {
   const record = read("docs/public-launch-record.md");
-  const urls = record.match(/https?:\/\/[^\s)]+/g) ?? [];
+  const urls = (record.match(/https?:\/\/[^\s)]+/g) ?? [])
+    .map((url) => url.replace(/[`.,]+$/g, ""));
 
-  assert.deepEqual(urls, [publicRepoUrl]);
+  assert.deepEqual([...new Set(urls)].sort(), [expectedPagesUrl, publicRepoUrl].sort());
   assert.doesNotMatch(record, /sk_(?:live|test)_[a-z0-9]{16,}/i);
   assert.doesNotMatch(record, /AKIA[0-9A-Z]{16}/);
   assert.doesNotMatch(record, /gh[pousr]_[A-Za-z0-9_]{20,}/);

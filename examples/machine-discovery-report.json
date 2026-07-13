@@ -9,9 +9,11 @@
   "gatepassPositioning": "GatePass is a scoped, time-bound, action-specific proof primitive for agent actions.",
   "technicalWording": "GatePass provides a common, machine-readable format for expressing authority, mandate, scope, freshness, and evidence.",
   "paidPilot": {
-    "name": "Agent Trust Gate Paid Evaluation Pilot",
     "document": "docs/paid-pilot-commercial-entry.md",
+    "offerExample": "examples/paid-pilot-offer.json",
+    "name": "Agent Trust Gate Paid Evaluation Pilot",
     "indicativeStartingPriceGbp": 1500,
+    "priceBoundary": "Starting from £1,500 subject to scope and written agreement.",
     "status": "human_reviewed_enquiry_only"
   },
   "readinessSummary": {
@@ -19,8 +21,9 @@
     "githubTopics": "Active - added manually through GitHub",
     "llmsTxt": "Active",
     "canonicalDiscoveryJson": "Active",
-    "staticSiteSource": "Ready for review",
-    "githubPagesDeployment": "Requires explicit approval",
+    "staticSiteSource": "Prepared but inactive",
+    "githubPagesDeployment": "Deployment workflow prepared - activation pending manual GitHub Pages enablement and live verification",
+    "expectedPagesUrl": "https://gareth1953.github.io/agent-trust-gate/",
     "a2aMetadataReadiness": "Prepared but inactive",
     "a2aServerReadiness": "Not implemented",
     "mcpDesignReadiness": "Prepared but inactive",
@@ -55,6 +58,9 @@
     "a2aServer": false,
     "mcpServer": false,
     "npmPublished": false,
+    "githubPagesWorkflowPrepared": true,
+    "githubPagesActivationPending": true,
+    "githubPagesLiveVerificationPending": true,
     "githubPagesDeploymentActive": false,
     "livePaymentProcessing": false,
     "settlementExecution": false,
@@ -63,12 +69,12 @@
     "securityCertification": false,
     "legalComplianceGuarantee": false
   },
-  "safetyBoundary": "Passive machine discovery and local deterministic evaluation only. No live endpoint, no A2A server, no MCP server, no npm publication, no GitHub Pages deployment, no real tool execution, no network calls, no live payment processing, no settlement execution, and no action execution.",
+  "safetyBoundary": "Passive machine discovery and local deterministic evaluation only. GitHub Pages deployment workflow is prepared, but activation and live verification are pending. No live endpoint, no A2A server, no MCP server, no npm publication, no verified live GitHub Pages status, no real tool execution, no network calls, no live payment processing, no settlement execution, and no action execution.",
   "publicContact": "gpmiddleton71@gmail.com",
   "lastReviewed": {
-    "mission": "P3-M142",
+    "mission": "P3-M143",
     "date": "2026-07-13",
-    "reviewType": "local_machine_discovery_and_registry_readiness",
+    "reviewType": "passive_discovery_activation_prepared_live_verification_pending",
     "reviewedBy": "Agent Trust Gate local repository metadata"
   }
 }

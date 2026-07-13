@@ -65,7 +65,7 @@ test("release documents preserve AUC and Agent Contact System separation", () =>
 
 test("release documents contain no real endpoint or sensitive operational value", () => {
   const paths = [...releaseDocs, "RELEASE_NOTES.md", "CHANGELOG.md", "PUBLIC_LAUNCH_CHECKLIST.md"];
-  const externalEndpoint = /https?:\/\/(?!127\.0\.0\.1(?::\d+)?(?:\/|\b)|localhost(?::\d+)?(?:\/|\b)|\[?::1\]?(?::\d+)?(?:\/|\b))[^\s)`"']+/i;
+  const externalEndpoint = /https?:\/\/(?!(?:127\.0\.0\.1(?::\d+)?(?:\/|\b)|localhost(?::\d+)?(?:\/|\b)|\[?::1\]?(?::\d+)?(?:\/|\b)|gareth1953\.github\.io\/agent-trust-gate\/?))[^\s)`"']+/i;
   const realSecret = /sk_(?:live|test)_[a-z0-9]{16,}|AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9_]{20,}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b/i;
   const financialIdentifier = /\b[A-Z]{2}\d{2}[A-Z0-9]{11,30}\b|\b0x[a-f0-9]{40}\b|\b(?:routing|sort code|card number)\s*[:=]\s*\d{6,19}\b/i;
   const railInstruction = /\b(?:enable|activate|configure|connect|execute)\s+(?:x402|AP2|Stripe|a payment rail|payment processing)\b/i;

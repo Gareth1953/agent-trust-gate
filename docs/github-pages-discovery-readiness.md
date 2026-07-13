@@ -2,45 +2,70 @@
 
 ## Purpose
 
-P3-M142 prepares a minimal static-site source for possible future GitHub Pages review. It does not enable GitHub Pages, deploy a site, create a custom domain, add a workflow, or assume that any Pages URL is live.
+P3-M142 prepared static discovery-site source. P3-M143 adds a controlled GitHub Pages deployment workflow and local validation command so the source can be manually activated after review.
 
-## Static Source
+Current status: activation prepared, live verification pending.
+
+Expected URL after manual enablement and verification:
+
+`https://gareth1953.github.io/agent-trust-gate/`
+
+Do not treat this URL as verified live until GitHub Pages is manually enabled, the workflow has run, and the published site has been checked.
+
+## Prepared Static Source
 
 The local static-site source is in:
 
 - `discovery-site/index.html`
-- `discovery-site/README.md`
+- `discovery-site/404.html`
 - `discovery-site/robots.txt`
+- `discovery-site/sitemap.xml`
 - `discovery-site/.nojekyll`
+- `discovery-site/README.md`
 
 The page is intentionally lightweight:
 
-- no framework;
 - no external JavaScript;
 - no analytics;
 - no tracking;
 - no cookies;
 - no external fonts;
 - no third-party images;
+- no embedded videos;
+- no iframes;
+- no live chat;
 - no forms;
 - no checkout;
 - no payment links.
 
-## Manual Future Route
+## Workflow Boundary
 
-A future GitHub Pages route would require:
+The deployment workflow is:
 
-1. Gareth approval.
-2. Static content review.
-3. Claims-boundary review.
-4. Accessibility and link checks.
-5. Confirmation that no live A2A, MCP, payment, settlement, or action-execution claim is implied.
-6. Manual repository settings change or approved deployment mission.
+`/.github/workflows/deploy-discovery-pages.yml`
 
-## Current Status
+It uses only GitHub-owned Pages actions, copies a clean `_site` artifact, and publishes only:
 
-Status: prepared but inactive. There is no active GitHub Pages deployment in this repository evidence. GitHub remains the principal public technical destination.
+- `discovery-site/` contents;
+- `agent-trust-gate.discovery.json`;
+- `agent-trust-gate.agent-card.json`;
+- `agent-trust-gate.manifest.json`;
+- `llms.txt`.
+
+It does not publish the full repository, source tree, tests, `.git`, `.github` source files, package-lock files, receipts, credentials, environment files, or internal build artifacts.
+
+## Manual Activation Route
+
+Activation still requires manual GitHub settings work:
+
+1. Push the P3-M143 commit to `main`.
+2. Open GitHub repository Settings.
+3. Open Pages.
+4. Select GitHub Actions under Build and deployment.
+5. Run or observe the deployment workflow.
+6. Verify the live site and machine-readable URLs.
+7. Record evidence before updating metadata from pending to active.
 
 ## Safety Boundary
 
-The static source is discovery material only. It is not a hosted service, not a live API, not a live agent endpoint, not an A2A endpoint, not an MCP server, not a payment or settlement route, and not production middleware.
+The static site is discovery material only. It is not a hosted API, not a live AI agent, not an A2A endpoint, not an MCP server, not an npm publication, not a payment or settlement route, not an analytics system, not a tracking system, and not production middleware.

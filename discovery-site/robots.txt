@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://gareth1953.github.io/agent-trust-gate/sitemap.xml

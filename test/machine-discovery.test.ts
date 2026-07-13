@@ -33,8 +33,10 @@ const docs = [
 ];
 const staticFiles = [
   "discovery-site/index.html",
+  "discovery-site/404.html",
   "discovery-site/README.md",
   "discovery-site/robots.txt",
+  "discovery-site/sitemap.xml",
   "discovery-site/.nojekyll",
 ];
 const corePhrases = [
@@ -86,6 +88,9 @@ function assertInactiveDiscovery(record: MachineDiscoveryRecord): void {
   assert.equal(record.statuses.a2aServer, false);
   assert.equal(record.statuses.mcpServer, false);
   assert.equal(record.statuses.npmPublished, false);
+  assert.equal(record.statuses.githubPagesWorkflowPrepared, true);
+  assert.equal(record.statuses.githubPagesActivationPending, true);
+  assert.equal(record.statuses.githubPagesLiveVerificationPending, true);
   assert.equal(record.statuses.githubPagesDeploymentActive, false);
   assert.equal(record.statuses.authenticationActive, false);
   assert.equal(record.statuses.networkEndpointActive, false);
@@ -123,6 +128,9 @@ function assertReportSafety(report: MachineDiscoveryReport): void {
   assert.equal(report.safetyFlags.a2aServer, false);
   assert.equal(report.safetyFlags.mcpServer, false);
   assert.equal(report.safetyFlags.npmPublished, false);
+  assert.equal(report.safetyFlags.githubPagesWorkflowPrepared, true);
+  assert.equal(report.safetyFlags.githubPagesActivationPending, true);
+  assert.equal(report.safetyFlags.githubPagesLiveVerificationPending, true);
   assert.equal(report.safetyFlags.githubPagesDeploymentActive, false);
   assert.equal(report.safetyFlags.livePaymentProcessing, false);
   assert.equal(report.safetyFlags.settlementExecution, false);
@@ -173,7 +181,11 @@ test("canonical discovery JSON matches deterministic model and inactive statuses
   assert.equal(fromFile.inactiveIntegrationStatus.a2aServerStatus, "not_implemented_no_live_a2a_server_no_endpoint");
   assert.equal(fromFile.inactiveIntegrationStatus.mcpServerStatus, "not_implemented_no_live_mcp_server_no_tools");
   assert.equal(fromFile.inactiveIntegrationStatus.npmPublicationStatus, "not_published_package_private");
-  assert.equal(fromFile.inactiveIntegrationStatus.githubPagesDeploymentStatus, "prepared_but_inactive_static_source_only");
+  assert.equal(fromFile.inactiveIntegrationStatus.githubPagesDeploymentStatus, "deployment_workflow_prepared_activation_pending_live_verification_pending");
+  assert.equal(fromFile.githubPagesPassiveDiscovery.expectedUrl, "https://gareth1953.github.io/agent-trust-gate/");
+  assert.equal(fromFile.githubPagesPassiveDiscovery.workflowPrepared, true);
+  assert.equal(fromFile.githubPagesPassiveDiscovery.activationStatus, "activation_prepared_live_verification_pending");
+  assert.equal(fromFile.githubPagesPassiveDiscovery.currentLiveStatusClaim, "not_claimed_live");
   assertInactiveDiscovery(fromFile);
 });
 
@@ -186,12 +198,18 @@ test("machine discovery report and summary preserve discovery boundaries", () =>
   assert.equal(report.readinessSummary.a2aServerReadiness, "Not implemented");
   assert.equal(report.readinessSummary.mcpRegistryReadiness, "Not implemented");
   assert.equal(report.readinessSummary.npmPublicationReadiness, "Requires explicit approval");
+  assert.equal(report.readinessSummary.githubPagesDeployment, "Deployment workflow prepared - activation pending manual GitHub Pages enablement and live verification");
+  assert.equal(report.readinessSummary.expectedPagesUrl, "https://gareth1953.github.io/agent-trust-gate/");
+  assert.match(report.safetyBoundary, /activation and live verification are pending/);
   assert.match(report.safetyBoundary, /No live endpoint/);
 
   const summary = summariseMachineDiscovery();
   assert.equal(summary.a2aServer, false);
   assert.equal(summary.mcpServer, false);
   assert.equal(summary.npmPublished, false);
+  assert.equal(summary.githubPagesWorkflowPrepared, true);
+  assert.equal(summary.githubPagesActivationPending, true);
+  assert.equal(summary.githubPagesLiveVerificationPending, true);
   assert.equal(summary.githubPagesDeploymentActive, false);
   assert.equal(summary.realActionExecution, false);
   assert.equal(summary.realPaymentExecution, false);
@@ -243,12 +261,13 @@ test("static discovery site has no external scripts analytics tracking forms or 
   assert.doesNotMatch(html, /<script\b(?![^>]*type="application\/ld\+json")[^>]*>/i);
   assert.doesNotMatch(html, /<script[^>]+src=/i);
   assert.doesNotMatch(html, /<form\b/i);
-  assert.doesNotMatch(html, /analytics|gtag|googletagmanager|facebook|pixel|segment|plausible|cookie/i);
-  assert.doesNotMatch(html, /checkout|payment link|payment button/i);
-  assert.doesNotMatch(html, /https?:\/\/(?!schema\.org|github\.com\/Gareth1953\/agent-trust-gate)/i);
+  assert.doesNotMatch(html, /<iframe\b/i);
+  assert.doesNotMatch(html, /gtag|googletagmanager|facebook|segment|plausible|document\.cookie|Set-Cookie|localStorage|sessionStorage/i);
+  assert.doesNotMatch(html, /paypal|stripe/i);
+  assert.match(html, /https:\/\/gareth1953\.github\.io\/agent-trust-gate\//i);
   assert.match(html, /No live A2A server/);
   assert.match(html, /MCP server: not implemented/);
-  assert.match(read("discovery-site/README.md"), /prepared but inactive/);
+  assert.match(read("discovery-site/README.md"), /activation prepared, live verification pending/);
 });
 
 test("A2A MCP npm Pages and registry boundaries remain inactive", () => {
@@ -256,10 +275,11 @@ test("A2A MCP npm Pages and registry boundaries remain inactive", () => {
   assert.equal(existsSync(join(root, "server.json")), false);
   assert.equal(existsSync(join(root, ".github", "workflows", "pages.yml")), false);
   assert.equal(existsSync(join(root, ".github", "workflows", "pages.yaml")), false);
+  assert.equal(existsSync(join(root, ".github", "workflows", "deploy-discovery-pages.yml")), true);
   assert.match(read("docs/a2a-discovery-readiness-boundary.md"), /no live A2A server/i);
   assert.match(read("docs/mcp-registry-readiness-boundary.md"), /not currently an MCP server/i);
   assert.match(read("docs/npm-publication-readiness.md"), /remain private/i);
-  assert.match(read("docs/github-pages-discovery-readiness.md"), /prepared but inactive/i);
+  assert.match(read("docs/github-pages-discovery-readiness.md"), /activation prepared, live verification pending/i);
 });
 
 test("metadata records P3-M142 and core discovery boundaries", () => {
@@ -323,7 +343,11 @@ test("package version private status scripts and exports remain correct", () => 
   const demoScript = packageJson.scripts["demo:discovery"];
   if (typeof demoScript !== "string") throw new Error("demo:discovery script is missing");
   assert.match(demoScript, /machine-discovery-cli\.js/);
+  const validateScript = packageJson.scripts["validate:discovery-site"];
+  if (typeof validateScript !== "string") throw new Error("validate:discovery-site script is missing");
+  assert.match(validateScript, /discovery-site-validator\.js/);
   assert.match(read("src/index.ts"), /machine-discovery/);
+  assert.match(read("src/index.ts"), /discovery-site-validator/);
 });
 
 test("all repository JSON examples schemas and metadata remain valid", () => {

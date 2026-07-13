@@ -4,6 +4,7 @@ import test from "node:test";
 
 const readmePath = "README.md";
 const coreRule = "No mandate. No evidence. No verified intent. No signed gate pass. No settlement.";
+const expectedPagesUrl = "https://gareth1953.github.io/agent-trust-gate/";
 const assetPaths = [
   "agent-trust-gate.manifest.json",
   "schemas/local-agent-action-request.schema.json",
@@ -116,7 +117,11 @@ test("README contains no live URLs, real credentials, financial details, or rail
   const source = readme();
   const urls = source.match(/https?:\/\/[^\s)`]+/g) ?? [];
   for (const url of urls) {
-    assert.match(url, /^http:\/\/(?:127\.0\.0\.1|localhost)(?::\d+)?(?:\/|$)/, url);
+    assert.ok(
+      /^http:\/\/(?:127\.0\.0\.1|localhost)(?::\d+)?(?:\/|$)/.test(url) ||
+        url === expectedPagesUrl,
+      url,
+    );
   }
   assert.doesNotMatch(source, /sk_(?:live|test)_[a-z0-9]+|AKIA[0-9A-Z]{16}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/i);
   assert.doesNotMatch(source, /(?:bank[_ -]?account|wallet[_ -]?address|card[_ -]?number|routing[_ -]?number|sort[_ -]?code|\biban\b)\s*[:=]\s*["']?[a-z0-9]/i);

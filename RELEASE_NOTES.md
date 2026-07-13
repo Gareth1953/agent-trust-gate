@@ -1,5 +1,26 @@
 # Release Notes
 
+## P3-M143: Passive Discovery Activation
+
+P3-M143 prepares the P3-M142 static discovery site for controlled GitHub Pages activation.
+
+Added assets:
+
+- `.github/workflows/deploy-discovery-pages.yml`
+- `discovery-site/404.html`
+- `discovery-site/sitemap.xml`
+- updated `discovery-site/index.html`, `robots.txt`, and README
+- `docs/github-pages-passive-discovery-activation.md`
+- `docs/passive-discovery-live-verification-checklist.md`
+- `docs/repository-social-preview-upload.md`
+- `docs/passive-discovery-activation-record-template.md`
+- `src/discovery-site-validator.ts`
+- `npm run validate:discovery-site`
+
+The expected Pages project URL is recorded in the activation runbook, but status remains activation prepared and live verification pending until Gareth manually enables Pages and verifies the published site. The reviewer kit remains the recommended first experience and GatePass remains the headline proof primitive.
+
+No GitHub Pages setting was changed, no live deployment was verified, no custom domain was added, no image was generated, no analytics/tracking/forms/payment links were added, no A2A or MCP service was created, no npm publication occurred, and no push/tag/release/deployment was performed by this local mission.
+
 ## P3-M142: Machine Discovery and Registry Readiness Pack
 
 P3-M142 adds passive machine-discovery and registry-readiness material for Agent Trust Gate.

@@ -518,7 +518,9 @@ export { PAID_PILOT_OFFER_CONTACT,PAID_PILOT_OFFER_CORE_PHRASES,PAID_PILOT_OFFER
 export type { PaidPilotOffer,PaidPilotOfferSafetyFlags } from "./paid-pilot-offer.js";
 export { runPaidPilotOfferCli } from "./paid-pilot-offer-cli.js";
 export type { PaidPilotOfferCliErrorCode,PaidPilotOfferCliIo } from "./paid-pilot-offer-cli.js";
-export { MACHINE_DISCOVERY_COMMAND,MACHINE_DISCOVERY_CONTACT,MACHINE_DISCOVERY_CORE_PHRASES,MACHINE_DISCOVERY_FIRST_COMMAND,MACHINE_DISCOVERY_REPORT_VERSION,MACHINE_DISCOVERY_SAFETY_FLAGS,MACHINE_DISCOVERY_VERSION,getMachineDiscoveryRecord,getMachineDiscoveryReport,getMachineDiscoverySafetyBoundary,summariseMachineDiscovery,validateMachineDiscoveryRecord } from "./machine-discovery.js";
+export { MACHINE_DISCOVERY_COMMAND,MACHINE_DISCOVERY_CONTACT,MACHINE_DISCOVERY_CORE_PHRASES,MACHINE_DISCOVERY_EXPECTED_PAGES_URL,MACHINE_DISCOVERY_FIRST_COMMAND,MACHINE_DISCOVERY_PAGES_BASE_PATH,MACHINE_DISCOVERY_PAGES_WORKFLOW,MACHINE_DISCOVERY_REPORT_VERSION,MACHINE_DISCOVERY_SAFETY_FLAGS,MACHINE_DISCOVERY_SITE_VALIDATION_COMMAND,MACHINE_DISCOVERY_VERSION,getMachineDiscoveryRecord,getMachineDiscoveryReport,getMachineDiscoverySafetyBoundary,summariseMachineDiscovery,validateMachineDiscoveryRecord } from "./machine-discovery.js";
 export type { MachineDiscoveryRecord,MachineDiscoveryReport,MachineDiscoveryStatuses,MachineDiscoverySummary,MachineDiscoveryValidation,RegistryReadinessStatus } from "./machine-discovery.js";
 export { runMachineDiscoveryCli } from "./machine-discovery-cli.js";
 export type { MachineDiscoveryCliErrorCode,MachineDiscoveryCliIo } from "./machine-discovery-cli.js";
+export { renderDiscoverySiteValidation,validateDiscoverySite } from "./discovery-site-validator.js";
+export type { DiscoverySiteValidationCheck,DiscoverySiteValidationReport } from "./discovery-site-validator.js";
