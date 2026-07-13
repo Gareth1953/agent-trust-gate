@@ -1,7 +1,7 @@
 {
   "schema": "atg.agent-card.local-discovery.v1",
   "name": "Agent Trust Gate",
-  "latest_mission": "P3-M141",
+  "latest_mission": "P3-M142",
   "recent_missions": [
     "P3-M123",
     "P3-M124",
@@ -22,7 +22,8 @@
     "P3-M139",
     "P3-M140A",
     "P3-M140",
-    "P3-M141"
+    "P3-M141",
+    "P3-M142"
   ],
   "description": "Local-first pre-action and pre-settlement trust gate for agent-led workflows.",
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
@@ -59,11 +60,17 @@
     "local GatePass developer wrapper and framework-style integration example",
     "local one-command GatePass reviewer demo kit",
     "local strategic foresight advisory layer for manual sample signals",
-    "human-reviewed paid evaluation pilot entry route"
+    "human-reviewed paid evaluation pilot entry route",
+    "passive machine discovery and registry readiness metadata"
   ],
   "non_capabilities": [
     "live API",
+    "live A2A server",
+    "A2A operational endpoint",
     "MCP server functionality",
+    "MCP Registry publication",
+    "npm publication",
+    "GitHub Pages deployment",
     "live agent endpoint",
     "live agent-to-agent communication",
     "live systems contact",
@@ -140,10 +147,12 @@
     "npm run demo:gatepass-wrapper",
     "npm run demo:reviewer-kit",
     "npm run demo:foresight",
-    "npm run demo:paid-pilot"
+    "npm run demo:paid-pilot",
+    "npm run demo:discovery"
   ],
   "docs": [
     "README.md",
+    "agent-trust-gate.discovery.json",
     "llms.txt",
     "docs/agent-readable-discovery-and-system-metadata.md",
     "docs/system-integration-metadata.md",
@@ -240,7 +249,14 @@
     "docs/paid-pilot-scope-and-deliverables.md",
     "docs/buyer-evaluation-journey.md",
     "docs/paid-pilot-pricing-boundary.md",
-    "docs/paid-pilot-enquiry-template.md"
+    "docs/paid-pilot-enquiry-template.md",
+    "docs/machine-discovery-and-registry-readiness.md",
+    "docs/machine-readable-entry-points.md",
+    "docs/github-pages-discovery-readiness.md",
+    "docs/a2a-discovery-readiness-boundary.md",
+    "docs/mcp-registry-readiness-boundary.md",
+    "docs/npm-publication-readiness.md",
+    "docs/registry-readiness-scorecard.md"
   ],
   "schemas": [
     "schemas/local-agent-action-request.schema.json",
@@ -309,11 +325,12 @@
     "examples/gatepass-reviewer-kit-report.json",
     "examples/public-reviewer-positioning-summary.json",
     "examples/atg-strategic-foresight-report.json",
-    "examples/paid-pilot-offer.json"
+    "examples/paid-pilot-offer.json",
+    "examples/machine-discovery-report.json"
   ],
   "contact": {
     "email": "gpmiddleton71@gmail.com",
-    "purpose": "Human-reviewed developer, agent-system, integration, security, buyer use case, revenue trigger, global code discovery, controlled public visibility, prove-yourself protocol, agent proof package contract, proof contract integration readiness, enforceable local tool gate demo, minimal GatePass core review, GatePass round trip review, GatePass scorecard review, GatePass developer wrapper review, GatePass reviewer kit review, GatePass benefit review, GatePass proof vocabulary review, public reviewer positioning review, strategic foresight advisory review, paid evaluation pilot, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
+    "purpose": "Human-reviewed developer, agent-system, integration, security, buyer use case, revenue trigger, global code discovery, controlled public visibility, prove-yourself protocol, agent proof package contract, proof contract integration readiness, enforceable local tool gate demo, minimal GatePass core review, GatePass round trip review, GatePass scorecard review, GatePass developer wrapper review, GatePass reviewer kit review, GatePass benefit review, GatePass proof vocabulary review, public reviewer positioning review, strategic foresight advisory review, machine discovery and registry readiness review, paid evaluation pilot, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
     "boundary": "Contact metadata only. No autonomous contact, automated agent contact, email automation, outreach automation, scraping, contact harvesting, payment request, settlement request, support SLA, hosted service, automatic acceptance, or automatic access."
   },
   "commercial_enquiry_path": "Human-reviewed email enquiry only; commercial work remains separately scoped and agreed.",
@@ -377,6 +394,13 @@
     "paid_pilot_automatic_access_after_payment": false,
     "paid_pilot_non_custodial": true,
     "paid_pilot_non_autonomous": true,
+    "a2a_server": false,
+    "mcp_server": false,
+    "mcp_registry_publication": false,
+    "npm_publication": false,
+    "github_pages_deployment": false,
+    "operational_endpoint": false,
+    "registry_credentials": false,
     "autonomous_marketing": false,
     "hidden_viral_distribution": false,
     "unsolicited_agent_contact": false,
@@ -400,6 +424,7 @@
   "public_reviewer_positioning_boundary": "P3-M140A recommends npm run demo:reviewer-kit as the first run and keeps GatePass as the headline proof primitive. Agent Trust Language remains supporting material. localDemoOnly is true; realToolExecution, actionExecution, networkCalls, productionMiddleware, productionBenchmark, productionCertification, securityCertification, legalComplianceGuarantee, paymentAuthorisation, and settlementAuthorisation remain false.",
   "strategic_foresight_boundary": "P3-M140 is a local-only strategic foresight advisory layer for manual-input signals. advisoryOnly, manualInputOnly, localDemoOnly, and humanApprovalRequired are true; liveMonitoring, autonomousLearning, autonomousProductChanges, autonomousRoadmapChanges, autonomousCodeChanges, autonomousOutreach, scraping, networkCalls, liveAgentContact, directBotMessaging, actionExecution, and predictionGuarantee remain false.",
   "paid_pilot_offer_boundary": "P3-M141 defines the Agent Trust Gate Paid Evaluation Pilot as a local, manual-input only, human-approved, non-production, non-custodial, non-autonomous, advisory evaluation route. It starts from GBP 1500 subject to scope and written agreement. No checkout, payment links, PayPal API integration, Stripe integration, live invoices, webhooks, wallet or banking logic, live payment processing, settlement execution, production signing, production certification, security certification, legal/compliance/security guarantee, automatic paid-pilot acceptance, automatic access after payment, network calls, real tool execution, or action execution is introduced.",
+  "machine_discovery_boundary": "P3-M142 adds a canonical passive machine-discovery record, local discovery CLI, static discovery-site source, and registry-readiness boundaries. The reviewer kit remains the recommended first run; GatePass remains the headline; Agent Trust Language remains supporting material. No live A2A server, A2A operational endpoint, MCP server, MCP Registry publication, npm publication, GitHub Pages deployment, registry credential, payment integration, network call, real tool execution, settlement execution, or action execution is introduced.",
   "localDemoOnly": true,
   "advisoryOnly": true,
   "manualInputOnly": true,
@@ -435,5 +460,12 @@
   "securityCertification": false,
   "legalComplianceGuarantee": false,
   "paymentAuthorisation": false,
-  "settlementAuthorisation": false
+  "settlementAuthorisation": false,
+  "a2aServer": false,
+  "mcpServer": false,
+  "mcpRegistryPublication": false,
+  "npmPublication": false,
+  "githubPagesDeployment": false,
+  "operationalEndpoint": false,
+  "registryCredentials": false
 }

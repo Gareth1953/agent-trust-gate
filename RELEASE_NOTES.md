@@ -1,5 +1,35 @@
 # Release Notes
 
+## P3-M142: Machine Discovery and Registry Readiness Pack
+
+P3-M142 adds passive machine-discovery and registry-readiness material for Agent Trust Gate.
+
+Added assets:
+
+- `agent-trust-gate.discovery.json`
+- `docs/machine-discovery-and-registry-readiness.md`
+- `docs/machine-readable-entry-points.md`
+- `docs/github-pages-discovery-readiness.md`
+- `docs/a2a-discovery-readiness-boundary.md`
+- `docs/mcp-registry-readiness-boundary.md`
+- `docs/npm-publication-readiness.md`
+- `docs/registry-readiness-scorecard.md`
+- `discovery-site/index.html`
+- `discovery-site/README.md`
+- `discovery-site/robots.txt`
+- `discovery-site/.nojekyll`
+- `examples/machine-discovery-report.json`
+- `src/machine-discovery.ts`
+- `src/machine-discovery-cli.ts`
+- `npm run demo:discovery`
+- focused machine discovery tests
+
+The pack makes `agent-trust-gate.discovery.json` the canonical passive machine-discovery record and keeps `npm run demo:reviewer-kit` as the recommended first experience. GatePass remains the headline proof primitive. Agent Trust Language remains supporting material.
+
+This is discovery and readiness only. It does not add a live A2A server, A2A operational endpoint, MCP server, MCP Registry publication, npm publication, GitHub Pages deployment, registry credential, payment integration, network endpoint, real tool execution, settlement execution, production signing, production certification, security certification, legal/compliance/security guarantee, deployment, tag, release, publish, push, or action execution.
+
+**No mandate. No evidence. No verified intent. No signed GatePass. No settlement.**
+
 ## P3-M141: Paid Pilot and Commercial Entry Pack
 
 P3-M141 adds a focused paid-pilot commercial entry pack for Agent Trust Gate.

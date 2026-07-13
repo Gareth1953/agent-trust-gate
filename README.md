@@ -98,6 +98,41 @@ production signing, not legal/compliance/security certification, and not a
 guarantee of safety, trust, integration success, commercial result, acceptance,
 or access after payment.
 
+## Machine and Developer Discovery
+
+P3-M142 adds passive machine-readable discovery and registry-readiness metadata.
+It does not add a live A2A server, MCP server, npm publication, GitHub Pages
+deployment, remote endpoint, outreach system, payment route, settlement route,
+or executable remote service.
+
+Discovery route:
+
+1. Read the [canonical discovery record](agent-trust-gate.discovery.json).
+2. Run the reviewer kit: `npm run demo:reviewer-kit`.
+3. Inspect GatePass, schemas, examples, and local wrapper demos.
+4. Review the technical and safety boundaries.
+5. Use the [Paid Evaluation Pilot](docs/paid-pilot-commercial-entry.md) route for a human-reviewed commercial enquiry.
+
+- [Machine discovery and registry readiness](docs/machine-discovery-and-registry-readiness.md)
+- [Machine-readable entry points](docs/machine-readable-entry-points.md)
+- [GitHub Pages discovery readiness](docs/github-pages-discovery-readiness.md)
+- [A2A discovery readiness boundary](docs/a2a-discovery-readiness-boundary.md)
+- [MCP Registry readiness boundary](docs/mcp-registry-readiness-boundary.md)
+- [npm publication readiness](docs/npm-publication-readiness.md)
+- [Registry readiness scorecard](docs/registry-readiness-scorecard.md)
+- [Machine-readable discovery report](examples/machine-discovery-report.json)
+- [Static discovery-site source](discovery-site/README.md)
+
+```powershell
+npm run demo:discovery
+npm run demo:discovery -- --summary-only
+npm run demo:discovery -- --json
+```
+
+GitHub topics are documented as manually configured through GitHub. This
+repository does not alter GitHub settings automatically. GatePass remains the
+headline proof primitive; Agent Trust Language remains supporting material.
+
 ## Core proof flow
 
 ```text

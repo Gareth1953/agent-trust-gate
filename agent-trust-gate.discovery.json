@@ -1,0 +1,129 @@
+{
+  "formatVersion": "atg.machine-discovery.local.v1",
+  "stableIdentifier": "com.gareth1953.agent-trust-gate",
+  "productName": "Agent Trust Gate",
+  "conciseDescription": "Local-first GatePass proof-of-concept for checking scoped authority, mandate, evidence, intent, freshness, and approval before sensitive AI-agent actions.",
+  "repositoryLocation": "https://github.com/Gareth1953/agent-trust-gate",
+  "documentationEntryPoint": "README.md",
+  "reviewerKit": {
+    "entryPoint": "docs/one-command-reviewer-demo-kit.md",
+    "quickstart": "docs/reviewer-demo-kit-quickstart.md",
+    "command": "npm run demo:reviewer-kit",
+    "recommendedFirstExperience": true
+  },
+  "paidPilot": {
+    "document": "docs/paid-pilot-commercial-entry.md",
+    "offerExample": "examples/paid-pilot-offer.json",
+    "name": "Agent Trust Gate Paid Evaluation Pilot",
+    "indicativeStartingPriceGbp": 1500,
+    "priceBoundary": "Starting from £1,500 subject to scope and written agreement.",
+    "status": "human_reviewed_enquiry_only"
+  },
+  "publicContactEmail": "gpmiddleton71@gmail.com",
+  "licence": "MIT",
+  "implementationLanguage": "TypeScript",
+  "headlineProductConcept": "GatePass",
+  "supportingConcepts": [
+    "ProofPackage",
+    "VerificationContract",
+    "Tool Gate",
+    "Pre-Settlement Gate",
+    "GatePass proof vocabulary",
+    "GatePass claims vocabulary",
+    "Agent Trust Language as supporting material only"
+  ],
+  "capabilityCategories": [
+    "local GatePass create-verify-reject lifecycle",
+    "local adversarial scorecard",
+    "local developer wrapper",
+    "local reviewer kit",
+    "local paid evaluation pilot packaging",
+    "passive machine-readable discovery metadata"
+  ],
+  "intendedUsers": [
+    "developers",
+    "AI agent builders",
+    "technical reviewers",
+    "AI governance reviewers",
+    "trust and safety reviewers",
+    "payment workflow reviewers",
+    "commercial pilot evaluators"
+  ],
+  "statuses": {
+    "nonProduction": true,
+    "manualInputOnly": true,
+    "humanApprovalRequired": true,
+    "localOnlyEvaluation": true,
+    "realActionExecution": false,
+    "realPaymentExecution": false,
+    "realSettlementExecution": false,
+    "a2aServer": false,
+    "mcpServer": false,
+    "npmPublished": false,
+    "githubPagesDeploymentActive": false,
+    "authenticationActive": false,
+    "networkEndpointActive": false,
+    "autonomousOutreach": false,
+    "directBotMessaging": false,
+    "liveAgentToAgentCommunication": false,
+    "scraping": false,
+    "analyticsTracking": false,
+    "cookies": false,
+    "paymentLinks": false,
+    "checkout": false,
+    "productionSigning": false,
+    "productionCertification": false,
+    "securityCertification": false,
+    "legalComplianceGuarantee": false
+  },
+  "inactiveIntegrationStatus": {
+    "a2aServerStatus": "not_implemented_no_live_a2a_server_no_endpoint",
+    "mcpServerStatus": "not_implemented_no_live_mcp_server_no_tools",
+    "mcpRegistryStatus": "not_published_not_ready_until_real_server_exists",
+    "npmPublicationStatus": "not_published_package_private",
+    "githubPagesDeploymentStatus": "prepared_but_inactive_static_source_only",
+    "networkEndpointStatus": "no_live_endpoint",
+    "paymentSettlementStatus": "no_real_payment_or_settlement_execution",
+    "actionExecutionStatus": "no_live_autonomous_action_execution"
+  },
+  "claimsBoundary": [
+    "local deterministic evaluation only",
+    "passive discovery metadata only",
+    "reviewer-ready does not mean production-ready",
+    "no live A2A server",
+    "no live MCP server",
+    "not listed in the MCP Registry",
+    "not published on npm",
+    "GitHub Pages source is prepared but not deployed",
+    "no real payment or settlement execution",
+    "no live autonomous action execution",
+    "no guaranteed safety, compliance, buyer demand, or paid-pilot conversion"
+  ],
+  "machineReadableResourceLinks": {
+    "readme": "README.md",
+    "llms": "llms.txt",
+    "canonicalDiscovery": "agent-trust-gate.discovery.json",
+    "agentCard": "agent-trust-gate.agent-card.json",
+    "manifest": "agent-trust-gate.manifest.json",
+    "schemasDirectory": "schemas/",
+    "examplesDirectory": "examples/",
+    "reviewerKitReportExample": "examples/gatepass-reviewer-kit-report.json",
+    "paidPilotOfferExample": "examples/paid-pilot-offer.json",
+    "machineDiscoveryReportExample": "examples/machine-discovery-report.json"
+  },
+  "recommendedCommands": [
+    "npm run demo:reviewer-kit",
+    "npm run demo:discovery",
+    "npm run demo:gatepass-round-trip",
+    "npm run demo:gatepass-scorecard",
+    "npm run demo:gatepass-wrapper",
+    "npm run demo:paid-pilot"
+  ],
+  "coreCommercialPosition": "No mandate. No evidence. No verified intent. No signed GatePass. No settlement.",
+  "lastReviewed": {
+    "mission": "P3-M142",
+    "date": "2026-07-13",
+    "reviewType": "local_machine_discovery_and_registry_readiness",
+    "reviewedBy": "Agent Trust Gate local repository metadata"
+  }
+}

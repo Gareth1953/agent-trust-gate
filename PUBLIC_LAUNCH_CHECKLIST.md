@@ -11,6 +11,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Commercial payment-capture pack is present: [Commercial payment-capture pack](docs/commercial-payment-capture-pack.md).
 - [ ] Paid pilot offer is present: [Paid pilot offer](docs/paid-pilot-offer.md).
 - [ ] P3-M141 paid pilot commercial entry pack is present: [paid pilot commercial entry](docs/paid-pilot-commercial-entry.md), [paid pilot scope and deliverables](docs/paid-pilot-scope-and-deliverables.md), [buyer evaluation journey](docs/buyer-evaluation-journey.md), [paid pilot pricing boundary](docs/paid-pilot-pricing-boundary.md), [paid pilot enquiry template](docs/paid-pilot-enquiry-template.md), and [machine-readable paid pilot offer](examples/paid-pilot-offer.json).
+- [ ] P3-M142 machine discovery and registry readiness pack is present: [canonical discovery record](agent-trust-gate.discovery.json), [machine discovery and registry readiness](docs/machine-discovery-and-registry-readiness.md), [machine-readable entry points](docs/machine-readable-entry-points.md), [GitHub Pages discovery readiness](docs/github-pages-discovery-readiness.md), [A2A discovery readiness boundary](docs/a2a-discovery-readiness-boundary.md), [MCP Registry readiness boundary](docs/mcp-registry-readiness-boundary.md), [npm publication readiness](docs/npm-publication-readiness.md), [registry readiness scorecard](docs/registry-readiness-scorecard.md), [static discovery-site source](discovery-site/README.md), and [machine discovery report](examples/machine-discovery-report.json).
 - [ ] Commercial contact copy is present: [Commercial contact copy](docs/commercial-contact-copy.md).
 - [ ] Pricing and paid pilot menu draft is present: [Pricing and paid pilot menu](docs/pricing-and-paid-pilot-menu.md).
 - [ ] External reviewer signal and hardening roadmap is present: [External reviewer signal and hardening roadmap](docs/external-reviewer-signal-and-hardening-roadmap.md).
@@ -46,6 +47,7 @@ This checklist covers global publication of the repository as code and documenta
 - [ ] Payment remains human-approved and external to the repository.
 - [ ] No automatic acceptance or automatic access is implied.
 - [ ] No live payment processing, PayPal API integration, Stripe integration, checkout, webhook, settlement execution, wallet/banking logic, or payment rail is active.
+- [ ] P3-M142 does not add payment integration, checkout, payment links, live invoices, payment credentials, payment processing, or settlement execution.
 - [ ] P3-M141 paid evaluation pilot wording is local, manual-input only, human-approved, non-production, non-custodial, non-autonomous, advisory, and demonstrative.
 - [ ] P3-M141 indicative pricing starts from £1,500 subject to scope and written agreement, with no guaranteed price, result, production integration, automatic acceptance, automatic access, checkout, payment links, or payment integration.
 - [ ] P3-M113 paid pilot offer and commercial contact copy are documentation only.

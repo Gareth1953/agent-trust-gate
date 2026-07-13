@@ -39,10 +39,12 @@ Safe local commands:
 - npm run demo:gatepass-wrapper
 - npm run demo:reviewer-kit
 - npm run demo:paid-pilot
+- npm run demo:discovery
 - npm run proof:money-gate
 
 Important docs:
 - README.md
+- agent-trust-gate.discovery.json
 - docs/agent-readable-discovery-and-system-metadata.md
 - docs/system-integration-metadata.md
 - docs/example-agent-discovery-prompts.md
@@ -60,6 +62,13 @@ Important docs:
 - docs/buyer-evaluation-journey.md
 - docs/paid-pilot-pricing-boundary.md
 - docs/paid-pilot-enquiry-template.md
+- docs/machine-discovery-and-registry-readiness.md
+- docs/machine-readable-entry-points.md
+- docs/github-pages-discovery-readiness.md
+- docs/a2a-discovery-readiness-boundary.md
+- docs/mcp-registry-readiness-boundary.md
+- docs/npm-publication-readiness.md
+- docs/registry-readiness-scorecard.md
 - docs/public-repo-commercial-conversion-review.md
 - docs/buyer-use-cases-and-revenue-triggers.md
 - docs/revenue-trigger-map.md
@@ -193,6 +202,7 @@ Important examples:
 - examples/gatepass-developer-wrapper-demo.json
 - examples/gatepass-reviewer-kit-report.json
 - examples/paid-pilot-offer.json
+- examples/machine-discovery-report.json
 
 Commercial/contact route:
 Human-reviewed developer, agent-system, integration, security, paid evaluation
@@ -212,6 +222,13 @@ webhooks, no wallet/banking logic, no real settlement execution, no production
 signing, no production key management, no real tool execution, no cloud/network calls, no AUC
 integration, no Agent Contact System integration, no outreach automation, and
 no action execution.
+
+Machine discovery boundary:
+P3-M142 adds passive machine-readable project metadata only. It creates no live
+A2A server, no A2A operational endpoint, no MCP server, no MCP Registry
+publication, no npm publication, no GitHub Pages deployment, no registry
+credential, no network endpoint, no payment integration, no real tool
+execution, no settlement execution, and no action execution.
 
 ## P3-M141 - Paid Pilot and Commercial Entry Pack
 
@@ -245,6 +262,46 @@ false, productionSigning false, productionCertification false,
 securityCertification false, legalComplianceGuarantee false,
 guaranteedResults false, automaticAcceptance false, and
 automaticAccessAfterPayment false.
+
+## P3-M142 - Machine Discovery and Registry Readiness Pack
+
+P3-M142 adds a canonical passive machine-discovery record, local discovery CLI,
+registry-readiness boundary docs, and static discovery-site source. It improves
+how humans, search systems, AI assistants, developers, and reviewers understand
+Agent Trust Gate without adding executable remote services.
+
+Canonical discovery record:
+`agent-trust-gate.discovery.json`
+
+Discovery command:
+`npm run demo:discovery`
+
+Discovery docs:
+- `docs/machine-discovery-and-registry-readiness.md`
+- `docs/machine-readable-entry-points.md`
+- `docs/github-pages-discovery-readiness.md`
+- `docs/a2a-discovery-readiness-boundary.md`
+- `docs/mcp-registry-readiness-boundary.md`
+- `docs/npm-publication-readiness.md`
+- `docs/registry-readiness-scorecard.md`
+- `examples/machine-discovery-report.json`
+
+Discovery safety flags: localDemoOnly true, manualInputOnly true,
+humanApprovalRequired true, nonProduction true, a2aServer false, mcpServer
+false, mcpRegistryPublication false, npmPublication false,
+githubPagesDeployment false, operationalEndpoint false, registryCredentials
+false, realToolExecution false, actionExecution false, networkCalls false,
+livePaymentProcessing false, settlementExecution false, productionSigning
+false, productionCertification false, securityCertification false, and
+legalComplianceGuarantee false.
+
+The reviewer kit remains the recommended first experience. GatePass remains
+the headline proof primitive. Agent Trust Language remains supporting material.
+GitHub topics are documented as manually configured through GitHub and are not
+altered automatically by this repository. No GitHub Pages deployment, A2A
+server, A2A operational endpoint, MCP server, MCP Registry publication, npm
+publication, outreach, bot messaging, payment integration, network call,
+deployment, tag, release, publish, push, or action execution is introduced.
 
 Agent-readable GatePass benefit boundary:
 Agents may explain GatePass only in relevant trust, proof, authorisation,
