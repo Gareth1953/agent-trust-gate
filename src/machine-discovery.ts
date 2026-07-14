@@ -85,6 +85,15 @@ export interface MachineDiscoveryRecord {
     priceBoundary: string;
     status: "human_reviewed_enquiry_only";
   };
+  embeddedCommerceGatepass: {
+    document: "docs/embedded-commerce-gatepass.md";
+    designPartnerDocument: "docs/embedded-commerce-design-partner-pilot.md";
+    command: "npm run demo:commerce-gatepass";
+    exampleReport: "examples/embedded-commerce-gatepass-report.json";
+    status: "local_deterministic_synthetic_evaluation";
+    designPartnerPosition: "We prove the trust architecture. The design partner funds the real integration.";
+    integrationBoundary: string;
+  };
   publicContactEmail: typeof MACHINE_DISCOVERY_CONTACT;
   licence: "MIT";
   implementationLanguage: "TypeScript";
@@ -134,9 +143,9 @@ export interface MachineDiscoveryRecord {
   recommendedCommands: readonly string[];
   coreCommercialPosition: "No mandate. No evidence. No verified intent. No signed GatePass. No settlement.";
   lastReviewed: {
-    mission: "P3-M143A";
-    date: "2026-07-13";
-    reviewType: "passive_discovery_activation_active_https_verified";
+    mission: "P3-M144";
+    date: "2026-07-14";
+    reviewType: "embedded_commerce_gatepass_local_demonstrator";
     reviewedBy: "Agent Trust Gate local repository metadata";
   };
 }
@@ -152,6 +161,7 @@ export interface MachineDiscoveryReport {
   gatepassPositioning: typeof MACHINE_DISCOVERY_CORE_PHRASES[0];
   technicalWording: typeof MACHINE_DISCOVERY_CORE_PHRASES[1];
   paidPilot: MachineDiscoveryRecord["paidPilot"];
+  embeddedCommerceGatepass: MachineDiscoveryRecord["embeddedCommerceGatepass"];
   readinessSummary: Record<string, RegistryReadinessStatus | string>;
   inactiveStatuses: {
     a2aServer: false;
@@ -216,6 +226,7 @@ export interface MachineDiscoverySummary {
   discoveryCommand: typeof MACHINE_DISCOVERY_COMMAND;
   headlineProductConcept: "GatePass";
   paidPilotStartingPriceGbp: 1500;
+  embeddedCommerceGatepassCommand: "npm run demo:commerce-gatepass";
   a2aServer: false;
   mcpServer: false;
   npmPublished: false;
@@ -300,6 +311,16 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
       priceBoundary: "Starting from £1,500 subject to scope and written agreement.",
       status: "human_reviewed_enquiry_only",
     },
+    embeddedCommerceGatepass: {
+      document: "docs/embedded-commerce-gatepass.md",
+      designPartnerDocument: "docs/embedded-commerce-design-partner-pilot.md",
+      command: "npm run demo:commerce-gatepass",
+      exampleReport: "examples/embedded-commerce-gatepass-report.json",
+      status: "local_deterministic_synthetic_evaluation",
+      designPartnerPosition: "We prove the trust architecture. The design partner funds the real integration.",
+      integrationBoundary:
+        "Synthetic commerce evaluation only; no live retailer integration, no shopping-agent integration, no checkout, no account login, no card handling, no payment or settlement execution, no API, no A2A, no MCP, no network, and no production integration exists.",
+    },
     publicContactEmail: MACHINE_DISCOVERY_CONTACT,
     licence: "MIT",
     implementationLanguage: "TypeScript",
@@ -318,6 +339,7 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
       "local adversarial scorecard",
       "local developer wrapper",
       "local reviewer kit",
+      "local embedded commerce pre-checkout basket verification demo",
       "local paid evaluation pilot packaging",
       "passive machine-readable discovery metadata",
     ],
@@ -329,6 +351,9 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
       "trust and safety reviewers",
       "payment workflow reviewers",
       "commercial pilot evaluators",
+      "commerce infrastructure reviewers",
+      "retailer trust and safety reviewers",
+      "payment-provider evaluation teams",
     ],
     statuses: MACHINE_DISCOVERY_SAFETY_FLAGS,
     inactiveIntegrationStatus: {
@@ -386,6 +411,7 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
       "not listed in the MCP Registry",
       "not published on npm",
       "GitHub Pages passive discovery is active, public, and HTTPS verified as a static discovery route",
+      "Embedded Commerce GatePass is a local deterministic synthetic demonstrator only",
       "no real payment or settlement execution",
       "no live autonomous action execution",
       "no guaranteed safety, compliance, buyer demand, or paid-pilot conversion",
@@ -401,6 +427,9 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
       reviewerKitReportExample: "examples/gatepass-reviewer-kit-report.json",
       paidPilotOfferExample: "examples/paid-pilot-offer.json",
       machineDiscoveryReportExample: "examples/machine-discovery-report.json",
+      embeddedCommerceGatepass: "docs/embedded-commerce-gatepass.md",
+      embeddedCommerceDesignPartnerPilot: "docs/embedded-commerce-design-partner-pilot.md",
+      embeddedCommerceReportExample: "examples/embedded-commerce-gatepass-report.json",
       livePagesUrl: MACHINE_DISCOVERY_EXPECTED_PAGES_URL,
       livePagesDiscoveryRecord: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}agent-trust-gate.discovery.json`,
       livePagesLlms: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}llms.txt`,
@@ -411,6 +440,7 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
       MACHINE_DISCOVERY_FIRST_COMMAND,
       MACHINE_DISCOVERY_COMMAND,
       MACHINE_DISCOVERY_SITE_VALIDATION_COMMAND,
+      "npm run demo:commerce-gatepass",
       "npm run demo:gatepass-round-trip",
       "npm run demo:gatepass-scorecard",
       "npm run demo:gatepass-wrapper",
@@ -419,9 +449,9 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
     coreCommercialPosition:
       "No mandate. No evidence. No verified intent. No signed GatePass. No settlement.",
     lastReviewed: {
-      mission: "P3-M143A",
-      date: "2026-07-13",
-      reviewType: "passive_discovery_activation_active_https_verified",
+      mission: "P3-M144",
+      date: "2026-07-14",
+      reviewType: "embedded_commerce_gatepass_local_demonstrator",
       reviewedBy: "Agent Trust Gate local repository metadata",
     },
   };
@@ -441,6 +471,7 @@ export function getMachineDiscoveryReport(
     gatepassPositioning: MACHINE_DISCOVERY_CORE_PHRASES[0],
     technicalWording: MACHINE_DISCOVERY_CORE_PHRASES[1],
     paidPilot: record.paidPilot,
+    embeddedCommerceGatepass: record.embeddedCommerceGatepass,
     readinessSummary: {
       githubRepositoryDiscovery: "Active",
       githubTopics: "Active - added manually through GitHub",
@@ -457,6 +488,7 @@ export function getMachineDiscoveryReport(
       npmPackagingReadiness: "Ready for review",
       npmPublicationReadiness: "Requires explicit approval",
       paidPilotCommercialRoute: "Active",
+      embeddedCommerceGatepass: "Ready for local synthetic evaluation - no live checkout or payment integration",
     },
     inactiveStatuses: {
       a2aServer: false,
@@ -510,7 +542,7 @@ export function getMachineDiscoveryReport(
       legalComplianceGuarantee: false,
     },
     safetyBoundary:
-      "Passive machine discovery and local deterministic evaluation only. GitHub Pages passive discovery is active, public, and HTTPS verified as a static discovery route. No live API endpoint, no A2A server, no MCP server, no npm publication, no real tool execution, no product network calls, no live payment processing, no settlement execution, and no action execution.",
+      "Passive machine discovery and local deterministic evaluation only. GitHub Pages passive discovery is active, public, and HTTPS verified as a static discovery route. Embedded Commerce GatePass is synthetic pre-checkout basket verification only. No live API endpoint, no A2A server, no MCP server, no npm publication, no retailer integration, no shopping-agent integration, no checkout, no card handling, no real tool execution, no product network calls, no live payment processing, no settlement execution, and no action execution.",
     publicContact: record.publicContactEmail,
     lastReviewed: record.lastReviewed,
   };
@@ -526,6 +558,7 @@ export function summariseMachineDiscovery(
     discoveryCommand: MACHINE_DISCOVERY_COMMAND,
     headlineProductConcept: record.headlineProductConcept,
     paidPilotStartingPriceGbp: record.paidPilot.indicativeStartingPriceGbp,
+    embeddedCommerceGatepassCommand: record.embeddedCommerceGatepass.command,
     a2aServer: record.statuses.a2aServer,
     mcpServer: record.statuses.mcpServer,
     npmPublished: record.statuses.npmPublished,
@@ -569,6 +602,15 @@ export function validateMachineDiscoveryRecord(
       passed: record.paidPilot.indicativeStartingPriceGbp === 1500 &&
         record.paidPilot.status === "human_reviewed_enquiry_only",
       detail: "Paid Evaluation Pilot route is present with cautious indicative price",
+    },
+    {
+      id: "embedded_commerce_gatepass",
+      passed: record.embeddedCommerceGatepass.command === "npm run demo:commerce-gatepass" &&
+        record.embeddedCommerceGatepass.status === "local_deterministic_synthetic_evaluation" &&
+        record.embeddedCommerceGatepass.integrationBoundary.includes("no live retailer") &&
+        record.embeddedCommerceGatepass.integrationBoundary.includes("no checkout") &&
+        record.embeddedCommerceGatepass.integrationBoundary.includes("no live"),
+      detail: "Embedded Commerce GatePass is present as a local synthetic demonstrator only",
     },
     {
       id: "inactive_protocols",

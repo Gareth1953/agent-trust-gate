@@ -18,7 +18,8 @@ The route is:
 2. The canonical discovery record explains current capabilities and inactive integrations.
 3. A reviewer runs `npm run demo:reviewer-kit`.
 4. A developer inspects GatePass, schemas, examples, and local wrappers.
-5. A genuine prospect reads the Paid Evaluation Pilot docs and contacts Gareth manually.
+5. A specialist reviewer may run `npm run demo:commerce-gatepass` for synthetic pre-checkout basket verification.
+6. A genuine prospect reads the Paid Evaluation Pilot docs and contacts Gareth manually.
 
 ## Reviewer-First Route
 
@@ -48,6 +49,7 @@ The Agent Trust Gate Paid Evaluation Pilot starts from £1,500, subject to scope
 - Local adversarial scenario scorecard with illustrative local timing.
 - Local developer wrapper for mock tool-call gating.
 - One-command local reviewer kit.
+- Local deterministic Embedded Commerce GatePass demonstrator for synthetic pre-checkout basket verification.
 - Passive machine-readable discovery metadata.
 - Active public static GitHub Pages discovery route.
 - Human-reviewed paid-pilot enquiry route.
@@ -61,6 +63,7 @@ The Agent Trust Gate Paid Evaluation Pilot starts from £1,500, subject to scope
 - GitHub Pages passive discovery is active and HTTPS verified as a static route only.
 - GitHub Pages deployment workflow is active through GitHub Actions.
 - No live API or operational network endpoint.
+- No live retailer, shopping-agent, checkout, account, card, payment-token, AI-provider, or commerce production integration.
 - No real action execution.
 - No real payment or settlement execution.
 - No autonomous outreach, scraping, tracking, analytics, or direct bot messaging.

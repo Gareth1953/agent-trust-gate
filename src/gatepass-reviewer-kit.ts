@@ -3,6 +3,13 @@ import {
   type GatePassDecision,
 } from "./gatepass-core.js";
 import {
+  EMBEDDED_COMMERCE_GATEPASS_COMMAND,
+  runEmbeddedCommerceGatepassDemo,
+  summariseEmbeddedCommerceGatepassDemo,
+  type EmbeddedCommerceGatepassReport,
+  type EmbeddedCommerceGatepassSummary,
+} from "./embedded-commerce-gatepass.js";
+import {
   runGatePassAdversarialScorecard,
   summariseGatePassAdversarialScorecard,
   type GatePassAdversarialScorecard,
@@ -128,10 +135,12 @@ export interface GatePassReviewerKitReport extends GatePassReviewerKitSafetyFlag
     "GatePass adversarial scorecard",
     "GatePass developer wrapper",
     "Local framework-style integration example",
+    "Embedded Commerce GatePass optional specialist scenario",
   ];
   lifecycleSummary: GatePassReviewerLifecycleSummary;
   scorecardSummary: GatePassReviewerScorecardSummary;
   wrapperSummary: GatePassReviewerWrapperSummary;
+  commerceSummary: EmbeddedCommerceGatepassSummary;
   decisionHighlights: GatePassReviewerDecisionHighlights;
   timingHighlights: string[];
   reviewerNextSteps: string[];
@@ -142,6 +151,7 @@ export interface GatePassReviewerKitReport extends GatePassReviewerKitSafetyFlag
     scorecard: GatePassAdversarialScorecard | GatePassAdversarialScorecardSummary;
     wrapper: GatePassToolWrapperDemo | GatePassToolWrapperDemoSummary;
     localFrameworkIntegration: LocalAgentFrameworkIntegrationDemo | LocalAgentFrameworkIntegrationSummary;
+    commerce: EmbeddedCommerceGatepassSummary;
   };
 }
 
@@ -172,11 +182,13 @@ export function runGatePassReviewerKit(): GatePassReviewerKitReport {
   const scorecard = runGatePassAdversarialScorecard();
   const wrapper = runGatePassToolWrapperDemo();
   const localFrameworkIntegration = runLocalAgentFrameworkIntegrationExample();
+  const commerce = runEmbeddedCommerceGatepassDemo();
   return buildReviewerKitJsonReport({
     roundTrip,
     scorecard,
     wrapper,
     localFrameworkIntegration,
+    commerce,
   });
 }
 
@@ -185,14 +197,16 @@ export function buildReviewerKitJsonReport(components: {
   scorecard: GatePassAdversarialScorecard;
   wrapper: GatePassToolWrapperDemo;
   localFrameworkIntegration: LocalAgentFrameworkIntegrationDemo;
+  commerce: EmbeddedCommerceGatepassReport;
 }): GatePassReviewerKitReport {
   const lifecycleSummary = buildLifecycleSummary(components.roundTrip);
   const scorecardSummary = buildScorecardSummary(components.scorecard);
   const wrapperSummary = buildWrapperSummary(components.wrapper, components.localFrameworkIntegration);
+  const commerceSummary = summariseEmbeddedCommerceGatepassDemo(components.commerce);
   return {
     project: "Agent Trust Gate",
     purpose:
-      "One-command local reviewer kit that runs GatePass round-trip, adversarial scorecard, developer wrapper, and local integration summaries without live execution.",
+      "One-command local reviewer kit that runs GatePass round-trip, adversarial scorecard, developer wrapper, local integration, and optional embedded-commerce summaries without live execution.",
     kitVersion: GATEPASS_REVIEWER_KIT_VERSION,
     oneCommand: GATEPASS_REVIEWER_KIT_ONE_COMMAND,
     corePhrases: GATEPASS_REVIEWER_KIT_CORE_PHRASES,
@@ -201,10 +215,12 @@ export function buildReviewerKitJsonReport(components: {
       "GatePass adversarial scorecard",
       "GatePass developer wrapper",
       "Local framework-style integration example",
+      "Embedded Commerce GatePass optional specialist scenario",
     ],
     lifecycleSummary,
     scorecardSummary,
     wrapperSummary,
+    commerceSummary,
     decisionHighlights: buildDecisionHighlights(lifecycleSummary, scorecardSummary, wrapperSummary),
     timingHighlights: [
       `scorecard_total_duration_ms=${scorecardSummary.timingSummary.totalDurationMs}`,
@@ -216,11 +232,15 @@ export function buildReviewerKitJsonReport(components: {
       "Inspect GatePass round-trip scenarios for create, verify, reject, and explanation behavior.",
       "Inspect scorecard expected-vs-actual outcomes and local illustrative timing.",
       "Inspect wrapGatePassTool to see local mock tool gating in a few lines.",
+      `Optionally run ${EMBEDDED_COMMERCE_GATEPASS_COMMAND} for synthetic pre-checkout basket verification.`,
       "Ask next for deeper real-framework local adapter or package ergonomics while preserving no live execution.",
     ],
     safetyBoundary: getReviewerKitSafetyBoundary(),
     publicContact: GATEPASS_REVIEWER_KIT_PUBLIC_CONTACT,
-    components,
+    components: {
+      ...components,
+      commerce: commerceSummary,
+    },
     ...GATEPASS_REVIEWER_KIT_SAFETY_FLAGS,
   };
 }
@@ -231,7 +251,7 @@ export function buildReviewerKitSummary(report: GatePassReviewerKitReport): Gate
 }
 
 export function getReviewerKitSafetyBoundary(): string {
-  return "Local deterministic reviewer kit only. It runs local GatePass lifecycle, scorecard, wrapper, and framework-style summaries; mockToolExecutionOnly is true, while realToolExecution, actionExecution, networkCalls, productionMiddleware, productionBenchmark, productionCertification, securityCertification, paymentAuthorisation, and settlementAuthorisation remain false.";
+  return "Local deterministic reviewer kit only. It runs local GatePass lifecycle, scorecard, wrapper, framework-style, and optional embedded-commerce summaries; mockToolExecutionOnly is true, while realToolExecution, actionExecution, networkCalls, productionMiddleware, productionBenchmark, productionCertification, securityCertification, paymentAuthorisation, and settlementAuthorisation remain false.";
 }
 
 function buildLifecycleSummary(roundTrip: GatePassRoundTripDemoPack): GatePassReviewerLifecycleSummary {
@@ -357,6 +377,7 @@ export function summariseReviewerKitComponents(report: GatePassReviewerKitReport
   scorecard: GatePassAdversarialScorecardSummary;
   wrapper: GatePassToolWrapperDemoSummary;
   localFrameworkIntegration: LocalAgentFrameworkIntegrationSummary;
+  commerce: EmbeddedCommerceGatepassSummary;
 } {
   return {
     roundTrip: summariseGatePassRoundTripDemo(report.components.roundTrip as GatePassRoundTripDemoPack),
@@ -365,5 +386,6 @@ export function summariseReviewerKitComponents(report: GatePassReviewerKitReport
     localFrameworkIntegration: summariseLocalAgentFrameworkIntegration(
       report.components.localFrameworkIntegration as LocalAgentFrameworkIntegrationDemo,
     ),
+    commerce: report.commerceSummary,
   };
 }

@@ -1,5 +1,26 @@
 # Release Notes
 
+## P3-M144: Embedded Commerce GatePass Demonstrator
+
+P3-M144 adds a compact local demonstrator for synthetic pre-checkout basket verification.
+
+Added assets:
+
+- `docs/embedded-commerce-gatepass.md`
+- `docs/embedded-commerce-design-partner-pilot.md`
+- `src/embedded-commerce-gatepass.ts`
+- `src/embedded-commerce-gatepass-cli.ts`
+- `test/embedded-commerce-gatepass.test.ts`
+- `examples/embedded-commerce-gatepass-report.json`
+- focused synthetic commerce scenario examples
+- `npm run demo:commerce-gatepass`
+
+The demo compares a final proposed basket with mandate, limits, substitutions, delivery reference, currency, approval, basket hash, nonce, and evidence. It emits either a local commerce GatePass or a refusal receipt.
+
+The reviewer kit remains the recommended first experience and GatePass remains the headline proof primitive. The design-partner position is: We prove the trust architecture. The design partner funds the real integration.
+
+No live retailer integration, shopping-agent integration, checkout, account login, card handling, payment token handling, payment processing, settlement execution, AI-provider integration, network call, A2A service, MCP service, npm publication, production signing, production-grade cryptography, real customer data, image generation, deployment, release, tag, publication, push, or action execution is added.
+
 ## P3-M143A: Live Passive Discovery Activation Record
 
 P3-M143A records the GitHub Pages passive discovery site as active and verified.

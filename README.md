@@ -44,6 +44,7 @@ Secondary commands:
 npm run demo:gatepass-round-trip
 npm run demo:gatepass-scorecard
 npm run demo:gatepass-wrapper
+npm run demo:commerce-gatepass
 ```
 
 ## Reviewer quickstart
@@ -97,6 +98,35 @@ This is not production middleware, not a payment or settlement system, not
 production signing, not legal/compliance/security certification, and not a
 guarantee of safety, trust, integration success, commercial result, acceptance,
 or access after payment.
+
+## Embedded Commerce GatePass
+
+P3-M144 adds a local deterministic demonstrator for verifying a synthetic
+AI-generated shopping basket immediately before checkout. It compares the final
+proposed basket with the buyer mandate, product categories, strict variants,
+quantity and price limits, fees, final total, substitution policy, delivery
+destination reference, currency, human approval, approval freshness, basket
+hash, nonce, and evidence.
+
+The demo returns either a commerce GatePass or a refusal receipt.
+
+```powershell
+npm run demo:commerce-gatepass
+npm run demo:commerce-gatepass -- --summary-only
+npm run demo:commerce-gatepass -- --json
+```
+
+Docs and examples:
+
+- [Embedded Commerce GatePass](docs/embedded-commerce-gatepass.md)
+- [Embedded Commerce design-partner pilot](docs/embedded-commerce-design-partner-pilot.md)
+- [Embedded commerce report](examples/embedded-commerce-gatepass-report.json)
+
+This is local and synthetic only. Real retailer, shopping-agent, checkout,
+payment, settlement, AI-provider, API, A2A, MCP, or production integration would
+require a paid design-partner scope, security review, and written agreement.
+The commercial principle remains: **We prove the trust architecture. The design
+partner funds the real integration.**
 
 ## Machine and Developer Discovery
 
@@ -244,6 +274,7 @@ mission.
 - P3-M141 adds a paid pilot and commercial entry pack for a human-approved, local, non-production Agent Trust Gate(TM) Paid Evaluation Pilot.
 - P3-M142 adds canonical passive machine-discovery metadata and registry-readiness boundaries.
 - P3-M143A records GitHub Pages passive discovery as active and verified.
+- P3-M144 adds a local deterministic Embedded Commerce GatePass demonstrator for synthetic pre-checkout basket verification.
 
 ## Start here for reviewers
 

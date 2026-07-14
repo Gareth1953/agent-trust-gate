@@ -26,6 +26,8 @@ GatePass is the headline proof primitive for Agent Trust Gate(TM). GatePass is a
 
 The paid evaluation pilot demonstrates how proposed AI-agent actions can be checked locally before action. It remains a controlled proof-of-concept evaluation, not production middleware.
 
+P3-M144 adds an optional Embedded Commerce GatePass synthetic evaluation for final-basket verification before checkout. It demonstrates mandate, limit, substitution, delivery-reference, approval, replay, and evidence checks only. Real retailer, shopping-agent, checkout, payment, settlement, AI-provider, API, A2A, MCP, or production integration would require separate design-partner scope, security review, and written agreement.
+
 ## Who The Pilot Is For
 
 The pilot may be relevant for:
@@ -59,6 +61,7 @@ Subject to written scope, a buyer may receive:
 - local GatePass lifecycle review;
 - local developer wrapper evaluation;
 - local pre-action or pre-settlement scenario mapping;
+- optional local embedded-commerce basket verification scenario mapping;
 - a written findings summary;
 - recommended next evaluation steps.
 

@@ -1,6 +1,6 @@
 {
   "project": "Agent Trust Gate",
-  "purpose": "One-command local reviewer kit that runs GatePass lifecycle, adversarial scorecard, developer wrapper, and local integration summaries without live execution.",
+  "purpose": "One-command local reviewer kit that runs GatePass lifecycle, adversarial scorecard, developer wrapper, local integration, and optional embedded-commerce summaries without live execution.",
   "kitVersion": "atg.gatepass-reviewer-kit.local.v1",
   "localDemoOnly": true,
   "oneCommand": "npm run demo:reviewer-kit",
@@ -8,7 +8,8 @@
     "GatePass round trip",
     "GatePass adversarial scorecard",
     "GatePass developer wrapper",
-    "Local framework-style integration example"
+    "Local framework-style integration example",
+    "Embedded Commerce GatePass optional specialist scenario"
   ],
   "corePhrases": [
     "GatePass is a scoped, time-bound, action-specific proof primitive for agent actions.",
@@ -71,7 +72,7 @@
     "mockToolExecutionOnly": true,
     "realToolExecution": false
   },
-  "safetyBoundary": "Local deterministic reviewer kit only. No real tool execution, action execution, network calls, production middleware, production benchmark, security certification, payment authorisation, or settlement authorisation.",
+  "safetyBoundary": "Local deterministic reviewer kit only. No real tool execution, action execution, network calls, production middleware, production benchmark, security certification, payment authorisation, settlement authorisation, checkout, or live commerce integration.",
   "publicContact": "gpmiddleton71@gmail.com",
   "productionBenchmark": false,
   "productionMiddleware": false,
@@ -84,5 +85,54 @@
   "paymentAuthorisation": false,
   "settlementAuthorisation": false,
   "networkCalls": false,
-  "liveAgentToAgentCommunication": false
+  "liveAgentToAgentCommunication": false,
+  "commerceSummary": {
+    "project": "Agent Trust Gate",
+    "purpose": "Deterministic local Embedded Commerce GatePass demonstrator for pre-checkout basket verification.",
+    "reportVersion": "atg.embedded-commerce-gatepass.report.local.v1",
+    "command": "npm run demo:commerce-gatepass",
+    "corePosition": "No mandate. No evidence. No verified intent. No signed GatePass. No settlement.",
+    "commercePosition": "No verified basket. No valid mandate. No current approval. No GatePass. No checkout.",
+    "designPartnerPrinciple": "We prove the trust architecture. The design partner funds the real integration.",
+    "publicContact": "gpmiddleton71@gmail.com",
+    "paidEvaluationPilot": {
+      "available": true,
+      "startingPriceGbp": 1500,
+      "boundary": "Subject to scope and written agreement; real integration is separate design-partner work."
+    },
+    "referenceTime": "2026-07-14T09:00:00.000Z",
+    "scenarioCount": 15,
+    "allowedCount": 1,
+    "refusedCount": 14,
+    "exampleFiles": {
+      "valid_basket_within_mandate": "examples/commerce-valid-basket.json",
+      "unauthorised_substitution": "examples/commerce-unauthorised-substitution.json",
+      "final_total_exceeds_cap": "examples/commerce-price-cap-breach.json",
+      "delivery_address_changed": "examples/commerce-address-change.json",
+      "approval_expired": "examples/commerce-expired-approval.json",
+      "replayed_request": "examples/commerce-replay-attempt.json",
+      "missing_evidence": "examples/commerce-missing-evidence.json"
+    },
+    "recommendedFirstExperience": "npm run demo:reviewer-kit",
+    "optionalSpecialistCommand": "npm run demo:commerce-gatepass",
+    "nonProductionStatus": "Local deterministic synthetic evaluation only; no retailer, shopping-agent, checkout, payment, settlement, A2A, MCP, API, or production integration exists.",
+    "localOnly": true,
+    "syntheticOnly": true,
+    "nonProduction": true,
+    "networkCalls": false,
+    "liveRetailerIntegration": false,
+    "liveAiProviderIntegration": false,
+    "checkoutCreated": false,
+    "paymentAuthorisation": false,
+    "settlementExecution": false,
+    "actionExecution": false,
+    "accountLogin": false,
+    "cardHandling": false,
+    "paymentCredentialHandling": false,
+    "a2aServer": false,
+    "mcpServer": false,
+    "productionSigning": false,
+    "productionGradeCrypto": false,
+    "realPersonalData": false
+  }
 }

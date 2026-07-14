@@ -16,6 +16,7 @@ This document lists the canonical repository entry points that humans, AI assist
 | `schemas/` | Local schemas for proof and GatePass structures | Schema reference |
 | `examples/` | Deterministic local examples and reports | Example reference |
 | `docs/one-command-reviewer-demo-kit.md` | Reviewer kit explanation | Reviewer entry point |
+| `docs/embedded-commerce-gatepass.md` | Local synthetic commerce GatePass use case | Optional specialist scenario, not a live checkout or payment integration |
 | `docs/paid-pilot-commercial-entry.md` | Paid Evaluation Pilot entry | Commercial entry point |
 | `docs/public-positioning-claims-boundary.md` | Public claims boundary | Claims boundary |
 | `discovery-site/index.html` | Static Pages source | Active public passive discovery homepage |
@@ -48,6 +49,8 @@ Then inspect:
 - `agent-trust-gate.discovery.json`
 - `examples/machine-discovery-report.json`
 - `docs/registry-readiness-scorecard.md`
+- `docs/embedded-commerce-gatepass.md`
+- `examples/embedded-commerce-gatepass-report.json`
 - `docs/github-pages-passive-discovery-activation.md`
 - `docs/passive-discovery-live-verification-checklist.md`
 - `docs/a2a-discovery-readiness-boundary.md`
@@ -56,4 +59,4 @@ Then inspect:
 
 ## Safety Boundary
 
-The machine-readable entry points are static or local-only. P3-M143A verifies a selected-file GitHub Pages static discovery deployment. These entry points do not add live APIs, product network calls, autonomous contact, direct bot messaging, live agent-to-agent communication, real tool execution, payment processing, settlement execution, production signing, package publication, registry registration, or operational A2A/MCP endpoints.
+The machine-readable entry points are static or local-only. P3-M143A verifies a selected-file GitHub Pages static discovery deployment. P3-M144 adds local synthetic commerce basket verification only. These entry points do not add live APIs, product network calls, live retailer integration, shopping-agent integration, checkout, account login, card handling, payment-token handling, autonomous contact, direct bot messaging, live agent-to-agent communication, real tool execution, payment processing, settlement execution, production signing, package publication, registry registration, or operational A2A/MCP endpoints.

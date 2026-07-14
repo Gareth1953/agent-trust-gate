@@ -24,6 +24,12 @@ Timing is local illustrative timing only. It is not a production benchmark, not 
 
 The wrapper summary shows how the `wrapGatePassTool` pattern gates a local mock tool before any local mock output is allowed. It also summarizes the local framework-style integration example.
 
+### Optional Commerce Scenario
+
+The optional commerce summary shows a local synthetic Embedded Commerce GatePass demonstrator. It reports the command, scenario count, allowed count, refused count, and non-production boundary for final-basket verification before checkout.
+
+It is a specialist extension to the reviewer kit, not the first recommended route. It does not create a live shopping agent, retailer connector, checkout, payment service, settlement service, API, A2A service, MCP service, or production integration.
+
 ### Decision Outcomes
 
 The reviewer kit reports:

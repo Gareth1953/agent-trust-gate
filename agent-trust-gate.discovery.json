@@ -19,6 +19,15 @@
     "priceBoundary": "Starting from £1,500 subject to scope and written agreement.",
     "status": "human_reviewed_enquiry_only"
   },
+  "embeddedCommerceGatepass": {
+    "document": "docs/embedded-commerce-gatepass.md",
+    "designPartnerDocument": "docs/embedded-commerce-design-partner-pilot.md",
+    "command": "npm run demo:commerce-gatepass",
+    "exampleReport": "examples/embedded-commerce-gatepass-report.json",
+    "status": "local_deterministic_synthetic_evaluation",
+    "designPartnerPosition": "We prove the trust architecture. The design partner funds the real integration.",
+    "integrationBoundary": "Synthetic commerce evaluation only; no live retailer integration, no shopping-agent integration, no checkout, no account login, no card handling, no payment or settlement execution, no API, no A2A, no MCP, no network, and no production integration exists."
+  },
   "publicContactEmail": "gpmiddleton71@gmail.com",
   "licence": "MIT",
   "implementationLanguage": "TypeScript",
@@ -37,6 +46,7 @@
     "local adversarial scorecard",
     "local developer wrapper",
     "local reviewer kit",
+    "local embedded commerce pre-checkout basket verification demo",
     "local paid evaluation pilot packaging",
     "passive machine-readable discovery metadata"
   ],
@@ -47,7 +57,10 @@
     "AI governance reviewers",
     "trust and safety reviewers",
     "payment workflow reviewers",
-    "commercial pilot evaluators"
+    "commercial pilot evaluators",
+    "commerce infrastructure reviewers",
+    "retailer trust and safety reviewers",
+    "payment-provider evaluation teams"
   ],
   "statuses": {
     "nonProduction": true,
@@ -138,6 +151,7 @@
     "not listed in the MCP Registry",
     "not published on npm",
     "GitHub Pages passive discovery is active, public, and HTTPS verified as a static discovery route",
+    "Embedded Commerce GatePass is a local deterministic synthetic demonstrator only",
     "no real payment or settlement execution",
     "no live autonomous action execution",
     "no guaranteed safety, compliance, buyer demand, or paid-pilot conversion"
@@ -153,6 +167,9 @@
     "reviewerKitReportExample": "examples/gatepass-reviewer-kit-report.json",
     "paidPilotOfferExample": "examples/paid-pilot-offer.json",
     "machineDiscoveryReportExample": "examples/machine-discovery-report.json",
+    "embeddedCommerceGatepass": "docs/embedded-commerce-gatepass.md",
+    "embeddedCommerceDesignPartnerPilot": "docs/embedded-commerce-design-partner-pilot.md",
+    "embeddedCommerceReportExample": "examples/embedded-commerce-gatepass-report.json",
     "livePagesUrl": "https://gareth1953.github.io/agent-trust-gate/",
     "livePagesDiscoveryRecord": "https://gareth1953.github.io/agent-trust-gate/agent-trust-gate.discovery.json",
     "livePagesLlms": "https://gareth1953.github.io/agent-trust-gate/llms.txt",
@@ -163,6 +180,7 @@
     "npm run demo:reviewer-kit",
     "npm run demo:discovery",
     "npm run validate:discovery-site",
+    "npm run demo:commerce-gatepass",
     "npm run demo:gatepass-round-trip",
     "npm run demo:gatepass-scorecard",
     "npm run demo:gatepass-wrapper",
@@ -170,9 +188,9 @@
   ],
   "coreCommercialPosition": "No mandate. No evidence. No verified intent. No signed GatePass. No settlement.",
   "lastReviewed": {
-    "mission": "P3-M143A",
-    "date": "2026-07-13",
-    "reviewType": "passive_discovery_activation_active_https_verified",
+    "mission": "P3-M144",
+    "date": "2026-07-14",
+    "reviewType": "embedded_commerce_gatepass_local_demonstrator",
     "reviewedBy": "Agent Trust Gate local repository metadata"
   }
 }

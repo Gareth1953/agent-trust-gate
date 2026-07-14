@@ -22,8 +22,9 @@ This scorecard gives reviewers a concise view of passive discovery and registry 
 | npm publication readiness | Requires explicit approval | No npm login, tag, release, version bump, or publication. |
 | Provenance readiness | Prepared but inactive | Future trusted-publishing review required before publication. |
 | Paid-pilot commercial route | Active | Human-reviewed Paid Evaluation Pilot starts from £1,500 subject to scope and written agreement. |
+| Embedded Commerce GatePass | Ready for local synthetic evaluation | Deterministic pre-checkout basket verification demo only; no live retailer, checkout, payment, settlement, API, A2A, MCP, or production integration. |
 | PayPal implementation boundary | Prohibited in current mission | Private manual payment workflow remains outside this repository; no API integration, checkout, payment link, or live payment execution. |
 
 ## Safety Boundary
 
-This scorecard is static documentation. P3-M143A records GitHub Pages passive discovery as active and verified, but it does not add a custom domain, activate registries, publish a package, create A2A/MCP services, add live API endpoints, process payments, execute settlement, perform outreach, add tracking or analytics, or execute actions.
+This scorecard is static documentation. P3-M143A records GitHub Pages passive discovery as active and verified. P3-M144 adds local synthetic embedded-commerce basket verification only. Neither mission adds a custom domain, activates registries, publishes a package, creates A2A/MCP services, adds live API endpoints, integrates retailers, creates checkout, processes payments, executes settlement, performs outreach, adds tracking or analytics, or executes actions.

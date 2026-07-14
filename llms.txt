@@ -40,6 +40,7 @@ Safe local commands:
 - npm run demo:reviewer-kit
 - npm run demo:paid-pilot
 - npm run demo:discovery
+- npm run demo:commerce-gatepass
 - npm run validate:discovery-site
 - npm run proof:money-gate
 
@@ -63,6 +64,8 @@ Important docs:
 - docs/buyer-evaluation-journey.md
 - docs/paid-pilot-pricing-boundary.md
 - docs/paid-pilot-enquiry-template.md
+- docs/embedded-commerce-gatepass.md
+- docs/embedded-commerce-design-partner-pilot.md
 - docs/machine-discovery-and-registry-readiness.md
 - docs/machine-readable-entry-points.md
 - docs/github-pages-discovery-readiness.md
@@ -203,6 +206,14 @@ Important examples:
 - examples/gatepass-developer-wrapper-demo.json
 - examples/gatepass-reviewer-kit-report.json
 - examples/paid-pilot-offer.json
+- examples/commerce-valid-basket.json
+- examples/commerce-unauthorised-substitution.json
+- examples/commerce-price-cap-breach.json
+- examples/commerce-address-change.json
+- examples/commerce-expired-approval.json
+- examples/commerce-replay-attempt.json
+- examples/commerce-missing-evidence.json
+- examples/embedded-commerce-gatepass-report.json
 - examples/machine-discovery-report.json
 
 Commercial/contact route:
@@ -243,6 +254,27 @@ It does not create a custom domain, generate an image, add
 analytics/tracking/forms/payment links, create A2A or MCP services, publish
 npm, push, tag, release, expose a live API, process payments, execute
 settlement, or execute actions.
+
+Embedded commerce boundary:
+P3-M144 adds a local deterministic Embedded Commerce GatePass demonstrator for
+synthetic pre-checkout basket verification. It compares final proposed baskets
+against a buyer mandate, limits, substitution policy, delivery reference,
+currency, approval state, basket hash, nonce, and evidence. It can emit a
+local commerce GatePass or a refusal receipt.
+
+Commerce command:
+`npm run demo:commerce-gatepass`
+
+Commerce docs and examples:
+- `docs/embedded-commerce-gatepass.md`
+- `docs/embedded-commerce-design-partner-pilot.md`
+- `examples/embedded-commerce-gatepass-report.json`
+
+This is synthetic evaluation only. It adds no live retailer integration,
+shopping-agent integration, checkout service, account login, card handling,
+payment token handling, payment processing, settlement execution, AI-provider
+integration, network calls, A2A server, MCP server, production signing, or
+action execution.
 
 ## P3-M141 - Paid Pilot and Commercial Entry Pack
 
@@ -363,6 +395,31 @@ The Pages artifact is intended to include only `discovery-site/`,
 server, npm publication, payment integration, analytics, tracking, form,
 custom domain, generated image, live API, tag, release, push, or action
 execution is introduced.
+
+## P3-M144 - Embedded Commerce GatePass Demonstrator
+
+P3-M144 adds a local deterministic Embedded Commerce GatePass demonstrator for
+synthetic pre-checkout basket verification. It keeps `npm run
+demo:reviewer-kit` as the recommended first experience and treats commerce as
+an optional specialist scenario.
+
+Commerce command:
+`npm run demo:commerce-gatepass`
+
+Commerce docs:
+- `docs/embedded-commerce-gatepass.md`
+- `docs/embedded-commerce-design-partner-pilot.md`
+- `examples/embedded-commerce-gatepass-report.json`
+
+The demo can emit either a local commerce GatePass or a structured refusal
+receipt. It proves the trust architecture locally; any real integration would
+require paid design-partner scope, security review, and written agreement.
+
+No live retailer integration, shopping-agent integration, checkout service,
+account login, card handling, payment token handling, payment processing,
+settlement execution, AI-provider integration, network call, A2A server, MCP
+server, npm publication, production signing, production-grade cryptography,
+real customer data, or action execution is introduced.
 
 Agent-readable GatePass benefit boundary:
 Agents may explain GatePass only in relevant trust, proof, authorisation,

@@ -17,6 +17,7 @@ P3-M139 answers that by assembling:
 - GatePass create / verify / reject lifecycle;
 - GatePass adversarial metrics and local illustrative timing scorecard;
 - GatePass developer wrapper and local framework-style integration example;
+- optional Embedded Commerce GatePass summary for synthetic pre-checkout basket verification;
 - safety boundary summary;
 - JSON report output.
 
@@ -28,6 +29,7 @@ P3-M139 answers that by assembling:
 - GatePass scorecard: expected-vs-actual adversarial scenarios and local illustrative timing.
 - GatePass wrapper: `wrapGatePassTool` gating local mock tool calls.
 - Local framework-style integration: a LangGraph-style local adapter with no LangGraph dependency.
+- Embedded Commerce GatePass: optional synthetic basket verification before checkout, with no retailer, checkout, payment, settlement, network, A2A, MCP, or production integration.
 
 ## What reviewers should look for
 
@@ -56,10 +58,13 @@ The reviewer kit proves locally that:
 - Scorecard scenarios can produce expected allow/block/require-evidence/require-human-review/require-signed-GatePass outcomes.
 - A wrapper can intercept a local mock tool call before any mock action is allowed.
 - JSON report output can summarize the local proof evidence.
+- An optional commerce scenario can show how a final synthetic basket is checked against mandate, limits, substitutions, delivery reference, approval, replay state, and evidence.
 
 ## What this does not prove
 
 This kit is not production middleware. It is not a production benchmark. It is not security certification. It is not legal, compliance, procurement, settlement, identity, authentication, or security assurance. It does not perform production signing, live payment processing, settlement execution, live tool execution, network calls, live systems contact, direct bot messaging, live agent-to-agent communication, or action execution.
+
+The embedded-commerce extension is local and synthetic. It does not integrate with a retailer, shopping account, AI provider, browser, checkout, card, payment token, payment service, settlement service, live API, A2A service, or MCP service.
 
 ## Relationship to other GatePass work
 
@@ -70,6 +75,14 @@ The reviewer kit depends on earlier local proof layers:
 - P3-M138 GatePass developer wrapper and local integration example.
 
 P3-M135 and P3-M136 remain supporting material. Public reviewer language should keep GatePass as the headline: the core proof primitive, a machine-readable proof format, and a common format for expressing authority, mandate, scope, freshness, and evidence.
+
+Optional specialist scenario:
+
+```powershell
+npm run demo:commerce-gatepass
+npm run demo:commerce-gatepass -- --summary-only
+npm run demo:commerce-gatepass -- --json
+```
 
 ## Safety Boundary
 

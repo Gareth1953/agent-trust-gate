@@ -34,15 +34,20 @@ After the reviewer kit, a developer or technical reviewer can inspect the local 
 npm run demo:gatepass-round-trip
 npm run demo:gatepass-scorecard
 npm run demo:gatepass-wrapper
+npm run demo:commerce-gatepass
 ```
 
 This tests the local proof-of-concept only. It does not execute real tools, contact networks, process payments, execute settlement, or provide production middleware.
+
+The commerce command is optional and specialist. It uses fictional products and merchants to show how a final basket could be checked against mandate, limits, substitutions, delivery reference, approval, replay state, and evidence before checkout. It does not create a live basket, account login, checkout, payment authorisation, settlement execution, retailer integration, AI-provider integration, API, A2A service, or MCP service.
 
 Useful links:
 
 - [GatePass create-verify-reject round trip](gatepass-create-verify-reject-round-trip.md)
 - [GatePass adversarial metrics and latency scorecard](gatepass-adversarial-metrics-and-latency-scorecard.md)
 - [GatePass developer wrapper and local integration example](gatepass-developer-wrapper-and-local-integration-example.md)
+- [Embedded Commerce GatePass](embedded-commerce-gatepass.md)
+- [Embedded Commerce design-partner pilot](embedded-commerce-design-partner-pilot.md)
 
 ## 3. Buy A Pilot
 

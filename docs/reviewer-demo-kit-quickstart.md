@@ -20,6 +20,7 @@ The default reviewer-kit output includes:
 - GatePass lifecycle summary;
 - adversarial scorecard summary;
 - developer wrapper and local integration summary;
+- optional Embedded Commerce GatePass summary;
 - allow/block/require-evidence/require-human-review/require-signed-GatePass outcomes;
 - local illustrative timing summary;
 - safety boundary and limitations;
@@ -28,6 +29,16 @@ The default reviewer-kit output includes:
 `--summary-only` keeps the text shorter while still showing lifecycle, scorecard, wrapper, and safety summaries.
 
 `--json` prints valid JSON only so reviewer tools can parse the local report.
+
+After the reviewer kit, reviewers assessing commerce use cases can run the optional specialist demo:
+
+```powershell
+npm run demo:commerce-gatepass
+npm run demo:commerce-gatepass -- --summary-only
+npm run demo:commerce-gatepass -- --json
+```
+
+It checks synthetic final baskets against mandate, limits, substitution policy, delivery reference, approval, replay state, and evidence. It creates no checkout, payment authorisation, settlement execution, retailer integration, AI-provider integration, network call, A2A service, or MCP service.
 
 ## How To Read Outcomes
 

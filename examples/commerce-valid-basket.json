@@ -1,0 +1,350 @@
+{
+  "exampleVersion": "atg.embedded-commerce-gatepass.local.v1",
+  "scenarioId": "valid_basket_within_mandate",
+  "expectedVerdict": "allow",
+  "request": {
+    "schemaVersion": "atg.embedded-commerce-gatepass.local.v1",
+    "scenarioId": "valid_basket_within_mandate",
+    "requestId": "commerce_request_valid_basket_within_mandate",
+    "nonce": "nonce_valid_basket_within_mandate",
+    "referenceTime": "2026-07-14T09:00:00.000Z",
+    "merchant": {
+      "merchantId": "fictional_family_market",
+      "merchantName": "Fictional Family Market",
+      "merchantCategory": "regulated_grocery"
+    },
+    "mandate": {
+      "mandateId": "commerce_mandate_synthetic_family_shop_001",
+      "buyerReference": "synthetic_buyer_reference",
+      "status": "active",
+      "issuedAt": "2026-07-14T08:00:00.000Z",
+      "expiresAt": "2026-07-14T10:00:00.000Z",
+      "authorisedMerchantIds": [
+        "fictional_family_market"
+      ],
+      "authorisedMerchantCategories": [
+        "regulated_grocery"
+      ],
+      "requestedItemCategories": [
+        "infant_formula",
+        "nappies"
+      ],
+      "requiredVariantRestrictions": {
+        "formulaStage": "stage_1",
+        "packageSize": "800g",
+        "preparationType": "powder"
+      },
+      "approvedCurrency": "GBP",
+      "approvedDeliveryDestinationRef": "synthetic_delivery_destination_primary",
+      "quantityLimits": {
+        "maxPerLineItem": 2,
+        "maxTotalItems": 4
+      },
+      "priceLimits": {
+        "maxUnitPrice": 25,
+        "maxSubtotal": 45,
+        "maxDeliveryFee": 3,
+        "maxServiceFee": 2,
+        "maxOtherFees": 0,
+        "maxFinalTotal": 50
+      },
+      "substitutionPolicy": {
+        "substitutionsAllowed": true,
+        "allowedSubstitutionCategories": [
+          "infant_formula",
+          "nappies"
+        ],
+        "forbiddenBrands": [
+          "Unapproved Formula Co"
+        ],
+        "mustPreserveVariantRequirements": true,
+        "maxSubstitutionUnitPrice": 25
+      },
+      "humanApprovalRequired": true
+    },
+    "approvedBasketSnapshot": {
+      "basketId": "commerce_basket_synthetic_001",
+      "merchantId": "fictional_family_market",
+      "merchantCategory": "regulated_grocery",
+      "currency": "GBP",
+      "deliveryDestinationRef": "synthetic_delivery_destination_primary",
+      "items": [
+        {
+          "lineItemId": "line_formula_requested",
+          "productId": "fictional_formula_stage_1_800g",
+          "productName": "Fictional First Infant Formula 800g",
+          "category": "infant_formula",
+          "brand": "Fictional Formula Brand",
+          "variant": {
+            "formulaStage": "stage_1",
+            "packageSize": "800g",
+            "preparationType": "powder"
+          },
+          "quantity": 1,
+          "unitPrice": 23,
+          "currency": "GBP",
+          "substitutedForLineItemId": null,
+          "evidenceRef": "evidence_line_formula_requested"
+        },
+        {
+          "lineItemId": "line_nappies_requested",
+          "productId": "fictional_nappies_size_2",
+          "productName": "Fictional Nappies Size 2 Pack",
+          "category": "nappies",
+          "brand": "Fictional Care",
+          "variant": {
+            "formulaStage": "stage_1",
+            "packageSize": "800g",
+            "preparationType": "powder"
+          },
+          "quantity": 1,
+          "unitPrice": 12,
+          "currency": "GBP",
+          "substitutedForLineItemId": null,
+          "evidenceRef": "evidence_line_nappies_requested"
+        }
+      ],
+      "subtotal": 35,
+      "deliveryFee": 2,
+      "serviceFee": 1,
+      "otherFees": 0,
+      "finalTotal": 38
+    },
+    "finalBasket": {
+      "basketId": "commerce_basket_synthetic_001",
+      "merchantId": "fictional_family_market",
+      "merchantCategory": "regulated_grocery",
+      "currency": "GBP",
+      "deliveryDestinationRef": "synthetic_delivery_destination_primary",
+      "items": [
+        {
+          "lineItemId": "line_formula_requested",
+          "productId": "fictional_formula_stage_1_800g",
+          "productName": "Fictional First Infant Formula 800g",
+          "category": "infant_formula",
+          "brand": "Fictional Formula Brand",
+          "variant": {
+            "formulaStage": "stage_1",
+            "packageSize": "800g",
+            "preparationType": "powder"
+          },
+          "quantity": 1,
+          "unitPrice": 23,
+          "currency": "GBP",
+          "substitutedForLineItemId": null,
+          "evidenceRef": "evidence_line_formula_requested"
+        },
+        {
+          "lineItemId": "line_nappies_requested",
+          "productId": "fictional_nappies_size_2",
+          "productName": "Fictional Nappies Size 2 Pack",
+          "category": "nappies",
+          "brand": "Fictional Care",
+          "variant": {
+            "formulaStage": "stage_1",
+            "packageSize": "800g",
+            "preparationType": "powder"
+          },
+          "quantity": 1,
+          "unitPrice": 12,
+          "currency": "GBP",
+          "substitutedForLineItemId": null,
+          "evidenceRef": "evidence_line_nappies_requested"
+        }
+      ],
+      "subtotal": 35,
+      "deliveryFee": 2,
+      "serviceFee": 1,
+      "otherFees": 0,
+      "finalTotal": 38
+    },
+    "approval": {
+      "approvalId": "commerce_approval_synthetic_001",
+      "requestId": "commerce_request_valid_basket_within_mandate",
+      "mandateId": "commerce_mandate_synthetic_family_shop_001",
+      "basketId": "commerce_basket_synthetic_001",
+      "required": true,
+      "present": true,
+      "status": "approved",
+      "approvedAt": "2026-07-14T08:30:00.000Z",
+      "expiresAt": "2026-07-14T09:30:00.000Z",
+      "approverReference": "synthetic_human_approval_ref",
+      "approvedBasketHash": "commerce_basket_d20d5408a7342c0d2f086428"
+    },
+    "evidence": {
+      "mandateEvidenceRef": "evidence_mandate_synthetic_001",
+      "basketSnapshotEvidenceRef": "evidence_approved_basket_snapshot_001",
+      "finalBasketEvidenceRef": "evidence_final_basket_001",
+      "approvalEvidenceRef": "evidence_human_approval_001",
+      "priceEvidenceRefs": [
+        "evidence_price_formula_001",
+        "evidence_price_nappies_001"
+      ],
+      "deliveryEvidenceRef": "evidence_delivery_destination_ref_001",
+      "nonceEvidenceRef": "evidence_nonce_valid_basket_within_mandate",
+      "sufficient": true
+    },
+    "replayProtection": {
+      "requestId": "commerce_request_valid_basket_within_mandate",
+      "nonce": "nonce_valid_basket_within_mandate",
+      "seenNonces": [],
+      "singleUseRequired": true
+    },
+    "localOnly": true,
+    "syntheticOnly": true
+  },
+  "result": {
+    "version": "atg.embedded-commerce-gatepass.local.v1",
+    "scenarioId": "valid_basket_within_mandate",
+    "requestId": "commerce_request_valid_basket_within_mandate",
+    "verdict": "allow",
+    "allowed": true,
+    "commercePosition": "No verified basket. No valid mandate. No current approval. No GatePass. No checkout.",
+    "checks": [
+      {
+        "id": "buyer_mandate_exists",
+        "passed": true,
+        "detail": "buyer mandate id and status are present"
+      },
+      {
+        "id": "mandate_active_not_expired",
+        "passed": true,
+        "detail": "mandate is active and fresh at the reference time"
+      },
+      {
+        "id": "merchant_authorised",
+        "passed": true,
+        "detail": "final basket merchant id or merchant category is authorised by the mandate"
+      },
+      {
+        "id": "product_categories_match",
+        "passed": true,
+        "detail": "every final basket line item stays within requested item categories"
+      },
+      {
+        "id": "product_variants_match",
+        "passed": true,
+        "detail": "strict product variant restrictions remain satisfied"
+      },
+      {
+        "id": "quantities_within_limits",
+        "passed": true,
+        "detail": "line quantities and total item count remain within authorised limits"
+      },
+      {
+        "id": "per_item_prices_within_limits",
+        "passed": true,
+        "detail": "per-item prices remain within the mandate limit"
+      },
+      {
+        "id": "subtotal_within_cap",
+        "passed": true,
+        "detail": "basket subtotal is within cap and matches item totals"
+      },
+      {
+        "id": "fees_within_limits",
+        "passed": true,
+        "detail": "delivery, service, and other fees remain within authorised limits"
+      },
+      {
+        "id": "final_total_within_cap",
+        "passed": true,
+        "detail": "final total is within cap and reconciles to subtotal plus fees"
+      },
+      {
+        "id": "substitutions_allowed",
+        "passed": true,
+        "detail": "substitutions only occur when the mandate allows substitutions"
+      },
+      {
+        "id": "substitutions_policy_compliant",
+        "passed": true,
+        "detail": "substituted products satisfy category, brand, variant, and price policy"
+      },
+      {
+        "id": "delivery_destination_matches",
+        "passed": true,
+        "detail": "delivery destination reference matches the approved destination"
+      },
+      {
+        "id": "currency_matches",
+        "passed": true,
+        "detail": "basket and line item currencies match the approved currency"
+      },
+      {
+        "id": "human_approval_present_when_required",
+        "passed": true,
+        "detail": "human approval is present when the mandate requires it"
+      },
+      {
+        "id": "approval_current",
+        "passed": true,
+        "detail": "approval remains current at the reference time"
+      },
+      {
+        "id": "basket_unchanged_after_approval",
+        "passed": true,
+        "detail": "final basket hash matches the human-approved basket snapshot"
+      },
+      {
+        "id": "merchant_basket_approval_identifiers_consistent",
+        "passed": true,
+        "detail": "merchant, basket, approval, mandate, and request identifiers are consistent"
+      },
+      {
+        "id": "nonce_not_replayed",
+        "passed": true,
+        "detail": "single-use nonce has not already been observed"
+      },
+      {
+        "id": "evidence_sufficient",
+        "passed": true,
+        "detail": "evidence references are sufficient for the local decision"
+      }
+    ],
+    "failedChecks": [],
+    "refusalReasons": [],
+    "note": "Local deterministic embedded-commerce GatePass demonstrator only; no retailer integration, AI-provider integration, checkout, account login, card handling, payment authorisation, settlement execution, network call, production signing, or action execution occurred.",
+    "localOnly": true,
+    "syntheticOnly": true,
+    "nonProduction": true,
+    "networkCalls": false,
+    "liveRetailerIntegration": false,
+    "liveAiProviderIntegration": false,
+    "checkoutCreated": false,
+    "paymentAuthorisation": false,
+    "settlementExecution": false,
+    "actionExecution": false,
+    "accountLogin": false,
+    "cardHandling": false,
+    "paymentCredentialHandling": false,
+    "a2aServer": false,
+    "mcpServer": false,
+    "productionSigning": false,
+    "productionGradeCrypto": false,
+    "realPersonalData": false,
+    "gatePass": {
+      "gatePassId": "commerce_gatepass_fef746e6f7c79b1b94c95e7d",
+      "gatePassVersion": "atg.embedded-commerce-gatepass.local.v1",
+      "requestId": "commerce_request_valid_basket_within_mandate",
+      "mandateId": "commerce_mandate_synthetic_family_shop_001",
+      "merchantId": "fictional_family_market",
+      "basketId": "commerce_basket_synthetic_001",
+      "currency": "GBP",
+      "approvedBasketHash": "commerce_basket_d20d5408a7342c0d2f086428",
+      "finalBasketHash": "commerce_basket_d20d5408a7342c0d2f086428",
+      "approvalId": "commerce_approval_synthetic_001",
+      "issuedAt": "2026-07-14T09:00:00.000Z",
+      "expiresAt": "2026-07-14T09:30:00.000Z",
+      "status": "commerce_gatepass_issued_for_local_demo",
+      "checkoutAuthority": "none_local_pre_checkout_demonstration_only",
+      "signature": {
+        "status": "local_demo_placeholder",
+        "productionSigning": false
+      },
+      "localOnly": true,
+      "nonProduction": true
+    }
+  },
+  "nonProductionStatus": "Local deterministic synthetic evaluation only; no retailer, shopping-agent, checkout, payment, settlement, A2A, MCP, API, or production integration exists."
+}

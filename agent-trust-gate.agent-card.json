@@ -1,7 +1,7 @@
 {
   "schema": "atg.agent-card.local-discovery.v1",
   "name": "Agent Trust Gate",
-  "latest_mission": "P3-M143A",
+  "latest_mission": "P3-M144",
   "recent_missions": [
     "P3-M123",
     "P3-M124",
@@ -25,7 +25,8 @@
     "P3-M141",
     "P3-M142",
     "P3-M143",
-    "P3-M143A"
+    "P3-M143A",
+    "P3-M144"
   ],
   "description": "Local-first pre-action and pre-settlement trust gate for agent-led workflows.",
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
@@ -64,7 +65,8 @@
     "local strategic foresight advisory layer for manual sample signals",
     "human-reviewed paid evaluation pilot entry route",
     "passive machine discovery and registry readiness metadata",
-    "active static GitHub Pages passive discovery route"
+    "active static GitHub Pages passive discovery route",
+    "local embedded commerce GatePass demonstrator for synthetic pre-checkout basket verification"
   ],
   "non_capabilities": [
     "live API",
@@ -126,7 +128,14 @@
     "payment buttons",
     "live invoices",
     "automatic renewal",
-    "guaranteed commercial results"
+    "guaranteed commercial results",
+    "live retailer integration",
+    "live shopping agent",
+    "shopping-account login",
+    "card handling",
+    "payment token handling",
+    "AI-provider integration",
+    "production commerce integration"
   ],
   "safe_commands": [
     "npm test",
@@ -151,7 +160,8 @@
     "npm run demo:reviewer-kit",
     "npm run demo:foresight",
     "npm run demo:paid-pilot",
-    "npm run demo:discovery"
+    "npm run demo:discovery",
+    "npm run demo:commerce-gatepass"
   ],
   "docs": [
     "README.md",
@@ -264,7 +274,9 @@
     "docs/a2a-discovery-readiness-boundary.md",
     "docs/mcp-registry-readiness-boundary.md",
     "docs/npm-publication-readiness.md",
-    "docs/registry-readiness-scorecard.md"
+    "docs/registry-readiness-scorecard.md",
+    "docs/embedded-commerce-gatepass.md",
+    "docs/embedded-commerce-design-partner-pilot.md"
   ],
   "schemas": [
     "schemas/local-agent-action-request.schema.json",
@@ -334,11 +346,19 @@
     "examples/public-reviewer-positioning-summary.json",
     "examples/atg-strategic-foresight-report.json",
     "examples/paid-pilot-offer.json",
-    "examples/machine-discovery-report.json"
+    "examples/machine-discovery-report.json",
+    "examples/commerce-valid-basket.json",
+    "examples/commerce-unauthorised-substitution.json",
+    "examples/commerce-price-cap-breach.json",
+    "examples/commerce-address-change.json",
+    "examples/commerce-expired-approval.json",
+    "examples/commerce-replay-attempt.json",
+    "examples/commerce-missing-evidence.json",
+    "examples/embedded-commerce-gatepass-report.json"
   ],
   "contact": {
     "email": "gpmiddleton71@gmail.com",
-    "purpose": "Human-reviewed developer, agent-system, integration, security, buyer use case, revenue trigger, global code discovery, controlled public visibility, prove-yourself protocol, agent proof package contract, proof contract integration readiness, enforceable local tool gate demo, minimal GatePass core review, GatePass round trip review, GatePass scorecard review, GatePass developer wrapper review, GatePass reviewer kit review, GatePass benefit review, GatePass proof vocabulary review, public reviewer positioning review, strategic foresight advisory review, machine discovery and registry readiness review, passive discovery activation review, paid evaluation pilot, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
+    "purpose": "Human-reviewed developer, agent-system, integration, security, embedded commerce design-partner, buyer use case, revenue trigger, global code discovery, controlled public visibility, prove-yourself protocol, agent proof package contract, proof contract integration readiness, enforceable local tool gate demo, minimal GatePass core review, GatePass round trip review, GatePass scorecard review, GatePass developer wrapper review, GatePass reviewer kit review, GatePass benefit review, GatePass proof vocabulary review, public reviewer positioning review, strategic foresight advisory review, machine discovery and registry readiness review, passive discovery activation review, paid evaluation pilot, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
     "boundary": "Contact metadata only. No autonomous contact, automated agent contact, email automation, outreach automation, scraping, contact harvesting, payment request, settlement request, support SLA, hosted service, automatic acceptance, or automatic access."
   },
   "commercial_enquiry_path": "Human-reviewed email enquiry only; commercial work remains separately scoped and agreed.",
@@ -421,7 +441,16 @@
     "hidden_viral_distribution": false,
     "unsolicited_agent_contact": false,
     "guaranteed_trust": false,
-    "proven_safe_claim": false
+    "proven_safe_claim": false,
+    "embedded_commerce_gatepass_local_demo": true,
+    "embedded_commerce_synthetic_only": true,
+    "live_retailer_integration": false,
+    "live_shopping_agent": false,
+    "shopping_account_login": false,
+    "card_handling": false,
+    "payment_token_handling": false,
+    "ai_provider_integration": false,
+    "production_commerce_integration": false
   },
   "autonomous_marketing": false,
   "hidden_viral_distribution": false,
@@ -491,5 +520,6 @@
   "githubPagesLiveUrlVerified": true,
   "githubPagesDeployment": true,
   "operationalEndpoint": false,
-  "registryCredentials": false
+  "registryCredentials": false,
+  "embedded_commerce_gatepass_boundary": "P3-M144 adds a local deterministic Embedded Commerce GatePass demonstrator for synthetic pre-checkout basket verification. It can emit a local commerce GatePass or refusal receipt. It adds no live retailer integration, shopping-agent integration, checkout service, account login, card handling, payment token handling, payment processing, settlement execution, AI-provider integration, network calls, A2A server, MCP server, production signing, or action execution."
 }

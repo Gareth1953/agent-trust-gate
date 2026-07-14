@@ -1,7 +1,7 @@
 {
   "manifest_version": "atg.code-readable-integration.v1",
   "service_name": "Agent Trust Gate",
-  "latest_mission": "P3-M143A",
+  "latest_mission": "P3-M144",
   "recent_missions": [
     "P3-M123",
     "P3-M124",
@@ -25,7 +25,8 @@
     "P3-M141",
     "P3-M142",
     "P3-M143",
-    "P3-M143A"
+    "P3-M143A",
+    "P3-M144"
   ],
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
   "project_status": "local_demo_only",
@@ -36,7 +37,7 @@
   "strategy": "Readable now. Callable later. Autonomous execution never without gate control.",
   "identity_trust_principle": "Claimed agent identity is not trust. Behaviour, mandate, evidence, verified intent, and session context must decide access.",
   "public_contact_email": "gpmiddleton71@gmail.com",
-  "public_contact_purpose": "Developer, agent-system, integration, security, GatePass round trip review, GatePass scorecard review, GatePass developer wrapper review, GatePass reviewer kit review, GatePass benefit review, GatePass proof vocabulary review, public reviewer positioning review, strategic foresight advisory review, machine discovery and registry readiness review, passive discovery activation review, paid evaluation pilot, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
+  "public_contact_purpose": "Developer, agent-system, integration, security, embedded commerce design-partner, GatePass round trip review, GatePass scorecard review, GatePass developer wrapper review, GatePass reviewer kit review, GatePass benefit review, GatePass proof vocabulary review, public reviewer positioning review, strategic foresight advisory review, machine discovery and registry readiness review, passive discovery activation review, paid evaluation pilot, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
   "public_contact_boundary": "Contact metadata only. Not a live API endpoint, autonomous outreach route, automated agent contact, email automation route, contact harvesting route, live support SLA, payment, settlement, automatic acceptance, automatic access, or hosted service availability.",
   "static_file_only": true,
   "readable_by_agents": true,
@@ -146,7 +147,8 @@
     "gatepass_adversarial_scorecard_model",
     "gatepass_tool_wrapper_model",
     "local_agent_framework_integration_model",
-    "gatepass_reviewer_kit_model"
+    "gatepass_reviewer_kit_model",
+    "embedded_commerce_gatepass_model"
   ],
   "safe_local_commands": [
     "npm test",
@@ -173,7 +175,8 @@
     "npm run demo:public-positioning",
     "npm run demo:foresight",
     "npm run demo:paid-pilot",
-    "npm run demo:discovery"
+    "npm run demo:discovery",
+    "npm run demo:commerce-gatepass"
   ],
   "discovery_docs": [
     "agent-trust-gate.discovery.json",
@@ -285,7 +288,9 @@
     "docs/a2a-discovery-readiness-boundary.md",
     "docs/mcp-registry-readiness-boundary.md",
     "docs/npm-publication-readiness.md",
-    "docs/registry-readiness-scorecard.md"
+    "docs/registry-readiness-scorecard.md",
+    "docs/embedded-commerce-gatepass.md",
+    "docs/embedded-commerce-design-partner-pilot.md"
   ],
   "schemas": [
     "schemas/local-agent-action-request.schema.json",
@@ -358,7 +363,9 @@
     "machine_discovery_summary",
     "machine_discovery_report",
     "registry_readiness_scorecard",
-    "passive_discovery_site_validation"
+    "passive_discovery_site_validation",
+    "commerce_gatepass_local_demo",
+    "commerce_refusal_receipt"
   ],
   "non_capabilities": [
     "live API",
@@ -422,7 +429,14 @@
     "proven safe claim",
     "production benchmark claim",
     "security certification claim",
-    "adversarial completeness claim"
+    "adversarial completeness claim",
+    "live retailer integration",
+    "live shopping agent",
+    "shopping-account login",
+    "card handling",
+    "payment token handling",
+    "AI-provider integration",
+    "production commerce integration"
   ],
   "safety_boundary": "Local demo only. No live payment, settlement, API, network call, external agent contact, or action execution.",
   "autonomous_marketing": false,
@@ -492,5 +506,15 @@
   "githubPagesLiveUrlVerified": true,
   "githubPagesDeployment": true,
   "operationalEndpoint": false,
-  "registryCredentials": false
+  "registryCredentials": false,
+  "embeddedCommerceGatepassLocalDemo": true,
+  "embeddedCommerceSyntheticOnly": true,
+  "liveRetailerIntegration": false,
+  "liveShoppingAgent": false,
+  "shoppingAccountLogin": false,
+  "cardHandling": false,
+  "paymentTokenHandling": false,
+  "aiProviderIntegration": false,
+  "productionCommerceIntegration": false,
+  "embedded_commerce_gatepass_boundary": "P3-M144 adds a local deterministic Embedded Commerce GatePass demonstrator for synthetic pre-checkout basket verification. It can emit a local commerce GatePass or refusal receipt. It adds no live retailer integration, shopping-agent integration, checkout service, account login, card handling, payment token handling, payment processing, settlement execution, AI-provider integration, network calls, A2A server, MCP server, production signing, or action execution."
 }
