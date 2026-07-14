@@ -26,7 +26,7 @@ GatePass is the headline proof primitive for Agent Trust Gate(TM). GatePass is a
 
 The paid evaluation pilot demonstrates how proposed AI-agent actions can be checked locally before action. It remains a controlled proof-of-concept evaluation, not production middleware.
 
-P3-M144 adds an optional Embedded Commerce GatePass synthetic evaluation for final-basket verification before checkout. It demonstrates mandate, limit, substitution, delivery-reference, approval, replay, and evidence checks only. Real retailer, shopping-agent, checkout, payment, settlement, AI-provider, API, A2A, MCP, or production integration would require separate design-partner scope, security review, and written agreement.
+P3-M144 adds an optional Embedded Commerce GatePass synthetic evaluation for final-basket verification before checkout. It is commercially relevant to supermarkets, grocery retailers, general retailers, AI-shopping platforms, commerce infrastructure teams, payment and checkout providers, retail-system architects, and transaction-risk reviewers. It demonstrates mandate, limit, substitution, delivery-reference, approval, replay, and evidence checks only. Real retailer, shopping-agent, checkout, payment, settlement, AI-provider, API, A2A, MCP, or production integration would require separate design-partner scope, security review, and written agreement.
 
 ## Who The Pilot Is For
 
@@ -36,6 +36,7 @@ The pilot may be relevant for:
 - developers evaluating local tool-call gating;
 - AI governance or trust/safety reviewers;
 - payment-adjacent or pre-settlement workflow reviewers;
+- supermarkets, retailers, AI-shopping platforms, commerce infrastructure teams, payment providers, and retail-system architects evaluating final-basket trust controls;
 - enterprise automation reviewers;
 - procurement or workflow automation reviewers.
 
@@ -49,6 +50,7 @@ A paid evaluation pilot can examine how a local workflow checks:
 - human approval status;
 - action scope;
 - value or spend limits;
+- optional embedded-commerce controls such as basket integrity, substitutions, price and fee limits, approval freshness, merchant and destination checks, replay protection, and GatePass or refusal-receipt outputs;
 - GatePass validity;
 - refusal reasons;
 - audit and trust-receipt output.

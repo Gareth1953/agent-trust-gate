@@ -12,6 +12,12 @@ Commerce support line:
 
 **No verified basket. No valid mandate. No current approval. No GatePass. No checkout.**
 
+## Commercial Relevance
+
+Embedded Commerce GatePass is a featured commercial application of Agent Trust Gate for organisations evaluating AI-created baskets and agent-assisted checkout controls. It is relevant to supermarkets, grocery retailers, general retailers, AI-shopping and agent platforms, payment and checkout providers, commerce infrastructure teams, retail-system architects, and AI governance or transaction-risk teams.
+
+The current capability is still a local synthetic demonstrator. It shows the trust-control pattern; it does not connect to a retailer, shopping account, checkout system, payment provider, live API, A2A service, or MCP service.
+
 ## Emerging Trust Problem
 
 Embedded commerce and agent-prepared baskets create a final-mile trust problem. A recommendation is not a basket. A prepared basket is not checkout. Checkout is not settlement. Settlement is not permitted merely because an assistant or workflow says the basket is ready.
@@ -94,5 +100,7 @@ It does not create or use live retailer APIs, shopping accounts, browser automat
 The public proposition may be discussed as a paid evaluation or design-partner pilot:
 
 **We prove the trust architecture. The design partner funds the real integration.**
+
+A funded pilot may evaluate mandate enforcement, basket integrity, substitutions, price and fee limits, approval freshness, merchant and destination checks, replay protection, and GatePass or refusal-receipt outputs using synthetic or sanitized inputs.
 
 Real retailer, agent-platform, commerce-infrastructure, or payment-provider integration would require separate written scope, security review, data review, commercial terms, implementation work, and approval.

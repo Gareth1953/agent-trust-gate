@@ -5,6 +5,27 @@
   "command": "npm run demo:commerce-gatepass",
   "corePosition": "No mandate. No evidence. No verified intent. No signed GatePass. No settlement.",
   "commercePosition": "No verified basket. No valid mandate. No current approval. No GatePass. No checkout.",
+  "commercialApplication": "featured_embedded_commerce_gatepass",
+  "targetAudiences": [
+    "supermarkets",
+    "grocery retailers",
+    "general retailers",
+    "AI-shopping platforms",
+    "commerce infrastructure teams",
+    "payment and checkout providers",
+    "retail-system architects",
+    "AI governance and transaction-risk teams"
+  ],
+  "evaluationScope": [
+    "mandate enforcement",
+    "basket integrity",
+    "substitution controls",
+    "price and fee limits",
+    "approval freshness",
+    "merchant and destination checks",
+    "replay protection",
+    "GatePass and refusal-receipt outputs"
+  ],
   "designPartnerPrinciple": "We prove the trust architecture. The design partner funds the real integration.",
   "publicContact": "gpmiddleton71@gmail.com",
   "paidEvaluationPilot": {

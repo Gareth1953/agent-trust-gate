@@ -73,11 +73,34 @@
       color: var(--accent-dark);
     }
     .notice,
+    .featured,
     .grid > section {
       border: 1px solid var(--line);
       background: var(--panel);
       padding: 15px 17px;
       border-radius: 6px;
+    }
+    .featured {
+      border-color: #8bc6bb;
+      background: #eef8f5;
+      margin: 0 0 18px;
+    }
+    .featured h2 {
+      margin-top: 0;
+    }
+    .featured-label {
+      color: var(--accent-dark);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      font-size: 0.82rem;
+      margin-bottom: 5px;
+    }
+    .featured-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      margin-top: 10px;
     }
     .grid {
       display: grid;
@@ -112,7 +135,9 @@
       "AI agents",
       "proof package",
       "local deterministic evaluation",
-      "machine-readable discovery"
+      "machine-readable discovery",
+      "embedded commerce",
+      "pre-checkout basket verification"
     ],
     "conditionsOfAccess": "Passive discovery and local demo route only. No live A2A server, MCP server, payment processing, settlement execution, or action execution.",
     "sameAs": [
@@ -128,6 +153,22 @@
       <h1>Agent Trust Gate</h1>
       <p>Public machine-readable discovery route hosted through GitHub Pages for a local deterministic GatePass proof-of-concept.</p>
     </header>
+
+    <section class="featured" aria-labelledby="commerce-title">
+      <p class="featured-label">Featured Commercial Application</p>
+      <h2 id="commerce-title">Embedded Commerce GatePass</h2>
+      <p><strong>For supermarkets, retailers, AI-shopping platforms, commerce infrastructure teams and payment providers.</strong></p>
+      <p>The local demonstrator shows how a final AI-generated basket can be checked before checkout or payment authorisation against the customer mandate, approved products and variants, substitution rules, quantities, item-price limits, total spending cap, service and delivery fees, merchant, currency, delivery destination, current human approval, basket integrity since approval, replay controls and evidence controls.</p>
+      <p><strong>No verified basket. No valid mandate. No current approval. No GatePass. No checkout.</strong></p>
+      <p>Available as a paid evaluation or design-partner pilot. We prove the trust architecture. The design partner funds the real integration.</p>
+      <p class="featured-links">
+        <a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/embedded-commerce-gatepass.md">Embedded Commerce GatePass</a>
+        <a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/embedded-commerce-design-partner-pilot.md">Design-partner pilot</a>
+        <a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/one-command-reviewer-demo-kit.md">Reviewer kit</a>
+        <a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/paid-pilot-commercial-entry.md">Paid Evaluation Pilot</a>
+        <a href="mailto:gpmiddleton71@gmail.com">Public enquiry email</a>
+      </p>
+    </section>
 
     <section class="notice" aria-label="Core safety boundary">
       <p><strong>GatePass is a scoped, time-bound, action-specific proof primitive for agent actions.</strong></p>

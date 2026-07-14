@@ -1,5 +1,20 @@
 # Release Notes
 
+## P3-M144A: Embedded Commerce Commercial Positioning Update
+
+P3-M144A strengthens public discovery for Embedded Commerce GatePass as a featured commercial application of Agent Trust Gate.
+
+Updated positioning:
+
+- added a prominent homepage section for supermarkets, retailers, AI-shopping platforms, commerce infrastructure teams, payment providers, retail technology teams, developers, and system architects;
+- clarified that the commerce demonstrator checks AI-created final baskets against mandate, approved products and variants, substitutions, quantities, price and fee limits, merchant, currency, destination, approval freshness, basket integrity, replay, and evidence controls;
+- strengthened the paid evaluation/design-partner route while preserving the principle: We prove the trust architecture. The design partner funds the real integration;
+- updated README, commerce docs, discovery metadata, and machine-readable reports.
+
+Agent Trust Gate remains a broad trust layer for AI-agent actions, delegated decisions, and pre-settlement controls. GatePass remains the headline proof primitive and the reviewer kit remains the recommended first experience.
+
+No named-company affiliation, live retailer integration, shopping-agent integration, checkout, account login, card handling, payment link, payment processing, settlement execution, AI-provider integration, API, network call, A2A service, MCP service, npm publication, image generation, deployment, release, tag, publication, push, or action execution is added.
+
 ## P3-M144: Embedded Commerce GatePass Demonstrator
 
 P3-M144 adds a compact local demonstrator for synthetic pre-checkout basket verification.

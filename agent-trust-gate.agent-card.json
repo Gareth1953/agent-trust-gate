@@ -1,7 +1,7 @@
 {
   "schema": "atg.agent-card.local-discovery.v1",
   "name": "Agent Trust Gate",
-  "latest_mission": "P3-M144",
+  "latest_mission": "P3-M144A",
   "recent_missions": [
     "P3-M123",
     "P3-M124",
@@ -26,7 +26,8 @@
     "P3-M142",
     "P3-M143",
     "P3-M143A",
-    "P3-M144"
+    "P3-M144",
+    "P3-M144A"
   ],
   "description": "Local-first pre-action and pre-settlement trust gate for agent-led workflows.",
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
@@ -66,7 +67,8 @@
     "human-reviewed paid evaluation pilot entry route",
     "passive machine discovery and registry readiness metadata",
     "active static GitHub Pages passive discovery route",
-    "local embedded commerce GatePass demonstrator for synthetic pre-checkout basket verification"
+    "local embedded commerce GatePass demonstrator for synthetic pre-checkout basket verification",
+    "featured Embedded Commerce GatePass commercial application for synthetic basket verification"
   ],
   "non_capabilities": [
     "live API",
@@ -450,7 +452,11 @@
     "card_handling": false,
     "payment_token_handling": false,
     "ai_provider_integration": false,
-    "production_commerce_integration": false
+    "production_commerce_integration": false,
+    "embedded_commerce_featured_commercial_application": true,
+    "embedded_commerce_design_partner_opportunity": true,
+    "payment_processing": false,
+    "checkout": false
   },
   "autonomous_marketing": false,
   "hidden_viral_distribution": false,
@@ -521,5 +527,32 @@
   "githubPagesDeployment": true,
   "operationalEndpoint": false,
   "registryCredentials": false,
-  "embedded_commerce_gatepass_boundary": "P3-M144 adds a local deterministic Embedded Commerce GatePass demonstrator for synthetic pre-checkout basket verification. It can emit a local commerce GatePass or refusal receipt. It adds no live retailer integration, shopping-agent integration, checkout service, account login, card handling, payment token handling, payment processing, settlement execution, AI-provider integration, network calls, A2A server, MCP server, production signing, or action execution."
+  "embedded_commerce_gatepass_boundary": "P3-M144A strengthens public discovery and commercial positioning for Embedded Commerce GatePass as a featured commercial application of Agent Trust Gate. It remains a local deterministic synthetic demonstrator and paid evaluation/design-partner opportunity only. It adds no named-company affiliation, live retailer integration, shopping-agent integration, checkout service, account login, card handling, payment token handling, payment processing, settlement execution, AI-provider integration, network calls, A2A server, MCP server, production signing, deployment, or action execution.",
+  "embedded_commerce_commercial_positioning": {
+    "status": "featured_commercial_application_local_synthetic_demonstrator",
+    "target_audiences": [
+      "supermarkets",
+      "grocery retailers",
+      "general retailers",
+      "AI-shopping platforms",
+      "commerce infrastructure teams",
+      "payment and checkout providers",
+      "retail-system architects",
+      "AI governance and transaction-risk teams"
+    ],
+    "evaluation_scope": [
+      "mandate enforcement",
+      "basket integrity",
+      "substitution controls",
+      "price and fee limits",
+      "approval freshness",
+      "merchant and destination checks",
+      "replay protection",
+      "GatePass and refusal-receipt outputs"
+    ],
+    "commercial_route": "paid_evaluation_or_design_partner_pilot",
+    "design_partner_principle": "We prove the trust architecture. The design partner funds the real integration.",
+    "commerce_position": "No verified basket. No valid mandate. No current approval. No GatePass. No checkout.",
+    "boundary": "Commercial positioning and discovery metadata only. No live retailer integration, shopping-agent integration, checkout service, account login, card handling, payment processing, settlement execution, AI-provider integration, live API, network calls, A2A server, MCP server, production signing, production deployment, or action execution exists."
+  }
 }

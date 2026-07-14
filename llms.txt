@@ -218,11 +218,12 @@ Important examples:
 
 Commercial/contact route:
 Human-reviewed developer, agent-system, integration, security, paid evaluation
-pilot, paid technical review, local pilot discussion, and public project
-enquiries may use gpmiddleton71@gmail.com. This is contact metadata only and
-does not grant automatic acceptance, automatic access, hosted access, payment
-activation, payment links, checkout, live invoices, PayPal API integration,
-Stripe integration, or settlement capability.
+pilot, embedded-commerce design-partner scoping, paid technical review, local
+pilot discussion, and public project enquiries may use
+gpmiddleton71@gmail.com. This is contact metadata only and does not grant
+automatic acceptance, automatic access, hosted access, payment activation,
+payment links, checkout, live invoices, PayPal API integration, Stripe
+integration, or settlement capability.
 
 Safety boundary:
 This repository is readable by agents and systems, but it exposes no live agent
@@ -262,6 +263,20 @@ against a buyer mandate, limits, substitution policy, delivery reference,
 currency, approval state, basket hash, nonce, and evidence. It can emit a
 local commerce GatePass or a refusal receipt.
 
+P3-M144A positions Embedded Commerce GatePass as a featured commercial
+application for supermarkets, grocery retailers, general retailers,
+AI-shopping platforms, commerce infrastructure teams, payment and checkout
+providers, retail-system architects, and AI governance or transaction-risk
+teams. It remains a local synthetic demonstrator and paid
+evaluation/design-partner opportunity only.
+
+Commerce support line:
+No verified basket. No valid mandate. No current approval. No GatePass. No
+checkout.
+
+Design-partner principle:
+We prove the trust architecture. The design partner funds the real integration.
+
 Commerce command:
 `npm run demo:commerce-gatepass`
 
@@ -275,6 +290,27 @@ shopping-agent integration, checkout service, account login, card handling,
 payment token handling, payment processing, settlement execution, AI-provider
 integration, network calls, A2A server, MCP server, production signing, or
 action execution.
+
+## P3-M144A - Embedded Commerce Commercial Positioning
+
+P3-M144A strengthens public discovery and documentation for Embedded Commerce
+GatePass as a featured commercial application of Agent Trust Gate. ATG remains
+a broad trust layer for AI-agent actions, delegated decisions, and
+pre-settlement controls; it is not repositioned as a supermarket-only product.
+
+Target audiences include supermarkets, grocery retailers, general retailers,
+AI-shopping platforms, commerce infrastructure teams, payment and checkout
+providers, retail-system architects, developers, system architects, AI
+governance teams, and transaction-risk reviewers.
+
+The commercial route is a paid evaluation or design-partner pilot. Possible
+synthetic evaluation scope includes mandate enforcement, basket integrity,
+substitutions, price and fee limits, approval freshness, merchant and
+destination checks, replay protection, and GatePass or refusal-receipt outputs.
+
+No named-company affiliation, live retailer deployment, live checkout control,
+payment processing, API, network call, A2A service, MCP service, production
+deployment, release, tag, publication, push, or action execution is introduced.
 
 ## P3-M141 - Paid Pilot and Commercial Entry Pack
 

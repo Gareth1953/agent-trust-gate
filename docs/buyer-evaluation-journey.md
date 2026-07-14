@@ -41,6 +41,8 @@ This tests the local proof-of-concept only. It does not execute real tools, cont
 
 The commerce command is optional and specialist. It uses fictional products and merchants to show how a final basket could be checked against mandate, limits, substitutions, delivery reference, approval, replay state, and evidence before checkout. It does not create a live basket, account login, checkout, payment authorisation, settlement execution, retailer integration, AI-provider integration, API, A2A service, or MCP service.
 
+For supermarkets, grocery retailers, general retailers, AI-shopping platforms, commerce infrastructure teams, payment and checkout providers, retail-system architects, and transaction-risk teams, this is a way to inspect the trust-control pattern before any real integration discussion.
+
 Useful links:
 
 - [GatePass create-verify-reject round trip](gatepass-create-verify-reject-round-trip.md)
@@ -54,6 +56,8 @@ Useful links:
 If the local evaluation is commercially relevant, a buyer may request an **Agent Trust Gate(TM) Paid Evaluation Pilot**.
 
 The pilot is a paid, controlled, non-production evaluation of how GatePass-style checks could apply to a buyer's proposed AI-agent action workflow. It is local, manual-input only, human-approved, non-custodial, non-autonomous, advisory, and demonstrative.
+
+For an embedded-commerce buyer, a separately scoped pilot may evaluate mandate enforcement, basket integrity, substitutions, price and fee limits, approval freshness, merchant and destination checks, replay protection, and GatePass or refusal-receipt outputs. Real integration requires a funded design-partner scope, security review, data review, commercial agreement, and human approval.
 
 Useful links:
 

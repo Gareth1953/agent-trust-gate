@@ -8,6 +8,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 
 ### Added
 
+- P3-M144A embedded commerce commercial positioning update with a featured homepage section, target-audience discovery metadata, and focused design-partner wording for supermarkets, retailers, AI-shopping platforms, commerce infrastructure teams, payment providers, retail technology teams, developers, and system architects.
 - P3-M144 embedded commerce GatePass demonstrator with local deterministic basket verification model, CLI, synthetic scenarios, machine-readable examples, reviewer-kit integration, and design-partner documentation.
 - P3-M143A live passive discovery activation record for the public GitHub Pages static discovery route at `https://gareth1953.github.io/agent-trust-gate/`, with verified source commit, workflow, HTTPS status, machine-readable route status, and safety boundaries.
 - P3-M143 passive discovery activation preparation with `.github/workflows/deploy-discovery-pages.yml`, polished `discovery-site/` files including `404.html` and `sitemap.xml`, GitHub Pages activation runbook, live verification checklist, repository social preview manual route, activation record template, local static-site validator, and `npm run validate:discovery-site`.
@@ -43,6 +44,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 
 ### Safety
 
+- P3-M144A is commercial positioning and discovery metadata only. It does not add named-company affiliation, live retailer integration, shopping-agent integration, checkout, account login, card handling, payment links, payment processing, settlement execution, AI-provider integration, network calls, A2A server, MCP server, npm publication, image generation, deployment, tag, release, push, or action execution.
 - P3-M144 is local synthetic pre-checkout basket verification only. It does not add live retailer integration, shopping-agent integration, checkout, account login, card handling, payment token handling, payment processing, settlement execution, AI-provider integration, network calls, A2A server, MCP server, npm publication, production signing, production-grade cryptography, real customer data, tag, release, deployment, push, or action execution.
 - P3-M143A records the public GitHub Pages passive discovery route as active and HTTPS verified. It does not create a custom domain, generate an image, add analytics, tracking, cookies, forms, checkout, payment links, A2A server, MCP server, npm publication, registry publication, payment integration, live API endpoint, real tool execution, settlement execution, tag, release, publish, push, or action execution.
 - P3-M143 prepares passive GitHub Pages discovery activation only. P3-M143A records the later verified static discovery route. Neither mission creates a custom domain, generates an image, adds analytics, tracking, cookies, forms, checkout, payment links, A2A server, MCP server, npm publication, registry publication, payment integration, live API endpoint, real tool execution, settlement execution, tag, release, publish, push, or action execution.

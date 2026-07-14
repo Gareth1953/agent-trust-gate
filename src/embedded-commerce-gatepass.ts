@@ -16,6 +16,28 @@ export const EMBEDDED_COMMERCE_CHECKOUT_POSITION =
   "No verified basket. No valid mandate. No current approval. No GatePass. No checkout." as const;
 export const EMBEDDED_COMMERCE_DESIGN_PARTNER_PRINCIPLE =
   "We prove the trust architecture. The design partner funds the real integration." as const;
+export const EMBEDDED_COMMERCE_COMMERCIAL_APPLICATION =
+  "featured_embedded_commerce_gatepass" as const;
+export const EMBEDDED_COMMERCE_TARGET_AUDIENCES = [
+  "supermarkets",
+  "grocery retailers",
+  "general retailers",
+  "AI-shopping platforms",
+  "commerce infrastructure teams",
+  "payment and checkout providers",
+  "retail-system architects",
+  "AI governance and transaction-risk teams",
+] as const;
+export const EMBEDDED_COMMERCE_EVALUATION_SCOPE = [
+  "mandate enforcement",
+  "basket integrity",
+  "substitution controls",
+  "price and fee limits",
+  "approval freshness",
+  "merchant and destination checks",
+  "replay protection",
+  "GatePass and refusal-receipt outputs",
+] as const;
 
 export type CommerceMandateStatus = "active" | "expired" | "revoked" | "missing";
 export type CommerceApprovalStatus = "approved" | "missing" | "expired" | "rejected" | "not_required";
@@ -270,6 +292,9 @@ export interface EmbeddedCommerceGatepassReport extends CommerceGateSafetyFlags 
   command: typeof EMBEDDED_COMMERCE_GATEPASS_COMMAND;
   corePosition: typeof EMBEDDED_COMMERCE_CORE_POSITION;
   commercePosition: typeof EMBEDDED_COMMERCE_CHECKOUT_POSITION;
+  commercialApplication: typeof EMBEDDED_COMMERCE_COMMERCIAL_APPLICATION;
+  targetAudiences: typeof EMBEDDED_COMMERCE_TARGET_AUDIENCES;
+  evaluationScope: typeof EMBEDDED_COMMERCE_EVALUATION_SCOPE;
   designPartnerPrinciple: typeof EMBEDDED_COMMERCE_DESIGN_PARTNER_PRINCIPLE;
   publicContact: typeof EMBEDDED_COMMERCE_GATEPASS_PUBLIC_CONTACT;
   paidEvaluationPilot: {
@@ -528,6 +553,9 @@ export function runEmbeddedCommerceGatepassDemo(): EmbeddedCommerceGatepassRepor
     command: EMBEDDED_COMMERCE_GATEPASS_COMMAND,
     corePosition: EMBEDDED_COMMERCE_CORE_POSITION,
     commercePosition: EMBEDDED_COMMERCE_CHECKOUT_POSITION,
+    commercialApplication: EMBEDDED_COMMERCE_COMMERCIAL_APPLICATION,
+    targetAudiences: EMBEDDED_COMMERCE_TARGET_AUDIENCES,
+    evaluationScope: EMBEDDED_COMMERCE_EVALUATION_SCOPE,
     designPartnerPrinciple: EMBEDDED_COMMERCE_DESIGN_PARTNER_PRINCIPLE,
     publicContact: EMBEDDED_COMMERCE_GATEPASS_PUBLIC_CONTACT,
     paidEvaluationPilot: {

@@ -90,7 +90,11 @@ export interface MachineDiscoveryRecord {
     designPartnerDocument: "docs/embedded-commerce-design-partner-pilot.md";
     command: "npm run demo:commerce-gatepass";
     exampleReport: "examples/embedded-commerce-gatepass-report.json";
+    commercialApplication: "featured_embedded_commerce_gatepass";
+    targetAudiences: readonly string[];
+    evaluationScope: readonly string[];
     status: "local_deterministic_synthetic_evaluation";
+    commercialRoute: "paid_evaluation_or_design_partner_pilot";
     designPartnerPosition: "We prove the trust architecture. The design partner funds the real integration.";
     integrationBoundary: string;
   };
@@ -143,9 +147,9 @@ export interface MachineDiscoveryRecord {
   recommendedCommands: readonly string[];
   coreCommercialPosition: "No mandate. No evidence. No verified intent. No signed GatePass. No settlement.";
   lastReviewed: {
-    mission: "P3-M144";
+    mission: "P3-M144A";
     date: "2026-07-14";
-    reviewType: "embedded_commerce_gatepass_local_demonstrator";
+    reviewType: "embedded_commerce_commercial_positioning_update";
     reviewedBy: "Agent Trust Gate local repository metadata";
   };
 }
@@ -316,7 +320,29 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
       designPartnerDocument: "docs/embedded-commerce-design-partner-pilot.md",
       command: "npm run demo:commerce-gatepass",
       exampleReport: "examples/embedded-commerce-gatepass-report.json",
+      commercialApplication: "featured_embedded_commerce_gatepass",
+      targetAudiences: [
+        "supermarkets",
+        "grocery retailers",
+        "general retailers",
+        "AI-shopping platforms",
+        "commerce infrastructure teams",
+        "payment and checkout providers",
+        "retail-system architects",
+        "AI governance and transaction-risk teams",
+      ],
+      evaluationScope: [
+        "mandate enforcement",
+        "basket integrity",
+        "substitution controls",
+        "price and fee limits",
+        "approval freshness",
+        "merchant and destination checks",
+        "replay protection",
+        "GatePass and refusal-receipt outputs",
+      ],
       status: "local_deterministic_synthetic_evaluation",
+      commercialRoute: "paid_evaluation_or_design_partner_pilot",
       designPartnerPosition: "We prove the trust architecture. The design partner funds the real integration.",
       integrationBoundary:
         "Synthetic commerce evaluation only; no live retailer integration, no shopping-agent integration, no checkout, no account login, no card handling, no payment or settlement execution, no API, no A2A, no MCP, no network, and no production integration exists.",
@@ -449,9 +475,9 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
     coreCommercialPosition:
       "No mandate. No evidence. No verified intent. No signed GatePass. No settlement.",
     lastReviewed: {
-      mission: "P3-M144",
+      mission: "P3-M144A",
       date: "2026-07-14",
-      reviewType: "embedded_commerce_gatepass_local_demonstrator",
+      reviewType: "embedded_commerce_commercial_positioning_update",
       reviewedBy: "Agent Trust Gate local repository metadata",
     },
   };
@@ -606,6 +632,10 @@ export function validateMachineDiscoveryRecord(
     {
       id: "embedded_commerce_gatepass",
       passed: record.embeddedCommerceGatepass.command === "npm run demo:commerce-gatepass" &&
+        record.embeddedCommerceGatepass.commercialApplication === "featured_embedded_commerce_gatepass" &&
+        record.embeddedCommerceGatepass.commercialRoute === "paid_evaluation_or_design_partner_pilot" &&
+        record.embeddedCommerceGatepass.targetAudiences.includes("supermarkets") &&
+        record.embeddedCommerceGatepass.evaluationScope.includes("basket integrity") &&
         record.embeddedCommerceGatepass.status === "local_deterministic_synthetic_evaluation" &&
         record.embeddedCommerceGatepass.integrationBoundary.includes("no live retailer") &&
         record.embeddedCommerceGatepass.integrationBoundary.includes("no checkout") &&

@@ -8,10 +8,12 @@ This page describes a possible paid synthetic evaluation or design-partner scopi
 
 The pilot may be relevant for:
 
-- retailers evaluating AI-assisted basket preparation controls;
-- agent platforms exploring pre-checkout proof requirements;
-- payment providers reviewing trust signals before payment authorisation;
+- supermarkets and grocery retailers evaluating AI-assisted basket preparation controls;
+- general retailers reviewing delegated basket and checkout-adjacent risk;
+- AI-shopping and agent platforms exploring pre-checkout proof requirements;
+- payment and checkout providers reviewing trust signals before payment authorisation;
 - commerce infrastructure teams handling basket, checkout, approval, or settlement-adjacent workflows;
+- retail-system architects designing mandate, basket, approval, and audit models;
 - AI governance, trust and safety, or risk teams reviewing mandate enforcement.
 
 ## What A Paid Synthetic Evaluation Can Include
@@ -19,6 +21,7 @@ The pilot may be relevant for:
 Subject to written agreement, a paid evaluation can include:
 
 - mapping buyer mandates, basket snapshots, final basket fields, approval records, evidence references, and replay/nonce requirements;
+- evaluating mandate enforcement, basket integrity, substitution controls, price and fee limits, approval freshness, merchant checks, delivery-destination checks, replay protection, and evidence sufficiency;
 - running deterministic synthetic scenarios through the local commerce GatePass model;
 - producing commerce GatePass examples for allowed synthetic baskets;
 - producing structured refusal receipts for blocked synthetic baskets;

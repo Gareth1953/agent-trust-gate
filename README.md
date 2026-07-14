@@ -110,6 +110,14 @@ hash, nonce, and evidence.
 
 The demo returns either a commerce GatePass or a refusal receipt.
 
+Commercial relevance: this synthetic local demonstrator is aimed at
+supermarkets, grocery retailers, general retailers, AI-shopping platforms,
+commerce-infrastructure teams, payment providers, retail-system architects and
+transaction-risk reviewers evaluating how an AI-created basket could be checked
+before checkout or payment authorisation. Tailored real integration is available
+only through a separately scoped and funded design-partner engagement; no live
+retailer or payment integration currently exists.
+
 ```powershell
 npm run demo:commerce-gatepass
 npm run demo:commerce-gatepass -- --summary-only
