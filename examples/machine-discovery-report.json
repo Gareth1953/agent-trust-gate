@@ -21,9 +21,9 @@
     "githubTopics": "Active - added manually through GitHub",
     "llmsTxt": "Active",
     "canonicalDiscoveryJson": "Active",
-    "staticSiteSource": "Prepared but inactive",
-    "githubPagesDeployment": "Deployment workflow prepared - activation pending manual GitHub Pages enablement and live verification",
-    "expectedPagesUrl": "https://gareth1953.github.io/agent-trust-gate/",
+    "staticSiteSource": "Active",
+    "githubPagesDeployment": "Active - public HTTPS verified static discovery site deployed by GitHub Actions",
+    "livePagesUrl": "https://gareth1953.github.io/agent-trust-gate/",
     "a2aMetadataReadiness": "Prepared but inactive",
     "a2aServerReadiness": "Not implemented",
     "mcpDesignReadiness": "Prepared but inactive",
@@ -37,7 +37,6 @@
     "a2aServer": false,
     "mcpServer": false,
     "npmPublication": false,
-    "githubPagesDeployment": false,
     "realActionExecution": false,
     "livePaymentExecution": false,
     "realSettlementExecution": false,
@@ -45,6 +44,18 @@
     "autonomousOutreach": false,
     "directBotMessaging": false,
     "liveAgentToAgentCommunication": false
+  },
+  "pagesDiscovery": {
+    "liveUrl": "https://gareth1953.github.io/agent-trust-gate/",
+    "configured": true,
+    "active": true,
+    "publiclyReachable": true,
+    "httpsVerified": true,
+    "liveUrlVerified": true,
+    "deploymentMethod": "GitHub Actions",
+    "deploymentWorkflowActive": true,
+    "liveVerificationStatus": "verified",
+    "activationSourceCommit": "4c68e1b9eef33505da3444f64d170eda1f32a046"
   },
   "safetyFlags": {
     "localDemoOnly": true,
@@ -59,9 +70,13 @@
     "mcpServer": false,
     "npmPublished": false,
     "githubPagesWorkflowPrepared": true,
-    "githubPagesActivationPending": true,
-    "githubPagesLiveVerificationPending": true,
-    "githubPagesDeploymentActive": false,
+    "githubPagesDeploymentWorkflowActive": true,
+    "githubPagesConfigured": true,
+    "githubPagesActive": true,
+    "githubPagesPubliclyReachable": true,
+    "githubPagesHttpsVerified": true,
+    "githubPagesLiveUrlVerified": true,
+    "githubPagesDeploymentActive": true,
     "livePaymentProcessing": false,
     "settlementExecution": false,
     "productionSigning": false,
@@ -69,12 +84,12 @@
     "securityCertification": false,
     "legalComplianceGuarantee": false
   },
-  "safetyBoundary": "Passive machine discovery and local deterministic evaluation only. GitHub Pages deployment workflow is prepared, but activation and live verification are pending. No live endpoint, no A2A server, no MCP server, no npm publication, no verified live GitHub Pages status, no real tool execution, no network calls, no live payment processing, no settlement execution, and no action execution.",
+  "safetyBoundary": "Passive machine discovery and local deterministic evaluation only. GitHub Pages passive discovery is active, public, and HTTPS verified as a static discovery route. No live API endpoint, no A2A server, no MCP server, no npm publication, no real tool execution, no product network calls, no live payment processing, no settlement execution, and no action execution.",
   "publicContact": "gpmiddleton71@gmail.com",
   "lastReviewed": {
-    "mission": "P3-M143",
+    "mission": "P3-M143A",
     "date": "2026-07-13",
-    "reviewType": "passive_discovery_activation_prepared_live_verification_pending",
+    "reviewType": "passive_discovery_activation_active_https_verified",
     "reviewedBy": "Agent Trust Gate local repository metadata"
   }
 }

@@ -2,31 +2,30 @@
 
 ## Purpose
 
-P3-M143 prepares Agent Trust Gate for controlled passive discovery through GitHub Pages. It adds a workflow and static site source, but it does not enable Pages, change repository settings, verify a live URL, create a custom domain, or deploy anything from this local Codex mission.
+P3-M143 prepared Agent Trust Gate for controlled passive discovery through GitHub Pages. P3-M143A records that Gareth manually enabled Pages through GitHub Actions and verified the public static discovery route.
 
-Expected URL after manual activation and verification:
+Live public URL:
 
 `https://gareth1953.github.io/agent-trust-gate/`
 
-Current status: activation prepared, live verification pending.
+Current status: active and verified.
 
-## Manual Activation Sequence
+## Activation Evidence
 
-1. Push the P3-M143 commit to `main`.
-2. Open the GitHub repository settings.
-3. Open **Pages**.
-4. Under **Build and deployment**, select **GitHub Actions**.
-5. Open the **Actions** tab if required.
-6. Run or observe the `Deploy discovery Pages` workflow.
-7. Verify the published URL.
-8. Verify HTTPS.
-9. Verify the stable machine-readable URLs:
+1. Source commit: `4c68e1b9eef33505da3444f64d170eda1f32a046`.
+2. Branch: `main`.
+3. Deployment method: GitHub Actions.
+4. Workflow: `deploy-discovery-pages.yml`.
+5. Workflow run: `Deploy discovery Pages #1`.
+6. Live URL: `https://gareth1953.github.io/agent-trust-gate/`.
+7. HTTPS: verified.
+8. Homepage: publicly reachable.
+9. Stable machine-readable URLs:
    - `https://gareth1953.github.io/agent-trust-gate/agent-trust-gate.discovery.json`
    - `https://gareth1953.github.io/agent-trust-gate/agent-trust-gate.agent-card.json`
    - `https://gareth1953.github.io/agent-trust-gate/agent-trust-gate.manifest.json`
    - `https://gareth1953.github.io/agent-trust-gate/llms.txt`
-10. Record activation evidence using `docs/passive-discovery-activation-record-template.md`.
-11. Update inactive or pending metadata only after verified activation evidence exists.
+10. Activation record: `docs/passive-discovery-activation-record.md`.
 
 ## What The Workflow Publishes
 
@@ -48,7 +47,7 @@ If activation produces an incorrect or unsafe public result:
 2. Disable or remove `.github/workflows/deploy-discovery-pages.yml`.
 3. Revert the activation commit if necessary.
 4. Re-run local checks before any later activation attempt.
-5. Do not update metadata to live-active status unless the corrected site is verified.
+5. Do not restore active metadata after rollback unless the corrected site is verified again.
 
 ## Safety Boundary
 

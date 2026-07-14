@@ -7,6 +7,10 @@ export const MACHINE_DISCOVERY_SITE_VALIDATION_COMMAND = "npm run validate:disco
 export const MACHINE_DISCOVERY_EXPECTED_PAGES_URL = "https://gareth1953.github.io/agent-trust-gate/" as const;
 export const MACHINE_DISCOVERY_PAGES_BASE_PATH = "/agent-trust-gate/" as const;
 export const MACHINE_DISCOVERY_PAGES_WORKFLOW = ".github/workflows/deploy-discovery-pages.yml" as const;
+export const MACHINE_DISCOVERY_PAGES_DEPLOYMENT_METHOD = "GitHub Actions" as const;
+export const MACHINE_DISCOVERY_PAGES_WORKFLOW_RUN = "Deploy discovery Pages #1" as const;
+export const MACHINE_DISCOVERY_ACTIVATION_SOURCE_COMMIT =
+  "4c68e1b9eef33505da3444f64d170eda1f32a046" as const;
 
 export const MACHINE_DISCOVERY_CORE_PHRASES = [
   "GatePass is a scoped, time-bound, action-specific proof primitive for agent actions.",
@@ -37,9 +41,13 @@ export interface MachineDiscoveryStatuses {
   mcpServer: false;
   npmPublished: false;
   githubPagesWorkflowPrepared: true;
-  githubPagesActivationPending: true;
-  githubPagesLiveVerificationPending: true;
-  githubPagesDeploymentActive: false;
+  githubPagesDeploymentWorkflowActive: true;
+  githubPagesConfigured: true;
+  githubPagesActive: true;
+  githubPagesPubliclyReachable: true;
+  githubPagesHttpsVerified: true;
+  githubPagesLiveUrlVerified: true;
+  githubPagesDeploymentActive: true;
   authenticationActive: false;
   networkEndpointActive: false;
   autonomousOutreach: false;
@@ -90,20 +98,28 @@ export interface MachineDiscoveryRecord {
     mcpServerStatus: "not_implemented_no_live_mcp_server_no_tools";
     mcpRegistryStatus: "not_published_not_ready_until_real_server_exists";
     npmPublicationStatus: "not_published_package_private";
-    githubPagesDeploymentStatus: "deployment_workflow_prepared_activation_pending_live_verification_pending";
+    githubPagesDeploymentStatus: "active_public_https_verified_static_discovery_via_github_actions";
     networkEndpointStatus: "no_live_endpoint";
     paymentSettlementStatus: "no_real_payment_or_settlement_execution";
     actionExecutionStatus: "no_live_autonomous_action_execution";
   };
   githubPagesPassiveDiscovery: {
-    expectedUrl: typeof MACHINE_DISCOVERY_EXPECTED_PAGES_URL;
+    liveUrl: typeof MACHINE_DISCOVERY_EXPECTED_PAGES_URL;
     basePath: typeof MACHINE_DISCOVERY_PAGES_BASE_PATH;
     deploymentWorkflow: typeof MACHINE_DISCOVERY_PAGES_WORKFLOW;
+    deploymentMethod: typeof MACHINE_DISCOVERY_PAGES_DEPLOYMENT_METHOD;
     workflowPrepared: true;
-    activationStatus: "activation_prepared_live_verification_pending";
-    manualEnablementRequired: true;
-    liveVerificationPending: true;
-    currentLiveStatusClaim: "not_claimed_live";
+    deploymentWorkflowActive: true;
+    configured: true;
+    active: true;
+    publiclyReachable: true;
+    httpsVerified: true;
+    liveUrlVerified: true;
+    liveVerificationStatus: "verified";
+    activationDate: "2026-07-13";
+    activationSourceCommit: typeof MACHINE_DISCOVERY_ACTIVATION_SOURCE_COMMIT;
+    workflowRun: typeof MACHINE_DISCOVERY_PAGES_WORKFLOW_RUN;
+    currentLiveStatusClaim: "active_public_https_verified_static_discovery";
     artifactIncludes: readonly [
       "discovery-site contents",
       "agent-trust-gate.discovery.json",
@@ -118,9 +134,9 @@ export interface MachineDiscoveryRecord {
   recommendedCommands: readonly string[];
   coreCommercialPosition: "No mandate. No evidence. No verified intent. No signed GatePass. No settlement.";
   lastReviewed: {
-    mission: "P3-M143";
+    mission: "P3-M143A";
     date: "2026-07-13";
-    reviewType: "passive_discovery_activation_prepared_live_verification_pending";
+    reviewType: "passive_discovery_activation_active_https_verified";
     reviewedBy: "Agent Trust Gate local repository metadata";
   };
 }
@@ -141,7 +157,6 @@ export interface MachineDiscoveryReport {
     a2aServer: false;
     mcpServer: false;
     npmPublication: false;
-    githubPagesDeployment: false;
     realActionExecution: false;
     livePaymentExecution: false;
     realSettlementExecution: false;
@@ -149,6 +164,18 @@ export interface MachineDiscoveryReport {
     autonomousOutreach: false;
     directBotMessaging: false;
     liveAgentToAgentCommunication: false;
+  };
+  pagesDiscovery: {
+    liveUrl: typeof MACHINE_DISCOVERY_EXPECTED_PAGES_URL;
+    configured: true;
+    active: true;
+    publiclyReachable: true;
+    httpsVerified: true;
+    liveUrlVerified: true;
+    deploymentMethod: typeof MACHINE_DISCOVERY_PAGES_DEPLOYMENT_METHOD;
+    deploymentWorkflowActive: true;
+    liveVerificationStatus: "verified";
+    activationSourceCommit: typeof MACHINE_DISCOVERY_ACTIVATION_SOURCE_COMMIT;
   };
   safetyFlags: {
     localDemoOnly: true;
@@ -163,9 +190,13 @@ export interface MachineDiscoveryReport {
     mcpServer: false;
     npmPublished: false;
     githubPagesWorkflowPrepared: true;
-    githubPagesActivationPending: true;
-    githubPagesLiveVerificationPending: true;
-    githubPagesDeploymentActive: false;
+    githubPagesDeploymentWorkflowActive: true;
+    githubPagesConfigured: true;
+    githubPagesActive: true;
+    githubPagesPubliclyReachable: true;
+    githubPagesHttpsVerified: true;
+    githubPagesLiveUrlVerified: true;
+    githubPagesDeploymentActive: true;
     livePaymentProcessing: false;
     settlementExecution: false;
     productionSigning: false;
@@ -189,9 +220,13 @@ export interface MachineDiscoverySummary {
   mcpServer: false;
   npmPublished: false;
   githubPagesWorkflowPrepared: true;
-  githubPagesActivationPending: true;
-  githubPagesLiveVerificationPending: true;
-  githubPagesDeploymentActive: false;
+  githubPagesDeploymentWorkflowActive: true;
+  githubPagesConfigured: true;
+  githubPagesActive: true;
+  githubPagesPubliclyReachable: true;
+  githubPagesHttpsVerified: true;
+  githubPagesLiveUrlVerified: true;
+  githubPagesDeploymentActive: true;
   realActionExecution: false;
   realPaymentExecution: false;
   realSettlementExecution: false;
@@ -219,9 +254,13 @@ export const MACHINE_DISCOVERY_SAFETY_FLAGS: MachineDiscoveryStatuses = {
   mcpServer: false,
   npmPublished: false,
   githubPagesWorkflowPrepared: true,
-  githubPagesActivationPending: true,
-  githubPagesLiveVerificationPending: true,
-  githubPagesDeploymentActive: false,
+  githubPagesDeploymentWorkflowActive: true,
+  githubPagesConfigured: true,
+  githubPagesActive: true,
+  githubPagesPubliclyReachable: true,
+  githubPagesHttpsVerified: true,
+  githubPagesLiveUrlVerified: true,
+  githubPagesDeploymentActive: true,
   authenticationActive: false,
   networkEndpointActive: false,
   autonomousOutreach: false,
@@ -297,20 +336,28 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
       mcpServerStatus: "not_implemented_no_live_mcp_server_no_tools",
       mcpRegistryStatus: "not_published_not_ready_until_real_server_exists",
       npmPublicationStatus: "not_published_package_private",
-      githubPagesDeploymentStatus: "deployment_workflow_prepared_activation_pending_live_verification_pending",
+      githubPagesDeploymentStatus: "active_public_https_verified_static_discovery_via_github_actions",
       networkEndpointStatus: "no_live_endpoint",
       paymentSettlementStatus: "no_real_payment_or_settlement_execution",
       actionExecutionStatus: "no_live_autonomous_action_execution",
     },
     githubPagesPassiveDiscovery: {
-      expectedUrl: MACHINE_DISCOVERY_EXPECTED_PAGES_URL,
+      liveUrl: MACHINE_DISCOVERY_EXPECTED_PAGES_URL,
       basePath: MACHINE_DISCOVERY_PAGES_BASE_PATH,
       deploymentWorkflow: MACHINE_DISCOVERY_PAGES_WORKFLOW,
+      deploymentMethod: MACHINE_DISCOVERY_PAGES_DEPLOYMENT_METHOD,
       workflowPrepared: true,
-      activationStatus: "activation_prepared_live_verification_pending",
-      manualEnablementRequired: true,
-      liveVerificationPending: true,
-      currentLiveStatusClaim: "not_claimed_live",
+      deploymentWorkflowActive: true,
+      configured: true,
+      active: true,
+      publiclyReachable: true,
+      httpsVerified: true,
+      liveUrlVerified: true,
+      liveVerificationStatus: "verified",
+      activationDate: "2026-07-13",
+      activationSourceCommit: MACHINE_DISCOVERY_ACTIVATION_SOURCE_COMMIT,
+      workflowRun: MACHINE_DISCOVERY_PAGES_WORKFLOW_RUN,
+      currentLiveStatusClaim: "active_public_https_verified_static_discovery",
       artifactIncludes: [
         "discovery-site contents",
         "agent-trust-gate.discovery.json",
@@ -338,7 +385,7 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
       "no live MCP server",
       "not listed in the MCP Registry",
       "not published on npm",
-      "GitHub Pages deployment workflow is prepared, but activation and live verification are pending",
+      "GitHub Pages passive discovery is active, public, and HTTPS verified as a static discovery route",
       "no real payment or settlement execution",
       "no live autonomous action execution",
       "no guaranteed safety, compliance, buyer demand, or paid-pilot conversion",
@@ -354,11 +401,11 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
       reviewerKitReportExample: "examples/gatepass-reviewer-kit-report.json",
       paidPilotOfferExample: "examples/paid-pilot-offer.json",
       machineDiscoveryReportExample: "examples/machine-discovery-report.json",
-      expectedPagesUrl: MACHINE_DISCOVERY_EXPECTED_PAGES_URL,
-      expectedPagesDiscoveryRecord: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}agent-trust-gate.discovery.json`,
-      expectedPagesLlms: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}llms.txt`,
-      expectedPagesAgentCard: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}agent-trust-gate.agent-card.json`,
-      expectedPagesManifest: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}agent-trust-gate.manifest.json`,
+      livePagesUrl: MACHINE_DISCOVERY_EXPECTED_PAGES_URL,
+      livePagesDiscoveryRecord: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}agent-trust-gate.discovery.json`,
+      livePagesLlms: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}llms.txt`,
+      livePagesAgentCard: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}agent-trust-gate.agent-card.json`,
+      livePagesManifest: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}agent-trust-gate.manifest.json`,
     },
     recommendedCommands: [
       MACHINE_DISCOVERY_FIRST_COMMAND,
@@ -372,9 +419,9 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
     coreCommercialPosition:
       "No mandate. No evidence. No verified intent. No signed GatePass. No settlement.",
     lastReviewed: {
-      mission: "P3-M143",
+      mission: "P3-M143A",
       date: "2026-07-13",
-      reviewType: "passive_discovery_activation_prepared_live_verification_pending",
+      reviewType: "passive_discovery_activation_active_https_verified",
       reviewedBy: "Agent Trust Gate local repository metadata",
     },
   };
@@ -399,9 +446,9 @@ export function getMachineDiscoveryReport(
       githubTopics: "Active - added manually through GitHub",
       llmsTxt: "Active",
       canonicalDiscoveryJson: "Active",
-      staticSiteSource: "Prepared but inactive",
-      githubPagesDeployment: "Deployment workflow prepared - activation pending manual GitHub Pages enablement and live verification",
-      expectedPagesUrl: MACHINE_DISCOVERY_EXPECTED_PAGES_URL,
+      staticSiteSource: "Active",
+      githubPagesDeployment: "Active - public HTTPS verified static discovery site deployed by GitHub Actions",
+      livePagesUrl: MACHINE_DISCOVERY_EXPECTED_PAGES_URL,
       a2aMetadataReadiness: "Prepared but inactive",
       a2aServerReadiness: "Not implemented",
       mcpDesignReadiness: "Prepared but inactive",
@@ -415,7 +462,6 @@ export function getMachineDiscoveryReport(
       a2aServer: false,
       mcpServer: false,
       npmPublication: false,
-      githubPagesDeployment: false,
       realActionExecution: false,
       livePaymentExecution: false,
       realSettlementExecution: false,
@@ -423,6 +469,18 @@ export function getMachineDiscoveryReport(
       autonomousOutreach: false,
       directBotMessaging: false,
       liveAgentToAgentCommunication: false,
+    },
+    pagesDiscovery: {
+      liveUrl: MACHINE_DISCOVERY_EXPECTED_PAGES_URL,
+      configured: true,
+      active: true,
+      publiclyReachable: true,
+      httpsVerified: true,
+      liveUrlVerified: true,
+      deploymentMethod: MACHINE_DISCOVERY_PAGES_DEPLOYMENT_METHOD,
+      deploymentWorkflowActive: true,
+      liveVerificationStatus: "verified",
+      activationSourceCommit: MACHINE_DISCOVERY_ACTIVATION_SOURCE_COMMIT,
     },
     safetyFlags: {
       localDemoOnly: true,
@@ -437,9 +495,13 @@ export function getMachineDiscoveryReport(
       mcpServer: false,
       npmPublished: false,
       githubPagesWorkflowPrepared: true,
-      githubPagesActivationPending: true,
-      githubPagesLiveVerificationPending: true,
-      githubPagesDeploymentActive: false,
+      githubPagesDeploymentWorkflowActive: true,
+      githubPagesConfigured: true,
+      githubPagesActive: true,
+      githubPagesPubliclyReachable: true,
+      githubPagesHttpsVerified: true,
+      githubPagesLiveUrlVerified: true,
+      githubPagesDeploymentActive: true,
       livePaymentProcessing: false,
       settlementExecution: false,
       productionSigning: false,
@@ -448,7 +510,7 @@ export function getMachineDiscoveryReport(
       legalComplianceGuarantee: false,
     },
     safetyBoundary:
-      "Passive machine discovery and local deterministic evaluation only. GitHub Pages deployment workflow is prepared, but activation and live verification are pending. No live endpoint, no A2A server, no MCP server, no npm publication, no verified live GitHub Pages status, no real tool execution, no network calls, no live payment processing, no settlement execution, and no action execution.",
+      "Passive machine discovery and local deterministic evaluation only. GitHub Pages passive discovery is active, public, and HTTPS verified as a static discovery route. No live API endpoint, no A2A server, no MCP server, no npm publication, no real tool execution, no product network calls, no live payment processing, no settlement execution, and no action execution.",
     publicContact: record.publicContactEmail,
     lastReviewed: record.lastReviewed,
   };
@@ -468,8 +530,12 @@ export function summariseMachineDiscovery(
     mcpServer: record.statuses.mcpServer,
     npmPublished: record.statuses.npmPublished,
     githubPagesWorkflowPrepared: record.statuses.githubPagesWorkflowPrepared,
-    githubPagesActivationPending: record.statuses.githubPagesActivationPending,
-    githubPagesLiveVerificationPending: record.statuses.githubPagesLiveVerificationPending,
+    githubPagesDeploymentWorkflowActive: record.statuses.githubPagesDeploymentWorkflowActive,
+    githubPagesConfigured: record.statuses.githubPagesConfigured,
+    githubPagesActive: record.statuses.githubPagesActive,
+    githubPagesPubliclyReachable: record.statuses.githubPagesPubliclyReachable,
+    githubPagesHttpsVerified: record.statuses.githubPagesHttpsVerified,
+    githubPagesLiveUrlVerified: record.statuses.githubPagesLiveUrlVerified,
     githubPagesDeploymentActive: record.statuses.githubPagesDeploymentActive,
     realActionExecution: record.statuses.realActionExecution,
     realPaymentExecution: record.statuses.realPaymentExecution,
@@ -509,11 +575,10 @@ export function validateMachineDiscoveryRecord(
       passed: !record.statuses.a2aServer &&
         !record.statuses.mcpServer &&
         !record.statuses.npmPublished &&
-        !record.statuses.githubPagesDeploymentActive &&
         record.statuses.githubPagesWorkflowPrepared &&
-        record.statuses.githubPagesActivationPending &&
-        record.statuses.githubPagesLiveVerificationPending,
-      detail: "A2A, MCP, npm publication, and verified GitHub Pages deployment are inactive while Pages activation remains pending",
+        record.statuses.githubPagesDeploymentWorkflowActive &&
+        record.statuses.githubPagesDeploymentActive,
+      detail: "A2A, MCP, and npm publication remain inactive while the static GitHub Pages discovery route is active",
     },
     {
       id: "inactive_execution",
@@ -528,17 +593,23 @@ export function validateMachineDiscoveryRecord(
       passed: record.claimsBoundary.some((claim) => claim.includes("no live A2A server")) &&
         record.claimsBoundary.some((claim) => claim.includes("no live MCP server")) &&
         record.claimsBoundary.some((claim) => claim.includes("not published on npm")) &&
-        record.claimsBoundary.some((claim) => claim.includes("activation and live verification are pending")),
+        record.claimsBoundary.some((claim) => claim.includes("GitHub Pages passive discovery is active")),
       detail: "claims boundary covers inactive protocol and publication states",
     },
     {
-      id: "pages_activation_prepared",
-      passed: record.githubPagesPassiveDiscovery.expectedUrl === MACHINE_DISCOVERY_EXPECTED_PAGES_URL &&
+      id: "pages_activation_verified",
+      passed: record.githubPagesPassiveDiscovery.liveUrl === MACHINE_DISCOVERY_EXPECTED_PAGES_URL &&
         record.githubPagesPassiveDiscovery.workflowPrepared &&
-        record.githubPagesPassiveDiscovery.manualEnablementRequired &&
-        record.githubPagesPassiveDiscovery.liveVerificationPending &&
-        record.githubPagesPassiveDiscovery.currentLiveStatusClaim === "not_claimed_live",
-      detail: "GitHub Pages passive discovery is prepared but not claimed live",
+        record.githubPagesPassiveDiscovery.deploymentWorkflowActive &&
+        record.githubPagesPassiveDiscovery.configured &&
+        record.githubPagesPassiveDiscovery.active &&
+        record.githubPagesPassiveDiscovery.publiclyReachable &&
+        record.githubPagesPassiveDiscovery.httpsVerified &&
+        record.githubPagesPassiveDiscovery.liveUrlVerified &&
+        record.githubPagesPassiveDiscovery.liveVerificationStatus === "verified" &&
+        record.githubPagesPassiveDiscovery.activationSourceCommit === MACHINE_DISCOVERY_ACTIVATION_SOURCE_COMMIT &&
+        record.githubPagesPassiveDiscovery.currentLiveStatusClaim === "active_public_https_verified_static_discovery",
+      detail: "GitHub Pages passive discovery is active, public, and HTTPS verified",
     },
   ] as const;
 

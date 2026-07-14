@@ -2,7 +2,7 @@
 
 This directory contains the static source prepared for the Agent Trust Gate passive discovery site.
 
-Status: activation prepared, live verification pending. The expected GitHub Pages project URL is `https://gareth1953.github.io/agent-trust-gate/`, but repository metadata must not mark it active until the owner enables Pages, runs the workflow, and verifies the live site.
+Status: active and verified. The public GitHub Pages project URL is `https://gareth1953.github.io/agent-trust-gate/`, served as a passive discovery site with public machine-readable discovery files.
 
 The deployment workflow publishes only:
 

@@ -2,9 +2,9 @@
 
 ## Purpose
 
-P3-M142 adds passive machine-discovery and registry-readiness material for Agent Trust Gate(TM). P3-M143 prepares controlled GitHub Pages passive discovery activation. It helps humans, search systems, AI assistants, developers, and reviewers understand the repository without adding a live agent, A2A server, MCP server, npm publication, verified live deployment, outreach system, or executable remote service.
+P3-M142 adds passive machine-discovery and registry-readiness material for Agent Trust Gate(TM). P3-M143A records controlled GitHub Pages passive discovery as active and verified. It helps humans, search systems, AI assistants, developers, and reviewers understand the repository without adding a live agent, A2A server, MCP server, npm publication, live API, outreach system, or executable remote service.
 
-Current Pages status: activation prepared, live verification pending. Expected URL after manual enablement and verification: `https://gareth1953.github.io/agent-trust-gate/`.
+Current Pages status: active and verified. Public URL: `https://gareth1953.github.io/agent-trust-gate/`.
 
 GatePass remains the headline product concept. Agent Trust Language remains supporting material. The reviewer kit remains the recommended first experience.
 
@@ -49,7 +49,7 @@ The Agent Trust Gate Paid Evaluation Pilot starts from £1,500, subject to scope
 - Local developer wrapper for mock tool-call gating.
 - One-command local reviewer kit.
 - Passive machine-readable discovery metadata.
-- Prepared static GitHub Pages artifact route, pending manual activation and live verification.
+- Active public static GitHub Pages discovery route.
 - Human-reviewed paid-pilot enquiry route.
 
 ## Unsupported Capabilities
@@ -58,8 +58,8 @@ The Agent Trust Gate Paid Evaluation Pilot starts from £1,500, subject to scope
 - No live MCP server.
 - No MCP Registry publication.
 - No npm publication.
-- No verified active GitHub Pages deployment.
-- GitHub Pages deployment workflow prepared; manual enablement and live verification still required.
+- GitHub Pages passive discovery is active and HTTPS verified as a static route only.
+- GitHub Pages deployment workflow is active through GitHub Actions.
 - No live API or operational network endpoint.
 - No real action execution.
 - No real payment or settlement execution.
@@ -67,11 +67,11 @@ The Agent Trust Gate Paid Evaluation Pilot starts from £1,500, subject to scope
 
 ## Future Activation Gates
 
-Future A2A, MCP, npm, or GitHub Pages status changes require explicit approved missions or manual owner action, security review, human-governance review, protocol testing where relevant, and honest public status updates. Discovery metadata is not permission to activate an executable service.
+Future A2A, MCP, npm, custom-domain, or executable-service status changes require explicit approved missions or manual owner action, security review, human-governance review, protocol testing where relevant, and honest public status updates. Discovery metadata is not permission to activate an executable service.
 
 ## Discovery Differs From Execution
 
-Discovery tells readers what exists. Execution performs an action. P3-M142 adds static metadata, local deterministic CLI output, and static-site source. P3-M143 adds a selected-file Pages workflow and local static-site validation. Neither mission changes the product by itself or marks the expected URL as verified live.
+Discovery tells readers what exists. Execution performs an action. P3-M142 adds static metadata, local deterministic CLI output, and static-site source. P3-M143 adds a selected-file Pages workflow and local static-site validation. P3-M143A records the static GitHub Pages route as verified live without changing Agent Trust Gate into an executable hosted service.
 
 Core commercial position:
 

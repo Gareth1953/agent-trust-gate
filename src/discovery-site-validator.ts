@@ -23,7 +23,7 @@ export interface DiscoverySiteValidationReport {
   valid: boolean;
   localDemoOnly: true;
   networkCalls: false;
-  githubPagesDeploymentActive: false;
+  githubPagesDeploymentActive: true;
   actionExecution: false;
   checks: readonly DiscoverySiteValidationCheck[];
 }
@@ -62,6 +62,12 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
   const jsonLdValues = extractJsonLd(indexHtml);
   const parsedJsonLd = jsonLdValues.map((value) => JSON.parse(value) as unknown);
   const trackedPaths = listFiles(".");
+  const obsoleteStatusPattern = new RegExp([
+    "activation\\s+prepared",
+    "live\\s+verification\\s+pending",
+    "live\\s+verification\\s+remains\\s+pending",
+    "Expected\\s+public\\s+path\\s+after\\s+manual\\s+Pages\\s+activation",
+  ].join("|"), "i");
   const checks: DiscoverySiteValidationCheck[] = [
     {
       id: "required_files",
@@ -109,6 +115,14 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
         sitemapXml.includes(MACHINE_DISCOVERY_EXPECTED_PAGES_URL) &&
         robotsTxt.includes(`${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}sitemap.xml`),
       detail: "canonical URL, 404 link, robots.txt, and sitemap use the expected Pages project path",
+    },
+    {
+      id: "active_verified_wording",
+      passed: /Passive discovery site active/i.test(indexHtml) &&
+        /Public machine-readable discovery route/i.test(indexHtml) &&
+        /Hosted through GitHub Pages/i.test(indexHtml) &&
+        !obsoleteStatusPattern.test(indexHtml),
+      detail: "index.html records the active verified Pages status without obsolete pending wording",
     },
     {
       id: "required_links",
@@ -187,7 +201,7 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
     valid: checks.every((check) => check.passed),
     localDemoOnly: true,
     networkCalls: false,
-    githubPagesDeploymentActive: false,
+    githubPagesDeploymentActive: true,
     actionExecution: false,
     checks,
   };
@@ -196,7 +210,7 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
 export function renderDiscoverySiteValidation(report: DiscoverySiteValidationReport): string {
   return [
     "Agent Trust Gate discovery-site validation",
-    `expected Pages URL: ${report.expectedPagesUrl}`,
+    `Pages URL: ${report.expectedPagesUrl}`,
     `workflow: ${report.workflow}`,
     `valid: ${report.valid}`,
     "",

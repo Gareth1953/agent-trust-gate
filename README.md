@@ -101,12 +101,11 @@ or access after payment.
 ## Machine and Developer Discovery
 
 P3-M142 adds passive machine-readable discovery and registry-readiness metadata.
-P3-M143 prepares the static discovery site for controlled GitHub Pages
-activation. Status: **Activation prepared - live verification pending**. It
-does not claim that the expected Pages URL is live until Gareth manually enables
-Pages and verifies the deployment. It does not add a live A2A server, MCP
-server, npm publication, remote endpoint, outreach system, payment route,
-settlement route, analytics, tracking, or executable remote service.
+P3-M143A records the public passive discovery site as **active and verified** at
+the GitHub Pages URL below. This is a static discovery route only. It does not
+add a live A2A server, MCP server, npm publication, remote API endpoint,
+outreach system, payment route, settlement route, analytics, tracking, or
+executable remote service.
 
 Discovery route:
 
@@ -122,6 +121,7 @@ Discovery route:
 - [GitHub Pages passive discovery activation](docs/github-pages-passive-discovery-activation.md)
 - [Passive discovery live verification checklist](docs/passive-discovery-live-verification-checklist.md)
 - [Repository social preview upload](docs/repository-social-preview-upload.md)
+- [Passive discovery activation record](docs/passive-discovery-activation-record.md)
 - [Passive discovery activation record template](docs/passive-discovery-activation-record-template.md)
 - [A2A discovery readiness boundary](docs/a2a-discovery-readiness-boundary.md)
 - [MCP Registry readiness boundary](docs/mcp-registry-readiness-boundary.md)
@@ -138,7 +138,7 @@ npm run demo:discovery -- --json
 npm run validate:discovery-site
 ```
 
-Expected Pages URL after manual activation and verification:
+Public passive discovery site:
 `https://gareth1953.github.io/agent-trust-gate/`.
 
 The Pages artifact is limited to `discovery-site/`,
@@ -243,7 +243,7 @@ mission.
 - P3-M140 adds a local-only strategic foresight advisory layer with manual-input sample signals and human approval required before any future build mission.
 - P3-M141 adds a paid pilot and commercial entry pack for a human-approved, local, non-production Agent Trust Gate(TM) Paid Evaluation Pilot.
 - P3-M142 adds canonical passive machine-discovery metadata and registry-readiness boundaries.
-- P3-M143 prepares controlled GitHub Pages passive discovery activation while keeping live verification pending.
+- P3-M143A records GitHub Pages passive discovery as active and verified.
 
 ## Start here for reviewers
 

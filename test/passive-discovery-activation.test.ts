@@ -21,6 +21,7 @@ const activationDocs = [
   "docs/passive-discovery-live-verification-checklist.md",
   "docs/repository-social-preview-upload.md",
   "docs/passive-discovery-activation-record-template.md",
+  "docs/passive-discovery-activation-record.md",
 ];
 const siteFiles = [
   "discovery-site/index.html",
@@ -68,8 +69,8 @@ test("P3-M143 workflow and activation docs exist", () => {
     assert.equal(existsSync(join(root, path)), true, path);
   }
   const combinedDocs = activationDocs.map(read).join("\n");
-  assert.match(combinedDocs, /activation prepared/i);
-  assert.match(combinedDocs, /live verification pending/i);
+  assert.match(combinedDocs, /active and verified/i);
+  assert.match(combinedDocs, /HTTPS:\s*verified|HTTPS is active/i);
   assert.match(combinedDocs, /Gareth approval|Final human approver|manual/i);
   assert.match(combinedDocs, new RegExp(expectedUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
 });
@@ -114,7 +115,9 @@ test("static discovery site is accessible source with safe machine discovery met
   assert.match(html, /application\/ld\+json/);
   assert.match(html, /npm run demo:reviewer-kit/);
   assert.match(html, /GatePass is a scoped, time-bound, action-specific proof primitive for agent actions\./);
-  assert.match(html, /Activation prepared - live verification pending/);
+  assert.match(html, /Passive discovery site active/);
+  assert.match(html, /Public machine-readable discovery route/);
+  assert.match(html, /Hosted through GitHub Pages/i);
   assert.match(html, /No live A2A endpoint/);
   assert.match(html, /MCP server: not implemented/);
   assert.match(html, /agent-trust-gate\.discovery\.json/);
@@ -142,32 +145,47 @@ test("static discovery site contains no scripts forms analytics payment links me
   assert.deepEqual(imageFiles, []);
 });
 
-test("discovery metadata reports prepared activation without live deployment status", () => {
+test("discovery metadata reports active verified passive discovery without service inflation", () => {
   const record = getMachineDiscoveryRecord();
-  assert.equal(record.githubPagesPassiveDiscovery.expectedUrl, MACHINE_DISCOVERY_EXPECTED_PAGES_URL);
+  assert.equal(record.githubPagesPassiveDiscovery.liveUrl, MACHINE_DISCOVERY_EXPECTED_PAGES_URL);
   assert.equal(record.githubPagesPassiveDiscovery.workflowPrepared, true);
-  assert.equal(record.githubPagesPassiveDiscovery.manualEnablementRequired, true);
-  assert.equal(record.githubPagesPassiveDiscovery.liveVerificationPending, true);
-  assert.equal(record.githubPagesPassiveDiscovery.currentLiveStatusClaim, "not_claimed_live");
+  assert.equal(record.githubPagesPassiveDiscovery.deploymentMethod, "GitHub Actions");
+  assert.equal(record.githubPagesPassiveDiscovery.deploymentWorkflowActive, true);
+  assert.equal(record.githubPagesPassiveDiscovery.configured, true);
+  assert.equal(record.githubPagesPassiveDiscovery.active, true);
+  assert.equal(record.githubPagesPassiveDiscovery.publiclyReachable, true);
+  assert.equal(record.githubPagesPassiveDiscovery.httpsVerified, true);
+  assert.equal(record.githubPagesPassiveDiscovery.liveUrlVerified, true);
+  assert.equal(record.githubPagesPassiveDiscovery.liveVerificationStatus, "verified");
+  assert.equal(record.githubPagesPassiveDiscovery.activationSourceCommit, "4c68e1b9eef33505da3444f64d170eda1f32a046");
+  assert.equal(record.githubPagesPassiveDiscovery.currentLiveStatusClaim, "active_public_https_verified_static_discovery");
   assert.equal(record.statuses.githubPagesWorkflowPrepared, true);
-  assert.equal(record.statuses.githubPagesActivationPending, true);
-  assert.equal(record.statuses.githubPagesLiveVerificationPending, true);
-  assert.equal(record.statuses.githubPagesDeploymentActive, false);
+  assert.equal(record.statuses.githubPagesDeploymentWorkflowActive, true);
+  assert.equal(record.statuses.githubPagesDeploymentActive, true);
+  assert.equal(record.statuses.a2aServer, false);
+  assert.equal(record.statuses.mcpServer, false);
+  assert.equal(record.statuses.npmPublished, false);
+  assert.equal(record.statuses.realActionExecution, false);
+  assert.equal(record.statuses.realPaymentExecution, false);
+  assert.equal(record.statuses.realSettlementExecution, false);
 
   const summary = summariseMachineDiscovery(record);
   assert.equal(summary.githubPagesWorkflowPrepared, true);
-  assert.equal(summary.githubPagesDeploymentActive, false);
+  assert.equal(summary.githubPagesDeploymentActive, true);
+  assert.equal(summary.githubPagesHttpsVerified, true);
 
   const report = getMachineDiscoveryReport(record);
   assert.equal(report.safetyFlags.githubPagesWorkflowPrepared, true);
-  assert.equal(report.safetyFlags.githubPagesDeploymentActive, false);
-  assert.match(report.safetyBoundary, /live verification are pending/);
+  assert.equal(report.safetyFlags.githubPagesDeploymentActive, true);
+  assert.equal(report.pagesDiscovery.active, true);
+  assert.match(report.safetyBoundary, /GitHub Pages passive discovery is active/);
 
   const fileRecord = readJson<ReturnType<typeof getMachineDiscoveryRecord>>("agent-trust-gate.discovery.json");
   assert.deepEqual(fileRecord, record);
   const example = readJson<ReturnType<typeof getMachineDiscoveryReport>>("examples/machine-discovery-report.json");
   assert.equal(example.safetyFlags.githubPagesWorkflowPrepared, true);
-  assert.equal(example.safetyFlags.githubPagesDeploymentActive, false);
+  assert.equal(example.safetyFlags.githubPagesDeploymentActive, true);
+  assert.equal(example.pagesDiscovery.httpsVerified, true);
 });
 
 test("local discovery-site validator passes and compiled command runs", () => {
@@ -175,7 +193,7 @@ test("local discovery-site validator passes and compiled command runs", () => {
   assert.equal(report.valid, true);
   assert.equal(report.localDemoOnly, true);
   assert.equal(report.networkCalls, false);
-  assert.equal(report.githubPagesDeploymentActive, false);
+  assert.equal(report.githubPagesDeploymentActive, true);
   assert.equal(report.actionExecution, false);
   for (const check of report.checks) assert.equal(check.passed, true, check.id);
 
@@ -190,7 +208,8 @@ test("README and metadata keep reviewer kit first and GatePass headline", () => 
   const readme = read("README.md");
   assert.ok(readme.indexOf("npm run demo:reviewer-kit") >= 0);
   assert.ok(readme.indexOf("npm run validate:discovery-site") > readme.indexOf("npm run demo:reviewer-kit"));
-  assert.match(readme, /Activation prepared - live verification pending/);
+  assert.match(readme, /Public passive discovery site/i);
+  assert.match(readme, /Active and verified/i);
   assert.match(readme, /GatePass remains the headline/);
   for (const path of activationDocs) assert.match(readme, new RegExp(path.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
 
@@ -201,9 +220,9 @@ test("README and metadata keep reviewer kit first and GatePass headline", () => 
   ].join("\n");
   assert.match(combined, /P3-M143/);
   assert.match(combined, /githubPagesDeploymentWorkflowPrepared"?\s*:?\s*(?:true|is true)/i);
-  assert.match(combined, /githubPagesActivationPending"?\s*:?\s*(?:true|are true)/i);
-  assert.match(combined, /githubPagesLiveVerificationPending"?\s*:?\s*(?:true|are true)/i);
-  assert.match(combined, /githubPagesDeployment"?\s*:?\s*(?:false|remains false)/i);
+  assert.match(combined, /githubPagesActive"?\s*:?\s*(?:true|is true)/i);
+  assert.match(combined, /githubPagesHttpsVerified"?\s*:?\s*(?:true|is true)/i);
+  assert.match(combined, /githubPagesDeployment"?\s*:?\s*(?:true|is true)/i);
 });
 
 test("package remains private and no operational endpoint or publication files are introduced", () => {

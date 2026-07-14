@@ -2,15 +2,15 @@
 
 ## Purpose
 
-P3-M142 prepared static discovery-site source. P3-M143 adds a controlled GitHub Pages deployment workflow and local validation command so the source can be manually activated after review.
+P3-M142 prepared static discovery-site source. P3-M143 added a controlled GitHub Pages deployment workflow and local validation command. P3-M143A records that Gareth manually activated the Pages source through GitHub Actions and verified the public route.
 
-Current status: activation prepared, live verification pending.
+Current status: active and verified.
 
-Expected URL after manual enablement and verification:
+Live public URL:
 
 `https://gareth1953.github.io/agent-trust-gate/`
 
-Do not treat this URL as verified live until GitHub Pages is manually enabled, the workflow has run, and the published site has been checked.
+This URL is a passive static discovery site only. It is not a live API, A2A endpoint, MCP server, payment route, settlement route, or action-execution service.
 
 ## Prepared Static Source
 
@@ -54,17 +54,15 @@ It uses only GitHub-owned Pages actions, copies a clean `_site` artifact, and pu
 
 It does not publish the full repository, source tree, tests, `.git`, `.github` source files, package-lock files, receipts, credentials, environment files, or internal build artifacts.
 
-## Manual Activation Route
+## Verified Activation Route
 
-Activation still requires manual GitHub settings work:
+The activation evidence recorded for P3-M143A is:
 
-1. Push the P3-M143 commit to `main`.
-2. Open GitHub repository Settings.
-3. Open Pages.
-4. Select GitHub Actions under Build and deployment.
-5. Run or observe the deployment workflow.
-6. Verify the live site and machine-readable URLs.
-7. Record evidence before updating metadata from pending to active.
+1. Source commit `4c68e1b9eef33505da3444f64d170eda1f32a046` on `main`.
+2. Pages source manually set to GitHub Actions.
+3. Workflow `deploy-discovery-pages.yml` ran as `Deploy discovery Pages #1`.
+4. Homepage and machine-readable files were reachable over HTTPS.
+5. Activation record completed at `docs/passive-discovery-activation-record.md`.
 
 ## Safety Boundary
 

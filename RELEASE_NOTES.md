@@ -1,5 +1,22 @@
 # Release Notes
 
+## P3-M143A: Live Passive Discovery Activation Record
+
+P3-M143A records the GitHub Pages passive discovery site as active and verified.
+
+Recorded evidence:
+
+- Live URL: `https://gareth1953.github.io/agent-trust-gate/`
+- Source commit: `4c68e1b9eef33505da3444f64d170eda1f32a046`
+- Branch: `main`
+- Deployment workflow: `deploy-discovery-pages.yml`
+- Workflow run: `Deploy discovery Pages #1`
+- Deployment method: GitHub Actions
+- HTTPS: verified
+- Machine-readable static discovery route: active
+
+The reviewer kit remains the recommended first experience and GatePass remains the headline proof primitive. No custom domain, image generation, analytics, tracking, forms, checkout, payment links, A2A service, MCP service, npm publication, live API, real payment execution, settlement execution, tag, release, extra deployment, push, or action execution is added.
+
 ## P3-M143: Passive Discovery Activation
 
 P3-M143 prepares the P3-M142 static discovery site for controlled GitHub Pages activation.
@@ -17,9 +34,9 @@ Added assets:
 - `src/discovery-site-validator.ts`
 - `npm run validate:discovery-site`
 
-The expected Pages project URL is recorded in the activation runbook, but status remains activation prepared and live verification pending until Gareth manually enables Pages and verifies the published site. The reviewer kit remains the recommended first experience and GatePass remains the headline proof primitive.
+P3-M143A now records the Pages project URL as active and verified. The reviewer kit remains the recommended first experience and GatePass remains the headline proof primitive.
 
-No GitHub Pages setting was changed, no live deployment was verified, no custom domain was added, no image was generated, no analytics/tracking/forms/payment links were added, no A2A or MCP service was created, no npm publication occurred, and no push/tag/release/deployment was performed by this local mission.
+No custom domain was added, no image was generated, no analytics/tracking/forms/payment links were added, no A2A or MCP service was created, no npm publication occurred, and no push/tag/release was performed by this local mission.
 
 ## P3-M142: Machine Discovery and Registry Readiness Pack
 

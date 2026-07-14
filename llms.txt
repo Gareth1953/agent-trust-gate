@@ -227,22 +227,22 @@ no action execution.
 Machine discovery boundary:
 P3-M142 adds passive machine-readable project metadata only. It creates no live
 A2A server, no A2A operational endpoint, no MCP server, no MCP Registry
-publication, no npm publication, no verified live GitHub Pages deployment, no registry
-credential, no network endpoint, no payment integration, no real tool
-execution, no settlement execution, and no action execution.
+publication, no npm publication, no registry credential, no live API endpoint,
+no payment integration, no real tool execution, no settlement execution, and
+no action execution. P3-M143A records GitHub Pages passive discovery as active
+and HTTPS verified for static metadata only.
 
 Passive discovery activation boundary:
-P3-M143 prepares GitHub Pages passive discovery activation. It adds
+P3-M143 prepared GitHub Pages passive discovery activation. It added
 `.github/workflows/deploy-discovery-pages.yml`, static site polish, local
 validation, an activation runbook, a live verification checklist, a social
-preview manual route, and an activation record template. Expected URL after
-manual activation and verification:
+preview manual route, and an activation record template. P3-M143A records the
+public passive discovery site as active and verified:
 `https://gareth1953.github.io/agent-trust-gate/`.
-Status remains activation prepared and live verification pending. It does not
-enable GitHub Pages, change repository settings, verify the site live, create a
-custom domain, generate an image, add analytics/tracking/forms/payment links,
-create A2A or MCP services, publish npm, deploy during local Codex work, push,
-tag, release, or execute actions.
+It does not create a custom domain, generate an image, add
+analytics/tracking/forms/payment links, create A2A or MCP services, publish
+npm, push, tag, release, expose a live API, process payments, execute
+settlement, or execute actions.
 
 ## P3-M141 - Paid Pilot and Commercial Entry Pack
 
@@ -303,27 +303,29 @@ Discovery docs:
 Discovery safety flags: localDemoOnly true, manualInputOnly true,
 humanApprovalRequired true, nonProduction true, a2aServer false, mcpServer
 false, mcpRegistryPublication false, npmPublication false,
-githubPagesDeployment false, operationalEndpoint false, registryCredentials
-false, realToolExecution false, actionExecution false, networkCalls false,
-livePaymentProcessing false, settlementExecution false, productionSigning
-false, productionCertification false, securityCertification false, and
-legalComplianceGuarantee false.
+githubPagesDeployment true, githubPagesActive true, githubPagesHttpsVerified
+true, operationalEndpoint false, registryCredentials false, realToolExecution
+false, actionExecution false, networkCalls false, livePaymentProcessing false,
+settlementExecution false, productionSigning false, productionCertification
+false, securityCertification false, and legalComplianceGuarantee false.
 
 The reviewer kit remains the recommended first experience. GatePass remains
 the headline proof primitive. Agent Trust Language remains supporting material.
 GitHub topics are documented as manually configured through GitHub and are not
-altered automatically by this repository. No GitHub Pages deployment, A2A
-server, A2A operational endpoint, MCP server, MCP Registry publication, npm
-publication, outreach, bot messaging, payment integration, network call,
-deployment, tag, release, publish, push, or action execution is introduced.
+altered automatically by this repository. GitHub Pages is active as a static
+passive discovery route only. No A2A server, A2A operational endpoint, MCP
+server, MCP Registry publication, npm publication, outreach, bot messaging,
+payment integration, product network call, tag, release, publish, push, or
+action execution is introduced.
 
 ## P3-M143 - Passive Discovery Activation
 
-P3-M143 prepares the existing P3-M142 static discovery site for controlled
-GitHub Pages activation. The reviewer kit remains the recommended first
-experience and GatePass remains the headline product concept.
+P3-M143 prepared the existing P3-M142 static discovery site for controlled
+GitHub Pages activation. P3-M143A records that route as active and verified.
+The reviewer kit remains the recommended first experience and GatePass remains
+the headline product concept.
 
-Expected Pages URL after manual enablement and verification:
+Live Pages URL:
 `https://gareth1953.github.io/agent-trust-gate/`
 
 Prepared workflow:
@@ -341,6 +343,7 @@ Activation docs:
 - `docs/github-pages-passive-discovery-activation.md`
 - `docs/passive-discovery-live-verification-checklist.md`
 - `docs/repository-social-preview-upload.md`
+- `docs/passive-discovery-activation-record.md`
 - `docs/passive-discovery-activation-record-template.md`
 
 Local validation command:
@@ -348,9 +351,9 @@ Local validation command:
 
 Machine-readable status:
 - `githubPagesDeploymentWorkflowPrepared` true
-- `githubPagesActivationPending` true
-- `githubPagesLiveVerificationPending` true
-- `githubPagesDeployment` false
+- `githubPagesActive` true
+- `githubPagesHttpsVerified` true
+- `githubPagesDeployment` true
 - `networkCalls` false
 - `actionExecution` false
 
@@ -358,8 +361,8 @@ The Pages artifact is intended to include only `discovery-site/`,
 `agent-trust-gate.discovery.json`, `agent-trust-gate.agent-card.json`,
 `agent-trust-gate.manifest.json`, and `llms.txt`. No live A2A endpoint, MCP
 server, npm publication, payment integration, analytics, tracking, form,
-custom domain, generated image, deployment from this local mission, tag,
-release, push, or action execution is introduced.
+custom domain, generated image, live API, tag, release, push, or action
+execution is introduced.
 
 Agent-readable GatePass benefit boundary:
 Agents may explain GatePass only in relevant trust, proof, authorisation,

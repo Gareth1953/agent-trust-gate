@@ -72,13 +72,17 @@ test("global launch positioning is public but not production payment positioning
 test("public launch documents contain no operational endpoint or sensitive value", () => {
   const paths = [...publicLaunchFiles, ...launchDocs];
   const endpoint = /https?:\/\/(?!127\.0\.0\.1(?::\d+)?(?:\/|\b)|localhost(?::\d+)?(?:\/|\b)|\[?::1\]?(?::\d+)?(?:\/|\b))[^\s)`"']+/i;
+  const allowedStaticUrls = new Set(["https://gareth1953.github.io/agent-trust-gate/"]);
   const realSecret = /sk_(?:live|test)_[a-z0-9]{16,}|AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9_]{20,}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b/i;
   const financialIdentifier = /\b[A-Z]{2}\d{2}[A-Z0-9]{11,30}\b|\b0x[a-f0-9]{40}\b|\b(?:routing|sort code|card number)\s*[:=]\s*\d{6,19}\b/i;
   const railInstruction = /\b(?:enable|activate|configure|connect|execute)\s+(?:x402|AP2|Stripe|a payment rail|payment processing)\b/i;
 
   for (const path of paths) {
     const source = read(path);
-    assert.doesNotMatch(source, endpoint, path);
+    for (const match of source.match(new RegExp(endpoint.source, "gi")) ?? []) {
+      const normalized = match.replace(/[.,;:]+$/, "");
+      assert.ok(allowedStaticUrls.has(normalized), `${path}: ${match}`);
+    }
     assert.doesNotMatch(source, realSecret, path);
     assert.doesNotMatch(source, financialIdentifier, path);
     assert.doesNotMatch(source, railInstruction, path);
