@@ -54,6 +54,9 @@ const replayKeys = [
 function readJson(path: string): unknown {
   return JSON.parse(readFileSync(path, "utf8")) as unknown;
 }
+function normaliseNewlines(value: string): string {
+  return value.replace(/\r\n/g, "\n");
+}
 function consistentInput(): ClearingReplayRunInput {
   return readJson(paths.consistentInput) as ClearingReplayRunInput;
 }
@@ -171,7 +174,7 @@ test("replay summary exactly reports mismatch and remains non-operational", () =
 
 test("Markdown renderer matches tracked local non-certifying replay text", () => {
   const markdown = renderClearingReplayRunMarkdown(createClearingReplayRun(mismatchInput()));
-  assert.equal(markdown, readFileSync(paths.markdown, "utf8").trimEnd());
+  assert.equal(normaliseNewlines(markdown), normaliseNewlines(readFileSync(paths.markdown, "utf8").trimEnd()));
   for (const heading of ["# Clearing Replay Run", "## Replay Result", "## Decision Match", "## Receipt Match", "## Verification Match", "## RefusalGraph Match", "## Ledger Match", "## Fee Metering Match", "## Safety Flags"]) assert.match(markdown, new RegExp(heading));
   assert.match(markdown, /local-only and draft-only/i);
   assert.match(markdown, /No action was re-executed/i);
