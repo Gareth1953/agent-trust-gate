@@ -19,3 +19,4 @@ manifests/*.json
 reports/*.json
 reports/gatepass-pilot/
 incidents/*.json
+local-commercial/

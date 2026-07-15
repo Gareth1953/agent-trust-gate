@@ -1,0 +1,82 @@
+{
+  "schema_version": "atg.local-agent-action-request.v2",
+  "request_id": "retail_agentic_checkout_permitted_synthetic",
+  "action_id": "northbridge_weekly_grocery_checkout_001",
+  "agent_id": "northbridge_household_shopping_agent_local",
+  "requested_action": "prepare_basket_for_simulated_checkout",
+  "action_category": "customer_impacting_commerce",
+  "local_only": true,
+  "issuer_ref": "fictional_household_account_holder",
+  "verifier_ref": "agent_trust_gate_local_retail_demo",
+  "nonce": "nonce_retail_checkout_permitted_001",
+  "mandate": {
+    "present": true,
+    "mandate_id": "mandate_weekly_grocery_basket_limit",
+    "scope": "prepare_basket_for_simulated_checkout",
+    "expires_at": "2026-07-15T18:30:00.000Z",
+    "issuer_ref": "fictional_household_account_holder"
+  },
+  "verified_intent": {
+    "present": true,
+    "status": "verified",
+    "source": "synthetic_household_grocery_instruction_fixture",
+    "verifier_ref": "agent_trust_gate_local_retail_demo",
+    "verified_at": "2026-07-15T18:00:30.000Z"
+  },
+  "evidence": {
+    "present": true,
+    "fresh": true,
+    "evidence_id": "evidence_basket_policy_match_permitted",
+    "evidence_type": "local_fixture",
+    "source": "synthetic_basket_and_substitution_policy_fixture",
+    "local_reference": "examples/retail-agentic-checkout-permitted.json",
+    "evidence_hash": "sha256:local-demo-fixture-retail-checkout-permitted",
+    "verified_at": "2026-07-15T18:01:00.000Z",
+    "freshness": {
+      "checked_at": "2026-07-15T18:01:15.000Z",
+      "expires_at": "2026-07-15T18:06:15.000Z",
+      "max_age_seconds": 300
+    }
+  },
+  "limits": {
+    "spend_amount_gbp": 74,
+    "max_allowed_gbp": 95
+  },
+  "approval": {
+    "required": true,
+    "status": "approved"
+  },
+  "risk_context": {
+    "risk_tier": "high",
+    "policy_decision": "allow",
+    "policy_pack_version": "local-retail-demo-v1"
+  },
+  "proof_metadata": {
+    "schema_version": "atg.local-proof-metadata.v1",
+    "proof_purpose": "pre_checkout_customer_action_gate",
+    "proof_status": "candidate",
+    "issuer_ref": "fictional_household_account_holder",
+    "verifier_ref": "agent_trust_gate_local_retail_demo",
+    "created_at": "2026-07-15T18:01:15.000Z",
+    "expires_at": "2026-07-15T18:06:15.000Z",
+    "nonce": "nonce_retail_checkout_permitted_001",
+    "local_only": true,
+    "replay_freshness": {
+      "nonce": "nonce_retail_checkout_permitted_001",
+      "single_use": true,
+      "freshness_window_seconds": 300,
+      "replay_protection": "local_in_memory_single_use"
+    }
+  },
+  "retail_context": {
+    "fictional_retailer": "Northbridge Grocers",
+    "basket_value_gbp": 74,
+    "approved_categories": [
+      "grocery",
+      "household"
+    ],
+    "restricted_substitution_present": false,
+    "simulated_next_step": "checkout_preparation_only"
+  },
+  "checked_at": "2026-07-15T18:01:15.000Z"
+}
