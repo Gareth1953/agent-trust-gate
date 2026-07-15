@@ -1,0 +1,119 @@
+name: Technical review feedback
+description: Structured feedback from an independent technical review of Agent Trust Gate.
+title: "Technical review feedback: "
+labels:
+  - technical-review
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reviewing Agent Trust Gate.
+
+        Please do not include credentials, private keys, customer data, security-sensitive production details, confidential employer information, or exploit secrets that should first be handled responsibly.
+
+        Agent Trust Gate is a local demonstrator. It does not provide live payment processing, real settlement, production endpoint enforcement, infrastructure isolation, SSO, secrets management, legal certification, or safety assurance.
+  - type: input
+    id: commit-reviewed
+    attributes:
+      label: Commit reviewed
+      description: Paste the output of git rev-parse HEAD, if available.
+      placeholder: cf3a493aa0d880ec9afbb1979e6a745267e71633
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system, shell, Node version and npm version.
+      placeholder: Windows 11, PowerShell, Node 20.x, npm 10.x
+    validations:
+      required: true
+  - type: textarea
+    id: commands-run
+    attributes:
+      label: Commands run
+      description: Include the commands you ran and any important output.
+      value: |
+        git clone https://github.com/Gareth1953/agent-trust-gate.git
+        cd agent-trust-gate
+        npm ci
+        npm run build
+        npm run typecheck
+        npm run demo:gatepass-pilot -- --scenario permitted --summary-only
+        npm run demo:gatepass-pilot -- --scenario refused --summary-only
+        npm test
+    validations:
+      required: true
+  - type: dropdown
+    id: permitted-result
+    attributes:
+      label: Permitted scenario result
+      options:
+        - Passed as expected
+        - Failed
+        - Not run
+        - Unclear
+    validations:
+      required: true
+  - type: dropdown
+    id: refused-result
+    attributes:
+      label: Refused scenario result
+      options:
+        - Passed as expected
+        - Failed
+        - Not run
+        - Unclear
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Blocking reproducibility defect
+        - Functional defect
+        - Documentation issue
+        - Public-claims concern
+        - Security observation
+        - Architecture concern
+        - Integration concern
+        - Pilot-readiness observation
+        - Speculative feature request
+    validations:
+      required: true
+  - type: textarea
+    id: observation
+    attributes:
+      label: Issue or observation
+      description: Describe the defect, unclear claim, risk, integration concern or positive result.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Provide exact steps if this is a defect or reproducibility issue.
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+  - type: textarea
+    id: public-claims-concern
+    attributes:
+      label: Public-claims concern
+      description: Note any claim that seems overstated, ambiguous or unsupported.
+  - type: textarea
+    id: integration-concern
+    attributes:
+      label: Integration concern
+      description: Note any issue that would block or complicate real integration.
+  - type: textarea
+    id: recommendation
+    attributes:
+      label: Optional recommendation
+      description: Suggest a fix, clarification, test or next review step.

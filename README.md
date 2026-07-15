@@ -66,6 +66,22 @@ npm run demo:commerce-gatepass
 - Confirm the claims boundary is restrained: local-only, no production readiness, no production benchmark, no security certification, no legal/compliance/security assurance.
 - Use the public contact email only for human-reviewed technical review, local pilot, or integration feasibility discussion.
 
+## Independent technical review welcome
+
+Independent developers, security engineers, agent-system builders and
+payments-infrastructure reviewers are invited to run the local GatePass pilot
+and report reproducible defects, unclear instructions, overstated claims or
+integration concerns.
+
+- Start here: [Independent technical review](TECHNICAL_REVIEW.md)
+- Main pilot command: `npm run demo:gatepass-pilot -- --scenario permitted --summary-only`
+- Structured feedback route: [technical review issue template](.github/ISSUE_TEMPLATE/technical-review-feedback.yml)
+
+All payment and settlement behaviour remains local and simulated. The review
+route does not add live payment processing, real settlement, endpoint
+enforcement, external APIs, credentials, telemetry, forms or production
+infrastructure.
+
 ## Paid Evaluation Pilot
 
 P3-M141 adds a concise commercial entry route without changing the reviewer-first
