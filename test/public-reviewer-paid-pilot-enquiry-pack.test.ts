@@ -73,7 +73,7 @@ test("reviewer pack contains the required review path and enquiry routes", () =>
 
 test("manual-use reviewer copy includes an X social post under 360 characters", () => {
   const copy = read("docs/reviewer-enquiry-copy.md");
-  const match = copy.match(/## Short X\/Social Post\s+([\s\S]*?)\n\n## LinkedIn-Style Post/);
+  const match = copy.match(/## Short X\/Social Post\s+([\s\S]*?)\r?\n\r?\n## LinkedIn-Style Post/);
   assert.ok(match, "short X/social post section");
   const socialPost = match[1]?.trim() ?? "";
   assert.ok(socialPost.length > 0);
