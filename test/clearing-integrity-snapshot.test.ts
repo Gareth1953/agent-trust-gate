@@ -54,6 +54,9 @@ const snapshotKeys = [
 function readJson(path: string): unknown {
   return JSON.parse(readFileSync(path, "utf8")) as unknown;
 }
+function normaliseNewlines(value: string): string {
+  return value.replace(/\r\n/g, "\n");
+}
 function input(): ClearingIntegritySnapshotInput {
   return readJson(paths.input) as ClearingIntegritySnapshotInput;
 }
@@ -170,7 +173,7 @@ test("snapshot summary matches tracked safe aggregate", () => {
 
 test("Markdown renderer matches tracked local non-certifying snapshot", () => {
   const markdown = renderClearingIntegritySnapshotMarkdown(createClearingIntegritySnapshot(input()));
-  assert.equal(markdown, readFileSync(paths.markdown, "utf8").trimEnd());
+  assert.equal(normaliseNewlines(markdown), normaliseNewlines(readFileSync(paths.markdown, "utf8").trimEnd()));
   for (const heading of ["# Clearing Integrity Snapshot", "## Integrity Status", "## Clearing Ledger Summary", "## RefusalGraph Summary", "## Evidence Bundle Summary", "## Replay Summary", "## Receipt Verification Summary", "## Fee Metering Placeholder Summary", "## Safety Status"]) assert.match(markdown, new RegExp(heading));
   assert.match(markdown, /local-only and draft-only/i);
   assert.match(markdown, /No live monitoring occurred/i);

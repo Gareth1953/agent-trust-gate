@@ -50,6 +50,9 @@ const bundleKeys = [
 function readJson(path: string): unknown {
   return JSON.parse(readFileSync(path, "utf8")) as unknown;
 }
+function normaliseNewlines(value: string): string {
+  return value.replace(/\r\n/g, "\n");
+}
 
 function input(): ClearingEvidenceBundleInput {
   return readJson(paths.input) as ClearingEvidenceBundleInput;
@@ -167,7 +170,7 @@ test("bundle summary exactly tracks evidence presence and safe counts", () => {
 
 test("Markdown renderer matches tracked safe local evidence text", () => {
   const markdown = renderClearingEvidenceBundleMarkdown(createClearingEvidenceBundle(input()));
-  assert.equal(markdown, readFileSync(paths.markdown, "utf8").trimEnd());
+  assert.equal(normaliseNewlines(markdown), normaliseNewlines(readFileSync(paths.markdown, "utf8").trimEnd()));
   for (const heading of ["# Clearing Evidence Bundle", "## Clearing Decision", "## RefusalGraph Evidence", "## Receipt Evidence", "## Verification Result", "## Fee Metering Placeholders", "## Safety Status"]) assert.match(markdown, new RegExp(heading));
   assert.match(markdown, /local-only and draft-only/i);
   assert.match(markdown, /No action was executed/i);

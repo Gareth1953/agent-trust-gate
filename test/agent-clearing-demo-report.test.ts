@@ -45,6 +45,9 @@ const outputKeys = [
 function readJson(path: string): unknown {
   return JSON.parse(readFileSync(path, "utf8")) as unknown;
 }
+function normaliseNewlines(value: string): string {
+  return value.replace(/\r\n/g, "\n");
+}
 
 function input(): AgentClearingPipelineDemoResult {
   return readJson(inputPath) as AgentClearingPipelineDemoResult;
@@ -109,7 +112,7 @@ test("report ID is deterministic, local, and copies no private pipeline ID", () 
 test("Markdown rendering exactly matches the tracked safe report", () => {
   const report = createAgentClearingDemoReport(input());
   const markdown = renderAgentClearingDemoReportMarkdown(report);
-  assert.equal(markdown.trimEnd(), readFileSync(markdownPath, "utf8").trimEnd());
+  assert.equal(normaliseNewlines(markdown.trimEnd()), normaliseNewlines(readFileSync(markdownPath, "utf8").trimEnd()));
   assert.match(markdown, /^# Agent Clearing Demo Report/m);
   assert.match(markdown, /^## Safety Status/m);
   assert.match(markdown, /No action was executed/i);
