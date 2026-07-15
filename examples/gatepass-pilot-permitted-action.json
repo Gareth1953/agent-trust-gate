@@ -1,0 +1,72 @@
+{
+  "schema_version": "atg.local-agent-action-request.v2",
+  "request_id": "p3_m145_permitted_supplier_payment",
+  "action_id": "pilot_action_supplier_payment_001",
+  "agent_id": "delegated_procurement_agent_local",
+  "requested_action": "authorise_supplier_invoice_payment",
+  "action_category": "money_movement",
+  "local_only": true,
+  "issuer_ref": "fictional_buyer_ops_lead",
+  "verifier_ref": "agent_trust_gate_local_pilot",
+  "nonce": "nonce_p3_m145_permitted_001",
+  "mandate": {
+    "present": true,
+    "mandate_id": "mandate_p3_m145_supplier_payment_limit",
+    "scope": "authorise_supplier_invoice_payment",
+    "expires_at": "2026-07-15T09:10:00.000Z",
+    "issuer_ref": "fictional_buyer_ops_lead"
+  },
+  "verified_intent": {
+    "present": true,
+    "status": "verified",
+    "source": "synthetic_buyer_instruction_fixture",
+    "verifier_ref": "agent_trust_gate_local_pilot",
+    "verified_at": "2026-07-15T08:59:30.000Z"
+  },
+  "evidence": {
+    "present": true,
+    "fresh": true,
+    "evidence_id": "evidence_p3_m145_invoice_policy_match",
+    "evidence_type": "local_fixture",
+    "source": "synthetic_invoice_and_policy_fixture",
+    "local_reference": "examples/gatepass-pilot-permitted-action.json",
+    "evidence_hash": "sha256:local-demo-fixture-p3-m145-permitted",
+    "verified_at": "2026-07-15T08:59:45.000Z",
+    "freshness": {
+      "checked_at": "2026-07-15T09:00:00.000Z",
+      "expires_at": "2026-07-15T09:05:00.000Z",
+      "max_age_seconds": 300
+    }
+  },
+  "limits": {
+    "spend_amount_gbp": 480,
+    "max_allowed_gbp": 500
+  },
+  "approval": {
+    "required": true,
+    "status": "approved"
+  },
+  "risk_context": {
+    "risk_tier": "high",
+    "policy_decision": "allow",
+    "policy_pack_version": "local-demo-v1"
+  },
+  "proof_metadata": {
+    "schema_version": "atg.local-proof-metadata.v1",
+    "proof_purpose": "pre_settlement_money_gate",
+    "proof_status": "candidate",
+    "issuer_ref": "fictional_buyer_ops_lead",
+    "verifier_ref": "agent_trust_gate_local_pilot",
+    "created_at": "2026-07-15T09:00:00.000Z",
+    "expires_at": "2026-07-15T09:05:00.000Z",
+    "nonce": "nonce_p3_m145_permitted_001",
+    "local_only": true,
+    "replay_freshness": {
+      "nonce": "nonce_p3_m145_permitted_001",
+      "single_use": true,
+      "freshness_window_seconds": 300,
+      "replay_protection": "local_in_memory_single_use"
+    }
+  },
+  "checked_at": "2026-07-15T09:00:00.000Z"
+}

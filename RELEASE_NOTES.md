@@ -1,5 +1,29 @@
 # Release Notes
 
+## P3-M145: End-to-End GatePass Pilot and Commercial Conversion Pack
+
+P3-M145 adds a reviewer-friendly local journey for a delegated payment-style action before simulated settlement.
+
+Added assets:
+
+- `src/end-to-end-gatepass-pilot.ts`
+- `src/end-to-end-gatepass-pilot-cli.ts`
+- `test/end-to-end-gatepass-pilot.test.ts`
+- `examples/gatepass-pilot-permitted-action.json`
+- `examples/gatepass-pilot-refused-action.json`
+- `examples/end-to-end-gatepass-pilot-report.json`
+- `docs/end-to-end-gatepass-pilot.md`
+- `docs/commercial-feasibility-pilot.md`
+- `docs/pilot-inputs-outputs-boundaries.md`
+- `docs/pilot-conversion-path.md`
+- `npm run demo:gatepass-pilot`
+
+The demo shows a proposed delegated action, mandate check, scope check, spend-cap check, evidence check, approval check, local-demo signed GatePass or refusal receipt, simulated settlement decision, and local audit evidence paths.
+
+It also adds concise commercial feasibility-pilot documentation for a commercially agreed technical review and integration feasibility engagement.
+
+No live payment processing, real settlement, external API, network call, customer data, credential, production key, production signing, blockchain or cryptocurrency logic, live MCP proxy, SSO, production deployment, autonomous financial execution, release, tag, publication, push, or action execution is added.
+
 ## P3-M144A: Embedded Commerce Commercial Positioning Update
 
 P3-M144A strengthens public discovery for Embedded Commerce GatePass as a featured commercial application of Agent Trust Gate.

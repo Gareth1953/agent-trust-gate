@@ -1,0 +1,912 @@
+{
+  "reportVersion": "atg.end-to-end-gatepass-pilot.report.local.v1",
+  "pilotIdentifier": "p3_m145_gatepass_pilot_0f0f71779a08d8f1",
+  "command": "npm run demo:gatepass-pilot",
+  "coreRule": "No mandate. No evidence. No verified intent. No signed GatePass. No settlement.",
+  "recommendedFirstExperience": "npm run demo:reviewer-kit",
+  "scenarioCount": 2,
+  "permittedCount": 1,
+  "refusedCount": 1,
+  "simulatedSettlementPermittedCount": 1,
+  "simulatedSettlementBlockedCount": 1,
+  "auditOutputDirectory": "reports/gatepass-pilot",
+  "auditEvidenceReferences": {
+    "report": "reports/gatepass-pilot/end-to-end-gatepass-pilot-report.json",
+    "permittedAction": {
+      "proposedAction": "reports/gatepass-pilot/permitted-action-proposed-action.json",
+      "receipt": "reports/gatepass-pilot/permitted-action-gatepass-receipt.json",
+      "signedGatePass": "reports/gatepass-pilot/permitted-action-signed-gatepass.json",
+      "settlementDecision": "reports/gatepass-pilot/permitted-action-settlement-decision.json"
+    },
+    "refusedAction": {
+      "proposedAction": "reports/gatepass-pilot/refused-action-proposed-action.json",
+      "receipt": "reports/gatepass-pilot/refused-action-gatepass-receipt.json",
+      "signedGatePass": null,
+      "settlementDecision": "reports/gatepass-pilot/refused-action-settlement-decision.json"
+    }
+  },
+  "commercialPilotPositioning": {
+    "name": "Agent Trust Gate Technical Review and Integration Feasibility Pilot",
+    "route": "commercially_agreed_local_feasibility_review",
+    "customerProvides": [
+      "synthetic or sanitised delegated-action examples",
+      "action categories and authority boundaries",
+      "spend or value limits",
+      "approval and evidence requirements",
+      "desired GatePass validity and replay rules"
+    ],
+    "atgEvaluates": [
+      "mandate and scope fit",
+      "spend or value limits",
+      "evidence sufficiency",
+      "human approval status",
+      "GatePass freshness, integrity, and replay safety",
+      "refusal-receipt and audit-evidence output"
+    ],
+    "customerReceives": [
+      "local GatePass examples",
+      "refusal receipts",
+      "simulated settlement decisions",
+      "audit evidence references",
+      "integration observations and next-stage architecture notes"
+    ]
+  },
+  "scenarios": {
+    "permitted_action": {
+      "scenarioId": "permitted_action",
+      "pilotIdentifier": "p3_m145_gatepass_pilot_0f0f71779a08d8f1",
+      "actionIdentifier": "pilot_action_supplier_payment_001",
+      "requestId": "p3_m145_permitted_supplier_payment",
+      "requestingAgent": "delegated_procurement_agent_local",
+      "mandateReference": "mandate_p3_m145_supplier_payment_limit",
+      "actionType": "authorise_supplier_invoice_payment",
+      "requestedValue": {
+        "amount": 480,
+        "currency": "GBP",
+        "unit": "gbp"
+      },
+      "scopeResult": "passed",
+      "spendCapResult": "passed",
+      "evidenceResult": "passed",
+      "approvalResult": "passed",
+      "riskTier": "high",
+      "decision": "allow",
+      "gatePassIdentifier": "receipt_demo_55d3029b7f9a7916d9b1f4e4",
+      "refusalReasons": [],
+      "gatePassIssueTime": "2026-07-15T09:00:00.000Z",
+      "gatePassExpiryTime": "2026-07-15T09:05:00.000Z",
+      "proposedAction": {
+        "schema_version": "atg.local-agent-action-request.v2",
+        "request_id": "p3_m145_permitted_supplier_payment",
+        "action_id": "pilot_action_supplier_payment_001",
+        "agent_id": "delegated_procurement_agent_local",
+        "requested_action": "authorise_supplier_invoice_payment",
+        "action_category": "money_movement",
+        "local_only": true,
+        "issuer_ref": "fictional_buyer_ops_lead",
+        "verifier_ref": "agent_trust_gate_local_pilot",
+        "nonce": "nonce_p3_m145_permitted_001",
+        "mandate": {
+          "present": true,
+          "mandate_id": "mandate_p3_m145_supplier_payment_limit",
+          "scope": "authorise_supplier_invoice_payment",
+          "expires_at": "2026-07-15T09:10:00.000Z",
+          "issuer_ref": "fictional_buyer_ops_lead"
+        },
+        "verified_intent": {
+          "present": true,
+          "status": "verified",
+          "source": "synthetic_buyer_instruction_fixture",
+          "verifier_ref": "agent_trust_gate_local_pilot",
+          "verified_at": "2026-07-15T08:59:30.000Z"
+        },
+        "evidence": {
+          "present": true,
+          "fresh": true,
+          "evidence_id": "evidence_p3_m145_invoice_policy_match",
+          "evidence_type": "local_fixture",
+          "source": "synthetic_invoice_and_policy_fixture",
+          "local_reference": "examples/gatepass-pilot-permitted-action.json",
+          "evidence_hash": "sha256:local-demo-fixture-p3-m145-permitted",
+          "verified_at": "2026-07-15T08:59:45.000Z",
+          "freshness": {
+            "checked_at": "2026-07-15T09:00:00.000Z",
+            "expires_at": "2026-07-15T09:05:00.000Z",
+            "max_age_seconds": 300
+          }
+        },
+        "limits": {
+          "spend_amount_gbp": 480,
+          "max_allowed_gbp": 500
+        },
+        "approval": {
+          "required": true,
+          "status": "approved"
+        },
+        "risk_context": {
+          "risk_tier": "high",
+          "policy_decision": "allow",
+          "policy_pack_version": "local-demo-v1"
+        },
+        "proof_metadata": {
+          "schema_version": "atg.local-proof-metadata.v1",
+          "proof_purpose": "pre_settlement_money_gate",
+          "proof_status": "candidate",
+          "issuer_ref": "fictional_buyer_ops_lead",
+          "verifier_ref": "agent_trust_gate_local_pilot",
+          "created_at": "2026-07-15T09:00:00.000Z",
+          "expires_at": "2026-07-15T09:05:00.000Z",
+          "nonce": "nonce_p3_m145_permitted_001",
+          "local_only": true,
+          "replay_freshness": {
+            "nonce": "nonce_p3_m145_permitted_001",
+            "single_use": true,
+            "freshness_window_seconds": 300,
+            "replay_protection": "local_in_memory_single_use"
+          }
+        },
+        "checked_at": "2026-07-15T09:00:00.000Z"
+      },
+      "checks": [
+        {
+          "id": "mandate",
+          "label": "Mandate exists and remains current",
+          "passed": true,
+          "reason": "mandate_present_in_scope_and_current"
+        },
+        {
+          "id": "action_scope",
+          "label": "Proposed action matches mandate scope",
+          "passed": true,
+          "reason": "requested_action_matches_mandate_scope"
+        },
+        {
+          "id": "spend_limit",
+          "label": "Requested value stays within spend cap",
+          "passed": true,
+          "reason": "within_configured_limit; requested=480 GBP cap=500 GBP"
+        },
+        {
+          "id": "evidence",
+          "label": "Required evidence is present and fresh",
+          "passed": true,
+          "reason": "evidence_present_and_fresh"
+        },
+        {
+          "id": "human_approval",
+          "label": "Human approval requirement is satisfied",
+          "passed": true,
+          "reason": "required_approval_present"
+        },
+        {
+          "id": "gatepass_signature",
+          "label": "Local-demo signed GatePass artifact verifies",
+          "passed": true,
+          "reason": "signature_valid"
+        },
+        {
+          "id": "settlement_adapter",
+          "label": "Local simulated settlement adapter decision",
+          "passed": true,
+          "reason": "valid_gatepass_permits_local_simulated_settlement"
+        }
+      ],
+      "gatePassReceipt": {
+        "schema_version": "atg.local-gate-pass-receipt.v2",
+        "receipt_id": "receipt_demo_55d3029b7f9a7916d9b1f4e4",
+        "request_id": "p3_m145_permitted_supplier_payment",
+        "action_id": "pilot_action_supplier_payment_001",
+        "agent_id": "delegated_procurement_agent_local",
+        "requested_action": "authorise_supplier_invoice_payment",
+        "action_category": "money_movement",
+        "mandate_id": "mandate_p3_m145_supplier_payment_limit",
+        "evidence_id": "evidence_p3_m145_invoice_policy_match",
+        "verdict": "allow_signed_gate_pass",
+        "allowed": true,
+        "settlement_allowed": true,
+        "settlement_executed": false,
+        "receipt_type": "signed_gate_pass",
+        "risk_tier": "high",
+        "policy_pack_version": "local-demo-v1",
+        "policy_decision": "allow",
+        "issuer_ref": "fictional_buyer_ops_lead",
+        "verifier_ref": "agent_trust_gate_local_pilot",
+        "proof_metadata": {
+          "schema_version": "atg.local-proof-metadata.v1",
+          "proof_purpose": "pre_action_trust_gate",
+          "proof_status": "verified",
+          "issuer_ref": "fictional_buyer_ops_lead",
+          "verifier_ref": "agent_trust_gate_local_pilot",
+          "created_at": "2026-07-15T09:00:00.000Z",
+          "expires_at": "2026-07-15T09:05:00.000Z",
+          "nonce": "nonce_p3_m145_permitted_001",
+          "local_only": true,
+          "replay_freshness": {
+            "nonce": "nonce_p3_m145_permitted_001",
+            "single_use": true,
+            "freshness_window_seconds": 300,
+            "replay_protection": "local_in_memory_single_use"
+          }
+        },
+        "applied_policy": "high-risk-approved-local-demo",
+        "risk_reason": "Money, legal, contractual, or customer-impacting category requires explicit approval.",
+        "fast_path_allowed": false,
+        "human_review_required": false,
+        "checks": {
+          "mandate": {
+            "passed": true,
+            "reason": "mandate_present_in_scope_and_current"
+          },
+          "evidence": {
+            "passed": true,
+            "fresh": true,
+            "reason": "evidence_present_and_fresh"
+          },
+          "verified_intent": {
+            "passed": true,
+            "reason": "intent_verified"
+          },
+          "limits": {
+            "passed": true,
+            "reason": "within_configured_limit"
+          },
+          "approval": {
+            "passed": true,
+            "required": true,
+            "reason": "required_approval_present"
+          }
+        },
+        "reason_codes": [
+          "MANDATE_VALID",
+          "EVIDENCE_FRESH",
+          "INTENT_VERIFIED",
+          "WITHIN_LIMITS",
+          "APPROVAL_SATISFIED"
+        ],
+        "checked_at": "2026-07-15T09:00:00.000Z",
+        "gate_pass_validity": {
+          "issued_at": "2026-07-15T09:00:00.000Z",
+          "valid_from": "2026-07-15T09:00:00.000Z",
+          "expires_at": "2026-07-15T09:05:00.000Z",
+          "ttl_seconds": 300,
+          "maximum_ttl_seconds": 300
+        },
+        "replay_protection": {
+          "replay_key": "replay_demo_c83f7421de6891c529cdad0c1b728a24",
+          "single_use": true,
+          "protection_mode": "local_in_memory_single_use"
+        },
+        "signature_metadata": {
+          "signature_mode": "local_demo_placeholder",
+          "algorithm": "none",
+          "note": "Local demo placeholder only; not cryptographic signing."
+        },
+        "audit_metadata": {
+          "schema_version": "atg.local-gate-pass-receipt.v2",
+          "source": "local_gate_pass_demo",
+          "local_only": true,
+          "private_data_included": false,
+          "network_call_performed": false,
+          "external_agent_contacted": false,
+          "payment_triggered": false,
+          "action_executed": false
+        }
+      },
+      "signedGatePass": {
+        "signedPayloadType": "local_trust_receipt",
+        "payload": {
+          "schema_version": "atg.local-gate-pass-receipt.v2",
+          "receipt_id": "receipt_demo_55d3029b7f9a7916d9b1f4e4",
+          "request_id": "p3_m145_permitted_supplier_payment",
+          "action_id": "pilot_action_supplier_payment_001",
+          "agent_id": "delegated_procurement_agent_local",
+          "requested_action": "authorise_supplier_invoice_payment",
+          "action_category": "money_movement",
+          "mandate_id": "mandate_p3_m145_supplier_payment_limit",
+          "evidence_id": "evidence_p3_m145_invoice_policy_match",
+          "verdict": "allow_signed_gate_pass",
+          "allowed": true,
+          "settlement_allowed": true,
+          "settlement_executed": false,
+          "receipt_type": "signed_gate_pass",
+          "risk_tier": "high",
+          "policy_pack_version": "local-demo-v1",
+          "policy_decision": "allow",
+          "issuer_ref": "fictional_buyer_ops_lead",
+          "verifier_ref": "agent_trust_gate_local_pilot",
+          "proof_metadata": {
+            "schema_version": "atg.local-proof-metadata.v1",
+            "proof_purpose": "pre_action_trust_gate",
+            "proof_status": "verified",
+            "issuer_ref": "fictional_buyer_ops_lead",
+            "verifier_ref": "agent_trust_gate_local_pilot",
+            "created_at": "2026-07-15T09:00:00.000Z",
+            "expires_at": "2026-07-15T09:05:00.000Z",
+            "nonce": "nonce_p3_m145_permitted_001",
+            "local_only": true,
+            "replay_freshness": {
+              "nonce": "nonce_p3_m145_permitted_001",
+              "single_use": true,
+              "freshness_window_seconds": 300,
+              "replay_protection": "local_in_memory_single_use"
+            }
+          },
+          "applied_policy": "high-risk-approved-local-demo",
+          "risk_reason": "Money, legal, contractual, or customer-impacting category requires explicit approval.",
+          "fast_path_allowed": false,
+          "human_review_required": false,
+          "checks": {
+            "mandate": {
+              "passed": true,
+              "reason": "mandate_present_in_scope_and_current"
+            },
+            "evidence": {
+              "passed": true,
+              "fresh": true,
+              "reason": "evidence_present_and_fresh"
+            },
+            "verified_intent": {
+              "passed": true,
+              "reason": "intent_verified"
+            },
+            "limits": {
+              "passed": true,
+              "reason": "within_configured_limit"
+            },
+            "approval": {
+              "passed": true,
+              "required": true,
+              "reason": "required_approval_present"
+            }
+          },
+          "reason_codes": [
+            "MANDATE_VALID",
+            "EVIDENCE_FRESH",
+            "INTENT_VERIFIED",
+            "WITHIN_LIMITS",
+            "APPROVAL_SATISFIED"
+          ],
+          "checked_at": "2026-07-15T09:00:00.000Z",
+          "gate_pass_validity": {
+            "issued_at": "2026-07-15T09:00:00.000Z",
+            "valid_from": "2026-07-15T09:00:00.000Z",
+            "expires_at": "2026-07-15T09:05:00.000Z",
+            "ttl_seconds": 300,
+            "maximum_ttl_seconds": 300
+          },
+          "replay_protection": {
+            "replay_key": "replay_demo_c83f7421de6891c529cdad0c1b728a24",
+            "single_use": true,
+            "protection_mode": "local_in_memory_single_use"
+          },
+          "signature_metadata": {
+            "signature_mode": "local_demo_placeholder",
+            "algorithm": "none",
+            "note": "Local demo placeholder only; not cryptographic signing."
+          },
+          "audit_metadata": {
+            "schema_version": "atg.local-gate-pass-receipt.v2",
+            "source": "local_gate_pass_demo",
+            "local_only": true,
+            "private_data_included": false,
+            "network_call_performed": false,
+            "external_agent_contacted": false,
+            "payment_triggered": false,
+            "action_executed": false
+          }
+        },
+        "signatureMetadata": {
+          "signatureSchemaVersion": "atg.local-signed-proof.v1",
+          "algorithm": "ed25519-local-demo",
+          "keyId": "local-demo-ed25519-p3-m117",
+          "issuerReference": "fictional_buyer_ops_lead",
+          "verifierReference": "agent_trust_gate_local_pilot",
+          "signedAt": "2026-07-15T09:00:00.000Z",
+          "payloadHash": "sha256:deaa50cfb573e8eb6cb5eb9e289f083867105d1066202116e173ef7add1cb8ef",
+          "signature": "1i7TPvkrS4pNui5oYMR3OhGPisD3HmrdNJCy7p/GtKPE1YK7BROwJkzOpUqbkgZPwuUF4ClZnozCzx8N9naCCw==",
+          "localDemoOnly": true,
+          "productionSigning": false,
+          "paymentAuthorisation": false,
+          "settlementAuthorisation": false
+        }
+      },
+      "settlement": {
+        "pilotIdentifier": "p3_m145_gatepass_pilot_0f0f71779a08d8f1",
+        "actionIdentifier": "pilot_action_supplier_payment_001",
+        "requestId": "p3_m145_permitted_supplier_payment",
+        "gatePassIdentifier": "receipt_demo_55d3029b7f9a7916d9b1f4e4",
+        "result": "permitted_to_proceed",
+        "permitted": true,
+        "blockingReasons": [],
+        "receiptVerification": {
+          "receipt_id": "receipt_demo_55d3029b7f9a7916d9b1f4e4",
+          "request_id": "p3_m145_permitted_supplier_payment",
+          "verified": true,
+          "valid_for_simulated_settlement": true,
+          "structurally_valid": true,
+          "schema_supported": true,
+          "internally_consistent": true,
+          "fresh": true,
+          "replay_safe": true,
+          "settlement_blocker_allowed": true,
+          "receipt_type": "signed_gate_pass",
+          "verdict": "allow_signed_gate_pass",
+          "reason_codes": [],
+          "warnings": [
+            "signature_not_cryptographic"
+          ],
+          "checked_at": "2026-07-15T09:00:00.000Z",
+          "mode": "local_simulation_only",
+          "note": "Local receipt verification only; no real settlement, payment, API call, or action execution occurred."
+        },
+        "signatureVerification": {
+          "verified": true,
+          "structurallyValid": true,
+          "payloadHashMatches": true,
+          "signatureValid": true,
+          "signedPayloadType": "local_trust_receipt",
+          "algorithm": "ed25519-local-demo",
+          "keyId": "local-demo-ed25519-p3-m117",
+          "payloadHash": "sha256:deaa50cfb573e8eb6cb5eb9e289f083867105d1066202116e173ef7add1cb8ef",
+          "recomputedPayloadHash": "sha256:deaa50cfb573e8eb6cb5eb9e289f083867105d1066202116e173ef7add1cb8ef",
+          "localDemoOnly": true,
+          "productionSigning": false,
+          "paymentAuthorisation": false,
+          "settlementAuthorisation": false,
+          "reasonCodes": [
+            "signature_valid"
+          ],
+          "checkedAt": "2026-07-15T09:00:00.000Z",
+          "note": "Local demo signature verification only; not production signing, payment authorisation, settlement authorisation, legal proof, or action execution."
+        },
+        "settlementBlocker": {
+          "request_id": "p3_m145_permitted_supplier_payment",
+          "receipt_id": "receipt_demo_55d3029b7f9a7916d9b1f4e4",
+          "receipt_type": "signed_gate_pass",
+          "gate_verdict": "allow_signed_gate_pass",
+          "gate_allowed": true,
+          "settlement_allowed_from_receipt": true,
+          "settlement_simulation": "allowed",
+          "blocked": false,
+          "block_reason_codes": [],
+          "checked_at": "2026-07-15T09:00:00.000Z",
+          "evaluated_at": "2026-07-15T09:00:00.000Z",
+          "gate_pass_expires_at": "2026-07-15T09:05:00.000Z",
+          "validity_status": "valid",
+          "replay_status": "consumed",
+          "replay_store_size": 1,
+          "mode": "local_simulation_only",
+          "settlement_executed": false,
+          "payment_triggered": false,
+          "network_call_performed": false,
+          "action_executed": false,
+          "note": "No real settlement, payment, API call, or action execution occurred."
+        },
+        "checkedAt": "2026-07-15T09:00:00.000Z",
+        "disclaimer": "Local end-to-end pilot only; settlement is simulated and no real payment, settlement, API call, network call, credential, secret, customer data, production signing, or action execution is created.",
+        "localOnly": true,
+        "simulatedSettlementOnly": true,
+        "networkCallPerformed": false,
+        "externalApiCalled": false,
+        "livePaymentProcessed": false,
+        "realSettlementExecuted": false,
+        "productionSigning": false,
+        "productionCredentialUsed": false,
+        "customerDataIncluded": false,
+        "actionExecuted": false,
+        "mcpProxyCreated": false,
+        "ssoIntegrated": false
+      },
+      "auditEvidenceReferences": {
+        "proposedAction": "reports/gatepass-pilot/permitted-action-proposed-action.json",
+        "receipt": "reports/gatepass-pilot/permitted-action-gatepass-receipt.json",
+        "signedGatePass": "reports/gatepass-pilot/permitted-action-signed-gatepass.json",
+        "settlementDecision": "reports/gatepass-pilot/permitted-action-settlement-decision.json"
+      },
+      "disclaimer": "Local end-to-end pilot only; settlement is simulated and no real payment, settlement, API call, network call, credential, secret, customer data, production signing, or action execution is created.",
+      "localOnly": true,
+      "simulatedSettlementOnly": true,
+      "networkCallPerformed": false,
+      "externalApiCalled": false,
+      "livePaymentProcessed": false,
+      "realSettlementExecuted": false,
+      "productionSigning": false,
+      "productionCredentialUsed": false,
+      "customerDataIncluded": false,
+      "actionExecuted": false,
+      "mcpProxyCreated": false,
+      "ssoIntegrated": false
+    },
+    "refused_action": {
+      "scenarioId": "refused_action",
+      "pilotIdentifier": "p3_m145_gatepass_pilot_0f0f71779a08d8f1",
+      "actionIdentifier": "pilot_action_supplier_payment_002",
+      "requestId": "p3_m145_refused_supplier_payment",
+      "requestingAgent": "delegated_procurement_agent_local",
+      "mandateReference": "mandate_p3_m145_supplier_payment_limit",
+      "actionType": "authorise_supplier_invoice_payment",
+      "requestedValue": {
+        "amount": 875,
+        "currency": "GBP",
+        "unit": "gbp"
+      },
+      "scopeResult": "passed",
+      "spendCapResult": "failed",
+      "evidenceResult": "passed",
+      "approvalResult": "passed",
+      "riskTier": "blocked",
+      "decision": "refuse",
+      "gatePassIdentifier": null,
+      "refusalReasons": [
+        "LIMIT_EXCEEDED",
+        "receipt_failed_critical_check",
+        "receipt_refusal_receipt_not_settlement_eligible",
+        "receipt_settlement_blocker_rejected",
+        "receipt_not_valid_for_simulated_settlement",
+        "signature_missing_signed_proof",
+        "signed_gatepass_payload_mismatch",
+        "settlement_no_signed_gate_pass",
+        "settlement_receipt_type_not_allowed",
+        "settlement_gate_verdict_not_allow",
+        "settlement_settlement_not_allowed_by_gate",
+        "settlement_refusal_receipt_blocks_settlement",
+        "settlement_critical_check_failed",
+        "settlement_refusal_reason_code_present",
+        "requested_value_exceeds_authorised_limit"
+      ],
+      "gatePassIssueTime": null,
+      "gatePassExpiryTime": null,
+      "proposedAction": {
+        "schema_version": "atg.local-agent-action-request.v2",
+        "request_id": "p3_m145_refused_supplier_payment",
+        "action_id": "pilot_action_supplier_payment_002",
+        "agent_id": "delegated_procurement_agent_local",
+        "requested_action": "authorise_supplier_invoice_payment",
+        "action_category": "money_movement",
+        "local_only": true,
+        "issuer_ref": "fictional_buyer_ops_lead",
+        "verifier_ref": "agent_trust_gate_local_pilot",
+        "nonce": "nonce_p3_m145_refused_001",
+        "mandate": {
+          "present": true,
+          "mandate_id": "mandate_p3_m145_supplier_payment_limit",
+          "scope": "authorise_supplier_invoice_payment",
+          "expires_at": "2026-07-15T09:10:00.000Z",
+          "issuer_ref": "fictional_buyer_ops_lead"
+        },
+        "verified_intent": {
+          "present": true,
+          "status": "verified",
+          "source": "synthetic_buyer_instruction_fixture",
+          "verifier_ref": "agent_trust_gate_local_pilot",
+          "verified_at": "2026-07-15T08:59:30.000Z"
+        },
+        "evidence": {
+          "present": true,
+          "fresh": true,
+          "evidence_id": "evidence_p3_m145_invoice_policy_match",
+          "evidence_type": "local_fixture",
+          "source": "synthetic_invoice_and_policy_fixture",
+          "local_reference": "examples/gatepass-pilot-refused-action.json",
+          "evidence_hash": "sha256:local-demo-fixture-p3-m145-refused",
+          "verified_at": "2026-07-15T08:59:45.000Z",
+          "freshness": {
+            "checked_at": "2026-07-15T09:00:00.000Z",
+            "expires_at": "2026-07-15T09:05:00.000Z",
+            "max_age_seconds": 300
+          }
+        },
+        "limits": {
+          "spend_amount_gbp": 875,
+          "max_allowed_gbp": 500
+        },
+        "approval": {
+          "required": true,
+          "status": "approved"
+        },
+        "risk_context": {
+          "risk_tier": "high",
+          "policy_decision": "allow",
+          "policy_pack_version": "local-demo-v1"
+        },
+        "proof_metadata": {
+          "schema_version": "atg.local-proof-metadata.v1",
+          "proof_purpose": "pre_settlement_money_gate",
+          "proof_status": "candidate",
+          "issuer_ref": "fictional_buyer_ops_lead",
+          "verifier_ref": "agent_trust_gate_local_pilot",
+          "created_at": "2026-07-15T09:00:00.000Z",
+          "expires_at": "2026-07-15T09:05:00.000Z",
+          "nonce": "nonce_p3_m145_refused_001",
+          "local_only": true,
+          "replay_freshness": {
+            "nonce": "nonce_p3_m145_refused_001",
+            "single_use": true,
+            "freshness_window_seconds": 300,
+            "replay_protection": "local_in_memory_single_use"
+          }
+        },
+        "checked_at": "2026-07-15T09:00:00.000Z"
+      },
+      "checks": [
+        {
+          "id": "mandate",
+          "label": "Mandate exists and remains current",
+          "passed": true,
+          "reason": "mandate_present_in_scope_and_current"
+        },
+        {
+          "id": "action_scope",
+          "label": "Proposed action matches mandate scope",
+          "passed": true,
+          "reason": "requested_action_matches_mandate_scope"
+        },
+        {
+          "id": "spend_limit",
+          "label": "Requested value stays within spend cap",
+          "passed": false,
+          "reason": "configured_limit_exceeded; requested=875 GBP cap=500 GBP"
+        },
+        {
+          "id": "evidence",
+          "label": "Required evidence is present and fresh",
+          "passed": true,
+          "reason": "evidence_present_and_fresh"
+        },
+        {
+          "id": "human_approval",
+          "label": "Human approval requirement is satisfied",
+          "passed": true,
+          "reason": "required_approval_present"
+        },
+        {
+          "id": "gatepass_signature",
+          "label": "Local-demo signed GatePass artifact verifies",
+          "passed": false,
+          "reason": "signed_gatepass_not_issued_for_refusal_or_failed_check"
+        },
+        {
+          "id": "settlement_adapter",
+          "label": "Local simulated settlement adapter decision",
+          "passed": false,
+          "reason": "receipt_failed_critical_check, receipt_refusal_receipt_not_settlement_eligible, receipt_settlement_blocker_rejected, receipt_not_valid_for_simulated_settlement, signature_missing_signed_proof, signed_gatepass_payload_mismatch, settlement_no_signed_gate_pass, settlement_receipt_type_not_allowed, settlement_gate_verdict_not_allow, settlement_settlement_not_allowed_by_gate, settlement_refusal_receipt_blocks_settlement, settlement_critical_check_failed, settlement_refusal_reason_code_present, requested_value_exceeds_authorised_limit"
+        }
+      ],
+      "gatePassReceipt": {
+        "schema_version": "atg.local-gate-pass-receipt.v2",
+        "receipt_id": "receipt_demo_2c51e7ac8c4143ce8b240fc9",
+        "request_id": "p3_m145_refused_supplier_payment",
+        "action_id": "pilot_action_supplier_payment_002",
+        "agent_id": "delegated_procurement_agent_local",
+        "requested_action": "authorise_supplier_invoice_payment",
+        "action_category": "money_movement",
+        "mandate_id": "mandate_p3_m145_supplier_payment_limit",
+        "evidence_id": "evidence_p3_m145_invoice_policy_match",
+        "verdict": "refuse_over_limit",
+        "allowed": false,
+        "settlement_allowed": false,
+        "settlement_executed": false,
+        "receipt_type": "refusal_receipt",
+        "risk_tier": "blocked",
+        "policy_pack_version": "local-demo-v1",
+        "policy_decision": "refuse",
+        "issuer_ref": "fictional_buyer_ops_lead",
+        "verifier_ref": "agent_trust_gate_local_pilot",
+        "proof_metadata": {
+          "schema_version": "atg.local-proof-metadata.v1",
+          "proof_purpose": "pre_action_trust_gate",
+          "proof_status": "blocked",
+          "issuer_ref": "fictional_buyer_ops_lead",
+          "verifier_ref": "agent_trust_gate_local_pilot",
+          "created_at": "2026-07-15T09:00:00.000Z",
+          "expires_at": "2026-07-15T09:05:00.000Z",
+          "nonce": "nonce_p3_m145_refused_001",
+          "local_only": true,
+          "replay_freshness": {
+            "nonce": "nonce_p3_m145_refused_001",
+            "single_use": true,
+            "freshness_window_seconds": 300,
+            "replay_protection": "not_applicable"
+          }
+        },
+        "applied_policy": "refusal-over-limit",
+        "risk_reason": "Money, legal, contractual, or customer-impacting category requires explicit approval.",
+        "fast_path_allowed": false,
+        "human_review_required": false,
+        "checks": {
+          "mandate": {
+            "passed": true,
+            "reason": "mandate_present_in_scope_and_current"
+          },
+          "evidence": {
+            "passed": true,
+            "fresh": true,
+            "reason": "evidence_present_and_fresh"
+          },
+          "verified_intent": {
+            "passed": true,
+            "reason": "intent_verified"
+          },
+          "limits": {
+            "passed": false,
+            "reason": "configured_limit_exceeded"
+          },
+          "approval": {
+            "passed": true,
+            "required": true,
+            "reason": "required_approval_present"
+          }
+        },
+        "reason_codes": [
+          "LIMIT_EXCEEDED"
+        ],
+        "checked_at": "2026-07-15T09:00:00.000Z",
+        "gate_pass_validity": null,
+        "replay_protection": null,
+        "signature_metadata": {
+          "signature_mode": "local_demo_placeholder",
+          "algorithm": "none",
+          "note": "Local demo placeholder only; not cryptographic signing."
+        },
+        "audit_metadata": {
+          "schema_version": "atg.local-gate-pass-receipt.v2",
+          "source": "local_gate_pass_demo",
+          "local_only": true,
+          "private_data_included": false,
+          "network_call_performed": false,
+          "external_agent_contacted": false,
+          "payment_triggered": false,
+          "action_executed": false
+        }
+      },
+      "signedGatePass": null,
+      "settlement": {
+        "pilotIdentifier": "p3_m145_gatepass_pilot_0f0f71779a08d8f1",
+        "actionIdentifier": "pilot_action_supplier_payment_002",
+        "requestId": "p3_m145_refused_supplier_payment",
+        "gatePassIdentifier": "receipt_demo_2c51e7ac8c4143ce8b240fc9",
+        "result": "blocked",
+        "permitted": false,
+        "blockingReasons": [
+          "receipt_failed_critical_check",
+          "receipt_refusal_receipt_not_settlement_eligible",
+          "receipt_settlement_blocker_rejected",
+          "receipt_not_valid_for_simulated_settlement",
+          "signature_missing_signed_proof",
+          "signed_gatepass_payload_mismatch",
+          "settlement_no_signed_gate_pass",
+          "settlement_receipt_type_not_allowed",
+          "settlement_gate_verdict_not_allow",
+          "settlement_settlement_not_allowed_by_gate",
+          "settlement_refusal_receipt_blocks_settlement",
+          "settlement_critical_check_failed",
+          "settlement_refusal_reason_code_present",
+          "requested_value_exceeds_authorised_limit"
+        ],
+        "receiptVerification": {
+          "receipt_id": "receipt_demo_2c51e7ac8c4143ce8b240fc9",
+          "request_id": "p3_m145_refused_supplier_payment",
+          "verified": false,
+          "valid_for_simulated_settlement": false,
+          "structurally_valid": true,
+          "schema_supported": true,
+          "internally_consistent": true,
+          "fresh": true,
+          "replay_safe": true,
+          "settlement_blocker_allowed": false,
+          "receipt_type": "refusal_receipt",
+          "verdict": "refuse_over_limit",
+          "reason_codes": [
+            "failed_critical_check",
+            "refusal_receipt_not_settlement_eligible",
+            "settlement_blocker_rejected"
+          ],
+          "warnings": [
+            "signature_not_cryptographic"
+          ],
+          "checked_at": "2026-07-15T09:00:00.000Z",
+          "mode": "local_simulation_only",
+          "note": "Local receipt verification only; no real settlement, payment, API call, or action execution occurred."
+        },
+        "signatureVerification": {
+          "verified": false,
+          "structurallyValid": false,
+          "payloadHashMatches": false,
+          "signatureValid": false,
+          "signedPayloadType": "unknown",
+          "algorithm": "",
+          "keyId": "",
+          "payloadHash": "",
+          "recomputedPayloadHash": "",
+          "localDemoOnly": false,
+          "productionSigning": false,
+          "paymentAuthorisation": false,
+          "settlementAuthorisation": false,
+          "reasonCodes": [
+            "missing_signed_proof"
+          ],
+          "checkedAt": "2026-07-15T09:00:00.000Z",
+          "note": "Local demo signature verification only; not production signing, payment authorisation, settlement authorisation, legal proof, or action execution."
+        },
+        "settlementBlocker": {
+          "request_id": "p3_m145_refused_supplier_payment",
+          "receipt_id": "receipt_demo_2c51e7ac8c4143ce8b240fc9",
+          "receipt_type": "refusal_receipt",
+          "gate_verdict": "refuse_over_limit",
+          "gate_allowed": false,
+          "settlement_allowed_from_receipt": false,
+          "settlement_simulation": "blocked",
+          "blocked": true,
+          "block_reason_codes": [
+            "no_signed_gate_pass",
+            "receipt_type_not_allowed",
+            "gate_verdict_not_allow",
+            "settlement_not_allowed_by_gate",
+            "refusal_receipt_blocks_settlement",
+            "critical_check_failed",
+            "refusal_reason_code_present"
+          ],
+          "checked_at": "2026-07-15T09:00:00.000Z",
+          "evaluated_at": "2026-07-15T09:00:00.000Z",
+          "gate_pass_expires_at": null,
+          "validity_status": "not_applicable",
+          "replay_status": "not_checked",
+          "replay_store_size": 0,
+          "mode": "local_simulation_only",
+          "settlement_executed": false,
+          "payment_triggered": false,
+          "network_call_performed": false,
+          "action_executed": false,
+          "note": "No real settlement, payment, API call, or action execution occurred."
+        },
+        "checkedAt": "2026-07-15T09:00:00.000Z",
+        "disclaimer": "Local end-to-end pilot only; settlement is simulated and no real payment, settlement, API call, network call, credential, secret, customer data, production signing, or action execution is created.",
+        "localOnly": true,
+        "simulatedSettlementOnly": true,
+        "networkCallPerformed": false,
+        "externalApiCalled": false,
+        "livePaymentProcessed": false,
+        "realSettlementExecuted": false,
+        "productionSigning": false,
+        "productionCredentialUsed": false,
+        "customerDataIncluded": false,
+        "actionExecuted": false,
+        "mcpProxyCreated": false,
+        "ssoIntegrated": false
+      },
+      "auditEvidenceReferences": {
+        "proposedAction": "reports/gatepass-pilot/refused-action-proposed-action.json",
+        "receipt": "reports/gatepass-pilot/refused-action-gatepass-receipt.json",
+        "signedGatePass": null,
+        "settlementDecision": "reports/gatepass-pilot/refused-action-settlement-decision.json"
+      },
+      "disclaimer": "Local end-to-end pilot only; settlement is simulated and no real payment, settlement, API call, network call, credential, secret, customer data, production signing, or action execution is created.",
+      "localOnly": true,
+      "simulatedSettlementOnly": true,
+      "networkCallPerformed": false,
+      "externalApiCalled": false,
+      "livePaymentProcessed": false,
+      "realSettlementExecuted": false,
+      "productionSigning": false,
+      "productionCredentialUsed": false,
+      "customerDataIncluded": false,
+      "actionExecuted": false,
+      "mcpProxyCreated": false,
+      "ssoIntegrated": false
+    }
+  },
+  "checkedAt": "2026-07-15T09:00:00.000Z",
+  "disclaimer": "Local end-to-end pilot only; settlement is simulated and no real payment, settlement, API call, network call, credential, secret, customer data, production signing, or action execution is created.",
+  "localOnly": true,
+  "simulatedSettlementOnly": true,
+  "networkCallPerformed": false,
+  "externalApiCalled": false,
+  "livePaymentProcessed": false,
+  "realSettlementExecuted": false,
+  "productionSigning": false,
+  "productionCredentialUsed": false,
+  "customerDataIncluded": false,
+  "actionExecuted": false,
+  "mcpProxyCreated": false,
+  "ssoIntegrated": false
+}

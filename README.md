@@ -44,6 +44,7 @@ Secondary commands:
 npm run demo:gatepass-round-trip
 npm run demo:gatepass-scorecard
 npm run demo:gatepass-wrapper
+npm run demo:gatepass-pilot
 npm run demo:commerce-gatepass
 ```
 
@@ -98,6 +99,39 @@ This is not production middleware, not a payment or settlement system, not
 production signing, not legal/compliance/security certification, and not a
 guarantee of safety, trust, integration success, commercial result, acceptance,
 or access after payment.
+
+## End-to-End GatePass Pilot
+
+P3-M145 adds a compact local reviewer journey for a delegated
+payment-style action before simulated settlement. It shows the proposed agent
+action, mandate check, action-scope check, spend-cap check, evidence check,
+approval check, GatePass or refusal receipt, simulated settlement decision and
+local audit evidence paths.
+
+```powershell
+npm run demo:gatepass-pilot
+npm run demo:gatepass-pilot -- --scenario permitted
+npm run demo:gatepass-pilot -- --scenario refused
+npm run demo:gatepass-pilot -- --json
+```
+
+The permitted scenario issues a local-demo signed GatePass and the simulated
+settlement adapter marks the action permitted to proceed. The refused scenario
+exceeds the configured value limit, produces a refusal receipt, and blocks
+simulated settlement. Runtime audit artefacts are written under
+`reports/gatepass-pilot/`, which is ignored by Git.
+
+Detailed docs:
+
+- [End-to-end GatePass pilot](docs/end-to-end-gatepass-pilot.md)
+- [Commercial feasibility pilot](docs/commercial-feasibility-pilot.md)
+- [Pilot inputs, outputs and boundaries](docs/pilot-inputs-outputs-boundaries.md)
+- [Pilot conversion path](docs/pilot-conversion-path.md)
+
+All payment and settlement behaviour is simulated. The pilot creates no live
+payment, real settlement, external API, network call, customer data, credential,
+secret, production signing, production endpoint, MCP proxy, SSO integration or
+autonomous financial execution.
 
 ## Embedded Commerce GatePass
 

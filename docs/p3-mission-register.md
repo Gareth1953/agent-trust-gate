@@ -66,6 +66,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 | P3-M143A | Live Passive Discovery Activation Record |
 | P3-M144 | Embedded Commerce GatePass Demonstrator |
 | P3-M144A | Embedded Commerce Commercial Positioning Update |
+| P3-M145 | End-to-End GatePass Pilot and Commercial Conversion Pack |
 
 ## Current proof chain
 
@@ -113,6 +114,8 @@ P3-M143 prepares passive GitHub Pages discovery activation with a selected-file 
 P3-M144 adds a local deterministic Embedded Commerce GatePass demonstrator for synthetic pre-checkout basket verification. It can emit a local commerce GatePass or refusal receipt and preserves the design-partner principle: We prove the trust architecture; the design partner funds the real integration. It adds no live retailer integration, shopping-agent integration, checkout, account login, card handling, payment token handling, payment processing, settlement execution, AI-provider integration, network calls, A2A server, MCP server, npm publication, production signing, production-grade cryptography, real customer data, tag, release, publish, push, or action execution.
 
 P3-M144A strengthens public discovery and commercial positioning for Embedded Commerce GatePass as a featured application for supermarkets, retailers, AI-shopping platforms, commerce infrastructure teams, payment providers, retail technology teams, developers, and system architects. Agent Trust Gate remains a broad trust layer for AI-agent actions, delegated decisions, and pre-settlement controls. P3-M144A adds no named-company affiliation, live retailer integration, shopping-agent integration, checkout, payment processing, API, network call, A2A server, MCP server, npm publication, image generation, deployment, tag, release, publish, push, or action execution.
+
+P3-M145 adds a local end-to-end GatePass pilot for a delegated payment-style action before simulated settlement. It shows a permitted local-demo signed GatePass path, a refused over-limit path, simulated settlement allowed or blocked, ignored local audit artefacts, and commercial feasibility-pilot documentation. It adds no live payment processing, real settlement, external API, network call, customer data, credential, production key, blockchain or cryptocurrency logic, live MCP proxy, SSO, production deployment, autonomous financial execution, tag, release, publish, push, or action execution.
 
 No live APIs, payments, settlement execution, external-agent contact, AUC merge, cloud/network calls, MCP server functionality, live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, scraping, contact harvesting, tracking, analytics, telemetry, outreach automation, secrets, credentials, hosted services, tag/package publish/deployment, or autonomous action execution. AUC is not integrated. Agent Contact System is not integrated.
 ## P3-M134 - GatePass Create-Verify-Reject Round Trip
