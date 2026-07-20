@@ -1,0 +1,65 @@
+{
+  "receiptVersion": "atg.execution-receipt.local.v1",
+  "receiptId": "execution_receipt_03726de5ff378dff5fed1dbf",
+  "gatePassId": "gatepass_exact_a62e362a9d64704b651cb501",
+  "actionDigest": "sha256:38639f0f2e3bc4926f05afeb39a96c5d55b8c01e47a4bb733c28b05140015585",
+  "nonce": "nonce_exact_action_expired",
+  "verifierIdentity": "local_point_of_action_verifier",
+  "verificationTimestamp": "2026-07-20T09:05:00.000Z",
+  "executionAcknowledgementTimestamp": null,
+  "resultStatus": "expired_before_execution",
+  "reasonCode": "GATEPASS_EXPIRED",
+  "reasonCodes": [
+    "GATEPASS_EXPIRED"
+  ],
+  "simulatedSideEffectReference": null,
+  "decisionReceiptReference": "decision_receipt_1c5c7604dcda4d077efb6ba5",
+  "safeFailureDetail": "Execution was refused locally before the simulated side effect: GATEPASS_EXPIRED.",
+  "verification": {
+    "resultVersion": "atg.exact-action-verification.local.v1",
+    "gatePassId": "gatepass_exact_a62e362a9d64704b651cb501",
+    "actionDigest": "sha256:38639f0f2e3bc4926f05afeb39a96c5d55b8c01e47a4bb733c28b05140015585",
+    "proposedActionDigest": "sha256:38639f0f2e3bc4926f05afeb39a96c5d55b8c01e47a4bb733c28b05140015585",
+    "verifierIdentity": "local_point_of_action_verifier",
+    "verificationProfile": "local_exact_action_verification_profile",
+    "verificationTimestamp": "2026-07-20T09:05:00.000Z",
+    "verified": false,
+    "nonceConsumed": false,
+    "signatureValid": true,
+    "keyStatus": "active",
+    "nonceState": {
+      "stateVersion": "atg.nonce-state.local.v1",
+      "nonce": "nonce_exact_action_expired",
+      "gatePassId": "gatepass_exact_a62e362a9d64704b651cb501",
+      "actionDigest": "sha256:38639f0f2e3bc4926f05afeb39a96c5d55b8c01e47a4bb733c28b05140015585",
+      "expiresAt": "2026-07-20T09:02:00.000Z",
+      "status": "expired",
+      "updatedAt": "2026-07-20T09:05:00.000Z",
+      "transitions": [
+        {
+          "from": null,
+          "to": "unused",
+          "at": "2026-07-20T09:00:00.000Z",
+          "reasonCode": "NONCE_REGISTERED"
+        },
+        {
+          "from": "unused",
+          "to": "expired",
+          "at": "2026-07-20T09:05:00.000Z",
+          "reasonCode": "GATEPASS_EXPIRED"
+        }
+      ],
+      "localProcessOnly": true,
+      "crossProcessAtomicity": false
+    },
+    "reasonCodes": [
+      "GATEPASS_EXPIRED"
+    ],
+    "localOnly": true,
+    "simulatedActionsOnly": true,
+    "note": "Allowed does not mean executed."
+  },
+  "simulatedOnly": true,
+  "externalActionOccurred": false,
+  "allowedDoesNotMeanExecuted": true
+}

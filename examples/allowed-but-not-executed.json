@@ -1,0 +1,95 @@
+{
+  "scenarioId": "allowed_not_executed",
+  "description": "Policy allowed the exact action, but no point-of-action verification or execution was requested.",
+  "decisionReceipt": {
+    "receiptVersion": "atg.policy-decision-receipt.local.v1",
+    "receiptId": "decision_receipt_ddbe01e9531c6f197d8511e7",
+    "decision": "allowed",
+    "policyReference": "policy://local/exact-action-v1",
+    "policyDigest": "sha256:a1ccde139afd6587add33dfdcc0265c73d3f25cbb972fc073d729520d035822f",
+    "reasons": [
+      "POLICY_EXACT_ACTION_ALLOWED",
+      "GATEPASS_ISSUED_FOR_ONE_EXACT_LOCAL_SIMULATED_ACTION",
+      "ALLOWED_DOES_NOT_MEAN_EXECUTED"
+    ],
+    "evidenceState": "present",
+    "approvalState": "approved",
+    "decidedAt": "2026-07-20T09:00:00.000Z",
+    "gatePassIssuance": {
+      "gatePassId": "gatepass_exact_a3433bf09098adb2d4db0d3c",
+      "actionDigest": "sha256:4f6e291fa0d560be42c53443093dc449eb8d729a51bfb6622fcb7d365fc49a81",
+      "nonce": "nonce_exact_action_not_executed",
+      "issuerIdentity": "local_demo_policy_authority",
+      "issuerKeyId": "local-demo-ed25519-p3-m117",
+      "issuedAt": "2026-07-20T09:00:00.000Z"
+    },
+    "executionState": "not_executed",
+    "allowedDoesNotMeanExecuted": true,
+    "localOnly": true,
+    "simulatedActionsOnly": true
+  },
+  "gatePass": {
+    "gatePassVersion": "atg.exact-action-gatepass.local.v1",
+    "gatePassId": "gatepass_exact_a3433bf09098adb2d4db0d3c",
+    "decision": "allow",
+    "action": {
+      "actionEnvelopeVersion": "atg.canonical-action-envelope.v1",
+      "canonicalizationVersion": "atg.canonical-json.v1",
+      "digestAlgorithm": "sha256",
+      "issuerIdentity": "local_demo_policy_authority",
+      "issuerKeyId": "local-demo-ed25519-p3-m117",
+      "verificationProfile": "local_exact_action_verification_profile",
+      "subjectAgentIdentity": "simulated_agent_procurement_001",
+      "nativeSessionId": "simulated_session_001",
+      "nativeRunId": "simulated_run_001",
+      "operatorIdentity": "synthetic_operator_mandate_holder",
+      "mandateIdentity": "synthetic_supplier_payment_mandate",
+      "mandateReference": "mandate://local/synthetic-001",
+      "mandateDigest": "sha256:d585ff702843bd58cee401ffb1731bc14b2fdf6cbdcaf39ec2c4c2d7bc16bfe4",
+      "policyReference": "policy://local/exact-action-v1",
+      "policyDigest": "sha256:a1ccde139afd6587add33dfdcc0265c73d3f25cbb972fc073d729520d035822f",
+      "evidenceReference": "evidence://local/synthetic-invoice-001",
+      "evidenceDigest": "sha256:d7403658c14215dba6154943c26c0a6378aec7dc6428fcd3a8ea3b9118b9461c",
+      "approvalRequired": true,
+      "humanApprovalReference": "approval://local/synthetic-001",
+      "humanApprovalDigest": "sha256:948e077fa7fe8e96c65c5aa09b4942a9e2be9e1251790ecd32acf89a2c98ec23",
+      "toolIdentity": "local.simulated-supplier-payment",
+      "toolSchemaVersion": "1.0.0",
+      "operationName": "simulate_supplier_payment_authorisation",
+      "canonicalArguments": {
+        "dryRun": true,
+        "invoiceReference": "synthetic_invoice_001",
+        "lineItems": [
+          "synthetic_service_alpha",
+          "synthetic_service_beta"
+        ]
+      },
+      "targetIdentity": "synthetic_supplier_001",
+      "amount": 125.5,
+      "currency": "GBP",
+      "operatingEnvironment": "local_simulation",
+      "issuedAt": "2026-07-20T09:00:00.000Z",
+      "notBefore": "2026-07-20T09:00:00.000Z",
+      "expiresAt": "2026-07-20T09:10:00.000Z",
+      "nonce": "nonce_exact_action_not_executed",
+      "idempotencyKey": "idempotency_exact_action_not_executed",
+      "usageSemantics": "one_shot",
+      "actionDigest": "sha256:4f6e291fa0d560be42c53443093dc449eb8d729a51bfb6622fcb7d365fc49a81"
+    },
+    "oneUse": true,
+    "allowedDoesNotMeanExecuted": true,
+    "localOnly": true,
+    "simulatedActionsOnly": true,
+    "productionEnforcement": false,
+    "signature": {
+      "algorithm": "ed25519-local-demo",
+      "keyId": "local-demo-ed25519-p3-m117",
+      "signedAt": "2026-07-20T09:00:00.000Z",
+      "signature": "kfpFFhpDrvs2idu6nRNuhx96eVEpO/MeHoulzvXek4FD/fUvXClkX5VR9LntTpQo7w1gRYBFt2XxUoSNIDWUCg==",
+      "localFixtureOnly": true,
+      "productionKeyCustody": false
+    }
+  },
+  "executionReceipt": null,
+  "lifecycleState": "allowed_not_executed"
+}

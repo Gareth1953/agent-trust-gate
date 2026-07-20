@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Gareth1953/agent-trust-gate/schemas/execution-receipt.schema.json",
+  "title": "Agent Trust Gate Local Simulated Execution Receipt",
+  "description": "Separate point-of-action verification and simulated execution evidence. This schema represents no real external execution.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["receiptVersion", "receiptId", "gatePassId", "actionDigest", "nonce", "verifierIdentity", "verificationTimestamp", "executionAcknowledgementTimestamp", "resultStatus", "reasonCode", "reasonCodes", "simulatedSideEffectReference", "decisionReceiptReference", "safeFailureDetail", "verification", "simulatedOnly", "externalActionOccurred", "allowedDoesNotMeanExecuted"],
+  "properties": {
+    "receiptVersion": { "const": "atg.execution-receipt.local.v1" },
+    "receiptId": { "type": "string", "pattern": "^execution_receipt_[a-f0-9]{24}$" },
+    "gatePassId": { "type": "string", "minLength": 1 },
+    "actionDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "nonce": { "type": "string", "minLength": 1 },
+    "verifierIdentity": { "type": "string", "minLength": 1 },
+    "verificationTimestamp": { "type": ["string", "null"], "format": "date-time" },
+    "executionAcknowledgementTimestamp": { "type": ["string", "null"], "format": "date-time" },
+    "resultStatus": { "enum": ["executed", "execution_refused", "expired_before_execution", "replay_rejected", "action_mismatch", "verifier_unavailable", "execution_failed", "abandoned_not_acknowledged"] },
+    "reasonCode": { "type": ["string", "null"] },
+    "reasonCodes": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "simulatedSideEffectReference": { "type": ["string", "null"] },
+    "decisionReceiptReference": { "type": "string", "minLength": 1 },
+    "safeFailureDetail": { "type": ["string", "null"] },
+    "verification": { "$ref": "exact-action-verification-result.schema.json" },
+    "simulatedOnly": { "const": true },
+    "externalActionOccurred": { "const": false },
+    "allowedDoesNotMeanExecuted": { "const": true }
+  }
+}

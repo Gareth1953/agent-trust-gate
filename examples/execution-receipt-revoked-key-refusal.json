@@ -1,0 +1,59 @@
+{
+  "receiptVersion": "atg.execution-receipt.local.v1",
+  "receiptId": "execution_receipt_3e17eef7291aebc2ca6acc8a",
+  "gatePassId": "gatepass_exact_fb4c59a96781daff7d8cc0f6",
+  "actionDigest": "sha256:cfb0c78366de511b4f476563fc34abcf8cfec10f5188ed2901ab611f306e9f7e",
+  "nonce": "nonce_exact_action_revoked",
+  "verifierIdentity": "local_point_of_action_verifier",
+  "verificationTimestamp": "2026-07-20T09:05:00.000Z",
+  "executionAcknowledgementTimestamp": null,
+  "resultStatus": "execution_refused",
+  "reasonCode": "GATEPASS_KEY_REVOKED",
+  "reasonCodes": [
+    "GATEPASS_KEY_REVOKED"
+  ],
+  "simulatedSideEffectReference": null,
+  "decisionReceiptReference": "decision_receipt_2c73c2f6f8087049d746db12",
+  "safeFailureDetail": "Execution was refused locally before the simulated side effect: GATEPASS_KEY_REVOKED.",
+  "verification": {
+    "resultVersion": "atg.exact-action-verification.local.v1",
+    "gatePassId": "gatepass_exact_fb4c59a96781daff7d8cc0f6",
+    "actionDigest": "sha256:cfb0c78366de511b4f476563fc34abcf8cfec10f5188ed2901ab611f306e9f7e",
+    "proposedActionDigest": "sha256:cfb0c78366de511b4f476563fc34abcf8cfec10f5188ed2901ab611f306e9f7e",
+    "verifierIdentity": "local_point_of_action_verifier",
+    "verificationProfile": "local_exact_action_verification_profile",
+    "verificationTimestamp": "2026-07-20T09:05:00.000Z",
+    "verified": false,
+    "nonceConsumed": false,
+    "signatureValid": false,
+    "keyStatus": "revoked",
+    "nonceState": {
+      "stateVersion": "atg.nonce-state.local.v1",
+      "nonce": "nonce_exact_action_revoked",
+      "gatePassId": "gatepass_exact_fb4c59a96781daff7d8cc0f6",
+      "actionDigest": "sha256:cfb0c78366de511b4f476563fc34abcf8cfec10f5188ed2901ab611f306e9f7e",
+      "expiresAt": "2026-07-20T09:10:00.000Z",
+      "status": "unused",
+      "updatedAt": "2026-07-20T09:00:00.000Z",
+      "transitions": [
+        {
+          "from": null,
+          "to": "unused",
+          "at": "2026-07-20T09:00:00.000Z",
+          "reasonCode": "NONCE_REGISTERED"
+        }
+      ],
+      "localProcessOnly": true,
+      "crossProcessAtomicity": false
+    },
+    "reasonCodes": [
+      "GATEPASS_KEY_REVOKED"
+    ],
+    "localOnly": true,
+    "simulatedActionsOnly": true,
+    "note": "Allowed does not mean executed."
+  },
+  "simulatedOnly": true,
+  "externalActionOccurred": false,
+  "allowedDoesNotMeanExecuted": true
+}

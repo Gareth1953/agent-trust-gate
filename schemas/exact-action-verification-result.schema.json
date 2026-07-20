@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Gareth1953/agent-trust-gate/schemas/exact-action-verification-result.schema.json",
+  "title": "Agent Trust Gate Exact-Action Verification Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["resultVersion", "gatePassId", "actionDigest", "proposedActionDigest", "verifierIdentity", "verificationProfile", "verificationTimestamp", "verified", "nonceConsumed", "signatureValid", "keyStatus", "nonceState", "reasonCodes", "localOnly", "simulatedActionsOnly", "note"],
+  "properties": {
+    "resultVersion": { "const": "atg.exact-action-verification.local.v1" },
+    "gatePassId": { "type": "string", "minLength": 1 },
+    "actionDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "proposedActionDigest": { "type": ["string", "null"], "pattern": "^sha256:[a-f0-9]{64}$" },
+    "verifierIdentity": { "type": "string", "minLength": 1 },
+    "verificationProfile": { "type": "string", "minLength": 1 },
+    "verificationTimestamp": { "type": ["string", "null"], "format": "date-time" },
+    "verified": { "type": "boolean" },
+    "nonceConsumed": { "type": "boolean" },
+    "signatureValid": { "type": "boolean" },
+    "keyStatus": { "enum": ["active", "rotated", "revoked", "unknown"] },
+    "nonceState": { "oneOf": [{ "type": "null" }, { "$ref": "nonce-state.schema.json" }] },
+    "reasonCodes": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "localOnly": { "const": true },
+    "simulatedActionsOnly": { "const": true },
+    "note": { "const": "Allowed does not mean executed." }
+  }
+}

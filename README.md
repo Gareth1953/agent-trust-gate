@@ -16,6 +16,44 @@ software and proof artifacts, not a production service, production middleware,
 production benchmark, security certification, legal/compliance/security
 guarantee, payment system, settlement system, hosted service, or live API.
 
+## Exact-action GatePass reference
+
+**Verify Before Settlement.**
+
+**No mandate. No evidence. No signed GatePass. No settlement.**
+
+Agent Trust Gate™ exists to make digital trust verifiable before action,
+observable during execution and accountable afterwards.
+
+Control before action. Evidence during execution. Accountability after the
+event.
+
+GatePasses are designed to bind authority to one exact consequential action,
+with one-use verification and separate decision and execution evidence.
+Permission is reconstructed and verified immediately before a local simulated
+side effect. Changed actions, replay, expiry, unresolved nonce state, revoked or
+unknown keys, and verifier unavailability fail closed.
+
+**Allowed does not mean executed.** A policy decision receipt and an execution
+receipt record different facts. An allowed action can remain unexecuted and
+have no execution receipt.
+
+**The public implementation remains a local reference demonstrator. It is not
+a production enforcement proxy and does not execute real external actions.**
+It has no real payment, settlement, email, external API, live-agent,
+authentication, cloud-deployment or production-key-custody capability.
+
+Run the deterministic local-only scenarios:
+
+```powershell
+npm run demo:exact-action
+npm run demo:exact-action -- --summary-only
+npm run demo:exact-action -- --scenario changed_amount_refused
+```
+
+Technical design, failure codes, trusted-clock assumptions and crash boundary:
+[Exact-Action GatePass and Execution Receipts](docs/exact-action-gatepass-and-execution-receipts.md).
+
 ## 30-second reviewer summary
 
 Agent Trust Gate™ is now centered on GatePass: a scoped, time-bound,

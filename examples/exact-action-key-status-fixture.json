@@ -1,0 +1,48 @@
+{
+  "fixtureVersion": "atg.key-status-fixture.local.v1",
+  "profileId": "local_exact_action_key_status_fixture",
+  "keys": [
+    {
+      "issuerIdentity": "local_demo_policy_authority",
+      "keyId": "local-demo-ed25519-p3-m117-active",
+      "algorithm": "ed25519-local-demo",
+      "status": "active",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAtPo88xjbno/utAGGwrL4AXvDeK7IjBwwV4ztiuahGnE=\n-----END PUBLIC KEY-----\n",
+      "acceptedForVerification": true,
+      "acceptedForIssuance": true,
+      "note": "Local fixture status only; no production key custody or revocation service."
+    },
+    {
+      "issuerIdentity": "local_demo_policy_authority",
+      "keyId": "local-demo-ed25519-p3-m117-rotated",
+      "algorithm": "ed25519-local-demo",
+      "status": "rotated",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAtPo88xjbno/utAGGwrL4AXvDeK7IjBwwV4ztiuahGnE=\n-----END PUBLIC KEY-----\n",
+      "acceptedForVerification": true,
+      "acceptedForIssuance": false,
+      "note": "Rotated local fixture keys may verify existing GatePasses but must not issue new GatePasses."
+    },
+    {
+      "issuerIdentity": "local_demo_policy_authority",
+      "keyId": "local-demo-ed25519-p3-m117-revoked",
+      "algorithm": "ed25519-local-demo",
+      "status": "revoked",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAtPo88xjbno/utAGGwrL4AXvDeK7IjBwwV4ztiuahGnE=\n-----END PUBLIC KEY-----\n",
+      "acceptedForVerification": false,
+      "acceptedForIssuance": false,
+      "note": "Local fixture status only; no production key custody or revocation service."
+    },
+    {
+      "issuerIdentity": "local_demo_policy_authority",
+      "keyId": "local-demo-ed25519-p3-m117-unknown",
+      "algorithm": "ed25519-local-demo",
+      "status": "unknown",
+      "publicKeyPem": null,
+      "acceptedForVerification": false,
+      "acceptedForIssuance": false,
+      "note": "Local fixture status only; no production key custody or revocation service."
+    }
+  ],
+  "localOnly": true,
+  "productionKeyCustody": false
+}

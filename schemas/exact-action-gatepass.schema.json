@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Gareth1953/agent-trust-gate/schemas/exact-action-gatepass.schema.json",
+  "title": "Agent Trust Gate Exact-Action GatePass",
+  "description": "Local-reference, one-use GatePass for one exact simulated consequential action. It is not proof that execution occurred.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["gatePassVersion", "gatePassId", "decision", "action", "oneUse", "allowedDoesNotMeanExecuted", "localOnly", "simulatedActionsOnly", "productionEnforcement", "signature"],
+  "properties": {
+    "gatePassVersion": { "const": "atg.exact-action-gatepass.local.v1" },
+    "gatePassId": { "type": "string", "pattern": "^gatepass_exact_[a-f0-9]{24}$" },
+    "decision": { "const": "allow" },
+    "action": { "$ref": "canonical-action-envelope.schema.json" },
+    "oneUse": { "const": true },
+    "allowedDoesNotMeanExecuted": { "const": true },
+    "localOnly": { "const": true },
+    "simulatedActionsOnly": { "const": true },
+    "productionEnforcement": { "const": false },
+    "signature": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "keyId", "signedAt", "signature", "localFixtureOnly", "productionKeyCustody"],
+      "properties": {
+        "algorithm": { "const": "ed25519-local-demo" },
+        "keyId": { "type": "string", "minLength": 1 },
+        "signedAt": { "type": "string", "format": "date-time" },
+        "signature": { "type": "string", "pattern": "^[A-Za-z0-9+/]+={0,2}$" },
+        "localFixtureOnly": { "const": true },
+        "productionKeyCustody": { "const": false }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "action": {
+            "properties": {
+              "approvalRequired": { "const": true }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "action": {
+            "properties": {
+              "humanApprovalReference": { "type": "string", "minLength": 1 },
+              "humanApprovalDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

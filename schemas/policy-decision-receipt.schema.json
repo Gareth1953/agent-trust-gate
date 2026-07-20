@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Gareth1953/agent-trust-gate/schemas/policy-decision-receipt.schema.json",
+  "title": "Agent Trust Gate Policy Decision Receipt",
+  "description": "Records allowed, refused, or escalated policy meaning. It never records execution.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["receiptVersion", "receiptId", "decision", "policyReference", "policyDigest", "reasons", "evidenceState", "approvalState", "decidedAt", "gatePassIssuance", "executionState", "allowedDoesNotMeanExecuted", "localOnly", "simulatedActionsOnly"],
+  "properties": {
+    "receiptVersion": { "const": "atg.policy-decision-receipt.local.v1" },
+    "receiptId": { "type": "string", "pattern": "^decision_receipt_[a-f0-9]{24}$" },
+    "decision": { "enum": ["allowed", "refused", "escalated"] },
+    "policyReference": { "type": "string", "minLength": 1 },
+    "policyDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "reasons": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+    "evidenceState": { "enum": ["present", "missing"] },
+    "approvalState": { "enum": ["approved", "not_required", "missing"] },
+    "decidedAt": { "type": "string", "format": "date-time" },
+    "gatePassIssuance": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["gatePassId", "actionDigest", "nonce", "issuerIdentity", "issuerKeyId", "issuedAt"],
+          "properties": {
+            "gatePassId": { "type": "string", "minLength": 1 },
+            "actionDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+            "nonce": { "type": "string", "minLength": 1 },
+            "issuerIdentity": { "type": "string", "minLength": 1 },
+            "issuerKeyId": { "type": "string", "minLength": 1 },
+            "issuedAt": { "type": "string", "format": "date-time" }
+          }
+        }
+      ]
+    },
+    "executionState": { "const": "not_executed" },
+    "allowedDoesNotMeanExecuted": { "const": true },
+    "localOnly": { "const": true },
+    "simulatedActionsOnly": { "const": true }
+  }
+}
