@@ -1,5 +1,7 @@
 # Agent Trust Gate™
 
+![Agent Trust Gate human-in-the-loop governance architecture](docs/assets/agent-trust-gate-readme-hero.png)
+
 ## What is Agent Trust Gate?
 
 Agent Trust Gate™ is a local-first, pre-action and pre-settlement trust
