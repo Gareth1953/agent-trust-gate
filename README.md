@@ -1,20 +1,87 @@
 # Agent Trust Gate™
 
-Agent Trust Gate™ is a local-first proof-of-concept for checking whether an AI
-agent or automated workflow has enough scoped proof before a sensitive action.
-It remains a local-first, pre-action and pre-settlement trust enforcement layer
-for local demo review, with no production or live execution authority.
+## What is Agent Trust Gate?
 
-GatePass is a scoped, time-bound, action-specific proof primitive for agent
-actions. GatePass provides a common, machine-readable format for expressing
-authority, mandate, scope, freshness, and evidence.
+Agent Trust Gate™ is a local-first, pre-action and pre-settlement trust
+enforcement layer for reviewer demonstration. It checks whether an AI agent or
+automated workflow has enough scoped proof before a sensitive action. GatePass
+is its scoped, time-bound, exact-action proof primitive for expressing
+authority, mandate, scope, freshness, evidence and approval.
+
+Current status: local_demo_only.
+
+## Why does it exist?
+
+Agent assertions and confident model output are not authority. ATG demonstrates
+a point-of-action boundary where the proposed action is reconstructed and
+checked against current, one-use authority before a consequential operation may
+proceed.
 
 > **No signed GatePass. No settlement. Do not trust the agent. Trust the GatePass. No proof. No permission. No mandate. No action.**
 
-Current status: local_demo_only. The repository provides deterministic local
-software and proof artifacts, not a production service, production middleware,
-production benchmark, security certification, legal/compliance/security
-guarantee, payment system, settlement system, hosted service, or live API.
+## What does it demonstrate today?
+
+The repository provides fixed, deterministic local scenarios for exact-action
+GatePass verification, changed-action refusal, verifier-owned expiry checks,
+one-use replay protection, mandate/evidence/approval gating, simulated
+pre-settlement blocking, policy decision receipts and separate simulated
+execution receipts. Expected refusals count as successful outcomes only when
+the observed result actually refuses the action.
+
+## How can I review it in approximately ten minutes?
+
+Prerequisites are Git, Node.js 20 or newer and npm. From a fresh clone, run:
+
+```powershell
+npm ci
+npm run reviewer
+```
+
+`npm run reviewer` builds silently, runs the compact fixed-fixture sequence,
+prints an outcome-derived scorecard and exits non-zero if any invariant fails.
+It creates no reviewer artifacts. Start with
+[REVIEWER_START_HERE.md](REVIEWER_START_HERE.md).
+
+The broader one-command reviewer demo kit remains available as a secondary,
+deeper tour:
+
+```powershell
+npm run demo:reviewer-kit
+npm run demo:reviewer-kit -- --summary-only
+npm run demo:reviewer-kit -- --json
+```
+
+## What are its strict boundaries?
+
+This is a safe local-only proof-of-concept and reference demonstrator. No real
+tool execution occurs. No payment or settlement is authorised. No production
+benchmark or security certification is claimed. It has no live API, production
+middleware, production credentials, customer data, cloud service, live agent
+interception, real payment or settlement capability, distributed replay store
+or production key management. It does not claim production adoption, legal or
+compliance certification, or live payment readiness.
+
+## Where is the technical evidence?
+
+- [Exact-action design and failure boundaries](docs/exact-action-gatepass-and-execution-receipts.md)
+- [Exact-action GatePass schema](schemas/exact-action-gatepass.schema.json) and [execution-receipt schema](schemas/execution-receipt.schema.json)
+- [Round-trip threat model](docs/gatepass-round-trip-threat-model.md) and [reviewer limitations](docs/reviewer-demo-limitations-and-safety-boundary.md)
+- [OWASP Agentic Top 10 technical control map](docs/owasp-agentic-top-10-2026-control-map.md)
+- [NIST identity and authorisation reference map](docs/nist-agent-security-identity-authorisation-reference-map.md)
+- [Reviewer release preparation](docs/reviewer-release-v0.1.0.md)
+- [P3 mission register and retained project history](docs/p3-mission-register.md)
+
+GatePass proof vocabulary and GatePass claims vocabulary remain supporting
+material only; they are not safety guarantees.
+
+## How can a serious reviewer or design partner make contact?
+
+Technical criticism, reproducible defects and bounded design-partner enquiries
+are welcome at `gpmiddleton71@gmail.com`. Do not send secrets, credentials,
+customer data or regulated information. The commercial route is a
+human-reviewed [paid evaluation pilot enquiry](docs/paid-pilot-commercial-entry.md);
+it does not imply acceptance, availability, production access or access after
+payment.
 
 ## Exact-action GatePass reference
 

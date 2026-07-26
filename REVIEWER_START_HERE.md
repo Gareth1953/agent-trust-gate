@@ -1,0 +1,97 @@
+# Agent Trust Gate Reviewer Start Here
+
+## What Agent Trust Gate is
+
+Agent Trust Gate™ (ATG) is a local-only reference demonstrator for checking
+whether a proposed AI-agent or automated-workflow action has scoped, current
+authority before it may proceed. Its GatePass is bound to the exact action,
+time window, mandate, evidence, approval, tool, target, nonce and local
+verification profile.
+
+## What it proves today
+
+ATG demonstrates locally that:
+
+- a valid exact-action GatePass can be verified at the point of a simulated
+  side effect;
+- an allowed policy decision is separate from an execution receipt;
+- a material action change, replay, expiry or unavailable verifier fails closed;
+- missing mandate, evidence or approval prevents a required action;
+- a settlement-sensitive action cannot proceed without valid current
+  authority;
+- refusal evidence can be explicit and machine-readable.
+
+These are deterministic local observations, not claims about a deployed system.
+
+## Prerequisites
+
+- Git.
+- Node.js 20 or newer.
+- npm compatible with the checked-in `package-lock.json`.
+- No account, API, credential, payment service, customer data or network
+  service.
+
+## Clone and install
+
+```powershell
+git clone https://github.com/Gareth1953/agent-trust-gate.git
+cd agent-trust-gate
+npm ci
+```
+
+## Run the reviewer sequence
+
+```powershell
+npm run reviewer
+```
+
+The command builds silently, uses fixed synthetic fixtures and a
+verifier-controlled clock, prints each observed allow/refusal, and finishes
+with an `ATG REVIEWER RESULT` scorecard.
+
+## What successful output means
+
+`Overall: REVIEWER DEMONSTRATION PASSED` means every scenario observed the
+expected local result, the successful simulated action produced a separate
+execution receipt, replay and exact-action binding checks held, and all
+external-action flags remained false. Expected refusals are successful test
+outcomes; an unexpected allow makes the command exit non-zero.
+
+## What this deliberately does not prove
+
+The command does not prove production readiness, system-wide security,
+standards conformity, legal or regulatory compliance, real-agent interception,
+durable replay prevention, production identity, production key custody,
+distributed consistency, infrastructure isolation, payment safety, settlement
+safety, incident readiness or operational performance. It moves no money,
+contacts no service and modifies no external system.
+
+The repository is not production middleware, a live proxy, a cloud service, a
+payment system, a settlement system or a security certification.
+
+## Technical evidence
+
+- [Exact-action design, verifier flow and crash boundary](docs/exact-action-gatepass-and-execution-receipts.md)
+- [Canonical action envelope schema](schemas/canonical-action-envelope.schema.json)
+- [Exact-action GatePass schema](schemas/exact-action-gatepass.schema.json)
+- [Execution receipt schema](schemas/execution-receipt.schema.json)
+- [Exact-action implementation](src/exact-action-gatepass.ts)
+- [Exact-action tests](test/exact-action-gatepass.test.ts)
+- [GatePass round-trip threat model](docs/gatepass-round-trip-threat-model.md)
+- [Reviewer limitations and safety boundary](docs/reviewer-demo-limitations-and-safety-boundary.md)
+- [OWASP Agentic Top 10 technical control map](docs/owasp-agentic-top-10-2026-control-map.md)
+- [NIST identity and authorisation reference map](docs/nist-agent-security-identity-authorisation-reference-map.md)
+
+## Paid pilot route
+
+A serious reviewer or potential design partner may use the
+[paid evaluation pilot route](docs/paid-pilot-commercial-entry.md) or email
+`gpmiddleton71@gmail.com`. Enquiries are reviewed by a human and require
+separate scope and written agreement. Do not send secrets, credentials,
+customer records, payment details or confidential production data.
+
+## Local-only notice
+
+ATG version 0.1.0 remains a local reviewer demonstrator with no production-use
+claim. No external action, network call, payment, settlement or live system
+access occurs when `npm run reviewer` runs.

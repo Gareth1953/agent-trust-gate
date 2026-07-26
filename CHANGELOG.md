@@ -8,6 +8,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 
 ### Added
 
+- P3-M151 reviewer conversion and standards mapping pack with the deterministic `npm run reviewer` exact-action scorecard, reviewer start page, reviewer-first README path, OWASP Agentic Top 10 and NIST reference maps, v0.1.0 release preparation, GitHub metadata guidance, mission record and focused failure/determinism/no-external-action tests.
 - P3-M150 exact-action GatePass and execution-receipt reference with versioned canonical SHA-256 action envelopes, local fixture signing, verifier-owned time, active/rotated/revoked/unknown key status, same-process atomic one-use nonce consumption, separate policy decision and simulated execution receipts, fail-closed reason codes, deterministic CLI scenarios, schemas, examples, tests and technical documentation.
 - P3-M145 end-to-end GatePass pilot and commercial conversion pack with a local two-scenario reviewer journey, `npm run demo:gatepass-pilot`, deterministic permitted/refused delegated-action examples, local-demo signed GatePass output, refusal receipt output, simulated settlement adapter decisions, ignored local audit artefacts, automated tests, and feasibility-pilot documentation.
 - P3-M144A embedded commerce commercial positioning update with a featured homepage section, target-audience discovery metadata, and focused design-partner wording for supermarkets, retailers, AI-shopping platforms, commerce infrastructure teams, payment providers, retail technology teams, developers, and system architects.
