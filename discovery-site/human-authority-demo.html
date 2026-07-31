@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Interactive synthetic demonstration of verified human authority before an AI-agent action.">
+  <title>Verified Human Authority Demo | Agent Trust Gate™</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07111f;--panel:#0d1b2d;--line:#28415e;--text:#eef6ff;--muted:#a9bdd2;--ok:#45d483;--bad:#ff7a7a;--accent:#75b7ff;--warn:#ffd166}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#132a46 0,#07111f 42%);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+    a{color:var(--accent)}header,main,footer{width:min(1120px,92vw);margin:auto}header{padding:48px 0 24px}.eyebrow{letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-size:.8rem;font-weight:800}
+    h1{font-size:clamp(2.2rem,5vw,4.2rem);line-height:1.04;margin:.35rem 0 1rem;max-width:900px}h2{margin-top:0}.lead{font-size:1.2rem;color:var(--muted);max-width:850px}
+    .boundary{border:1px solid var(--warn);background:#241e0d;padding:12px 16px;border-radius:12px;color:#ffe8a0;margin:24px 0}
+    .controls,.panel{background:rgba(13,27,45,.94);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 18px 50px rgba(0,0,0,.25)}
+    .controls{display:flex;gap:12px;flex-wrap:wrap;align-items:end}.field{flex:1 1 330px}label{display:block;font-weight:750;margin-bottom:7px}
+    select,button{width:100%;border-radius:10px;border:1px solid var(--line);padding:12px 14px;background:#091625;color:var(--text);font:inherit}
+    button{width:auto;min-width:180px;background:var(--accent);color:#03101e;font-weight:850;cursor:pointer;border:0}button:hover{filter:brightness(1.08)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}@media(max-width:800px){.grid{grid-template-columns:1fr}}
+    .steps{display:grid;gap:10px}.step{display:grid;grid-template-columns:38px 1fr auto;gap:10px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:12px;background:#091625}
+    .step .n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#193651;font-weight:800}.status{font-weight:900}.pass{color:var(--ok)}.block{color:var(--bad)}.pending{color:var(--muted)}
+    dl{display:grid;grid-template-columns:max-content 1fr;gap:8px 14px;margin:0}dt{color:var(--muted)}dd{margin:0;font-weight:650;overflow-wrap:anywhere}
+    pre{white-space:pre-wrap;word-break:break-word;background:#050c16;border:1px solid var(--line);border-radius:12px;padding:15px;max-height:440px;overflow:auto}
+    .verdict{font-size:1.65rem;font-weight:950;margin:.3rem 0}.rule{font-size:1.25rem;font-weight:850;text-align:center;padding:26px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:30px 0}
+    footer{padding:20px 0 50px;color:var(--muted)}
+  </style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">Agent Trust Gate™ · P3-M153</div>
+  <h1>Prove which authorised human approved the exact AI-agent action.</h1>
+  <p class="lead">Run a fictional retail or finance scenario. The visual demonstrator checks identity status, organisation-controlled authentication, action authority, separation of duties, dual approval, freshness, replay state and exact-action integrity before showing a GatePass.</p>
+  <div class="boundary"><strong>Safe demonstration:</strong> all people, permissions, orders and transactions are fictional. No login, password, customer data, payment or external action is used.</div>
+</header>
+<main>
+  <section class="controls" aria-label="Scenario controls">
+    <div class="field">
+      <label for="scenario">Choose a scenario</label>
+      <select id="scenario"></select>
+    </div>
+    <button id="run" type="button">Run trust gate</button>
+  </section>
+
+  <div class="grid">
+    <section class="panel">
+      <h2>Exact proposed action</h2>
+      <dl id="action"></dl>
+    </section>
+    <section class="panel">
+      <h2>Decision</h2>
+      <div id="verdict" class="verdict pending">Ready</div>
+      <p id="reason">Select a scenario and run the trust gate.</p>
+      <dl id="proofSummary"></dl>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>Verification chain</h2>
+    <div id="steps" class="steps"></div>
+  </section>
+
+  <div class="grid">
+    <section class="panel">
+      <h2>Human Authority Proof</h2>
+      <pre id="proof">Not created.</pre>
+    </section>
+    <section class="panel">
+      <h2>GatePass and execution</h2>
+      <pre id="gatepass">Not issued.</pre>
+    </section>
+  </div>
+
+  <div class="rule">No verified identity. No confirmed authority. No exact-action Human Authority Proof. No valid GatePass. No action.</div>
+
+  <section class="panel">
+    <h2>Technical reviewer route</h2>
+    <p>The browser page explains the control visually. The repository contains the deterministic Node.js model, Ed25519 local-fixture proof verification and automated refusal tests.</p>
+    <pre>npm run demo:human-authority
+npm run test:human-authority
+npm run demo:human-authority -- --json</pre>
+    <p><a href="https://github.com/Gareth1953/agent-trust-gate">Inspect the public GitHub repository</a> · <a href="./">Return to Agent Trust Gate™</a></p>
+  </section>
+</main>
+<footer>Agent Trust Gate™ · Local synthetic demonstrator · No production identity, payment, WebAuthn or post-quantum implementation.</footer>
+<script>
+const scenarios=[
+{id:"authorised_refund",title:"Authorised £475 refund",allowed:true,action:{type:"Refund",amount:"£475",reference:"ORD-77291",destination:"Original Visa ending 4921",requester:"Returns Agent 17"},approver:"Sarah Collins · Senior Returns Supervisor",limit:"£1,000",second:"Not required",digest:"8f2b…c91a",code:"VERIFIED_HUMAN_AUTHORITY",reason:"Active identity, strong authentication, authority limit and exact-action checks passed."},
+{id:"inactive_employee",title:"Inactive employee blocked",allowed:false,fail:1,action:{type:"Refund",amount:"£475",reference:"ORD-77291",destination:"Original Visa ending 4921",requester:"Returns Agent 17"},approver:"Martin Hughes · Former Returns Supervisor",limit:"£1,000 (historic)",second:"Not required",digest:"8f2b…c91a",code:"IDENTITY_INACTIVE",reason:"The organisation record says this identity is inactive."},
+{id:"over_limit",title:"£1,200 refund exceeds authority",allowed:false,fail:3,action:{type:"Refund",amount:"£1,200",reference:"ORD-77292",destination:"Original Visa ending 4921",requester:"Returns Agent 17"},approver:"Sarah Collins · Senior Returns Supervisor",limit:"£1,000",second:"Required above £750",digest:"b116…8d09",code:"AUTHORITY_LIMIT_EXCEEDED",reason:"The requested amount exceeds the approver's current authority."},
+{id:"self_approval",title:"Restricted self-approval blocked",allowed:false,fail:4,action:{type:"Refund",amount:"£475",reference:"ORD-77293",destination:"Original Visa ending 4921",requester:"EMP-1007 (same person)"},approver:"Sarah Collins · Senior Returns Supervisor",limit:"£1,000",second:"Not required",digest:"c901…552e",code:"SEPARATION_OF_DUTIES_FAILED",reason:"The requester cannot approve their own restricted action."},
+{id:"missing_second",title:"£7,500 repayment missing second human",allowed:false,fail:5,action:{type:"Repayment",amount:"£7,500",reference:"ORD-5510",destination:"Original bank transfer",requester:"Finance Agent 09"},approver:"Daniel Reed · Finance Manager",limit:"£10,000",second:"Required above £5,000",digest:"2fd1…913b",code:"SECOND_APPROVER_REQUIRED",reason:"A second independently authorised human is required."},
+{id:"changed_action",title:"Amount changed after approval",allowed:false,fail:7,action:{type:"Refund",amount:"£475 approved → £975 execution",reference:"ORD-77291",destination:"Original Visa ending 4921",requester:"Returns Agent 17"},approver:"Sarah Collins · Senior Returns Supervisor",limit:"£1,000",second:"Not required",digest:"approved 8f2b… ≠ execution 190d…",code:"EXACT_ACTION_MISMATCH",reason:"The execution request differs from the exact action the human reviewed."},
+{id:"dual_allowed",title:"Two humans approve £7,500 repayment",allowed:true,action:{type:"Repayment",amount:"£7,500",reference:"ORD-5511",destination:"Original bank transfer",requester:"Finance Agent 09"},approver:"Daniel Reed · Finance Manager",limit:"£10,000",second:"Aisha Khan · Senior Finance Director",digest:"905a…1b40",code:"VERIFIED_HUMAN_AUTHORITY",reason:"Two independent active and authorised humans approved the same exact action."}
+];
+const checks=["Identity exists and is active","Organisation-controlled authentication","Authority for action type and amount","Separation of duties","Second approver policy","Human Authority Proof signature","Freshness and replay protection","Exact action matches at execution","GatePass and execution receipt"];
+const select=document.querySelector("#scenario");scenarios.forEach((s,i)=>select.add(new Option(s.title,String(i))));
+const esc=v=>String(v).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function dl(obj){return Object.entries(obj).map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}
+function run(){
+ const s=scenarios[Number(select.value)];document.querySelector("#action").innerHTML=dl(s.action);
+ const steps=document.querySelector("#steps");steps.innerHTML="";
+ checks.forEach((label,i)=>{const blocked=!s.allowed&&i===s.fail;const after=!s.allowed&&i>s.fail;const state=blocked?"BLOCKED":after?"NOT REACHED":"PASSED";const cls=blocked?"block":after?"pending":"pass";steps.insertAdjacentHTML("beforeend",`<div class="step"><span class="n">${i+1}</span><span>${label}</span><span class="status ${cls}">${state}</span></div>`)});
+ const verdict=document.querySelector("#verdict");verdict.textContent=s.allowed?"GATEPASS ISSUED":"ACTION REFUSED";verdict.className=`verdict ${s.allowed?"pass":"block"}`;
+ document.querySelector("#reason").textContent=`${s.code}: ${s.reason}`;
+ document.querySelector("#proofSummary").innerHTML=dl({"Approver":s.approver,"Authority limit":s.limit,"Second approver":s.second,"Exact-action digest":s.digest});
+ const proof=s.allowed?{type:"ATG_HUMAN_AUTHORITY_PROOF",identity:s.approver,authentication:"organisation credential fixture · verified",authority:s.limit,secondApprover:s.second,actionDigest:s.digest,decision:"APPROVED",signature:"Ed25519 local fixture · VERIFIED"}:{outcome:"NOT ISSUED",refusalCode:s.code,reason:s.reason};
+ document.querySelector("#proof").textContent=JSON.stringify(proof,null,2);
+ const gate=s.allowed?{gatePass:"ISSUED",boundToActionDigest:s.digest,boundToHumanProof:true,nonce:"UNUSED → CONSUMED",execution:"SIMULATED",receipt:"CREATED"}:{gatePass:"NOT ISSUED",execution:"BLOCKED",receipt:"NO EXECUTION RECEIPT"};
+ document.querySelector("#gatepass").textContent=JSON.stringify(gate,null,2);
+}
+document.querySelector("#run").addEventListener("click",run);run();
+</script>
+</body>
+</html>

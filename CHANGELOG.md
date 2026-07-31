@@ -114,3 +114,14 @@ P3-M140 adds a local-only strategic foresight advisory layer for manually suppli
 - Extended the proposed audit chain to returns, refunds, exchanges, credit notes, repayments, cancellations, write-offs and reversals.
 - Recorded crypto-agility and future post-quantum evidence-sealing requirements.
 - Preserved the local-only boundary: no live identity provider, directory, WebAuthn, production PQC, real transaction or certification claim.
+
+## P3-M153 — Verified Human Authority Working Demonstrator
+
+- Added a deterministic Node.js Human Authority Proof demonstrator.
+- Added active/inactive identity, authentication fixture, action authority, amount limit, separation-of-duties and second-approver checks.
+- Added exact-action digest binding, local-fixture Ed25519 signatures, expiry and replay refusal.
+- Added linked Human Authority Proof, GatePass and simulated execution receipt output.
+- Added ten automated permitted/refused scenarios.
+- Added a buyer-friendly interactive GitHub Pages demonstration.
+- Added `demo:human-authority` and `test:human-authority` commands.
+- Preserved the local synthetic boundary with no real identity, WebAuthn, payment, external action or post-quantum implementation.

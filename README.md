@@ -80,6 +80,37 @@ P3-M152A is currently an approved roadmap and documentation mission. It does not
 - [Verified Human Authority and Crypto-Agile Proof](docs/verified-human-authority-and-crypto-agility.md)
 - [Machine-readable P3-M152A roadmap summary](examples/verified-human-authority-roadmap.json)
 
+## See verified human authority working
+
+P3-M153 turns the verified-human-authority roadmap into a deterministic local demonstrator and a buyer-friendly GitHub Pages presentation.
+
+It does not accept a simple `approved: true` field. The model checks whether the approving natural person is represented by an active organisation identity, has organisation-controlled authentication evidence, holds current authority for the exact action type and amount, is independent from the requester where policy requires it, and has supplied any required second approval.
+
+A successful scenario creates and links:
+
+1. a signed local-fixture **Human Authority Proof**;
+2. a one-use **GatePass** bound to the same canonical action digest; and
+3. a separate simulated **execution receipt**.
+
+```bash
+npm run demo:human-authority
+npm run demo:human-authority -- --summary-only
+npm run demo:human-authority -- --scenario authorised_refund
+npm run test:human-authority
+```
+
+**Interactive buyer demonstration:**
+Open `discovery-site/human-authority-demo.html` from the repository or use the project website navigation.
+
+The fixed scenarios include an authorised refund, authorised credit note, inactive employee, exceeded authority limit, prohibited self-approval, missing second approver, changed action after approval, expired proof, replayed proof and a successful dual-human repayment approval.
+
+> No verified identity. No confirmed authority. No exact-action Human Authority Proof. No valid GatePass. No action.
+
+All identities, permissions, authentication results and transactions are fictional. No live employee database, password, WebAuthn ceremony, biometric, customer information, payment, refund, external action, production key or post-quantum signature is used.
+
+- [Working demonstrator design and limitations](docs/verified-human-authority-working-demonstrator.md)
+- [Sample machine-readable demonstration report](examples/human-authority-demo-report.json)
+
 ## Where is the technical evidence?
 
 - [Exact-action design and failure boundaries](docs/exact-action-gatepass-and-execution-receipts.md)

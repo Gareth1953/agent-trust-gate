@@ -818,3 +818,15 @@ P3-M140 adds a local-only strategic foresight advisory layer for manually suppli
 Agent Trust Gate™ now publicly records the next human-in-the-loop governance objective: a consequential action should not proceed merely because an approval field exists. Future evidence should prove which identifiable, authenticated and currently authorised natural person approved the exact action, and link that decision to GatePass and execution evidence.
 
 This release is documentation and roadmap only. It does not add live employee authentication, organisation-directory integration, WebAuthn, production post-quantum signatures, real refunds/payments or quantum-safety certification.
+
+## P3-M153 — See verified human authority working
+
+Agent Trust Gate™ now includes a working local demonstration showing that consequential human approval requires more than an approval flag.
+
+The demonstrator checks an active fictional organisation identity, organisation-controlled authentication evidence, current action authority, financial limits, separation of duties, required co-approval, proof freshness, replay state and exact-action integrity. Successful scenarios create a signed local-fixture Human Authority Proof, linked GatePass and separate simulated execution receipt.
+
+An interactive public presentation is deployed through the repository's GitHub Pages artifact:
+
+``discovery-site/human-authority-demo.html` in this repository`
+
+This release remains synthetic and local. It does not add a real employee database, live WebAuthn, passwords, customer information, real refunds/payments, production key custody, post-quantum signing or certification.

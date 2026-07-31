@@ -1,0 +1,897 @@
+{
+  "summary": {
+    "demoVersion": "P3-M153-v1",
+    "total": 10,
+    "matched": 10,
+    "allowed": 3,
+    "refused": 7,
+    "allMatched": true
+  },
+  "results": [
+    {
+      "demoVersion": "P3-M153-v1",
+      "scenarioId": "authorised_refund",
+      "scenarioTitle": "Authorised £475 refund",
+      "expected": "allowed",
+      "observed": "allowed",
+      "matchedExpectation": true,
+      "decision": {
+        "outcome": "ALLOWED",
+        "code": "VERIFIED_HUMAN_AUTHORITY",
+        "message": "Verified natural-person identity, authentication, business authority and exact-action binding passed."
+      },
+      "canonicalActionDigest": "87766ccf86dd5639576198e8fc7b789105a2633d7709221373fb61363dcd8ff2",
+      "checks": [
+        {
+          "check": "primary_identity_authentication_and_authority",
+          "passed": true,
+          "detail": "Sarah Collins is active, strongly authenticated and authorised up to GBP 1000."
+        },
+        {
+          "check": "separation_of_duties",
+          "passed": true,
+          "detail": "Requester and primary approver are independent."
+        },
+        {
+          "check": "second_approver",
+          "passed": true,
+          "detail": "No second approver is required at this value threshold."
+        },
+        {
+          "check": "human_authority_proof_signature",
+          "passed": true,
+          "detail": "The local fixture signature verifies over the exact Human Authority Proof."
+        },
+        {
+          "check": "human_authority_proof_freshness",
+          "passed": true,
+          "detail": "The Human Authority Proof is within its verifier-owned validity window."
+        },
+        {
+          "check": "human_authority_proof_replay",
+          "passed": true,
+          "detail": "The Human Authority Proof nonce is unused."
+        },
+        {
+          "check": "gatepass_signature",
+          "passed": true,
+          "detail": "The local fixture GatePass signature verifies."
+        },
+        {
+          "check": "exact_action_binding",
+          "passed": true,
+          "detail": "The execution request exactly matches the human-approved canonical action."
+        },
+        {
+          "check": "execution_receipt_signature",
+          "passed": true,
+          "detail": "The separate simulated execution receipt signature verifies."
+        }
+      ],
+      "humanAuthorityProof": {
+        "type": "ATG_HUMAN_AUTHORITY_PROOF",
+        "version": "1.0",
+        "proofId": "HAP-AUTHORISED_REFUND",
+        "organisationId": "ORG-DEMO-RETAIL-001",
+        "policyId": "POLICY-HUMAN-AUTHORITY-DEMO-1",
+        "policyVersion": "2026-07-31",
+        "actionDigest": "87766ccf86dd5639576198e8fc7b789105a2633d7709221373fb61363dcd8ff2",
+        "actionType": "refund",
+        "amount": 475,
+        "currency": "GBP",
+        "accountRef": "UK-RETAIL-RETURNS",
+        "jurisdiction": "GB",
+        "decision": "APPROVED",
+        "primaryApprover": {
+          "employeeId": "EMP-1007",
+          "displayName": "Sarah Collins",
+          "role": "Senior Returns Supervisor",
+          "department": "Retail Operations",
+          "status": "active",
+          "authentication": {
+            "employeeId": "EMP-1007",
+            "status": "verified",
+            "method": "organisation_passkey_fixture",
+            "phishingResistant": true,
+            "userPresence": true,
+            "userVerification": true,
+            "assurance": "high_demo_fixture"
+          },
+          "authorityLimit": {
+            "currency": "GBP",
+            "maxAmount": 1000
+          }
+        },
+        "secondApprover": null,
+        "separationOfDuties": "passed",
+        "issuedAt": "2026-07-31T18:00:00.000Z",
+        "expiresAt": "2026-07-31T18:05:00.000Z",
+        "nonce": "hap-authorised_refund-nonce-v1",
+        "nonceState": "unused",
+        "claimsBoundary": "Synthetic local demonstrator. No real identity provider, employee database, WebAuthn ceremony, payment, refund or post-quantum signature.",
+        "integrity": {
+          "suite": "Ed25519-local-fixture-v1",
+          "keyId": "atg-human-authority-demo-key-2026-01",
+          "signature": "wAl7FIYTku2vvDg1ZDw65RaSvQ4igDCAVy5hoiIY3AtwhGvHicxcfnFfy0VhIZbcAuqUyNirutXPSCtGNH1FAw==",
+          "warning": "Public local-demo fixture key only. Not production key custody or a post-quantum signature."
+        }
+      },
+      "gatePass": {
+        "type": "ATG_GATEPASS",
+        "version": "P3-M153-demo-1",
+        "gatePassId": "GP-AUTHORISED_REFUND",
+        "actionDigest": "87766ccf86dd5639576198e8fc7b789105a2633d7709221373fb61363dcd8ff2",
+        "humanAuthorityProofDigest": "d92d0f8ec5087dd053999ab00ccbc4a4865958b91fff0f368e561d4c102b270d",
+        "issuedAt": "2026-07-31T18:02:00.000Z",
+        "expiresAt": "2026-07-31T18:04:00.000Z",
+        "nonce": "gp-authorised_refund-nonce-v1",
+        "status": "issued",
+        "executionMode": "simulated_only",
+        "integrity": {
+          "suite": "Ed25519-local-fixture-v1",
+          "keyId": "atg-human-authority-demo-key-2026-01",
+          "signature": "o59JDotS9S8QILtA/qUNYeuqHlz3NfLizlBbYXYfNnB/PdYAxKg5gje5y2Y/ZRq2bdKPP4yUQjO1KzAwM3D6Dw==",
+          "warning": "Public local-demo fixture key only. Not production key custody or a post-quantum signature."
+        }
+      },
+      "executionReceipt": {
+        "type": "ATG_EXECUTION_RECEIPT",
+        "version": "P3-M153-demo-1",
+        "receiptId": "EXEC-AUTHORISED_REFUND",
+        "gatePassId": "GP-AUTHORISED_REFUND",
+        "humanAuthorityProofId": "HAP-AUTHORISED_REFUND",
+        "actionDigest": "87766ccf86dd5639576198e8fc7b789105a2633d7709221373fb61363dcd8ff2",
+        "outcome": "SIMULATED_EXECUTION_COMPLETED",
+        "executedAt": "2026-07-31T18:03:00.000Z",
+        "externalSideEffect": false,
+        "warning": "Demonstration receipt only. No real refund, repayment, credit note, exchange or external action occurred.",
+        "integrity": {
+          "suite": "Ed25519-local-fixture-v1",
+          "keyId": "atg-human-authority-demo-key-2026-01",
+          "signature": "Os0dZUAd85Ft56qCX6o+dCID82sNzfKj1nDrsngi/gd3SV+QglYXt2YUqhWfBDpRkpywd+sMmplcbS0LPJ3uAA==",
+          "warning": "Public local-demo fixture key only. Not production key custody or a post-quantum signature."
+        }
+      },
+      "safetyBoundary": "local_synthetic_no_real_action"
+    },
+    {
+      "demoVersion": "P3-M153-v1",
+      "scenarioId": "authorised_credit_note",
+      "scenarioTitle": "Authorised £1,250 credit note",
+      "expected": "allowed",
+      "observed": "allowed",
+      "matchedExpectation": true,
+      "decision": {
+        "outcome": "ALLOWED",
+        "code": "VERIFIED_HUMAN_AUTHORITY",
+        "message": "Verified natural-person identity, authentication, business authority and exact-action binding passed."
+      },
+      "canonicalActionDigest": "d24eecff101564279248763b93f66687e51c2342bfaa4e67b86287a26d3f6341",
+      "checks": [
+        {
+          "check": "primary_identity_authentication_and_authority",
+          "passed": true,
+          "detail": "Sarah Collins is active, strongly authenticated and authorised up to GBP 2500."
+        },
+        {
+          "check": "separation_of_duties",
+          "passed": true,
+          "detail": "Requester and primary approver are independent."
+        },
+        {
+          "check": "second_approver",
+          "passed": true,
+          "detail": "No second approver is required at this value threshold."
+        },
+        {
+          "check": "human_authority_proof_signature",
+          "passed": true,
+          "detail": "The local fixture signature verifies over the exact Human Authority Proof."
+        },
+        {
+          "check": "human_authority_proof_freshness",
+          "passed": true,
+          "detail": "The Human Authority Proof is within its verifier-owned validity window."
+        },
+        {
+          "check": "human_authority_proof_replay",
+          "passed": true,
+          "detail": "The Human Authority Proof nonce is unused."
+        },
+        {
+          "check": "gatepass_signature",
+          "passed": true,
+          "detail": "The local fixture GatePass signature verifies."
+        },
+        {
+          "check": "exact_action_binding",
+          "passed": true,
+          "detail": "The execution request exactly matches the human-approved canonical action."
+        },
+        {
+          "check": "execution_receipt_signature",
+          "passed": true,
+          "detail": "The separate simulated execution receipt signature verifies."
+        }
+      ],
+      "humanAuthorityProof": {
+        "type": "ATG_HUMAN_AUTHORITY_PROOF",
+        "version": "1.0",
+        "proofId": "HAP-AUTHORISED_CREDIT_NOTE",
+        "organisationId": "ORG-DEMO-RETAIL-001",
+        "policyId": "POLICY-HUMAN-AUTHORITY-DEMO-1",
+        "policyVersion": "2026-07-31",
+        "actionDigest": "d24eecff101564279248763b93f66687e51c2342bfaa4e67b86287a26d3f6341",
+        "actionType": "credit_note",
+        "amount": 1250,
+        "currency": "GBP",
+        "accountRef": "UK-TRADE-CREDIT",
+        "jurisdiction": "GB",
+        "decision": "APPROVED",
+        "primaryApprover": {
+          "employeeId": "EMP-1007",
+          "displayName": "Sarah Collins",
+          "role": "Senior Returns Supervisor",
+          "department": "Retail Operations",
+          "status": "active",
+          "authentication": {
+            "employeeId": "EMP-1007",
+            "status": "verified",
+            "method": "organisation_passkey_fixture",
+            "phishingResistant": true,
+            "userPresence": true,
+            "userVerification": true,
+            "assurance": "high_demo_fixture"
+          },
+          "authorityLimit": {
+            "currency": "GBP",
+            "maxAmount": 2500
+          }
+        },
+        "secondApprover": null,
+        "separationOfDuties": "passed",
+        "issuedAt": "2026-07-31T18:00:00.000Z",
+        "expiresAt": "2026-07-31T18:05:00.000Z",
+        "nonce": "hap-authorised_credit_note-nonce-v1",
+        "nonceState": "unused",
+        "claimsBoundary": "Synthetic local demonstrator. No real identity provider, employee database, WebAuthn ceremony, payment, refund or post-quantum signature.",
+        "integrity": {
+          "suite": "Ed25519-local-fixture-v1",
+          "keyId": "atg-human-authority-demo-key-2026-01",
+          "signature": "Nm7vQtqFq1+DVfG2Wn+F0WuDMCUzyC/CfVB6aGKWbCZM/w4SuJfkBZwFeloo2K5Xnqt82xCoMjAXUGov0mkbCA==",
+          "warning": "Public local-demo fixture key only. Not production key custody or a post-quantum signature."
+        }
+      },
+      "gatePass": {
+        "type": "ATG_GATEPASS",
+        "version": "P3-M153-demo-1",
+        "gatePassId": "GP-AUTHORISED_CREDIT_NOTE",
+        "actionDigest": "d24eecff101564279248763b93f66687e51c2342bfaa4e67b86287a26d3f6341",
+        "humanAuthorityProofDigest": "e30f584b0dff634345ebc07a6304265114fa10e38a5e2cf8fa2a2638f76686c9",
+        "issuedAt": "2026-07-31T18:02:00.000Z",
+        "expiresAt": "2026-07-31T18:04:00.000Z",
+        "nonce": "gp-authorised_credit_note-nonce-v1",
+        "status": "issued",
+        "executionMode": "simulated_only",
+        "integrity": {
+          "suite": "Ed25519-local-fixture-v1",
+          "keyId": "atg-human-authority-demo-key-2026-01",
+          "signature": "IdcDiulNidkSBQY/omiUM4rZmY7KFsHEsTpNIEPYs555jIE0aflClpp8iQ3DSM4tGBh7RX6nypXVmJMVEup3DQ==",
+          "warning": "Public local-demo fixture key only. Not production key custody or a post-quantum signature."
+        }
+      },
+      "executionReceipt": {
+        "type": "ATG_EXECUTION_RECEIPT",
+        "version": "P3-M153-demo-1",
+        "receiptId": "EXEC-AUTHORISED_CREDIT_NOTE",
+        "gatePassId": "GP-AUTHORISED_CREDIT_NOTE",
+        "humanAuthorityProofId": "HAP-AUTHORISED_CREDIT_NOTE",
+        "actionDigest": "d24eecff101564279248763b93f66687e51c2342bfaa4e67b86287a26d3f6341",
+        "outcome": "SIMULATED_EXECUTION_COMPLETED",
+        "executedAt": "2026-07-31T18:03:00.000Z",
+        "externalSideEffect": false,
+        "warning": "Demonstration receipt only. No real refund, repayment, credit note, exchange or external action occurred.",
+        "integrity": {
+          "suite": "Ed25519-local-fixture-v1",
+          "keyId": "atg-human-authority-demo-key-2026-01",
+          "signature": "8p2B8W9A0t2dSYu5QX/npnKnBK5JEhooJHmTjiHpRPxwa12JGaOMgra0Ima0YKNWNVNbUyRiYooPHmCQteKyCA==",
+          "warning": "Public local-demo fixture key only. Not production key custody or a post-quantum signature."
+        }
+      },
+      "safetyBoundary": "local_synthetic_no_real_action"
+    },
+    {
+      "demoVersion": "P3-M153-v1",
+      "scenarioId": "inactive_employee_refused",
+      "scenarioTitle": "Inactive employee blocked",
+      "expected": "refused",
+      "observed": "refused",
+      "matchedExpectation": true,
+      "decision": {
+        "outcome": "REFUSED",
+        "code": "IDENTITY_INACTIVE",
+        "message": "Primary approver identity is not active."
+      },
+      "canonicalActionDigest": "87766ccf86dd5639576198e8fc7b789105a2633d7709221373fb61363dcd8ff2",
+      "checks": [
+        {
+          "check": "primary_identity_authentication_and_authority",
+          "passed": false,
+          "detail": "Primary approver identity is not active."
+        }
+      ],
+      "humanAuthorityProof": null,
+      "gatePass": null,
+      "executionReceipt": null,
+      "safetyBoundary": "local_synthetic_no_real_action"
+    },
+    {
+      "demoVersion": "P3-M153-v1",
+      "scenarioId": "authority_limit_refused",
+      "scenarioTitle": "Refund above authority limit blocked",
+      "expected": "refused",
+      "observed": "refused",
+      "matchedExpectation": true,
+      "decision": {
+        "outcome": "REFUSED",
+        "code": "AUTHORITY_LIMIT_EXCEEDED",
+        "message": "Primary approver limit is GBP 1000; requested amount is GBP 1200."
+      },
+      "canonicalActionDigest": "650dbada6d92cb8bf2a52f495dc6f7d56a8a423c4a8d07f8261d91df20186f41",
+      "checks": [
+        {
+          "check": "primary_identity_authentication_and_authority",
+          "passed": false,
+          "detail": "Primary approver limit is GBP 1000; requested amount is GBP 1200."
+        }
+      ],
+      "humanAuthorityProof": null,
+      "gatePass": null,
+      "executionReceipt": null,
+      "safetyBoundary": "local_synthetic_no_real_action"
+    },
+    {
+      "demoVersion": "P3-M153-v1",
+      "scenarioId": "self_approval_refused",
+      "scenarioTitle": "Restricted self-approval blocked",
+      "expected": "refused",
+      "observed": "refused",
+      "matchedExpectation": true,
+      "decision": {
+        "outcome": "REFUSED",
+        "code": "SEPARATION_OF_DUTIES_FAILED",
+        "message": "The restricted action requester cannot approve their own action."
+      },
+      "canonicalActionDigest": "8051be6cc7e06d591bf01b38741c1886eed2539a628ee538fc23e239c803ca3c",
+      "checks": [
+        {
+          "check": "primary_identity_authentication_and_authority",
+          "passed": true,
+          "detail": "Sarah Collins is active, strongly authenticated and authorised up to GBP 1000."
+        },
+        {
+          "check": "separation_of_duties",
+          "passed": false,
+          "detail": "The restricted action requester cannot approve their own action."
+        }
+      ],
+      "humanAuthorityProof": null,
+      "gatePass": null,
+      "executionReceipt": null,
+      "safetyBoundary": "local_synthetic_no_real_action"
+    },
+    {
+      "demoVersion": "P3-M153-v1",
+      "scenarioId": "dual_approval_missing_refused",
+      "scenarioTitle": "Missing second approver blocked",
+      "expected": "refused",
+      "observed": "refused",
+      "matchedExpectation": true,
+      "decision": {
+        "outcome": "REFUSED",
+        "code": "SECOND_APPROVER_REQUIRED",
+        "message": "A second independently authorised human approval is required."
+      },
+      "canonicalActionDigest": "11b6a1bb22bcaf516a9d3c1f6a3b5707ad8e76a1941ce331da98bf9f1fc1d373",
+      "checks": [
+        {
+          "check": "primary_identity_authentication_and_authority",
+          "passed": true,
+          "detail": "Daniel Reed is active, strongly authenticated and authorised up to GBP 10000."
+        },
+        {
+          "check": "separation_of_duties",
+          "passed": true,
+          "detail": "Requester and primary approver are independent."
+        },
+        {
+          "check": "second_approver",
+          "passed": false,
+          "detail": "A second authorised human is required above GBP 5000."
+        }
+      ],
+      "humanAuthorityProof": null,
+      "gatePass": null,
+      "executionReceipt": null,
+      "safetyBoundary": "local_synthetic_no_real_action"
+    },
+    {
+      "demoVersion": "P3-M153-v1",
+      "scenarioId": "changed_action_refused",
+      "scenarioTitle": "Changed amount after approval blocked",
+      "expected": "refused",
+      "observed": "refused",
+      "matchedExpectation": true,
+      "decision": {
+        "outcome": "REFUSED",
+        "code": "EXACT_ACTION_MISMATCH",
+        "message": "The action changed after human approval, so execution is blocked."
+      },
+      "canonicalActionDigest": "87766ccf86dd5639576198e8fc7b789105a2633d7709221373fb61363dcd8ff2",
+      "checks": [
+        {
+          "check": "primary_identity_authentication_and_authority",
+          "passed": true,
+          "detail": "Sarah Collins is active, strongly authenticated and authorised up to GBP 1000."
+        },
+        {
+          "check": "separation_of_duties",
+          "passed": true,
+          "detail": "Requester and primary approver are independent."
+        },
+        {
+          "check": "second_approver",
+          "passed": true,
+          "detail": "No second approver is required at this value threshold."
+        },
+        {
+          "check": "human_authority_proof_signature",
+          "passed": true,
+          "detail": "The local fixture signature verifies over the exact Human Authority Proof."
+        },
+        {
+          "check": "human_authority_proof_freshness",
+          "passed": true,
+          "detail": "The Human Authority Proof is within its verifier-owned validity window."
+        },
+        {
+          "check": "human_authority_proof_replay",
+          "passed": true,
+          "detail": "The Human Authority Proof nonce is unused."
+        },
+        {
+          "check": "gatepass_signature",
+          "passed": true,
+          "detail": "The local fixture GatePass signature verifies."
+        },
+        {
+          "check": "exact_action_binding",
+          "passed": false,
+          "detail": "Approved digest 87766ccf86dd5639576198e8fc7b789105a2633d7709221373fb61363dcd8ff2 does not match execution digest 41025e7d6b610d4c0f4d78dcc1605a1af5977afa44f3f96389c46ae2d93eff49."
+        }
+      ],
+      "humanAuthorityProof": {
+        "type": "ATG_HUMAN_AUTHORITY_PROOF",
+        "version": "1.0",
+        "proofId": "HAP-CHANGED_ACTION_REFUSED",
+        "organisationId": "ORG-DEMO-RETAIL-001",
+        "policyId": "POLICY-HUMAN-AUTHORITY-DEMO-1",
+        "policyVersion": "2026-07-31",
+        "actionDigest": "87766ccf86dd5639576198e8fc7b789105a2633d7709221373fb61363dcd8ff2",
+        "actionType": "refund",
+        "amount": 475,
+        "currency": "GBP",
+        "accountRef": "UK-RETAIL-RETURNS",
+        "jurisdiction": "GB",
+        "decision": "APPROVED",
+        "primaryApprover": {
+          "employeeId": "EMP-1007",
+          "displayName": "Sarah Collins",
+          "role": "Senior Returns Supervisor",
+          "department": "Retail Operations",
+          "status": "active",
+          "authentication": {
+            "employeeId": "EMP-1007",
+            "status": "verified",
+            "method": "organisation_passkey_fixture",
+            "phishingResistant": true,
+            "userPresence": true,
+            "userVerification": true,
+            "assurance": "high_demo_fixture"
+          },
+          "authorityLimit": {
+            "currency": "GBP",
+            "maxAmount": 1000
+          }
+        },
+        "secondApprover": null,
+        "separationOfDuties": "passed",
+        "issuedAt": "2026-07-31T18:00:00.000Z",
+        "expiresAt": "2026-07-31T18:05:00.000Z",
+        "nonce": "hap-changed_action_refused-nonce-v1",
+        "nonceState": "unused",
+        "claimsBoundary": "Synthetic local demonstrator. No real identity provider, employee database, WebAuthn ceremony, payment, refund or post-quantum signature.",
+        "integrity": {
+          "suite": "Ed25519-local-fixture-v1",
+          "keyId": "atg-human-authority-demo-key-2026-01",
+          "signature": "3dnegd7zFox/OBUOAvxVnF73Of4YUTg1lVoW5dJcWL5RDnOO+N2ZIEgl8yfqe63pS/e9w9eKSL+Gkep20lrADg==",
+          "warning": "Public local-demo fixture key only. Not production key custody or a post-quantum signature."
+        }
+      },
+      "gatePass": {
+        "type": "ATG_GATEPASS",
+        "version": "P3-M153-demo-1",
+        "gatePassId": "GP-CHANGED_ACTION_REFUSED",
+        "actionDigest": "87766ccf86dd5639576198e8fc7b789105a2633d7709221373fb61363dcd8ff2",
+        "humanAuthorityProofDigest": "ff0b26f8e21a1bd4a11ad99520eaed7dc56711232355cc8c0d7dda009d03c334",
+        "issuedAt": "2026-07-31T18:02:00.000Z",
+        "expiresAt": "2026-07-31T18:04:00.000Z",
+        "nonce": "gp-changed_action_refused-nonce-v1",
+        "status": "issued",
+        "executionMode": "simulated_only",
+        "integrity": {
+          "suite": "Ed25519-local-fixture-v1",
+          "keyId": "atg-human-authority-demo-key-2026-01",
+          "signature": "LxuRzh3NoRsJiu2+6mUwjq0dVdYc1kZ7ZLZUHezr5srpvtfpzLVQW8bZrr+l2DwXk4L8yzR8H7daPobWzHqmBg==",
+          "warning": "Public local-demo fixture key only. Not production key custody or a post-quantum signature."
+        }
+      },
+      "executionReceipt": null,
+      "safetyBoundary": "local_synthetic_no_real_action"
+    },
+    {
+      "demoVersion": "P3-M153-v1",
+      "scenarioId": "expired_approval_refused",
+      "scenarioTitle": "Expired human approval blocked",
+      "expected": "refused",
+      "observed": "refused",
+      "matchedExpectation": true,
+      "decision": {
+        "outcome": "REFUSED",
+        "code": "HUMAN_PROOF_EXPIRED",
+        "message": "The Human Authority Proof expired before GatePass verification."
+      },
+      "canonicalActionDigest": "87766ccf86dd5639576198e8fc7b789105a2633d7709221373fb61363dcd8ff2",
+      "checks": [
+        {
+          "check": "primary_identity_authentication_and_authority",
+          "passed": true,
+          "detail": "Sarah Collins is active, strongly authenticated and authorised up to GBP 1000."
+        },
+        {
+          "check": "separation_of_duties",
+          "passed": true,
+          "detail": "Requester and primary approver are independent."
+        },
+        {
+          "check": "second_approver",
+          "passed": true,
+          "detail": "No second approver is required at this value threshold."
+        },
+        {
+          "check": "human_authority_proof_signature",
+          "passed": true,
+          "detail": "The local fixture signature verifies over the exact Human Authority Proof."
+        },
+        {
+          "check": "human_authority_proof_freshness",
+          "passed": false,
+          "detail": "Proof expired at 2026-07-31T18:05:00.000Z; validation occurred at 2026-07-31T18:06:00.000Z."
+        }
+      ],
+      "humanAuthorityProof": {
+        "type": "ATG_HUMAN_AUTHORITY_PROOF",
+        "version": "1.0",
+        "proofId": "HAP-EXPIRED_APPROVAL_REFUSED",
+        "organisationId": "ORG-DEMO-RETAIL-001",
+        "policyId": "POLICY-HUMAN-AUTHORITY-DEMO-1",
+        "policyVersion": "2026-07-31",
+        "actionDigest": "87766ccf86dd5639576198e8fc7b789105a2633d7709221373fb61363dcd8ff2",
+        "actionType": "refund",
+        "amount": 475,
+        "currency": "GBP",
+        "accountRef": "UK-RETAIL-RETURNS",
+        "jurisdiction": "GB",
+        "decision": "APPROVED",
+        "primaryApprover": {
+          "employeeId": "EMP-1007",
+          "displayName": "Sarah Collins",
+          "role": "Senior Returns Supervisor",
+          "department": "Retail Operations",
+          "status": "active",
+          "authentication": {
+            "employeeId": "EMP-1007",
+            "status": "verified",
+            "method": "organisation_passkey_fixture",
+            "phishingResistant": true,
+            "userPresence": true,
+            "userVerification": true,
+            "assurance": "high_demo_fixture"
+          },
+          "authorityLimit": {
+            "currency": "GBP",
+            "maxAmount": 1000
+          }
+        },
+        "secondApprover": null,
+        "separationOfDuties": "passed",
+        "issuedAt": "2026-07-31T18:00:00.000Z",
+        "expiresAt": "2026-07-31T18:05:00.000Z",
+        "nonce": "hap-expired_approval_refused-nonce-v1",
+        "nonceState": "unused",
+        "claimsBoundary": "Synthetic local demonstrator. No real identity provider, employee database, WebAuthn ceremony, payment, refund or post-quantum signature.",
+        "integrity": {
+          "suite": "Ed25519-local-fixture-v1",
+          "keyId": "atg-human-authority-demo-key-2026-01",
+          "signature": "f27If6TvxDscKMjlQnY2PQJuhdv+XLquJlcxinwnZVXKoJy9d8hqKXD4Bey5yse2fQkLRSB2QlLkhTS6la1JAg==",
+          "warning": "Public local-demo fixture key only. Not production key custody or a post-quantum signature."
+        }
+      },
+      "gatePass": null,
+      "executionReceipt": null,
+      "safetyBoundary": "local_synthetic_no_real_action"
+    },
+    {
+      "demoVersion": "P3-M153-v1",
+      "scenarioId": "replayed_approval_refused",
+      "scenarioTitle": "Replayed approval blocked",
+      "expected": "refused",
+      "observed": "refused",
+      "matchedExpectation": true,
+      "decision": {
+        "outcome": "REFUSED",
+        "code": "HUMAN_PROOF_REPLAYED",
+        "message": "The Human Authority Proof nonce has already been consumed."
+      },
+      "canonicalActionDigest": "87766ccf86dd5639576198e8fc7b789105a2633d7709221373fb61363dcd8ff2",
+      "checks": [
+        {
+          "check": "primary_identity_authentication_and_authority",
+          "passed": true,
+          "detail": "Sarah Collins is active, strongly authenticated and authorised up to GBP 1000."
+        },
+        {
+          "check": "separation_of_duties",
+          "passed": true,
+          "detail": "Requester and primary approver are independent."
+        },
+        {
+          "check": "second_approver",
+          "passed": true,
+          "detail": "No second approver is required at this value threshold."
+        },
+        {
+          "check": "human_authority_proof_signature",
+          "passed": true,
+          "detail": "The local fixture signature verifies over the exact Human Authority Proof."
+        },
+        {
+          "check": "human_authority_proof_freshness",
+          "passed": true,
+          "detail": "The Human Authority Proof is within its verifier-owned validity window."
+        },
+        {
+          "check": "human_authority_proof_replay",
+          "passed": false,
+          "detail": "Nonce state is consumed, not unused."
+        }
+      ],
+      "humanAuthorityProof": {
+        "type": "ATG_HUMAN_AUTHORITY_PROOF",
+        "version": "1.0",
+        "proofId": "HAP-REPLAYED_APPROVAL_REFUSED",
+        "organisationId": "ORG-DEMO-RETAIL-001",
+        "policyId": "POLICY-HUMAN-AUTHORITY-DEMO-1",
+        "policyVersion": "2026-07-31",
+        "actionDigest": "87766ccf86dd5639576198e8fc7b789105a2633d7709221373fb61363dcd8ff2",
+        "actionType": "refund",
+        "amount": 475,
+        "currency": "GBP",
+        "accountRef": "UK-RETAIL-RETURNS",
+        "jurisdiction": "GB",
+        "decision": "APPROVED",
+        "primaryApprover": {
+          "employeeId": "EMP-1007",
+          "displayName": "Sarah Collins",
+          "role": "Senior Returns Supervisor",
+          "department": "Retail Operations",
+          "status": "active",
+          "authentication": {
+            "employeeId": "EMP-1007",
+            "status": "verified",
+            "method": "organisation_passkey_fixture",
+            "phishingResistant": true,
+            "userPresence": true,
+            "userVerification": true,
+            "assurance": "high_demo_fixture"
+          },
+          "authorityLimit": {
+            "currency": "GBP",
+            "maxAmount": 1000
+          }
+        },
+        "secondApprover": null,
+        "separationOfDuties": "passed",
+        "issuedAt": "2026-07-31T18:00:00.000Z",
+        "expiresAt": "2026-07-31T18:05:00.000Z",
+        "nonce": "hap-replayed_approval_refused-nonce-v1",
+        "nonceState": "consumed",
+        "claimsBoundary": "Synthetic local demonstrator. No real identity provider, employee database, WebAuthn ceremony, payment, refund or post-quantum signature.",
+        "integrity": {
+          "suite": "Ed25519-local-fixture-v1",
+          "keyId": "atg-human-authority-demo-key-2026-01",
+          "signature": "kvkkgnsTFlqYjZz7SYdXEl0Lcu4ZoxYxeAU3RqxLtkyXy4GvEZJouaL/4eXzRDyd7zVySNIH9t1N/fjb/3O1CQ==",
+          "warning": "Public local-demo fixture key only. Not production key custody or a post-quantum signature."
+        }
+      },
+      "gatePass": null,
+      "executionReceipt": null,
+      "safetyBoundary": "local_synthetic_no_real_action"
+    },
+    {
+      "demoVersion": "P3-M153-v1",
+      "scenarioId": "dual_approval_allowed",
+      "scenarioTitle": "Two authorised humans approve £7,500 repayment",
+      "expected": "allowed",
+      "observed": "allowed",
+      "matchedExpectation": true,
+      "decision": {
+        "outcome": "ALLOWED",
+        "code": "VERIFIED_HUMAN_AUTHORITY",
+        "message": "Verified natural-person identity, authentication, business authority and exact-action binding passed."
+      },
+      "canonicalActionDigest": "96b7d95d113c9d17689078875576cde1b7b163d5a7d29c9b82b004f21e076f3d",
+      "checks": [
+        {
+          "check": "primary_identity_authentication_and_authority",
+          "passed": true,
+          "detail": "Daniel Reed is active, strongly authenticated and authorised up to GBP 10000."
+        },
+        {
+          "check": "separation_of_duties",
+          "passed": true,
+          "detail": "Requester and primary approver are independent."
+        },
+        {
+          "check": "second_approver",
+          "passed": true,
+          "detail": "Aisha Khan independently passed identity, authentication and authority checks."
+        },
+        {
+          "check": "human_authority_proof_signature",
+          "passed": true,
+          "detail": "The local fixture signature verifies over the exact Human Authority Proof."
+        },
+        {
+          "check": "human_authority_proof_freshness",
+          "passed": true,
+          "detail": "The Human Authority Proof is within its verifier-owned validity window."
+        },
+        {
+          "check": "human_authority_proof_replay",
+          "passed": true,
+          "detail": "The Human Authority Proof nonce is unused."
+        },
+        {
+          "check": "gatepass_signature",
+          "passed": true,
+          "detail": "The local fixture GatePass signature verifies."
+        },
+        {
+          "check": "exact_action_binding",
+          "passed": true,
+          "detail": "The execution request exactly matches the human-approved canonical action."
+        },
+        {
+          "check": "execution_receipt_signature",
+          "passed": true,
+          "detail": "The separate simulated execution receipt signature verifies."
+        }
+      ],
+      "humanAuthorityProof": {
+        "type": "ATG_HUMAN_AUTHORITY_PROOF",
+        "version": "1.0",
+        "proofId": "HAP-DUAL_APPROVAL_ALLOWED",
+        "organisationId": "ORG-DEMO-RETAIL-001",
+        "policyId": "POLICY-HUMAN-AUTHORITY-DEMO-1",
+        "policyVersion": "2026-07-31",
+        "actionDigest": "96b7d95d113c9d17689078875576cde1b7b163d5a7d29c9b82b004f21e076f3d",
+        "actionType": "repayment",
+        "amount": 7500,
+        "currency": "GBP",
+        "accountRef": "UK-FINANCE-REPAYMENTS",
+        "jurisdiction": "GB",
+        "decision": "APPROVED",
+        "primaryApprover": {
+          "employeeId": "EMP-2044",
+          "displayName": "Daniel Reed",
+          "role": "Finance Manager",
+          "department": "Finance",
+          "status": "active",
+          "authentication": {
+            "employeeId": "EMP-2044",
+            "status": "verified",
+            "method": "organisation_security_key_fixture",
+            "phishingResistant": true,
+            "userPresence": true,
+            "userVerification": true,
+            "assurance": "high_demo_fixture"
+          },
+          "authorityLimit": {
+            "currency": "GBP",
+            "maxAmount": 10000
+          }
+        },
+        "secondApprover": {
+          "employeeId": "EMP-3901",
+          "displayName": "Aisha Khan",
+          "role": "Senior Finance Director",
+          "department": "Finance",
+          "status": "active",
+          "authentication": {
+            "employeeId": "EMP-3901",
+            "status": "verified",
+            "method": "organisation_smart_card_fixture",
+            "phishingResistant": true,
+            "userPresence": true,
+            "userVerification": true,
+            "assurance": "high_demo_fixture"
+          },
+          "authorityLimit": {
+            "currency": "GBP",
+            "maxAmount": 50000
+          }
+        },
+        "separationOfDuties": "passed",
+        "issuedAt": "2026-07-31T18:00:00.000Z",
+        "expiresAt": "2026-07-31T18:05:00.000Z",
+        "nonce": "hap-dual_approval_allowed-nonce-v1",
+        "nonceState": "unused",
+        "claimsBoundary": "Synthetic local demonstrator. No real identity provider, employee database, WebAuthn ceremony, payment, refund or post-quantum signature.",
+        "integrity": {
+          "suite": "Ed25519-local-fixture-v1",
+          "keyId": "atg-human-authority-demo-key-2026-01",
+          "signature": "HMxA9oCtOUb0QZK3/MmnIw+5Vlo8up8ot1blGebg+SBIcqjKdaCRjDUHRQvalXmYBCeNLg8PVKe8+nuCRZLsCQ==",
+          "warning": "Public local-demo fixture key only. Not production key custody or a post-quantum signature."
+        }
+      },
+      "gatePass": {
+        "type": "ATG_GATEPASS",
+        "version": "P3-M153-demo-1",
+        "gatePassId": "GP-DUAL_APPROVAL_ALLOWED",
+        "actionDigest": "96b7d95d113c9d17689078875576cde1b7b163d5a7d29c9b82b004f21e076f3d",
+        "humanAuthorityProofDigest": "bf71f917ed4b72b85c30022c054354bf0c9c5ec991285c69c6230c4a22fda2ed",
+        "issuedAt": "2026-07-31T18:02:00.000Z",
+        "expiresAt": "2026-07-31T18:04:00.000Z",
+        "nonce": "gp-dual_approval_allowed-nonce-v1",
+        "status": "issued",
+        "executionMode": "simulated_only",
+        "integrity": {
+          "suite": "Ed25519-local-fixture-v1",
+          "keyId": "atg-human-authority-demo-key-2026-01",
+          "signature": "LwTOohcREPfF25TQXshFDWGr4zgSeUXKtIBzCqGE0tyi6FDv22bM4QrHH3frSmh66wz0O8wSkX5EXk55DgyNDQ==",
+          "warning": "Public local-demo fixture key only. Not production key custody or a post-quantum signature."
+        }
+      },
+      "executionReceipt": {
+        "type": "ATG_EXECUTION_RECEIPT",
+        "version": "P3-M153-demo-1",
+        "receiptId": "EXEC-DUAL_APPROVAL_ALLOWED",
+        "gatePassId": "GP-DUAL_APPROVAL_ALLOWED",
+        "humanAuthorityProofId": "HAP-DUAL_APPROVAL_ALLOWED",
+        "actionDigest": "96b7d95d113c9d17689078875576cde1b7b163d5a7d29c9b82b004f21e076f3d",
+        "outcome": "SIMULATED_EXECUTION_COMPLETED",
+        "executedAt": "2026-07-31T18:03:00.000Z",
+        "externalSideEffect": false,
+        "warning": "Demonstration receipt only. No real refund, repayment, credit note, exchange or external action occurred.",
+        "integrity": {
+          "suite": "Ed25519-local-fixture-v1",
+          "keyId": "atg-human-authority-demo-key-2026-01",
+          "signature": "+tkqMWiaWwdWd59bfYrQiQgmKZD8ZLz8ZtqBSuVzIOc2d0meHB+aNoY+aKmlmn173If1CeHaqCRv9//FSmgGCw==",
+          "warning": "Public local-demo fixture key only. Not production key custody or a post-quantum signature."
+        }
+      },
+      "safetyBoundary": "local_synthetic_no_real_action"
+    }
+  ]
+}

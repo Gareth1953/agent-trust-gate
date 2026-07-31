@@ -149,3 +149,22 @@ Primary documents:
 
 - `docs/verified-human-authority-and-crypto-agility.md`
 - `examples/verified-human-authority-roadmap.json`
+
+## P3-M153 — Verified Human Authority Working Demonstrator
+
+**Status:** Implemented local demonstrator and public static presentation.
+
+P3-M153 demonstrates an active organisation identity, organisation-controlled authentication fixture, action-specific authority, financial limits, separation of duties, dual approval, exact-action binding, expiry, replay refusal, a signed local-fixture Human Authority Proof, a linked GatePass and a separate simulated execution receipt.
+
+Public buyer page:
+
+``discovery-site/human-authority-demo.html` in this repository`
+
+Technical commands:
+
+```bash
+npm run demo:human-authority
+npm run test:human-authority
+```
+
+The mission uses fictional data and no live identity, HR, IAM, SSO, WebAuthn, biometric, payment, refund, external action, production key or post-quantum integration.

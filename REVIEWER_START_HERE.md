@@ -103,3 +103,22 @@ The repository now records a future human-in-the-loop control objective: prove t
 This is a roadmap/documentation addition only. Reviewers should not infer live employee identity verification, enterprise-directory integration, WebAuthn, production post-quantum signing, real refunds/payments or compliance certification.
 
 See [Verified Human Authority and Crypto-Agile Proof](docs/verified-human-authority-and-crypto-agility.md).
+
+## Run verified human authority
+
+P3-M153 provides a focused human-in-the-loop evidence path:
+
+```bash
+npm run demo:human-authority -- --summary-only
+npm run test:human-authority
+```
+
+Then inspect:
+
+- `src/human-authority-demo.mjs`
+- `test/human-authority-demo.test.mjs`
+- `examples/human-authority-demo-report.json`
+- `docs/verified-human-authority-working-demonstrator.md`
+- `discovery-site/human-authority-demo.html`
+
+The browser demonstration is intended for rapid buyer understanding. The local Node.js model and automated tests are the technical evidence. Everything remains synthetic and local; there is no live identity-provider, employee-directory, WebAuthn, payment or post-quantum integration.
