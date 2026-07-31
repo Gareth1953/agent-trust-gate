@@ -1,0 +1,33 @@
+{
+  "mission": "P3-M152A",
+  "title": "Verified Human Authority and Crypto-Agile Proof",
+  "status": "approved_roadmap_documentation_only",
+  "current_capability": "local_demo_only",
+  "headline_rule": "No verified identity. No confirmed authority. No exact-action Human Authority Proof. No valid GatePass. No action.",
+  "future_control_objectives": [
+    "identify the approving natural person",
+    "authenticate through an organisation-approved mechanism",
+    "cross-check active identity and current business authority",
+    "bind approval to one canonical exact action",
+    "enforce separation of duties and co-approval",
+    "link Human Authority Proof, GatePass and execution receipt",
+    "link refunds, returns, exchanges, credit notes, repayments and reversals",
+    "support crypto-agility and future post-quantum evidence sealing"
+  ],
+  "not_implemented_today": [
+    "live enterprise directory integration",
+    "live WebAuthn",
+    "production identity proofing",
+    "production post-quantum signatures",
+    "production enforcement",
+    "real payments, refunds or settlement",
+    "compliance certification",
+    "quantum-safety guarantee"
+  ],
+  "safety": {
+    "data": "synthetic_only",
+    "execution": "local_only",
+    "secrets": "none",
+    "external_calls": "none"
+  }
+}

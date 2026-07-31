@@ -63,6 +63,23 @@ interception, real payment or settlement capability, distributed replay store
 or production key management. It does not claim production adoption, legal or
 compliance certification, or live payment readiness.
 
+## Approved roadmap: verified human authority and post-quantum readiness
+
+P3-M152A records the next human-in-the-loop trust requirement for Agent Trust Gate™. A stored approval status is not sufficient evidence that a real authorised person sanctioned an action.
+
+The proposed future control must verify that an identifiable natural person authenticated through an organisation-approved mechanism, remained active in the organisation's authoritative identity source, and held current authority for the exact action type, value, account, department, jurisdiction and risk tier. The person's decision must bind to the same canonical exact-action digest used by GatePass and later execution evidence.
+
+> No verified identity. No confirmed authority. No exact-action Human Authority Proof. No valid GatePass. No action.
+
+This pattern is intended to cover consequential actions and their later remediation, including returns, refunds, exchanges, credit notes, repayments, cancellations, write-offs and reversals. Separation of duties and a second independent approver may be required by policy.
+
+The design is crypto-agile and post-quantum-ready, not currently claimed to be quantum-safe. Current WebAuthn/passkey evidence is not automatically post-quantum secure. Future standard evidence seals such as ML-DSA or SLH-DSA may be represented only when mature and validated support exists.
+
+P3-M152A is currently an approved roadmap and documentation mission. It does not add live employee authentication, enterprise-directory access, WebAuthn, production post-quantum signatures, real payment/refund execution or compliance certification.
+
+- [Verified Human Authority and Crypto-Agile Proof](docs/verified-human-authority-and-crypto-agility.md)
+- [Machine-readable P3-M152A roadmap summary](examples/verified-human-authority-roadmap.json)
+
 ## Where is the technical evidence?
 
 - [Exact-action design and failure boundaries](docs/exact-action-gatepass-and-execution-receipts.md)

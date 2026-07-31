@@ -95,3 +95,11 @@ customer records, payment details or confidential production data.
 ATG version 0.1.0 remains a local reviewer demonstrator with no production-use
 claim. No external action, network call, payment, settlement or live system
 access occurs when `npm run reviewer` runs.
+
+## P3-M152A roadmap note — verified human authority
+
+The repository now records a future human-in-the-loop control objective: prove that an identifiable, authenticated and currently authorised natural person approved the exact action represented by the GatePass.
+
+This is a roadmap/documentation addition only. Reviewers should not infer live employee identity verification, enterprise-directory integration, WebAuthn, production post-quantum signing, real refunds/payments or compliance certification.
+
+See [Verified Human Authority and Crypto-Agile Proof](docs/verified-human-authority-and-crypto-agility.md).

@@ -136,3 +136,16 @@ P3-M140 adds a local-only strategic foresight advisory layer for manually suppli
 
 ## P3-M141 - Paid Pilot and Commercial Entry Pack
 P3-M141 adds the Agent Trust Gate(TM) Paid Evaluation Pilot commercial entry route with concise docs, a machine-readable offer example, deterministic local model, CLI, and tests. It is commercial packaging only: local, manual-input only, human-approved, non-production, non-custodial, non-autonomous, advisory, and demonstrative. It adds no checkout, payment links, PayPal API integration, Stripe integration, live invoices, webhooks, wallet/banking logic, real payment processing, settlement execution, production signing, live APIs, MCP server functionality, network calls, real tool execution, or action execution.
+
+## P3-M152A — Verified Human Authority and Crypto-Agile Proof
+
+**Status:** Approved roadmap/documentation mission; implementation pending.
+
+Records the requirement that consequential human-in-the-loop approval must prove an identifiable natural person, organisation-controlled authentication, current business authority, exact-action binding, separation of duties where required, and a linked Human Authority Proof → GatePass → execution evidence chain.
+
+The mission also records crypto-agility and future post-quantum evidence-sealing requirements. It does not claim live WebAuthn, enterprise-directory access, production PQC, quantum safety, real transactions or certification.
+
+Primary documents:
+
+- `docs/verified-human-authority-and-crypto-agility.md`
+- `examples/verified-human-authority-roadmap.json`

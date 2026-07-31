@@ -106,3 +106,11 @@ P3-M140A sharpens the public README and reviewer-facing positioning so the recom
 
 ## P3-M140 - ATG Strategic Foresight Layer
 P3-M140 adds a local-only strategic foresight advisory layer for manually supplied market, protocol, agent, AGI/agent-risk, quantum/post-quantum, standards, and reviewer/developer feedback signals. It follows Watch -> Analyse -> Compare -> Recommend -> Gareth approves -> Dave creates build mission -> Codex implements locally. It recommends only and adds no live monitoring, scraping, autonomous learning, autonomous outreach, autonomous product changes, autonomous roadmap changes, autonomous code changes, prediction guarantee, network calls, payment authorisation, settlement authorisation, real tool execution, or action execution.
+
+## P3-M152A — Verified Human Authority and Crypto-Agile Proof
+
+- Added a reviewer-visible roadmap for independently verifiable human-in-the-loop authority.
+- Defined future identity, organisation-authority, exact-action, separation-of-duties and co-approval evidence.
+- Extended the proposed audit chain to returns, refunds, exchanges, credit notes, repayments, cancellations, write-offs and reversals.
+- Recorded crypto-agility and future post-quantum evidence-sealing requirements.
+- Preserved the local-only boundary: no live identity provider, directory, WebAuthn, production PQC, real transaction or certification claim.
