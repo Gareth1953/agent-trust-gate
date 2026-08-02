@@ -1,5 +1,5 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 
 import {
   MACHINE_DISCOVERY_CONTACT,
@@ -36,12 +36,28 @@ const requiredSiteFiles = [
   "discovery-site/sitemap.xml",
   "discovery-site/.nojekyll",
   "discovery-site/README.md",
+  "discovery-site/for-agents.html",
+  "discovery-site/bring-your-agent-scenario.html",
+  "discovery-site/bring-your-agent-scenario.template.json",
+  "discovery-site/ai-catalog.json",
 ] as const;
 const requiredArtifactFiles = [
   "agent-trust-gate.discovery.json",
   "agent-trust-gate.agent-card.json",
   "agent-trust-gate.manifest.json",
+  "agent-trust-gate.agent-review-invitation.json",
+  "schemas/agent-review-invitation.schema.json",
+  "schemas/bring-your-agent-scenario.schema.json",
+  "schemas/ard-ai-catalog-v1.0.schema.json",
+  "examples/bring-your-agent-scenario.example.json",
   "llms.txt",
+] as const;
+const publicHtmlFiles = [
+  "discovery-site/index.html",
+  "discovery-site/for-agents.html",
+  "discovery-site/bring-your-agent-scenario.html",
+  "discovery-site/agent-standing-demo.html",
+  "discovery-site/human-authority-demo.html",
 ] as const;
 const workflowActions = [
   "actions/checkout@v6",
@@ -53,15 +69,33 @@ const workflowActions = [
 export function validateDiscoverySite(): DiscoverySiteValidationReport {
   const indexHtml = read("discovery-site/index.html");
   const notFoundHtml = read("discovery-site/404.html");
+  const publicHtml = publicHtmlFiles.map((path) => read(path));
+  const combinedPublicHtml = publicHtml.join("\n");
   const robotsTxt = read("discovery-site/robots.txt");
   const sitemapXml = read("discovery-site/sitemap.xml");
   const workflow = read(MACHINE_DISCOVERY_PAGES_WORKFLOW);
   const workflowUses = Array.from(workflow.matchAll(/uses:\s*([^\s]+)/g), (match) => match[1] ?? "");
   const allowedWorkflowActions = new Set<string>(workflowActions);
   const links = extractLinks(indexHtml);
+  const normalisedLinks = links.map((href) => href.replace(/^\.\//, ""));
   const jsonLdValues = extractJsonLd(indexHtml);
   const parsedJsonLd = jsonLdValues.map((value) => JSON.parse(value) as unknown);
   const trackedPaths = listFiles(".");
+  const artifactPaths = new Set([
+    ...listFiles("discovery-site").map((path) => path.replace(/^discovery-site\//, "")),
+    "agent-trust-gate.discovery.json",
+    "agent-trust-gate.agent-card.json",
+    "agent-trust-gate.manifest.json",
+    "agent-trust-gate.agent-review-invitation.json",
+    "llms.txt",
+    "schemas/agent-review-invitation.schema.json",
+    "schemas/bring-your-agent-scenario.schema.json",
+    "schemas/ard-ai-catalog-v1.0.schema.json",
+    "examples/bring-your-agent-scenario.example.json",
+  ]);
+  const invalidLocalLinks = publicHtmlFiles.flatMap((path) =>
+    localLinkFailures(path, read(path), artifactPaths).map((href) => `${path}: ${href}`)
+  );
   const obsoleteStatusPattern = new RegExp([
     "activation\\s+prepared",
     "live\\s+verification\\s+pending",
@@ -84,7 +118,18 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
     },
     {
       id: "selected_artifact_files_only",
-      passed: requiredArtifactFiles.every((file) => workflow.includes(`cp ${file} _site/`)) &&
+      passed: [
+        "agent-trust-gate.discovery.json",
+        "agent-trust-gate.agent-card.json",
+        "agent-trust-gate.manifest.json",
+        "agent-trust-gate.agent-review-invitation.json",
+        "llms.txt",
+      ].every((file) => workflow.includes(`cp ${file} _site/`)) &&
+        workflow.includes("mkdir -p _site/schemas _site/examples") &&
+        workflow.includes("cp schemas/agent-review-invitation.schema.json _site/schemas/") &&
+        workflow.includes("cp schemas/bring-your-agent-scenario.schema.json _site/schemas/") &&
+        workflow.includes("cp schemas/ard-ai-catalog-v1.0.schema.json _site/schemas/") &&
+        workflow.includes("cp examples/bring-your-agent-scenario.example.json _site/examples/") &&
         workflow.includes("test ! -e _site/.git") &&
         workflow.includes("test ! -e _site/.github") &&
         !workflow.includes("cp -R . _site"),
@@ -113,8 +158,10 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
       passed: indexHtml.includes(MACHINE_DISCOVERY_EXPECTED_PAGES_URL) &&
         notFoundHtml.includes(MACHINE_DISCOVERY_PAGES_BASE_PATH) &&
         sitemapXml.includes(MACHINE_DISCOVERY_EXPECTED_PAGES_URL) &&
-        robotsTxt.includes(`${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}sitemap.xml`),
-      detail: "canonical URL, 404 link, robots.txt, and sitemap use the expected Pages project path",
+        robotsTxt.includes(`${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}sitemap.xml`) &&
+        robotsTxt.includes(`Agentmap: ${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}ai-catalog.json`) &&
+        indexHtml.includes(`<link rel="ai-catalog" href="${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}ai-catalog.json">`),
+      detail: "canonical URL, 404 link, robots.txt, sitemap, Agentmap and catalogue link use the expected Pages project path",
     },
     {
       id: "active_verified_wording",
@@ -135,29 +182,43 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
         "llms.txt",
         "agent-trust-gate.agent-card.json",
         "agent-trust-gate.manifest.json",
+        "agent-trust-gate.agent-review-invitation.json",
+        "ai-catalog.json",
+        "for-agents.html",
+        "bring-your-agent-scenario.html",
+        "bring-your-agent-scenario.template.json",
+        "schemas/agent-review-invitation.schema.json",
+        "schemas/bring-your-agent-scenario.schema.json",
+        "examples/bring-your-agent-scenario.example.json",
         `mailto:${MACHINE_DISCOVERY_CONTACT}`,
-      ].every((href) => links.includes(href)),
-      detail: "index.html links to repository, reviewer kit, paid pilot, metadata files, and public contact email",
+      ].every((href) => normalisedLinks.includes(href)),
+      detail: "index.html links to repository, reviewer kit, agent routes, scenario pack, metadata files, paid pilot and public contact email",
     },
     {
       id: "no_external_scripts_or_assets",
-      passed: !/<script\b[^>]*\bsrc\s*=/i.test(indexHtml) &&
-        !/<link\b[^>]*\brel=["']?stylesheet["']?[^>]*https?:\/\//i.test(indexHtml) &&
-        !/<img\b/i.test(indexHtml) &&
-        !/<video\b/i.test(indexHtml),
+      passed: !/<script\b[^>]*\bsrc\s*=/i.test(combinedPublicHtml) &&
+        !/<link\b[^>]*\brel=["']?stylesheet["']?[^>]*https?:\/\//i.test(combinedPublicHtml) &&
+        !/<img\b/i.test(combinedPublicHtml) &&
+        !/<video\b/i.test(combinedPublicHtml),
       detail: "static site has no external JavaScript, external fonts, third-party images, or embedded video",
     },
     {
       id: "no_forms_iframes_or_chat",
-      passed: !/<form\b/i.test(indexHtml) &&
-        !/<iframe\b/i.test(indexHtml) &&
-        !/live\s*chat|newsletter|signup/i.test(indexHtml),
-      detail: "static site has no forms, iframes, live chat, or newsletter signup",
+      passed: !/<form\b/i.test(combinedPublicHtml) &&
+        !/<input\b[^>]*\btype=["']?file/i.test(combinedPublicHtml) &&
+        !/<iframe\b/i.test(combinedPublicHtml) &&
+        !/live\s*chat|newsletter|signup/i.test(combinedPublicHtml),
+      detail: "public pages have no forms, uploads, iframes, live chat, or newsletter signup",
     },
     {
       id: "no_tracking_or_cookies",
-      passed: !/gtag|googletagmanager|plausible|segment|mixpanel|analytics\.js|tracking\s*pixel|document\.cookie|Set-Cookie|localStorage|sessionStorage|fingerprint/i.test(indexHtml),
-      detail: "static site has no analytics, tracking pixels, cookie code, storage code, or fingerprinting code",
+      passed: !/gtag|googletagmanager|plausible|segment|mixpanel|analytics\.js|tracking\s*pixel|document\.cookie|Set-Cookie|localStorage|sessionStorage|fingerprint/i.test(combinedPublicHtml),
+      detail: "public pages have no analytics, tracking pixels, cookie code, storage code, or fingerprinting code",
+    },
+    {
+      id: "no_public_network_or_submission_code",
+      passed: !/\bfetch\s*\(|XMLHttpRequest|WebSocket|EventSource|sendBeacon|\.submit\s*\(/i.test(combinedPublicHtml),
+      detail: "public pages contain no fetch, socket, beacon, form-submission, callback or remote-processing code",
     },
     {
       id: "no_payment_or_checkout_links",
@@ -174,15 +235,26 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
         /\bguaranteed compliance\b/i,
         /\breal payment protection\b/i,
         /\bsettlement execution is active\b/i,
-      ].every((pattern) => !pattern.test(indexHtml)),
+        /"(?:a2aServer|mcpServer|hostedGatepassApi|productionReady)"\s*:\s*true/i,
+      ].every((pattern) => !pattern.test(combinedPublicHtml)),
       detail: "static site avoids live endpoint, production, guarantee, payment, and settlement claims",
     },
     {
       id: "machine_readable_json_valid",
-      passed: requiredArtifactFiles
-        .filter((file) => file.endsWith(".json"))
+      passed: [
+        ...requiredArtifactFiles.filter((file) => file.endsWith(".json")),
+        "discovery-site/ai-catalog.json",
+        "discovery-site/bring-your-agent-scenario.template.json",
+      ]
         .every((file) => canParseJson(read(file))),
       detail: "machine-readable JSON files included in the Pages artifact remain valid",
+    },
+    {
+      id: "all_local_public_links_valid",
+      passed: invalidLocalLinks.length === 0,
+      detail: invalidLocalLinks.length === 0
+        ? "every relative link in each public HTML page resolves within the selected Pages artifact"
+        : `unresolved selected-artifact links: ${invalidLocalLinks.join(", ")}`,
     },
     {
       id: "no_cname_or_well_known_endpoint",
@@ -251,6 +323,29 @@ function canParseJson(value: string): boolean {
   } catch {
     return false;
   }
+}
+
+function localLinkFailures(
+  sourcePath: string,
+  html: string,
+  artifactPaths: ReadonlySet<string>,
+): string[] {
+  const sourceArtifactPath = sourcePath.replace(/^discovery-site\//, "");
+  return extractLinks(html).filter((href) => {
+    if (/^(?:https?:|mailto:|#)/i.test(href)) return false;
+    const withoutFragment = href.split("#", 1)[0]?.split("?", 1)[0] ?? "";
+    if (withoutFragment === "") return false;
+    if (withoutFragment === "." || withoutFragment === "./" || withoutFragment === "/") {
+      return !artifactPaths.has("index.html");
+    }
+    const candidate = join(dirname(sourceArtifactPath), withoutFragment)
+      .replace(/\\/g, "/")
+      .replace(/^\.\//, "");
+    const artifactPath = withoutFragment.endsWith("/") || candidate === "."
+      ? `${candidate === "." ? "" : `${candidate}/`}index.html`
+      : candidate;
+    return !artifactPaths.has(artifactPath);
+  });
 }
 
 function listFiles(path: string): string[] {

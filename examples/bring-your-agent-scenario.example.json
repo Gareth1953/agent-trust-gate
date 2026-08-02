@@ -1,0 +1,78 @@
+{
+  "version": "atg.bring-your-agent-scenario.v1",
+  "scenarioIdentifier": "scenario_synthetic_compute_reservation_001",
+  "informationClassification": "fictional_synthetic",
+  "declaredAgentCategory": "workflow_agent",
+  "claimedPrincipalType": "organisation",
+  "currentIdentityEvidence": {
+    "status": "present_fixture_only",
+    "summary": "A fictional local fixture identifier and non-secret fixture-key label distinguish the declared software requester.",
+    "evidenceLabels": [
+      "SYNTHETIC_AGENT_IDENTIFIER",
+      "LOCAL_FIXTURE_KEY_LABEL"
+    ]
+  },
+  "currentDelegationEvidence": {
+    "status": "present_declared",
+    "summary": "A fictional delegation record declares a compute-reservation purpose and a GBP 25.00 maximum, but its revocation status is not independently checked by the current system.",
+    "evidenceLabels": [
+      "SYNTHETIC_DELEGATION_RECORD",
+      "DECLARED_LIMIT_2500_GBP_MINOR_UNITS"
+    ]
+  },
+  "currentAutonomyBoundary": "The fictional agent may prepare a reservation request, but a human operator must review it and the local fixture performs no remote call or purchase.",
+  "proposedExactAction": {
+    "actionType": "reserve_synthetic_compute_quota",
+    "purpose": "Reserve a fictional one-hour compute allocation in a local demonstration.",
+    "targetType": "synthetic_compute_pool",
+    "amountMinorUnits": 2500,
+    "currency": "GBP",
+    "resourceOrScopeLimit": "One fictional compute pool, one hour, maximum GBP 25.00 represented as 2500 integer minor units.",
+    "consequential": true
+  },
+  "presentHumanApprovalMethod": {
+    "method": "fictional operator records a local approval label",
+    "currentStatus": "present",
+    "exactActionBound": false,
+    "limitations": "The current approval label is not cryptographically bound to the amount, target and duration of the exact proposed action."
+  },
+  "existingExecutionBoundaryControl": {
+    "status": "partial",
+    "description": "A local wrapper checks that a human approval label exists before a simulated reservation step.",
+    "knownGap": "The wrapper does not detect a changed amount after the approval label was recorded."
+  },
+  "existingInstrumentLevelControl": {
+    "status": "missing",
+    "description": "No live account, payment instrument or settlement rail exists in this synthetic example.",
+    "knownGap": "A future real integration would require separate instrument-level policy and production security review."
+  },
+  "observedOrSuspectedTrustGap": [
+    "The declared agent identity does not by itself prove the accountable principal.",
+    "The current approval label is not bound to the exact action digest.",
+    "Delegation revocation and expiry are not independently checked by the current system."
+  ],
+  "expectedAtgStandingOutcome": "STANDING_UNVERIFIABLE",
+  "expectedGatePassOutcome": "NOT_EVALUATED",
+  "evidenceLabels": [
+    "FICTIONAL_SYNTHETIC_SCENARIO",
+    "NO_LIVE_CREDENTIALS",
+    "NO_CUSTOMER_DATA",
+    "NO_REMOTE_EXECUTION"
+  ],
+  "knownLimitations": [
+    "All identities, evidence and actions are fictional local fixtures.",
+    "The expected outcomes are reviewer hypotheses until the scenario is mapped into an agreed local evaluation.",
+    "No production identity, delegation, payment, settlement or execution capability is tested."
+  ],
+  "sanitisationConfirmation": {
+    "confirmed": true,
+    "reviewStatus": "ready_for_accountable_human_decision",
+    "syntheticOrProperlySanitisedOnly": true,
+    "containsNoSecretsOrCredentials": true,
+    "containsNoPersonalMedicalOrCustomerData": true,
+    "containsNoConfidentialCommercialData": true,
+    "containsNoLivePaymentOrSettlementInstructions": true,
+    "containsNoProductionEndpoints": true,
+    "accountableHumanMustDecideWhetherShared": true
+  }
+}

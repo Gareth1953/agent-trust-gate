@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bring-your-agent-scenario.schema.json",
+  "title": "Agent Trust Gate Bring Your Agent Scenario",
+  "description": "Closed schema for a fictional synthetic or properly sanitised agent-control scenario prepared for accountable-human review. It accepts no secrets, credentials, customer data or live instructions.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "scenarioIdentifier",
+    "informationClassification",
+    "declaredAgentCategory",
+    "claimedPrincipalType",
+    "currentIdentityEvidence",
+    "currentDelegationEvidence",
+    "currentAutonomyBoundary",
+    "proposedExactAction",
+    "presentHumanApprovalMethod",
+    "existingExecutionBoundaryControl",
+    "existingInstrumentLevelControl",
+    "observedOrSuspectedTrustGap",
+    "expectedAtgStandingOutcome",
+    "expectedGatePassOutcome",
+    "evidenceLabels",
+    "knownLimitations",
+    "sanitisationConfirmation"
+  ],
+  "properties": {
+    "version": { "const": "atg.bring-your-agent-scenario.v1" },
+    "scenarioIdentifier": {
+      "type": "string",
+      "pattern": "^scenario_[a-z0-9][a-z0-9_-]{5,79}$"
+    },
+    "informationClassification": {
+      "type": "string",
+      "enum": ["fictional_synthetic", "properly_sanitised"]
+    },
+    "declaredAgentCategory": {
+      "type": "string",
+      "enum": [
+        "tool_calling_agent",
+        "workflow_agent",
+        "sub_agent",
+        "coding_agent",
+        "commerce_agent",
+        "governance_agent",
+        "other_declared_software_agent"
+      ]
+    },
+    "claimedPrincipalType": {
+      "type": "string",
+      "enum": ["individual", "organisation", "system_operator", "not_yet_established"]
+    },
+    "currentIdentityEvidence": { "$ref": "#/$defs/controlEvidence" },
+    "currentDelegationEvidence": { "$ref": "#/$defs/controlEvidence" },
+    "currentAutonomyBoundary": { "type": "string", "minLength": 10, "maxLength": 800 },
+    "proposedExactAction": { "$ref": "#/$defs/exactAction" },
+    "presentHumanApprovalMethod": { "$ref": "#/$defs/humanApproval" },
+    "existingExecutionBoundaryControl": { "$ref": "#/$defs/boundaryControl" },
+    "existingInstrumentLevelControl": { "$ref": "#/$defs/boundaryControl" },
+    "observedOrSuspectedTrustGap": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 8, "maxLength": 300 }
+    },
+    "expectedAtgStandingOutcome": {
+      "type": "string",
+      "enum": ["STANDING_VERIFIED", "STANDING_REFUSED", "STANDING_UNVERIFIABLE"]
+    },
+    "expectedGatePassOutcome": {
+      "type": "string",
+      "enum": ["ALLOW_LOCAL_ONLY", "REFUSE", "REQUIRES_EVIDENCE", "REQUIRES_HUMAN_REVIEW", "NOT_EVALUATED"]
+    },
+    "evidenceLabels": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]{2,79}$" }
+    },
+    "knownLimitations": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 8, "maxLength": 300 }
+    },
+    "sanitisationConfirmation": { "$ref": "#/$defs/sanitisationConfirmation" }
+  },
+  "$defs": {
+    "controlEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "summary", "evidenceLabels"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["present_declared", "present_fixture_only", "missing", "unknown", "not_applicable"]
+        },
+        "summary": { "type": "string", "minLength": 5, "maxLength": 600 },
+        "evidenceLabels": {
+          "type": "array",
+          "maxItems": 8,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]{2,79}$" }
+        }
+      }
+    },
+    "exactAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "actionType",
+        "purpose",
+        "targetType",
+        "amountMinorUnits",
+        "currency",
+        "resourceOrScopeLimit",
+        "consequential"
+      ],
+      "properties": {
+        "actionType": { "type": "string", "minLength": 3, "maxLength": 100 },
+        "purpose": { "type": "string", "minLength": 8, "maxLength": 500 },
+        "targetType": { "type": "string", "minLength": 3, "maxLength": 120 },
+        "amountMinorUnits": { "type": ["integer", "null"], "minimum": 0, "maximum": 9007199254740991 },
+        "currency": { "type": ["string", "null"], "pattern": "^[A-Z]{3}$" },
+        "resourceOrScopeLimit": { "type": "string", "minLength": 5, "maxLength": 500 },
+        "consequential": { "type": "boolean" }
+      }
+    },
+    "humanApproval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "currentStatus", "exactActionBound", "limitations"],
+      "properties": {
+        "method": { "type": "string", "minLength": 3, "maxLength": 160 },
+        "currentStatus": {
+          "type": "string",
+          "enum": ["present", "missing", "unclear", "not_required_by_current_system"]
+        },
+        "exactActionBound": { "type": "boolean" },
+        "limitations": { "type": "string", "minLength": 5, "maxLength": 500 }
+      }
+    },
+    "boundaryControl": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "description", "knownGap"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["present", "partial", "missing", "unknown", "not_applicable"]
+        },
+        "description": { "type": "string", "minLength": 5, "maxLength": 600 },
+        "knownGap": { "type": "string", "minLength": 5, "maxLength": 500 }
+      }
+    },
+    "sanitisationConfirmation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "confirmed",
+        "reviewStatus",
+        "syntheticOrProperlySanitisedOnly",
+        "containsNoSecretsOrCredentials",
+        "containsNoPersonalMedicalOrCustomerData",
+        "containsNoConfidentialCommercialData",
+        "containsNoLivePaymentOrSettlementInstructions",
+        "containsNoProductionEndpoints",
+        "accountableHumanMustDecideWhetherShared"
+      ],
+      "properties": {
+        "confirmed": { "const": true },
+        "reviewStatus": { "const": "ready_for_accountable_human_decision" },
+        "syntheticOrProperlySanitisedOnly": { "const": true },
+        "containsNoSecretsOrCredentials": { "const": true },
+        "containsNoPersonalMedicalOrCustomerData": { "const": true },
+        "containsNoConfidentialCommercialData": { "const": true },
+        "containsNoLivePaymentOrSettlementInstructions": { "const": true },
+        "containsNoProductionEndpoints": { "const": true },
+        "accountableHumanMustDecideWhetherShared": { "const": true }
+      }
+    }
+  }
+}

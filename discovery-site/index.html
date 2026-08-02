@@ -13,6 +13,7 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Agent Trust Gate - Passive GatePass Discovery">
   <meta name="twitter:description" content="GatePass is a scoped, time-bound, action-specific proof primitive for agent actions. Reviewer kit first; passive discovery site active and HTTPS verified.">
+  <link rel="ai-catalog" href="https://gareth1953.github.io/agent-trust-gate/ai-catalog.json">
   <style>
     :root {
       color-scheme: light;
@@ -71,6 +72,19 @@
     }
     a {
       color: var(--accent-dark);
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin: 0 0 22px;
+    }
+    nav a {
+      font-weight: 700;
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
     }
     .notice,
     .featured,
@@ -148,6 +162,13 @@
 </head>
 <body>
   <main>
+    <nav aria-label="Discovery navigation">
+      <a href="./" aria-current="page">ATG home</a>
+      <a href="./for-agents.html">For agents</a>
+      <a href="./bring-your-agent-scenario.html">Bring Your Agent Scenario</a>
+      <a href="./agent-standing-demo.html">Agent Standing</a>
+      <a href="./human-authority-demo.html">Human Authority</a>
+    </nav>
     <header>
       <p class="status">Passive discovery site active</p>
       <h1>Agent Trust Gate</h1>
@@ -175,6 +196,18 @@
       <p>No mandate. No evidence. No verified intent. No signed GatePass. No settlement.</p>
       <p>No signed GatePass. No settlement. Do not trust the agent. Trust the GatePass. No proof. No permission. No mandate. No action.</p>
       <p>This is non-production, local deterministic evaluation material. Human approval is required. No live A2A endpoint, MCP server, real payment execution, settlement execution, autonomous action execution, analytics, tracking, cookies, forms, payment URLs, or transaction controls are provided.</p>
+    </section>
+
+    <section class="featured" aria-labelledby="agents-title">
+      <p class="featured-label">P3-M155 · Agent discovery and reviewer invitation</p>
+      <h2 id="agents-title">Software agents and accountable operators</h2>
+      <p>Inspect the static machine-readable invitation, compare current identity, delegation, approval and exact-action safeguards, run the local demonstrations, and prepare a fictional synthetic or properly sanitised scenario for human-reviewed technical evaluation.</p>
+      <p><strong>An agent may prepare this scenario. An accountable human must decide whether it is shared.</strong></p>
+      <p class="featured-links">
+        <a href="./for-agents.html">Open the agent-facing route</a>
+        <a href="./bring-your-agent-scenario.html">Prepare a safe scenario</a>
+        <a href="./agent-trust-gate.agent-review-invitation.json">Invitation JSON</a>
+      </p>
     </section>
 
     <section>
@@ -227,6 +260,12 @@
         <li><a href="llms.txt">llms.txt</a></li>
         <li><a href="agent-trust-gate.agent-card.json">Agent card metadata</a></li>
         <li><a href="agent-trust-gate.manifest.json">Project manifest</a></li>
+        <li><a href="agent-trust-gate.agent-review-invitation.json">P3-M155 agent review invitation</a></li>
+        <li><a href="ai-catalog.json">Schema-validated ARD-readiness catalogue</a></li>
+        <li><a href="schemas/agent-review-invitation.schema.json">Invitation schema</a></li>
+        <li><a href="schemas/bring-your-agent-scenario.schema.json">Bring Your Agent Scenario schema</a></li>
+        <li><a href="bring-your-agent-scenario.template.json" download>Downloadable synthetic scenario template</a></li>
+        <li><a href="examples/bring-your-agent-scenario.example.json">Fictional synthetic scenario example</a></li>
       </ul>
       <p>Live public path: <code>https://gareth1953.github.io/agent-trust-gate/</code>. The route is a static discovery site only, with machine-readable files available under the same GitHub Pages project path.</p>
     </section>
@@ -235,6 +274,9 @@
       <h2>Current Status</h2>
       <ul>
         <li>GitHub Pages: active public HTTPS static discovery route deployed through GitHub Actions.</li>
+        <li>P3-M154: local Verified Agent Standing demonstrator and closed fixture schema.</li>
+        <li>P3-M155: static agent discovery invitation, safe scenario pack and accountable-human review route.</li>
+        <li>ARD: v0.9 draft readiness with a schema-validated static <code>application/json</code> review artifact; no registry or invocation service.</li>
         <li>A2A server: not implemented; no operational endpoint is published.</li>
         <li>MCP server: not implemented; no MCP Registry publication exists.</li>
         <li>npm package: private and not published.</li>

@@ -49,6 +49,25 @@ The command builds silently, uses fixed synthetic fixtures and a
 verifier-controlled clock, prints each observed allow/refusal, and finishes
 with an `ATG REVIEWER RESULT` scorecard.
 
+## Agent discovery and safe scenario route
+
+An agent or operator can inspect the static
+[review invitation](agent-trust-gate.agent-review-invitation.json), then run:
+
+```powershell
+npm run demo:agent-standing -- --summary-only
+npm run demo:human-authority -- --summary-only
+npm run demo:gatepass-round-trip
+npm run validate:agent-invitation
+```
+
+The [Bring Your Agent Scenario](docs/bring-your-agent-scenario.md) pack accepts
+only synthetic or properly sanitised information. An agent may prepare a
+scenario, but an accountable human must decide whether it is shared. Technical
+and paid-pilot contact is human reviewed and subject to separate written scope;
+there is no upload, automatic enrolment, autonomous purchase, remote service,
+live A2A, MCP server or hosted GatePass API.
+
 ## What successful output means
 
 `Overall: REVIEWER DEMONSTRATION PASSED` means every scenario observed the

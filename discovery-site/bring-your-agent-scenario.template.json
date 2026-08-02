@@ -1,0 +1,65 @@
+{
+  "version": "atg.bring-your-agent-scenario.v1",
+  "scenarioIdentifier": "scenario_replace_with_safe_identifier_001",
+  "informationClassification": "fictional_synthetic",
+  "declaredAgentCategory": "other_declared_software_agent",
+  "claimedPrincipalType": "not_yet_established",
+  "currentIdentityEvidence": {
+    "status": "unknown",
+    "summary": "Describe only synthetic or properly sanitised identity evidence labels; do not include credentials, keys or tokens.",
+    "evidenceLabels": []
+  },
+  "currentDelegationEvidence": {
+    "status": "unknown",
+    "summary": "Describe only synthetic or properly sanitised delegation scope, validity and revocation evidence labels.",
+    "evidenceLabels": []
+  },
+  "currentAutonomyBoundary": "Describe what the software may prepare or recommend and which accountable human must approve any consequential step.",
+  "proposedExactAction": {
+    "actionType": "replace_with_synthetic_action_type",
+    "purpose": "Describe one fictional or properly sanitised proposed exact action.",
+    "targetType": "replace_with_synthetic_target_type",
+    "amountMinorUnits": null,
+    "currency": null,
+    "resourceOrScopeLimit": "Describe a bounded synthetic resource, target, quantity, duration or other scope limit.",
+    "consequential": true
+  },
+  "presentHumanApprovalMethod": {
+    "method": "Describe the current synthetic or sanitised human-approval method.",
+    "currentStatus": "unclear",
+    "exactActionBound": false,
+    "limitations": "Describe why the current approval evidence may be incomplete, stale or not exact-action bound."
+  },
+  "existingExecutionBoundaryControl": {
+    "status": "unknown",
+    "description": "Describe the current local or synthetic execution-boundary check.",
+    "knownGap": "Describe a suspected gap without including production endpoints or unrestricted logs."
+  },
+  "existingInstrumentLevelControl": {
+    "status": "not_applicable",
+    "description": "Describe any synthetic instrument-level limit or state that it is not applicable.",
+    "knownGap": "Describe a limitation using synthetic or properly sanitised information only."
+  },
+  "observedOrSuspectedTrustGap": [
+    "Replace this with one synthetic or properly sanitised identity, delegation, approval or exact-action gap."
+  ],
+  "expectedAtgStandingOutcome": "STANDING_UNVERIFIABLE",
+  "expectedGatePassOutcome": "NOT_EVALUATED",
+  "evidenceLabels": [
+    "SYNTHETIC_OR_SANITISED_ONLY"
+  ],
+  "knownLimitations": [
+    "This template is not production evidence and does not establish identity, authority, safety or compliance."
+  ],
+  "sanitisationConfirmation": {
+    "confirmed": true,
+    "reviewStatus": "ready_for_accountable_human_decision",
+    "syntheticOrProperlySanitisedOnly": true,
+    "containsNoSecretsOrCredentials": true,
+    "containsNoPersonalMedicalOrCustomerData": true,
+    "containsNoConfidentialCommercialData": true,
+    "containsNoLivePaymentOrSettlementInstructions": true,
+    "containsNoProductionEndpoints": true,
+    "accountableHumanMustDecideWhetherShared": true
+  }
+}

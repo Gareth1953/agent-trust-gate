@@ -1,0 +1,219 @@
+{
+  "version": "atg.agent-review-invitation.v1",
+  "identifier": "com.gareth1953.agent-trust-gate.agent-review-invitation",
+  "name": "Agent Trust Gate Agent Discovery and Reviewer Invitation",
+  "mission": "P3-M155",
+  "status": "active_static_local_review_invitation",
+  "purpose": "Provide a safe static route through which a software agent, developer, operator or accountable organisation can examine Agent Standing and exact-action GatePass safeguards, run deterministic local demonstrations, and prepare a synthetic or properly sanitised scenario for an accountable human to review before any manual technical enquiry.",
+  "intendedAudiences": [
+    "software_agents",
+    "agent_developers",
+    "agent_operators",
+    "technical_reviewers",
+    "accountable_humans",
+    "accountable_organisations",
+    "governance_and_safety_reviewers"
+  ],
+  "currentState": {
+    "localOnly": true,
+    "nonProduction": true,
+    "staticPublicDiscovery": true,
+    "remoteInvocation": false,
+    "hostedApi": false,
+    "automaticOutreach": false,
+    "externalAgentsContacted": "none",
+    "externalActionsPerformed": "none"
+  },
+  "discoveryType": "static_machine_and_human_readable_review_resources",
+  "interactionModes": [
+    "static_read",
+    "local_clone_and_run",
+    "manual_human_contact"
+  ],
+  "supportedReviewCapabilities": [
+    {
+      "identifier": "verify-agent-standing",
+      "reviewMode": "local_deterministic_demonstration",
+      "description": "Check fixture evidence for declared software-agent identity and key control before GatePass evaluation."
+    },
+    {
+      "identifier": "verify-principal-delegation",
+      "reviewMode": "local_deterministic_demonstration",
+      "description": "Check fixture principal, scope, limit, validity and revocation evidence for a signed delegation."
+    },
+    {
+      "identifier": "verify-human-authority",
+      "reviewMode": "local_deterministic_demonstration",
+      "description": "Review synthetic human identity, organisational authority and exact-action approval checks."
+    },
+    {
+      "identifier": "bind-exact-action",
+      "reviewMode": "local_deterministic_demonstration",
+      "description": "Bind a local proof decision to the canonical digest of one exact proposed action."
+    },
+    {
+      "identifier": "issue-local-gatepass",
+      "reviewMode": "local_deterministic_demonstration",
+      "description": "Issue a non-production GatePass only in a deterministic local fixture that satisfies the configured checks."
+    },
+    {
+      "identifier": "refuse-invalid-or-unverifiable-standing",
+      "reviewMode": "local_deterministic_demonstration",
+      "description": "Fail closed when standing evidence is invalid, missing or cannot be verified."
+    },
+    {
+      "identifier": "detect-changed-action",
+      "reviewMode": "local_deterministic_demonstration",
+      "description": "Detect when a proposed action differs from the exact action represented by the local proof."
+    },
+    {
+      "identifier": "refuse-expired-or-replayed-proof",
+      "reviewMode": "local_deterministic_demonstration",
+      "description": "Refuse fixed local fixtures whose proof has expired or whose one-use state has already been consumed."
+    },
+    {
+      "identifier": "produce-decision-receipt",
+      "reviewMode": "local_deterministic_demonstration",
+      "description": "Produce a machine-readable local decision receipt that records the allow or refusal result."
+    },
+    {
+      "identifier": "produce-execution-receipt",
+      "reviewMode": "local_deterministic_demonstration",
+      "description": "Produce a separate simulated execution receipt after exact-action verification at the local boundary."
+    }
+  ],
+  "publicDemonstrationRoutes": {
+    "agentStanding": "https://gareth1953.github.io/agent-trust-gate/agent-standing-demo.html",
+    "humanAuthority": "https://gareth1953.github.io/agent-trust-gate/human-authority-demo.html",
+    "exactActionGatePass": "https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/exact-action-gatepass-and-execution-receipts.md"
+  },
+  "localReviewerCommands": [
+    "npm run demo:agent-invitation -- --summary-only",
+    "npm run demo:agent-standing -- --summary-only",
+    "npm run demo:human-authority -- --summary-only",
+    "npm run demo:exact-action",
+    "npm run demo:reviewer-kit",
+    "npm run reviewer",
+    "npm run validate:agent-invitation"
+  ],
+  "routes": {
+    "verifiedAgentStanding": "docs/verified-agent-standing.md",
+    "humanAuthority": "docs/verified-human-authority-working-demonstrator.md",
+    "exactActionGatePass": "docs/exact-action-gatepass-and-execution-receipts.md",
+    "safeScenarioTemplate": "https://gareth1953.github.io/agent-trust-gate/bring-your-agent-scenario.template.json",
+    "scenarioSchema": "https://gareth1953.github.io/agent-trust-gate/schemas/bring-your-agent-scenario.schema.json",
+    "syntheticScenarioExample": "https://gareth1953.github.io/agent-trust-gate/examples/bring-your-agent-scenario.example.json",
+    "agentFacingPage": "https://gareth1953.github.io/agent-trust-gate/for-agents.html",
+    "scenarioInstructions": "https://gareth1953.github.io/agent-trust-gate/bring-your-agent-scenario.html",
+    "technicalReview": "https://github.com/Gareth1953/agent-trust-gate/discussions/1",
+    "paidPilot": "https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/paid-pilot-commercial-entry.md"
+  },
+  "accountableHumanRequirement": {
+    "required": true,
+    "statement": "An agent may prepare this scenario. An accountable human must decide whether it is shared.",
+    "commercialPrincipal": "accountable_individual_or_organisation",
+    "agentMayPrepareScenario": true,
+    "agentMayShareScenarioAutonomously": false,
+    "agentMayContractIndependently": false
+  },
+  "paidPilotRoute": {
+    "name": "Agent Trust Gate Paid Evaluation Pilot",
+    "status": "human_reviewed_enquiry_only",
+    "indicativeStartingPriceGbp": 1500,
+    "humanReviewed": true,
+    "scopeSubjectToWrittenAgreement": true,
+    "automaticAcceptance": false,
+    "automaticAccessAfterPayment": false,
+    "initialMode": "local_non_production_unless_separately_agreed",
+    "productionWorkIncluded": false,
+    "initialEvaluationAcceptsLiveCredentials": false,
+    "initialEvaluationAcceptsCustomerData": false,
+    "route": "https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/paid-pilot-commercial-entry.md"
+  },
+  "acceptedInformation": [
+    "fictional synthetic scenario identifiers and declared agent categories",
+    "properly sanitised descriptions of principal and delegation evidence",
+    "bounded exact-action descriptions using fictional or sanitised targets",
+    "integer minor-unit amounts with an ISO currency where money is relevant",
+    "non-secret evidence labels rather than evidence payloads",
+    "descriptions of present approval and execution-boundary controls",
+    "observed trust gaps and expected local demonstration outcomes",
+    "known limitations and explicit sanitisation confirmation"
+  ],
+  "prohibitedInformation": [
+    "passwords",
+    "api_keys",
+    "wallet_seed_phrases",
+    "card_details",
+    "production_credentials",
+    "production_tokens",
+    "private_keys",
+    "customer_personal_data",
+    "medical_information",
+    "confidential_commercial_data",
+    "unrestricted_logs",
+    "live_payment_instructions",
+    "real_settlement_instructions",
+    "production_endpoints",
+    "authentication_secrets"
+  ],
+  "claimsBoundary": [
+    "P3-M155 provides static machine-readable and human-readable review routes only.",
+    "The public materials describe local deterministic demonstrations and do not provide a hosted evaluation service.",
+    "Claimed identity, account ownership and a valid signature do not by themselves prove delegation or factual truth.",
+    "Agent Standing is a local fixture precondition to GatePass evaluation and is not agent certification.",
+    "An allow decision does not mean that an action was executed; decision and execution receipts remain separate.",
+    "No agent, organisation, protocol, registry, identity, safety, compliance or production capability is endorsed or certified.",
+    "No real identity, organisation, delegation, payment instrument, customer or production endpoint is verified.",
+    "No scenario is uploaded or processed remotely by this repository or its static Pages site.",
+    "No automatic outreach, enrolment, contracting, purchasing, payment, settlement or action execution occurs.",
+    "A paid controlled pilot is considered only after human review and separate written agreement."
+  ],
+  "nonCapabilities": [
+    "live_remote_invocation",
+    "automatic_agent_enrolment",
+    "autonomous_message_submission",
+    "hosted_gatepass_api",
+    "live_a2a",
+    "live_mcp",
+    "production_identity_verification",
+    "payment_processing",
+    "settlement",
+    "autonomous_commercial_acceptance",
+    "remote_scenario_processing",
+    "production_gatepass_issuance",
+    "action_execution",
+    "legally_binding_contract_creation"
+  ],
+  "contactRoute": {
+    "method": "manual_human_email",
+    "email": "gpmiddleton71@gmail.com",
+    "humanReviewed": true,
+    "manualActivationRequired": true,
+    "automaticSubmission": false,
+    "automaticEnrolment": false,
+    "automaticCommercialAcceptance": false
+  },
+  "lastMaterialUpdateDate": "2026-08-02",
+  "sourceReferences": [
+    "docs/agent-trust-invitation-and-prove-yourself-protocol.md",
+    "docs/agent-proof-package-schema-and-verification-contract.md",
+    "docs/agent-proof-contract-integration-readiness.md",
+    "docs/paid-pilot-commercial-entry.md",
+    "docs/machine-discovery-and-registry-readiness.md",
+    "docs/github-pages-passive-discovery-activation.md",
+    "docs/public-technical-review-invitation.md",
+    "docs/verified-agent-standing.md",
+    "docs/verified-human-authority-working-demonstrator.md",
+    "docs/exact-action-gatepass-and-execution-receipts.md",
+    "schemas/agent-review-invitation.schema.json",
+    "schemas/bring-your-agent-scenario.schema.json",
+    "examples/bring-your-agent-scenario.example.json"
+  ],
+  "integrity": {
+    "canonicalSource": "agent-trust-gate.agent-review-invitation.json",
+    "schema": "schemas/agent-review-invitation.schema.json",
+    "repository": "https://github.com/Gareth1953/agent-trust-gate",
+    "validationCommand": "npm run validate:agent-invitation"
+  }
+}

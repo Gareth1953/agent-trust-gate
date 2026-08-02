@@ -1,0 +1,52 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Agent Trust Gate",
+    "documentationUrl": "https://gareth1953.github.io/agent-trust-gate/for-agents.html"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:gareth1953.github.io:agent-trust-gate:static-review-invitation",
+      "displayName": "Agent Trust Gate static reviewer invitation",
+      "type": "application/json",
+      "url": "https://gareth1953.github.io/agent-trust-gate/agent-trust-gate.agent-review-invitation.json",
+      "description": "Static local-review metadata for examining Agent Standing and exact-action GatePass demonstrations and preparing a synthetic or sanitised scenario. This is not an executable remote agent, A2A service, MCP server, registry or hosted API.",
+      "tags": [
+        "agent-standing",
+        "delegation",
+        "human-authority",
+        "exact-action",
+        "gatepass",
+        "local-review"
+      ],
+      "capabilities": [
+        "verify-agent-standing",
+        "verify-principal-delegation",
+        "verify-human-authority",
+        "bind-exact-action",
+        "refuse-invalid-or-unverifiable-standing",
+        "detect-changed-action",
+        "produce-decision-receipt",
+        "produce-execution-receipt"
+      ],
+      "representativeQueries": [
+        "compare a software agent's identity and delegation safeguards with Agent Trust Gate",
+        "review exact-action GatePass controls using local synthetic demonstrations",
+        "prepare a safe sanitised agent scenario for an accountable human to review"
+      ],
+      "version": "0.1.0",
+      "updatedAt": "2026-08-02T00:00:00Z",
+      "metadata": {
+        "mission": "P3-M155",
+        "interactionMode": "static_read",
+        "localOnly": true,
+        "nonProduction": true,
+        "executableRemoteAgent": false,
+        "a2aServer": false,
+        "mcpServer": false,
+        "hostedGatepassApi": false,
+        "accountableHumanRequired": true
+      }
+    }
+  ]
+}

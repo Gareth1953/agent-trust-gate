@@ -17,6 +17,14 @@ Key trust principle:
 Claimed agent identity is not trust. Behaviour, mandate, evidence, verified
 intent, and session context must decide access.
 
+P3-M155 agent discovery boundary:
+Software agents and accountable operators may statically inspect ATG, run local
+deterministic demonstrations, and prepare a synthetic or properly sanitised
+scenario. An accountable human must decide whether it is shared and approve any
+technical or commercial engagement. ATG is not a live A2A server, MCP server,
+hosted API, remote agent, enrolment service, payment service, or autonomous
+buyer/contact system.
+
 Safe local commands:
 - npm test
 - npm run build
@@ -41,12 +49,25 @@ Safe local commands:
 - npm run demo:paid-pilot
 - npm run demo:discovery
 - npm run demo:commerce-gatepass
+- npm run demo:agent-standing -- --summary-only
+- npm run demo:agent-invitation
+- npm run demo:agent-invitation -- --summary-only
+- npm run demo:agent-invitation -- --json
+- npm run validate:agent-invitation
 - npm run validate:discovery-site
 - npm run proof:money-gate
 
 Important docs:
 - README.md
 - agent-trust-gate.discovery.json
+- agent-trust-gate.agent-review-invitation.json
+- schemas/agent-review-invitation.schema.json
+- schemas/bring-your-agent-scenario.schema.json
+- examples/bring-your-agent-scenario.example.json
+- docs/agent-standing.md
+- docs/agent-discovery-and-reviewer-invitation.md
+- docs/bring-your-agent-scenario.md
+- docs/agent-discovery-standards-boundary.md
 - docs/agent-readable-discovery-and-system-metadata.md
 - docs/system-integration-metadata.md
 - docs/example-agent-discovery-prompts.md

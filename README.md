@@ -398,6 +398,20 @@ Discovery route:
 4. Review the technical and safety boundaries.
 5. Use the [Paid Evaluation Pilot](docs/paid-pilot-commercial-entry.md) route for a human-reviewed commercial enquiry.
 
+### Software-agent and operator review route
+
+P3-M155 lets software agents and their operators inspect ATG's [static machine-readable
+invitation](agent-trust-gate.agent-review-invitation.json), run the local Agent
+Standing and GatePass demonstrations, and prepare a [synthetic or properly
+sanitised scenario](docs/bring-your-agent-scenario.md) for human-reviewed
+technical discussion. An accountable human must approve any sharing, enquiry
+or commercial engagement. Run `npm run validate:agent-invitation`; no live A2A,
+MCP, hosted API, enrolment, outreach or autonomous purchasing route is created.
+
+- [Agent discovery and reviewer invitation](docs/agent-discovery-and-reviewer-invitation.md)
+- [Agent discovery standards boundary](docs/agent-discovery-standards-boundary.md)
+- [Public agent-facing page source](discovery-site/for-agents.html)
+
 - [Machine discovery and registry readiness](docs/machine-discovery-and-registry-readiness.md)
 - [Machine-readable entry points](docs/machine-readable-entry-points.md)
 - [GitHub Pages discovery readiness](docs/github-pages-discovery-readiness.md)

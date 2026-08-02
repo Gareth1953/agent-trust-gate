@@ -77,6 +77,44 @@ export interface MachineDiscoveryRecord {
     command: typeof MACHINE_DISCOVERY_FIRST_COMMAND;
     recommendedFirstExperience: true;
   };
+  agentStanding: {
+    mission: "P3-M154";
+    document: "docs/verified-agent-standing.md";
+    schema: "schemas/agent-standing-proof.schema.json";
+    command: "npm run demo:agent-standing";
+    publicDemo: string;
+    status: "local_deterministic_fixture_demonstration";
+    productionIdentityVerification: false;
+  };
+  agentReviewInvitation: {
+    mission: "P3-M155";
+    invitation: "agent-trust-gate.agent-review-invitation.json";
+    invitationSchema: "schemas/agent-review-invitation.schema.json";
+    scenarioSchema: "schemas/bring-your-agent-scenario.schema.json";
+    scenarioExample: "examples/bring-your-agent-scenario.example.json";
+    publicAgentPage: string;
+    publicScenarioPage: string;
+    localCommand: "npm run demo:agent-invitation";
+    validationCommand: "npm run validate:agent-invitation";
+    status: "active_static_local_review_invitation";
+    accountableHumanRequired: true;
+    automaticOutreach: false;
+    externalAgentsContacted: "none";
+    ardReadiness: {
+      specification: "ARD v0.9 draft proposal";
+      catalogSpecVersion: "1.0";
+      source: "https://github.com/ards-project/ard-spec";
+      sourceCommit: "5fa2f5aef790b478319f6a3b43adf4661b0ed0e0";
+      catalog: string;
+      schemaSnapshot: "schemas/ard-ai-catalog-v1.0.schema.json";
+      advertisedResourceType: "application/json";
+      officialManifestValidatorResult: "pass_with_nonstandard_media_type_warning";
+      standardCallableMediaTypeClaimed: false;
+      executableRemoteAgent: false;
+      registryService: false;
+      conformanceClaim: "static_catalog_schema_validated_no_protocol_or_registry_endorsement";
+    };
+  };
   paidPilot: {
     document: "docs/paid-pilot-commercial-entry.md";
     offerExample: "examples/paid-pilot-offer.json";
@@ -138,6 +176,11 @@ export interface MachineDiscoveryRecord {
       "agent-trust-gate.discovery.json",
       "agent-trust-gate.agent-card.json",
       "agent-trust-gate.manifest.json",
+      "agent-trust-gate.agent-review-invitation.json",
+      "schemas/agent-review-invitation.schema.json",
+      "schemas/bring-your-agent-scenario.schema.json",
+      "schemas/ard-ai-catalog-v1.0.schema.json",
+      "examples/bring-your-agent-scenario.example.json",
       "llms.txt",
     ];
     artifactExcludes: readonly string[];
@@ -147,9 +190,9 @@ export interface MachineDiscoveryRecord {
   recommendedCommands: readonly string[];
   coreCommercialPosition: "No mandate. No evidence. No verified intent. No signed GatePass. No settlement.";
   lastReviewed: {
-    mission: "P3-M144A";
-    date: "2026-07-14";
-    reviewType: "embedded_commerce_commercial_positioning_update";
+    mission: "P3-M155";
+    date: "2026-08-02";
+    reviewType: "agent_discovery_and_reviewer_invitation_activation";
     reviewedBy: "Agent Trust Gate local repository metadata";
   };
 }
@@ -307,6 +350,44 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
       command: MACHINE_DISCOVERY_FIRST_COMMAND,
       recommendedFirstExperience: true,
     },
+    agentStanding: {
+      mission: "P3-M154",
+      document: "docs/verified-agent-standing.md",
+      schema: "schemas/agent-standing-proof.schema.json",
+      command: "npm run demo:agent-standing",
+      publicDemo: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}agent-standing-demo.html`,
+      status: "local_deterministic_fixture_demonstration",
+      productionIdentityVerification: false,
+    },
+    agentReviewInvitation: {
+      mission: "P3-M155",
+      invitation: "agent-trust-gate.agent-review-invitation.json",
+      invitationSchema: "schemas/agent-review-invitation.schema.json",
+      scenarioSchema: "schemas/bring-your-agent-scenario.schema.json",
+      scenarioExample: "examples/bring-your-agent-scenario.example.json",
+      publicAgentPage: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}for-agents.html`,
+      publicScenarioPage: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}bring-your-agent-scenario.html`,
+      localCommand: "npm run demo:agent-invitation",
+      validationCommand: "npm run validate:agent-invitation",
+      status: "active_static_local_review_invitation",
+      accountableHumanRequired: true,
+      automaticOutreach: false,
+      externalAgentsContacted: "none",
+      ardReadiness: {
+        specification: "ARD v0.9 draft proposal",
+        catalogSpecVersion: "1.0",
+        source: "https://github.com/ards-project/ard-spec",
+        sourceCommit: "5fa2f5aef790b478319f6a3b43adf4661b0ed0e0",
+        catalog: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}ai-catalog.json`,
+        schemaSnapshot: "schemas/ard-ai-catalog-v1.0.schema.json",
+        advertisedResourceType: "application/json",
+        officialManifestValidatorResult: "pass_with_nonstandard_media_type_warning",
+        standardCallableMediaTypeClaimed: false,
+        executableRemoteAgent: false,
+        registryService: false,
+        conformanceClaim: "static_catalog_schema_validated_no_protocol_or_registry_endorsement",
+      },
+    },
     paidPilot: {
       document: "docs/paid-pilot-commercial-entry.md",
       offerExample: "examples/paid-pilot-offer.json",
@@ -414,6 +495,11 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
         "agent-trust-gate.discovery.json",
         "agent-trust-gate.agent-card.json",
         "agent-trust-gate.manifest.json",
+        "agent-trust-gate.agent-review-invitation.json",
+        "schemas/agent-review-invitation.schema.json",
+        "schemas/bring-your-agent-scenario.schema.json",
+        "schemas/ard-ai-catalog-v1.0.schema.json",
+        "examples/bring-your-agent-scenario.example.json",
         "llms.txt",
       ],
       artifactExcludes: [
@@ -448,6 +534,14 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
       canonicalDiscovery: "agent-trust-gate.discovery.json",
       agentCard: "agent-trust-gate.agent-card.json",
       manifest: "agent-trust-gate.manifest.json",
+      agentReviewInvitation: "agent-trust-gate.agent-review-invitation.json",
+      agentReviewInvitationSchema: "schemas/agent-review-invitation.schema.json",
+      bringYourAgentScenarioSchema: "schemas/bring-your-agent-scenario.schema.json",
+      bringYourAgentScenarioExample: "examples/bring-your-agent-scenario.example.json",
+      verifiedAgentStanding: "docs/verified-agent-standing.md",
+      verifiedAgentStandingSchema: "schemas/agent-standing-proof.schema.json",
+      exactActionGatepass: "docs/exact-action-gatepass-and-execution-receipts.md",
+      humanAuthority: "docs/verified-human-authority-working-demonstrator.md",
       schemasDirectory: "schemas/",
       examplesDirectory: "examples/",
       reviewerKitReportExample: "examples/gatepass-reviewer-kit-report.json",
@@ -461,11 +555,21 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
       livePagesLlms: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}llms.txt`,
       livePagesAgentCard: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}agent-trust-gate.agent-card.json`,
       livePagesManifest: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}agent-trust-gate.manifest.json`,
+      livePagesAgentReviewInvitation: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}agent-trust-gate.agent-review-invitation.json`,
+      livePagesForAgents: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}for-agents.html`,
+      livePagesScenarioInstructions: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}bring-your-agent-scenario.html`,
+      livePagesScenarioTemplate: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}bring-your-agent-scenario.template.json`,
+      livePagesArdStaticCatalog: `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}ai-catalog.json`,
     },
     recommendedCommands: [
       MACHINE_DISCOVERY_FIRST_COMMAND,
       MACHINE_DISCOVERY_COMMAND,
       MACHINE_DISCOVERY_SITE_VALIDATION_COMMAND,
+      "npm run demo:agent-invitation -- --summary-only",
+      "npm run validate:agent-invitation",
+      "npm run demo:agent-standing -- --summary-only",
+      "npm run demo:human-authority -- --summary-only",
+      "npm run demo:exact-action",
       "npm run demo:commerce-gatepass",
       "npm run demo:gatepass-round-trip",
       "npm run demo:gatepass-scorecard",
@@ -475,9 +579,9 @@ export function getMachineDiscoveryRecord(): MachineDiscoveryRecord {
     coreCommercialPosition:
       "No mandate. No evidence. No verified intent. No signed GatePass. No settlement.",
     lastReviewed: {
-      mission: "P3-M144A",
-      date: "2026-07-14",
-      reviewType: "embedded_commerce_commercial_positioning_update",
+      mission: "P3-M155",
+      date: "2026-08-02",
+      reviewType: "agent_discovery_and_reviewer_invitation_activation",
       reviewedBy: "Agent Trust Gate local repository metadata",
     },
   };

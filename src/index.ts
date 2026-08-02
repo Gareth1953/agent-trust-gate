@@ -544,3 +544,9 @@ export { createCanonicalPayloadHash,createDeterministicLocalFixtureKeyPair,signC
 export type { DeterministicLocalFixtureKeyPair } from "./local-signed-proof.js";
 export { REVIEWER_CONVERSION_COMMAND,REVIEWER_CONVERSION_VERSION,renderReviewerConversionReport,runReviewerConversionCli,runReviewerConversionDemo } from "./reviewer-conversion-cli.js";
 export type { ReviewerConversionCliIo,ReviewerConversionDependencies,ReviewerConversionReport,ReviewerConversionScenarioId,ReviewerConversionScorecard,ReviewerExpectedOutcome,ReviewerObservedOutcome,ReviewerScenarioObservation } from "./reviewer-conversion-cli.js";
+export { AGENT_REVIEW_INVITATION_FILE,AGENT_REVIEW_INVITATION_MISSION,AGENT_REVIEW_INVITATION_SCHEMA,AGENT_REVIEW_INVITATION_VERSION,ARD_AI_CATALOG,ARD_AI_CATALOG_SCHEMA,BRING_YOUR_AGENT_SCENARIO_EXAMPLE,BRING_YOUR_AGENT_SCENARIO_SCHEMA,BRING_YOUR_AGENT_SCENARIO_TEMPLATE,renderAgentInvitationSummary,validateAgentInvitationPack } from "./agent-review-invitation.js";
+export type { AgentInvitationValidationCheck,AgentInvitationValidationOverrides,AgentInvitationValidationReport } from "./agent-review-invitation.js";
+export { runAgentInvitationCli } from "./agent-review-invitation-cli.js";
+export type { AgentInvitationCliIo } from "./agent-review-invitation-cli.js";
+export { validateJsonSchema,validateJsonSchemaFile } from "./json-schema-validator.js";
+export type { JsonSchema,JsonSchemaValidationResult } from "./json-schema-validator.js";

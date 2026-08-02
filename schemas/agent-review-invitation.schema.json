@@ -1,0 +1,337 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-review-invitation.schema.json",
+  "title": "Agent Trust Gate Agent Review Invitation",
+  "description": "Closed machine-readable invitation for static and local-only review of Agent Trust Gate by software-agent developers, operators and accountable humans or organisations.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "identifier",
+    "name",
+    "mission",
+    "status",
+    "purpose",
+    "intendedAudiences",
+    "currentState",
+    "discoveryType",
+    "interactionModes",
+    "supportedReviewCapabilities",
+    "publicDemonstrationRoutes",
+    "localReviewerCommands",
+    "routes",
+    "accountableHumanRequirement",
+    "paidPilotRoute",
+    "acceptedInformation",
+    "prohibitedInformation",
+    "claimsBoundary",
+    "nonCapabilities",
+    "contactRoute",
+    "lastMaterialUpdateDate",
+    "sourceReferences",
+    "integrity"
+  ],
+  "properties": {
+    "version": { "const": "atg.agent-review-invitation.v1" },
+    "identifier": { "const": "com.gareth1953.agent-trust-gate.agent-review-invitation" },
+    "name": { "const": "Agent Trust Gate Agent Discovery and Reviewer Invitation" },
+    "mission": { "const": "P3-M155" },
+    "status": { "const": "active_static_local_review_invitation" },
+    "purpose": { "type": "string", "minLength": 40, "maxLength": 800 },
+    "intendedAudiences": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "software_agents",
+          "agent_developers",
+          "agent_operators",
+          "technical_reviewers",
+          "accountable_humans",
+          "accountable_organisations",
+          "governance_and_safety_reviewers"
+        ]
+      }
+    },
+    "currentState": { "$ref": "#/$defs/currentState" },
+    "discoveryType": { "const": "static_machine_and_human_readable_review_resources" },
+    "interactionModes": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": ["static_read", "local_clone_and_run", "manual_human_contact"]
+      }
+    },
+    "supportedReviewCapabilities": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": { "$ref": "#/$defs/capability" }
+    },
+    "publicDemonstrationRoutes": { "$ref": "#/$defs/publicDemonstrationRoutes" },
+    "localReviewerCommands": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 12,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 8, "maxLength": 120 }
+    },
+    "routes": { "$ref": "#/$defs/routes" },
+    "accountableHumanRequirement": { "$ref": "#/$defs/accountableHumanRequirement" },
+    "paidPilotRoute": { "$ref": "#/$defs/paidPilotRoute" },
+    "acceptedInformation": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 12,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 8, "maxLength": 180 }
+    },
+    "prohibitedInformation": {
+      "type": "array",
+      "minItems": 15,
+      "maxItems": 15,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "passwords",
+          "api_keys",
+          "wallet_seed_phrases",
+          "card_details",
+          "production_credentials",
+          "production_tokens",
+          "private_keys",
+          "customer_personal_data",
+          "medical_information",
+          "confidential_commercial_data",
+          "unrestricted_logs",
+          "live_payment_instructions",
+          "real_settlement_instructions",
+          "production_endpoints",
+          "authentication_secrets"
+        ]
+      }
+    },
+    "claimsBoundary": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 32,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 12, "maxLength": 240 }
+    },
+    "nonCapabilities": {
+      "type": "array",
+      "minItems": 14,
+      "maxItems": 14,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "live_remote_invocation",
+          "automatic_agent_enrolment",
+          "autonomous_message_submission",
+          "hosted_gatepass_api",
+          "live_a2a",
+          "live_mcp",
+          "production_identity_verification",
+          "payment_processing",
+          "settlement",
+          "autonomous_commercial_acceptance",
+          "remote_scenario_processing",
+          "production_gatepass_issuance",
+          "action_execution",
+          "legally_binding_contract_creation"
+        ]
+      }
+    },
+    "contactRoute": { "$ref": "#/$defs/contactRoute" },
+    "lastMaterialUpdateDate": { "type": "string", "format": "date" },
+    "sourceReferences": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 24,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 5, "maxLength": 240 }
+    },
+    "integrity": { "$ref": "#/$defs/integrity" }
+  },
+  "$defs": {
+    "currentState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "localOnly",
+        "nonProduction",
+        "staticPublicDiscovery",
+        "remoteInvocation",
+        "hostedApi",
+        "automaticOutreach",
+        "externalAgentsContacted",
+        "externalActionsPerformed"
+      ],
+      "properties": {
+        "localOnly": { "const": true },
+        "nonProduction": { "const": true },
+        "staticPublicDiscovery": { "const": true },
+        "remoteInvocation": { "const": false },
+        "hostedApi": { "const": false },
+        "automaticOutreach": { "const": false },
+        "externalAgentsContacted": { "const": "none" },
+        "externalActionsPerformed": { "const": "none" }
+      }
+    },
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identifier", "reviewMode", "description"],
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "enum": [
+            "verify-agent-standing",
+            "verify-principal-delegation",
+            "verify-human-authority",
+            "bind-exact-action",
+            "issue-local-gatepass",
+            "refuse-invalid-or-unverifiable-standing",
+            "detect-changed-action",
+            "refuse-expired-or-replayed-proof",
+            "produce-decision-receipt",
+            "produce-execution-receipt"
+          ]
+        },
+        "reviewMode": { "const": "local_deterministic_demonstration" },
+        "description": { "type": "string", "minLength": 15, "maxLength": 240 }
+      }
+    },
+    "publicDemonstrationRoutes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["agentStanding", "humanAuthority", "exactActionGatePass"],
+      "properties": {
+        "agentStanding": { "type": "string", "format": "uri" },
+        "humanAuthority": { "type": "string", "format": "uri" },
+        "exactActionGatePass": { "type": "string", "format": "uri" }
+      }
+    },
+    "routes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verifiedAgentStanding",
+        "humanAuthority",
+        "exactActionGatePass",
+        "safeScenarioTemplate",
+        "scenarioSchema",
+        "syntheticScenarioExample",
+        "agentFacingPage",
+        "scenarioInstructions",
+        "technicalReview",
+        "paidPilot"
+      ],
+      "properties": {
+        "verifiedAgentStanding": { "type": "string", "minLength": 5, "maxLength": 240 },
+        "humanAuthority": { "type": "string", "minLength": 5, "maxLength": 240 },
+        "exactActionGatePass": { "type": "string", "minLength": 5, "maxLength": 240 },
+        "safeScenarioTemplate": { "type": "string", "format": "uri" },
+        "scenarioSchema": { "type": "string", "format": "uri" },
+        "syntheticScenarioExample": { "type": "string", "format": "uri" },
+        "agentFacingPage": { "type": "string", "format": "uri" },
+        "scenarioInstructions": { "type": "string", "format": "uri" },
+        "technicalReview": { "type": "string", "format": "uri" },
+        "paidPilot": { "type": "string", "format": "uri" }
+      }
+    },
+    "accountableHumanRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required",
+        "statement",
+        "commercialPrincipal",
+        "agentMayPrepareScenario",
+        "agentMayShareScenarioAutonomously",
+        "agentMayContractIndependently"
+      ],
+      "properties": {
+        "required": { "const": true },
+        "statement": { "const": "An agent may prepare this scenario. An accountable human must decide whether it is shared." },
+        "commercialPrincipal": { "const": "accountable_individual_or_organisation" },
+        "agentMayPrepareScenario": { "const": true },
+        "agentMayShareScenarioAutonomously": { "const": false },
+        "agentMayContractIndependently": { "const": false }
+      }
+    },
+    "paidPilotRoute": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "status",
+        "indicativeStartingPriceGbp",
+        "humanReviewed",
+        "scopeSubjectToWrittenAgreement",
+        "automaticAcceptance",
+        "automaticAccessAfterPayment",
+        "initialMode",
+        "productionWorkIncluded",
+        "initialEvaluationAcceptsLiveCredentials",
+        "initialEvaluationAcceptsCustomerData",
+        "route"
+      ],
+      "properties": {
+        "name": { "const": "Agent Trust Gate Paid Evaluation Pilot" },
+        "status": { "const": "human_reviewed_enquiry_only" },
+        "indicativeStartingPriceGbp": { "const": 1500 },
+        "humanReviewed": { "const": true },
+        "scopeSubjectToWrittenAgreement": { "const": true },
+        "automaticAcceptance": { "const": false },
+        "automaticAccessAfterPayment": { "const": false },
+        "initialMode": { "const": "local_non_production_unless_separately_agreed" },
+        "productionWorkIncluded": { "const": false },
+        "initialEvaluationAcceptsLiveCredentials": { "const": false },
+        "initialEvaluationAcceptsCustomerData": { "const": false },
+        "route": { "type": "string", "format": "uri" }
+      }
+    },
+    "contactRoute": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method",
+        "email",
+        "humanReviewed",
+        "manualActivationRequired",
+        "automaticSubmission",
+        "automaticEnrolment",
+        "automaticCommercialAcceptance"
+      ],
+      "properties": {
+        "method": { "const": "manual_human_email" },
+        "email": { "const": "gpmiddleton71@gmail.com" },
+        "humanReviewed": { "const": true },
+        "manualActivationRequired": { "const": true },
+        "automaticSubmission": { "const": false },
+        "automaticEnrolment": { "const": false },
+        "automaticCommercialAcceptance": { "const": false }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["canonicalSource", "schema", "repository", "validationCommand"],
+      "properties": {
+        "canonicalSource": { "const": "agent-trust-gate.agent-review-invitation.json" },
+        "schema": { "const": "schemas/agent-review-invitation.schema.json" },
+        "repository": { "const": "https://github.com/Gareth1953/agent-trust-gate" },
+        "validationCommand": { "const": "npm run validate:agent-invitation" }
+      }
+    }
+  }
+}

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bring Your Agent Scenario | Agent Trust Gate</title>
+  <meta name="description" content="Static instructions for preparing a fictional synthetic or properly sanitised agent-control scenario for accountable-human review.">
+  <link rel="canonical" href="https://gareth1953.github.io/agent-trust-gate/bring-your-agent-scenario.html">
+  <link rel="ai-catalog" href="https://gareth1953.github.io/agent-trust-gate/ai-catalog.json">
+  <style>
+    :root{color-scheme:light;--ink:#18202f;--muted:#596172;--line:#d7deea;--panel:#f5f8fb;--accent:#0a6a5c;--accent-dark:#074f45;--safe:#eef8f5;--warn:#fff4ef}
+    *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;line-height:1.6}
+    main{width:min(980px,calc(100% - 32px));margin:0 auto;padding:32px 0 56px}header{border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:22px}
+    h1{font-size:clamp(2rem,5vw,3rem);line-height:1.1;margin:8px 0 12px}h2{font-size:1.35rem;margin:32px 0 10px}h3{font-size:1.05rem;margin:0 0 7px}p{margin:0 0 12px}
+    a{color:var(--accent-dark)}code{background:#eef3f7;border:1px solid var(--line);padding:2px 5px;border-radius:4px}
+    nav{display:flex;flex-wrap:wrap;gap:8px 18px;margin-bottom:22px}nav a{font-weight:700;text-decoration:none}nav a:hover{text-decoration:underline}
+    .eyebrow{color:var(--accent-dark);font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:.78rem}.lead{font-size:1.15rem;max-width:820px}
+    .notice,.safe,.never,.outcome,.step{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:17px 19px}.safe{background:var(--safe);border-color:#92c5ba}.never{background:var(--warn);border-color:#e7b7a3}
+    .columns{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}.outcomes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.outcome h3{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:.94rem}
+    .steps{display:grid;gap:10px;counter-reset:item}.step{position:relative;padding-left:54px}.step:before{counter-increment:item;content:counter(item);position:absolute;left:17px;top:16px;width:25px;height:25px;border-radius:50%;background:var(--accent);color:#fff;text-align:center;line-height:25px;font-weight:700}
+    ul,ol{padding-left:23px}li{margin:6px 0}.small{color:var(--muted);font-size:.92rem}.download{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;padding:10px 14px;border-radius:6px;margin:3px 8px 8px 0}.download:hover{background:var(--accent-dark)}
+    footer{border-top:1px solid var(--line);margin-top:38px;padding-top:18px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <main>
+    <nav aria-label="Discovery navigation">
+      <a href="./">ATG home</a>
+      <a href="./for-agents.html">For agents</a>
+      <a href="./bring-your-agent-scenario.html" aria-current="page">Bring Your Agent Scenario</a>
+      <a href="./agent-standing-demo.html">Agent Standing</a>
+      <a href="./human-authority-demo.html">Human Authority</a>
+    </nav>
+
+    <header>
+      <p class="eyebrow">P3-M155 · safe static scenario pack</p>
+      <h1>Bring Your Agent Scenario</h1>
+      <p class="lead">Prepare one bounded, fictional synthetic or properly sanitised scenario to compare current identity, delegation, approval and exact-action safeguards with ATG’s local demonstrations.</p>
+    </header>
+
+    <section class="notice">
+      <p><strong>An agent may prepare this scenario. An accountable human must decide whether it is shared.</strong></p>
+      <p>This page is instructional only. It has no upload control, form, free-text submission, automatic email, GitHub posting, callback, webhook, remote processing or real-time API.</p>
+    </section>
+
+    <section>
+      <h2>1. What the pack is for</h2>
+      <p>The pack helps a technical reviewer understand one possible gap: who the declared agent is, whom it claims to represent, what delegation and approval exist, what exact action is proposed, and what local ATG outcome is expected. It is not an enrolment request, production identity proof, support ticket, purchase instruction or remote GatePass request.</p>
+    </section>
+
+    <section>
+      <h2>2. Safe information and prohibited information</h2>
+      <div class="columns">
+        <article class="safe">
+          <h3>Safe to include</h3>
+          <ul>
+            <li>fictional identifiers and synthetic evidence labels;</li>
+            <li>properly sanitised descriptions of identity and delegation controls;</li>
+            <li>one bounded proposed exact action and a fictional target;</li>
+            <li>money only as integer minor units, such as <code>2500</code> for GBP 25.00;</li>
+            <li>resource or scope limits, current approval method and boundary controls;</li>
+            <li>suspected trust gaps, expected outcomes and known limitations.</li>
+          </ul>
+        </article>
+        <article class="never">
+          <h3>Never include</h3>
+          <ul>
+            <li>passwords, API keys, production tokens, credentials or private keys;</li>
+            <li>wallet seed phrases, card details or authentication secrets;</li>
+            <li>customer personal data, medical information or confidential commercial data;</li>
+            <li>unrestricted logs, production endpoints or live system details;</li>
+            <li>live payment instructions or real settlement instructions.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Download and prepare the JSON</h2>
+      <p><a class="download" href="./bring-your-agent-scenario.template.json" download>Download the JSON template</a></p>
+      <p><a href="./schemas/bring-your-agent-scenario.schema.json">Inspect the closed scenario schema</a> · <a href="./examples/bring-your-agent-scenario.example.json">Inspect the clearly labelled fictional synthetic example</a></p>
+      <p>The schema limits lengths and array sizes, closes every object against unrecognised properties, uses integer minor units for applicable money, and requires an explicit sanitisation confirmation. Replace template guidance with safe content; never paste raw evidence payloads.</p>
+    </section>
+
+    <section>
+      <h2>4. Run the relevant local demonstrations</h2>
+      <div class="steps">
+        <article class="step"><strong>Validate the invitation pack</strong><br><code>npm run validate:agent-invitation</code></article>
+        <article class="step"><strong>Check Agent Standing fixtures</strong><br><code>npm run demo:agent-standing -- --summary-only</code></article>
+        <article class="step"><strong>Check Human Authority fixtures</strong><br><code>npm run demo:human-authority -- --summary-only</code></article>
+        <article class="step"><strong>Check exact-action binding and receipt separation</strong><br><code>npm run demo:exact-action</code></article>
+        <article class="step"><strong>Run the reviewer kit</strong><br><code>npm run demo:reviewer-kit</code></article>
+      </div>
+      <p class="small">These commands use local deterministic fixtures. They do not contact an agent, invoke a live endpoint, process payment, authorise settlement or execute an external action.</p>
+    </section>
+
+    <section>
+      <h2>5. Accountable-human sharing decision</h2>
+      <p>The accountable human should inspect every field, confirm that only fictional synthetic or properly sanitised information remains, and decide whether a manual technical discussion is appropriate. If so, the human may manually use <a href="https://github.com/Gareth1953/agent-trust-gate/discussions/1">the technical review Discussion</a> or activate the public <a href="mailto:gpmiddleton71@gmail.com">contact email</a>.</p>
+      <p>There is no automatic submission, acknowledgement, enrolment, response, access or acceptance.</p>
+    </section>
+
+    <section>
+      <h2>6. Possible standing outcomes</h2>
+      <div class="outcomes">
+        <article class="outcome">
+          <h3>STANDING_VERIFIED</h3>
+          <p>The configured local fixture checks passed and GatePass evaluation may begin. It does not certify the agent or guarantee that GatePass will allow the action.</p>
+        </article>
+        <article class="outcome">
+          <h3>STANDING_REFUSED</h3>
+          <p>A configured invalid, expired, revoked, out-of-scope or mismatched condition was detected. GatePass evaluation does not begin.</p>
+        </article>
+        <article class="outcome">
+          <h3>STANDING_UNVERIFIABLE</h3>
+          <p>Required evidence could not be established from the supplied local fixture. Unverifiable is never treated as permission.</p>
+        </article>
+      </div>
+      <p>These outcomes describe local evaluation of supplied synthetic fixtures. They do not authenticate a real organisation, verify a production identity, establish legal authority, certify safety or execute the proposed action.</p>
+    </section>
+
+    <section>
+      <h2>7. From evaluation to a paid controlled pilot</h2>
+      <p>A serious organisational interest may proceed from manual technical evaluation to consideration of one scoped <a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/paid-pilot-commercial-entry.md">Paid Evaluation Pilot</a>, indicatively from £1,500 where the existing approved offer applies.</p>
+      <p>The route is human reviewed and scope is subject to written agreement. There is no automatic acceptance or automatic access after payment. The initial evaluation is local and non-production unless separately agreed; production work is not included, and no live credentials or customer data are accepted during an initial synthetic evaluation.</p>
+    </section>
+
+    <footer>Static instructions only · No upload, form, tracking, callback, webhook, remote processing, payment or action execution.</footer>
+  </main>
+</body>
+</html>

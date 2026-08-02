@@ -10,6 +10,11 @@ on:
       - agent-trust-gate.discovery.json
       - agent-trust-gate.agent-card.json
       - agent-trust-gate.manifest.json
+      - agent-trust-gate.agent-review-invitation.json
+      - schemas/agent-review-invitation.schema.json
+      - schemas/bring-your-agent-scenario.schema.json
+      - schemas/ard-ai-catalog-v1.0.schema.json
+      - examples/bring-your-agent-scenario.example.json
       - llms.txt
       - .github/workflows/deploy-discovery-pages.yml
 
@@ -43,11 +48,26 @@ jobs:
           cp agent-trust-gate.discovery.json _site/
           cp agent-trust-gate.agent-card.json _site/
           cp agent-trust-gate.manifest.json _site/
+          cp agent-trust-gate.agent-review-invitation.json _site/
           cp llms.txt _site/
+          mkdir -p _site/schemas _site/examples
+          cp schemas/agent-review-invitation.schema.json _site/schemas/
+          cp schemas/bring-your-agent-scenario.schema.json _site/schemas/
+          cp schemas/ard-ai-catalog-v1.0.schema.json _site/schemas/
+          cp examples/bring-your-agent-scenario.example.json _site/examples/
           test -f _site/index.html
+          test -f _site/for-agents.html
+          test -f _site/bring-your-agent-scenario.html
+          test -f _site/bring-your-agent-scenario.template.json
+          test -f _site/ai-catalog.json
           test -f _site/agent-trust-gate.discovery.json
           test -f _site/agent-trust-gate.agent-card.json
           test -f _site/agent-trust-gate.manifest.json
+          test -f _site/agent-trust-gate.agent-review-invitation.json
+          test -f _site/schemas/agent-review-invitation.schema.json
+          test -f _site/schemas/bring-your-agent-scenario.schema.json
+          test -f _site/schemas/ard-ai-catalog-v1.0.schema.json
+          test -f _site/examples/bring-your-agent-scenario.example.json
           test -f _site/llms.txt
           test ! -e _site/.git
           test ! -e _site/.github

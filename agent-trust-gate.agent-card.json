@@ -1,7 +1,8 @@
 {
   "schema": "atg.agent-card.local-discovery.v1",
+  "metadata_kind": "static_discovery_readiness_metadata_not_an_a2a_agent_card",
   "name": "Agent Trust Gate",
-  "latest_mission": "P3-M144A",
+  "latest_mission": "P3-M155",
   "recent_missions": [
     "P3-M123",
     "P3-M124",
@@ -27,7 +28,9 @@
     "P3-M143",
     "P3-M143A",
     "P3-M144",
-    "P3-M144A"
+    "P3-M144A",
+    "P3-M154",
+    "P3-M155"
   ],
   "description": "Local-first pre-action and pre-settlement trust gate for agent-led workflows.",
   "public_repository_url": "https://github.com/Gareth1953/agent-trust-gate",
@@ -68,7 +71,10 @@
     "passive machine discovery and registry readiness metadata",
     "active static GitHub Pages passive discovery route",
     "local embedded commerce GatePass demonstrator for synthetic pre-checkout basket verification",
-    "featured Embedded Commerce GatePass commercial application for synthetic basket verification"
+    "featured Embedded Commerce GatePass commercial application for synthetic basket verification",
+    "local Verified Agent Standing fixture demonstration before GatePass evaluation",
+    "static agent discovery and reviewer invitation with accountable-human decision boundary",
+    "closed Bring Your Agent Scenario schema, fictional example and static template"
   ],
   "non_capabilities": [
     "live API",
@@ -137,7 +143,13 @@
     "card handling",
     "payment token handling",
     "AI-provider integration",
-    "production commerce integration"
+    "production commerce integration",
+    "hosted GatePass API",
+    "automatic agent enrolment",
+    "autonomous message submission",
+    "remote scenario processing",
+    "autonomous commercial acceptance",
+    "legally binding contract creation"
   ],
   "safe_commands": [
     "npm test",
@@ -163,7 +175,13 @@
     "npm run demo:foresight",
     "npm run demo:paid-pilot",
     "npm run demo:discovery",
-    "npm run demo:commerce-gatepass"
+    "npm run demo:commerce-gatepass",
+    "npm run demo:agent-standing -- --summary-only",
+    "npm run demo:human-authority -- --summary-only",
+    "npm run demo:exact-action",
+    "npm run demo:agent-invitation -- --summary-only",
+    "npm run validate:agent-invitation",
+    "npm run validate:discovery-site"
   ],
   "docs": [
     "README.md",
@@ -278,7 +296,14 @@
     "docs/npm-publication-readiness.md",
     "docs/registry-readiness-scorecard.md",
     "docs/embedded-commerce-gatepass.md",
-    "docs/embedded-commerce-design-partner-pilot.md"
+    "docs/embedded-commerce-design-partner-pilot.md",
+    "docs/verified-agent-standing.md",
+    "docs/verified-human-authority-working-demonstrator.md",
+    "docs/exact-action-gatepass-and-execution-receipts.md",
+    "docs/agent-discovery-and-reviewer-invitation.md",
+    "docs/bring-your-agent-scenario.md",
+    "docs/agent-discovery-standards-boundary.md",
+    "agent-trust-gate.agent-review-invitation.json"
   ],
   "schemas": [
     "schemas/local-agent-action-request.schema.json",
@@ -288,7 +313,11 @@
     "schemas/agent-proof-verification-request.schema.json",
     "schemas/agent-proof-verification-result.schema.json",
     "schemas/gate-pass-challenge.schema.json",
-    "schemas/gatepass-core.schema.json"
+    "schemas/gatepass-core.schema.json",
+    "schemas/agent-standing-proof.schema.json",
+    "schemas/agent-review-invitation.schema.json",
+    "schemas/bring-your-agent-scenario.schema.json",
+    "schemas/ard-ai-catalog-v1.0.schema.json"
   ],
   "examples": [
     "examples/local-demo-low-risk-allow.json",
@@ -356,17 +385,26 @@
     "examples/commerce-expired-approval.json",
     "examples/commerce-replay-attempt.json",
     "examples/commerce-missing-evidence.json",
-    "examples/embedded-commerce-gatepass-report.json"
+    "examples/embedded-commerce-gatepass-report.json",
+    "examples/bring-your-agent-scenario.example.json"
   ],
   "contact": {
     "email": "gpmiddleton71@gmail.com",
-    "purpose": "Human-reviewed developer, agent-system, integration, security, embedded commerce design-partner, buyer use case, revenue trigger, global code discovery, controlled public visibility, prove-yourself protocol, agent proof package contract, proof contract integration readiness, enforceable local tool gate demo, minimal GatePass core review, GatePass round trip review, GatePass scorecard review, GatePass developer wrapper review, GatePass reviewer kit review, GatePass benefit review, GatePass proof vocabulary review, public reviewer positioning review, strategic foresight advisory review, machine discovery and registry readiness review, passive discovery activation review, paid evaluation pilot, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
+    "purpose": "Human-reviewed developer, agent-system, integration, security, embedded commerce design-partner, buyer use case, revenue trigger, global code discovery, controlled public visibility, prove-yourself protocol, agent proof package contract, proof contract integration readiness, enforceable local tool gate demo, minimal GatePass core review, GatePass round trip review, GatePass scorecard review, GatePass developer wrapper review, GatePass reviewer kit review, GatePass benefit review, GatePass proof vocabulary review, public reviewer positioning review, strategic foresight advisory review, machine discovery and registry readiness review, passive discovery activation review, Verified Agent Standing review, Bring Your Agent Scenario review, paid evaluation pilot, paid technical review, local pilot discussion, reviewer, and public project enquiries.",
     "boundary": "Contact metadata only. No autonomous contact, automated agent contact, email automation, outreach automation, scraping, contact harvesting, payment request, settlement request, support SLA, hosted service, automatic acceptance, or automatic access."
   },
   "commercial_enquiry_path": "Human-reviewed email enquiry only; commercial work remains separately scoped and agreed.",
   "safety_flags": {
     "local_demo_only": true,
     "readable_by_agents": true,
+    "static_discovery_metadata_only": true,
+    "a2a_agent_card_conformance": false,
+    "executable_remote_agent": false,
+    "automatic_agent_enrolment": false,
+    "autonomous_message_submission": false,
+    "hosted_gatepass_api": false,
+    "remote_scenario_processing": false,
+    "autonomous_commercial_acceptance": false,
     "live_endpoint": false,
     "live_systems_contact": false,
     "live_api": false,
@@ -477,6 +515,9 @@
   "paid_pilot_offer_boundary": "P3-M141 defines the Agent Trust Gate Paid Evaluation Pilot as a local, manual-input only, human-approved, non-production, non-custodial, non-autonomous, advisory evaluation route. It starts from GBP 1500 subject to scope and written agreement. No checkout, payment links, PayPal API integration, Stripe integration, live invoices, webhooks, wallet or banking logic, live payment processing, settlement execution, production signing, production certification, security certification, legal/compliance/security guarantee, automatic paid-pilot acceptance, automatic access after payment, network calls, real tool execution, or action execution is introduced.",
   "machine_discovery_boundary": "P3-M142 adds a canonical passive machine-discovery record, local discovery CLI, static discovery-site source, and registry-readiness boundaries. The reviewer kit remains the recommended first run; GatePass remains the headline; Agent Trust Language remains supporting material. No live A2A server, A2A operational endpoint, MCP server, MCP Registry publication, npm publication, registry credential, payment integration, live API endpoint, real tool execution, settlement execution, or action execution is introduced.",
   "passive_discovery_activation_boundary": "P3-M143A records GitHub Pages passive discovery as active, public, and HTTPS verified at https://gareth1953.github.io/agent-trust-gate/ as a static discovery route. The route was deployed from source commit 4c68e1b9eef33505da3444f64d170eda1f32a046 through GitHub Actions workflow deploy-discovery-pages.yml as Deploy discovery Pages #1. githubPagesDeploymentWorkflowPrepared is true; githubPagesActive is true; githubPagesHttpsVerified is true; githubPagesDeployment is true. No custom domain, image generation, A2A server, MCP server, npm publication, payment integration, analytics, tracking, forms, checkout, payment links, outreach, tag, release, push, live API endpoint, real tool execution, settlement execution, or action execution is introduced.",
+  "agent_card_protocol_boundary": "This file is repository-defined static discovery/readiness metadata. It is not presented as an A2A Agent Card, is not served from an operational A2A well-known endpoint, and advertises no A2A service interface.",
+  "agent_standing_boundary": "P3-M154 demonstrates local fixture checks for software-agent identity, accountable principal, signed delegation, exact-request binding and the standing precondition before GatePass evaluation. It does not verify a production identity, authenticate a real organisation, certify an agent or operate a hosted identity service.",
+  "agent_review_invitation_boundary": "P3-M155 adds a closed static review invitation, safe fictional synthetic or properly sanitised scenario pack, agent-facing Pages routes and human-reviewed commercial path. An agent may prepare a scenario, but an accountable human decides whether it is shared. No outreach, contact, enrolment, remote invocation, hosted API, A2A service, MCP server, production identity verification, payment, settlement, contract creation or action execution is introduced.",
   "localDemoOnly": true,
   "advisoryOnly": true,
   "manualInputOnly": true,
