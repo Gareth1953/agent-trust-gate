@@ -39,6 +39,17 @@ export interface LocalDemoSigningKeyPair {
   note: "Local demo key material only; non-secret, not for production signing or payment/settlement authorisation.";
 }
 
+export interface DeterministicLocalFixtureKeyPair {
+  keyId: string;
+  algorithm: typeof LOCAL_SIGNED_PROOF_ALGORITHM;
+  publicKeyPem: string;
+  privateKeyPem: string;
+  localDemoOnly: true;
+  deterministicPublicFixture: true;
+  productionSigning: false;
+  note: "Deterministic public fixture key material only; non-secret and not for production identity, signing, payment, settlement, or action authorisation.";
+}
+
 export interface LocalSignedProofMetadata {
   signatureSchemaVersion: typeof LOCAL_SIGNED_PROOF_SCHEMA_VERSION;
   algorithm: typeof LOCAL_SIGNED_PROOF_ALGORITHM;
@@ -118,6 +129,54 @@ const SIGNATURE_BASE64 = /^[A-Za-z0-9+/]+={0,2}$/;
 
 export function createCanonicalPayload(input: unknown): string {
   return JSON.stringify(toCanonicalValue(input));
+}
+
+export function createCanonicalPayloadHash(input: unknown): string {
+  return createPayloadHash(createCanonicalPayload(input));
+}
+
+export function createDeterministicLocalFixtureKeyPair(
+  keyId: string,
+): DeterministicLocalFixtureKeyPair {
+  const normalizedKeyId = safeReference(keyId, "local-fixture-ed25519-unknown");
+  const seed = createHash("sha256")
+    .update(`agent-trust-gate|deterministic-ed25519-local-fixture|${normalizedKeyId}`, "utf8")
+    .digest();
+  const privateKeyDer = Buffer.concat([
+    Buffer.from("302e020100300506032b657004220420", "hex"),
+    seed,
+  ]);
+  const privateKey = createPrivateKey({ key: privateKeyDer, format: "der", type: "pkcs8" });
+  const publicKey = createPublicKey(privateKey);
+  return {
+    keyId: normalizedKeyId,
+    algorithm: LOCAL_SIGNED_PROOF_ALGORITHM,
+    publicKeyPem: publicKey.export({ format: "pem", type: "spki" }).toString(),
+    privateKeyPem: privateKey.export({ format: "pem", type: "pkcs8" }).toString(),
+    localDemoOnly: true,
+    deterministicPublicFixture: true,
+    productionSigning: false,
+    note: "Deterministic public fixture key material only; non-secret and not for production identity, signing, payment, settlement, or action authorisation.",
+  };
+}
+
+export function signCanonicalLocalFixturePayload(
+  input: unknown,
+  keyPair: DeterministicLocalFixtureKeyPair,
+): string {
+  return cryptoSign(
+    null,
+    Buffer.from(createCanonicalPayload(input), "utf8"),
+    createPrivateKey(keyPair.privateKeyPem),
+  ).toString("base64");
+}
+
+export function verifyCanonicalLocalFixturePayload(
+  input: unknown,
+  signature: string,
+  publicKeyPem: string,
+): boolean {
+  return verifySignature(createCanonicalPayload(input), signature, publicKeyPem);
 }
 
 export function createLocalDemoKeyPair(): LocalDemoSigningKeyPair {

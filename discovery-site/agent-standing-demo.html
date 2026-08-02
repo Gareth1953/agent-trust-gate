@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Safe synthetic demonstration of verified software-agent identity, accountable principal, signed delegation and exact-request binding before GatePass evaluation.">
+  <link rel="canonical" href="https://gareth1953.github.io/agent-trust-gate/agent-standing-demo.html">
+  <title>Verified Agent Standing Demo | Agent Trust Gate™</title>
+  <style>
+    :root{color-scheme:dark;--bg:#071018;--panel:#0d1d28;--panel2:#102735;--line:#294858;--text:#edf8fb;--muted:#a8c0ca;--ok:#55d88b;--bad:#ff8181;--unknown:#f5c96b;--accent:#73d2ef}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#153746 0,#071018 45%);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}
+    a{color:var(--accent)}header,main,footer{width:min(1160px,92vw);margin:auto}header{padding:46px 0 24px}.eyebrow{color:var(--accent);font-size:.8rem;font-weight:850;letter-spacing:.14em;text-transform:uppercase}
+    h1{font-size:clamp(2.25rem,5vw,4.25rem);line-height:1.03;max-width:980px;margin:.4rem 0 1rem}h2{margin:0 0 12px;font-size:1.25rem}.lead{color:var(--muted);font-size:1.2rem;max-width:930px}.rule{font-size:1.22rem;font-weight:850;border:1px solid var(--accent);background:#0b2732;padding:17px;border-radius:14px;margin:24px 0}
+    .boundary{border:1px solid #7b6930;background:#28210e;color:#ffe7a2;padding:14px 17px;border-radius:14px;margin:20px 0}.controls,.panel{background:rgba(13,29,40,.95);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 18px 48px rgba(0,0,0,.24)}
+    .controls{display:flex;gap:12px;align-items:end;flex-wrap:wrap}.field{flex:1 1 420px}label{display:block;font-weight:800;margin-bottom:7px}select,button{font:inherit;border-radius:10px;padding:12px 14px}select{width:100%;border:1px solid var(--line);background:#071620;color:var(--text)}button{border:0;min-width:190px;background:var(--accent);color:#03202a;font-weight:900;cursor:pointer}button:hover{filter:brightness(1.08)}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:18px 0}@media(max-width:820px){.grid{grid-template-columns:1fr}}dl{display:grid;grid-template-columns:minmax(145px,max-content) 1fr;gap:8px 14px;margin:0}dt{color:var(--muted)}dd{margin:0;font-weight:680;overflow-wrap:anywhere}
+    .verdict{font-size:1.7rem;font-weight:950;margin-bottom:8px}.verified{color:var(--ok)}.refused{color:var(--bad)}.unverifiable{color:var(--unknown)}.codes{display:flex;flex-wrap:wrap;gap:8px;padding:0;list-style:none}.codes li{border:1px solid var(--line);background:#071620;border-radius:999px;padding:5px 9px;font:700 .78rem/1.3 ui-monospace,SFMono-Regular,Consolas,monospace}
+    .checks{display:grid;gap:9px}.check{display:grid;grid-template-columns:1fr auto;gap:12px;border:1px solid var(--line);background:#071620;padding:11px 13px;border-radius:11px}.check strong{font-size:.83rem}.yes{color:var(--ok)}.no{color:var(--bad)}.na{color:var(--unknown)}pre{white-space:pre-wrap;word-break:break-word;background:#050d12;border:1px solid var(--line);border-radius:12px;padding:14px;max-height:430px;overflow:auto}
+    .assurance{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:12px}.assurance span{border:1px solid var(--line);text-align:center;padding:8px 4px;border-radius:8px;color:var(--muted)}.assurance .active{border-color:var(--accent);background:#103647;color:var(--text);font-weight:900}@media(max-width:600px){.assurance{grid-template-columns:repeat(3,1fr)}dl{grid-template-columns:1fr}}
+    footer{padding:22px 0 50px;color:var(--muted)}
+  </style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">Agent Trust Gate™ · P3-M154</div>
+  <h1>Verified Agent Standing before GatePass.</h1>
+  <p class="lead">First prove who or what is asking, whom it represents and why it has standing. Then decide whether its exact action may proceed.</p>
+  <div class="rule">No verified agent identity. No verified principal. No valid delegation. No standing to request a GatePass.</div>
+  <div class="boundary"><strong>Safe synthetic page:</strong> fixed fixture records only. No credentials, uploads, personal data, analytics, cookies, network API, remote execution, real agent contact, company verification, payment or settlement.</div>
+</header>
+<main>
+  <section class="controls" aria-label="Synthetic scenario controls">
+    <div class="field">
+      <label for="scenario">Choose a fixed synthetic scenario</label>
+      <select id="scenario"></select>
+    </div>
+    <button id="inspect" type="button">Inspect standing</button>
+  </section>
+
+  <div class="grid">
+    <section class="panel">
+      <h2>Claimed requester</h2>
+      <dl id="claim"></dl>
+      <div id="assurance" class="assurance" aria-label="Assurance classification"></div>
+    </section>
+    <section class="panel">
+      <h2>Standing decision</h2>
+      <div id="verdict" class="verdict">Ready</div>
+      <p id="explanation"></p>
+      <ul id="reasonCodes" class="codes"></ul>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>Deterministic verification checks</h2>
+    <div id="checks" class="checks"></div>
+  </section>
+
+  <div class="grid">
+    <section class="panel">
+      <h2>Principal and delegation</h2>
+      <dl id="delegation"></dl>
+    </section>
+    <section class="panel">
+      <h2>Exact current request</h2>
+      <dl id="request"></dl>
+    </section>
+  </div>
+
+  <div class="grid">
+    <section class="panel">
+      <h2>Machine-readable standing view</h2>
+      <pre id="proof"></pre>
+    </section>
+    <section class="panel">
+      <h2>GatePass precondition</h2>
+      <pre id="gatepass"></pre>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>What this demonstrates</h2>
+    <p>ATG locally demonstrates how a requester can prove control of a registered software-agent identity, present signed evidence of its accountable principal and delegated authority, and bind the exact request to that standing before GatePass evaluation begins.</p>
+    <p>The browser renders fixed review records. Run the repository CLI to execute the deterministic Ed25519 fixture verification and existing canonical exact-action GatePass evaluation:</p>
+    <pre>npm run demo:agent-standing
+npm run demo:agent-standing -- --summary-only
+npm run demo:agent-standing -- --scenario valid_organisation_sponsored_agent
+npm run demo:agent-standing -- --json
+npm run test:agent-standing</pre>
+    <p><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/verified-agent-standing.md">Read the evidence model and claims boundary</a> · <a href="./">Return to Agent Trust Gate™</a></p>
+  </section>
+
+  <section class="panel" style="margin-top:18px">
+    <h2>Claims boundary</h2>
+    <p>Agent Standing is a precondition, not a safety certificate. A fixture signature proves fixture-key control and signed-data integrity; it does not make every assertion factually true.</p>
+    <p>P3-M154 does not prove that software is intelligent or conscious, prove unassisted message composition, prove complete autonomy, verify a real individual or company, provide production organisational identity assurance, provide live WebAuthn, SSO, enterprise credential or identity integration, provide production runtime or hardware attestation, certify honesty, safety or compliance, issue legal identity, execute actions, process payments, authorise settlement, contact agents or operate a hosted identity service.</p>
+    <p>S5 runtime attestation is a future/high-assurance category only. This local demonstrator derives at most S4 and claims no production attestation.</p>
+  </section>
+</main>
+<footer>Agent Trust Gate™ · Fixed local-fixture evidence · No production key custody, identity assurance, runtime attestation, action execution, payment or settlement.</footer>
+<script>
+const scenarios=[
+{id:"self_declared_only",title:"1. Self-declared only",agent:"synthetic_agent_individual_001",account:"not supplied",key:"not supplied",keyResult:"not verified",principal:"not supplied",principalType:"not supplied",human:"not applicable",delegation:"not supplied",scope:"not supplied",limit:"not supplied",revocation:"not supplied",depth:"not supplied",action:"summarise_public_research",amount:"not applicable",counterparty:"synthetic_supplier_001",digest:"sha256:fbd3364612570dac1f1f80b80ece12e1eada0f9b7914f65fcfbbcb15c3d0ee9b",signedDigest:null,outcome:"STANDING_UNVERIFIABLE",assurance:"S0",reasons:["STANDING_PROOF_MISSING","STANDING_AGENT_IDENTITY_EVIDENCE_MISSING","STANDING_PRINCIPAL_EVIDENCE_MISSING","STANDING_DELEGATION_MISSING"],explanation:"A self-declared label supplies no verifiable identity, principal or delegation.",checks:[false,false,false,false,false,false],gatepass:false},
+{id:"invalid_key_challenge",title:"2. Invalid key challenge",agent:"synthetic_agent_individual_001",account:"synthetic_platform_account_individual_001",key:"fixture-key://agent-individual-001",keyResult:"invalid — signed challenge changed",principal:"synthetic_principal_individual_001",principalType:"individual",human:"not applicable",delegation:"delegation_invalid_key_challenge",scope:"supplier_payment / simulate_supplier_payment_authorisation",limit:"10,000 GBP minor units",revocation:"active fixture",depth:"0 / maximum 1",action:"simulate_supplier_payment_authorisation",amount:"2,000 GBP minor units",counterparty:"synthetic_supplier_001",digest:"sha256:3029c59f9b644d6c7077432afb4802e20839026eae188f54b2f346d5f5fe3efa",signedDigest:"same",outcome:"STANDING_REFUSED",assurance:"S1",reasons:["STANDING_KEY_CHALLENGE_INVALID","STANDING_PROOF_SIGNATURE_INVALID","STANDING_ASSURANCE_CLAIM_MISMATCH"],explanation:"The agent did not prove control of the declared fixture key.",checks:[true,false,true,true,true,true],gatepass:false},
+{id:"key_proven_no_delegation",title:"3. Key proven, no delegation",agent:"synthetic_agent_individual_001",account:"synthetic_platform_account_individual_001",key:"fixture-key://agent-individual-001",keyResult:"verified",principal:"synthetic_principal_individual_001",principalType:"individual",human:"not applicable",delegation:"not supplied",scope:"not supplied",limit:"not supplied",revocation:"unknown",depth:"not supplied",action:"simulate_supplier_payment_authorisation",amount:"2,000 GBP minor units",counterparty:"synthetic_supplier_001",digest:"sha256:4d729da7a2f9c9c0ca42ad2b8e086a7c1bf205912cdcb8e221871726aa36b98e",signedDigest:"same",outcome:"STANDING_REFUSED",assurance:"S2",reasons:["STANDING_DELEGATION_MISSING","STANDING_REQUEST_DIGEST_MISMATCH","STANDING_REQUIRED_EVIDENCE_MISSING"],explanation:"Key control identifies the fixture requester but creates no principal authority.",checks:[true,true,true,false,false,false],gatepass:false},
+{id:"expired_delegation",title:"4. Expired delegation",agent:"synthetic_agent_individual_001",account:"synthetic_platform_account_individual_001",key:"fixture-key://agent-individual-001",keyResult:"verified",principal:"synthetic_principal_individual_001",principalType:"individual",human:"not applicable",delegation:"delegation_expired_delegation",scope:"supplier_payment / simulate_supplier_payment_authorisation",limit:"10,000 GBP minor units",revocation:"active fixture",depth:"0 / maximum 1",action:"simulate_supplier_payment_authorisation",amount:"2,000 GBP minor units",counterparty:"synthetic_supplier_001",digest:"sha256:c5d51ca248fadbe736b57dcef2a6e1812775de60dcd5ca268cdffbfd1aadcf0d",signedDigest:"same",outcome:"STANDING_REFUSED",assurance:"S3",reasons:["STANDING_DELEGATION_EXPIRED"],explanation:"The verifier-owned clock is later than the signed expiry.",checks:[true,true,true,true,false,true],gatepass:false},
+{id:"revoked_delegation",title:"5. Revoked delegation",agent:"synthetic_agent_individual_001",account:"synthetic_platform_account_individual_001",key:"fixture-key://agent-individual-001",keyResult:"verified",principal:"synthetic_principal_individual_001",principalType:"individual",human:"not applicable",delegation:"delegation_revoked_delegation",scope:"supplier_payment / simulate_supplier_payment_authorisation",limit:"10,000 GBP minor units",revocation:"revoked fixture",depth:"0 / maximum 1",action:"simulate_supplier_payment_authorisation",amount:"2,000 GBP minor units",counterparty:"synthetic_supplier_001",digest:"sha256:6dd4cafcefdf8a8b86ba741f90d978003e48e9a6c9c43063164ee5320d57ba53",signedDigest:"same",outcome:"STANDING_REFUSED",assurance:"S3",reasons:["STANDING_DELEGATION_REVOKED"],explanation:"A valid signature cannot revive revoked authority.",checks:[true,true,true,true,false,true],gatepass:false},
+{id:"scope_mismatch",title:"6. Scope mismatch",agent:"synthetic_agent_individual_001",account:"synthetic_platform_account_individual_001",key:"fixture-key://agent-individual-001",keyResult:"verified",principal:"synthetic_principal_individual_001",principalType:"individual",human:"not applicable",delegation:"delegation_scope_mismatch",scope:"research / summarise_public_research",limit:"10,000 GBP minor units",revocation:"active fixture",depth:"0 / maximum 1",action:"simulate_supplier_payment_authorisation",amount:"2,000 GBP minor units",counterparty:"synthetic_supplier_001",digest:"sha256:2085f0a810eb77879ee031bfdb43a193ba1a6a59bf6adfb463944ee605ecebb1",signedDigest:"same",outcome:"STANDING_REFUSED",assurance:"S3",reasons:["STANDING_PURPOSE_OUT_OF_SCOPE","STANDING_ACTION_OUT_OF_SCOPE"],explanation:"Research authority does not permit a payment-style request.",checks:[true,true,true,true,true,false],gatepass:false},
+{id:"authority_limit_breach",title:"7. Authority limit breach",agent:"synthetic_agent_individual_001",account:"synthetic_platform_account_individual_001",key:"fixture-key://agent-individual-001",keyResult:"verified",principal:"synthetic_principal_individual_001",principalType:"individual",human:"not applicable",delegation:"delegation_authority_limit_breach",scope:"supplier_payment / simulate_supplier_payment_authorisation",limit:"2,500 GBP minor units (£25.00)",revocation:"active fixture",depth:"0 / maximum 1",action:"simulate_supplier_payment_authorisation",amount:"4,000 GBP minor units (£40.00)",counterparty:"synthetic_supplier_001",digest:"sha256:50be44156ec95a2c22df3427449b1e049cb9440ce7cc5f4ede5e12fd3ab5f899",signedDigest:"same",outcome:"STANDING_REFUSED",assurance:"S3",reasons:["STANDING_AMOUNT_LIMIT_EXCEEDED"],explanation:"The current amount exceeds the signed integer-minor-unit limit.",checks:[true,true,true,true,true,false],gatepass:false},
+{id:"request_digest_changed",title:"8. Request digest changed",agent:"synthetic_agent_individual_001",account:"synthetic_platform_account_individual_001",key:"fixture-key://agent-individual-001",keyResult:"verified",principal:"synthetic_principal_individual_001",principalType:"individual",human:"not applicable",delegation:"delegation_request_digest_changed",scope:"supplier_payment / simulate_supplier_payment_authorisation",limit:"10,000 GBP minor units",revocation:"active fixture",depth:"0 / maximum 1",action:"simulate_supplier_payment_authorisation",amount:"2,600 current; 2,500 signed",counterparty:"synthetic_supplier_001",digest:"sha256:70ec98c9e1eb4260cdb7dbbe063298658c542fcdd41a82a1f5ff1a3c9067a008",signedDigest:"sha256:c14872b2ff4245221e52fbd583e3f3ed0fbf0b9f62dcdb6d83dd52479aa2006e",outcome:"STANDING_REFUSED",assurance:"S3",reasons:["STANDING_REQUEST_DIGEST_MISMATCH"],explanation:"The current canonical request differs from the request signed into the standing proof and delegation.",checks:[true,true,true,true,true,false],gatepass:false},
+{id:"delegation_depth_exceeded",title:"9. Delegation depth exceeded",agent:"synthetic_agent_individual_001",account:"synthetic_platform_account_individual_001",key:"fixture-key://agent-individual-001",keyResult:"verified",principal:"synthetic_principal_individual_001",principalType:"individual",human:"not applicable",delegation:"delegation_delegation_depth_exceeded",scope:"supplier_payment / simulate_supplier_payment_authorisation",limit:"10,000 GBP minor units",revocation:"active fixture",depth:"2 / maximum 1",action:"simulate_supplier_payment_authorisation",amount:"2,000 GBP minor units",counterparty:"synthetic_supplier_001",digest:"sha256:4f88f04140e4a6bf0ed88bbd90f132a1e80f802e882a83c748e881a3cfc7808a",signedDigest:"same",outcome:"STANDING_REFUSED",assurance:"S3",reasons:["STANDING_DELEGATION_DEPTH_EXCEEDED"],explanation:"The sub-agent chain exceeds the signed maximum delegation depth.",checks:[true,true,true,true,true,false],gatepass:false},
+{id:"valid_individual_sponsored_agent",title:"10. Valid individual-sponsored agent",agent:"synthetic_agent_individual_001",account:"synthetic_platform_account_individual_001",key:"fixture-key://agent-individual-001",keyResult:"verified",principal:"synthetic_principal_individual_001",principalType:"individual",human:"not applicable",delegation:"delegation_valid_individual_sponsored_agent",scope:"supplier_payment / simulate_supplier_payment_authorisation",limit:"10,000 GBP minor units",revocation:"active fixture",depth:"0 / maximum 1",action:"simulate_supplier_payment_authorisation",amount:"2,000 GBP minor units",counterparty:"synthetic_supplier_001",digest:"sha256:ee164e8564490b9657d06a9f89d85d5748773042d08d906e0655853d3ea368ef",signedDigest:"same",outcome:"STANDING_VERIFIED",assurance:"S3",reasons:["STANDING_ALL_CHECKS_PASSED"],explanation:"Agent key control, individual principal delegation, constraints and exact request all verify.",checks:[true,true,true,true,true,true],gatepass:true},
+{id:"valid_organisation_sponsored_agent",title:"11. Valid organisation-sponsored agent",agent:"synthetic_agent_organisation_001",account:"synthetic_platform_account_organisation_001",key:"fixture-key://agent-organisation-001",keyResult:"verified",principal:"synthetic_organisation_sponsor_001",principalType:"organisation",human:"fixture://accountable-human-sponsors/sponsor_001",delegation:"delegation_valid_organisation_sponsored_agent",scope:"supplier_payment / simulate_supplier_payment_authorisation",limit:"10,000 GBP minor units",revocation:"active fixture",depth:"0 / maximum 1",action:"simulate_supplier_payment_authorisation",amount:"1,500 GBP minor units",counterparty:"synthetic_supplier_001",digest:"sha256:fa8dce72288b471e89258a62bd503f1b03fb966998b740937c5508637b864358",signedDigest:"same",outcome:"STANDING_VERIFIED",assurance:"S4",reasons:["STANDING_ALL_CHECKS_PASSED"],explanation:"Organisation sponsorship, accountable human reference, delegation and exact request verify at S4.",checks:[true,true,true,true,true,true],gatepass:true},
+{id:"valid_standing_then_gatepass",title:"12. Verified standing, then GatePass",agent:"synthetic_agent_individual_001",account:"synthetic_platform_account_individual_001",key:"fixture-key://agent-individual-001",keyResult:"verified",principal:"synthetic_principal_individual_001",principalType:"individual",human:"not applicable",delegation:"delegation_valid_standing_then_gatepass",scope:"supplier_payment / simulate_supplier_payment_authorisation",limit:"10,000 GBP minor units",revocation:"active fixture",depth:"0 / maximum 1",action:"simulate_supplier_payment_authorisation",amount:"2,200 GBP minor units",counterparty:"synthetic_supplier_001",digest:"sha256:0d2c8f1e9b4dc6e77de7fdaac9a2780cb8184f7163c17ec6fa4da38b66f4575d",signedDigest:"same",outcome:"STANDING_VERIFIED",assurance:"S3",reasons:["STANDING_ALL_CHECKS_PASSED"],explanation:"Standing verifies first; the existing local exact-action GatePass evaluator then verifies the same digest.",checks:[true,true,true,true,true,true],gatepass:true,gatepassAttempted:true}
+];
+const checkLabels=["Agent identity evidence","Agent key-control challenge","Principal evidence","Signed delegation and issuer","Validity and revocation","Scope, limits, depth and exact request"];
+const select=document.querySelector("#scenario");for(const scenario of scenarios)select.add(new Option(scenario.title,scenario.id));
+function fillDl(element,items){element.replaceChildren();for(const [label,value] of items){const dt=document.createElement("dt");dt.textContent=label;const dd=document.createElement("dd");dd.textContent=String(value);element.append(dt,dd)}}
+function render(){const scenario=scenarios.find(item=>item.id===select.value)||scenarios[0];
+ fillDl(document.querySelector("#claim"),[["Agent",scenario.agent],["Account/platform",scenario.account],["Agent public key",scenario.key],["Key-control result",scenario.keyResult],["Verified assurance",scenario.assurance]]);
+ const assurance=document.querySelector("#assurance");assurance.replaceChildren();for(const level of ["S0","S1","S2","S3","S4","S5"]){const span=document.createElement("span");span.textContent=level+(level==="S5"?" future":"");if(level===scenario.assurance)span.className="active";assurance.append(span)}
+ const verdict=document.querySelector("#verdict");verdict.textContent=scenario.outcome;verdict.className="verdict "+(scenario.outcome==="STANDING_VERIFIED"?"verified":scenario.outcome==="STANDING_REFUSED"?"refused":"unverifiable");document.querySelector("#explanation").textContent=scenario.explanation;
+ const codes=document.querySelector("#reasonCodes");codes.replaceChildren();for(const code of scenario.reasons){const li=document.createElement("li");li.textContent=code;codes.append(li)}
+ const checks=document.querySelector("#checks");checks.replaceChildren();scenario.checks.forEach((passed,index)=>{const row=document.createElement("div");row.className="check";const label=document.createElement("span");label.textContent=checkLabels[index];const value=document.createElement("strong");value.className=passed?"yes":"no";value.textContent=passed?"VERIFIED":"NOT VERIFIED";row.append(label,value);checks.append(row)});
+ fillDl(document.querySelector("#delegation"),[["Principal",scenario.principal],["Principal type",scenario.principalType],["Accountable human sponsor",scenario.human],["Delegation",scenario.delegation],["Permitted scope",scenario.scope],["Authority limit",scenario.limit],["Revocation",scenario.revocation],["Delegation depth",scenario.depth]]);
+ fillDl(document.querySelector("#request"),[["Action",scenario.action],["Amount",scenario.amount],["Counterparty",scenario.counterparty],["Current digest",scenario.digest],["Signed digest",scenario.signedDigest||"not supplied"]]);
+ document.querySelector("#proof").textContent=JSON.stringify({version:"atg.agent-standing-proof.local.v1",agentIdentifier:scenario.agent,agentPublicKeyReference:scenario.key,principalIdentifier:scenario.principal,delegationIdentifier:scenario.delegation,exactRequestDigest:scenario.signedDigest==="same"?scenario.digest:scenario.signedDigest,verifiedAssurance:scenario.assurance,outcome:scenario.outcome,reasonCodes:scenario.reasons,localFixtureOnly:true},null,2);
+ document.querySelector("#gatepass").textContent=JSON.stringify({standingOutcome:scenario.outcome,gatePassEvaluationMayBegin:scenario.gatepass,gatePassEvaluationAttempted:scenario.gatepassAttempted===true,gatePassEvaluationResult:scenario.gatepassAttempted===true?"VERIFIED_AFTER_STANDING":"NOT_RUN",externalActionOccurred:false,payment:false,settlement:false},null,2);
+}
+document.querySelector("#inspect").addEventListener("click",render);select.addEventListener("change",render);render();
+</script>
+</body>
+</html>

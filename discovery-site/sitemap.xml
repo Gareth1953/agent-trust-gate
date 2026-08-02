@@ -2,7 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://gareth1953.github.io/agent-trust-gate/</loc>
-    <lastmod>2026-07-13</lastmod>
+    <lastmod>2026-08-02</lastmod>
+  </url>
+  <url>
+    <loc>https://gareth1953.github.io/agent-trust-gate/human-authority-demo.html</loc>
+    <lastmod>2026-08-02</lastmod>
+  </url>
+  <url>
+    <loc>https://gareth1953.github.io/agent-trust-gate/agent-standing-demo.html</loc>
+    <lastmod>2026-08-02</lastmod>
   </url>
   <url>
     <loc>https://gareth1953.github.io/agent-trust-gate/agent-trust-gate.discovery.json</loc>

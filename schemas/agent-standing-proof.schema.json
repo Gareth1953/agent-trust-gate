@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-standing-proof.schema.json",
+  "title": "Agent Trust Gate Agent Standing Proof",
+  "description": "Closed local-fixture proof that binds a declared software-agent key, accountable principal, signed delegation and exact current GatePass request. A fixture signature authenticates a fixture assertion but does not prove every assertion is factually true.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "proofIdentifier",
+    "agentIdentifier",
+    "agentPublicKeyReference",
+    "declaredSoftwareAgentCategory",
+    "accountOrPlatformIdentity",
+    "principalIdentifier",
+    "principalType",
+    "organisationSponsorIdentifier",
+    "accountableHumanSponsorReference",
+    "delegation",
+    "challenge",
+    "exactRequestDigest",
+    "sessionBinding",
+    "runBinding",
+    "evidenceReferences",
+    "assuranceClassification",
+    "limitations",
+    "signatureMetadata"
+  ],
+  "properties": {
+    "version": { "const": "atg.agent-standing-proof.local.v1" },
+    "proofIdentifier": { "type": "string", "pattern": "^standing_proof_[A-Za-z0-9_-]+$" },
+    "agentIdentifier": { "type": "string", "minLength": 1, "maxLength": 160 },
+    "agentPublicKeyReference": { "type": "string", "pattern": "^fixture-key://[A-Za-z0-9._-]+$" },
+    "declaredSoftwareAgentCategory": {
+      "type": "string",
+      "enum": ["tool_calling_agent", "workflow_agent", "sub_agent"]
+    },
+    "accountOrPlatformIdentity": { "type": ["string", "null"], "maxLength": 160 },
+    "principalIdentifier": { "type": ["string", "null"], "maxLength": 160 },
+    "principalType": { "type": ["string", "null"], "enum": ["individual", "organisation", null] },
+    "organisationSponsorIdentifier": { "type": ["string", "null"], "maxLength": 160 },
+    "accountableHumanSponsorReference": { "type": ["string", "null"], "maxLength": 240 },
+    "delegation": { "$ref": "#/$defs/delegation" },
+    "challenge": { "$ref": "#/$defs/challenge" },
+    "exactRequestDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "sessionBinding": { "type": ["string", "null"], "maxLength": 200 },
+    "runBinding": { "type": ["string", "null"], "maxLength": 200 },
+    "evidenceReferences": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/evidenceReference" },
+      "uniqueItems": true
+    },
+    "assuranceClassification": {
+      "type": "string",
+      "enum": ["S0", "S1", "S2", "S3", "S4", "S5"]
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "signatureMetadata": { "$ref": "#/$defs/signatureMetadata" }
+  },
+  "$defs": {
+    "signatureMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm",
+        "keyId",
+        "signedAt",
+        "payloadHash",
+        "localFixtureOnly",
+        "deterministicPublicFixture",
+        "productionKeyCustody",
+        "signature"
+      ],
+      "properties": {
+        "algorithm": { "const": "ed25519-local-demo" },
+        "keyId": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "signedAt": { "type": "string", "format": "date-time" },
+        "payloadHash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+        "localFixtureOnly": { "const": true },
+        "deterministicPublicFixture": { "const": true },
+        "productionKeyCustody": { "const": false },
+        "signature": { "type": "string", "pattern": "^[A-Za-z0-9+/]+={0,2}$" }
+      }
+    },
+    "nullableSignatureMetadata": {
+      "oneOf": [
+        { "$ref": "#/$defs/signatureMetadata" },
+        { "type": "null" }
+      ]
+    },
+    "resourceLimit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resource", "maximum"],
+      "properties": {
+        "resource": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "maximum": { "type": "number", "minimum": 0 }
+      }
+    },
+    "evidenceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "reference", "status", "localFixtureOnly"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "agent_identity",
+            "account_or_platform_identity",
+            "agent_public_key",
+            "principal_identity",
+            "organisation_sponsor",
+            "accountable_human_sponsor",
+            "delegation",
+            "revocation_status"
+          ]
+        },
+        "reference": { "type": "string", "minLength": 1, "maxLength": 240 },
+        "status": { "type": "string", "enum": ["present", "missing"] },
+        "localFixtureOnly": { "const": true }
+      }
+    },
+    "challenge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "nonce",
+        "agentIdentifier",
+        "agentPublicKeyReference",
+        "exactRequestDigest",
+        "sessionBinding",
+        "runBinding",
+        "signatureMetadata"
+      ],
+      "properties": {
+        "version": { "const": "atg.agent-standing-key-challenge.local.v1" },
+        "nonce": { "type": ["string", "null"], "maxLength": 200 },
+        "agentIdentifier": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "agentPublicKeyReference": { "type": "string", "pattern": "^fixture-key://[A-Za-z0-9._-]+$" },
+        "exactRequestDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+        "sessionBinding": { "type": ["string", "null"], "maxLength": 200 },
+        "runBinding": { "type": ["string", "null"], "maxLength": 200 },
+        "signatureMetadata": { "$ref": "#/$defs/nullableSignatureMetadata" }
+      }
+    },
+    "delegation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "delegationIdentifier",
+        "delegationIssuer",
+        "issuerPublicKeyReference",
+        "agentIdentifier",
+        "principalIdentifier",
+        "permittedPurposes",
+        "permittedActions",
+        "maximumAmountMinorUnits",
+        "currency",
+        "resourceLimits",
+        "permittedCounterparties",
+        "issuedAt",
+        "expiresAt",
+        "revocationState",
+        "revocationReference",
+        "delegationDepth",
+        "maximumDelegationDepth",
+        "exactRequestDigest",
+        "sessionBinding",
+        "runBinding",
+        "signatureMetadata"
+      ],
+      "properties": {
+        "version": { "const": "atg.agent-standing-delegation.local.v1" },
+        "delegationIdentifier": { "type": ["string", "null"], "maxLength": 180 },
+        "delegationIssuer": { "type": ["string", "null"], "maxLength": 160 },
+        "issuerPublicKeyReference": { "type": ["string", "null"], "maxLength": 200 },
+        "agentIdentifier": { "type": ["string", "null"], "maxLength": 160 },
+        "principalIdentifier": { "type": ["string", "null"], "maxLength": 160 },
+        "permittedPurposes": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1, "maxLength": 120 },
+          "uniqueItems": true
+        },
+        "permittedActions": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1, "maxLength": 160 },
+          "uniqueItems": true
+        },
+        "maximumAmountMinorUnits": { "type": ["integer", "null"], "minimum": 0 },
+        "currency": { "type": ["string", "null"], "pattern": "^[A-Z]{3}$" },
+        "resourceLimits": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/resourceLimit" },
+          "uniqueItems": true
+        },
+        "permittedCounterparties": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1, "maxLength": 160 },
+              "uniqueItems": true
+            },
+            { "type": "null" }
+          ]
+        },
+        "issuedAt": { "type": ["string", "null"], "format": "date-time" },
+        "expiresAt": { "type": ["string", "null"], "format": "date-time" },
+        "revocationState": { "type": "string", "enum": ["active", "revoked", "unknown"] },
+        "revocationReference": { "type": ["string", "null"], "maxLength": 240 },
+        "delegationDepth": { "type": ["integer", "null"], "minimum": 0 },
+        "maximumDelegationDepth": { "type": ["integer", "null"], "minimum": 0 },
+        "exactRequestDigest": {
+          "type": ["string", "null"],
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "sessionBinding": { "type": ["string", "null"], "maxLength": 200 },
+        "runBinding": { "type": ["string", "null"], "maxLength": 200 },
+        "signatureMetadata": { "$ref": "#/$defs/nullableSignatureMetadata" }
+      }
+    }
+  }
+}

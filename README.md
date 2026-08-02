@@ -111,6 +111,46 @@ All identities, permissions, authentication results and transactions are fiction
 - [Working demonstrator design and limitations](docs/verified-human-authority-working-demonstrator.md)
 - [Sample machine-readable demonstration report](examples/human-authority-demo-report.json)
 
+## Verify agent standing before GatePass
+
+P3-M154 adds a deterministic local precondition: first prove control of the
+declared software-agent identity, identify its accountable individual or
+organisational principal, verify the principal's signed delegation, and bind
+that standing to the exact current request. Only `STANDING_VERIFIED` may begin
+normal GatePass evaluation; `STANDING_REFUSED` and `STANDING_UNVERIFIABLE`
+fail closed.
+
+> No verified agent identity. No verified principal. No valid delegation. No standing to request a GatePass.
+
+```bash
+npm run demo:agent-standing
+npm run demo:agent-standing -- --summary-only
+npm run demo:agent-standing -- --scenario valid_organisation_sponsored_agent
+npm run demo:agent-standing -- --json
+npm run test:agent-standing
+```
+
+The twelve synthetic scenarios exercise a signed agent-key challenge, signed
+individual and organisation delegations, integer-minor-unit limits, expiry,
+revocation, scope, counterparty and delegation-depth checks, the existing
+canonical exact-action digest, and a verified-standing handoff into the
+existing local GatePass evaluator. S0–S4 are evidence classifications; S5 is a
+future runtime-attestation category and is not implemented.
+
+**Public local demonstrator:**
+[open `agent-standing-demo.html`](discovery-site/agent-standing-demo.html)
+from the repository or use the project website navigation. It uses fixed
+synthetic data and no credentials, uploads, analytics, cookies, network API,
+payment, settlement or external execution.
+
+ATG locally demonstrates how a requester can prove control of a registered software-agent identity, present signed evidence of its accountable principal and delegated authority, and bind the exact request to that standing before GatePass evaluation begins.
+
+Agent Standing does not prove that software is intelligent or conscious,
+autonomous, honest, safe or compliant. A signature authenticates an assertion;
+it does not make every assertion true. See the
+[design, evidence levels and complete claims boundary](docs/verified-agent-standing.md)
+and the closed [AgentStandingProof schema](schemas/agent-standing-proof.schema.json).
+
 ## Where is the technical evidence?
 
 - [Exact-action design and failure boundaries](docs/exact-action-gatepass-and-execution-receipts.md)
