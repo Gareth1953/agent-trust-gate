@@ -29,12 +29,14 @@ ATG is a local-first, synthetic, protocol-agnostic and deterministic demonstrato
 The pack keeps five claims separate:
 
 1. **Identity verification** checks fixture evidence about the declared agent or human identity.
-2. **Authority verification** evaluates current fixture delegation, role, limits and separation of duties.
+2. **Authority verification** evaluates configured evidence of current organisational authority for this exact action, including fixture delegation, role, limits and separation of duties; ATG does not independently establish legal authority.
 3. **Business-policy evaluation** applies the configured supplier-change rules.
 4. **GatePass decision** allows only one exact, fresh, one-use master-data proposal or refuses it.
 5. **Execution evidence** is a separate receipt state; a GatePass never proves that an ERP change occurred.
 
 Cryptographic fixture evidence can support integrity, binding and signer-related evidence within the configured local model. It does not prove honesty, truth, legality, fraud absence, bank-information correctness, competence, compliance, payment validity or general agent safety.
+
+Configured evidence shows that the organisation’s independent-verification step was completed; ATG does not determine whether the bank details are correct.
 
 ## Vertical-first strategy
 
@@ -53,7 +55,7 @@ The assessment is intended for a coalition rather than one isolated owner:
 | CISO | Consequential agent actions crossing control boundaries | Fail-closed controls, evidence integrity and explicit limitations |
 | Finance-controls leader | Unauthorised supplier-payment destination changes | Exact scope, dual approval, replay and execution-evidence separation |
 | Procurement transformation leader | Supplier-maintenance workflow design | Current workflow, hand-offs, verification and exception map |
-| IAM leader | Identity-to-authority gap | Principal, delegation, current human authority and revocation checks |
+| IAM leader | Identity-to-authority gap | Principal, delegation, configured evidence of current organisational authority for this exact action, and revocation checks |
 | Enterprise architect | Fit with existing control systems | Complementarity, evidence contracts and integration gaps |
 
 ## Selected supplier-change wedge
@@ -68,7 +70,7 @@ agent identity
   -> delegated supplier-maintenance authority
   -> Agent Standing
   -> exact proposed bank-detail change
-  -> independent-verification evidence
+  -> independent-verification-step evidence
   -> authorised human approval
   -> separation of duties and dual approval
   -> freshness, expiry and replay state
@@ -128,7 +130,7 @@ The following phrases are recorded here solely as a do-not-use control list and 
 1. Can the reviewer explain the product as an exact-action trust evaluation rather than a broad transformation platform?
 2. Can the reviewer identify the supplier bank-detail change as the first workflow?
 3. Can the reviewer distinguish login from current, scoped authority for one action?
-4. Are independent verification, separation of duties and dual approval visible and credible as configured policy checks?
+4. Is configured evidence of the organisation’s completed independent-verification step visible alongside separation-of-duties and dual-approval checks, without implying that ATG determines whether bank details are correct?
 5. Do the account, supplier, digest, expiry, replay, standing and authority refusals fail closed with usable reasons?
 6. Is the difference between a GatePass decision and execution evidence unmistakable?
 7. Are the maturity, data, integration, cryptographic and commercial limitations clear?

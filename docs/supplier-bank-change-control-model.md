@@ -12,7 +12,7 @@ The model distinguishes identity verification, authority verification, business-
 | --- | --- |
 | Procurement Change Agent 12 | Requests one supplier bank-detail amendment |
 | Procurement Operations Department | Accountable principal for the requesting agent |
-| Independent Supplier Verification Analyst | Records approved verification evidence through a route separate from the request |
+| Independent Supplier Verification Analyst | Records configured evidence that the organisation’s independent-verification step was completed through a route separate from the request |
 | Supplier Master Data Manager | First authorised human approver |
 | Finance Controls Manager | Second authorised human approver for the configured risk tier |
 | ATG local evaluator | Applies deterministic fixture policy and creates a GatePass or refusal |
@@ -28,18 +28,20 @@ Agent Standing requires verifiable fixture identity evidence, principal evidence
 
 ## Independent verification
 
-The configured policy requires evidence that the supplier-requested change was checked through an approved fictional route independent of the requester. The evidence binds the supplier reference, proposed four-digit account ending, verifier identity, method identifier, evidence timestamp and expiry.
+The configured policy requires evidence that the supplier-requested change passed the organisation’s independent-verification step through a fictional route separate from the requester. The evidence binds the supplier reference, proposed four-digit account ending, verifier identity, method identifier, evidence timestamp and expiry.
+
+Configured evidence shows that the organisation’s independent-verification step was completed; ATG does not determine whether the bank details are correct.
 
 The requester cannot verify its own request. The model tests only whether the configured local fixture evidence meets policy; it does not contact a supplier or establish that bank information is correct.
 
 ## Human authority, separation of duties and dual approval
 
-Two distinct active human fixture identities must approve the same exact-action digest:
+The model evaluates configured evidence of current organisational authority for this exact action. That evidence must show that two distinct active human fixture identities approve the same exact-action digest:
 
 - a Supplier Master Data Manager with authority for the supplier category and risk tier; and
 - a Finance Controls Manager with the configured second-approval authority.
 
-Neither approver may be the requester or independent verifier. Both authorities must be current at decision time. A known identity with the wrong role, exceeded risk-tier limit or revoked authority is refused. Authentication is evidence of identity participation, not business authority by itself.
+Neither approver may be the requester or independent verifier. The configured organisational-authority evidence for both approvers must be current at decision time. A known identity with the wrong role, exceeded risk-tier limit or revoked authority is refused. Authentication is evidence of identity participation, not business authority by itself, and ATG does not independently establish legal authority.
 
 ## Canonical action fields
 
@@ -65,7 +67,7 @@ Canonical JSON key ordering and SHA-256 produce the local digest. Any field or c
 
 ## Freshness, expiry, nonce and replay
 
-The reference decision time is deterministic. Independent-verification evidence and both exact approvals must be valid then. Approval validity may not exceed 30 minutes. A GatePass carries one nonce and one-use semantics. A consumed nonce refuses replay; local in-memory or fixture state is not a production replay store and does not provide distributed atomicity.
+The reference decision time is deterministic. Evidence of completion of the organisation’s independent-verification step and both exact approvals must be valid then. Approval validity may not exceed 30 minutes. A GatePass carries one nonce and one-use semantics. A consumed nonce refuses replay; local in-memory or fixture state is not a production replay store and does not provide distributed atomicity.
 
 ## Decision and refusal contract
 
@@ -96,7 +98,7 @@ If someone claims execution without that separate evidence, the model returns `E
 
 ## Audit evidence
 
-The local audit record includes the proposed and approved canonical actions; both digests; agent, principal and delegation results; standing outcome; verification evidence; human identities, roles and current authority states; separation-of-duties and dual-approval results; decision timestamp; expiry; nonce state; GatePass or refusal; and separate execution-evidence status.
+The local audit record includes the proposed and approved canonical actions; both digests; agent, principal and delegation results; standing outcome; configured evidence of completion of the independent-verification step; human identities, roles and configured organisational-authority states; separation-of-duties and dual-approval results; decision timestamp; expiry; nonce state; GatePass or refusal; and separate execution-evidence status.
 
 ## Limitations
 

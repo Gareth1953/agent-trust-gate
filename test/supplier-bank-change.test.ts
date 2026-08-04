@@ -143,6 +143,42 @@ test("replay refuses a consumed GatePass without creating execution evidence", (
   assert.equal(decision.externalActionPerformed, false);
 });
 
+test("enterprise wording limits independent-verification and authority results to configured evidence", () => {
+  const independentPaths = [
+    "docs/executive-decision-brief.md",
+    "docs/enterprise-positioning-validation-pack.md",
+    "docs/supplier-bank-change-control-model.md",
+    "docs/workflow-governance-assessment-offer.md",
+    "site/supplier-bank-change-demo.html",
+    "src/supplier-bank-change-model.ts",
+  ];
+  const authorityPaths = [
+    ...independentPaths,
+    "docs/iam-workflow-observability-atg-comparison.md",
+  ];
+  const normalizeWording = (value: string): string => value.replaceAll("’", "'");
+  const independentClarification = "Configured evidence shows that the organisation's independent-verification step was completed; ATG does not determine whether the bank details are correct.";
+  const authorityClarification = "configured evidence of current organisational authority for this exact action";
+
+  for (const path of independentPaths) {
+    const source = normalizeWording(readFileSync(join(root, path), "utf8"));
+    assert.ok(source.includes(independentClarification), path);
+  }
+  for (const path of authorityPaths) {
+    const source = normalizeWording(readFileSync(join(root, path), "utf8"));
+    assert.ok(source.toLowerCase().includes(authorityClarification), path);
+    assert.match(source, /ATG does not independently establish legal authority\./i, path);
+  }
+
+  const combined = authorityPaths
+    .map((path) => readFileSync(join(root, path), "utf8"))
+    .join("\n");
+  assert.doesNotMatch(
+    combined,
+    /approved independent-verification evidence|current human authority|current approved verification evidence/i,
+  );
+});
+
 test("canonical action digest is stable and binds every action field", () => {
   const scenario = loadSupplierBankChangeScenario("valid_exact_change");
   const digest = createSupplierBankChangeActionDigest(scenario.action);

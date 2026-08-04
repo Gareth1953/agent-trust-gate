@@ -7,7 +7,7 @@
 **Proposed duration:** 2–4 weeks.<br>
 **Delivery boundary:** One fictional or sanitised consequential workflow; advisory, local and non-production.
 
-The assessment tests whether an organisation would gain value from binding agent identity, accountable principal, delegation, exact action, human authority, business policy, freshness, replay state, decision receipt and separate execution evidence. It may conclude that existing controls are sufficient.
+The assessment tests whether an organisation would gain value from binding agent identity, accountable principal, delegation, exact action, configured evidence of current organisational authority for this exact action, business policy, freshness, replay state, decision receipt and separate execution evidence. It may conclude that existing controls are sufficient. ATG does not independently establish legal authority.
 
 ## Possible deliverables
 
@@ -41,6 +41,8 @@ The assessment also does not validate bank details, authenticate against live id
 ## Evidence boundaries
 
 Identity verification, authority verification, business-policy evaluation, GatePass decision and execution evidence are separate assessment concepts. Cryptographic fixture evidence may demonstrate integrity, binding and signer-related evidence in the local model. It does not establish honesty, truth, legality, absence of fraud, bank-information correctness, competence, compliance, payment validity or general agent safety.
+
+Configured evidence shows that the organisation’s independent-verification step was completed; ATG does not determine whether the bank details are correct.
 
 ## Primary call to action
 

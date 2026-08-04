@@ -371,11 +371,11 @@ export function evaluateSupplierBankChange(
     || verification.proposedAccountEnding !== scenario.approvedAction.proposedAccountEnding) {
     return refuse(
       "INDEPENDENT_VERIFICATION_MISSING",
-      "No current evidence from an approved independent supplier-verification route is present.",
+      "Configured evidence does not show that the organisation's independent-verification step was completed; ATG does not determine whether the bank details are correct.",
       "independent_verification",
     );
   }
-  controls.push({ control: "independent_verification", passed: true, detail: "Current approved verification evidence is present in the local fixture." });
+  controls.push({ control: "independent_verification", passed: true, detail: "Configured evidence shows that the organisation's independent-verification step was completed; ATG does not determine whether the bank details are correct." });
 
   if (verification.verifierIdentity === verification.requesterIdentity
     || verification.verifierIdentity === scenario.agent.identity) {
@@ -404,7 +404,7 @@ export function evaluateSupplierBankChange(
   if (revokedApproval !== undefined) {
     return refuse(
       "APPROVER_AUTHORITY_REVOKED",
-      "A human approver's authority is no longer active at the decision time.",
+      "Configured evidence shows that a human approver's organisational authority for this exact action was revoked before the decision.",
       "current_human_authority",
     );
   }
@@ -417,7 +417,7 @@ export function evaluateSupplierBankChange(
   if (wrongRole !== undefined) {
     return refuse(
       "APPROVER_ROLE_UNAUTHORISED",
-      "An active human identity does not hold the required supplier-master-data approval role and action authority.",
+      "Configured evidence does not show that an active human identity has the required organisational role and authority for this exact action.",
       "human_approval_role",
     );
   }
@@ -465,7 +465,7 @@ export function evaluateSupplierBankChange(
       "dual_approval",
     );
   }
-  controls.push({ control: "dual_approval", passed: true, detail: "Two distinct authorised humans approved the same exact action." });
+  controls.push({ control: "dual_approval", passed: true, detail: "Configured evidence of current organisational authority for this exact action is present for two distinct human fixture identities; ATG does not independently establish legal authority." });
 
   if (scenario.presentedGatePass.state === "consumed") {
     return refuse(

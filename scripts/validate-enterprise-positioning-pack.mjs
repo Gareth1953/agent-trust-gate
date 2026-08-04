@@ -275,14 +275,37 @@ check(
   "pack, control model and screen distinguish identity, authority, policy, decision and execution evidence",
 );
 
+const clarificationFiles = [
+  "docs/executive-decision-brief.md",
+  "docs/enterprise-positioning-validation-pack.md",
+  "docs/supplier-bank-change-control-model.md",
+  "docs/iam-workflow-observability-atg-comparison.md",
+  "docs/workflow-governance-assessment-offer.md",
+  "site/supplier-bank-change-demo.html",
+  "src/supplier-bank-change-model.ts",
+  "examples/supplier-bank-change-missing-verification.json",
+];
+const clarificationText = clarificationFiles.map(read).join("\n").replaceAll("’", "'");
+const independentClarification = "Configured evidence shows that the organisation's independent-verification step was completed; ATG does not determine whether the bank details are correct.";
+const authorityClarification = "configured evidence of current organisational authority for this exact action";
+const legacyEvidenceWording = /approved independent-verification evidence|current human authority|current approved verification evidence/i;
+check(
+  "enterprise_evidence_wording_clarified",
+  clarificationText.includes(independentClarification)
+    && clarificationText.toLowerCase().includes(authorityClarification)
+    && clarificationText.includes("ATG does not independently establish legal authority.")
+    && !legacyEvidenceWording.test(clarificationText),
+  "enterprise wording describes configured independent-verification-step and organisational-authority evidence without claiming bank-detail correctness or legal authority",
+);
+
 const html = read("site/supplier-bank-change-demo.html");
 const requiredScreenPhrases = [
   "Proposed supplier change",
   "Requesting agent",
   "Principal",
   "Delegation",
-  "Independent-verification evidence",
-  "Authorised humans",
+  "Independent-verification-step evidence",
+  "Configured organisational-authority evidence",
   "Exact-action digest",
   "GatePass or refusal",
   "Separate execution status",

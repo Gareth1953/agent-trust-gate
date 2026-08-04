@@ -2,7 +2,7 @@
   "scenarioVersion": "atg.supplier-bank-change.scenario.local.v1",
   "scenarioId": "missing_independent_verification",
   "title": "Missing independent verification refused",
-  "description": "A supplier request exists, but approved independent-verification evidence is absent.",
+  "description": "A supplier request exists, but configured evidence does not show that the organisation's independent-verification step was completed; ATG does not determine whether the bank details are correct.",
   "synthetic": true,
   "realData": false,
   "networkAccess": false,

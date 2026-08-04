@@ -98,7 +98,7 @@
 
     <section class="stages" aria-label="Distinct evaluation stages">
       <div class="stage"><small>1 · Identity verification</small><strong id="identity-stage"></strong></div>
-      <div class="stage"><small>2 · Authority verification</small><strong id="authority-stage"></strong></div>
+      <div class="stage"><small>2 · Authority verification (configured evidence)</small><strong id="authority-stage"></strong></div>
       <div class="stage"><small>3 · Business-policy evaluation</small><strong id="policy-stage"></strong></div>
       <div class="stage"><small>4 · GatePass decision</small><strong id="gate-stage"></strong></div>
       <div class="stage"><small>5 · Execution evidence</small><strong id="execution-stage"></strong></div>
@@ -130,7 +130,7 @@
       </section>
 
       <section class="card">
-        <h2>5. Independent-verification evidence</h2>
+        <h2>5. Independent-verification-step evidence</h2>
         <dl>
           <dt>Requirement</dt><dd>Required</dd>
           <dt>Evidence</dt><dd id="verification-result"></dd>
@@ -141,7 +141,8 @@
       </section>
 
       <section class="card">
-        <h2>6. Authorised humans</h2>
+        <h2>6. Configured organisational-authority evidence</h2>
+        <p>ATG evaluates configured evidence of current organisational authority for this exact action. ATG does not independently establish legal authority.</p>
         <dl>
           <dt>First approval</dt><dd id="approval-one"></dd>
           <dt>Second approval</dt><dd id="approval-two"></dd>
@@ -217,11 +218,11 @@
       principal: "VERIFIED — local fixture",
       delegation: "ACTIVE — bank-detail change in scope",
       standing: "VERIFIED",
-      verification: "PRESENT — approved local fixture",
+      verification: "Configured evidence shows that the organisation’s independent-verification step was completed; ATG does not determine whether the bank details are correct.",
       verifier: "Fictional Verification Analyst 03",
       separation: "PASSED",
-      approvalOne: "Fictional Human 21 · Supplier Master Data Manager · active",
-      approvalTwo: "Fictional Human 34 · Finance Controls Manager · active",
+      approvalOne: "Configured evidence: Fictional Human 21 · Supplier Master Data Manager · current for this exact action",
+      approvalTwo: "Configured evidence: Fictional Human 34 · Finance Controls Manager · current for this exact action",
       dual: "PASSED — two distinct authorised humans",
       freshness: "PASSED — within 30 minutes",
       gatepass: "NOT ISSUED",
@@ -237,7 +238,7 @@
       { id: "valid_exact_change", title: "1 · Valid exact change", decision: "GATEPASS ISSUED", code: "ALL_CONTROLS_PASSED", reason: "All configured local controls pass for this one exact synthetic supplier master-data change.", gatepass: "ISSUED — one-use exact-action GatePass", signature: "VERIFIED — deterministic Ed25519 local fixture; non-production", execution: "SEPARATE SIMULATED RECEIPT PRESENT; no ERP event", policyStage: "PASSED", gateStage: "ISSUED", executionStage: "SIMULATED RECEIPT" },
       { id: "changed_account_details", title: "2 · Changed account details", proposedEnding: "8842", proposedDigest: "a875e64960c38d6170d7f24268c9bf5f7fc9dfc80dbb8ada7928a913e3464451", code: "ACCOUNT_DETAILS_CHANGED", reason: "The proposed account-ending change differs from the change bound to the approvals." },
       { id: "changed_supplier", title: "3 · Changed supplier", supplier: "Fictional Meridian Workspace Ltd", supplierReference: "SUP-20483", proposedDigest: "63d602793e821b9f8bb3aa87e96d40701a89571aaa3f2352900d9e0229c226aa", code: "SUPPLIER_CHANGED", reason: "The proposed supplier differs from the supplier bound to the approvals." },
-      { id: "missing_independent_verification", title: "4 · Missing independent verification", verification: "MISSING", verifier: "None", code: "INDEPENDENT_VERIFICATION_MISSING", reason: "No current evidence from an approved independent supplier-verification route is present." },
+      { id: "missing_independent_verification", title: "4 · Missing independent verification", verification: "MISSING", verifier: "None", code: "INDEPENDENT_VERIFICATION_MISSING", reason: "Configured evidence does not show that the organisation’s independent-verification step was completed; ATG does not determine whether the bank details are correct." },
       { id: "self_verification", title: "5 · Self-verification", verifier: "Procurement Change Agent 12 · same requester", separation: "FAILED", code: "SEPARATION_OF_DUTIES_FAILED", reason: "The requester cannot independently verify its own supplier-change request." },
       { id: "wrong_approver_role", title: "6 · Wrong approver role", approvalOne: "Fictional Human 21 · Procurement Analyst · role not authorised", authorityStage: "REFUSED", code: "APPROVER_ROLE_UNAUTHORISED", reason: "An active human identity does not hold the required supplier-master-data approval role." },
       { id: "authority_limit_exceeded", title: "7 · Authority limit exceeded", approvalOne: "Fictional Human 21 · maximum tier 1; action tier 2", authorityStage: "REFUSED", code: "AUTHORITY_LIMIT_EXCEEDED", reason: "A human approver lacks authority for the configured supplier category or risk tier." },
@@ -249,7 +250,7 @@
       { id: "delegation_out_of_scope", title: "13 · Delegation out of scope", delegation: "ACTIVE — supplier review only; amendment excluded", standing: "REFUSED", authorityStage: "REFUSED", code: "DELEGATION_OUT_OF_SCOPE", reason: "The agent may review supplier records but cannot request bank-detail amendments." },
       { id: "commercial_authority_confusion", title: "14 · Commercial authority confusion", actionType: "Supplier payment execution", proposedDigest: "69375e334296b99126f779712489528b248b454e2cf2e5435613449dedbe6975", code: "COMMERCIAL_AUTHORITY_CONFUSION", reason: "Supplier-master-data approval cannot be treated as authority to make or approve a payment." },
       { id: "execution_claim_without_execution_receipt", title: "15 · Execution claim without receipt", gatepass: "PREVIOUSLY ISSUED — decision evidence only", signature: "VERIFIED — decision integrity only; not execution evidence", execution: "CLAIM NOT PROVEN — receipt missing", policyStage: "PASSED", gateStage: "PREVIOUSLY ISSUED", executionStage: "CLAIM REFUSED", code: "EXECUTION_RECEIPT_MISSING", reason: "A GatePass exists, but no separate execution receipt supports the claim that an ERP change occurred." },
-      { id: "revoked_human_authority", title: "16 · Revoked human authority", approvalOne: "Fictional Human 21 · authority revoked before decision", authorityStage: "REFUSED", code: "APPROVER_AUTHORITY_REVOKED", reason: "A human approver's authority is no longer active at the decision time." }
+      { id: "revoked_human_authority", title: "16 · Revoked human authority", approvalOne: "Configured evidence: Fictional Human 21 · organisational authority for this exact action revoked before decision", authorityStage: "REFUSED", code: "APPROVER_AUTHORITY_REVOKED", reason: "Configured evidence shows that the approver’s organisational authority for this exact action was revoked before the decision." }
     ];
     const byId = (id) => document.getElementById(id);
     const select = byId("scenario");
