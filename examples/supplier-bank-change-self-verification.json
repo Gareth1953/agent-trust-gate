@@ -1,0 +1,30 @@
+{
+  "scenarioVersion": "atg.supplier-bank-change.scenario.local.v1",
+  "scenarioId": "self_verification",
+  "title": "Requester self-verification refused",
+  "description": "The requesting agent is also presented as the independent verifier.",
+  "synthetic": true,
+  "realData": false,
+  "networkAccess": false,
+  "externalActionPerformed": false,
+  "baseFixture": "supplier-bank-change-approved.json",
+  "overrides": {
+    "independentVerification": {
+      "verifierIdentity": "procurement-change-agent-12"
+    },
+    "presentedGatePass": {
+      "state": "none",
+      "nonce": "synthetic-supplier-change-nonce-0005"
+    },
+    "executionClaim": {
+      "claimsExecuted": false,
+      "receiptPresent": false,
+      "receiptSimulated": false,
+      "receiptReference": null
+    }
+  },
+  "expected": {
+    "decision": "REFUSED",
+    "reasonCode": "SEPARATION_OF_DUTIES_FAILED"
+  }
+}

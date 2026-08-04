@@ -1,0 +1,115 @@
+{
+  "scenarioVersion": "atg.supplier-bank-change.scenario.local.v1",
+  "scenarioId": "missing_independent_verification",
+  "title": "Missing independent verification refused",
+  "description": "A supplier request exists, but approved independent-verification evidence is absent.",
+  "synthetic": true,
+  "realData": false,
+  "networkAccess": false,
+  "externalActionPerformed": false,
+  "referenceTime": "2026-08-04T10:00:00.000Z",
+  "action": {
+    "actionVersion": "atg.supplier-bank-change.action.v1",
+    "actionType": "supplier_bank_detail_change",
+    "supplierName": "Northbridge Office Systems Ltd",
+    "supplierReference": "SUP-10482",
+    "currentAccountEnding": "1846",
+    "proposedAccountEnding": "7319",
+    "changeType": "supplier_payment_bank_detail_amendment",
+    "reason": "Supplier-requested banking update",
+    "destinationSystem": "fictional_erp_supplier_payment_master",
+    "requestedBy": "procurement-change-agent-12",
+    "accountablePrincipal": "fictional-procurement-operations-department",
+    "supplierCategory": "office_equipment",
+    "riskTier": 2
+  },
+  "approvedAction": {
+    "actionVersion": "atg.supplier-bank-change.action.v1",
+    "actionType": "supplier_bank_detail_change",
+    "supplierName": "Northbridge Office Systems Ltd",
+    "supplierReference": "SUP-10482",
+    "currentAccountEnding": "1846",
+    "proposedAccountEnding": "7319",
+    "changeType": "supplier_payment_bank_detail_amendment",
+    "reason": "Supplier-requested banking update",
+    "destinationSystem": "fictional_erp_supplier_payment_master",
+    "requestedBy": "procurement-change-agent-12",
+    "accountablePrincipal": "fictional-procurement-operations-department",
+    "supplierCategory": "office_equipment",
+    "riskTier": 2
+  },
+  "agent": {
+    "identity": "procurement-change-agent-12",
+    "identityVerified": true,
+    "accountablePrincipal": "fictional-procurement-operations-department",
+    "principalVerified": true,
+    "delegation": {
+      "delegationReference": "synthetic-delegation-supplier-maintenance-12",
+      "evidencePresent": true,
+      "status": "active",
+      "permittedActions": ["supplier_bank_detail_change"],
+      "permittedResources": ["supplier_payment_master"],
+      "supplierCategories": ["office_equipment"],
+      "maximumRiskTier": 2,
+      "validFrom": "2026-08-04T09:00:00.000Z",
+      "expiresAt": "2026-08-04T11:00:00.000Z"
+    }
+  },
+  "independentVerification": {
+    "required": true,
+    "evidenceReference": null,
+    "evidencePresent": false,
+    "independentlyObtained": false,
+    "evidenceTypeApproved": false,
+    "requesterIdentity": "procurement-change-agent-12",
+    "verifierIdentity": null,
+    "supplierReference": null,
+    "proposedAccountEnding": null,
+    "verifiedAt": null,
+    "expiresAt": null
+  },
+  "humanApprovals": [
+    {
+      "approvalReference": "synthetic-approval-master-data-21",
+      "humanIdentity": "fictional-human-approver-21",
+      "authenticated": true,
+      "active": true,
+      "authorityRevoked": false,
+      "role": "supplier_master_data_manager",
+      "permittedActions": ["supplier_bank_detail_change"],
+      "supplierCategories": ["office_equipment"],
+      "maximumRiskTier": 2,
+      "approvedActionDigest": "04b7dc42dfceeaa5a2ffe674c061db77ab490dd49679c880cee74b431aa6460e",
+      "approvedAt": "2026-08-04T09:45:00.000Z",
+      "expiresAt": "2026-08-04T10:15:00.000Z"
+    },
+    {
+      "approvalReference": "synthetic-approval-finance-controls-34",
+      "humanIdentity": "fictional-human-approver-34",
+      "authenticated": true,
+      "active": true,
+      "authorityRevoked": false,
+      "role": "finance_controls_manager",
+      "permittedActions": ["supplier_bank_detail_change"],
+      "supplierCategories": ["office_equipment"],
+      "maximumRiskTier": 2,
+      "approvedActionDigest": "04b7dc42dfceeaa5a2ffe674c061db77ab490dd49679c880cee74b431aa6460e",
+      "approvedAt": "2026-08-04T09:46:00.000Z",
+      "expiresAt": "2026-08-04T10:16:00.000Z"
+    }
+  ],
+  "presentedGatePass": {
+    "state": "none",
+    "nonce": "synthetic-supplier-change-nonce-0004"
+  },
+  "executionClaim": {
+    "claimsExecuted": false,
+    "receiptPresent": false,
+    "receiptSimulated": false,
+    "receiptReference": null
+  },
+  "expected": {
+    "decision": "REFUSED",
+    "reasonCode": "INDEPENDENT_VERIFICATION_MISSING"
+  }
+}

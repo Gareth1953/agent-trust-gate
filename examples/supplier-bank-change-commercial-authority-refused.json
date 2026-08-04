@@ -1,0 +1,32 @@
+{
+  "scenarioVersion": "atg.supplier-bank-change.scenario.local.v1",
+  "scenarioId": "commercial_authority_confusion",
+  "title": "Commercial authority confusion refused",
+  "description": "Supplier-master-data approval is incorrectly presented as authority to make a payment.",
+  "synthetic": true,
+  "realData": false,
+  "networkAccess": false,
+  "externalActionPerformed": false,
+  "baseFixture": "supplier-bank-change-approved.json",
+  "overrides": {
+    "action": {
+      "actionType": "supplier_payment_execution",
+      "changeType": "payment_instruction",
+      "destinationSystem": "fictional_payment_execution_system"
+    },
+    "presentedGatePass": {
+      "state": "none",
+      "nonce": "synthetic-supplier-change-nonce-0014"
+    },
+    "executionClaim": {
+      "claimsExecuted": false,
+      "receiptPresent": false,
+      "receiptSimulated": false,
+      "receiptReference": null
+    }
+  },
+  "expected": {
+    "decision": "REFUSED",
+    "reasonCode": "COMMERCIAL_AUTHORITY_CONFUSION"
+  }
+}

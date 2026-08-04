@@ -1,0 +1,34 @@
+{
+  "scenarioVersion": "atg.supplier-bank-change.scenario.local.v1",
+  "scenarioId": "approval_expired",
+  "title": "Expired exact approval refused",
+  "description": "One exact approval is outside the maximum 30-minute freshness window.",
+  "synthetic": true,
+  "realData": false,
+  "networkAccess": false,
+  "externalActionPerformed": false,
+  "baseFixture": "supplier-bank-change-approved.json",
+  "overrides": {
+    "humanApprovals": [
+      {
+        "approvedAt": "2026-08-04T09:20:00.000Z",
+        "expiresAt": "2026-08-04T09:50:00.000Z"
+      },
+      {}
+    ],
+    "presentedGatePass": {
+      "state": "none",
+      "nonce": "synthetic-supplier-change-nonce-0009"
+    },
+    "executionClaim": {
+      "claimsExecuted": false,
+      "receiptPresent": false,
+      "receiptSimulated": false,
+      "receiptReference": null
+    }
+  },
+  "expected": {
+    "decision": "REFUSED",
+    "reasonCode": "APPROVAL_EXPIRED"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "scenarioVersion": "atg.supplier-bank-change.scenario.local.v1",
+  "scenarioId": "replayed_gatepass",
+  "title": "Replayed GatePass refused",
+  "description": "A previously consumed one-use GatePass is presented again.",
+  "synthetic": true,
+  "realData": false,
+  "networkAccess": false,
+  "externalActionPerformed": false,
+  "baseFixture": "supplier-bank-change-approved.json",
+  "overrides": {
+    "presentedGatePass": {
+      "state": "consumed",
+      "nonce": "synthetic-supplier-change-nonce-consumed-0010"
+    },
+    "executionClaim": {
+      "claimsExecuted": false,
+      "receiptPresent": false,
+      "receiptSimulated": false,
+      "receiptReference": null
+    }
+  },
+  "expected": {
+    "decision": "REFUSED",
+    "reasonCode": "GATEPASS_ALREADY_CONSUMED"
+  }
+}

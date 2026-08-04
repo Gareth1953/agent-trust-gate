@@ -1,0 +1,35 @@
+{
+  "scenarioVersion": "atg.supplier-bank-change.scenario.local.v1",
+  "scenarioId": "agent_standing_unverifiable",
+  "title": "Agent Standing unverifiable",
+  "description": "Agent identity, accountable principal and delegation evidence cannot be sufficiently verified.",
+  "synthetic": true,
+  "realData": false,
+  "networkAccess": false,
+  "externalActionPerformed": false,
+  "baseFixture": "supplier-bank-change-approved.json",
+  "overrides": {
+    "agent": {
+      "identityVerified": false,
+      "principalVerified": false,
+      "delegation": {
+        "evidencePresent": false,
+        "status": "unknown"
+      }
+    },
+    "presentedGatePass": {
+      "state": "none",
+      "nonce": "synthetic-supplier-change-nonce-0012"
+    },
+    "executionClaim": {
+      "claimsExecuted": false,
+      "receiptPresent": false,
+      "receiptSimulated": false,
+      "receiptReference": null
+    }
+  },
+  "expected": {
+    "decision": "REFUSED",
+    "reasonCode": "AGENT_STANDING_UNVERIFIABLE"
+  }
+}

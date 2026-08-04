@@ -1,0 +1,30 @@
+{
+  "scenarioVersion": "atg.supplier-bank-change.scenario.local.v1",
+  "scenarioId": "action_digest_mismatch",
+  "title": "Exact-action digest mismatch refused",
+  "description": "One reason-field character differs after approval, producing a different digest.",
+  "synthetic": true,
+  "realData": false,
+  "networkAccess": false,
+  "externalActionPerformed": false,
+  "baseFixture": "supplier-bank-change-approved.json",
+  "overrides": {
+    "action": {
+      "reason": "Supplier-requested banking update."
+    },
+    "presentedGatePass": {
+      "state": "none",
+      "nonce": "synthetic-supplier-change-nonce-0011"
+    },
+    "executionClaim": {
+      "claimsExecuted": false,
+      "receiptPresent": false,
+      "receiptSimulated": false,
+      "receiptReference": null
+    }
+  },
+  "expected": {
+    "decision": "REFUSED",
+    "reasonCode": "ACTION_DIGEST_MISMATCH"
+  }
+}

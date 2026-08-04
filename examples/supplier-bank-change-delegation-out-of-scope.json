@@ -1,0 +1,32 @@
+{
+  "scenarioVersion": "atg.supplier-bank-change.scenario.local.v1",
+  "scenarioId": "delegation_out_of_scope",
+  "title": "Delegation out of scope refused",
+  "description": "The agent may review supplier records but cannot request bank-detail amendments.",
+  "synthetic": true,
+  "realData": false,
+  "networkAccess": false,
+  "externalActionPerformed": false,
+  "baseFixture": "supplier-bank-change-approved.json",
+  "overrides": {
+    "agent": {
+      "delegation": {
+        "permittedActions": ["supplier_record_review"]
+      }
+    },
+    "presentedGatePass": {
+      "state": "none",
+      "nonce": "synthetic-supplier-change-nonce-0013"
+    },
+    "executionClaim": {
+      "claimsExecuted": false,
+      "receiptPresent": false,
+      "receiptSimulated": false,
+      "receiptReference": null
+    }
+  },
+  "expected": {
+    "decision": "REFUSED",
+    "reasonCode": "DELEGATION_OUT_OF_SCOPE"
+  }
+}

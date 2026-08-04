@@ -1,0 +1,27 @@
+{
+  "scenarioVersion": "atg.supplier-bank-change.scenario.local.v1",
+  "scenarioId": "execution_claim_without_execution_receipt",
+  "title": "Execution claim without receipt refused",
+  "description": "A GatePass exists, but no separate receipt supports a claim that an ERP change occurred.",
+  "synthetic": true,
+  "realData": false,
+  "networkAccess": false,
+  "externalActionPerformed": false,
+  "baseFixture": "supplier-bank-change-approved.json",
+  "overrides": {
+    "presentedGatePass": {
+      "state": "unused",
+      "nonce": "synthetic-supplier-change-nonce-0015"
+    },
+    "executionClaim": {
+      "claimsExecuted": true,
+      "receiptPresent": false,
+      "receiptSimulated": false,
+      "receiptReference": null
+    }
+  },
+  "expected": {
+    "decision": "REFUSED",
+    "reasonCode": "EXECUTION_RECEIPT_MISSING"
+  }
+}
