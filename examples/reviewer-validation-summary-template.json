@@ -1,0 +1,72 @@
+{
+  "templateVersion": "P3-M156C-1",
+  "status": "EMPTY_LOCAL_TEMPLATE_NO_REVIEWS_RECORDED",
+  "reviewsOccurred": false,
+  "reviewerSlots": [
+    {
+      "slot": 1,
+      "requiredCategory": "CISO_AI_SECURITY_CYBERSECURITY",
+      "reviewerId": null,
+      "eligible": null,
+      "reviewCompleted": false,
+      "result": null
+    },
+    {
+      "slot": 2,
+      "requiredCategory": "FINANCE_CONTROLS_AP_PROCUREMENT_TRANSFORMATION",
+      "reviewerId": null,
+      "eligible": null,
+      "reviewCompleted": false,
+      "result": null
+    },
+    {
+      "slot": 3,
+      "requiredCategory": "IAM_IGA_PAM_ENTERPRISE_ARCHITECTURE",
+      "reviewerId": null,
+      "eligible": null,
+      "reviewCompleted": false,
+      "result": null
+    },
+    {
+      "slot": 4,
+      "requiredCategory": "AI_GOVERNANCE_OPERATIONAL_RISK_RESPONSIBLE_AI",
+      "reviewerId": null,
+      "eligible": null,
+      "reviewCompleted": false,
+      "result": null
+    },
+    {
+      "slot": 5,
+      "requiredCategory": "ENTERPRISE_DEVELOPER_SYSTEMS_INTEGRATOR_AGENT_PLATFORM",
+      "reviewerId": null,
+      "eligible": null,
+      "reviewCompleted": false,
+      "result": null
+    }
+  ],
+  "eligibleCount": 0,
+  "passes": 0,
+  "partials": 0,
+  "failures": 0,
+  "comprehensionThreshold": {
+    "required": 4,
+    "productExplanationMet": null,
+    "boundaryExplanationMet": null,
+    "buyerAndNextStepMet": null
+  },
+  "commercialSignalThreshold": {
+    "required": 3,
+    "plausibleGapProblemOrAssessmentRouteMet": null
+  },
+  "claimsIssue": null,
+  "overallResult": "NOT_RUN",
+  "decision": null,
+  "decisionOptions": [
+    "PROCEED_TO_BOUNDED_PUBLICATION",
+    "REFINE_AND_RETEST",
+    "PAUSE",
+    "SHELVE"
+  ],
+  "contactPerformed": false,
+  "externalActionOccurred": false
+}

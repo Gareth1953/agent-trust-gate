@@ -1,0 +1,31 @@
+{
+  "templateVersion": "P3-M156C-1",
+  "status": "EMPTY_LOCAL_TEMPLATE_NO_REVIEW_RECORDED",
+  "reviewerId": null,
+  "reviewerCategory": null,
+  "organisationType": null,
+  "eligibleHumanReviewer": null,
+  "reviewedMaterials": [],
+  "comprehensionAnswers": {
+    "productExplanation": null,
+    "consequentialAction": null,
+    "gatePassScope": null,
+    "gatePassExclusions": null,
+    "decisionVersusExecution": null,
+    "bankDetailCorrectnessBoundary": null,
+    "legalAuthorityBoundary": null
+  },
+  "existingControlsAssessment": null,
+  "residualGapAssessment": null,
+  "assessmentPriceReaction": null,
+  "paidAssessmentSignal": null,
+  "objections": [],
+  "claimsConcerns": [],
+  "secondWorkflowSuggestion": null,
+  "permissionToQuote": false,
+  "result": null,
+  "notes": null,
+  "personalDataIncluded": false,
+  "contactPerformed": false,
+  "externalActionOccurred": false
+}
