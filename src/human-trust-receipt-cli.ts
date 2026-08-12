@@ -11,7 +11,7 @@ const FIXED_TIME = "2026-08-12T06:30:00.000Z";
 export type HumanTrustReceiptScenarioId =
   | "authorised_refund"
   | "completed_refund"
-  | "refused_limit_breach"
+  | "refused_missing_evidence"
   | "tampered_execution_digest";
 
 function baseInput(): HumanTrustReceiptEvidenceInput {
@@ -76,15 +76,13 @@ export function createHumanTrustReceiptScenarios(): Record<HumanTrustReceiptScen
   };
 
   const refused = structuredClone(authorised);
-  refused.receiptReference = "ATG-HR-REFUSED-90001";
-  refused.plainLanguageAction = "Refund £1,475.00 to the original payment method";
-  refused.amount = 1475;
+  refused.receiptReference = "ATG-HR-REFUSED-77291";
   refused.policyDecision = {
     decision: "refused",
     policyChecked: true,
     actionDigest: ACTION_DIGEST,
-    decisionReceiptReference: "PDR-REFUSED-90001",
-    reasonCodes: ["HUMAN_AUTHORITY_LIMIT_EXCEEDED"],
+    decisionReceiptReference: "PDR-REFUSED-77291",
+    reasonCodes: ["REQUIRED_RETURN_EVIDENCE_MISSING"],
     gatePassId: null,
   };
   refused.gatePass = {
@@ -101,7 +99,7 @@ export function createHumanTrustReceiptScenarios(): Record<HumanTrustReceiptScen
   return {
     authorised_refund: authorised,
     completed_refund: completed,
-    refused_limit_breach: refused,
+    refused_missing_evidence: refused,
     tampered_execution_digest: tampered,
   };
 }
