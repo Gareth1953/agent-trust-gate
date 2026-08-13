@@ -118,6 +118,26 @@ ATG should distinguish three related layers:
 
 The Human Trust Receipt is intended to bridge the third layer without weakening the first two.
 
+## Broader human trust: accountability, reliance and recourse
+
+For company-agent-human interactions, especially where an AI agent may affect a customer's or client's money, access, purchase, refund, account, financial outcome or other consequential interest, human trust requires more than technical authorisation alone.
+
+The affected person may reasonably ask:
+
+- Which organisation stands behind this agent-mediated action?
+- What was the AI allowed to decide and what was locked?
+- Was human review required and, if so, did it occur?
+- What evidence supports reliance on this particular action?
+- What can I do if the action is wrong, disputed or harmful?
+
+ATG should therefore aim for **calibrated trust rather than persuasive trust**. The purpose is not to make an AI look human, confident or trustworthy. The purpose is to expose verified authority, limits, relevant evidence, organisational accountability and a human recourse path where one exists.
+
+> **Trust for the machine. Accountability for the organisation. Proof for the human. Recourse when something goes wrong.**
+
+The broader design is documented in [Human Trust, Accountability and Recourse for Consequential AI-Agent Actions](human-trust-accountability-and-recourse.md).
+
+A valid GatePass remains proof of scoped authority conditions; it is not proof that every AI judgment is correct. Human-facing material must not convert unsupported confidence, explanation or model output into a trust claim.
+
 ## Crypto-agility and future trust
 
 Human-readable trust must not depend on one permanent cryptographic algorithm.
@@ -128,6 +148,6 @@ ATG's wider roadmap remains crypto-agile and post-quantum-ready rather than clai
 
 Where relevant, future ATG submissions, reviewer materials and design-partner discussions should explain the human problem as well as the machine problem:
 
-> **The goal is not to ask customers to trust AI blindly. The goal is to give people simple, retainable proof of who authorised a consequential AI action, exactly what the AI was permitted to do, what limits applied, and whether the machine stayed inside those limits.**
+> **The goal is not to ask customers to trust AI blindly. The goal is to give people simple, retainable proof of who authorised a consequential AI action, exactly what the AI was permitted to do, what limits applied, whether the machine stayed inside those limits, which organisation remains accountable, and what recourse route applies if something goes wrong.**
 
 This framing does not change the current claims boundary. The public repository remains a local, synthetic, non-production demonstrator unless and until separately documented capabilities are actually implemented and validated.
