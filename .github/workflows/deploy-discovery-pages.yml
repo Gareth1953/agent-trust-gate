@@ -60,6 +60,14 @@ jobs:
           cp schemas/ard-ai-catalog-v1.0.schema.json _site/schemas/
           cp examples/bring-your-agent-scenario.example.json _site/examples/
           test -f _site/index.html
+          test -f _site/technology.html
+          test -f _site/solutions.html
+          test -f _site/evidence.html
+          test -f _site/company.html
+          test -f _site/contact.html
+          test -f _site/privacy.html
+          test -f _site/corporate.css
+          test -f _site/corporate.js
           test -f _site/exact-action-authority-control-model.html
           test -f _site/for-agents.html
           test -f _site/bring-your-agent-scenario.html
@@ -107,7 +115,7 @@ jobs:
         run: |
           set -u
           KEY="a7f3c9e14d8b42f6a1c75e9d2b6048cf"
-          BASE="https://gareth1953.github.io/agent-trust-gate"
+          BASE="https://agenttrustgate.com"
           KEY_URL="${BASE}/${KEY}.txt"
 
           ready="false"
@@ -126,6 +134,11 @@ jobs:
 
           for path in \
             "/" \
+            "/technology.html" \
+            "/solutions.html" \
+            "/evidence.html" \
+            "/company.html" \
+            "/contact.html" \
             "/exact-action-authority-control-model.html" \
             "/evidence-and-reviewer.html" \
             "/retail-supply-chain-ai-agent-authority.html" \

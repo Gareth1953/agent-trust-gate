@@ -2,14 +2,14 @@
   "specVersion": "1.0",
   "host": {
     "displayName": "Agent Trust Gate™ — Exact-Action Authority for AI Agents",
-    "documentationUrl": "https://gareth1953.github.io/agent-trust-gate/for-agents.html"
+    "documentationUrl": "https://agenttrustgate.com/for-agents.html"
   },
   "entries": [
     {
-      "identifier": "urn:air:gareth1953.github.io:agent-trust-gate:static-review-invitation",
+      "identifier": "urn:air:agenttrustgate.com:static-review-invitation",
       "displayName": "Agent Trust Gate™ exact-action authority reviewer invitation",
       "type": "application/json",
-      "url": "https://gareth1953.github.io/agent-trust-gate/agent-trust-gate.agent-review-invitation.json",
+      "url": "https://agenttrustgate.com/agent-trust-gate.agent-review-invitation.json",
       "description": "Static local-review metadata for examining Agent Standing, Verified Human Authority and exact-action GatePass controls before consequential AI-agent actions, and for preparing a synthetic or sanitised scenario. This is not an executable remote agent, A2A service, MCP server, registry or hosted API.",
       "tags": [
         "exact-action-authority",
@@ -56,13 +56,13 @@
         "mcpServer": false,
         "hostedGatepassApi": false,
         "accountableHumanRequired": true,
-        "controlModelUrl": "https://gareth1953.github.io/agent-trust-gate/exact-action-authority-control-model.html",
-        "evidenceAndReviewerUrl": "https://gareth1953.github.io/agent-trust-gate/evidence-and-reviewer.html",
+        "controlModelUrl": "https://agenttrustgate.com/exact-action-authority-control-model.html",
+        "evidenceAndReviewerUrl": "https://agenttrustgate.com/evidence-and-reviewer.html",
         "applicationRoutes": [
-          "https://gareth1953.github.io/agent-trust-gate/exact-action-authority-control-model.html",
-          "https://gareth1953.github.io/agent-trust-gate/retail-supply-chain-ai-agent-authority.html",
-          "https://gareth1953.github.io/agent-trust-gate/public-procurement-ai-agent-authority.html",
-          "https://gareth1953.github.io/agent-trust-gate/financial-services-ai-agent-authority.html"
+          "https://agenttrustgate.com/exact-action-authority-control-model.html",
+          "https://agenttrustgate.com/retail-supply-chain-ai-agent-authority.html",
+          "https://agenttrustgate.com/public-procurement-ai-agent-authority.html",
+          "https://agenttrustgate.com/financial-services-ai-agent-authority.html"
         ]
       }
     }
