@@ -1,8 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://gareth1953.github.io/agent-trust-gate/</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-08-19</lastmod>
+    <image:image>
+      <image:loc>https://gareth1953.github.io/agent-trust-gate/assets/agent-trust-gate-readme-hero.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://gareth1953.github.io/agent-trust-gate/evidence-and-reviewer.html</loc>
+    <lastmod>2026-08-19</lastmod>
+  </url>
+  <url>
+    <loc>https://gareth1953.github.io/agent-trust-gate/retail-supply-chain-ai-agent-authority.html</loc>
+    <lastmod>2026-08-19</lastmod>
+  </url>
+  <url>
+    <loc>https://gareth1953.github.io/agent-trust-gate/public-procurement-ai-agent-authority.html</loc>
+    <lastmod>2026-08-19</lastmod>
+  </url>
+  <url>
+    <loc>https://gareth1953.github.io/agent-trust-gate/financial-services-ai-agent-authority.html</loc>
+    <lastmod>2026-08-19</lastmod>
   </url>
   <url>
     <loc>https://gareth1953.github.io/agent-trust-gate/human-authority-demo.html</loc>
@@ -30,7 +50,7 @@
   </url>
   <url>
     <loc>https://gareth1953.github.io/agent-trust-gate/ai-catalog.json</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-08-19</lastmod>
   </url>
   <url>
     <loc>https://gareth1953.github.io/agent-trust-gate/schemas/agent-review-invitation.schema.json</loc>
