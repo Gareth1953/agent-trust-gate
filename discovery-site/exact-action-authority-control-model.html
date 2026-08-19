@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exact-Action Authority for AI Agents | ATG Control Model</title>
+  <meta name="description" content="A public reference model for proving AI-agent authority before consequential action using Agent Standing, evidence, human authority and GatePass.">
+  <link rel="canonical" href="https://gareth1953.github.io/agent-trust-gate/exact-action-authority-control-model.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Exact-Action Authority for AI Agents | ATG Control Model">
+  <meta property="og:description" content="The Agent Trust Gate control model for proving exact AI-agent authority before consequential execution.">
+  <meta property="og:url" content="https://gareth1953.github.io/agent-trust-gate/exact-action-authority-control-model.html">
+  <meta property="og:image" content="https://gareth1953.github.io/agent-trust-gate/assets/agent-trust-gate-social-preview.png">
+  <meta property="og:image:alt" content="Agent Trust Gate exact-action authority control model visual">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#18202f;line-height:1.65;background:#fff}main{width:min(1000px,calc(100% - 32px));margin:auto;padding:36px 0 64px}nav{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px}nav a{font-weight:700;color:#074f45;text-decoration:none}h1{font-size:2.35rem;line-height:1.15;margin-bottom:12px}h2{margin-top:34px}h3{margin-top:22px}.hero,.panel,.principle{border:1px solid #d7deea;border-radius:10px;padding:20px;background:#f5f8fb;margin:18px 0}.hero{background:#eef8f5;border-color:#8bc6bb}.principle{border-left:5px solid #0a6a5c}.visual{margin:24px 0}.visual img{display:block;width:100%;height:auto;border:1px solid #d7deea;border-radius:10px}.visual figcaption{color:#596172;font-size:.92rem;text-align:center;margin-top:7px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}.card{border:1px solid #d7deea;border-radius:8px;padding:16px}.small{color:#596172;font-size:.95rem}.cta{font-weight:700}code{background:#f1f4f8;border:1px solid #d7deea;border-radius:4px;padding:2px 5px}a{color:#074f45}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"TechArticle",
+    "headline":"Exact-Action Authority for AI Agents — The Agent Trust Gate Control Model",
+    "description":"A public reference model for proving AI-agent authority before consequential action using Agent Standing, mandate, evidence, Verified Human Authority, GatePass and execution receipts.",
+    "url":"https://gareth1953.github.io/agent-trust-gate/exact-action-authority-control-model.html",
+    "datePublished":"2026-08-19",
+    "dateModified":"2026-08-19",
+    "author":{"@type":"Person","name":"Gareth Price"},
+    "publisher":{"@type":"Organization","name":"Agent Trust Gate™"},
+    "image":"https://gareth1953.github.io/agent-trust-gate/assets/agent-trust-gate-social-preview.png",
+    "keywords":["exact-action authority","AI agents","GatePass","Agent Standing","Verified Human Authority","pre-action trust","execution evidence"]
+  }
+  </script>
+</head>
+<body><main>
+  <nav><a href="./">ATG home</a><a href="./evidence-and-reviewer.html">Evidence & Reviewer</a><a href="./retail-supply-chain-ai-agent-authority.html">Retail & Supply Chain</a><a href="./public-procurement-ai-agent-authority.html">Public Procurement</a><a href="./financial-services-ai-agent-authority.html">Financial Services</a></nav>
+
+  <section class="hero">
+    <p class="small"><strong>Public technical reference · Agent Trust Gate™</strong></p>
+    <h1>Exact-Action Authority for AI Agents</h1>
+    <p><strong>The Agent Trust Gate Control Model</strong></p>
+    <p>Agent Trust Gate™ is a local-first demonstrator for a narrow control problem: before a consequential AI-agent action proceeds, can the system prove that the exact agent is permitted to perform the exact action now, under current mandate, scope, evidence and required human authority?</p>
+  </section>
+
+  <figure class="visual">
+    <img src="./assets/agent-trust-gate-readme-hero.png" alt="Agent Trust Gate control model showing Agent Standing, evidence, human authority, GatePass and audit receipt before AI-agent execution">
+    <figcaption><strong>Verify Before Settlement.</strong> Authority is bound to the exact action before consequence, then preserved as reviewable evidence.</figcaption>
+  </figure>
+
+  <div class="principle">
+    <strong>Core principle:</strong> technical trust must ultimately become human-understandable proof. ATG therefore keeps the underlying machine-verifiable evidence while allowing it to produce a simple trust receipt that explains what action was proposed, who or what acted, under whose authority, why it was allowed or refused, and whether execution matched the authorised action.
+  </div>
+
+  <h2>1. The problem: capability is not authority</h2>
+  <p>An AI agent can be technically capable of calling a tool, issuing an instruction, changing a record or initiating a transaction without being authorised to do that specific thing. Authentication answers who or what is present. Model governance can address how a system was designed and supervised. Runtime security can restrict environments and tools. None of those controls, by themselves, necessarily prove that a particular consequential action is currently authorised.</p>
+  <p>The ATG control question is deliberately narrower: <strong>is this exact agent allowed to do this exact thing, now, under this exact authority?</strong> The answer should be based on current evidence rather than an assumption that an authenticated or generally trusted agent may perform every action available to it.</p>
+
+  <h2>2. The execution boundary</h2>
+  <p>ATG is positioned immediately before a consequential action crosses from proposal into execution or settlement. Upstream systems may plan, reason, optimise or recommend. Downstream systems may execute tools, payments, procurement actions or other effects. The trust gate sits between those stages and evaluates whether the proposed action satisfies policy and authority requirements.</p>
+  <p>This allows low-risk actions to have a fast path while higher-risk actions require stronger evidence, Verified Human Authority or refusal. The aim is not to place a human in every loop. It is to make the required authority proportional to the consequence.</p>
+
+  <h2>3. The control chain</h2>
+  <div class="grid">
+    <section class="card"><h3>Agent Standing</h3><p>Establish the declared software-agent identity, accountable principal, current delegation, scope, limits, status and revocation state before the agent is treated as eligible for consequential action.</p></section>
+    <section class="card"><h3>Mandate & Scope</h3><p>Check whether the action remains within the current instruction, account, supplier, merchant, department, jurisdiction, value, risk tier and other protected limits that define what may be done.</p></section>
+    <section class="card"><h3>Evidence</h3><p>Require the policy-relevant evidence needed for the action rather than accepting an unsupported assertion from the agent. Missing or unverifiable evidence can cause a fail-closed outcome.</p></section>
+    <section class="card"><h3>Verified Human Authority</h3><p>Where policy requires a person, verify that the natural person is active and authorised for the exact action type, amount and context, with separation of duties or second approval where required.</p></section>
+    <section class="card"><h3>Exact-Action GatePass</h3><p>Bind the successful decision to a canonical representation of the exact action, including freshness and one-use/replay controls. A material action change should require a new decision.</p></section>
+    <section class="card"><h3>Decision & Execution Evidence</h3><p>Keep the authorisation decision distinct from later execution evidence so a reviewer can establish whether the action that occurred still matched the action that was allowed.</p></section>
+  </div>
+
+  <h2>4. Why exact-action binding matters</h2>
+  <p>Broad approvals are vulnerable to interpretation drift. “Refund approved,” “supplier change approved” or “transfer approved” may omit the exact amount, destination, item, account or other fields that determine consequence. ATG treats the protected action fields as part of the authority decision. A canonical action can be digested and referenced by the GatePass so that a changed amount, destination, supplier, account or action type no longer silently inherits the earlier approval.</p>
+  <p>The public demonstrator uses local cryptographic fixtures to make this behaviour inspectable. It does not claim production key custody, production security certification or a hosted authorisation service.</p>
+
+  <h2>5. Verified Human Authority is more than an approval flag</h2>
+  <p>A field saying <code>approved=true</code> does not prove that the approving person was currently employed or appointed, authenticated through an organisation-controlled credential, authorised for the exact action, within their amount limit, independent from the requester where required, or accompanied by a second authority where policy demands one.</p>
+  <p>The Human Authority model therefore treats identity status, authentication evidence, authority scope, separation of duties, second approval, freshness and exact-action binding as separate checks. The design is crypto-agile: current strong authentication can be represented without claiming that today's algorithms are automatically post-quantum safe, and algorithm identifiers and verification policy can be replaced as standards evolve.</p>
+
+  <h2>6. Refusal is part of the product</h2>
+  <p>A credible trust boundary must show when an action does <em>not</em> pass. ATG therefore treats refusal evidence as a first-class output. Synthetic scenarios include inactive identities, exceeded authority limits, restricted self-approval, missing second approval, changed actions, expiry and replay conditions. The refusal should explain the control that failed without creating an execution receipt for an action that never occurred.</p>
+  <p>This supports the rule: <strong>No proof. No permission. No mandate. No action.</strong></p>
+
+  <h2>7. Human-readable trust receipt</h2>
+  <p>Machine-verifiable evidence is necessary but not sufficient for customers, reviewers, auditors and accountable managers. The same technical evidence can be rendered into a concise receipt showing the proposed action, agent or workflow, accountable principal, human approver where required, relevant mandate and limits, evidence references, decision, GatePass identifier and execution-match result.</p>
+  <p>The receipt is an explanation of the control evidence, not a substitute for the underlying evidence. It also does not turn ATG into a regulator, auditor or certification authority.</p>
+
+  <h2>8. Illustrative application routes</h2>
+  <p>The same execution-boundary model can be applied to different sectors without claiming that one generic policy fits all sectors. In retail and supply chains it can model replenishment, supplier, routing and inventory actions. In public procurement it can model purchase orders, contract variations, goods receipt, invoice approval and payment release. In financial services it can model payments, transfers, customer remediation and other high-impact actions subject to delegated authority and evidence.</p>
+  <p>Sector-specific law, policy, identity systems, procurement controls, payment infrastructure and operational systems remain external. ATG is the proposed exact-action authority and evidence layer, not a replacement for those systems.</p>
+
+  <h2>9. What the public demonstrator proves — and what it does not</h2>
+  <div class="panel">
+    <p><strong>It demonstrates:</strong> deterministic local evaluation, exact-action binding, GatePass issuance and refusal behaviour, Agent Standing concepts, Verified Human Authority scenarios, expiry/replay thinking, decision evidence and simulated execution receipts.</p>
+    <p><strong>It does not provide:</strong> a production hosted API, live agent interception, live payment or settlement, customer data handling, enterprise SSO, production key management, security certification, regulatory approval, guaranteed compliance or production customer deployment.</p>
+  </div>
+
+  <h2>10. Reviewer test</h2>
+  <p>A reviewer should be able to ask six questions and trace the answers to evidence: What exact action was proposed? Which agent or workflow proposed it? Under whose mandate and authority? Which evidence and policy conditions applied? Why was it allowed or refused? Did the later simulated execution still match the authorised action?</p>
+  <p>If those questions cannot be answered, the trust claim should remain unverifiable rather than being converted into an assumed approval.</p>
+
+  <h2>Technical review routes</h2>
+  <p class="cta"><a href="./evidence-and-reviewer.html">Open the Evidence & Reviewer route →</a> &nbsp; <a href="./human-authority-demo.html">Verified Human Authority demo →</a> &nbsp; <a href="./agent-standing-demo.html">Agent Standing demo →</a> &nbsp; <a href="https://github.com/Gareth1953/agent-trust-gate">Public GitHub repository →</a></p>
+  <p class="small">Agent Trust Gate™ is a local synthetic demonstrator. This reference describes the public control model and current design direction; it is not a production security, compliance or regulatory certification.</p>
+</main></body>
+</html>
