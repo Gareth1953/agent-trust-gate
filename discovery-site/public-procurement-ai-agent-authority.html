@@ -3,26 +3,46 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI Agent Authority for Public Procurement | Agent Trust Gate™</title>
-  <meta name="description" content="Agent Trust Gate™ demonstrates exact-action authority checks across consequential public-procurement workflows before commitment, acceptance or payment. Local demonstrator only.">
+  <title>AI Agent Authority for Public Procurement | ATG</title>
+  <meta name="description" content="Exact-action authority checks for AI agents across consequential public-procurement workflows before commitment, acceptance or payment.">
   <link rel="canonical" href="https://gareth1953.github.io/agent-trust-gate/public-procurement-ai-agent-authority.html">
-  <meta property="og:title" content="AI Agent Authority for Public Procurement | Agent Trust Gate™">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI Agent Authority for Public Procurement | ATG">
   <meta property="og:description" content="Prove whether an AI agent is authorised for the exact procurement action before public money is committed.">
+  <meta property="og:url" content="https://gareth1953.github.io/agent-trust-gate/public-procurement-ai-agent-authority.html">
   <meta property="og:image" content="https://gareth1953.github.io/agent-trust-gate/assets/agent-trust-gate-social-preview.png">
+  <meta property="og:image:alt" content="Agent Trust Gate exact-action authority visual">
   <meta name="twitter:card" content="summary_large_image">
   <style>
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#18202f;line-height:1.6;background:#fff}main{width:min(980px,calc(100% - 32px));margin:auto;padding:36px 0 56px}nav{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px}nav a{font-weight:700;color:#074f45;text-decoration:none}h1{font-size:2.2rem;line-height:1.15}h2{margin-top:30px}.hero,.panel{border:1px solid #d7deea;border-radius:10px;padding:20px;background:#f5f8fb;margin:18px 0}.hero{background:#eef8f5;border-color:#8bc6bb}.cta{font-weight:700}.small{color:#596172;font-size:.95rem}a{color:#074f45}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#18202f;line-height:1.6;background:#fff}main{width:min(980px,calc(100% - 32px));margin:auto;padding:36px 0 56px}nav{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px}nav a{font-weight:700;color:#074f45;text-decoration:none}h1{font-size:2.2rem;line-height:1.15}h2{margin-top:30px}.hero,.panel{border:1px solid #d7deea;border-radius:10px;padding:20px;background:#f5f8fb;margin:18px 0}.hero{background:#eef8f5;border-color:#8bc6bb}.visual{margin:22px 0}.visual img{display:block;width:100%;height:auto;border:1px solid #d7deea;border-radius:10px}.visual figcaption{color:#596172;font-size:.92rem;text-align:center;margin-top:7px}.cta{font-weight:700}.small{color:#596172;font-size:.95rem}a{color:#074f45}
   </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"AI Agent Authority for Public Procurement",
+    "url":"https://gareth1953.github.io/agent-trust-gate/public-procurement-ai-agent-authority.html",
+    "description":"Exact-action authority checks for consequential AI-agent actions in public-procurement workflows.",
+    "isPartOf":{"@type":"WebSite","name":"Agent Trust Gate™","url":"https://gareth1953.github.io/agent-trust-gate/"},
+    "about":["AI agents","public procurement","public money","exact-action authority","GatePass","verified human authority"],
+    "image":"https://gareth1953.github.io/agent-trust-gate/assets/agent-trust-gate-social-preview.png"
+  }
+  </script>
 </head>
 <body><main>
-  <nav><a href="./">ATG home</a><a href="./evidence-and-reviewer.html">Evidence & Reviewer</a><a href="./retail-supply-chain-ai-agent-authority.html">Retail & Supply Chain</a><a href="./financial-services-ai-agent-authority.html">Financial Services</a></nav>
+  <nav><a href="./">ATG home</a><a href="./exact-action-authority-control-model.html">Control Model</a><a href="./evidence-and-reviewer.html">Evidence & Reviewer</a><a href="./retail-supply-chain-ai-agent-authority.html">Retail & Supply Chain</a><a href="./financial-services-ai-agent-authority.html">Financial Services</a></nav>
   <section class="hero">
     <h1>AI Agent Authority for Public Procurement</h1>
     <p><strong>Public money should not be committed by AI on assumed authority.</strong></p>
     <p>Agent Trust Gate™ demonstrates a pre-action authority layer for consequential procurement events from requisition and supplier selection through purchase order, receipt, invoice approval and payment release.</p>
   </section>
+  <figure class="visual">
+    <img src="./assets/agent-trust-gate-readme-hero.png" alt="Agent Trust Gate flow showing authority, evidence and GatePass before consequential public-procurement action">
+    <figcaption>Authority can be checked against the exact supplier, value, account, department, jurisdiction and action before commitment.</figcaption>
+  </figure>
   <h2>The control question</h2>
   <p>Existing systems may record that an approval exists. ATG asks whether the approving person or agent was <strong>actually authorised at that moment for that exact supplier, value, account, department, jurisdiction, framework and action</strong>, and whether the executed action still matches what was approved.</p>
+  <p>This separates the existence of an approval record from proof that the approval was valid for the precise procurement commitment being made. The aim is not to replace public-procurement controls, but to create a machine-checkable authority boundary before an AI-enabled workflow crosses into a consequential action.</p>
   <div class="panel">
     <h2>Illustrative procurement actions</h2>
     <ul>
@@ -34,11 +54,16 @@
       <li>release a payment or refuse it when order, receipt and invoice do not match.</li>
     </ul>
   </div>
+  <h2>Delegated authority must match the exact action</h2>
+  <p>Public organisations often distinguish authority by role, department, account, category, value, jurisdiction or procurement route. An AI workflow that merely knows a named approver exists may still miss those limits. An exact-action authority check can bind the approval to the supplier, amount, procurement action and current policy evidence that were actually reviewed.</p>
+  <p>Where policy requires multiple approvals or separation of duties, the evidence model can represent those requirements before a GatePass is issued. Where the authority is missing, expired, exceeded or unverifiable, the action is refused rather than silently downgraded.</p>
   <h2>Risk-based authority</h2>
   <p>A low-value repeat order can have a narrower automated path. Higher-value or unusual actions can require stronger evidence and Verified Human Authority. Strategic or highly sensitive procurement can require multiple authorities and stricter policy. If authority is missing, expired, exceeded or unverifiable, the action fails closed.</p>
+  <h2>Reviewable evidence</h2>
+  <p>The public demonstrator is designed so a reviewer can inspect what action was proposed, which authority and evidence were relied upon, why a decision was allowed or refused, and whether the later simulated action still matched what had been authorised. This creates a human-readable and machine-readable evidence path rather than relying on the agent's own narrative.</p>
   <h2>What ATG is not</h2>
   <p>ATG does not replace procurement law, delegated-authority frameworks, ERP or e-procurement systems, finance controls, contracting officers or government approval processes. The public implementation is a local deterministic demonstrator with synthetic data and no real procurement, payment, settlement or external action capability.</p>
-  <p class="cta"><a href="./evidence-and-reviewer.html">Review the evidence path →</a> &nbsp; <a href="https://github.com/Gareth1953/agent-trust-gate">Open the public repository →</a></p>
+  <p class="cta"><a href="./exact-action-authority-control-model.html">Read the exact-action authority control model →</a> &nbsp; <a href="./evidence-and-reviewer.html">Review the evidence path →</a> &nbsp; <a href="https://github.com/Gareth1953/agent-trust-gate">Open the public repository →</a></p>
   <p class="small">Agent Trust Gate™ — Exact-Action Authority for AI Agents. Local demonstrator only.</p>
 </main></body>
 </html>
