@@ -7,6 +7,8 @@ on:
       - main
     paths:
       - discovery-site/**
+      - docs/assets/agent-trust-gate-readme-hero.png
+      - docs/assets/agent-trust-gate-social-preview.png
       - agent-trust-gate.discovery.json
       - agent-trust-gate.agent-card.json
       - agent-trust-gate.manifest.json
@@ -50,7 +52,9 @@ jobs:
           cp agent-trust-gate.manifest.json _site/
           cp agent-trust-gate.agent-review-invitation.json _site/
           cp llms.txt _site/
-          mkdir -p _site/schemas _site/examples
+          mkdir -p _site/assets _site/schemas _site/examples
+          cp docs/assets/agent-trust-gate-readme-hero.png _site/assets/
+          cp docs/assets/agent-trust-gate-social-preview.png _site/assets/
           cp schemas/agent-review-invitation.schema.json _site/schemas/
           cp schemas/bring-your-agent-scenario.schema.json _site/schemas/
           cp schemas/ard-ai-catalog-v1.0.schema.json _site/schemas/
@@ -64,6 +68,8 @@ jobs:
           test -f _site/agent-trust-gate.agent-card.json
           test -f _site/agent-trust-gate.manifest.json
           test -f _site/agent-trust-gate.agent-review-invitation.json
+          test -f _site/assets/agent-trust-gate-readme-hero.png
+          test -f _site/assets/agent-trust-gate-social-preview.png
           test -f _site/schemas/agent-review-invitation.schema.json
           test -f _site/schemas/bring-your-agent-scenario.schema.json
           test -f _site/schemas/ard-ai-catalog-v1.0.schema.json
