@@ -60,6 +60,7 @@ jobs:
           cp schemas/ard-ai-catalog-v1.0.schema.json _site/schemas/
           cp examples/bring-your-agent-scenario.example.json _site/examples/
           test -f _site/index.html
+          test -f _site/exact-action-authority-control-model.html
           test -f _site/for-agents.html
           test -f _site/bring-your-agent-scenario.html
           test -f _site/bring-your-agent-scenario.template.json
@@ -125,6 +126,7 @@ jobs:
 
           for path in \
             "/" \
+            "/exact-action-authority-control-model.html" \
             "/evidence-and-reviewer.html" \
             "/retail-supply-chain-ai-agent-authority.html" \
             "/public-procurement-ai-agent-authority.html" \
