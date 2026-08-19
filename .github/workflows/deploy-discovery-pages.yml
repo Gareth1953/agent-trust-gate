@@ -64,6 +64,11 @@ jobs:
           test -f _site/bring-your-agent-scenario.html
           test -f _site/bring-your-agent-scenario.template.json
           test -f _site/ai-catalog.json
+          test -f _site/evidence-and-reviewer.html
+          test -f _site/retail-supply-chain-ai-agent-authority.html
+          test -f _site/public-procurement-ai-agent-authority.html
+          test -f _site/financial-services-ai-agent-authority.html
+          test -f _site/a7f3c9e14d8b42f6a1c75e9d2b6048cf.txt
           test -f _site/agent-trust-gate.discovery.json
           test -f _site/agent-trust-gate.agent-card.json
           test -f _site/agent-trust-gate.manifest.json
@@ -95,3 +100,40 @@ jobs:
       - name: Deploy Pages artifact
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Notify IndexNow of public ATG updates
+        shell: bash
+        run: |
+          set -u
+          KEY="a7f3c9e14d8b42f6a1c75e9d2b6048cf"
+          BASE="https://gareth1953.github.io/agent-trust-gate"
+          KEY_URL="${BASE}/${KEY}.txt"
+
+          ready="false"
+          for attempt in 1 2 3 4 5 6; do
+            if curl -fsS "$KEY_URL" | grep -qx "$KEY"; then
+              ready="true"
+              break
+            fi
+            sleep 10
+          done
+
+          if [ "$ready" != "true" ]; then
+            echo "IndexNow key is not yet reachable; deployment remains successful and notification is deferred."
+            exit 0
+          fi
+
+          for path in \
+            "/" \
+            "/evidence-and-reviewer.html" \
+            "/retail-supply-chain-ai-agent-authority.html" \
+            "/public-procurement-ai-agent-authority.html" \
+            "/financial-services-ai-agent-authority.html" \
+            "/human-authority-demo.html" \
+            "/agent-standing-demo.html"; do
+            url="${BASE}${path}"
+            curl -fsS --get "https://api.indexnow.org/indexnow" \
+              --data-urlencode "url=${url}" \
+              --data-urlencode "key=${KEY}" \
+              >/dev/null || echo "IndexNow notification deferred for ${url}"
+          done
