@@ -19,6 +19,9 @@
         "delegation",
         "human-authority",
         "gatepass",
+        "retail-supply-chain",
+        "public-procurement",
+        "financial-services",
         "local-review"
       ],
       "capabilities": [
@@ -33,11 +36,14 @@
       ],
       "representativeQueries": [
         "review exact-action authority controls for AI agents",
+        "verify AI agent authority before a supply-chain action",
+        "verify delegated authority before a public procurement commitment",
+        "review human authority before a consequential financial AI action",
         "compare a software agent's identity and delegation safeguards with Agent Trust Gate",
         "review exact-action GatePass controls using local synthetic demonstrations",
         "prepare a safe sanitised agent scenario for an accountable human to review"
       ],
-      "version": "0.1.0",
+      "version": "0.2.0",
       "updatedAt": "2026-08-19T00:00:00Z",
       "metadata": {
         "mission": "P3-M155",
@@ -48,7 +54,13 @@
         "a2aServer": false,
         "mcpServer": false,
         "hostedGatepassApi": false,
-        "accountableHumanRequired": true
+        "accountableHumanRequired": true,
+        "evidenceAndReviewerUrl": "https://gareth1953.github.io/agent-trust-gate/evidence-and-reviewer.html",
+        "applicationRoutes": [
+          "https://gareth1953.github.io/agent-trust-gate/retail-supply-chain-ai-agent-authority.html",
+          "https://gareth1953.github.io/agent-trust-gate/public-procurement-ai-agent-authority.html",
+          "https://gareth1953.github.io/agent-trust-gate/financial-services-ai-agent-authority.html"
+        ]
       }
     }
   ]
