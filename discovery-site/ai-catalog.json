@@ -1,21 +1,23 @@
 {
   "specVersion": "1.0",
   "host": {
-    "displayName": "Agent Trust Gate",
+    "displayName": "Agent Trust Gate™ — Exact-Action Authority for AI Agents",
     "documentationUrl": "https://gareth1953.github.io/agent-trust-gate/for-agents.html"
   },
   "entries": [
     {
       "identifier": "urn:air:gareth1953.github.io:agent-trust-gate:static-review-invitation",
-      "displayName": "Agent Trust Gate static reviewer invitation",
+      "displayName": "Agent Trust Gate™ exact-action authority reviewer invitation",
       "type": "application/json",
       "url": "https://gareth1953.github.io/agent-trust-gate/agent-trust-gate.agent-review-invitation.json",
-      "description": "Static local-review metadata for examining Agent Standing and exact-action GatePass demonstrations and preparing a synthetic or sanitised scenario. This is not an executable remote agent, A2A service, MCP server, registry or hosted API.",
+      "description": "Static local-review metadata for examining Agent Standing, Verified Human Authority and exact-action GatePass controls before consequential AI-agent actions, and for preparing a synthetic or sanitised scenario. This is not an executable remote agent, A2A service, MCP server, registry or hosted API.",
       "tags": [
+        "exact-action-authority",
+        "ai-agent-authority",
+        "pre-action-trust",
         "agent-standing",
         "delegation",
         "human-authority",
-        "exact-action",
         "gatepass",
         "local-review"
       ],
@@ -30,12 +32,13 @@
         "produce-execution-receipt"
       ],
       "representativeQueries": [
+        "review exact-action authority controls for AI agents",
         "compare a software agent's identity and delegation safeguards with Agent Trust Gate",
         "review exact-action GatePass controls using local synthetic demonstrations",
         "prepare a safe sanitised agent scenario for an accountable human to review"
       ],
       "version": "0.1.0",
-      "updatedAt": "2026-08-02T00:00:00Z",
+      "updatedAt": "2026-08-19T00:00:00Z",
       "metadata": {
         "mission": "P3-M155",
         "interactionMode": "static_read",
