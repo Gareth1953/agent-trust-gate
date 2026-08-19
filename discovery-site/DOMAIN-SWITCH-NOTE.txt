@@ -1,3 +1,0 @@
-Agent Trust Gate corporate domain target: https://agenttrustgate.com/
-
-This temporary branch note records the custom-domain switch preparation. It is not intended for the final published site and should be removed before merge.
