@@ -311,7 +311,7 @@ const requiredScreenPhrases = [
   "Separate execution status",
   "Limitations",
   "No ERP, bank, payment, directory or supplier system is connected.",
-  "No supplier data is used.",
+  "No real supplier data is used.",
   "No external action occurs.",
 ];
 check(
@@ -386,10 +386,11 @@ check(
 
 check(
   "publication_gate_blocked",
-  read("docs/enterprise-positioning-publication-gate.md").includes("BLOCKED — LOCAL VALIDATION PACK ONLY")
+  read("docs/enterprise-positioning-publication-gate.md").includes("BLOCKED — REVIEW BRANCH ONLY")
+    && read("docs/enterprise-positioning-publication-gate.md").includes("P3-M157 authorises publication to its named review branch only.")
     && read("docs/enterprise-positioning-publication-gate.md").includes("No external contact occurs without separate written approval from Gareth.")
     && read("docs/enterprise-positioning-publication-gate.md").includes("The main public homepage is not replaced or modified without separate mission authority."),
-  "publication, external contact and homepage replacement remain expressly blocked",
+  "only the named review branch is authorised; merge, live-site publication, external contact and homepage replacement remain expressly blocked",
 );
 
 const valid = checks.every(({ passed }) => passed);
@@ -402,12 +403,12 @@ console.log([
   "",
   JSON.stringify({
     valid,
-    localValidationPackOnly: true,
+    reviewBranchOnly: true,
     scenarioCount: scenarioValues.length,
     networkAccess: false,
     externalActionPerformed: false,
     realDataUsed: false,
-    publicationPerformed: false,
+    livePublicationPerformed: false,
     buyerOrReviewerContacted: false,
   }, null, 2),
 ].join("\n"));

@@ -1,23 +1,47 @@
 # Security Policy
 
-Agent Trust Gate™ is currently a local-first, `local_demo_only` developer project. It is not a hosted production system, payment service, settlement system, or production security control.
+Agent Trust Gate™ is a public, local-first synthetic demonstrator. It is not a
+hosted or production service, payment processor, settlement engine, production
+identity service, or production security control. No production release or
+version is currently supported.
 
-## Reporting
+## Reporting a potential security issue
 
-Do not report real secrets, credentials, tokens, private keys, personal data, payment details, banking details, or wallet details in public issues.
+Potential security issues in this repository may be reported responsibly to
+`gpmiddleton71@gmail.com`. No private security-reporting channel is configured
+or assumed by this repository. If GitHub private security reporting or a
+private security advisory is enabled and appropriate for the issue, that route
+may also be used.
 
-No private security-reporting channel is configured in this repository.
+Send only a minimal, redacted description and safe reproduction steps. Do not
+include customer data, personal data, credentials, secrets, tokens, production
+keys, banking or payment details, or confidential third-party material. Retain
+any sensitive supporting material securely unless and until a suitable private
+handling route is agreed.
 
-Public project contact: `gpmiddleton71@gmail.com`
+Do not report real secrets, credentials, tokens, private keys, personal data,
+payment details or banking details in public issues.
 
-Use this email for non-sensitive developer, agent-system, integration, security, and public project enquiries. It is not a live API endpoint, automated agent contact route, autonomous outreach channel, live support SLA, payment channel, settlement channel, or hosted service availability claim.
+Do not test against unrelated third-party systems or any production system.
+Testing should remain within this repository's local synthetic fixtures and
+systems you own or are explicitly authorised to test.
 
-If a report would require sensitive material, do not publish that material. Send only a redacted summary first and retain sensitive details securely until an appropriate private handling route is agreed.
+Please do not disclose a security-sensitive issue publicly before there has
+been a reasonable opportunity to review it. This policy does not promise a
+fixed response or remediation time.
 
-For non-sensitive defects, provide the minimum reproducible local example and remove private or operational data first.
+## Ordinary bugs and feature requests
+
+Use normal GitHub Issues for non-sensitive bugs, documentation problems and
+feature requests. Remove private or operational data and provide the smallest
+safe local reproduction.
 
 ## Current boundary
 
-The supported review surface is the repository code, documentation, schemas, static examples, and local CLI. No live API, external-agent contact, cloud call, real payment, settlement execution, action execution, or production cryptographic signing is active.
+The review surface is the repository code, documentation, schemas, static
+examples and local CLI. No live API, external-agent contact, cloud call, real
+payment, settlement execution, action execution or production cryptographic
+signing is active.
 
-This policy is not a security audit, certification, warranty, or live deployment approval.
+This policy is not a security audit, certification, warranty or deployment
+approval.

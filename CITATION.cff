@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use Agent Trust Gate™, please cite this software using the metadata below."
+title: "Agent Trust Gate™"
+type: software
+authors:
+  - family-names: Price
+    given-names: Gareth
+repository-code: "https://github.com/Gareth1953/agent-trust-gate"
+url: "https://gareth1953.github.io/agent-trust-gate/"
+abstract: >-
+  Agent Trust Gate™ is a local-first pre-action trust demonstrator for
+  exact-action authority, Agent Standing, Verified Human Authority, GatePass
+  evidence, refusal evidence, and separate execution evidence before a
+  consequential AI-agent action.

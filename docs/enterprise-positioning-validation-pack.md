@@ -2,7 +2,7 @@
 
 **Mission:** P3-M156A<br>
 **Authority:** Gareth Price<br>
-**Status:** Local validation pack only; synthetic, deterministic, reviewer-ready and non-production.
+**Status:** Repository review-branch pack only; synthetic, deterministic and non-production. Not approved for merge, live-site publication or outreach.
 
 ## Approved positioning
 

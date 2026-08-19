@@ -1,8 +1,8 @@
 # Enterprise Positioning Publication Gate
 
-**Current decision:** `BLOCKED — LOCAL VALIDATION PACK ONLY`<br>
+**Current decision:** `BLOCKED — REVIEW BRANCH ONLY`<br>
 **Mission authority:** Gareth Price<br>
-**Effect:** No publication, push, outreach, reviewer contact, buyer contact or homepage change is authorised.
+**Effect:** P3-M157 authorises publication to its named review branch only. No merge to `main`, GitHub Pages deployment, outreach, reviewer contact, buyer contact or homepage change is authorised by this gate.
 
 ## Conditions required before any positioning publication
 
@@ -42,7 +42,7 @@ Gareth must explicitly decide:
 7. whether sanitised feedback may be recorded and under what data-retention rules;
 8. whether results meet the four-of-five reviewer pass rule;
 9. whether a second-workflow reuse test should be designed under a separate mission;
-10. whether any later publication, repository push, public-route change or buyer outreach receives separate mission authority.
+10. whether any later merge to `main`, live-site publication, public-route change or buyer outreach receives separate mission authority.
 
 ## Explicitly prohibited claims inventory
 
@@ -69,4 +69,4 @@ The phrases below are retained only as release-blocking search terms, not approv
 
 If every condition passes, that fact still does not publish anything. A later mission must record Gareth’s approval, approved assets, approved claims, destination, timing, contact scope, rollback plan and post-publication checks. Until then the only valid state is:
 
-> LOCAL VALIDATION PACK ONLY. NO PUBLICATION. NO PUSH. NO BUYER OR REVIEWER CONTACT. NO REAL DATA. NO EXTERNAL ACTION.
+> REVIEW BRANCH ONLY. NO MERGE OR LIVE-SITE PUBLICATION. NO BUYER OR REVIEWER CONTACT. NO REAL DATA. NO EXTERNAL ACTION.

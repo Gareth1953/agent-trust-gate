@@ -40,6 +40,15 @@ const requiredSiteFiles = [
   "discovery-site/bring-your-agent-scenario.html",
   "discovery-site/bring-your-agent-scenario.template.json",
   "discovery-site/ai-catalog.json",
+  "discovery-site/exact-action-authority-control-model.html",
+  "discovery-site/evidence-and-reviewer.html",
+  "discovery-site/retail-supply-chain-ai-agent-authority.html",
+  "discovery-site/public-procurement-ai-agent-authority.html",
+  "discovery-site/financial-services-ai-agent-authority.html",
+  "discovery-site/agent-standing-demo.html",
+  "discovery-site/human-authority-demo.html",
+  "discovery-site/google8583929aeb1cff63.html",
+  "discovery-site/a7f3c9e14d8b42f6a1c75e9d2b6048cf.txt",
 ] as const;
 const requiredArtifactFiles = [
   "agent-trust-gate.discovery.json",
@@ -56,9 +65,28 @@ const publicHtmlFiles = [
   "discovery-site/index.html",
   "discovery-site/for-agents.html",
   "discovery-site/bring-your-agent-scenario.html",
+  "discovery-site/exact-action-authority-control-model.html",
+  "discovery-site/evidence-and-reviewer.html",
+  "discovery-site/retail-supply-chain-ai-agent-authority.html",
+  "discovery-site/public-procurement-ai-agent-authority.html",
+  "discovery-site/financial-services-ai-agent-authority.html",
   "discovery-site/agent-standing-demo.html",
   "discovery-site/human-authority-demo.html",
 ] as const;
+const seoPublicHtmlFiles = [
+  "discovery-site/index.html",
+  "discovery-site/exact-action-authority-control-model.html",
+  "discovery-site/evidence-and-reviewer.html",
+  "discovery-site/retail-supply-chain-ai-agent-authority.html",
+  "discovery-site/public-procurement-ai-agent-authority.html",
+  "discovery-site/financial-services-ai-agent-authority.html",
+  "discovery-site/agent-standing-demo.html",
+  "discovery-site/human-authority-demo.html",
+] as const;
+const googleVerificationFile = "discovery-site/google8583929aeb1cff63.html" as const;
+const googleVerificationValue = "google-site-verification: google8583929aeb1cff63.html" as const;
+const indexNowKeyFile = "discovery-site/a7f3c9e14d8b42f6a1c75e9d2b6048cf.txt" as const;
+const indexNowKey = "a7f3c9e14d8b42f6a1c75e9d2b6048cf" as const;
 const workflowActions = [
   "actions/checkout@v6",
   "actions/configure-pages@v5",
@@ -78,11 +106,13 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
   const allowedWorkflowActions = new Set<string>(workflowActions);
   const links = extractLinks(indexHtml);
   const normalisedLinks = links.map((href) => href.replace(/^\.\//, ""));
-  const jsonLdValues = extractJsonLd(indexHtml);
-  const parsedJsonLd = jsonLdValues.map((value) => JSON.parse(value) as unknown);
+  const indexJsonLdValues = extractJsonLd(indexHtml);
+  const allJsonLdValues = publicHtmlFiles.flatMap((path) => extractJsonLd(read(path)));
   const trackedPaths = listFiles(".");
   const artifactPaths = new Set([
     ...listFiles("discovery-site").map((path) => path.replace(/^discovery-site\//, "")),
+    "assets/agent-trust-gate-readme-hero.png",
+    "assets/agent-trust-gate-social-preview.png",
     "agent-trust-gate.discovery.json",
     "agent-trust-gate.agent-card.json",
     "agent-trust-gate.manifest.json",
@@ -95,6 +125,39 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
   ]);
   const invalidLocalLinks = publicHtmlFiles.flatMap((path) =>
     localLinkFailures(path, read(path), artifactPaths).map((href) => `${path}: ${href}`)
+  );
+  const invalidLocalAssets = publicHtmlFiles.flatMap((path) =>
+    localAssetFailures(path, read(path), artifactPaths).map((src) => `${path}: ${src}`)
+  );
+  const seoMetadataFailures = seoPublicHtmlFiles.flatMap((path) => {
+    const html = read(path);
+    const file = path.replace(/^discovery-site\//, "");
+    const expectedCanonical = file === "index.html"
+      ? MACHINE_DISCOVERY_EXPECTED_PAGES_URL
+      : `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}${file}`;
+    const failures: string[] = [];
+    if (!/<title>[^<]+<\/title>/i.test(html)) failures.push(`${path}: title`);
+    if (!/<meta\s+name=["']description["']\s+content=["'][^"']+["']\s*\/?\s*>/i.test(html)) {
+      failures.push(`${path}: description`);
+    }
+    if (!html.includes(`<link rel="canonical" href="${expectedCanonical}">`)) {
+      failures.push(`${path}: canonical`);
+    }
+    if (/<meta\b[^>]*name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html)) {
+      failures.push(`${path}: noindex`);
+    }
+    return failures;
+  });
+  const expectedSitemapUrls = seoPublicHtmlFiles.map((path) => {
+    const file = path.replace(/^discovery-site\//, "");
+    return file === "index.html"
+      ? MACHINE_DISCOVERY_EXPECTED_PAGES_URL
+      : `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}${file}`;
+  });
+  const imageAltFailures = seoPublicHtmlFiles.flatMap((path) =>
+    extractImageTags(read(path))
+      .filter((tag) => !/\balt=["'][^"']+["']/i.test(tag))
+      .map(() => path)
   );
   const obsoleteStatusPattern = new RegExp([
     "activation\\s+prepared",
@@ -125,7 +188,7 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
         "agent-trust-gate.agent-review-invitation.json",
         "llms.txt",
       ].every((file) => workflow.includes(`cp ${file} _site/`)) &&
-        workflow.includes("mkdir -p _site/schemas _site/examples") &&
+        workflow.includes("mkdir -p _site/assets _site/schemas _site/examples") &&
         workflow.includes("cp schemas/agent-review-invitation.schema.json _site/schemas/") &&
         workflow.includes("cp schemas/bring-your-agent-scenario.schema.json _site/schemas/") &&
         workflow.includes("cp schemas/ard-ai-catalog-v1.0.schema.json _site/schemas/") &&
@@ -150,8 +213,39 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
     },
     {
       id: "json_ld_parses",
-      passed: parsedJsonLd.length >= 1,
-      detail: "index.html includes valid JSON-LD metadata",
+      passed: indexJsonLdValues.length >= 1
+        && allJsonLdValues.length >= seoPublicHtmlFiles.length
+        && allJsonLdValues.every(canParseJson)
+        && extractJsonLd(read("discovery-site/agent-standing-demo.html")).some(canParseJson),
+      detail: "all principal public pages include parseable JSON-LD, including the Agent Standing demonstrator",
+    },
+    {
+      id: "seo_metadata_and_indexability",
+      passed: seoMetadataFailures.length === 0,
+      detail: seoMetadataFailures.length === 0
+        ? "principal public pages have titles, descriptions, canonical URLs and no noindex directive"
+        : `public metadata failures: ${seoMetadataFailures.join(", ")}`,
+    },
+    {
+      id: "sitemap_membership",
+      passed: expectedSitemapUrls.every((url) => sitemapXml.includes(`<loc>${url}</loc>`)),
+      detail: "the sitemap includes the home, control, reviewer, sector, Human Authority and Agent Standing routes",
+    },
+    {
+      id: "image_alt_text",
+      passed: imageAltFailures.length === 0,
+      detail: imageAltFailures.length === 0
+        ? "every public content image has non-empty alternative text"
+        : `missing image alt text: ${imageAltFailures.join(", ")}`,
+    },
+    {
+      id: "search_and_indexnow_verification_preserved",
+      passed: read(googleVerificationFile).trim() === googleVerificationValue
+        && read(indexNowKeyFile).trim() === indexNowKey
+        && workflow.includes(`test -f _site/google8583929aeb1cff63.html`)
+        && workflow.includes(`grep -qx '${googleVerificationValue}' _site/google8583929aeb1cff63.html`)
+        && workflow.includes(`grep -qx '${indexNowKey}' _site/${indexNowKey}.txt`),
+      detail: "Google Search Console verification and IndexNow key content are preserved and deployment-checked",
     },
     {
       id: "expected_base_path",
@@ -166,8 +260,8 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
     {
       id: "active_verified_wording",
       passed: /Passive discovery site active/i.test(indexHtml) &&
-        /Public machine-readable discovery route/i.test(indexHtml) &&
-        /Hosted through GitHub Pages/i.test(indexHtml) &&
+        /Live public path:/i.test(indexHtml) &&
+        /GitHub Pages: active public HTTPS static discovery route deployed through GitHub Actions\./i.test(indexHtml) &&
         !obsoleteStatusPattern.test(indexHtml),
       detail: "index.html records the active verified Pages status without obsolete pending wording",
     },
@@ -178,6 +272,8 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
         "https://github.com/Gareth1953/agent-trust-gate/blob/main/README.md",
         "https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/one-command-reviewer-demo-kit.md",
         "https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/paid-pilot-commercial-entry.md",
+        "https://github.com/Gareth1953/agent-trust-gate/blob/main/CITATION.cff",
+        "https://github.com/Gareth1953/agent-trust-gate/blob/main/SECURITY.md",
         "agent-trust-gate.discovery.json",
         "llms.txt",
         "agent-trust-gate.agent-card.json",
@@ -198,9 +294,9 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
       id: "no_external_scripts_or_assets",
       passed: !/<script\b[^>]*\bsrc\s*=/i.test(combinedPublicHtml) &&
         !/<link\b[^>]*\brel=["']?stylesheet["']?[^>]*https?:\/\//i.test(combinedPublicHtml) &&
-        !/<img\b/i.test(combinedPublicHtml) &&
+        !/<img\b[^>]*\bsrc=["']https?:\/\//i.test(combinedPublicHtml) &&
         !/<video\b/i.test(combinedPublicHtml),
-      detail: "static site has no external JavaScript, external fonts, third-party images, or embedded video",
+      detail: "static site has no external JavaScript, external fonts, third-party images or embedded video",
     },
     {
       id: "no_forms_iframes_or_chat",
@@ -230,9 +326,8 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
       passed: [
         /\blive A2A endpoint is active\b/i,
         /\bMCP server is active\b/i,
-        /\bproduction ready\b/i,
-        /\bguaranteed safety\b/i,
-        /\bguaranteed compliance\b/i,
+        /\bATG (?:is |provides a )?production[- ]ready\b/i,
+        /\bATG guarantees (?:safety|compliance)\b/i,
         /\breal payment protection\b/i,
         /\bsettlement execution is active\b/i,
         /"(?:a2aServer|mcpServer|hostedGatepassApi|productionReady)"\s*:\s*true/i,
@@ -255,6 +350,13 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
       detail: invalidLocalLinks.length === 0
         ? "every relative link in each public HTML page resolves within the selected Pages artifact"
         : `unresolved selected-artifact links: ${invalidLocalLinks.join(", ")}`,
+    },
+    {
+      id: "all_local_public_assets_valid",
+      passed: invalidLocalAssets.length === 0,
+      detail: invalidLocalAssets.length === 0
+        ? "every relative image or media reference resolves within the selected Pages artifact"
+        : `unresolved selected-artifact assets: ${invalidLocalAssets.join(", ")}`,
     },
     {
       id: "no_cname_or_well_known_endpoint",
@@ -316,6 +418,17 @@ function extractLinks(html: string): string[] {
   ).filter(Boolean);
 }
 
+function extractAssetSources(html: string): string[] {
+  return Array.from(
+    html.matchAll(/\b(?:src|poster)=["']([^"']+)["']/gi),
+    (match) => match[1] ?? "",
+  ).filter(Boolean);
+}
+
+function extractImageTags(html: string): string[] {
+  return Array.from(html.matchAll(/<img\b[^>]*>/gi), (match) => match[0] ?? "");
+}
+
 function canParseJson(value: string): boolean {
   try {
     JSON.parse(value);
@@ -345,6 +458,23 @@ function localLinkFailures(
       ? `${candidate === "." ? "" : `${candidate}/`}index.html`
       : candidate;
     return !artifactPaths.has(artifactPath);
+  });
+}
+
+function localAssetFailures(
+  sourcePath: string,
+  html: string,
+  artifactPaths: ReadonlySet<string>,
+): string[] {
+  const sourceArtifactPath = sourcePath.replace(/^discovery-site\//, "");
+  return extractAssetSources(html).filter((src) => {
+    if (/^(?:https?:|data:|blob:)/i.test(src)) return false;
+    const withoutFragment = src.split("#", 1)[0]?.split("?", 1)[0] ?? "";
+    if (withoutFragment === "") return false;
+    const candidate = join(dirname(sourceArtifactPath), withoutFragment)
+      .replace(/\\/g, "/")
+      .replace(/^\.\//, "");
+    return !artifactPaths.has(candidate);
   });
 }
 

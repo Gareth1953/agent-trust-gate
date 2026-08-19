@@ -78,7 +78,7 @@
       <div class="eyebrow">Agent Trust Gate™ · local exact-action evaluation</div>
       <h1>Verify authority before a consequential AI-agent action.</h1>
       <p class="lead">A deterministic fictional supplier bank-detail change before an ERP or payment-master-data update.</p>
-      <p class="boundary"><strong>Local validation only.</strong> No ERP, bank, payment, directory or supplier system is connected. No supplier data is used. No external action occurs.</p>
+      <p class="boundary"><strong>Local validation only.</strong> No ERP, bank, payment, directory or supplier system is connected. No real supplier data is used. No external action occurs.</p>
     </div>
   </header>
 
@@ -223,7 +223,7 @@
       separation: "PASSED",
       approvalOne: "Configured evidence: Fictional Human 21 · Supplier Master Data Manager · current for this exact action",
       approvalTwo: "Configured evidence: Fictional Human 34 · Finance Controls Manager · current for this exact action",
-      dual: "PASSED — two distinct authorised humans",
+      dual: "PASSED — configured authority evidence for two distinct human fixtures",
       freshness: "PASSED — within 30 minutes",
       gatepass: "NOT ISSUED",
       signature: "NOT PRESENT",
@@ -244,12 +244,12 @@
       { id: "authority_limit_exceeded", title: "7 · Authority limit exceeded", approvalOne: "Fictional Human 21 · maximum tier 1; action tier 2", authorityStage: "REFUSED", code: "AUTHORITY_LIMIT_EXCEEDED", reason: "A human approver lacks authority for the configured supplier category or risk tier." },
       { id: "dual_approval_missing", title: "8 · Dual approval missing", approvalTwo: "MISSING", dual: "FAILED — second authorised human required", authorityStage: "REFUSED", code: "DUAL_APPROVAL_REQUIRED", reason: "Policy requires two distinct authorised humans in the required roles." },
       { id: "approval_expired", title: "9 · Approval expired", freshness: "FAILED — outside 30-minute window", authorityStage: "REFUSED", code: "APPROVAL_EXPIRED", reason: "An exact-action approval is outside the configured 30-minute freshness window." },
-      { id: "replayed_gatepass", title: "10 · Replayed GatePass", gatepass: "PRESENTED CONSUMED — replay refused", signature: "VERIFIED — signature integrity does not permit replay", gateStage: "REPLAY REFUSED", code: "GATEPASS_ALREADY_CONSUMED", reason: "The one-use GatePass nonce has already been consumed and cannot be replayed." },
+      { id: "replayed_gatepass", title: "10 · Replayed GatePass", gatepass: "PRESENTED CONSUMED — replay refused", signature: "NOT PRESENT — consumed-state fixture only", gateStage: "REPLAY REFUSED", code: "GATEPASS_ALREADY_CONSUMED", reason: "The one-use GatePass nonce has already been consumed and cannot be replayed." },
       { id: "action_digest_mismatch", title: "11 · Action digest mismatch", reasonText: "Supplier-requested banking update.", proposedDigest: "e8dffadfebf18782c13586fd76b40c4894bc65639e474aaaee8cb3d892f3db0b", code: "ACTION_DIGEST_MISMATCH", reason: "One reason-field character differs after approval, so the canonical digests do not match." },
       { id: "agent_standing_unverifiable", title: "12 · Agent Standing unverifiable", identity: "UNVERIFIABLE", principal: "UNVERIFIABLE", delegation: "EVIDENCE MISSING", standing: "UNVERIFIABLE", identityStage: "UNVERIFIABLE", authorityStage: "NOT REACHED", policyStage: "REFUSED", code: "AGENT_STANDING_UNVERIFIABLE", reason: "The agent identity, accountable principal or delegation evidence cannot be sufficiently verified." },
       { id: "delegation_out_of_scope", title: "13 · Delegation out of scope", delegation: "ACTIVE — supplier review only; amendment excluded", standing: "REFUSED", authorityStage: "REFUSED", code: "DELEGATION_OUT_OF_SCOPE", reason: "The agent may review supplier records but cannot request bank-detail amendments." },
       { id: "commercial_authority_confusion", title: "14 · Commercial authority confusion", actionType: "Supplier payment execution", proposedDigest: "69375e334296b99126f779712489528b248b454e2cf2e5435613449dedbe6975", code: "COMMERCIAL_AUTHORITY_CONFUSION", reason: "Supplier-master-data approval cannot be treated as authority to make or approve a payment." },
-      { id: "execution_claim_without_execution_receipt", title: "15 · Execution claim without receipt", gatepass: "PREVIOUSLY ISSUED — decision evidence only", signature: "VERIFIED — decision integrity only; not execution evidence", execution: "CLAIM NOT PROVEN — receipt missing", policyStage: "PASSED", gateStage: "PREVIOUSLY ISSUED", executionStage: "CLAIM REFUSED", code: "EXECUTION_RECEIPT_MISSING", reason: "A GatePass exists, but no separate execution receipt supports the claim that an ERP change occurred." },
+      { id: "execution_claim_without_execution_receipt", title: "15 · External execution claim refused", gatepass: "PRIOR-DECISION STATE PRESENTED — no GatePass evidence reconstructed", signature: "NOT PRESENT — prior-decision state fixture only", execution: "EXTERNAL CLAIM NOT PROVEN — no production receipt source", policyStage: "PASSED", gateStage: "PRIOR STATE PRESENTED", executionStage: "CLAIM REFUSED", code: "EXECUTION_RECEIPT_MISSING", reason: "The fixture presents a prior GatePass state, but this demonstrator neither reconstructs that GatePass nor accepts a claim that an external ERP change occurred." },
       { id: "revoked_human_authority", title: "16 · Revoked human authority", approvalOne: "Configured evidence: Fictional Human 21 · organisational authority for this exact action revoked before decision", authorityStage: "REFUSED", code: "APPROVER_AUTHORITY_REVOKED", reason: "Configured evidence shows that the approver’s organisational authority for this exact action was revoked before the decision." }
     ];
     const byId = (id) => document.getElementById(id);

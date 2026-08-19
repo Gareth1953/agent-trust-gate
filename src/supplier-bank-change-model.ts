@@ -128,7 +128,7 @@ export interface SupplierBankChangeApproval {
 }
 
 export interface SupplierBankChangeExecutionClaim {
-  claimsExecuted: boolean;
+  claimsExternalExecution: boolean;
   receiptPresent: boolean;
   receiptSimulated: boolean;
   receiptReference: string | null;
@@ -210,7 +210,7 @@ export interface SupplierBankChangeDecision {
   };
   executionEvidence: {
     status: "simulated_receipt_present" | "not_claimed" | "claim_not_proven";
-    claimAccepted: boolean;
+    externalExecutionClaimAccepted: false;
     receiptReference: string | null;
     simulatedOnly: true;
     externalActionPerformed: false;
@@ -476,10 +476,10 @@ export function evaluateSupplierBankChange(
   }
   controls.push({ control: "replay_protection", passed: true, detail: "The GatePass nonce is unused in the deterministic local fixture." });
 
-  if (scenario.executionClaim.claimsExecuted && !scenario.executionClaim.receiptPresent) {
+  if (scenario.executionClaim.claimsExternalExecution) {
     return refuse(
       "EXECUTION_RECEIPT_MISSING",
-      "A GatePass exists, but no separate execution receipt supports the claim that an ERP change occurred.",
+      "The fixture presents a prior GatePass state, but this local demonstrator neither reconstructs that GatePass nor accepts a claim that an external ERP change occurred; no production execution receipt is available.",
       "execution_evidence",
       "execution_claim",
     );
@@ -520,15 +520,15 @@ function createDecision(input: {
   failedControl: string | null;
   gatePassStatus: SupplierBankChangeDecision["gatePass"]["status"];
 }): SupplierBankChangeDecision {
-  const hasGatePass = input.gatePassStatus !== "not_issued";
-  const gatePassId = hasGatePass
+  const gatePassIssuedNow = input.gatePassStatus === "issued";
+  const gatePassId = gatePassIssuedNow
     ? `gatepass_supplier_${digest(`${input.actionDigest}:${input.scenario.presentedGatePass.nonce}`).slice(0, 20)}`
     : null;
   const gatePassExpiresAt = "2026-08-04T10:30:00.000Z";
   const fixtureKey = createDeterministicLocalFixtureKeyPair(
     "atg-supplier-bank-change-local-fixture-key-v1",
   );
-  const signedPayload = hasGatePass ? {
+  const signedPayload = gatePassIssuedNow ? {
     gatePassId,
     actionDigest: input.actionDigest,
     supplierReference: input.scenario.action.supplierReference,
@@ -588,14 +588,14 @@ function createDecision(input: {
     gatePass: {
       status: input.gatePassStatus,
       gatePassId,
-      exactActionDigest: hasGatePass ? input.actionDigest : null,
-      supplierReference: hasGatePass ? input.scenario.action.supplierReference : null,
-      accountEndingTransition: hasGatePass
+      exactActionDigest: gatePassIssuedNow ? input.actionDigest : null,
+      supplierReference: gatePassIssuedNow ? input.scenario.action.supplierReference : null,
+      accountEndingTransition: gatePassIssuedNow
         ? `${input.scenario.action.currentAccountEnding}->${input.scenario.action.proposedAccountEnding}`
         : null,
-      nonce: hasGatePass ? input.scenario.presentedGatePass.nonce : null,
-      issuedAt: hasGatePass ? input.scenario.referenceTime : null,
-      expiresAt: hasGatePass ? gatePassExpiresAt : null,
+      nonce: input.gatePassStatus === "not_issued" ? null : input.scenario.presentedGatePass.nonce,
+      issuedAt: gatePassIssuedNow ? input.scenario.referenceTime : null,
+      expiresAt: gatePassIssuedNow ? gatePassExpiresAt : null,
       oneUse: true,
       permitsMasterDataChangeOnly: true,
       permitsPayment: false,
@@ -603,8 +603,8 @@ function createDecision(input: {
       permitsBroaderErpAccess: false,
       signedFixtureEvidence: {
         status: fixtureSignatureVerified ? "verified" : "not_present",
-        algorithm: hasGatePass ? LOCAL_SIGNED_PROOF_ALGORITHM : null,
-        keyId: hasGatePass ? fixtureKey.keyId : null,
+        algorithm: gatePassIssuedNow ? LOCAL_SIGNED_PROOF_ALGORITHM : null,
+        keyId: gatePassIssuedNow ? fixtureKey.keyId : null,
         signature: fixtureSignature,
         localFixtureOnly: true,
         productionKeyCustody: false,
@@ -613,10 +613,10 @@ function createDecision(input: {
     executionEvidence: {
       status: receiptPresent
         ? "simulated_receipt_present"
-        : input.scenario.executionClaim.claimsExecuted
+        : input.scenario.executionClaim.claimsExternalExecution
           ? "claim_not_proven"
           : "not_claimed",
-      claimAccepted: receiptPresent,
+      externalExecutionClaimAccepted: false,
       receiptReference: receiptPresent ? input.scenario.executionClaim.receiptReference : null,
       simulatedOnly: true,
       externalActionPerformed: false,

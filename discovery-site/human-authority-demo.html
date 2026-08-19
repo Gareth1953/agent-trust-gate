@@ -47,8 +47,8 @@
 <body>
 <header>
   <div class="eyebrow">Agent Trust Gate™ · P3-M153</div>
-  <h1>Prove which authorised human approved the exact AI-agent action.</h1>
-  <p class="lead">Run a fictional retail or finance scenario. The visual demonstrator checks identity status, organisation-controlled authentication, action authority, separation of duties, dual approval, freshness, replay state and exact-action integrity before showing a GatePass.</p>
+  <h1>Inspect configured human-authority evidence for an exact AI-agent action.</h1>
+  <p class="lead">Run a fictional retail or finance scenario. The visual demonstrator evaluates fixture representations of identity status, organisation-controlled authentication, action authority, separation of duties, dual approval, freshness, replay state and exact-action integrity before showing a GatePass.</p>
   <div class="boundary"><strong>Safe demonstration:</strong> all people, permissions, orders and transactions are fictional. No login, password, customer data, payment or external action is used.</div>
 </header>
 <main>
@@ -90,6 +90,27 @@
   </div>
 
   <div class="rule">No verified identity. No confirmed authority. No exact-action Human Authority Proof. No valid GatePass. No action.</div>
+
+  <div class="grid" aria-label="Reviewer interpretation guide">
+    <section class="panel">
+      <h2>What this demonstration establishes</h2>
+      <p>For fixed synthetic inputs, it shows how configured identity, authority, separation-of-duties, approval, freshness, replay and exact-action checks can produce a deterministic GatePass or refusal. It also keeps the authority decision separate from simulated execution evidence.</p>
+    </section>
+    <section class="panel">
+      <h2>What it does not establish</h2>
+      <p>It does not verify a real person, employment record, organisation credential or legal authority. It does not prove the source assertions are true, provide production identity assurance, execute a payment or action, certify compliance, or show that these fixture controls are sufficient for a real organisation.</p>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>Questions for a reviewer</h2>
+    <ul>
+      <li>Which system would supply and revoke each identity and authority assertion in a real deployment?</li>
+      <li>Does every approval bind the same canonical action, and what happens when amount, destination or scope changes?</li>
+      <li>Are freshness, replay, separation-of-duties and second-approver rules owned by the organisation rather than inferred by the agent?</li>
+      <li>What protected key custody, trusted time, durable state, audit retention and fail-closed integration would production use require?</li>
+    </ul>
+  </section>
 
   <section class="panel">
     <h2>Technical reviewer route</h2>

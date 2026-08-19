@@ -51,7 +51,7 @@ An AI-agent response, automated acknowledgement, generic acknowledgement, admini
 
 ## Materials to provide
 
-Only the exact assets listed in [Reviewer Materials Index](reviewer-materials-index.md) may be proposed for controlled sharing. They include the executive brief, local static demonstrator, four selected synthetic scenarios, assessment offer, questionnaire, and claims-and-limitations statement. All remain local unless Gareth separately approves each asset and route.
+Only the exact assets listed in [Reviewer Materials Index](reviewer-materials-index.md) may be proposed for controlled sharing. They include the executive brief, local static demonstrator, four selected synthetic scenarios, assessment offer, questionnaire, and claims-and-limitations statement. Their presence on the P3-M157 review branch does not approve deployment, direct sharing, outreach or use with a real reviewer; Gareth must separately approve each asset and route.
 
 ## Review sequence
 

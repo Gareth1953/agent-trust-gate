@@ -153,6 +153,10 @@ and the closed [AgentStandingProof schema](schemas/agent-standing-proof.schema.j
 
 ## Where is the technical evidence?
 
+- [Public Exact-Action Authority Control Model](discovery-site/exact-action-authority-control-model.html)
+- [Evidence & Reviewer Route](discovery-site/evidence-and-reviewer.html)
+- [Agent Standing demonstration](discovery-site/agent-standing-demo.html) and [Verified Human Authority demonstration](discovery-site/human-authority-demo.html)
+- [Citation metadata](CITATION.cff) and [responsible-disclosure policy](SECURITY.md)
 - [Exact-action design and failure boundaries](docs/exact-action-gatepass-and-execution-receipts.md)
 - [Exact-action GatePass schema](schemas/exact-action-gatepass.schema.json) and [execution-receipt schema](schemas/execution-receipt.schema.json)
 - [Round-trip threat model](docs/gatepass-round-trip-threat-model.md) and [reviewer limitations](docs/reviewer-demo-limitations-and-safety-boundary.md)

@@ -1,8 +1,8 @@
 {
   "scenarioVersion": "atg.supplier-bank-change.scenario.local.v1",
   "scenarioId": "execution_claim_without_execution_receipt",
-  "title": "Execution claim without receipt refused",
-  "description": "A GatePass exists, but no separate receipt supports a claim that an ERP change occurred.",
+  "title": "External execution claim refused",
+  "description": "A prior GatePass state is presented, but the local demonstrator does not reconstruct GatePass evidence, has no production receipt source and cannot accept a claim that an external ERP change occurred.",
   "synthetic": true,
   "realData": false,
   "networkAccess": false,
@@ -14,7 +14,7 @@
       "nonce": "synthetic-supplier-change-nonce-0015"
     },
     "executionClaim": {
-      "claimsExecuted": true,
+      "claimsExternalExecution": true,
       "receiptPresent": false,
       "receiptSimulated": false,
       "receiptReference": null

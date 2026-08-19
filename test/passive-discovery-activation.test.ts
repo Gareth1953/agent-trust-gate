@@ -107,7 +107,7 @@ test("static discovery site is accessible source with safe machine discovery met
   const html = read("discovery-site/index.html");
   const robots = read("discovery-site/robots.txt");
   const sitemap = read("discovery-site/sitemap.xml");
-  assert.match(html, /<title>Agent Trust Gate - Passive GatePass Discovery<\/title>/);
+  assert.match(html, /<title>Agent Trust Gate™ — Exact-Action Authority for AI Agents<\/title>/);
   assert.match(html, /<meta name="description"/);
   assert.match(html, new RegExp(`rel="canonical" href="${expectedUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`));
   assert.match(html, /property="og:title"/);
@@ -116,8 +116,8 @@ test("static discovery site is accessible source with safe machine discovery met
   assert.match(html, /npm run demo:reviewer-kit/);
   assert.match(html, /GatePass is a scoped, time-bound, action-specific proof primitive for agent actions\./);
   assert.match(html, /Passive discovery site active/);
-  assert.match(html, /Public machine-readable discovery route/);
-  assert.match(html, /Hosted through GitHub Pages/i);
+  assert.match(html, /Live public path:/);
+  assert.match(html, /GitHub Pages: active public HTTPS static discovery route deployed through GitHub Actions\./i);
   assert.match(html, /No live A2A endpoint/);
   assert.match(html, /MCP server: not implemented/);
   assert.match(html, /agent-trust-gate\.discovery\.json/);
@@ -130,13 +130,19 @@ test("static discovery site is accessible source with safe machine discovery met
   assert.match(sitemap, new RegExp(expectedUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
 });
 
-test("static discovery site contains no scripts forms analytics payment links media or custom domain", () => {
+test("static discovery site contains only approved local images and no external scripts forms analytics payment links media or custom domain", () => {
   const html = read("discovery-site/index.html");
   const allSiteText = siteFiles.map(read).join("\n");
   assert.doesNotMatch(html, /<script\b[^>]*\bsrc\s*=/i);
   assert.doesNotMatch(html, /<form\b/i);
   assert.doesNotMatch(html, /<iframe\b/i);
-  assert.doesNotMatch(html, /<img\b/i);
+  const imageTags = [...html.matchAll(/<img\b[^>]*>/gi)].map(([tag]) => tag);
+  assert.ok(imageTags.length >= 1);
+  for (const tag of imageTags) {
+    assert.match(tag, /\bsrc=["']\.\/assets\/(?:agent-trust-gate-readme-hero|agent-trust-gate-social-preview)\.png["']/i);
+    assert.match(tag, /\balt=["'][^"']+["']/i);
+  }
+  assert.doesNotMatch(html, /<img\b[^>]*\bsrc=["']https?:\/\//i);
   assert.doesNotMatch(html, /<video\b/i);
   assert.doesNotMatch(html, /gtag|googletagmanager|plausible|segment|mixpanel|document\.cookie|Set-Cookie|localStorage|sessionStorage|tracking\s*pixel|fingerprint/i);
   assert.doesNotMatch(allSiteText, /paypal\.com|stripe\.com|buy-now|payment-button/i);

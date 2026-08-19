@@ -92,9 +92,9 @@ The GatePass does not authorise payment, invoice approval, contract acceptance, 
 
 ## Decision receipt and execution-receipt separation
 
-The GatePass and decision receipt answer whether the proposal passed the configured pre-action controls. The deterministic local-fixture signature supports integrity, binding and fixture-key signer evidence; it is not production key custody and does not make underlying assertions true. A signed GatePass does not prove that an ERP update occurred. A distinct simulated execution receipt may reference the GatePass, action digest, nonce and a local simulated acknowledgement. It always states that no external action occurred.
+The GatePass and decision receipt answer whether the proposal passed the configured pre-action controls. The deterministic local-fixture signature supports integrity, binding and fixture-key signer evidence; it is not production key custody and does not make underlying assertions true. A signed GatePass does not prove that an ERP update occurred. A distinct simulated execution receipt may reference the GatePass, action digest, nonce and a local simulated acknowledgement. It always states that no external action occurred and cannot support a claim that an external ERP change occurred.
 
-If someone claims execution without that separate evidence, the model returns `EXECUTION_RECEIPT_MISSING`; the GatePass may remain valid evidence of a prior decision, but the execution claim is not accepted.
+If someone claims external execution, the model returns `EXECUTION_RECEIPT_MISSING` because this demonstrator has no production execution-receipt source. The scenario may present a prior-decision state, but the evaluator does not reconstruct or manufacture a prior GatePass identifier or signature, and the external execution claim is never accepted.
 
 ## Audit evidence
 

@@ -81,6 +81,7 @@ test("valid exact change issues a one-use master-data-only GatePass with separat
   assert.equal(decision.gatePass.signedFixtureEvidence.productionKeyCustody, false);
   assert.equal(decision.executionEvidence.status, "simulated_receipt_present");
   assert.equal(decision.executionEvidence.simulatedOnly, true);
+  assert.equal(decision.executionEvidence.externalExecutionClaimAccepted, false);
   assert.equal(decision.identityVerification, "verified");
   assert.equal(decision.authorityVerification, "verified");
   assert.equal(decision.businessPolicyEvaluation, "passed");
@@ -123,22 +124,26 @@ test("commercial master-data authority never permits payment or settlement", () 
   assert.equal(decision.externalActionPerformed, false);
 });
 
-test("execution claim requires a receipt separate from the prior GatePass", () => {
+test("an external execution claim is never accepted by the local demonstrator", () => {
   const decision = evaluateSupplierBankChange(
     loadSupplierBankChangeScenario("execution_claim_without_execution_receipt"),
   );
   assert.equal(decision.decisionStage, "execution_claim");
   assert.equal(decision.reasonCode, "EXECUTION_RECEIPT_MISSING");
   assert.equal(decision.gatePass.status, "previously_issued");
+  assert.equal(decision.gatePass.gatePassId, null);
+  assert.equal(decision.gatePass.signedFixtureEvidence.status, "not_present");
   assert.equal(decision.gatePassDecision, "previously_issued");
   assert.equal(decision.executionEvidence.status, "claim_not_proven");
-  assert.equal(decision.executionEvidence.claimAccepted, false);
+  assert.equal(decision.executionEvidence.externalExecutionClaimAccepted, false);
 });
 
 test("replay refuses a consumed GatePass without creating execution evidence", () => {
   const decision = evaluateSupplierBankChange(loadSupplierBankChangeScenario("replayed_gatepass"));
   assert.equal(decision.reasonCode, "GATEPASS_ALREADY_CONSUMED");
   assert.equal(decision.gatePass.status, "presented_consumed");
+  assert.equal(decision.gatePass.gatePassId, null);
+  assert.equal(decision.gatePass.signedFixtureEvidence.status, "not_present");
   assert.equal(decision.executionEvidence.status, "not_claimed");
   assert.equal(decision.externalActionPerformed, false);
 });

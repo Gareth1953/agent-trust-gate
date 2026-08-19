@@ -269,7 +269,7 @@ console.log([
   "",
   JSON.stringify({
     valid,
-    localReviewerValidationPackOnly: true,
+    reviewBranchOnly: true,
     reviewerSelected: false,
     invitationApproved: false,
     invitationSent: false,
@@ -278,7 +278,7 @@ console.log([
     networkAccess: false,
     contactPerformed: false,
     externalActionOccurred: false,
-    publicationPerformed: false,
+    livePublicationPerformed: false,
   }, null, 2),
 ].join("\n"));
 

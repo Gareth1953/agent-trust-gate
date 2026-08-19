@@ -69,6 +69,9 @@ jobs:
           test -f _site/retail-supply-chain-ai-agent-authority.html
           test -f _site/public-procurement-ai-agent-authority.html
           test -f _site/financial-services-ai-agent-authority.html
+          test -f _site/human-authority-demo.html
+          test -f _site/agent-standing-demo.html
+          test -f _site/google8583929aeb1cff63.html
           test -f _site/a7f3c9e14d8b42f6a1c75e9d2b6048cf.txt
           test -f _site/agent-trust-gate.discovery.json
           test -f _site/agent-trust-gate.agent-card.json
@@ -81,6 +84,8 @@ jobs:
           test -f _site/schemas/ard-ai-catalog-v1.0.schema.json
           test -f _site/examples/bring-your-agent-scenario.example.json
           test -f _site/llms.txt
+          grep -qx 'google-site-verification: google8583929aeb1cff63.html' _site/google8583929aeb1cff63.html
+          grep -qx 'a7f3c9e14d8b42f6a1c75e9d2b6048cf' _site/a7f3c9e14d8b42f6a1c75e9d2b6048cf.txt
           test ! -e _site/.git
           test ! -e _site/.github
           find _site -maxdepth 2 -type f | sort

@@ -19,7 +19,7 @@
       "nonce": "synthetic-supplier-change-nonce-0013"
     },
     "executionClaim": {
-      "claimsExecuted": false,
+      "claimsExternalExecution": false,
       "receiptPresent": false,
       "receiptSimulated": false,
       "receiptReference": null

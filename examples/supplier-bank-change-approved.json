@@ -103,7 +103,7 @@
     "nonce": "synthetic-supplier-change-nonce-0001"
   },
   "executionClaim": {
-    "claimsExecuted": true,
+    "claimsExternalExecution": false,
     "receiptPresent": true,
     "receiptSimulated": true,
     "receiptReference": "synthetic-local-execution-receipt-0001"
