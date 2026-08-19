@@ -92,6 +92,6 @@ It does not provide legal, financial, compliance, procurement, settlement, ident
 
 Send a concise human-reviewed enquiry to:
 
-`gpmiddleton71@gmail.com`
+`gareth@agenttrustgate.com`
 
 Do not send secrets, credentials, private datasets, payment details, wallet or banking details, customer records, regulated personal information, production logs, or confidential material in the first email.
