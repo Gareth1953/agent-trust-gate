@@ -3,26 +3,46 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI Agent Authority for Financial Services | Agent Trust Gate™</title>
-  <meta name="description" content="Agent Trust Gate™ demonstrates exact-action authority checks for consequential AI-agent actions in financial-services workflows before execution or settlement. Local demonstrator only.">
+  <title>AI Agent Authority for Financial Services | ATG</title>
+  <meta name="description" content="Exact-action authority checks for consequential AI-agent actions in financial services before execution or settlement.">
   <link rel="canonical" href="https://gareth1953.github.io/agent-trust-gate/financial-services-ai-agent-authority.html">
-  <meta property="og:title" content="AI Agent Authority for Financial Services | Agent Trust Gate™">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI Agent Authority for Financial Services | ATG">
   <meta property="og:description" content="Verify exact AI-agent authority, scope, evidence and required human approval before consequential financial action.">
+  <meta property="og:url" content="https://gareth1953.github.io/agent-trust-gate/financial-services-ai-agent-authority.html">
   <meta property="og:image" content="https://gareth1953.github.io/agent-trust-gate/assets/agent-trust-gate-social-preview.png">
+  <meta property="og:image:alt" content="Agent Trust Gate exact-action authority visual">
   <meta name="twitter:card" content="summary_large_image">
   <style>
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#18202f;line-height:1.6;background:#fff}main{width:min(980px,calc(100% - 32px));margin:auto;padding:36px 0 56px}nav{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px}nav a{font-weight:700;color:#074f45;text-decoration:none}h1{font-size:2.2rem;line-height:1.15}h2{margin-top:30px}.hero,.panel{border:1px solid #d7deea;border-radius:10px;padding:20px;background:#f5f8fb;margin:18px 0}.hero{background:#eef8f5;border-color:#8bc6bb}.cta{font-weight:700}.small{color:#596172;font-size:.95rem}a{color:#074f45}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#18202f;line-height:1.6;background:#fff}main{width:min(980px,calc(100% - 32px));margin:auto;padding:36px 0 56px}nav{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px}nav a{font-weight:700;color:#074f45;text-decoration:none}h1{font-size:2.2rem;line-height:1.15}h2{margin-top:30px}.hero,.panel{border:1px solid #d7deea;border-radius:10px;padding:20px;background:#f5f8fb;margin:18px 0}.hero{background:#eef8f5;border-color:#8bc6bb}.visual{margin:22px 0}.visual img{display:block;width:100%;height:auto;border:1px solid #d7deea;border-radius:10px}.visual figcaption{color:#596172;font-size:.92rem;text-align:center;margin-top:7px}.cta{font-weight:700}.small{color:#596172;font-size:.95rem}a{color:#074f45}
   </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"AI Agent Authority for Financial Services",
+    "url":"https://gareth1953.github.io/agent-trust-gate/financial-services-ai-agent-authority.html",
+    "description":"Exact-action authority checks for consequential AI-agent actions in financial-services workflows.",
+    "isPartOf":{"@type":"WebSite","name":"Agent Trust Gate™","url":"https://gareth1953.github.io/agent-trust-gate/"},
+    "about":["AI agents","financial services","exact-action authority","GatePass","verified human authority","pre-settlement controls"],
+    "image":"https://gareth1953.github.io/agent-trust-gate/assets/agent-trust-gate-social-preview.png"
+  }
+  </script>
 </head>
 <body><main>
-  <nav><a href="./">ATG home</a><a href="./evidence-and-reviewer.html">Evidence & Reviewer</a><a href="./retail-supply-chain-ai-agent-authority.html">Retail & Supply Chain</a><a href="./public-procurement-ai-agent-authority.html">Public Procurement</a></nav>
+  <nav><a href="./">ATG home</a><a href="./exact-action-authority-control-model.html">Control Model</a><a href="./evidence-and-reviewer.html">Evidence & Reviewer</a><a href="./retail-supply-chain-ai-agent-authority.html">Retail & Supply Chain</a><a href="./public-procurement-ai-agent-authority.html">Public Procurement</a></nav>
   <section class="hero">
     <h1>AI Agent Authority for Financial Services</h1>
     <p><strong>At the moment of action, authority must be proved — not assumed.</strong></p>
     <p>Agent Trust Gate™ demonstrates a pre-action trust boundary for consequential AI-agent actions where exact scope, amount, account, jurisdiction, evidence and accountable human authority may matter before execution or settlement.</p>
   </section>
+  <figure class="visual">
+    <img src="./assets/agent-trust-gate-readme-hero.png" alt="Agent Trust Gate flow showing exact-action authority, human approval and GatePass before consequential financial AI-agent action">
+    <figcaption>Model governance can govern the system; ATG focuses on the exact consequential action at the execution boundary.</figcaption>
+  </figure>
   <h2>The control question</h2>
   <p>Model governance can address how an AI system was built and supervised. ATG focuses on a narrower execution question: <strong>may this exact agent perform this exact consequential action now, under this exact authority and evidence?</strong></p>
+  <p>An agent may be capable of initiating a transfer, changing a beneficiary, approving remediation or triggering a high-impact operational workflow without being authorised for the exact amount, account, customer context, jurisdiction or risk tier involved. The ATG control model is designed to make that authority check explicit before consequence.</p>
   <div class="panel">
     <h2>Illustrative action categories</h2>
     <ul>
@@ -35,9 +55,14 @@
   </div>
   <h2>Human authority when required</h2>
   <p>A stored approval flag is not treated as enough. The demonstrator can model whether the approving natural person is active, authenticated through organisation-controlled evidence, authorised for the exact action type and amount, independent from the requester where policy requires it, and supported by any second approval required by policy.</p>
+  <p>The public model is deliberately crypto-agile: it can represent strong organisation-controlled human authentication today while keeping algorithm identifiers, key references and verification policy replaceable. It does not claim that present-day passkeys or signatures are automatically post-quantum safe.</p>
+  <h2>Exact-action binding and replay control</h2>
+  <p>A GatePass is intended to bind authority evidence to one canonical action rather than to a broad instruction such as “approved payment.” If the amount, destination, account, action type or other protected field changes, the action can be treated as a different action and refused. Expiry and one-use nonce concepts reduce the risk that an old authorisation is replayed against a later request.</p>
+  <h2>Reviewable evidence</h2>
+  <p>Decision evidence and simulated execution evidence are kept distinct so a reviewer can inspect what was proposed, why it was allowed or refused, and whether the later action still matched the authorised action. The goal is a human-understandable trust receipt backed by the underlying technical proof rather than a vague statement that “the AI was approved.”</p>
   <h2>What ATG is not</h2>
   <p>ATG does not replace financial regulation, model-risk management, transaction monitoring, banking infrastructure, payment rails, compliance judgement or enterprise identity systems. It is not FCA-authorised or otherwise represented as regulator-approved. The public implementation is a local synthetic demonstrator and does not move real money, access customer data or execute live financial actions.</p>
-  <p class="cta"><a href="./evidence-and-reviewer.html">Review the evidence path →</a> &nbsp; <a href="./human-authority-demo.html">Open the Human Authority demo →</a></p>
+  <p class="cta"><a href="./exact-action-authority-control-model.html">Read the exact-action authority control model →</a> &nbsp; <a href="./evidence-and-reviewer.html">Review the evidence path →</a> &nbsp; <a href="./human-authority-demo.html">Open the Human Authority demo →</a></p>
   <p class="small">Agent Trust Gate™ — Exact-Action Authority for AI Agents. Local demonstrator only.</p>
 </main></body>
 </html>
