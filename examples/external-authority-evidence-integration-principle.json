@@ -1,0 +1,49 @@
+{
+  "name": "External Authority Evidence Integration Principle",
+  "project": "Agent Trust Gate",
+  "status": "roadmap_and_architecture_principle",
+  "current_implementation": "local_synthetic_evidence_only",
+  "core_question": "Does this evidence authorise this agent to perform this exact action, here and now, within these limits?",
+  "principle": "ATG is designed to complement trusted identity, authority and approval systems rather than replace them.",
+  "possible_future_input_categories": [
+    "organisation_identity_and_employee_directory_evidence",
+    "organisation_controlled_authentication_evidence",
+    "role_or_entitlement_evidence",
+    "approval_workflow_evidence",
+    "signed_delegation_or_mandate_evidence",
+    "policy_evidence",
+    "verified_organisation_record_evidence"
+  ],
+  "atg_decision_checks": [
+    "agent_standing",
+    "human_authority",
+    "mandate_and_scope",
+    "limits",
+    "evidence",
+    "freshness",
+    "exact_action_binding"
+  ],
+  "possible_outputs": [
+    "action_bound_gatepass",
+    "recorded_refusal"
+  ],
+  "fail_closed": true,
+  "decision_execution_separation": true,
+  "current_non_capabilities": [
+    "live_iam_integration",
+    "live_sso_integration",
+    "live_identity_provider_integration",
+    "live_enterprise_directory_integration",
+    "live_external_credential_integration",
+    "live_webauthn_integration",
+    "production_payment_or_settlement_integration",
+    "production_enforcement_proxy"
+  ],
+  "buyer_summary": "Bring the authority evidence you already trust. ATG determines whether it is sufficient for the exact AI action now being proposed.",
+  "positioning_lines": [
+    "Capability is not authority.",
+    "Identity is not authority.",
+    "Approval is not enough unless it applies to the exact action.",
+    "Verify Before Settlement."
+  ]
+}
