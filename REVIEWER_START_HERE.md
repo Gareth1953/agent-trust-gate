@@ -141,3 +141,24 @@ Then inspect:
 - `discovery-site/human-authority-demo.html`
 
 The browser demonstration is intended for rapid buyer understanding. The local Node.js model and automated tests are the technical evidence. Everything remains synthetic and local; there is no live identity-provider, employee-directory, WebAuthn, payment or post-quantum integration.
+
+## Integration advantage — consume trusted authority evidence
+
+ATG is designed to complement trusted identity, authority and approval systems rather than replace them.
+
+A future organisation-specific integration can treat suitable external identity, organisational standing, mandate, delegation or approval evidence as input. ATG then performs its own narrower exact-action decision:
+
+> **Does this evidence authorise this agent to perform this exact action, here and now, within these limits?**
+
+This means ATG need not become another enterprise identity directory, authentication platform or universal credential issuer. Existing systems can establish upstream facts; ATG can evaluate whether those facts are sufficient for the exact proposed action and then issue an action-bound GatePass or refuse the action.
+
+```text
+trusted authority evidence
+        -> ATG exact-action verification
+        -> GatePass or recorded refusal
+        -> separately controlled execution
+```
+
+The current public repository demonstrates this principle with deterministic synthetic/local evidence only. It does not currently connect to live IAM, SSO, identity-provider, enterprise-directory, external credential or production approval systems.
+
+See [External Authority Evidence Integration Principle](docs/external-authority-evidence-integration-principle.md).
