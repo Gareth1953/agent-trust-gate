@@ -21,6 +21,40 @@ MCowBQYDK2VwAyEAvkswB2EG8RrGJqk6/3sSVRpV7tH/OyioqEC5CdaFTPs=
 `;
 
 const EMPLOYEES = Object.freeze({
+  "EMP-NORTHSTAR-0042": {
+    employeeId: "EMP-NORTHSTAR-0042",
+    displayName: "Alex Morgan",
+    role: "Procurement Director",
+    department: "Procurement",
+    organisationId: "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+    organisationName: "Northstar Retail Ltd",
+    appointmentStatus: "active",
+    status: "active",
+    permissions: {
+      purchase: {
+        currency: "GBP",
+        maxAmount: 25000,
+        department: "Procurement",
+        jurisdiction: "GB",
+        riskTiers: ["medium"],
+        permittedSuppliers: ["SUP-HARBOUR-001"],
+        permittedCategories: ["product_x"],
+      },
+    },
+  },
+  "EMP-NORTHSTAR-0091": {
+    employeeId: "EMP-NORTHSTAR-0091",
+    displayName: "Jordan Lee",
+    role: "Procurement Analyst",
+    department: "Procurement",
+    organisationId: "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+    organisationName: "Northstar Retail Ltd",
+    appointmentStatus: "active",
+    status: "active",
+    permissions: {
+      supplier_research: { currency: "GBP", maxAmount: 0 },
+    },
+  },
   "EMP-1007": {
     employeeId: "EMP-1007",
     displayName: "Sarah Collins",
@@ -72,6 +106,24 @@ const EMPLOYEES = Object.freeze({
 });
 
 const AUTHENTICATIONS = Object.freeze({
+  "AUTH-NORTHSTAR-ALEX-001": {
+    employeeId: "EMP-NORTHSTAR-0042",
+    status: "verified",
+    method: "organisation_passkey_fixture",
+    phishingResistant: true,
+    userPresence: true,
+    userVerification: true,
+    assurance: "high_demo_fixture",
+  },
+  "AUTH-NORTHSTAR-JORDAN-001": {
+    employeeId: "EMP-NORTHSTAR-0091",
+    status: "verified",
+    method: "organisation_security_key_fixture",
+    phishingResistant: true,
+    userPresence: true,
+    userVerification: true,
+    assurance: "high_demo_fixture",
+  },
   "AUTH-SARAH-001": {
     employeeId: "EMP-1007",
     status: "verified",
@@ -112,6 +164,15 @@ const AUTHENTICATIONS = Object.freeze({
 
 function deepClone(value) {
   return JSON.parse(JSON.stringify(value));
+}
+
+export function getHumanAuthorityFixture(employeeId, authId) {
+  const employee = EMPLOYEES[employeeId];
+  const authentication = AUTHENTICATIONS[authId];
+  return {
+    employee: employee ? deepClone(employee) : null,
+    authentication: authentication ? deepClone(authentication) : null,
+  };
 }
 
 export function canonicalize(value) {
@@ -402,6 +463,41 @@ function checkApprover({
       message: `${label} limit is ${permission.currency} ${permission.maxAmount}; requested amount is ${action.currency} ${action.amount}.`,
     };
   }
+  if (permission.department && permission.department !== action.department) {
+    return {
+      ok: false,
+      code: "DEPARTMENT_NOT_AUTHORISED",
+      message: `${label} authority does not cover department ${action.department}.`,
+    };
+  }
+  if (permission.jurisdiction && permission.jurisdiction !== action.jurisdiction) {
+    return {
+      ok: false,
+      code: "JURISDICTION_NOT_AUTHORISED",
+      message: `${label} authority does not cover jurisdiction ${action.jurisdiction}.`,
+    };
+  }
+  if (permission.riskTiers && !permission.riskTiers.includes(action.riskTier)) {
+    return {
+      ok: false,
+      code: "RISK_TIER_NOT_AUTHORISED",
+      message: `${label} authority does not cover risk tier ${action.riskTier}.`,
+    };
+  }
+  if (permission.permittedSuppliers && !permission.permittedSuppliers.includes(action.supplierId)) {
+    return {
+      ok: false,
+      code: "SUPPLIER_NOT_AUTHORISED",
+      message: `${label} authority does not cover supplier ${action.supplierId}.`,
+    };
+  }
+  if (permission.permittedCategories && !permission.permittedCategories.includes(action.category)) {
+    return {
+      ok: false,
+      code: "CATEGORY_NOT_AUTHORISED",
+      message: `${label} authority does not cover category ${action.category}.`,
+    };
+  }
 
   return {
     ok: true,
@@ -517,15 +613,17 @@ export function runScenario(inputScenario) {
     });
   }
 
-  const proofExpiresAt = minutesAfter(FIXED_ISSUED_AT, 5);
+  const proofIssuedAt = scenario.authorityIssuedAt ?? FIXED_ISSUED_AT;
+  const proofExpiresAt = scenario.authorityExpiresAt ?? minutesAfter(proofIssuedAt, 5);
   const proofNonce = `hap-${scenario.id}-nonce-v1`;
   const humanAuthorityProofUnsigned = {
     type: "ATG_HUMAN_AUTHORITY_PROOF",
     version: "1.0",
     proofId: `HAP-${scenario.id.toUpperCase()}`,
-    organisationId: "ORG-DEMO-RETAIL-001",
-    policyId: "POLICY-HUMAN-AUTHORITY-DEMO-1",
-    policyVersion: "2026-07-31",
+    organisationId: scenario.organisationId ?? first.employee.organisationId ?? "ORG-DEMO-RETAIL-001",
+    organisationName: scenario.organisationName ?? first.employee.organisationName ?? "Synthetic Demo Organisation",
+    policyId: scenario.authorityPolicyId ?? "POLICY-HUMAN-AUTHORITY-DEMO-1",
+    policyVersion: scenario.authorityPolicyVersion ?? "2026-07-31",
     actionDigest,
     actionType: action.type,
     amount: action.amount,
@@ -554,7 +652,7 @@ export function runScenario(inputScenario) {
         }
       : null,
     separationOfDuties: "passed",
-    issuedAt: FIXED_ISSUED_AT,
+    issuedAt: proofIssuedAt,
     expiresAt: proofExpiresAt,
     nonce: proofNonce,
     nonceState: scenario.nonceState ?? "unused",
@@ -627,6 +725,29 @@ export function runScenario(inputScenario) {
     passed: true,
     detail: "The Human Authority Proof nonce is unused.",
   });
+
+  if (scenario.authorityOnly === true) {
+    return {
+      demoVersion: DEMO_VERSION,
+      scenarioId: scenario.id,
+      scenarioTitle: scenario.title,
+      expected: scenario.expected,
+      observed: "allowed",
+      matchedExpectation: scenario.expected === "allowed",
+      decision: {
+        outcome: "ALLOWED",
+        code: "VERIFIED_HUMAN_AUTHORITY",
+        message:
+          "Verified natural-person identity, authentication, appointment status and bounded business authority passed.",
+      },
+      canonicalActionDigest: actionDigest,
+      checks,
+      humanAuthorityProof,
+      gatePass: null,
+      executionReceipt: null,
+      safetyBoundary: "local_synthetic_no_real_action",
+    };
+  }
 
   const humanProofDigest = sha256(canonicalize(humanAuthorityProof));
   const gatePassUnsigned = {

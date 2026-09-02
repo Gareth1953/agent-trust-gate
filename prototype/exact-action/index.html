@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Agent Trust Gate Exact Action Trust Gateway working local pilot prototype.">
+  <title>Agent Trust Gate™ — Exact Action Trust Gateway</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__inner">
+      <div class="brand-row">
+        <div class="brand-mark" aria-hidden="true">ATG</div>
+        <div>
+          <p class="eyebrow">Agent Trust Gate™</p>
+          <h1>Exact Action Trust Gateway</h1>
+        </div>
+      </div>
+      <p class="positioning">Verify the exact human authority behind the exact AI-agent action before the action is allowed to happen.</p>
+      <div class="status-strip" role="note">
+        <strong>WORKING LOCAL PILOT-READY PROTOTYPE</strong>
+        <span>Synthetic data only</span>
+        <span>Simulated procurement execution only</span>
+        <span>No real payment or external action</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="workflow" aria-labelledby="workflow-heading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Control flow</p>
+          <h2 id="workflow-heading">Authority to accountable execution</h2>
+        </div>
+        <p class="core-rule">No verified authority. No valid mandate. No exact-action proof. No GatePass. No action.</p>
+      </div>
+      <ol class="workflow-steps">
+        <li class="active"><span>1</span>Human Authority</li>
+        <li><span>2</span>Mandate</li>
+        <li><span>3</span>Agent Activity</li>
+        <li><span>4</span>Proposed Action</li>
+        <li><span>5</span>ATG Decision</li>
+        <li><span>6</span>Execution &amp; Audit</li>
+      </ol>
+    </section>
+
+    <section class="scenario-section" aria-labelledby="scenario-heading">
+      <div class="section-heading compact">
+        <div>
+          <p class="eyebrow">Buyer scenarios</p>
+          <h2 id="scenario-heading">Choose a control outcome</h2>
+        </div>
+        <p id="scenario-description" class="section-note">Loading the default allowed scenario…</p>
+      </div>
+      <div id="scenario-tabs" class="scenario-tabs" role="tablist" aria-label="Prototype scenarios"></div>
+    </section>
+
+    <section class="stage-grid" aria-label="Exact action evidence">
+      <article class="card" id="human-card">
+        <div class="card__header"><span class="stage-number">01</span><h3>Authorised Human</h3><span id="human-status" class="pill neutral">Fixture</span></div>
+        <dl>
+          <div><dt>Name</dt><dd id="human-name">—</dd></div>
+          <div><dt>Role</dt><dd id="human-role">—</dd></div>
+          <div><dt>Organisation</dt><dd id="human-organisation">—</dd></div>
+          <div><dt>Authority limit</dt><dd id="human-limit">—</dd></div>
+          <div><dt>Authority status</dt><dd id="human-authority">—</dd></div>
+          <div><dt>Authentication</dt><dd id="human-auth">—</dd></div>
+          <div><dt>Authority expiry</dt><dd id="human-expiry">—</dd></div>
+        </dl>
+      </article>
+
+      <article class="card" id="agent-card">
+        <div class="card__header"><span class="stage-number">02</span><h3>Agent</h3><span id="agent-status" class="pill neutral">Fixture</span></div>
+        <dl>
+          <div><dt>Agent name</dt><dd id="agent-name">—</dd></div>
+          <div><dt>Agent ID</dt><dd id="agent-id" class="mono">—</dd></div>
+          <div><dt>Standing</dt><dd id="agent-standing">—</dd></div>
+          <div><dt>Permitted capability</dt><dd id="agent-capability">—</dd></div>
+        </dl>
+      </article>
+
+      <article class="card wide" id="mandate-card">
+        <div class="card__header"><span class="stage-number">03</span><h3>Bounded Mandate</h3><span id="mandate-status" class="pill neutral">Machine-readable</span></div>
+        <dl class="two-column">
+          <div><dt>Objective</dt><dd id="mandate-objective">—</dd></div>
+          <div><dt>Maximum amount</dt><dd id="mandate-maximum">—</dd></div>
+          <div><dt>Permitted action</dt><dd id="mandate-action">—</dd></div>
+          <div><dt>Expiry</dt><dd id="mandate-expiry">—</dd></div>
+          <div><dt>Quantity</dt><dd id="mandate-quantity">—</dd></div>
+          <div><dt>Jurisdiction / risk</dt><dd id="mandate-risk">—</dd></div>
+        </dl>
+        <p class="instruction"><strong>Human instruction</strong><br><span id="mandate-instruction">—</span></p>
+      </article>
+
+      <article class="card wide" id="work-card">
+        <div class="card__header"><span class="stage-number">04</span><h3>Agent Work</h3><span id="evidence-status" class="pill neutral">Synthetic</span></div>
+        <div class="offer-table-wrap">
+          <table>
+            <thead><tr><th>Supplier</th><th>Total</th><th>Delivery</th><th>Terms</th></tr></thead>
+            <tbody id="offer-rows"></tbody>
+          </table>
+        </div>
+        <div class="negotiation">
+          <div><span class="label">Negotiated result</span><strong id="negotiated-result">—</strong></div>
+          <div><span class="label">Evidence status</span><strong id="evidence-detail">—</strong></div>
+        </div>
+      </article>
+
+      <article class="card wide action-card" id="action-card">
+        <div class="card__header"><span class="stage-number">05</span><h3>Proposed Exact Action</h3><span class="pill accent">Pre-action boundary</span></div>
+        <dl class="action-summary">
+          <div><dt>Supplier</dt><dd id="action-supplier">—</dd></div>
+          <div><dt>Product</dt><dd id="action-product">—</dd></div>
+          <div><dt>Quantity</dt><dd id="action-quantity">—</dd></div>
+          <div><dt>Total</dt><dd id="action-total" class="amount">—</dd></div>
+          <div><dt>Currency</dt><dd id="action-currency">—</dd></div>
+          <div class="digest-row"><dt>Action digest</dt><dd id="action-digest" class="mono">Calculated when ATG evaluates the action</dd></div>
+        </dl>
+      </article>
+    </section>
+
+    <section class="control-panel" aria-labelledby="control-heading">
+      <div class="control-panel__header">
+        <div>
+          <p class="eyebrow">Pre-action enforcement</p>
+          <h2 id="control-heading">Run the Agent Trust Gate</h2>
+        </div>
+        <div class="button-row">
+          <button id="evaluate-button" class="button primary">Run ATG verification</button>
+          <button id="execute-button" class="button secondary" disabled>Simulate purchase</button>
+          <button id="replay-button" class="button danger" hidden>Re-run same GatePass</button>
+        </div>
+      </div>
+
+      <div id="decision-panel" class="decision-panel neutral" aria-live="polite">
+        <p class="eyebrow">Decision</p>
+        <h2 id="decision-title">Awaiting ATG evaluation</h2>
+        <p id="decision-detail">The simulated procurement adapter remains blocked until all 20 checks pass.</p>
+        <div id="decision-primary" class="decision-primary" hidden></div>
+        <div id="decision-meta" class="decision-meta"></div>
+      </div>
+
+      <div class="checks-section">
+        <div class="subheading"><h3>ATG checks</h3><span id="checks-summary">Not yet evaluated</span></div>
+        <div id="checks-grid" class="checks-grid"><p class="empty-state">Run ATG verification to see every pre-action check.</p></div>
+      </div>
+    </section>
+
+    <section class="receipt-section" aria-labelledby="receipt-heading">
+      <div class="section-heading compact">
+        <div>
+          <p class="eyebrow">Execution &amp; audit</p>
+          <h2 id="receipt-heading">Exact Action Trust Receipt</h2>
+        </div>
+        <div class="button-row">
+          <button id="receipt-button" class="button ghost" disabled>Open Trust Receipt</button>
+          <button id="verify-button" class="button ghost" disabled>Verify receipt</button>
+          <button id="copy-receipt-button" class="button ghost" disabled>Copy receipt</button>
+          <button id="download-json-button" class="button ghost" disabled>Download JSON</button>
+          <button id="download-text-button" class="button ghost" disabled>Download text</button>
+        </div>
+      </div>
+      <div id="verification-result" class="verification-result" hidden></div>
+      <div id="receipt-viewer" class="receipt-viewer" hidden>
+        <div class="receipt-executive">
+          <p class="eyebrow">Layer 1</p>
+          <h3>Executive Summary</h3>
+          <dl id="receipt-executive-summary" class="executive-summary"></dl>
+        </div>
+        <details class="receipt-human">
+          <summary>Layer 2 · Full human-readable audit detail</summary>
+          <pre id="human-receipt"></pre>
+        </details>
+        <details class="receipt-json">
+          <summary>Machine-readable JSON audit receipt</summary>
+          <pre id="json-receipt"></pre>
+        </details>
+      </div>
+      <div id="receipt-placeholder" class="receipt-placeholder">A signed local fixture receipt will appear after ATG evaluates the exact action—even when the action is refused.</div>
+    </section>
+
+    <section class="integration" aria-labelledby="integration-heading">
+      <p class="eyebrow">Integration boundary</p>
+      <h2 id="integration-heading">Designed to sit immediately before an irreversible action</h2>
+      <div class="integration-flow" aria-label="AI agent to ATG to downstream system">
+        <div><strong>AI agent / tool</strong><span>Proposes one exact action</span></div>
+        <span class="arrow">→</span>
+        <div class="gate"><strong>ATG Exact Action Gateway</strong><span>Verifies, issues or refuses</span></div>
+        <span class="arrow">→</span>
+        <div><strong>ERP / procurement / payment</strong><span>V1: synthetic adapter only</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>WORKING LOCAL PILOT-READY PROTOTYPE</strong>
+    <span>Northstar Retail Ltd, all people, suppliers and records are synthetic.</span>
+    <span>No real identity provider, procurement API, order, payment, bank API or settlement.</span>
+  </footer>
+  <script src="/app.js" defer></script>
+</body>
+</html>

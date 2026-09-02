@@ -298,6 +298,18 @@ export interface AgentStandingDemoReport {
   results: AgentStandingScenarioResult[];
 }
 
+export interface NorthstarAgentStandingFixtureOptions {
+  requestIdentifier?: string;
+  amountMinorUnits?: number;
+  currency?: string;
+  quantity?: number;
+  counterpartyIdentifier?: string;
+  checkedAt?: string;
+  issuedAt?: string;
+  expiresAt?: string;
+  disabled?: boolean;
+}
+
 const NOTE = "Agent Standing is a fail-closed GatePass precondition. A fixture signature authenticates a fixture assertion but does not establish that every assertion is factually true." as const;
 const AGENT_INDIVIDUAL_KEY_REFERENCE = "fixture-key://agent-individual-001";
 const AGENT_ORGANISATION_KEY_REFERENCE = "fixture-key://agent-organisation-001";
@@ -308,6 +320,8 @@ const ORGANISATION_AGENT_ID = "synthetic_agent_organisation_001";
 const INDIVIDUAL_PRINCIPAL_ID = "synthetic_principal_individual_001";
 const ORGANISATION_PRINCIPAL_ID = "synthetic_organisation_sponsor_001";
 const ACCOUNTABLE_HUMAN_REFERENCE = "fixture://accountable-human-sponsors/sponsor_001";
+export const NORTHSTAR_PROCUREMENT_AGENT_ID = "agent:northstar-retail:procurement:04" as const;
+export const NORTHSTAR_ORGANISATION_ID = "ORG-NORTHSTAR-RETAIL-SYNTHETIC" as const;
 const FIXTURE_KEYS = new Map<string, DeterministicLocalFixtureKeyPair>([
   [AGENT_INDIVIDUAL_KEY_REFERENCE, createDeterministicLocalFixtureKeyPair("agent-standing-agent-individual-001")],
   [AGENT_ORGANISATION_KEY_REFERENCE, createDeterministicLocalFixtureKeyPair("agent-standing-agent-organisation-001")],
@@ -326,6 +340,10 @@ const AGENT_IDENTITY_FIXTURES = new Map<string, {
     publicKeyReference: AGENT_ORGANISATION_KEY_REFERENCE,
     accountOrPlatformIdentity: "synthetic_platform_account_organisation_001",
   }],
+  [NORTHSTAR_PROCUREMENT_AGENT_ID, {
+    publicKeyReference: AGENT_ORGANISATION_KEY_REFERENCE,
+    accountOrPlatformIdentity: "synthetic_platform_account_organisation_001",
+  }],
 ]);
 const PRINCIPAL_IDENTITY_FIXTURES = new Map<string, {
   principalType: AgentPrincipalType;
@@ -338,6 +356,11 @@ const PRINCIPAL_IDENTITY_FIXTURES = new Map<string, {
     accountableHumanSponsorReference: null,
   }],
   [ORGANISATION_PRINCIPAL_ID, {
+    principalType: "organisation",
+    issuerPublicKeyReference: PRINCIPAL_ORGANISATION_KEY_REFERENCE,
+    accountableHumanSponsorReference: ACCOUNTABLE_HUMAN_REFERENCE,
+  }],
+  [NORTHSTAR_ORGANISATION_ID, {
     principalType: "organisation",
     issuerPublicKeyReference: PRINCIPAL_ORGANISATION_KEY_REFERENCE,
     accountableHumanSponsorReference: ACCOUNTABLE_HUMAN_REFERENCE,
@@ -396,6 +419,43 @@ export function createAgentStandingExactActionInput(request: AgentStandingReques
 
 export function createAgentStandingRequestDigest(request: AgentStandingRequest): string {
   return createCanonicalActionEnvelope(createAgentStandingExactActionInput(request)).actionDigest;
+}
+
+export function createNorthstarAgentStandingFixture(
+  options: NorthstarAgentStandingFixtureOptions = {},
+): AgentStandingEvaluationInput {
+  const requestIdentifier = options.requestIdentifier ?? "northstar_procurement_purchase_001";
+  const request = createRequest(
+    requestIdentifier,
+    NORTHSTAR_PROCUREMENT_AGENT_ID,
+    NORTHSTAR_ORGANISATION_ID,
+    {
+      purpose: "supplier_purchasing",
+      action: "simulate_procurement_purchase",
+      amountMinorUnits: options.amountMinorUnits ?? 2_375_000,
+      currency: options.currency ?? "GBP",
+      requestedResources: [{ resource: "product_x", quantity: options.quantity ?? 200 }],
+      counterpartyIdentifier: options.counterpartyIdentifier ?? "SUP-HARBOUR-001",
+      sessionBinding: `northstar_session_${requestIdentifier}`,
+      runBinding: `northstar_run_${requestIdentifier}`,
+    },
+  );
+  const proof = createSignedStandingProof(request, "organisation", {
+    maximumAmountMinorUnits: 2_500_000,
+    issuedAt: options.issuedAt ?? "2026-09-02T08:50:00.000Z",
+    expiresAt: options.expiresAt ?? "2026-09-02T17:00:00.000Z",
+    revocationState: options.disabled === true ? "revoked" : "active",
+  });
+  return {
+    claim: {
+      agentIdentifier: request.agentIdentifier,
+      accountOrPlatformIdentity: proof.accountOrPlatformIdentity,
+      declaredAssuranceClassification: proof.assuranceClassification,
+    },
+    request,
+    proof,
+    checkedAt: options.checkedAt ?? "2026-09-02T09:00:00.000Z",
+  };
 }
 
 export function evaluateAgentStanding(
@@ -877,6 +937,7 @@ function createSignedStandingProof(
     permittedPurposes?: string[];
     permittedActions?: string[];
     maximumAmountMinorUnits?: number;
+    issuedAt?: string;
     expiresAt?: string;
     revocationState?: DelegationRevocationState;
     delegationDepth?: number;
@@ -925,7 +986,7 @@ function createSignedStandingProof(
         maximum: Math.max(item.quantity, 10),
       })),
       permittedCounterparties: request.counterpartyIdentifier === null ? null : [request.counterpartyIdentifier],
-      issuedAt: "2026-08-02T08:50:00.000Z",
+      issuedAt: options.issuedAt ?? "2026-08-02T08:50:00.000Z",
       expiresAt: options.expiresAt ?? "2026-08-02T10:00:00.000Z",
       revocationState: options.revocationState ?? "active",
       revocationReference,
@@ -939,7 +1000,7 @@ function createSignedStandingProof(
     ...delegationUnsigned,
     signatureMetadata: options.omitDelegation === true
       ? null
-      : signMetadata(delegationUnsigned, issuerKey, "2026-08-02T08:50:00.000Z"),
+      : signMetadata(delegationUnsigned, issuerKey, options.issuedAt ?? "2026-08-02T08:50:00.000Z"),
   };
   const accountIdentity = sponsorType === "organisation"
     ? "synthetic_platform_account_organisation_001"

@@ -10,7 +10,51 @@ automated workflow has enough scoped proof before a sensitive action. GatePass
 is its scoped, time-bound, exact-action proof primitive for expressing
 authority, mandate, scope, freshness, evidence and approval.
 
-Current status: local_demo_only.
+Current product status: **working local pilot-ready prototype**. It remains
+synthetic, local-only and outside production use.
+
+Legacy repository capability flag: **Current status: local_demo_only.** This
+continues to describe the absence of any hosted or production capability.
+
+## WORKING EXACT ACTION TRUST GATEWAY PROTOTYPE
+
+Agent Trust Gate™ — Exact Action Trust Gateway provides a buyer-usable local
+browser flow that verifies the exact human authority behind the exact
+AI-agent action before the action is allowed to happen.
+
+```powershell
+npm install
+npm run prototype:exact-action
+```
+
+Open the loopback URL printed by the command (by default
+`http://127.0.0.1:8794`). The prototype shows a synthetic Northstar Retail Ltd
+purchase moving through verified human authority, a bounded mandate, agent
+standing, deterministic supplier research and negotiation, exact-action
+canonicalisation, signed one-use GatePass issuance or refusal, simulated
+execution, replay protection and a two-layer Trust Receipt.
+
+Run every mandatory buyer scenario without starting the browser server:
+
+```powershell
+npm run prototype:exact-action:smoke
+```
+
+The allowed £23,750 scenario issues a GatePass and can complete one simulated
+purchase. Overspend, wrong authority, expired authority and invalid agent
+standing are refused before execution. Changed actions, expiry, malformed or
+invalid GatePasses, and replay fail closed. Refusal receipts identify the
+primary root cause separately from consequential blocks.
+
+**Status: Working local pilot-ready prototype.** All people, organisations,
+suppliers, offers and actions in this experience are synthetic. It makes no
+real order or payment, calls no external procurement system, uses no production
+credential and claims no production readiness or certification.
+
+- [Buyer pilot pack](docs/P3-M155-buyer-pilot-pack.md)
+- [5–8 minute buyer demo script](docs/P3-M155-buyer-demo-script.md)
+- [Controlled pilot integration guide](docs/P3-M155-controlled-pilot-integration-guide.md)
+- [Adversarial hardening report](docs/P3-M155-prototype-adversarial-hardening-buyer-pilot-report.md)
 
 ## Why does it exist?
 
@@ -55,8 +99,9 @@ npm run demo:reviewer-kit -- --json
 
 ## What are its strict boundaries?
 
-This is a safe local-only proof-of-concept and reference demonstrator. No real
-tool execution occurs. No payment or settlement is authorised. No production
+This repository contains local-only reference demonstrators and the working
+pilot-ready Exact Action Trust Gateway prototype. No real tool execution
+occurs. No payment or settlement is authorised. No production
 benchmark or security certification is claimed. It has no live API, production
 middleware, production credentials, customer data, cloud service, live agent
 interception, real payment or settlement capability, distributed replay store

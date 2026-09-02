@@ -39,7 +39,28 @@ cd agent-trust-gate
 npm ci
 ```
 
-## Run the reviewer sequence
+## Start with the interactive Exact Action Trust Gateway
+
+```powershell
+npm run prototype:exact-action
+```
+
+Open the loopback URL printed in the terminal (normally
+`http://127.0.0.1:8794`). This is the recommended first experience:
+
+1. Leave **A · Allowed** selected and run ATG verification.
+2. See the signed GatePass issued for the exact £23,750 action.
+3. Select **Simulate purchase** and open the two-layer Trust Receipt.
+4. Select **Re-run same GatePass** and see replay blocked.
+5. Select **B · Overspend**, run ATG, and see the £31,000 request refused with
+   the £25,000 human authority limit shown as the primary cause.
+
+The browser experience is a working local pilot-ready prototype using only
+synthetic Northstar/Alex/Harbour fixtures. It does not call a procurement API,
+create a real order or move money. For a non-server check of all seven buyer
+scenarios, run `npm run prototype:exact-action:smoke`.
+
+## Then run the broader reviewer sequence
 
 ```powershell
 npm run reviewer
