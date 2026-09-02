@@ -2,7 +2,7 @@
 
 This directory contains the static source prepared for the Agent Trust Gate passive discovery site.
 
-Status: active and verified. The public GitHub Pages project URL is `https://gareth1953.github.io/agent-trust-gate/`, served as a passive discovery site with public machine-readable discovery files.
+Status: active and verified. The current public route is `https://agenttrustgate.com/`, served by the GitHub Pages workflow as a passive corporate and machine-readable discovery site. The former GitHub Pages project URL remains in the historical activation record.
 
 The deployment workflow publishes only:
 
@@ -26,6 +26,12 @@ the static review invitation. The catalogue is draft-ARD-compatible static
 metadata only. It does not advertise an executable remote agent, A2A service,
 MCP server, registry or hosted GatePass API.
 
-The site uses no external JavaScript, analytics, tracking, cookies, forms, checkout, payment links, external fonts, third-party images, videos, iframes, live chat, or remote API calls.
+The site uses one checked-in script, `corporate.js`. On the public ATG hostname
+only, it loads PostHog for page views and a small allowlist of link events.
+Autocapture, page-leave capture, surveys, session recording, visitor
+identification and GeoIP enrichment are disabled; Do Not Track is respected.
+The disclosed anonymous identifier uses local storage. See `privacy.html`.
+There are no forms, checkout or payment links, external fonts, third-party
+images, videos, iframes, live chat, or hosted ATG API calls.
 
 It is passive discovery material only. It is not a live A2A endpoint, not an MCP server, not an npm publication, not a payment route, not a settlement route, and not an action-execution service.

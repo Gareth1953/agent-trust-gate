@@ -5,6 +5,7 @@ import test from "node:test";
 const readmePath = "README.md";
 const coreRule = "No mandate. No evidence. No verified intent. No signed gate pass. No settlement.";
 const expectedPagesUrl = "https://gareth1953.github.io/agent-trust-gate/";
+const currentCorporateSiteUrl = "https://agenttrustgate.com/";
 const assetPaths = [
   "agent-trust-gate.manifest.json",
   "schemas/local-agent-action-request.schema.json",
@@ -119,7 +120,8 @@ test("README contains no live URLs, real credentials, financial details, or rail
   for (const url of urls) {
     assert.ok(
       /^http:\/\/(?:127\.0\.0\.1|localhost)(?::\d+)?(?:\/|$)/.test(url) ||
-        url === expectedPagesUrl,
+        url === expectedPagesUrl ||
+        url === currentCorporateSiteUrl,
       url,
     );
   }

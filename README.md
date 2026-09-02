@@ -433,11 +433,14 @@ partner funds the real integration.**
 ## Machine and Developer Discovery
 
 P3-M142 adds passive machine-readable discovery and registry-readiness metadata.
-P3-M143A records the public passive discovery site as **active and verified** at
-the GitHub Pages URL below. This is a static discovery route only. It does not
-add a live A2A server, MCP server, npm publication, remote API endpoint,
-outreach system, payment route, settlement route, analytics, tracking, or
-executable remote service.
+P3-M143A records the public passive discovery site as **active and verified**.
+The current primary route is the corporate domain below; the original GitHub
+Pages project URL remains part of the historical activation record. This is a
+static discovery route only. It does not add a live A2A server, MCP server, npm
+publication, hosted ATG API, outreach system, payment route, settlement route,
+or executable remote service. The public corporate pages use the limited,
+disclosed PostHog configuration described in `discovery-site/privacy.html`;
+the local Exact Action prototype itself makes no network calls.
 
 Discovery route:
 
@@ -485,14 +488,12 @@ npm run validate:discovery-site
 ```
 
 Public passive discovery site:
-`https://gareth1953.github.io/agent-trust-gate/`.
+`https://agenttrustgate.com/`.
 
-The Pages artifact is limited to `discovery-site/`,
-`agent-trust-gate.discovery.json`, `agent-trust-gate.agent-card.json`,
-`agent-trust-gate.manifest.json`, and `llms.txt`. GitHub topics are documented
-as manually configured through GitHub. This repository does not alter GitHub
-settings automatically. GatePass remains the headline proof primitive; Agent
-Trust Language remains supporting material.
+The Pages artifact is limited to `discovery-site/`, selected public discovery
+JSON, schemas, the synthetic scenario example, social-preview assets and
+`llms.txt`. GitHub topics are documented as manually configured through GitHub.
+This repository does not alter GitHub settings automatically. GatePass remains the headline proof primitive; Agent Trust Language remains supporting material.
 
 ## Core proof flow
 

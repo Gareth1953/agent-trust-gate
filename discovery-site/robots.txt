@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gareth1953.github.io/agent-trust-gate/sitemap.xml
-Agentmap: https://gareth1953.github.io/agent-trust-gate/ai-catalog.json
+Sitemap: https://agenttrustgate.com/sitemap.xml
+Agentmap: https://agenttrustgate.com/ai-catalog.json

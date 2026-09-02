@@ -276,19 +276,27 @@ test("machine-readable discovery report example is aligned and safe", () => {
   assert.equal(example.readinessSummary.githubTopics, "Active - added manually through GitHub");
 });
 
-test("static discovery site has no external scripts analytics tracking forms or checkout", () => {
+test("static discovery site permits only the constrained corporate script and no forms or checkout", () => {
   const html = read("discovery-site/index.html");
+  const corporateScript = read("discovery-site/corporate.js");
   assert.match(html, /application\/ld\+json/);
-  assert.doesNotMatch(html, /<script\b(?![^>]*type="application\/ld\+json")[^>]*>/i);
-  assert.doesNotMatch(html, /<script[^>]+src=/i);
+  const runtimeScripts = [...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/gi)].map((match) => match[1]);
+  assert.deepEqual(runtimeScripts, ["./corporate.js"]);
+  assert.doesNotMatch(html, /<script[^>]+src=["']https?:\/\//i);
   assert.doesNotMatch(html, /<form\b/i);
   assert.doesNotMatch(html, /<iframe\b/i);
-  assert.doesNotMatch(html, /gtag|googletagmanager|facebook|segment|plausible|document\.cookie|Set-Cookie|localStorage|sessionStorage/i);
+  assert.match(corporateScript, /if \(!isPublicAtgSite\) return;/);
+  assert.match(corporateScript, /autocapture: false/);
+  assert.match(corporateScript, /disable_session_recording: true/);
+  assert.match(corporateScript, /respect_dnt: true/);
+  const analyticsUrls = [...corporateScript.matchAll(/https:\/\/[^'"\s)]+/g)].map((match) => match[0]);
+  assert.deepEqual(analyticsUrls, ["https://us.i.posthog.com", "https://us.posthog.com"]);
+  assert.doesNotMatch(corporateScript, /posthog\.identify\s*\(|posthog\.startSessionRecording\s*\(|document\.cookie|Set-Cookie|fingerprint|\beval\s*\(|new\s+Function\s*\(/i);
   assert.doesNotMatch(html, /paypal|stripe/i);
-  assert.match(html, /https:\/\/gareth1953\.github\.io\/agent-trust-gate\//i);
-  assert.match(html, /No live A2A server/);
-  assert.match(html, /MCP server: not implemented/);
+  assert.match(html, /https:\/\/agenttrustgate\.com\//i);
+  assert.match(html, /No production deployment, payment execution, security certification/i);
   assert.match(read("discovery-site/README.md"), /active and verified/i);
+  assert.match(read("discovery-site/privacy.html"), /PostHog autocapture, surveys and session recording are disabled/i);
 });
 
 test("A2A MCP npm Pages and registry boundaries remain inactive", () => {

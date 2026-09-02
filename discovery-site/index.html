@@ -3,381 +3,255 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Agent Trust Gate™ — Exact-Action Authority for AI Agents</title>
-  <meta name="description" content="Exact-action authority, GatePass evidence and accountable human approval before consequential AI-agent execution or settlement.">
-  <link rel="canonical" href="https://gareth1953.github.io/agent-trust-gate/">
+  <title>Agent Trust Gate™ | Verify Authority Before AI Acts</title>
+  <meta name="description" content="Agent Trust Gate is a local-first trust enforcement demonstrator for verifying agent standing, human authority and exact-action GatePass evidence before consequential AI actions.">
+  <link rel="canonical" href="https://agenttrustgate.com/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Agent Trust Gate™ — Exact-Action Authority for AI Agents">
-  <meta property="og:description" content="Pre-action authority and GatePass evidence for consequential AI-agent actions. Verify the exact agent, exact authority and exact action before execution. Local demonstrator only.">
-  <meta property="og:url" content="https://gareth1953.github.io/agent-trust-gate/">
-  <meta property="og:image" content="https://gareth1953.github.io/agent-trust-gate/assets/agent-trust-gate-social-preview.png">
-  <meta property="og:image:alt" content="Agent Trust Gate — Exact-Action Authority for AI Agents">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Agent Trust Gate™ — Exact-Action Authority for AI Agents">
-  <meta name="twitter:description" content="Verify exact-action authority before consequential AI-agent execution. GatePass binds mandate, scope, evidence and approval to one exact action. Local demonstrator only.">
-  <meta name="twitter:image" content="https://gareth1953.github.io/agent-trust-gate/assets/agent-trust-gate-social-preview.png">
-  <meta name="twitter:image:alt" content="Agent Trust Gate — Exact-Action Authority for AI Agents">
-  <link rel="ai-catalog" href="https://gareth1953.github.io/agent-trust-gate/ai-catalog.json">
-  <style>
-    :root {
-      color-scheme: light;
-      --ink: #18202f;
-      --muted: #596172;
-      --line: #d7deea;
-      --panel: #f5f8fb;
-      --accent: #0a6a5c;
-      --accent-dark: #074f45;
-    }
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--ink);
-      background: #ffffff;
-      line-height: 1.55;
-    }
-    main {
-      width: min(1040px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 38px 0 56px;
-    }
-    header {
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 24px;
-      margin-bottom: 26px;
-    }
-    h1 {
-      font-size: 2.25rem;
-      line-height: 1.15;
-      margin: 0 0 10px;
-    }
-    h2 {
-      font-size: 1.25rem;
-      margin: 30px 0 10px;
-    }
-    p {
-      margin: 0 0 12px;
-    }
-    ul,
-    ol {
-      margin-top: 8px;
-      padding-left: 24px;
-    }
-    li {
-      margin: 6px 0;
-    }
-    code {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      padding: 2px 5px;
-      border-radius: 4px;
-    }
-    a {
-      color: var(--accent-dark);
-    }
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 18px;
-      margin: 0 0 22px;
-    }
-    nav a {
-      font-weight: 700;
-      text-decoration: none;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .notice,
-    .featured,
-    .grid > section {
-      border: 1px solid var(--line);
-      background: var(--panel);
-      padding: 15px 17px;
-      border-radius: 6px;
-    }
-    .featured {
-      border-color: #8bc6bb;
-      background: #eef8f5;
-      margin: 0 0 18px;
-    }
-    .featured h2 {
-      margin-top: 0;
-    }
-    .featured-label {
-      color: var(--accent-dark);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      font-size: 0.82rem;
-      margin-bottom: 5px;
-    }
-    .featured-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 16px;
-      margin-top: 10px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px;
-      margin-top: 12px;
-    }
-    .status {
-      color: var(--muted);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      font-size: 0.82rem;
-      margin-bottom: 6px;
-    }
-    .hero-visual {
-      margin: 0 0 24px;
-    }
-    .hero-visual img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      box-shadow: 0 12px 30px rgba(24, 32, 47, 0.16);
-    }
-    .hero-visual figcaption {
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      text-align: center;
-    }
-  </style>
+  <meta property="og:title" content="Agent Trust Gate™ | Verify Authority Before AI Acts">
+  <meta property="og:description" content="Exact agent. Exact authority. Exact action. Verifiable evidence before consequential execution.">
+  <meta property="og:url" content="https://agenttrustgate.com/">
+  <meta name="twitter:card" content="summary">
+  <link rel="ai-catalog" href="https://agenttrustgate.com/ai-catalog.json">
+  <link rel="stylesheet" href="./corporate.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareSourceCode",
     "name": "Agent Trust Gate™",
     "alternateName": "Agent Trust Gate — Exact-Action Authority for AI Agents",
-    "url": "https://gareth1953.github.io/agent-trust-gate/",
+    "url": "https://agenttrustgate.com/",
     "codeRepository": "https://github.com/Gareth1953/agent-trust-gate",
     "programmingLanguage": "TypeScript",
     "license": "https://github.com/Gareth1953/agent-trust-gate/blob/main/LICENSE",
     "description": "Local-first pre-action trust demonstrator for verifying exact-action authority, agent standing, mandate, scope, evidence and human approval before consequential AI-agent execution or settlement.",
-    "image": "https://gareth1953.github.io/agent-trust-gate/assets/agent-trust-gate-social-preview.png",
     "applicationCategory": "DeveloperApplication",
     "isAccessibleForFree": true,
     "runtimePlatform": "Node.js",
-    "keywords": [
-      "Agent Trust Gate",
-      "exact-action authority",
-      "AI agent authority",
-      "pre-action trust",
-      "GatePass",
-      "verified human authority",
-      "agent standing",
-      "AI agents",
-      "AI agent control model",
-      "retail supply chain AI",
-      "public procurement AI",
-      "financial services AI",
-      "local deterministic evaluation",
-      "machine-readable discovery",
-      "embedded commerce",
-      "pre-checkout basket verification"
-    ],
-    "conditionsOfAccess": "Passive discovery and local demo route only. No live A2A server, MCP server, payment processing, settlement execution, or action execution.",
-    "sameAs": [
-      "https://github.com/Gareth1953/agent-trust-gate"
-    ]
+    "conditionsOfAccess": "Public information and local synthetic demonstrations only. No live A2A server, MCP server, payment processing, settlement execution or production action execution."
   }
   </script>
 </head>
 <body>
-  <main>
-    <nav aria-label="Discovery navigation">
-      <a href="./" aria-current="page">ATG home</a>
-      <a href="./exact-action-authority-control-model.html">Control Model</a>
-      <a href="./evidence-and-reviewer.html">Evidence & Reviewer</a>
-      <a href="./for-agents.html">For agents</a>
-      <a href="./bring-your-agent-scenario.html">Bring Your Agent Scenario</a>
-      <a href="./agent-standing-demo.html">Agent Standing</a>
-      <a href="./human-authority-demo.html">Human Authority</a>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="./" aria-label="Agent Trust Gate home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>Agent Trust Gate™<small>Exact-action authority</small></span>
+    </a>
+    <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-label="Open navigation">Menu</button>
+    <nav class="nav-links" data-nav-links aria-label="Primary navigation">
+      <a href="./technology.html">Technology</a>
+      <a href="./solutions.html">Solutions</a>
+      <a href="./evidence.html">Evidence</a>
+      <a href="./company.html">Company</a>
+      <a class="nav-cta" href="./contact.html">Contact</a>
     </nav>
-    <header>
-      <p class="status">Passive discovery site active</p>
-      <h1>Agent Trust Gate™</h1>
-      <p><strong>Exact-Action Authority for AI Agents</strong></p>
-      <p>Local-first pre-action trust demonstrator for checking whether the exact agent has the exact authority, mandate, scope, evidence and required human approval for one consequential action before execution or settlement.</p>
-    </header>
+  </div>
+</header>
 
-    <figure class="hero-visual">
-      <img src="./assets/agent-trust-gate-readme-hero.png" alt="Agent Trust Gate visual showing exact-action authority, GatePass, human authority and audit evidence before consequential AI-agent action">
-      <figcaption><strong>Verify Before Settlement.</strong> Exact-action authority, GatePass and accountable human approval before consequential AI-agent action.</figcaption>
-    </figure>
-
-    <section class="featured" aria-labelledby="global-routes-title">
-      <p class="featured-label">Global application routes</p>
-      <h2 id="global-routes-title">Where exact-action authority becomes commercially important</h2>
-      <p>ATG remains one trust architecture, but the same execution-boundary question appears across industries: <strong>is this exact agent authorised to perform this exact consequential action now?</strong></p>
-      <div class="grid">
-        <section>
-          <h3>Exact-Action Control Model</h3>
-          <p>The public reference model for Agent Standing, mandate, evidence, Verified Human Authority, GatePass, refusal and execution receipts.</p>
-          <p><a href="./exact-action-authority-control-model.html"><strong>Read the control model →</strong></a></p>
-        </section>
-        <section>
-          <h3>Retail & Supply Chain</h3>
-          <p>Replenishment, supplier substitution, shipment rerouting, inventory movement and other consequential operational actions.</p>
-          <p><a href="./retail-supply-chain-ai-agent-authority.html"><strong>Review the retail and supply-chain route →</strong></a></p>
-        </section>
-        <section>
-          <h3>Public Procurement</h3>
-          <p>Purchase orders, contract variations, goods receipt, invoice approval and payment release under delegated authority.</p>
-          <p><a href="./public-procurement-ai-agent-authority.html"><strong>Review the public procurement route →</strong></a></p>
-        </section>
-        <section>
-          <h3>Financial Services</h3>
-          <p>Payments, transfers, customer remediation and other high-impact actions where scope, evidence and human authority may be required.</p>
-          <p><a href="./financial-services-ai-agent-authority.html"><strong>Review the financial-services route →</strong></a></p>
-        </section>
-        <section>
-          <h3>Evidence & Reviewer</h3>
-          <p>Inspect the demonstrators, claims boundaries, exact-action GatePass, Agent Standing and Verified Human Authority before discussing a pilot.</p>
-          <p><a href="./evidence-and-reviewer.html"><strong>Open the evidence route →</strong></a></p>
-        </section>
+<main id="main">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Pre-action trust for consequential AI</span>
+        <h1>Verify authority before AI acts.</h1>
+        <p class="lead">Agent Trust Gate™ is a local-first trust enforcement demonstrator designed to verify the exact agent, the exact authority and the exact action before consequential execution or settlement.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="./technology.html">Explore the technology →</a>
+          <a class="btn btn-secondary" href="./evidence.html">View technical evidence</a>
+        </div>
+        <div class="metric-line" aria-label="Core principles">
+          <span class="metric-chip">Fail closed</span>
+          <span class="metric-chip">Exact-action binding</span>
+          <span class="metric-chip">One-use GatePass</span>
+          <span class="metric-chip">Human authority evidence</span>
+        </div>
       </div>
-    </section>
 
-    <section class="featured" aria-labelledby="commerce-title">
-      <p class="featured-label">Featured Commercial Application</p>
-      <h2 id="commerce-title">Embedded Commerce GatePass</h2>
-      <p><strong>For supermarkets, retailers, AI-shopping platforms, commerce infrastructure teams and payment providers.</strong></p>
-      <p>The local demonstrator shows how a final AI-generated basket can be checked before checkout or payment authorisation against the customer mandate, approved products and variants, substitution rules, quantities, item-price limits, total spending cap, service and delivery fees, merchant, currency, delivery destination, current human approval, basket integrity since approval, replay controls and evidence controls.</p>
-      <p><strong>No verified basket. No valid mandate. No current approval. No GatePass. No checkout.</strong></p>
-      <p>Available as a paid evaluation or design-partner pilot. We prove the trust architecture. The design partner funds the real integration.</p>
-      <p class="featured-links">
-        <a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/embedded-commerce-gatepass.md">Embedded Commerce GatePass</a>
-        <a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/embedded-commerce-design-partner-pilot.md">Design-partner pilot</a>
-        <a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/one-command-reviewer-demo-kit.md">Reviewer kit</a>
-        <a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/paid-pilot-commercial-entry.md">Paid Evaluation Pilot</a>
-        <a href="mailto:gpmiddleton71@gmail.com">Public enquiry email</a>
-      </p>
-    </section>
+      <aside class="proof-panel" aria-label="Agent Trust Gate trust path">
+        <div class="proof-kicker">Trust path · before execution</div>
+        <div class="proof-step">
+          <span class="step-no">01</span>
+          <div><strong>Agent Standing</strong><span>Who is acting, for whom, and under what delegation?</span></div>
+          <span class="status-pill">VERIFY</span>
+        </div>
+        <div class="proof-step">
+          <span class="step-no">02</span>
+          <div><strong>Authority & Evidence</strong><span>Does current scope, value, evidence and policy permit this exact request?</span></div>
+          <span class="status-pill">PROVE</span>
+        </div>
+        <div class="proof-step">
+          <span class="step-no">03</span>
+          <div><strong>Human Authority</strong><span>Where required, is the approving human real, active and authorised?</span></div>
+          <span class="status-pill">BIND</span>
+        </div>
+        <div class="proof-step">
+          <span class="step-no">04</span>
+          <div><strong>GatePass</strong><span>Issue one-use, time-bound proof for one canonical action — or refuse.</span></div>
+          <span class="status-pill">GATE</span>
+        </div>
+        <div class="proof-step">
+          <span class="step-no">05</span>
+          <div><strong>Execution Evidence</strong><span>Keep decision and execution evidence distinct and accountable.</span></div>
+          <span class="status-pill">RECORD</span>
+        </div>
+      </aside>
+    </div>
+  </section>
 
-    <section class="notice" aria-label="Core safety boundary">
-      <p><strong>GatePass is a scoped, time-bound, action-specific proof primitive for agent actions.</strong></p>
-      <p>No mandate. No evidence. No verified intent. No signed GatePass. No settlement.</p>
-      <p>No signed GatePass. No settlement. Do not trust the agent. Trust the GatePass. No proof. No permission. No mandate. No action.</p>
-      <p>This is non-production, local deterministic evaluation material. Human approval is required. No live A2A endpoint, MCP server, real payment execution, settlement execution, autonomous action execution, analytics, tracking, cookies, forms, payment URLs, or transaction controls are provided.</p>
-    </section>
+  <section class="trust-strip" aria-label="Project trust markers">
+    <div class="wrap trust-grid">
+      <div class="trust-item"><strong>Public technical evidence</strong><span>Open repository, schemas and deterministic reviewer paths.</span></div>
+      <div class="trust-item"><strong>Local-first demonstrator</strong><span>No production credentials, customer data or live settlement.</span></div>
+      <div class="trust-item"><strong>Human accountable</strong><span>Approval is evidence to verify, not a boolean to trust.</span></div>
+      <div class="trust-item"><strong>Crypto-agile direction</strong><span>Designed to evolve without claiming present quantum safety.</span></div>
+    </div>
+  </section>
 
-    <section class="featured" aria-labelledby="agents-title">
-      <p class="featured-label">P3-M155 · Agent discovery and reviewer invitation</p>
-      <h2 id="agents-title">Software agents and accountable operators</h2>
-      <p>Inspect the static machine-readable invitation, compare current identity, delegation, approval and exact-action safeguards, run the local demonstrations, and prepare a fictional synthetic or properly sanitised scenario for human-reviewed technical evaluation.</p>
-      <p><strong>An agent may prepare this scenario. An accountable human must decide whether it is shared.</strong></p>
-      <p class="featured-links">
-        <a href="./for-agents.html">Open the agent-facing route</a>
-        <a href="./bring-your-agent-scenario.html">Prepare a safe scenario</a>
-        <a href="./agent-trust-gate.agent-review-invitation.json">Invitation JSON</a>
-      </p>
-    </section>
-
-    <section>
-      <h2>Discovery Route</h2>
-      <ol>
-        <li>Understand Agent Trust Gate.</li>
-        <li>Read the exact-action authority control model.</li>
-        <li>Open the machine-readable discovery record.</li>
-        <li>Run the reviewer kit locally.</li>
-        <li>Inspect GatePass and the proof boundary.</li>
-        <li>Review technical and commercial boundaries.</li>
-        <li>Request a Paid Evaluation Pilot by human email if relevant.</li>
-      </ol>
-    </section>
-
-    <section>
-      <h2>Start Here</h2>
-      <div class="grid">
-        <section>
-          <h3>Control Model</h3>
-          <p><a href="./exact-action-authority-control-model.html">Exact-Action Authority for AI Agents</a></p>
-          <p>Public technical reference for the complete trust boundary.</p>
-        </section>
-        <section>
-          <h3>Repository</h3>
-          <p><a href="https://github.com/Gareth1953/agent-trust-gate">Public GitHub repository</a></p>
-          <p><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/README.md">README and reviewer-first path</a></p>
-          <p><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/CITATION.cff">Citation metadata</a> · <a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/SECURITY.md">Security policy</a></p>
-        </section>
-        <section>
-          <h3>Reviewer Kit</h3>
-          <p><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/one-command-reviewer-demo-kit.md">One-command reviewer demo kit</a></p>
-          <p><code>npm run demo:reviewer-kit</code></p>
-        </section>
-        <section>
-          <h3>GatePass</h3>
-          <p><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/minimal-gatepass-core-specification.md">Minimal GatePass core specification</a></p>
-          <p><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/gatepass-create-verify-reject-round-trip.md">GatePass create-verify-reject round trip</a></p>
-        </section>
-        <section>
-          <h3>Embedded Commerce</h3>
-          <p><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/embedded-commerce-gatepass.md">Synthetic pre-checkout basket verification</a></p>
-          <p><code>npm run demo:commerce-gatepass</code></p>
-        </section>
-        <section>
-          <h3>Commercial Route</h3>
-          <p><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/paid-pilot-commercial-entry.md">Paid Evaluation Pilot</a></p>
-          <p><a href="mailto:gpmiddleton71@gmail.com">gpmiddleton71@gmail.com</a></p>
-        </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="kicker">The control problem</span><h2>AI capability is not authority.</h2></div>
+        <p>An agent may know what to do, have access to a tool and produce a confident answer — yet still lack authority for a specific supplier, amount, account, customer outcome or high-impact action. ATG concentrates on that point-of-action gap.</p>
       </div>
-    </section>
+      <div class="grid-3">
+        <article class="card">
+          <div class="icon-box">A</div>
+          <h3>Identity is not standing</h3>
+          <p>A declared software identity is not enough. ATG demonstrates how control of an agent identity, an accountable principal and current delegation can be checked before normal GatePass evaluation.</p>
+          <a class="link" href="./agent-standing-demo.html">Open Agent Standing demo →</a>
+        </article>
+        <article class="card">
+          <div class="icon-box">H</div>
+          <h3>Approval is not authority</h3>
+          <p>An <code>approved: true</code> field does not prove that an authorised person sanctioned the exact action. ATG links human identity, organisational authority and action-specific approval evidence.</p>
+          <a class="link" href="./human-authority-demo.html">Open Human Authority demo →</a>
+        </article>
+        <article class="card">
+          <div class="icon-box">G</div>
+          <h3>Permission must match the action</h3>
+          <p>GatePass binds proof to one canonical action with freshness and one-use controls. Changed actions, replay, expiry and unresolved proof states are designed to fail closed in the demonstrator.</p>
+          <a class="link" href="./exact-action-authority-control-model.html">Review the control model →</a>
+        </article>
+      </div>
+    </div>
+  </section>
 
-    <section>
-      <h2>Machine-Readable Files</h2>
-      <ul>
-        <li><a href="agent-trust-gate.discovery.json">Canonical discovery record</a></li>
-        <li><a href="llms.txt">llms.txt</a></li>
-        <li><a href="agent-trust-gate.agent-card.json">Agent card metadata</a></li>
-        <li><a href="agent-trust-gate.manifest.json">Project manifest</a></li>
-        <li><a href="agent-trust-gate.agent-review-invitation.json">P3-M155 agent review invitation</a></li>
-        <li><a href="ai-catalog.json">Schema-validated ARD-readiness catalogue</a></li>
-        <li><a href="schemas/agent-review-invitation.schema.json">Invitation schema</a></li>
-        <li><a href="schemas/bring-your-agent-scenario.schema.json">Bring Your Agent Scenario schema</a></li>
-        <li><a href="bring-your-agent-scenario.template.json" download>Downloadable synthetic scenario template</a></li>
-        <li><a href="examples/bring-your-agent-scenario.example.json">Fictional synthetic scenario example</a></li>
-      </ul>
-      <p>Live public path: <code>https://gareth1953.github.io/agent-trust-gate/</code>. The route is a static discovery site only, with machine-readable files available under the same GitHub Pages project path.</p>
-    </section>
+  <section class="section section-alt">
+    <div class="wrap split">
+      <div>
+        <span class="kicker">Integration advantage</span>
+        <h2>Use the authority evidence you already trust.</h2>
+        <p class="lead" style="color:var(--muted)">Agent Trust Gate™ is designed to complement existing identity, authority and approval infrastructure rather than replace it. A future organisation-specific integration can treat suitable trusted evidence as input, then ATG asks the narrower question that matters at the point of action.</p>
+        <p class="quote"><strong>Does this evidence authorise this agent to perform this exact action, here and now, within these limits?</strong></p>
+        <ul class="list-check">
+          <li>Keep existing IAM, identity, authentication and approval systems upstream.</li>
+          <li>Bring trusted identity, standing, mandate, delegation or approval evidence into the decision.</li>
+          <li>ATG checks whether that evidence is sufficient for the exact proposed AI action.</li>
+          <li>PASS produces an action-bound GatePass; insufficient or untrusted evidence produces a recorded refusal.</li>
+          <li>Decision evidence remains separate from any later execution evidence.</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <span class="eyebrow">No rip-and-replace requirement</span>
+        <p class="quote"><strong>Trusted authority evidence → ATG exact-action verification → signed GatePass or recorded refusal.</strong></p>
+        <p>ATG does not need to become another enterprise identity directory, authentication platform or universal credential issuer. Existing systems can establish upstream facts; ATG determines whether those facts authorise the exact action now being proposed.</p>
+        <p><strong>Current boundary:</strong> the public demonstrator uses deterministic synthetic/local evidence only. It does not currently connect to live IAM, SSO, identity-provider, enterprise-directory, external credential or production approval systems.</p>
+        <a class="link" href="https://github.com/Gareth1953/agent-trust-gate/blob/main/EXTERNAL_AUTHORITY_EVIDENCE.md">Read the integration principle →</a>
+      </div>
+    </div>
+  </section>
 
-    <section>
-      <h2>Current Status</h2>
-      <ul>
-        <li>GitHub Pages: active public HTTPS static discovery route deployed through GitHub Actions.</li>
-        <li>P3-M154: local Verified Agent Standing demonstrator and closed fixture schema.</li>
-        <li>P3-M155: static agent discovery invitation, safe scenario pack and accountable-human review route.</li>
-        <li>ARD: v0.9 draft readiness with a schema-validated static <code>application/json</code> review artifact; no registry or invocation service.</li>
-        <li>A2A server: not implemented; no operational endpoint is published.</li>
-        <li>MCP server: not implemented; no MCP Registry publication exists.</li>
-        <li>npm package: private and not published.</li>
-        <li>Payment and settlement: no real execution, payment URLs, or transaction controls.</li>
-        <li>Action execution: no autonomous or real tool execution.</li>
-        <li>Embedded Commerce GatePass: local synthetic basket verification only; no live retailer, checkout, payment, settlement, AI-provider, API, A2A, or MCP integration.</li>
-      </ul>
-    </section>
-  </main>
-<section id="human-authority-demo-link" style="margin:2rem 0;padding:1.25rem;border:1px solid currentColor;border-radius:1rem">
-  <h2>See verified human authority working</h2>
-  <p>Run a fictional refund or repayment through identity status, organisation authentication, authority limits, separation of duties, dual approval, exact-action binding, expiry and replay checks.</p>
-  <p><a href="./human-authority-demo.html"><strong>Open the interactive P3-M153 demonstration →</strong></a></p>
-  <p><small>Synthetic local demonstration only. No login, customer data, payment or external action.</small></p>
-</section>
-<section id="agent-standing-demo-link" style="margin:2rem 0;padding:1.25rem;border:1px solid currentColor;border-radius:1rem">
-  <h2>Verify agent standing before GatePass</h2>
-  <p>Inspect fixed scenarios for a declared software-agent identity, fixture-key challenge, accountable individual or organisation principal, signed delegation, limits, revocation, exact-request digest and the fail-closed GatePass precondition.</p>
-  <p><strong>No verified agent identity. No verified principal. No valid delegation. No standing to request a GatePass.</strong></p>
-  <p><a href="./agent-standing-demo.html"><strong>Open the interactive P3-M154 demonstration →</strong></a></p>
-  <p><small>Synthetic static demonstration only. No credentials, uploads, personal data, network API, agent contact, payment, settlement or external action.</small></p>
-</section>
+  <section class="section section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="kicker">Trust architecture</span><h2>From requester to accountable evidence.</h2></div>
+        <p>ATG separates several facts that are too often collapsed into a single “allowed” result. Each layer answers a different trust question before the action can proceed.</p>
+      </div>
+      <div class="architecture" aria-label="Four-stage ATG architecture">
+        <div class="arch-step"><b>Layer 01</b><h3>Standing</h3><p>Verify the requester has standing to ask for consequential authority.</p></div>
+        <div class="arch-step"><b>Layer 02</b><h3>Authority</h3><p>Check mandate, scope, amount, counterparty, evidence and required human authority.</p></div>
+        <div class="arch-step"><b>Layer 03</b><h3>GatePass</h3><p>Bind current proof to one exact action, time window and one-use decision boundary.</p></div>
+        <div class="arch-step"><b>Layer 04</b><h3>Evidence</h3><p>Keep policy decision evidence separate from what actually executed.</p></div>
+      </div>
+      <div class="actions"><a class="btn btn-dark" href="./technology.html">See the full architecture</a></div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="kicker" style="color:var(--teal)">Application routes</span><h2>Built for actions where mistakes carry consequence.</h2></div>
+        <p>One trust architecture can be applied to different operating environments. ATG is being explored as a pre-action control pattern, not as a replacement for sector regulation, identity systems, procurement rules or production security infrastructure.</p>
+      </div>
+      <div class="grid-4">
+        <article class="card dark"><span class="tag">Financial services</span><h3 style="margin-top:16px">High-impact financial actions</h3><p>Payments, transfers, remediation and other consequential actions where current authority and evidence matter.</p><a class="link" href="./financial-services-ai-agent-authority.html">Explore route →</a></article>
+        <article class="card dark"><span class="tag">Public procurement</span><h3 style="margin-top:16px">Delegated purchasing</h3><p>Purchase orders, contract variations, goods receipt, invoice approval and payment release.</p><a class="link" href="./public-procurement-ai-agent-authority.html">Explore route →</a></article>
+        <article class="card dark"><span class="tag">Retail & supply chain</span><h3 style="margin-top:16px">Operational execution</h3><p>Replenishment, supplier substitution, shipment rerouting, inventory movement and embedded commerce.</p><a class="link" href="./retail-supply-chain-ai-agent-authority.html">Explore route →</a></article>
+        <article class="card dark"><span class="tag">Enterprise agents</span><h3 style="margin-top:16px">Sensitive tool calls</h3><p>Agentic workflows that need a machine-readable trust boundary before consequential tools are allowed to act.</p><a class="link" href="./solutions.html">Explore solutions →</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <span class="kicker">Human-understandable proof</span>
+        <h2>Technical trust should become understandable evidence.</h2>
+        <p class="lead" style="color:var(--muted)">GatePass, Human Authority Proof, Agent Standing and execution evidence are technical structures. The direction is to make those structures capable of producing a simple trust receipt that an accountable person can understand without losing the underlying proof.</p>
+        <ul class="list-check">
+          <li>What exact action was proposed?</li>
+          <li>Which agent requested it and under whose delegation?</li>
+          <li>Which authority and evidence were checked?</li>
+          <li>Which human approved it, when policy required one?</li>
+          <li>Was the action allowed, refused or left unexecuted?</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <span class="eyebrow">Core principle</span>
+        <p class="quote"><strong>No verified standing. No current authority. No exact-action proof. No valid GatePass. No action.</strong></p>
+        <p>ATG is designed to put the trust decision before the consequential action — then preserve evidence of what the gate decided and what subsequently happened.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div><span class="kicker">Reviewable by design</span><h2>Evidence before marketing claims.</h2></div>
+        <p>The public implementation remains deliberately bounded. Reviewers can inspect deterministic scenarios, refusal behaviour, schemas, threat-model material and the claims boundary without being asked to trust a sales deck.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card"><h3>10-minute reviewer path</h3><p>Run the compact reviewer sequence locally and see outcome-derived pass/refuse behaviour.</p><div class="code-route">npm ci<br>npm run reviewer</div></article>
+        <article class="card"><h3>Working demonstrations</h3><p>Inspect Human Authority and Agent Standing with fixed synthetic scenarios — including refusal cases, expiry and changed-action checks.</p><a class="link" href="./evidence.html">Open evidence centre →</a></article>
+        <article class="card"><h3>Strict claims boundary</h3><p>No production deployment, payment execution, security certification, customer data, live employee directory or production key custody is claimed.</p><a class="link" href="https://github.com/Gareth1953/agent-trust-gate">Inspect public GitHub →</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap callout contact-card">
+      <div>
+        <span class="eyebrow">Technical review & design-partner enquiries</span>
+        <h2 style="margin-top:10px">Discuss a bounded evaluation.</h2>
+        <p>For serious technical review, integration feasibility or a controlled non-production paid evaluation pilot.</p>
+      </div>
+      <a class="btn btn-primary" href="./contact.html">Contact Agent Trust Gate →</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div><div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>Agent Trust Gate™<small>Verify before consequential action</small></span></div><p style="max-width:520px">Local-first exact-action authority and evidence for consequential AI-agent workflows. Public demonstrator only; production deployment is not claimed.</p></div>
+      <div><div class="footer-title">Explore</div><div class="footer-links"><a href="./technology.html">Technology</a><a href="./solutions.html">Solutions</a><a href="./evidence.html">Evidence</a><a href="https://github.com/Gareth1953/agent-trust-gate">GitHub</a><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/CITATION.cff">Citation</a><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/SECURITY.md">Security</a></div></div>
+      <div><div class="footer-title">Company</div><div class="footer-links"><a href="./company.html">About</a><a href="./contact.html">Contact</a><a href="./privacy.html">Privacy</a><a href="mailto:gareth@agenttrustgate.com">gareth@agenttrustgate.com</a></div></div>
+    </div>
+    <div class="footer-bottom"><span>© <span data-year></span> Agent Trust Gate™. All rights reserved.</span><span>United Kingdom · Public local demonstrator</span></div>
+  </div>
+</footer>
+<script src="./corporate.js"></script>
 </body>
 </html>

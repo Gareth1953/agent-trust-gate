@@ -2,11 +2,13 @@ import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 import {
-  MACHINE_DISCOVERY_CONTACT,
   MACHINE_DISCOVERY_EXPECTED_PAGES_URL,
-  MACHINE_DISCOVERY_PAGES_BASE_PATH,
   MACHINE_DISCOVERY_PAGES_WORKFLOW,
 } from "./machine-discovery.js";
+
+const DISCOVERY_SITE_PUBLIC_URL = "https://agenttrustgate.com/" as const;
+const DISCOVERY_SITE_BASE_PATH = "/" as const;
+const DISCOVERY_SITE_CONTACT = "gareth@agenttrustgate.com" as const;
 
 export interface DiscoverySiteValidationCheck {
   id: string;
@@ -17,8 +19,8 @@ export interface DiscoverySiteValidationCheck {
 export interface DiscoverySiteValidationReport {
   project: "Agent Trust Gate";
   purpose: "Local static discovery-site validation";
-  expectedPagesUrl: typeof MACHINE_DISCOVERY_EXPECTED_PAGES_URL;
-  basePath: typeof MACHINE_DISCOVERY_PAGES_BASE_PATH;
+  expectedPagesUrl: typeof DISCOVERY_SITE_PUBLIC_URL;
+  basePath: typeof DISCOVERY_SITE_BASE_PATH;
   workflow: typeof MACHINE_DISCOVERY_PAGES_WORKFLOW;
   valid: boolean;
   localDemoOnly: true;
@@ -36,6 +38,14 @@ const requiredSiteFiles = [
   "discovery-site/sitemap.xml",
   "discovery-site/.nojekyll",
   "discovery-site/README.md",
+  "discovery-site/company.html",
+  "discovery-site/contact.html",
+  "discovery-site/corporate.css",
+  "discovery-site/corporate.js",
+  "discovery-site/evidence.html",
+  "discovery-site/privacy.html",
+  "discovery-site/solutions.html",
+  "discovery-site/technology.html",
   "discovery-site/for-agents.html",
   "discovery-site/bring-your-agent-scenario.html",
   "discovery-site/bring-your-agent-scenario.template.json",
@@ -63,6 +73,13 @@ const requiredArtifactFiles = [
 ] as const;
 const publicHtmlFiles = [
   "discovery-site/index.html",
+  "discovery-site/404.html",
+  "discovery-site/company.html",
+  "discovery-site/contact.html",
+  "discovery-site/evidence.html",
+  "discovery-site/privacy.html",
+  "discovery-site/solutions.html",
+  "discovery-site/technology.html",
   "discovery-site/for-agents.html",
   "discovery-site/bring-your-agent-scenario.html",
   "discovery-site/exact-action-authority-control-model.html",
@@ -99,13 +116,24 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
   const notFoundHtml = read("discovery-site/404.html");
   const publicHtml = publicHtmlFiles.map((path) => read(path));
   const combinedPublicHtml = publicHtml.join("\n");
+  const corporateScript = read("discovery-site/corporate.js");
+  const privacyHtml = read("discovery-site/privacy.html");
   const robotsTxt = read("discovery-site/robots.txt");
   const sitemapXml = read("discovery-site/sitemap.xml");
   const workflow = read(MACHINE_DISCOVERY_PAGES_WORKFLOW);
   const workflowUses = Array.from(workflow.matchAll(/uses:\s*([^\s]+)/g), (match) => match[1] ?? "");
   const allowedWorkflowActions = new Set<string>(workflowActions);
   const links = extractLinks(indexHtml);
-  const normalisedLinks = links.map((href) => href.replace(/^\.\//, ""));
+  const allNormalisedLinks = publicHtml.flatMap(extractLinks).map((href) => href.replace(/^\.\//, ""));
+  const scriptSources = publicHtml.flatMap(extractScriptSources);
+  const analyticsUrlLiterals = Array.from(
+    corporateScript.matchAll(/https:\/\/[^'"\s)]+/g),
+    (match) => match[0] ?? "",
+  );
+  const analyticsEventNames = Array.from(
+    corporateScript.matchAll(/eventName\s*=\s*'([^']+)'/g),
+    (match) => match[1] ?? "",
+  );
   const indexJsonLdValues = extractJsonLd(indexHtml);
   const allJsonLdValues = publicHtmlFiles.flatMap((path) => extractJsonLd(read(path)));
   const trackedPaths = listFiles(".");
@@ -133,7 +161,7 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
     const html = read(path);
     const file = path.replace(/^discovery-site\//, "");
     const expectedCanonical = file === "index.html"
-      ? MACHINE_DISCOVERY_EXPECTED_PAGES_URL
+      ? DISCOVERY_SITE_PUBLIC_URL
       : `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}${file}`;
     const failures: string[] = [];
     if (!/<title>[^<]+<\/title>/i.test(html)) failures.push(`${path}: title`);
@@ -151,8 +179,8 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
   const expectedSitemapUrls = seoPublicHtmlFiles.map((path) => {
     const file = path.replace(/^discovery-site\//, "");
     return file === "index.html"
-      ? MACHINE_DISCOVERY_EXPECTED_PAGES_URL
-      : `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}${file}`;
+      ? DISCOVERY_SITE_PUBLIC_URL
+      : `${DISCOVERY_SITE_PUBLIC_URL}${file}`;
   });
   const imageAltFailures = seoPublicHtmlFiles.flatMap((path) =>
     extractImageTags(read(path))
@@ -249,21 +277,21 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
     },
     {
       id: "expected_base_path",
-      passed: indexHtml.includes(MACHINE_DISCOVERY_EXPECTED_PAGES_URL) &&
-        notFoundHtml.includes(MACHINE_DISCOVERY_PAGES_BASE_PATH) &&
-        sitemapXml.includes(MACHINE_DISCOVERY_EXPECTED_PAGES_URL) &&
-        robotsTxt.includes(`${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}sitemap.xml`) &&
-        robotsTxt.includes(`Agentmap: ${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}ai-catalog.json`) &&
-        indexHtml.includes(`<link rel="ai-catalog" href="${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}ai-catalog.json">`),
-      detail: "canonical URL, 404 link, robots.txt, sitemap, Agentmap and catalogue link use the expected Pages project path",
+      passed: indexHtml.includes(DISCOVERY_SITE_PUBLIC_URL) &&
+        notFoundHtml.includes('href="./"') &&
+        sitemapXml.includes(DISCOVERY_SITE_PUBLIC_URL) &&
+        robotsTxt.includes(`${DISCOVERY_SITE_PUBLIC_URL}sitemap.xml`) &&
+        robotsTxt.includes(`Agentmap: ${DISCOVERY_SITE_PUBLIC_URL}ai-catalog.json`) &&
+        indexHtml.includes(`<link rel="ai-catalog" href="${DISCOVERY_SITE_PUBLIC_URL}ai-catalog.json">`),
+      detail: "canonical URL, relative 404 home link, robots.txt, sitemap, Agentmap and catalogue link use the current corporate Pages route",
     },
     {
       id: "active_verified_wording",
-      passed: /Passive discovery site active/i.test(indexHtml) &&
-        /Live public path:/i.test(indexHtml) &&
-        /GitHub Pages: active public HTTPS static discovery route deployed through GitHub Actions\./i.test(indexHtml) &&
+      passed: /Verify authority before AI acts\./i.test(indexHtml) &&
+        /local-first trust enforcement demonstrator/i.test(indexHtml) &&
+        /Public demonstrator only; production deployment is not claimed\./i.test(indexHtml) &&
         !obsoleteStatusPattern.test(indexHtml),
-      detail: "index.html records the active verified Pages status without obsolete pending wording",
+      detail: "index.html states the current corporate proposition and non-production boundary without obsolete pending wording",
     },
     {
       id: "required_links",
@@ -286,35 +314,58 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
         "schemas/agent-review-invitation.schema.json",
         "schemas/bring-your-agent-scenario.schema.json",
         "examples/bring-your-agent-scenario.example.json",
-        `mailto:${MACHINE_DISCOVERY_CONTACT}`,
-      ].every((href) => normalisedLinks.includes(href)),
-      detail: "index.html links to repository, reviewer kit, agent routes, scenario pack, metadata files, paid pilot and public contact email",
+        `mailto:${DISCOVERY_SITE_CONTACT}`,
+      ].every((href) => allNormalisedLinks.includes(href)),
+      detail: "the public site links to the repository, reviewer kit, agent routes, scenario pack, metadata files, paid pilot and corporate contact email",
     },
     {
       id: "no_external_scripts_or_assets",
-      passed: !/<script\b[^>]*\bsrc\s*=/i.test(combinedPublicHtml) &&
+      passed: scriptSources.length > 0 &&
+        scriptSources.every((src) => src === "./corporate.js") &&
         !/<link\b[^>]*\brel=["']?stylesheet["']?[^>]*https?:\/\//i.test(combinedPublicHtml) &&
         !/<img\b[^>]*\bsrc=["']https?:\/\//i.test(combinedPublicHtml) &&
         !/<video\b/i.test(combinedPublicHtml),
-      detail: "static site has no external JavaScript, external fonts, third-party images or embedded video",
+      detail: "public pages use only the checked-in corporate script and no external stylesheets, third-party images or embedded video",
     },
     {
       id: "no_forms_iframes_or_chat",
       passed: !/<form\b/i.test(combinedPublicHtml) &&
         !/<input\b[^>]*\btype=["']?file/i.test(combinedPublicHtml) &&
         !/<iframe\b/i.test(combinedPublicHtml) &&
-        !/live\s*chat|newsletter|signup/i.test(combinedPublicHtml),
+        !/<(?:live-chat|chat-widget|newsletter-signup)\b/i.test(combinedPublicHtml),
       detail: "public pages have no forms, uploads, iframes, live chat, or newsletter signup",
     },
     {
-      id: "no_tracking_or_cookies",
-      passed: !/gtag|googletagmanager|plausible|segment|mixpanel|analytics\.js|tracking\s*pixel|document\.cookie|Set-Cookie|localStorage|sessionStorage|fingerprint/i.test(combinedPublicHtml),
-      detail: "public pages have no analytics, tracking pixels, cookie code, storage code, or fingerprinting code",
+      id: "privacy_conscious_analytics_only",
+      passed: corporateScript.includes("if (!isPublicAtgSite) return;") &&
+        corporateScript.includes("api_host: 'https://us.i.posthog.com'") &&
+        corporateScript.includes("person_profiles: 'identified_only'") &&
+        corporateScript.includes("persistence: 'localStorage'") &&
+        corporateScript.includes("autocapture: false") &&
+        corporateScript.includes("capture_pageview: false") &&
+        corporateScript.includes("capture_pageleave: false") &&
+        corporateScript.includes("disable_session_recording: true") &&
+        corporateScript.includes("disable_surveys: true") &&
+        corporateScript.includes("respect_dnt: true") &&
+        corporateScript.includes("$geoip_disable: true") &&
+        analyticsUrlLiterals.length === 2 &&
+        analyticsUrlLiterals.every((url) => url === "https://us.i.posthog.com" || url === "https://us.posthog.com") &&
+        analyticsEventNames.length === 3 &&
+        analyticsEventNames.every((event) => [
+          "atg_contact_email_click",
+          "atg_github_click",
+          "atg_reviewer_resource_click",
+        ].includes(event)) &&
+        (corporateScript.match(/window\.posthog\.capture\s*\(/g)?.length ?? 0) === 2 &&
+        !/posthog\.identify\s*\(|posthog\.startSessionRecording\s*\(|document\.cookie|Set-Cookie|fingerprint|\beval\s*\(|new\s+Function\s*\(/i.test(corporateScript) &&
+        /PostHog autocapture, surveys and session recording are disabled/i.test(privacyHtml) &&
+        /anonymous browser identifier is stored in local storage/i.test(privacyHtml),
+      detail: "the sole analytics path is hostname-gated PostHog with disclosed local storage, DNT, no autocapture, no surveys, no session recording, no GeoIP enrichment and no visitor identification",
     },
     {
       id: "no_public_network_or_submission_code",
-      passed: !/\bfetch\s*\(|XMLHttpRequest|WebSocket|EventSource|sendBeacon|\.submit\s*\(/i.test(combinedPublicHtml),
-      detail: "public pages contain no fetch, socket, beacon, form-submission, callback or remote-processing code",
+      passed: !/\bfetch\s*\(|XMLHttpRequest|WebSocket|EventSource|sendBeacon|\.submit\s*\(/i.test(`${combinedPublicHtml}\n${corporateScript}`),
+      detail: "public source contains no fetch, socket, beacon or form-submission path beyond the separately constrained analytics loader",
     },
     {
       id: "no_payment_or_checkout_links",
@@ -362,15 +413,15 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
       id: "no_cname_or_well_known_endpoint",
       passed: !existsSync(join(root, "discovery-site", "CNAME")) &&
         !trackedPaths.some((path) => path.includes(".well-known/agent-card.json")),
-      detail: "static source does not add a custom domain or operational .well-known A2A endpoint",
+      detail: "Pages source has no checked-in CNAME override or operational .well-known A2A endpoint",
     },
   ];
 
   return {
     project: "Agent Trust Gate",
     purpose: "Local static discovery-site validation",
-    expectedPagesUrl: MACHINE_DISCOVERY_EXPECTED_PAGES_URL,
-    basePath: MACHINE_DISCOVERY_PAGES_BASE_PATH,
+    expectedPagesUrl: DISCOVERY_SITE_PUBLIC_URL,
+    basePath: DISCOVERY_SITE_BASE_PATH,
     workflow: MACHINE_DISCOVERY_PAGES_WORKFLOW,
     valid: checks.every((check) => check.passed),
     localDemoOnly: true,
@@ -421,6 +472,13 @@ function extractLinks(html: string): string[] {
 function extractAssetSources(html: string): string[] {
   return Array.from(
     html.matchAll(/\b(?:src|poster)=["']([^"']+)["']/gi),
+    (match) => match[1] ?? "",
+  ).filter(Boolean);
+}
+
+function extractScriptSources(html: string): string[] {
+  return Array.from(
+    html.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/gi),
     (match) => match[1] ?? "",
   ).filter(Boolean);
 }

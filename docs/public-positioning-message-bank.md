@@ -145,3 +145,38 @@ P3-M138 adds a local deterministic GatePass developer wrapper and local framewor
 
 ## P3-M139 - One-Command Reviewer Demo Kit
 P3-M139 adds a local deterministic one-command reviewer demo kit for the GatePass lifecycle, adversarial scorecard, developer wrapper, local integration summary, safety boundary, and JSON report output. It uses GatePass proof vocabulary and GatePass claims vocabulary as supporting material only, and adds no production middleware claim, production benchmark claim, security certification claim, production readiness claim, live tool execution, network calls, payment authorisation, settlement authorisation, or action execution.
+
+## External Authority Evidence Integration Positioning
+
+Use this principle when explaining how ATG can fit alongside an organisation's existing trust infrastructure:
+
+```text
+Agent Trust Gate does not need to replace the identity, authority or approval systems an organisation already trusts. Suitable external evidence can become an input to ATG, which then asks the action-specific question: does this evidence authorise this agent to perform this exact action, here and now, within these limits?
+```
+
+Short buyer line:
+
+```text
+Bring the authority evidence you already trust. ATG determines whether it is sufficient for the exact AI action now being proposed.
+```
+
+Short architecture line:
+
+```text
+Existing authority evidence -> ATG exact-action verification -> GatePass or refusal.
+```
+
+Useful supporting messages:
+
+```text
+Capability is not authority.
+Identity is not authority.
+Human authority is evidence, not a boolean.
+Approval is not enough unless it applies to the exact action.
+```
+
+Claims boundary:
+
+This is a future-compatible integration principle and public positioning advantage. The current public repository uses deterministic synthetic/local evidence only and does not provide live IAM, SSO, identity-provider, enterprise-directory, external credential, WebAuthn, payment, settlement or production enforcement integrations.
+
+See [External Authority Evidence Integration Principle](external-authority-evidence-integration-principle.md).
