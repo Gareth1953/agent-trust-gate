@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Trust Gate™ — Human Trust Receipt</title>
+  <meta name="description" content="A local synthetic demonstration of how Agent Trust Gate can translate machine-verifiable evidence into a simple Human Trust Receipt.">
+  <style>
+    :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #07111f; color: #eef5ff; line-height: 1.55; }
+    main { width: min(1040px, calc(100% - 32px)); margin: 0 auto; padding: 56px 0 80px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; color: #9fc4ff; font-weight: 700; }
+    h1 { font-size: clamp(2.2rem, 7vw, 4.8rem); line-height: .98; margin: 10px 0 20px; max-width: 900px; }
+    h2 { margin-top: 0; }
+    .lead { max-width: 780px; font-size: 1.2rem; color: #c7d7ed; }
+    .principle { margin: 32px 0; padding: 22px 26px; border-left: 4px solid #8db8ff; background: #0d1b2e; font-size: 1.2rem; font-weight: 700; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+    .panel, .receipt { background: #0c1829; border: 1px solid #243a57; border-radius: 18px; padding: 24px; }
+    .receipt { background: #f8fbff; color: #102037; box-shadow: 0 18px 45px rgba(0,0,0,.25); }
+    .status { display: inline-block; padding: 7px 11px; border-radius: 999px; font-size: .8rem; font-weight: 800; background: #d9f8e5; color: #175c35; }
+    .status.refused { background: #ffe8e8; color: #8b2525; }
+    .status.unverified { background: #fff2c7; color: #775900; }
+    .receipt h2 { margin: 14px 0 6px; }
+    .rows { margin: 22px 0; border-top: 1px solid #dbe5f1; }
+    .row { display: grid; grid-template-columns: 1fr auto; gap: 18px; padding: 11px 0; border-bottom: 1px solid #dbe5f1; }
+    .row span:last-child { font-weight: 750; text-align: right; }
+    button { width: 100%; text-align: left; border: 1px solid #314969; background: #10223a; color: #eaf2ff; padding: 14px 16px; margin: 7px 0; border-radius: 12px; cursor: pointer; font: inherit; }
+    button:hover, button:focus { border-color: #8db8ff; outline: none; }
+    button strong { display: block; }
+    button small { color: #adc1dd; }
+    .boundary { margin-top: 40px; color: #aebfd5; font-size: .94rem; }
+    .technical { margin-top: 26px; padding: 18px 20px; border-radius: 14px; background: #07101c; color: #b8c8dc; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-wrap: anywhere; }
+    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } main { padding-top: 34px; } }
+  </style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">P3-M156 · Local synthetic demonstration</div>
+  <h1>Making AI Trust Visible to Humans.</h1>
+  <p class="lead">AI governance can be technically sophisticated and still mean very little to an ordinary customer. A Human Trust Receipt translates selected verified facts into something a person can understand, retain and question later.</p>
+
+  <div class="principle">Technical trust must ultimately become human-understandable proof.</div>
+
+  <div class="grid">
+    <section class="panel" aria-labelledby="choose-title">
+      <h2 id="choose-title">See what a person would see</h2>
+      <p>These fixed examples do not contact an AI system, retailer, bank, employee directory or payment service.</p>
+      <button data-scenario="completed"><strong>Completed exactly as authorised</strong><small>Verified £475 synthetic refund</small></button>
+      <button data-scenario="authorised"><strong>Authorised — not executed</strong><small>Permission exists, but execution is not claimed</small></button>
+      <button data-scenario="refused"><strong>Refused</strong><small>Required evidence was missing, so no GatePass was issued</small></button>
+      <button data-scenario="unverified"><strong>Unverified</strong><small>Execution digest was changed; the receipt fails closed</small></button>
+
+      <div class="technical" id="technical">Underlying evidence chain: Agent Standing → Human Authority → Policy → GatePass → Execution verification.</div>
+    </section>
+
+    <section class="receipt" aria-live="polite" aria-labelledby="receipt-title">
+      <div id="status" class="status">COMPLETED EXACTLY AS AUTHORISED</div>
+      <h2 id="receipt-title">Agent Trust Gate™ — Human Trust Receipt</h2>
+      <p id="headline"><strong>This action was checked before it was allowed to proceed.</strong></p>
+      <div class="rows">
+        <div class="row"><span>Action</span><span id="action">Refund £475.00</span></div>
+        <div class="row"><span>AI agent</span><span>AGENT-RETURNS-17</span></div>
+        <div class="row"><span>Agent standing</span><span id="standing">Verified ✓</span></div>
+        <div class="row"><span>Authorised by</span><span>Sarah Collins*</span></div>
+        <div class="row"><span>Authority</span><span>Refunds up to £1,000*</span></div>
+        <div class="row"><span>Policy checked</span><span id="policy">Yes ✓</span></div>
+        <div class="row"><span>Exact action verified</span><span id="exact">Yes ✓</span></div>
+        <div class="row"><span>Execution matched approval</span><span id="execution">Yes ✓</span></div>
+        <div class="row"><span>Trust reference</span><span id="reference">ATG-HR-COMPLETED-77291</span></div>
+      </div>
+      <p id="reason"></p>
+      <small>* Fictional local-demo identity and permissions. No real employee, customer, refund or payment is involved.</small>
+    </section>
+  </div>
+
+  <p class="boundary"><strong>The receipt is not the proof.</strong> The underlying machine-verifiable evidence is the source of proof. This page is a static local-only reference demonstrator. It does not provide live verification, production enforcement, legal or security certification, real authentication, payment, refund or settlement capability, and it does not certify that an AI system is universally safe or trustworthy.</p>
+</main>
+<script>
+  const scenarios = {
+    completed: {
+      status: "COMPLETED EXACTLY AS AUTHORISED", className: "status", headline: "This action was checked before it was allowed to proceed.", action: "Refund £475.00", standing: "Verified ✓", policy: "Yes ✓", exact: "Yes ✓", execution: "Yes ✓", reference: "ATG-HR-COMPLETED-77291", reason: "", technical: "All required synthetic references and exact-action digests match across Agent Standing, Human Authority, policy decision, GatePass and execution evidence."
+    },
+    authorised: {
+      status: "AUTHORISED — NOT EXECUTED", className: "status", headline: "The exact action is authorised. This receipt does not claim it has happened.", action: "Refund £475.00", standing: "Verified ✓", policy: "Yes ✓", exact: "Yes ✓", execution: "Not claimed", reference: "ATG-HR-REFUND-77291", reason: "Allowed does not mean executed.", technical: "The synthetic Agent Standing, Human Authority, policy decision and GatePass agree. No execution receipt exists, so completion is not claimed."
+    },
+    refused: {
+      status: "REFUSED", className: "status refused", headline: "The action was not authorised to proceed.", action: "Refund £475.00", standing: "Verified ✓", policy: "Yes ✓", exact: "Yes ✓", execution: "No action", reference: "ATG-HR-REFUSED-77291", reason: "Reason: required return evidence was missing. No GatePass was invented.", technical: "A synthetic checked policy refusal exists for the exact action. Because policy refused the action, no GatePass or execution is presented."
+    },
+    unverified: {
+      status: "UNVERIFIED", className: "status unverified", headline: "The evidence chain does not support a verified trust claim.", action: "Refund £475.00", standing: "Verified ✓", policy: "Yes ✓", exact: "No ✕", execution: "No ✕", reference: "ATG-HR-UNVERIFIED-77291", reason: "Reason: execution action digest does not match the authorised exact action.", technical: "The synthetic execution digest was deliberately changed after authorisation. P3-M156 fails closed to UNVERIFIED rather than presenting a reassuring badge."
+    }
+  };
+
+  function showScenario(key) {
+    const item = scenarios[key];
+    document.getElementById("status").textContent = item.status;
+    document.getElementById("status").className = item.className;
+    document.getElementById("headline").innerHTML = `<strong>${item.headline}</strong>`;
+    document.getElementById("action").textContent = item.action;
+    document.getElementById("standing").textContent = item.standing;
+    document.getElementById("policy").textContent = item.policy;
+    document.getElementById("exact").textContent = item.exact;
+    document.getElementById("execution").textContent = item.execution;
+    document.getElementById("reference").textContent = item.reference;
+    document.getElementById("reason").textContent = item.reason;
+    document.getElementById("technical").textContent = item.technical;
+  }
+
+  document.querySelectorAll("[data-scenario]").forEach((button) => {
+    button.addEventListener("click", () => showScenario(button.dataset.scenario));
+  });
+</script>
+</body>
+</html>
