@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Gareth1953/agent-trust-gate/schemas/purchasing-lifecycle-demo.schema.json",
+  "title": "ATG P3-M161 Local Purchasing Lifecycle Demonstration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["demoVersion", "referenceTime", "title", "cases", "executionEvidence", "registeredAdapterCount", "exposedMcpTools", "localOnly", "syntheticOnly", "productionReady", "externalActionOccurred", "commercialWisdomAssessed", "limitations"],
+  "properties": {
+    "demoVersion": { "const": "atg.purchasing-lifecycle-demo.local.v1" },
+    "referenceTime": { "const": "2026-09-02T09:00:00.000Z" },
+    "title": { "const": "Agent Trust Gate local purchasing lifecycle demonstration" },
+    "cases": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["caseId", "title", "outcome", "wouldOutcome", "gatePassStatus", "executionStatus", "reasonCodes", "plainEnglish", "evidence"],
+        "properties": {
+          "caseId": { "enum": ["01_exact_authorised_purchase", "02_quantity_substitution", "03_supplier_substitution", "04_price_band_breach", "05_gatepass_reuse", "06_gatepass_revocation", "07_shadow_mode", "08_aggregate_ceiling", "09_authority_expansion_attempt", "10_emergency_recovery_lifecycle"] },
+          "title": { "type": "string", "minLength": 1 },
+          "outcome": { "enum": ["ACCEPT", "REJECT", "REFER", "SHADOW"] },
+          "wouldOutcome": { "type": ["string", "null"], "enum": ["ACCEPT", "REFER", "REJECT", null] },
+          "gatePassStatus": { "enum": ["ISSUED_AND_CONSUMED", "ISSUED", "REVOKED", "NOT_ISSUED"] },
+          "executionStatus": { "enum": ["SYNTHETIC_EXECUTED", "BLOCKED", "NOT_ATTEMPTED"] },
+          "reasonCodes": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+          "plainEnglish": { "type": "string", "minLength": 1 },
+          "evidence": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["humanMandateReference", "exactActionDigest", "decisionReceiptId", "shadowReceiptId", "gatePassId", "executionReceiptId", "executionLinkDigest", "revocationReceiptId", "reconciliationId", "lifecycleStatus"],
+            "properties": {
+              "humanMandateReference": { "type": ["string", "null"] },
+              "exactActionDigest": { "type": ["string", "null"] },
+              "decisionReceiptId": { "type": ["string", "null"] },
+              "shadowReceiptId": { "type": ["string", "null"] },
+              "gatePassId": { "type": ["string", "null"] },
+              "executionReceiptId": { "type": ["string", "null"] },
+              "executionLinkDigest": { "type": ["string", "null"] },
+              "revocationReceiptId": { "type": ["string", "null"] },
+              "reconciliationId": { "type": ["string", "null"] },
+              "lifecycleStatus": { "type": ["string", "null"] }
+            }
+          }
+        }
+      }
+    },
+    "executionEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["decisionReceipt", "executionReceipt", "link"],
+      "properties": {
+        "decisionReceipt": { "$ref": "policy-decision-receipt.schema.json" },
+        "executionReceipt": { "$ref": "execution-receipt.schema.json" },
+        "link": { "$ref": "purchasing-execution-evidence-link.schema.json" }
+      }
+    },
+    "registeredAdapterCount": { "const": 1 },
+    "exposedMcpTools": { "type": "array", "minItems": 1, "maxItems": 1, "items": { "const": "atg.evaluate_action" } },
+    "localOnly": { "const": true },
+    "syntheticOnly": { "const": true },
+    "productionReady": { "const": false },
+    "externalActionOccurred": { "const": false },
+    "commercialWisdomAssessed": { "const": false },
+    "limitations": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+  }
+}

@@ -79,6 +79,22 @@ See [the P3-M160 lifecycle guide](docs/P3-M160-durable-lifecycle-and-emergency-c
 This remains a single-process synthetic demonstrator, not distributed,
 tamper-proof, high-availability or production-grade storage.
 
+### P3-M161 local purchasing lifecycle demonstration
+
+Run the fixed ten-case local demonstration with:
+
+```powershell
+npm run demo:purchasing-lifecycle
+npm run demo:purchasing-lifecycle -- --json
+```
+
+It shows exact purchase acceptance, substitutions, referral, replay,
+revocation, Shadow Mode, aggregate exposure, authority expansion and
+emergency/crash recovery. Exactly one registered in-process synthetic adapter
+can acknowledge the permitted case after point-of-action verification. No
+procurement, payment, settlement, customer communication or external action
+occurs. See [the P3-M161 guide](docs/P3-M161-local-purchasing-lifecycle-demonstration.md).
+
 ## WORKING EXACT ACTION TRUST GATEWAY PROTOTYPE
 
 Agent Trust Gate™ — Exact Action Trust Gateway provides a buyer-usable local

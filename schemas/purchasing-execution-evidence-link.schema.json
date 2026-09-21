@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Gareth1953/agent-trust-gate/schemas/purchasing-execution-evidence-link.schema.json",
+  "title": "ATG Local Purchasing Execution Evidence Link",
+  "description": "Digest-bound linkage between distinct local synthetic policy-decision and execution receipts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["linkVersion", "linkId", "decisionReceiptId", "decisionReceiptDigest", "executionReceiptId", "executionReceiptDigest", "gatePassId", "actionDigest", "adapterId", "resourceId", "linkDigest", "localOnly", "syntheticOnly", "externalActionOccurred"],
+  "properties": {
+    "linkVersion": { "const": "atg.purchasing-execution-link.local.v1" },
+    "linkId": { "type": "string", "pattern": "^purchase_link_[a-f0-9]{24}$" },
+    "decisionReceiptId": { "type": "string", "pattern": "^decision_receipt_[a-f0-9]{24}$" },
+    "decisionReceiptDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "executionReceiptId": { "type": "string", "pattern": "^execution_receipt_[a-f0-9]{24}$" },
+    "executionReceiptDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "gatePassId": { "type": "string", "minLength": 1 },
+    "actionDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "adapterId": { "const": "adapter.local.synthetic-purchasing.v1" },
+    "resourceId": { "const": "resource.local.synthetic-purchase-ledger.v1" },
+    "linkDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "localOnly": { "const": true },
+    "syntheticOnly": { "const": true },
+    "externalActionOccurred": { "const": false }
+  }
+}
