@@ -7,6 +7,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 | Mission | Purpose |
 |---|---|
 | P3-M158 | Local MCP stdio Exact-Action Gateway Foundation and Action Capability Passport |
+| P3-M159 | Business Policy Contracts, Shadow Mode, Evidence Decay and REFER |
 | P3-M089 | Strategic Trust Gate Expansion Pack |
 | P3-M090 | Local Gate Pass Demo Flow |
 | P3-M091 | Receipt and Audit Trail Strengthening |
@@ -138,6 +139,23 @@ authority expansion, Shadow Mode, `REFER`, `REVOKE`, business-policy contract,
 aggregate exposure control, durable state, emergency stop, crash recovery,
 Customer Trust Receipt, downstream forwarding, simulated execution or live
 execution. MCP compatibility does not imply production readiness.
+
+## P3-M159 — Business Policy, Shadow Mode and REFER
+
+**Status:** Implemented local synthetic evaluation controls.
+
+P3-M159 additively extends the single P3-M158 evaluation tool with a
+repository-registered Business Policy Contract, deterministic business risk
+tiers, an injected-clock Evidence Decay Clock, explicit non-authorising
+`REFER`, and observational Shadow Mode. P3-M158 v1 behavior remains supported.
+Shadow Decision Receipts are structurally distinct from GatePasses; Shadow,
+REFER and REJECT issue no GatePass and permit no execution.
+
+The mission adds no durable lifecycle or nonce store, aggregate exposure,
+post-issuance GatePass revocation, emergency stop, crash recovery, Customer
+Trust Receipt, MCP execution tool, HTTP/remote transport, OAuth, A2A, external
+integration, customer data, deployment, publication, outreach or production-
+readiness claim.
 ## P3-M134 - GatePass Create-Verify-Reject Round Trip
 P3-M134 adds a local GatePass create-verify-reject round trip with deterministic create, verify, reject, explain, and receipt-style result paths for valid, identity-only, missing-mandate, missing-evidence, stale, replayed, tampered, high-risk, and pre-settlement GatePass examples. It adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
 ## P3-M135 - Agent-Readable GatePass Benefit and Voluntary Referral Pack

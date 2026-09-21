@@ -1,10 +1,12 @@
 import {
   createCanonicalActionEnvelope,
+  createFixedTrustedClock,
   createPolicyDecisionReceipt,
   issueExactActionGatePass,
   type CanonicalJsonValue,
   type ExactActionGatePass,
   type PolicyDecisionReceipt,
+  type TrustedClock,
 } from "./exact-action-gatepass.js";
 import {
   ExactActionTrustGatewayPrototype,
@@ -25,6 +27,22 @@ import {
   type ActionCapabilityPassport,
   type ActionCapabilityPassportReference,
 } from "./action-capability-passport.js";
+import {
+  BUSINESS_POLICY_REFERENCE_TIME,
+  BusinessPolicyRegistry,
+  DEFAULT_BUSINESS_POLICY,
+  DEFAULT_EVIDENCE_OBSERVATION_SETS,
+  EvidenceObservationRegistry,
+  evaluateBusinessPolicy,
+  type BusinessActionContext,
+  type BusinessPolicyEvaluation,
+  type BusinessPolicyOutcome,
+  type BusinessPolicyReference,
+} from "./business-policy-contract.js";
+import {
+  createShadowDecisionReceipt,
+  type ShadowDecisionReceipt,
+} from "./shadow-decision-receipt.js";
 
 export const MCP_EXACT_ACTION_REQUEST_VERSION =
   "atg.mcp-exact-action-request.local.v1" as const;
@@ -33,6 +51,11 @@ export const MCP_EXACT_ACTION_RESULT_VERSION =
 export const MCP_EXACT_ACTION_PROTOCOL_VERSION = "2025-06-18" as const;
 export const MCP_EXACT_ACTION_GATEWAY_VERSION =
   "atg.mcp-exact-action-gateway.local.v1" as const;
+export const MCP_BUSINESS_POLICY_REQUEST_VERSION =
+  "atg.mcp-exact-action-request.local.v2" as const;
+export const MCP_BUSINESS_POLICY_RESULT_VERSION =
+  "atg.mcp-exact-action-result.local.v2" as const;
+export const MCP_BUSINESS_POLICY_INPUT_SCHEMA_VERSION = "2.0.0" as const;
 
 export const REGISTERED_EVIDENCE_REFERENCES = {
   humanAuthority: "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
@@ -92,7 +115,51 @@ export interface McpExactActionResult {
   commercialWisdomAssessed: false;
 }
 
-export const MCP_EXACT_ACTION_TOOL_INPUT_SCHEMA = {
+export interface McpBusinessPolicyRequest {
+  requestVersion: typeof MCP_BUSINESS_POLICY_REQUEST_VERSION;
+  mode: "enforced" | "shadow";
+  passportReference: ActionCapabilityPassportReference;
+  toolBinding: McpExactActionToolBinding;
+  businessPolicyReference: BusinessPolicyReference;
+  evidenceSetReference: string;
+  evidenceReferences: McpExactActionEvidenceReferences;
+  amountMinorUnits: number;
+  businessContext: BusinessActionContext;
+  proposedAction: McpExactActionRequest["proposedAction"];
+}
+
+export interface McpBusinessPolicyResult {
+  resultVersion: typeof MCP_BUSINESS_POLICY_RESULT_VERSION;
+  gatewayVersion: typeof MCP_EXACT_ACTION_GATEWAY_VERSION;
+  mode: "enforced" | "shadow";
+  outcome: BusinessPolicyOutcome | "SHADOW";
+  wouldOutcome: BusinessPolicyOutcome | null;
+  reasonCodes: string[];
+  ruleIdentifiers: string[];
+  passport: ActionCapabilityPassportReference & { verified: boolean };
+  businessPolicy: BusinessPolicyReference & { verified: boolean };
+  exactActionDigest: string | null;
+  riskAssessment: BusinessPolicyEvaluation["risk"] | null;
+  evidenceDecay: BusinessPolicyEvaluation["evidenceDecay"] | null;
+  policyDecisionReceipt: PolicyDecisionReceipt | null;
+  shadowDecisionReceipt: ShadowDecisionReceipt | null;
+  gatePass: ExactActionGatePass | null;
+  gatePassIssued: boolean;
+  supportedOutcomes: readonly ["ACCEPT", "REFER", "REJECT"];
+  deferredOutcomes: readonly ["REVOKE"];
+  executionReceipt: null;
+  executionAvailable: false;
+  actionExecuted: false;
+  enforcementStateMutated: boolean;
+  localOnly: true;
+  syntheticOnly: true;
+  observational: boolean;
+  authorising: boolean;
+  productionReady: false;
+  commercialWisdomAssessed: false;
+}
+
+export const MCP_EXACT_ACTION_TOOL_INPUT_SCHEMA_V1 = {
   type: "object",
   additionalProperties: false,
   required: [
@@ -175,7 +242,7 @@ export const MCP_EXACT_ACTION_TOOL_INPUT_SCHEMA = {
   },
 } as const;
 
-export const MCP_EXACT_ACTION_TOOL_OUTPUT_SCHEMA = {
+export const MCP_EXACT_ACTION_TOOL_OUTPUT_SCHEMA_V1 = {
   type: "object",
   additionalProperties: true,
   required: [
@@ -199,8 +266,91 @@ export const MCP_EXACT_ACTION_TOOL_OUTPUT_SCHEMA = {
   },
 } as const;
 
+export const MCP_BUSINESS_POLICY_TOOL_INPUT_SCHEMA = {
+  type: "object",
+  additionalProperties: false,
+  required: [
+    "requestVersion", "mode", "passportReference", "toolBinding",
+    "businessPolicyReference", "evidenceSetReference", "evidenceReferences",
+    "amountMinorUnits", "businessContext", "proposedAction",
+  ],
+  properties: {
+    requestVersion: { const: MCP_BUSINESS_POLICY_REQUEST_VERSION },
+    mode: { enum: ["enforced", "shadow"] },
+    passportReference: MCP_EXACT_ACTION_TOOL_INPUT_SCHEMA_V1.properties.passportReference,
+    toolBinding: MCP_EXACT_ACTION_TOOL_INPUT_SCHEMA_V1.properties.toolBinding,
+    businessPolicyReference: {
+      type: "object", additionalProperties: false,
+      required: ["policyId", "policyVersion", "policyDigest"],
+      properties: {
+        policyId: { type: "string", minLength: 1, maxLength: 160 },
+        policyVersion: { type: "string", minLength: 1, maxLength: 40 },
+        policyDigest: { type: "string", pattern: "^sha256:[a-f0-9]{64}$" },
+      },
+    },
+    evidenceSetReference: { type: "string", minLength: 1, maxLength: 200 },
+    evidenceReferences: MCP_EXACT_ACTION_TOOL_INPUT_SCHEMA_V1.properties.evidenceReferences,
+    amountMinorUnits: { type: "integer", minimum: 0, maximum: 100000000000 },
+    businessContext: {
+      type: "object", additionalProperties: false,
+      required: [
+        "destinationClass", "supplierAccountReferenceClass", "counterpartyClass",
+        "recipientClass", "environment", "customerImpactClass", "customerContactRequested",
+        "discountBasisPoints", "refundAmountMinorUnits", "cancellationAmountMinorUnits",
+        "additionalApprovalReference", "requestedAuthorityExpansion", "agentClaimsPolicyApproval",
+      ],
+      properties: {
+        destinationClass: { type: "string", minLength: 1, maxLength: 120 },
+        supplierAccountReferenceClass: { type: "string", minLength: 1, maxLength: 120 },
+        counterpartyClass: { type: "string", minLength: 1, maxLength: 120 },
+        recipientClass: { type: "string", minLength: 1, maxLength: 120 },
+        environment: { type: "string", minLength: 1, maxLength: 160 },
+        customerImpactClass: { enum: ["none", "indirect", "customer_facing"] },
+        customerContactRequested: { type: "boolean" },
+        discountBasisPoints: { type: "integer", minimum: 0 },
+        refundAmountMinorUnits: { type: "integer", minimum: 0 },
+        cancellationAmountMinorUnits: { type: "integer", minimum: 0 },
+        additionalApprovalReference: { type: ["string", "null"] },
+        requestedAuthorityExpansion: { type: "boolean" },
+        agentClaimsPolicyApproval: { type: "boolean" },
+      },
+    },
+    proposedAction: MCP_EXACT_ACTION_TOOL_INPUT_SCHEMA_V1.properties.proposedAction,
+  },
+} as const;
+
+export const MCP_BUSINESS_POLICY_TOOL_OUTPUT_SCHEMA = {
+  type: "object",
+  additionalProperties: true,
+  required: [
+    "resultVersion", "gatewayVersion", "mode", "outcome", "wouldOutcome",
+    "reasonCodes", "ruleIdentifiers", "passport", "businessPolicy", "exactActionDigest",
+    "riskAssessment", "evidenceDecay", "policyDecisionReceipt", "shadowDecisionReceipt",
+    "gatePass", "gatePassIssued", "executionReceipt", "executionAvailable", "actionExecuted",
+    "localOnly", "syntheticOnly", "observational", "authorising", "productionReady",
+  ],
+  properties: {
+    resultVersion: { const: MCP_BUSINESS_POLICY_RESULT_VERSION },
+    gatewayVersion: { const: MCP_EXACT_ACTION_GATEWAY_VERSION },
+    mode: { enum: ["enforced", "shadow"] },
+    outcome: { enum: ["ACCEPT", "REFER", "REJECT", "SHADOW"] },
+    wouldOutcome: { type: ["string", "null"], enum: ["ACCEPT", "REFER", "REJECT", null] },
+    gatePassIssued: { type: "boolean" },
+    executionReceipt: { type: "null" },
+    executionAvailable: { const: false }, actionExecuted: { const: false },
+    localOnly: { const: true }, syntheticOnly: { const: true }, productionReady: { const: false },
+  },
+} as const;
+
+export const MCP_EXACT_ACTION_TOOL_INPUT_SCHEMA = {
+  oneOf: [MCP_EXACT_ACTION_TOOL_INPUT_SCHEMA_V1, MCP_BUSINESS_POLICY_TOOL_INPUT_SCHEMA],
+} as const;
+export const MCP_EXACT_ACTION_TOOL_OUTPUT_SCHEMA = {
+  oneOf: [MCP_EXACT_ACTION_TOOL_OUTPUT_SCHEMA_V1, MCP_BUSINESS_POLICY_TOOL_OUTPUT_SCHEMA],
+} as const;
+
 export const MCP_EXACT_ACTION_INPUT_SCHEMA_DIGEST = createCanonicalPayloadHash(
-  MCP_EXACT_ACTION_TOOL_INPUT_SCHEMA,
+  MCP_EXACT_ACTION_TOOL_INPUT_SCHEMA_V1,
 );
 
 export const DEFAULT_ACTION_CAPABILITY_PASSPORT = createActionCapabilityPassport({
@@ -235,6 +385,41 @@ export const DEFAULT_ACTION_CAPABILITY_PASSPORT = createActionCapabilityPassport
   executionAvailable: false,
 });
 
+export const MCP_BUSINESS_POLICY_INPUT_SCHEMA_DIGEST = createCanonicalPayloadHash(
+  MCP_BUSINESS_POLICY_TOOL_INPUT_SCHEMA,
+);
+
+export const DEFAULT_BUSINESS_POLICY_ACTION_CAPABILITY_PASSPORT = createActionCapabilityPassport({
+  passportSchemaVersion: ACTION_CAPABILITY_PASSPORT_SCHEMA_VERSION,
+  passportId: "passport.atg.local.procurement-policy-evaluation.v2",
+  passportVersion: "2.0.0",
+  mcpServerIdentity: MCP_EXACT_ACTION_SERVER_IDENTITY,
+  toolIdentity: MCP_EXACT_ACTION_TOOL_NAME,
+  operation: MCP_EXACT_ACTION_OPERATION,
+  inputSchema: {
+    identity: MCP_EXACT_ACTION_INPUT_SCHEMA_IDENTITY,
+    version: MCP_BUSINESS_POLICY_INPUT_SCHEMA_VERSION,
+    digest: MCP_BUSINESS_POLICY_INPUT_SCHEMA_DIGEST,
+  },
+  permittedActionType: "purchase",
+  permittedEnvironment: "local_synthetic_procurement_simulation",
+  permittedAdapterClass: "evaluation_only_non_executable",
+  riskClassification: "medium",
+  reversibilityClassification: "not_applicable_evaluation_only",
+  evidenceRequirements: [
+    "registered human authority and approval evidence",
+    "registered agent standing and bounded mandate",
+    "registered Business Policy Contract",
+    "registered freshness observations",
+  ],
+  effectiveAt: "2026-09-01T00:00:00.000Z",
+  expiresAt: "2027-09-01T00:00:00.000Z",
+  status: "active",
+  revocationReference: null,
+  localOnly: true,
+  executionAvailable: false,
+});
+
 export class McpExactActionInputError extends Error {
   constructor(
     readonly reasonCode: string,
@@ -248,20 +433,42 @@ export class McpExactActionInputError extends Error {
 export class McpExactActionGateway {
   readonly #prototype: ExactActionTrustGatewayPrototype;
   readonly #registry: ActionCapabilityPassportRegistry;
+  readonly #policyRegistry: BusinessPolicyRegistry;
+  readonly #evidenceRegistry: EvidenceObservationRegistry;
   readonly #evaluatedAt: string;
+  readonly #clock: TrustedClock | null;
 
   constructor(options: {
     prototype?: ExactActionTrustGatewayPrototype;
     registry?: ActionCapabilityPassportRegistry;
+    policyRegistry?: BusinessPolicyRegistry;
+    evidenceRegistry?: EvidenceObservationRegistry;
     evaluatedAt?: string;
+    clock?: TrustedClock | null;
   } = {}) {
     this.#prototype = options.prototype ?? new ExactActionTrustGatewayPrototype();
     this.#registry = options.registry
-      ?? new ActionCapabilityPassportRegistry([DEFAULT_ACTION_CAPABILITY_PASSPORT]);
+      ?? new ActionCapabilityPassportRegistry([
+        DEFAULT_ACTION_CAPABILITY_PASSPORT,
+        DEFAULT_BUSINESS_POLICY_ACTION_CAPABILITY_PASSPORT,
+      ]);
+    this.#policyRegistry = options.policyRegistry ?? new BusinessPolicyRegistry([DEFAULT_BUSINESS_POLICY]);
+    this.#evidenceRegistry = options.evidenceRegistry
+      ?? new EvidenceObservationRegistry(DEFAULT_EVIDENCE_OBSERVATION_SETS);
     this.#evaluatedAt = options.evaluatedAt ?? ACTION_CAPABILITY_PASSPORT_REFERENCE_TIME;
+    this.#clock = options.clock === undefined
+      ? createFixedTrustedClock(BUSINESS_POLICY_REFERENCE_TIME)
+      : options.clock;
   }
 
-  async evaluateAction(value: unknown): Promise<McpExactActionResult> {
+  async evaluateAction(value: unknown): Promise<McpExactActionResult | McpBusinessPolicyResult> {
+    if (isRecordValue(value) && value.requestVersion === MCP_BUSINESS_POLICY_REQUEST_VERSION) {
+      return this.#evaluateBusinessPolicyAction(value);
+    }
+    return this.#evaluateLegacyAction(value);
+  }
+
+  async #evaluateLegacyAction(value: unknown): Promise<McpExactActionResult> {
     const request = validateMcpExactActionRequest(value);
     const passportResolution = this.#registry.resolve(request.passportReference, this.#evaluatedAt);
     if (!passportResolution.verified || passportResolution.passport === null) {
@@ -323,6 +530,126 @@ export class McpExactActionGateway {
       gatePass: null,
     });
   }
+
+  async #evaluateBusinessPolicyAction(value: unknown): Promise<McpBusinessPolicyResult> {
+    const request = validateMcpBusinessPolicyRequest(value);
+    const passportResolution = this.#registry.resolve(request.passportReference, this.#evaluatedAt);
+    if (!passportResolution.verified || passportResolution.passport === null) {
+      return rejectedBusinessResult(request, passportResolution.reasonCode, false, false);
+    }
+    const passport = passportResolution.passport;
+    const bindingFailure = verifyBusinessRequestBindings(request, passport);
+    if (bindingFailure !== null) return rejectedBusinessResult(request, bindingFailure, true, false);
+
+    const policyResolution = this.#policyRegistry.resolve(request.businessPolicyReference, this.#evaluatedAt);
+    if (!policyResolution.verified || policyResolution.policy === null) {
+      return rejectedBusinessResult(request, policyResolution.reasonCode, true, false);
+    }
+    const policy = policyResolution.policy;
+    if (!policy.permittedTools.includes(passport.toolIdentity)
+      || !policy.permittedOperations.includes(passport.operation)
+      || !policy.permittedActionTypes.includes(passport.permittedActionType)
+      || !policy.permittedEnvironments.includes(passport.permittedEnvironment)) {
+      return rejectedBusinessResult(request, "POLICY_PASSPORT_MISMATCH", true, true);
+    }
+    const evidenceSet = this.#evidenceRegistry.resolve(request.evidenceSetReference);
+    if (evidenceSet === null) {
+      return rejectedBusinessResult(request, "EVIDENCE_SET_UNKNOWN", true, true);
+    }
+
+    const scenario = createExactActionPrototypeScenario("allowed");
+    scenario.proposedAction = structuredClone(request.proposedAction);
+    scenario.executionMutation = null;
+    const assessment = await this.#prototype.assessExactAction(scenario);
+    const exactActionInput = {
+      ...assessment.exactActionInput,
+      toolIdentity: passport.toolIdentity,
+      toolSchemaVersion: `${passport.inputSchema.identity}@${passport.inputSchema.version}#${passport.inputSchema.digest}`,
+      operationName: passport.operation,
+      policyReference: `policy://local/${policy.policyId}/${policy.policyVersion}`,
+      policyDigest: policy.policyDigest,
+      operatingEnvironment: request.businessContext.environment,
+      canonicalArguments: {
+        requestVersion: request.requestVersion,
+        mode: request.mode,
+        passportReference: request.passportReference,
+        businessPolicyReference: request.businessPolicyReference,
+        evidenceSetReference: request.evidenceSetReference,
+        evidenceReferences: request.evidenceReferences,
+        amountMinorUnits: request.amountMinorUnits,
+        businessContext: request.businessContext,
+        proposedAction: assessment.proposedAction,
+      } as unknown as CanonicalJsonValue,
+    };
+    const exactAction = createCanonicalActionEnvelope(exactActionInput);
+    const policyEvaluation = evaluateBusinessPolicy({
+      policy,
+      action: assessment.proposedAction,
+      amountMinorUnits: request.amountMinorUnits,
+      context: request.businessContext,
+      evidenceSet,
+      clock: this.#clock,
+    });
+    let wouldOutcome: BusinessPolicyOutcome = policyEvaluation.outcome;
+    const coreReasons = assessment.refusal === null
+      ? ["EXACT_ACTION_AUTHORISED"]
+      : [
+        assessment.refusal.primaryFailureCode,
+        ...assessment.refusal.failedChecks.map((check) => `CHECK_${check.id.toUpperCase()}_FAILED`),
+      ];
+    if (!assessment.authorised) wouldOutcome = "REJECT";
+    const reasonCodes = [...new Set([
+      ...coreReasons,
+      "PASSPORT_VERIFIED",
+      "POLICY_VERIFIED",
+      ...policyEvaluation.reasonCodes,
+      ...(request.mode === "shadow" ? ["SHADOW_OBSERVATIONAL_NON_AUTHORISING"] : []),
+    ])];
+
+    if (request.mode === "shadow") {
+      const shadowDecisionReceipt = createShadowDecisionReceipt({
+        wouldOutcome,
+        reasonCodes,
+        ruleIdentifiers: policyEvaluation.ruleIdentifiers,
+        passportReference: request.passportReference,
+        policyReference: request.businessPolicyReference,
+        exactActionDigest: exactAction.actionDigest,
+        riskAssessment: policyEvaluation.risk,
+        evidenceDecay: policyEvaluation.evidenceDecay,
+        evaluatedAt: policyEvaluation.evidenceDecay.evaluatedAt ?? this.#evaluatedAt,
+      });
+      return businessResult({
+        request, outcome: "SHADOW", wouldOutcome, reasonCodes,
+        ruleIdentifiers: policyEvaluation.ruleIdentifiers, passportVerified: true,
+        policyVerified: true, exactActionDigest: exactAction.actionDigest,
+        policyEvaluation, policyDecisionReceipt: null, shadowDecisionReceipt, gatePass: null,
+      });
+    }
+
+    if (wouldOutcome === "ACCEPT") {
+      const issuance = issueExactActionGatePass(exactActionInput);
+      return businessResult({
+        request, outcome: "ACCEPT", wouldOutcome: null, reasonCodes,
+        ruleIdentifiers: policyEvaluation.ruleIdentifiers, passportVerified: true,
+        policyVerified: true, exactActionDigest: exactAction.actionDigest,
+        policyEvaluation, policyDecisionReceipt: issuance.decisionReceipt,
+        shadowDecisionReceipt: null, gatePass: issuance.gatePass,
+      });
+    }
+    const decisionReceipt = createPolicyDecisionReceipt({
+      decision: wouldOutcome === "REFER" ? "escalated" : "refused",
+      action: exactAction,
+      gatePass: null,
+      reasons: reasonCodes,
+    });
+    return businessResult({
+      request, outcome: wouldOutcome, wouldOutcome: null, reasonCodes,
+      ruleIdentifiers: policyEvaluation.ruleIdentifiers, passportVerified: true,
+      policyVerified: true, exactActionDigest: exactAction.actionDigest,
+      policyEvaluation, policyDecisionReceipt: decisionReceipt,
+      shadowDecisionReceipt: null, gatePass: null,
+    });
+  }
 }
 
 export function createDefaultMcpExactActionRequest(
@@ -347,6 +674,225 @@ export function createDefaultMcpExactActionRequest(
     evidenceReferences: { ...REGISTERED_EVIDENCE_REFERENCES },
     proposedAction: { ...action, ...actionPatch },
   };
+}
+
+export function createDefaultMcpBusinessPolicyRequest(
+  mode: "enforced" | "shadow" = "enforced",
+  actionPatch: Partial<McpBusinessPolicyRequest["proposedAction"]> = {},
+  contextPatch: Partial<BusinessActionContext> = {},
+): McpBusinessPolicyRequest {
+  const action = createExactActionPrototypeScenario("allowed").proposedAction;
+  const proposedAction = {
+    ...action,
+    quantity: 100,
+    totalAmount: 4_000,
+    nonce: `nonce_northstar_policy_${mode}_001`,
+    ...actionPatch,
+  };
+  return {
+    requestVersion: MCP_BUSINESS_POLICY_REQUEST_VERSION,
+    mode,
+    passportReference: {
+      passportId: DEFAULT_BUSINESS_POLICY_ACTION_CAPABILITY_PASSPORT.passportId,
+      passportVersion: DEFAULT_BUSINESS_POLICY_ACTION_CAPABILITY_PASSPORT.passportVersion,
+      passportDigest: DEFAULT_BUSINESS_POLICY_ACTION_CAPABILITY_PASSPORT.passportDigest,
+    },
+    toolBinding: {
+      mcpServerIdentity: DEFAULT_BUSINESS_POLICY_ACTION_CAPABILITY_PASSPORT.mcpServerIdentity,
+      toolIdentity: DEFAULT_BUSINESS_POLICY_ACTION_CAPABILITY_PASSPORT.toolIdentity,
+      operation: DEFAULT_BUSINESS_POLICY_ACTION_CAPABILITY_PASSPORT.operation,
+      inputSchemaIdentity: DEFAULT_BUSINESS_POLICY_ACTION_CAPABILITY_PASSPORT.inputSchema.identity,
+      inputSchemaVersion: DEFAULT_BUSINESS_POLICY_ACTION_CAPABILITY_PASSPORT.inputSchema.version,
+      inputSchemaDigest: DEFAULT_BUSINESS_POLICY_ACTION_CAPABILITY_PASSPORT.inputSchema.digest,
+    },
+    businessPolicyReference: {
+      policyId: DEFAULT_BUSINESS_POLICY.policyId,
+      policyVersion: DEFAULT_BUSINESS_POLICY.policyVersion,
+      policyDigest: DEFAULT_BUSINESS_POLICY.policyDigest,
+    },
+    evidenceSetReference: "evidence-set.fresh.v1",
+    evidenceReferences: { ...REGISTERED_EVIDENCE_REFERENCES },
+    amountMinorUnits: proposedAction.totalAmount * 100,
+    businessContext: {
+      destinationClass: "approved_warehouse",
+      supplierAccountReferenceClass: "approved_supplier_account",
+      counterpartyClass: "supplier_a",
+      recipientClass: "approved_supplier",
+      environment: "local_synthetic_procurement_simulation",
+      customerImpactClass: "none",
+      customerContactRequested: false,
+      discountBasisPoints: 0,
+      refundAmountMinorUnits: 0,
+      cancellationAmountMinorUnits: 0,
+      additionalApprovalReference: null,
+      requestedAuthorityExpansion: false,
+      agentClaimsPolicyApproval: false,
+      ...contextPatch,
+    },
+    proposedAction,
+  };
+}
+
+export function validateMcpBusinessPolicyRequest(value: unknown): McpBusinessPolicyRequest {
+  const root = requireRecord(value, "MCP_INPUT_INVALID", "Tool arguments must be an object.");
+  requireExactKeys(root, [
+    "requestVersion", "mode", "passportReference", "toolBinding", "businessPolicyReference",
+    "evidenceSetReference", "evidenceReferences", "amountMinorUnits", "businessContext", "proposedAction",
+  ]);
+  if (root.requestVersion !== MCP_BUSINESS_POLICY_REQUEST_VERSION) {
+    throw new McpExactActionInputError("REQUEST_VERSION_INVALID", "Unsupported business-policy request version.");
+  }
+  if (root.mode !== "enforced" && root.mode !== "shadow") {
+    throw new McpExactActionInputError("MODE_INVALID", "Mode must be enforced or shadow.");
+  }
+  const legacy = validateMcpExactActionRequest({
+    requestVersion: MCP_EXACT_ACTION_REQUEST_VERSION,
+    passportReference: root.passportReference,
+    toolBinding: root.toolBinding,
+    evidenceReferences: root.evidenceReferences,
+    proposedAction: root.proposedAction,
+  });
+  const policy = requireRecord(root.businessPolicyReference, "POLICY_REFERENCE_INVALID", "Policy reference must be an object.");
+  requireExactKeys(policy, ["policyId", "policyVersion", "policyDigest"]);
+  requireBoundedString(policy.policyId, "POLICY_ID_INVALID", 1, 160);
+  requireBoundedString(policy.policyVersion, "POLICY_VERSION_INVALID", 1, 40);
+  requireBoundedString(policy.policyDigest, "POLICY_DIGEST_INVALID", 1, 80);
+  if (!/^sha256:[a-f0-9]{64}$/.test(policy.policyDigest)) {
+    throw new McpExactActionInputError("POLICY_DIGEST_INVALID", "Policy digest must use lowercase sha256:<hex> form.");
+  }
+  requireBoundedString(root.evidenceSetReference, "EVIDENCE_SET_REFERENCE_INVALID", 1, 200);
+  if (!Number.isSafeInteger(root.amountMinorUnits) || (root.amountMinorUnits as number) < 0) {
+    throw new McpExactActionInputError("AMOUNT_MINOR_UNITS_INVALID", "Amount must be a non-negative safe integer in minor currency units.");
+  }
+  if ((root.amountMinorUnits as number) !== legacy.proposedAction.totalAmount * 100) {
+    throw new McpExactActionInputError("AMOUNT_MINOR_UNITS_MISMATCH", "Minor units must exactly match the proposed action total.");
+  }
+  const context = requireRecord(root.businessContext, "BUSINESS_CONTEXT_INVALID", "Business context must be an object.");
+  const contextKeys = [
+    "destinationClass", "supplierAccountReferenceClass", "counterpartyClass", "recipientClass", "environment",
+    "customerImpactClass", "customerContactRequested", "discountBasisPoints", "refundAmountMinorUnits",
+    "cancellationAmountMinorUnits", "additionalApprovalReference", "requestedAuthorityExpansion", "agentClaimsPolicyApproval",
+  ];
+  requireExactKeys(context, contextKeys);
+  for (const key of ["destinationClass", "supplierAccountReferenceClass", "counterpartyClass", "recipientClass", "environment"] as const) {
+    requireBoundedString(context[key], `BUSINESS_CONTEXT_${key.toUpperCase()}_INVALID`, 1, 160);
+  }
+  if (!(["none", "indirect", "customer_facing"] as unknown[]).includes(context.customerImpactClass)) {
+    throw new McpExactActionInputError("CUSTOMER_IMPACT_CLASS_INVALID", "Customer impact class is not controlled vocabulary.");
+  }
+  for (const key of ["customerContactRequested", "requestedAuthorityExpansion", "agentClaimsPolicyApproval"] as const) {
+    if (typeof context[key] !== "boolean") throw new McpExactActionInputError("BUSINESS_CONTEXT_BOOLEAN_INVALID", `${key} must be boolean.`);
+  }
+  for (const key of ["discountBasisPoints", "refundAmountMinorUnits", "cancellationAmountMinorUnits"] as const) {
+    if (!Number.isSafeInteger(context[key]) || (context[key] as number) < 0) {
+      throw new McpExactActionInputError("BUSINESS_CONTEXT_AMOUNT_INVALID", `${key} must be a non-negative safe integer.`);
+    }
+  }
+  if (context.additionalApprovalReference !== null
+    && (typeof context.additionalApprovalReference !== "string"
+      || context.additionalApprovalReference.trim().length === 0
+      || context.additionalApprovalReference.length > 240)) {
+    throw new McpExactActionInputError("ADDITIONAL_APPROVAL_REFERENCE_INVALID", "Additional approval reference must be null or a bounded string.");
+  }
+  return structuredClone(root) as unknown as McpBusinessPolicyRequest;
+}
+
+function verifyBusinessRequestBindings(
+  request: McpBusinessPolicyRequest,
+  passport: ActionCapabilityPassport,
+): string | null {
+  const legacyRequest: McpExactActionRequest = {
+    requestVersion: MCP_EXACT_ACTION_REQUEST_VERSION,
+    passportReference: request.passportReference,
+    toolBinding: request.toolBinding,
+    evidenceReferences: request.evidenceReferences,
+    proposedAction: request.proposedAction,
+  };
+  const failure = verifyRequestBindings(legacyRequest, passport);
+  if (failure !== null) return failure;
+  if (request.businessContext.environment !== passport.permittedEnvironment) return "ENVIRONMENT_NOT_PERMITTED";
+  return null;
+}
+
+function businessResult(input: {
+  request: McpBusinessPolicyRequest;
+  outcome: McpBusinessPolicyResult["outcome"];
+  wouldOutcome: BusinessPolicyOutcome | null;
+  reasonCodes: string[];
+  ruleIdentifiers: string[];
+  passportVerified: boolean;
+  policyVerified: boolean;
+  exactActionDigest: string | null;
+  policyEvaluation: BusinessPolicyEvaluation | null;
+  policyDecisionReceipt: PolicyDecisionReceipt | null;
+  shadowDecisionReceipt: ShadowDecisionReceipt | null;
+  gatePass: ExactActionGatePass | null;
+}): McpBusinessPolicyResult {
+  const shadow = input.request.mode === "shadow";
+  return {
+    resultVersion: MCP_BUSINESS_POLICY_RESULT_VERSION,
+    gatewayVersion: MCP_EXACT_ACTION_GATEWAY_VERSION,
+    mode: input.request.mode,
+    outcome: input.outcome,
+    wouldOutcome: input.wouldOutcome,
+    reasonCodes: [...new Set(input.reasonCodes)],
+    ruleIdentifiers: [...new Set(input.ruleIdentifiers)],
+    passport: { ...input.request.passportReference, verified: input.passportVerified },
+    businessPolicy: { ...input.request.businessPolicyReference, verified: input.policyVerified },
+    exactActionDigest: input.exactActionDigest,
+    riskAssessment: input.policyEvaluation?.risk ?? null,
+    evidenceDecay: input.policyEvaluation?.evidenceDecay ?? null,
+    policyDecisionReceipt: input.policyDecisionReceipt,
+    shadowDecisionReceipt: input.shadowDecisionReceipt,
+    gatePass: input.gatePass,
+    gatePassIssued: input.gatePass !== null,
+    supportedOutcomes: ["ACCEPT", "REFER", "REJECT"],
+    deferredOutcomes: ["REVOKE"],
+    executionReceipt: null,
+    executionAvailable: false,
+    actionExecuted: false,
+    enforcementStateMutated: input.gatePass !== null,
+    localOnly: true,
+    syntheticOnly: true,
+    observational: shadow,
+    authorising: input.gatePass !== null,
+    productionReady: false,
+    commercialWisdomAssessed: false,
+  };
+}
+
+function rejectedBusinessResult(
+  request: McpBusinessPolicyRequest,
+  reasonCode: string,
+  passportVerified: boolean,
+  policyVerified: boolean,
+): McpBusinessPolicyResult {
+  const reasonCodes = [reasonCode, ...(request.mode === "shadow" ? ["SHADOW_OBSERVATIONAL_NON_AUTHORISING"] : [])];
+  const shadowDecisionReceipt = request.mode === "shadow"
+    ? createShadowDecisionReceipt({
+      wouldOutcome: "REJECT", reasonCodes, ruleIdentifiers: [],
+      passportReference: request.passportReference, policyReference: request.businessPolicyReference,
+      exactActionDigest: null, riskAssessment: null, evidenceDecay: null, evaluatedAt: BUSINESS_POLICY_REFERENCE_TIME,
+    })
+    : null;
+  return businessResult({
+    request,
+    outcome: request.mode === "shadow" ? "SHADOW" : "REJECT",
+    wouldOutcome: request.mode === "shadow" ? "REJECT" : null,
+    reasonCodes,
+    ruleIdentifiers: [],
+    passportVerified,
+    policyVerified,
+    exactActionDigest: null,
+    policyEvaluation: null,
+    policyDecisionReceipt: null,
+    shadowDecisionReceipt,
+    gatePass: null,
+  });
+}
+
+function isRecordValue(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 function verifyRequestBindings(

@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Gareth1953/agent-trust-gate/schemas/mcp-exact-action-request-v2.schema.json",
+  "title": "ATG MCP Business-Policy Exact-Action Request v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["requestVersion", "mode", "passportReference", "toolBinding", "businessPolicyReference", "evidenceSetReference", "evidenceReferences", "amountMinorUnits", "businessContext", "proposedAction"],
+  "properties": {
+    "requestVersion": { "const": "atg.mcp-exact-action-request.local.v2" },
+    "mode": { "enum": ["enforced", "shadow"] },
+    "passportReference": { "type": "object" },
+    "toolBinding": { "type": "object" },
+    "businessPolicyReference": { "type": "object" },
+    "evidenceSetReference": { "type": "string", "minLength": 1 },
+    "evidenceReferences": { "type": "object" },
+    "amountMinorUnits": { "type": "integer", "minimum": 0 },
+    "businessContext": { "type": "object" },
+    "proposedAction": { "type": "object" }
+  }
+}

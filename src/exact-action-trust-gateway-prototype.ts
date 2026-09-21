@@ -450,6 +450,23 @@ export interface ExactActionPrototypeEvaluation {
   trustReceipt: ExactActionTrustReceipt;
 }
 
+export interface ExactActionPrototypeAssessment {
+  scenario: ExactActionPrototypeScenarioInput;
+  humanFixture: { employee: HumanAuthorityEmployeeFixture | null; authentication: HumanAuthenticationFixture | null };
+  humanAuthorityResult: HumanAuthorityDemoResult;
+  authorityProof: HumanAuthorityProof | null;
+  authorityProofVerified: boolean;
+  agentStandingReceipt: AgentStandingDecisionReceipt;
+  mandate: BoundedProcurementMandate;
+  evidence: ProcurementEvidenceRecord;
+  proposedAction: ProposedProcurementAction;
+  exactActionInput: CanonicalActionEnvelopeInput;
+  exactAction: CanonicalActionEnvelope;
+  checks: AtgPrototypeCheck[];
+  authorised: boolean;
+  refusal: StructuredPrototypeRefusal | null;
+}
+
 export interface ExactActionPrototypeExecutionResult {
   execution: PrototypeExecutionRecord;
   trustReceipt: ExactActionTrustReceipt;
@@ -510,9 +527,9 @@ let humanAuthorityModulePromise: Promise<HumanAuthorityDemoModule> | undefined;
 export class ExactActionTrustGatewayPrototype {
   readonly #nonceStore = new InMemoryNonceStore();
 
-  async evaluateExactAction(
+  async assessExactAction(
     scenarioOrInput: ExactActionPrototypeScenarioId | ExactActionPrototypeScenarioInput,
-  ): Promise<ExactActionPrototypeEvaluation> {
+  ): Promise<ExactActionPrototypeAssessment> {
     const scenario = typeof scenarioOrInput === "string"
       ? createExactActionPrototypeScenario(scenarioOrInput)
       : structuredClone(scenarioOrInput);
@@ -579,12 +596,50 @@ export class ExactActionTrustGatewayPrototype {
       canonicalInputValid: scenario.faults?.malformedExactAction !== true,
       nonceStore: this.#nonceStore,
     });
-    const decision: AtgPrototypeDecision = checks.every((check) => check.passed)
-      ? "GATEPASS_ISSUED"
-      : "ACTION_REFUSED";
-    const refusal = decision === "ACTION_REFUSED"
+    const authorised = checks.every((check) => check.passed);
+    const refusal = !authorised
       ? createEvaluationRefusal({ scenario, fixture, humanAuthorityResult, agentStandingReceipt, mandate, evidence, proposedAction, checks })
       : null;
+    return {
+      scenario,
+      humanFixture: fixture,
+      humanAuthorityResult,
+      authorityProof,
+      authorityProofVerified,
+      agentStandingReceipt,
+      mandate,
+      evidence,
+      proposedAction,
+      exactActionInput,
+      exactAction,
+      checks,
+      authorised,
+      refusal,
+    };
+  }
+
+  async evaluateExactAction(
+    scenarioOrInput: ExactActionPrototypeScenarioId | ExactActionPrototypeScenarioInput,
+  ): Promise<ExactActionPrototypeEvaluation> {
+    const assessment = await this.assessExactAction(scenarioOrInput);
+    const {
+      scenario,
+      humanFixture: fixture,
+      humanAuthorityResult,
+      authorityProof,
+      authorityProofVerified,
+      agentStandingReceipt,
+      mandate,
+      evidence,
+      proposedAction,
+      exactActionInput,
+      exactAction,
+      checks,
+      refusal,
+    } = assessment;
+    const decision: AtgPrototypeDecision = assessment.authorised
+      ? "GATEPASS_ISSUED"
+      : "ACTION_REFUSED";
     const failedReasons = checks
       .filter((check) => !check.passed)
       .map((check) => `${check.id}: ${check.reason}`);

@@ -42,6 +42,24 @@ does not create human authority, agent standing, mandate or approval. MCP tool
 descriptions and annotations are untrusted metadata. See the
 [P3-M158 integration guide](docs/P3-M158-local-mcp-exact-action-gateway.md).
 
+### P3-M159 business policy, Shadow Mode and REFER
+
+P3-M159 additively extends `atg.evaluate_action` with a repository-registered
+Business Policy Contract, deterministic `ROUTINE`, `ELEVATED`, `HIGH` and
+`PROHIBITED` risk tiers, evidence-freshness checks, explicit `REFER`, and an
+observational `shadow` mode. The v1 P3-M158 request and result remain supported.
+
+The v2 request selects `enforced` or `shadow`, references a registered policy,
+uses integer minor currency units, and binds declared business context to the
+exact action. A Shadow Decision Receipt reports `wouldOutcome` but can never be
+used as a GatePass. Shadow, `REFER` and `REJECT` issue no GatePass and permit no
+execution or automatic transition to enforcement.
+
+See [the P3-M159 technical guide](docs/P3-M159-business-policy-shadow-and-refer.md).
+This local synthetic implementation is not production ready. ATG verifies
+declared authority and policy boundaries; it does not decide whether an action
+is commercially wise.
+
 ## WORKING EXACT ACTION TRUST GATEWAY PROTOTYPE
 
 Agent Trust Gate™ — Exact Action Trust Gateway provides a buyer-usable local
