@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Gareth1953/agent-trust-gate/schemas/aggregate-exposure-ledger-entry.schema.json",
+  "title": "ATG Aggregate Exposure Ledger Entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["entryVersion", "exposureEntryId", "lifecycleId", "gatePassId", "actionDigest", "policyId", "policyVersion", "policyDigest", "passportDigest", "actionFamily", "currency", "counterpartyClass", "amountMinorUnits", "status", "windowStartedAt", "windowEndsAt", "createdAt", "updatedAt", "releaseReason", "localOnly", "syntheticOnly"],
+  "properties": {
+    "entryVersion": { "const": "atg.aggregate-exposure-entry.local.v1" },
+    "exposureEntryId": { "type": "string", "minLength": 1 },
+    "lifecycleId": { "type": "string", "minLength": 1 },
+    "gatePassId": { "type": "string", "minLength": 1 },
+    "actionDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "policyId": { "type": "string", "minLength": 1 },
+    "policyVersion": { "type": "string", "minLength": 1 },
+    "policyDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "passportDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "actionFamily": { "type": "string", "minLength": 1 },
+    "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "counterpartyClass": { "type": "string", "minLength": 1 },
+    "amountMinorUnits": { "type": "integer", "minimum": 0 },
+    "status": { "enum": ["OUTSTANDING", "RESERVED", "COMMITTED", "RELEASED", "UNKNOWN"] },
+    "windowStartedAt": { "type": "string", "format": "date-time" },
+    "windowEndsAt": { "type": "string", "format": "date-time" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "releaseReason": { "enum": ["revoked", "expired", "abandoned", null] },
+    "localOnly": { "const": true },
+    "syntheticOnly": { "const": true }
+  }
+}

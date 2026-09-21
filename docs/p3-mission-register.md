@@ -8,6 +8,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 |---|---|
 | P3-M158 | Local MCP stdio Exact-Action Gateway Foundation and Action Capability Passport |
 | P3-M159 | Business Policy Contracts, Shadow Mode, Evidence Decay and REFER |
+| P3-M160 | Durable Lifecycle, Aggregate Exposure, Revocation, Emergency Stop and Crash Recovery |
 | P3-M089 | Strategic Trust Gate Expansion Pack |
 | P3-M090 | Local Gate Pass Demo Flow |
 | P3-M091 | Receipt and Audit Trail Strengthening |
@@ -156,6 +157,24 @@ post-issuance GatePass revocation, emergency stop, crash recovery, Customer
 Trust Receipt, MCP execution tool, HTTP/remote transport, OAuth, A2A, external
 integration, customer data, deployment, publication, outreach or production-
 readiness claim.
+
+## P3-M160 — Durable Lifecycle and Emergency Controls
+
+**Status:** Implemented local single-process synthetic durability controls.
+
+P3-M160 adds a versioned checksummed local snapshot store, atomic replacement,
+durable exact-action states, policy-bound aggregate exposure, internal-only
+specific GatePass revocation, persistent global local-gateway emergency stop,
+and deterministic `RESERVED`/`UNKNOWN` recovery and reconciliation. Enforced
+acceptance returns a GatePass only after durable `ISSUED` state is confirmed.
+Shadow evaluation does not mutate the store. The MCP surface remains exactly
+one evaluation-only tool.
+
+The mission adds no execution tool, downstream invocation, Customer Trust
+Receipt, final purchasing demonstration, Buyer Adoption Proof Pack, HTTP or
+remote transport, OAuth, A2A, real system integration, distributed database,
+high availability, production-grade or tamper-proof claim, website change,
+deployment, publication, outreach or external action.
 ## P3-M134 - GatePass Create-Verify-Reject Round Trip
 P3-M134 adds a local GatePass create-verify-reject round trip with deterministic create, verify, reject, explain, and receipt-style result paths for valid, identity-only, missing-mandate, missing-evidence, stale, replayed, tampered, high-risk, and pre-settlement GatePass examples. It adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
 ## P3-M135 - Agent-Readable GatePass Benefit and Voluntary Referral Pack

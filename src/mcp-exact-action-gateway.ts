@@ -43,6 +43,14 @@ import {
   createShadowDecisionReceipt,
   type ShadowDecisionReceipt,
 } from "./shadow-decision-receipt.js";
+import {
+  DEFAULT_AGGREGATE_EXPOSURE_RULE,
+  DurableStateError,
+  LocalDurableLifecycleStore,
+  type ActionLifecycleRecord,
+  type AggregateExposureRule,
+  type ExposurePreview,
+} from "./durable-action-lifecycle.js";
 
 export const MCP_EXACT_ACTION_REQUEST_VERSION =
   "atg.mcp-exact-action-request.local.v1" as const;
@@ -56,6 +64,19 @@ export const MCP_BUSINESS_POLICY_REQUEST_VERSION =
 export const MCP_BUSINESS_POLICY_RESULT_VERSION =
   "atg.mcp-exact-action-result.local.v2" as const;
 export const MCP_BUSINESS_POLICY_INPUT_SCHEMA_VERSION = "2.0.0" as const;
+
+const LEGACY_MCP_EXPOSURE_RULE: AggregateExposureRule = {
+  ruleId: "EXPOSURE-LEGACY-MCP-PURCHASE-24H-001",
+  policyId: "legacy-p3-m158-exact-action",
+  policyVersion: "1.0.0",
+  actionFamily: "purchase",
+  currency: "GBP",
+  counterpartyClass: "legacy_registered_supplier",
+  windowSeconds: 86_400,
+  maximumAggregateMinorUnits: 100_000_000,
+  maximumActionCount: 100,
+  exhaustionOutcome: "REJECT",
+};
 
 export const REGISTERED_EVIDENCE_REFERENCES = {
   humanAuthority: "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
@@ -155,6 +176,14 @@ export interface McpBusinessPolicyResult {
   syntheticOnly: true;
   observational: boolean;
   authorising: boolean;
+  lifecycle: {
+    lifecycleId: string;
+    lifecycleRevision: number;
+    status: ActionLifecycleRecord["status"];
+  } | null;
+  aggregateExposure: ExposurePreview | null;
+  emergencyStopActive: boolean | null;
+  durableState: "persisted" | "not_created" | "unavailable";
   productionReady: false;
   commercialWisdomAssessed: false;
 }
@@ -437,6 +466,8 @@ export class McpExactActionGateway {
   readonly #evidenceRegistry: EvidenceObservationRegistry;
   readonly #evaluatedAt: string;
   readonly #clock: TrustedClock | null;
+  readonly #durableStore: LocalDurableLifecycleStore;
+  readonly #exposureRule: AggregateExposureRule;
 
   constructor(options: {
     prototype?: ExactActionTrustGatewayPrototype;
@@ -445,6 +476,9 @@ export class McpExactActionGateway {
     evidenceRegistry?: EvidenceObservationRegistry;
     evaluatedAt?: string;
     clock?: TrustedClock | null;
+    durableStore?: LocalDurableLifecycleStore;
+    durableStatePath?: string;
+    exposureRule?: AggregateExposureRule;
   } = {}) {
     this.#prototype = options.prototype ?? new ExactActionTrustGatewayPrototype();
     this.#registry = options.registry
@@ -459,6 +493,11 @@ export class McpExactActionGateway {
     this.#clock = options.clock === undefined
       ? createFixedTrustedClock(BUSINESS_POLICY_REFERENCE_TIME)
       : options.clock;
+    this.#durableStore = options.durableStore
+      ?? new LocalDurableLifecycleStore(options.durableStatePath === undefined
+        ? {}
+        : { statePath: options.durableStatePath });
+    this.#exposureRule = structuredClone(options.exposureRule ?? DEFAULT_AGGREGATE_EXPOSURE_RULE);
   }
 
   async evaluateAction(value: unknown): Promise<McpExactActionResult | McpBusinessPolicyResult> {
@@ -483,7 +522,7 @@ export class McpExactActionGateway {
     const scenario = createExactActionPrototypeScenario("allowed");
     scenario.proposedAction = structuredClone(request.proposedAction);
     scenario.executionMutation = null;
-    const evaluation = await this.#prototype.evaluateExactAction(scenario);
+    const evaluation = await this.#prototype.assessExactAction(scenario);
     const exactActionInput = {
       ...evaluation.exactActionInput,
       toolIdentity: passport.toolIdentity,
@@ -497,8 +536,37 @@ export class McpExactActionGateway {
     };
     const exactAction = createCanonicalActionEnvelope(exactActionInput);
 
-    if (evaluation.decision === "GATEPASS_ISSUED") {
+    if (evaluation.authorised) {
       const issuance = issueExactActionGatePass(exactActionInput);
+      try {
+        const durable = this.#durableStore.issue({
+          gatePass: issuance.gatePass,
+          passportDigest: request.passportReference.passportDigest,
+          policyId: LEGACY_MCP_EXPOSURE_RULE.policyId,
+          policyVersion: LEGACY_MCP_EXPOSURE_RULE.policyVersion,
+          amountMinorUnits: Math.round(evaluation.proposedAction.totalAmount * 100),
+          actionFamily: evaluation.proposedAction.actionType,
+          counterpartyClass: LEGACY_MCP_EXPOSURE_RULE.counterpartyClass,
+          rule: LEGACY_MCP_EXPOSURE_RULE,
+          recordedAt: evaluation.proposedAction.timestamp,
+        });
+        if (!durable.issued) {
+          const receipt = createPolicyDecisionReceipt({
+            decision: "refused", action: exactAction, gatePass: null, reasons: durable.reasonCodes,
+          });
+          return baseResult({
+            request, outcome: "REJECT", reasonCodes: durable.reasonCodes,
+            exactActionDigest: exactAction.actionDigest, policyDecisionReceipt: receipt, gatePass: null,
+          });
+        }
+      } catch (error) {
+        const reasonCode = error instanceof DurableStateError ? error.reasonCode : "DURABLE_STATE_UNAVAILABLE";
+        const receipt = createPolicyDecisionReceipt({ decision: "refused", action: exactAction, gatePass: null, reasons: [reasonCode] });
+        return baseResult({
+          request, outcome: "REJECT", reasonCodes: [reasonCode],
+          exactActionDigest: exactAction.actionDigest, policyDecisionReceipt: receipt, gatePass: null,
+        });
+      }
       return baseResult({
         request,
         outcome: "ACCEPT",
@@ -598,13 +666,47 @@ export class McpExactActionGateway {
         ...assessment.refusal.failedChecks.map((check) => `CHECK_${check.id.toUpperCase()}_FAILED`),
       ];
     if (!assessment.authorised) wouldOutcome = "REJECT";
-    const reasonCodes = [...new Set([
+    let reasonCodes = [...new Set([
       ...coreReasons,
       "PASSPORT_VERIFIED",
       "POLICY_VERIFIED",
       ...policyEvaluation.reasonCodes,
       ...(request.mode === "shadow" ? ["SHADOW_OBSERVATIONAL_NON_AUTHORISING"] : []),
     ])];
+    let exposure: ExposurePreview | null = null;
+    let emergencyStopActive: boolean | null = null;
+
+    try {
+      emergencyStopActive = this.#durableStore.isEmergencyStopActive();
+      exposure = this.#durableStore.previewExposure({
+        policyId: policy.policyId,
+        policyVersion: policy.policyVersion,
+        policyDigest: policy.policyDigest,
+        passportDigest: request.passportReference.passportDigest,
+        amountMinorUnits: request.amountMinorUnits,
+        actionFamily: assessment.proposedAction.actionType,
+        counterpartyClass: request.businessContext.counterpartyClass,
+        currency: assessment.proposedAction.currency,
+        rule: this.#exposureRule,
+        recordedAt: this.#evaluatedAt,
+      });
+      if (emergencyStopActive) {
+        wouldOutcome = "REJECT";
+        reasonCodes = [...new Set([...reasonCodes, "EMERGENCY_STOP_ACTIVE"])];
+      } else if (!exposure.withinLimit) {
+        if (exposure.reasonCode === "EXPOSURE_CURRENCY_MISMATCH"
+          || exposure.reasonCode === "EXPOSURE_RULE_MISMATCH") {
+          wouldOutcome = "REJECT";
+        } else if (wouldOutcome !== "REJECT") {
+          wouldOutcome = this.#exposureRule.exhaustionOutcome;
+        }
+        reasonCodes = [...new Set([...reasonCodes, exposure.reasonCode])];
+      }
+    } catch (error) {
+      wouldOutcome = "REJECT";
+      const reasonCode = error instanceof DurableStateError ? error.reasonCode : "DURABLE_STATE_UNAVAILABLE";
+      reasonCodes = [...new Set([...reasonCodes, reasonCode])];
+    }
 
     if (request.mode === "shadow") {
       const shadowDecisionReceipt = createShadowDecisionReceipt({
@@ -623,18 +725,68 @@ export class McpExactActionGateway {
         ruleIdentifiers: policyEvaluation.ruleIdentifiers, passportVerified: true,
         policyVerified: true, exactActionDigest: exactAction.actionDigest,
         policyEvaluation, policyDecisionReceipt: null, shadowDecisionReceipt, gatePass: null,
+        exposure, emergencyStopActive, durableState: "not_created",
       });
     }
 
     if (wouldOutcome === "ACCEPT") {
       const issuance = issueExactActionGatePass(exactActionInput);
-      return businessResult({
-        request, outcome: "ACCEPT", wouldOutcome: null, reasonCodes,
-        ruleIdentifiers: policyEvaluation.ruleIdentifiers, passportVerified: true,
-        policyVerified: true, exactActionDigest: exactAction.actionDigest,
-        policyEvaluation, policyDecisionReceipt: issuance.decisionReceipt,
-        shadowDecisionReceipt: null, gatePass: issuance.gatePass,
+      try {
+        const durable = this.#durableStore.issue({
+          gatePass: issuance.gatePass,
+          passportDigest: request.passportReference.passportDigest,
+          policyId: policy.policyId,
+          policyVersion: policy.policyVersion,
+          amountMinorUnits: request.amountMinorUnits,
+          actionFamily: assessment.proposedAction.actionType,
+          counterpartyClass: request.businessContext.counterpartyClass,
+          rule: this.#exposureRule,
+          recordedAt: this.#evaluatedAt,
+        });
+        if (durable.issued && durable.lifecycle !== null) {
+          return businessResult({
+            request, outcome: "ACCEPT", wouldOutcome: null,
+            reasonCodes: [...reasonCodes, ...durable.reasonCodes],
+            ruleIdentifiers: policyEvaluation.ruleIdentifiers, passportVerified: true,
+            policyVerified: true, exactActionDigest: exactAction.actionDigest,
+            policyEvaluation, policyDecisionReceipt: issuance.decisionReceipt,
+            shadowDecisionReceipt: null, gatePass: issuance.gatePass,
+            lifecycle: durable.lifecycle, exposure: durable.exposure,
+            emergencyStopActive: false, durableState: "persisted",
+          });
+        }
+        wouldOutcome = durable.outcome === "REFER" ? "REFER" : "REJECT";
+        reasonCodes = [...new Set([...reasonCodes, ...durable.reasonCodes])];
+        exposure = durable.exposure;
+      } catch (error) {
+        wouldOutcome = "REJECT";
+        const reasonCode = error instanceof DurableStateError ? error.reasonCode : "DURABLE_STATE_UNAVAILABLE";
+        reasonCodes = [...new Set([...reasonCodes, reasonCode])];
+      }
+    }
+
+    let lifecycle: ActionLifecycleRecord | null = null;
+    let durableState: McpBusinessPolicyResult["durableState"] = "not_created";
+    try {
+      lifecycle = this.#durableStore.recordNonAuthorisingDecision({
+        status: wouldOutcome === "REFER" ? "REFERRED" : "REJECTED",
+        actionDigest: exactAction.actionDigest,
+        policyDigest: policy.policyDigest,
+        passportDigest: request.passportReference.passportDigest,
+        subjectAgentIdentity: assessment.proposedAction.agentId,
+        nonce: assessment.proposedAction.nonce,
+        issuedAt: assessment.proposedAction.timestamp,
+        expiresAt: exactAction.expiresAt,
+        amountMinorUnits: request.amountMinorUnits,
+        currency: assessment.proposedAction.currency,
+        actionFamily: assessment.proposedAction.actionType,
+        recordedAt: this.#evaluatedAt,
       });
+      durableState = "persisted";
+    } catch (error) {
+      const reasonCode = error instanceof DurableStateError ? error.reasonCode : "DURABLE_STATE_UNAVAILABLE";
+      reasonCodes = [...new Set([...reasonCodes, reasonCode])];
+      durableState = "unavailable";
     }
     const decisionReceipt = createPolicyDecisionReceipt({
       decision: wouldOutcome === "REFER" ? "escalated" : "refused",
@@ -648,6 +800,7 @@ export class McpExactActionGateway {
       policyVerified: true, exactActionDigest: exactAction.actionDigest,
       policyEvaluation, policyDecisionReceipt: decisionReceipt,
       shadowDecisionReceipt: null, gatePass: null,
+      lifecycle, exposure, emergencyStopActive, durableState,
     });
   }
 }
@@ -827,6 +980,10 @@ function businessResult(input: {
   policyDecisionReceipt: PolicyDecisionReceipt | null;
   shadowDecisionReceipt: ShadowDecisionReceipt | null;
   gatePass: ExactActionGatePass | null;
+  lifecycle?: ActionLifecycleRecord | null;
+  exposure?: ExposurePreview | null;
+  emergencyStopActive?: boolean | null;
+  durableState?: McpBusinessPolicyResult["durableState"];
 }): McpBusinessPolicyResult {
   const shadow = input.request.mode === "shadow";
   return {
@@ -856,6 +1013,14 @@ function businessResult(input: {
     syntheticOnly: true,
     observational: shadow,
     authorising: input.gatePass !== null,
+    lifecycle: input.lifecycle === undefined || input.lifecycle === null ? null : {
+      lifecycleId: input.lifecycle.lifecycleId,
+      lifecycleRevision: input.lifecycle.lifecycleRevision,
+      status: input.lifecycle.status,
+    },
+    aggregateExposure: input.exposure ?? null,
+    emergencyStopActive: input.emergencyStopActive ?? null,
+    durableState: input.durableState ?? "not_created",
     productionReady: false,
     commercialWisdomAssessed: false,
   };

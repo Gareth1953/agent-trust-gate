@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Gareth1953/agent-trust-gate/schemas/lifecycle-reconciliation-record.schema.json",
+  "title": "ATG Lifecycle Reconciliation Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["recordVersion", "reconciliationId", "lifecycleId", "gatePassId", "priorStatus", "finding", "resultingStatus", "evidenceReference", "actorReference", "authorityEvidenceDigest", "reconciledAt", "automaticRetryPermitted", "externalActionReversed", "localOnly", "syntheticOnly", "recordDigest"],
+  "properties": {
+    "recordVersion": { "const": "atg.lifecycle-reconciliation.local.v1" },
+    "reconciliationId": { "type": "string", "minLength": 1 },
+    "lifecycleId": { "type": "string", "minLength": 1 },
+    "gatePassId": { "type": "string", "minLength": 1 },
+    "priorStatus": { "enum": ["RESERVED", "UNKNOWN"] },
+    "finding": { "enum": ["confirmed_not_executed", "confirmed_executed", "still_unknown"] },
+    "resultingStatus": { "enum": ["ABANDONED", "EXECUTED", "UNKNOWN"] },
+    "evidenceReference": { "type": "string", "minLength": 1, "maxLength": 240 },
+    "actorReference": { "type": "string", "minLength": 1 },
+    "authorityEvidenceDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "reconciledAt": { "type": "string", "format": "date-time" },
+    "automaticRetryPermitted": { "const": false },
+    "externalActionReversed": { "const": false },
+    "localOnly": { "const": true },
+    "syntheticOnly": { "const": true },
+    "recordDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+  }
+}

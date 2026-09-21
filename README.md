@@ -60,6 +60,25 @@ This local synthetic implementation is not production ready. ATG verifies
 declared authority and policy boundaries; it does not decide whether an action
 is commercially wise.
 
+### P3-M160 durable lifecycle and emergency controls
+
+P3-M160 adds a checksummed local-file lifecycle store beneath the existing MCP
+gateway. Enforced `ACCEPT` returns a GatePass only after `ISSUED` lifecycle and
+aggregate-exposure records are atomically replaced and re-read successfully.
+Outstanding authority counts against a policy-bound GBP ceiling. Internal-only
+primitives support compare-and-set reservation, specific GatePass revocation,
+global local-gateway emergency stop, `UNKNOWN` state and explicit
+reconciliation. None is exposed as an MCP tool.
+
+Set `ATG_LOCAL_STATE_PATH` to an explicit local file when restart persistence
+is required. Without it, the gateway uses an isolated operating-system temp
+path for the process. Shadow Mode reads and simulates durable controls but
+creates no lifecycle, exposure, revocation or emergency state.
+
+See [the P3-M160 lifecycle guide](docs/P3-M160-durable-lifecycle-and-emergency-controls.md).
+This remains a single-process synthetic demonstrator, not distributed,
+tamper-proof, high-availability or production-grade storage.
+
 ## WORKING EXACT ACTION TRUST GATEWAY PROTOTYPE
 
 Agent Trust Gate™ — Exact Action Trust Gateway provides a buyer-usable local

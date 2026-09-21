@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Gareth1953/agent-trust-gate/schemas/durable-action-lifecycle-state.schema.json",
+  "title": "ATG Durable Action Lifecycle State",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["recordVersion", "lifecycleId", "lifecycleRevision", "status", "gatePassId", "actionDigest", "policyDigest", "passportDigest", "subjectAgentIdentity", "nonce", "issuedAt", "expiresAt", "amountMinorUnits", "currency", "actionFamily", "exposureEntryId", "createdAt", "updatedAt", "transitions", "localOnly", "syntheticOnly"],
+  "properties": {
+    "recordVersion": { "const": "atg.action-lifecycle.local.v1" },
+    "lifecycleId": { "type": "string", "minLength": 1 },
+    "lifecycleRevision": { "type": "integer", "minimum": 1 },
+    "status": { "enum": ["ISSUED", "RESERVED", "EXECUTED", "REJECTED", "REFERRED", "REVOKED", "EXPIRED", "FAILED", "ABANDONED", "UNKNOWN"] },
+    "gatePassId": { "type": ["string", "null"] },
+    "actionDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "policyDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "passportDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "subjectAgentIdentity": { "type": "string", "minLength": 1 },
+    "nonce": { "type": "string", "minLength": 1 },
+    "issuedAt": { "type": "string", "format": "date-time" },
+    "expiresAt": { "type": "string", "format": "date-time" },
+    "amountMinorUnits": { "type": "integer", "minimum": 0 },
+    "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "actionFamily": { "type": "string", "minLength": 1 },
+    "exposureEntryId": { "type": ["string", "null"] },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "transitions": { "type": "array", "minItems": 1, "items": { "type": "object" } },
+    "localOnly": { "const": true },
+    "syntheticOnly": { "const": true }
+  }
+}
