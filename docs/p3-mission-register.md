@@ -242,6 +242,24 @@ P3-M164 real-browser validation and controlled publication remain pending. No
 browser validation, push, publication, deployment, tag or release occurs in
 P3-M164A.
 
+## P3-M164 — Real-Browser Validation and Controlled Publication
+
+**Status:** Installed-browser validation passed locally; controlled publication
+is gated on the P3-M164 commit and normal push.
+
+P3-M164 uses an installed Microsoft Edge rendering engine and native Chrome
+DevTools Protocol against a localhost-only static server. All six principal
+pages pass rendered visual inspection at mobile, tablet and desktop widths,
+with keyboard, focus, reduced-motion, overflow, console, runtime and network
+checks. Four confirmed presentation or keyboard defects were repaired with
+small shared CSS and JavaScript changes and locked by focused tests.
+
+The mission does not change gateway, policy, GatePass, lifecycle, adapter, MCP
+or evidence semantics. It adds no dependency, tracking, external asset, form,
+checkout or live execution path. The browser report records the pre-publication
+evidence; the controlled normal push and live verification occur only after the
+commit gate passes. No tag or release is authorised.
+
 ## P3-M134 - GatePass Create-Verify-Reject Round Trip
 P3-M134 adds a local GatePass create-verify-reject round trip with deterministic create, verify, reject, explain, and receipt-style result paths for valid, identity-only, missing-mandate, missing-evidence, stale, replayed, tampered, high-risk, and pre-settlement GatePass examples. It adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
 ## P3-M135 - Agent-Readable GatePass Benefit and Voluntary Referral Pack
