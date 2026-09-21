@@ -1,0 +1,31 @@
+{
+  "registerVersion": "atg.public-claims-evidence-register.v1",
+  "mission": "P3-M163",
+  "baselineCommit": "6314a41d21b4d49fda9636c35dce472546b6b0e6",
+  "authoritativeEvidenceBundle": "examples/p3-m162/evidence-bundle.json",
+  "publicSurfaces": [
+    "README.md",
+    "discovery-site/index.html",
+    "discovery-site/evidence.html",
+    "discovery-site/technology.html",
+    "discovery-site/contact.html",
+    "discovery-site/privacy.html"
+  ],
+  "claims": [
+    { "claimId": "CLAIM-POSITION-001", "claim": "Exact Action Trust Gateway for AI agents", "classification": "DEMONSTRATED", "evidenceSource": "docs/P3-M158-implementation-and-validation-report.md", "evidenceDetail": "Local MCP exact-action evaluation reuses the existing exact-action core." },
+    { "claimId": "CLAIM-MCP-001", "claim": "Local MCP over stdio exposes exactly atg.evaluate_action", "classification": "DEMONSTRATED", "evidenceSource": "test/mcp-exact-action-gateway.test.ts", "evidenceDetail": "tools/list assertion and protocol tests." },
+    { "claimId": "CLAIM-OUTCOME-001", "claim": "ACCEPT, REJECT and REFER orchestration plus internal revocation evidence", "classification": "DEMONSTRATED", "evidenceSource": "docs/P3-M161-implementation-and-validation-report.md", "evidenceDetail": "Ten-case outcome table; REVOKE remains an internal lifecycle control rather than an MCP verdict." },
+    { "claimId": "CLAIM-SHADOW-001", "claim": "Shadow Mode is observational and issues no GatePass", "classification": "DEMONSTRATED", "evidenceSource": "examples/p3-m162/assurance-metrics.json", "evidenceDetail": "METRIC-SHADOW-EVALUATIONS=1 and METRIC-SHADOW-GATEPASSES=0." },
+    { "claimId": "CLAIM-CASES-001", "claim": "Ten synthetic cases: 1 ACCEPT, 6 REJECT, 2 REFER and 1 SHADOW", "classification": "DEMONSTRATED", "evidenceSource": "examples/p3-m162/evidence-bundle.json", "evidenceDetail": "M161 source case outcomes and M162 metrics." },
+    { "claimId": "CLAIM-COVERAGE-001", "claim": "Coverage Map: 18 demonstrated, 2 partial, 3 not demonstrated, 2 out of scope, 25 total", "classification": "DEMONSTRATED", "evidenceSource": "examples/p3-m162/assurance-coverage-map.json", "evidenceDetail": "Canonical coverage totals." },
+    { "claimId": "CLAIM-RECEIPT-001", "claim": "Customer Trust Receipts are digest-bound and non-authorising", "classification": "DEMONSTRATED", "evidenceSource": "examples/p3-m162/customer-trust-receipts.json", "evidenceDetail": "Ten receipts with authorityGranted/executable/reservable/retryPermitted/revocationControl false." },
+    { "claimId": "CLAIM-LINK-001", "claim": "One of one intact evidence links verified", "classification": "DEMONSTRATED", "evidenceSource": "examples/p3-m162/assurance-metrics.json", "evidenceDetail": "METRIC-EVIDENCE-LINK-VERIFICATION numerator 1 denominator 1." },
+    { "claimId": "CLAIM-RETRY-001", "claim": "Zero automatic retries after uncertain state", "classification": "DEMONSTRATED", "evidenceSource": "examples/p3-m162/assurance-metrics.json", "evidenceDetail": "METRIC-AUTOMATIC-CRASH-RETRIES=0." },
+    { "claimId": "CLAIM-PILOT-001", "claim": "Paid evaluation pilots starting from £1,500", "classification": "PARTIALLY_DEMONSTRATED", "evidenceSource": "docs/paid-pilot-commercial-entry.md", "evidenceDetail": "Indicative scope-dependent commercial posture; not evidence of customer adoption or outcome." },
+    { "claimId": "CLAIM-IAM-001", "claim": "Production IAM and key custody are not demonstrated", "classification": "NOT_DEMONSTRATED", "evidenceSource": "examples/p3-m162/assurance-coverage-map.json", "evidenceDetail": "CTRL-IAM-001." },
+    { "claimId": "CLAIM-DISTRIBUTED-001", "claim": "Distributed durability is not demonstrated", "classification": "NOT_DEMONSTRATED", "evidenceSource": "examples/p3-m162/assurance-coverage-map.json", "evidenceDetail": "CTRL-DISTRIBUTED-001." },
+    { "claimId": "CLAIM-EXTERNAL-001", "claim": "Real external-effect reconciliation is not demonstrated", "classification": "NOT_DEMONSTRATED", "evidenceSource": "examples/p3-m162/assurance-coverage-map.json", "evidenceDetail": "CTRL-EXTERNAL-REC-001." },
+    { "claimId": "CLAIM-COMPLIANCE-001", "claim": "Regulatory compliance is out of scope", "classification": "OUT_OF_SCOPE", "evidenceSource": "examples/p3-m162/assurance-coverage-map.json", "evidenceDetail": "CTRL-COMPLIANCE-001." },
+    { "claimId": "CLAIM-REAL-PROC-001", "claim": "Real procurement and payment execution are out of scope", "classification": "OUT_OF_SCOPE", "evidenceSource": "examples/p3-m162/assurance-coverage-map.json", "evidenceDetail": "CTRL-REAL-PROC-001." }
+  ]
+}

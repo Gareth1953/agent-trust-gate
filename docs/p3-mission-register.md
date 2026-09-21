@@ -208,6 +208,23 @@ coverage claims, metric mismatch, manifest mismatch, or authority-like flags.
 The mission adds no authority, execution path, MCP tool, dependency, website
 change, real customer evidence, production integration, external action,
 publication, compliance conclusion, ROI, savings or business-outcome claim.
+
+## P3-M163 — Evidence-Controlled README and Website Repositioning
+
+**Status:** Implemented locally; not pushed or published.
+
+P3-M163 presents the locked M158–M162 work as one coherent Agent Integration
+Gateway, Exact Action Trust Gateway and Business Assurance architecture. The
+README and static website expose the full M161 ten-case evidence, M162 Coverage
+Map totals, bounded synthetic metrics, Customer Trust Receipt non-authority,
+visible limitations and an indicative scope-dependent controlled-pilot route.
+
+A minimal public-claims register and local validator bind material claims to
+repository evidence and reject unsupported metrics, missing non-claims,
+authority inflation, invalid commands/links and analytics/tracking code. The
+mission changes no decision semantics, GatePass rules, policy/lifecycle state,
+adapter boundary, MCP tool surface, dependency, lockfile or M162 evidence. It
+performs no push, publication, deployment, outreach or external action.
 ## P3-M134 - GatePass Create-Verify-Reject Round Trip
 P3-M134 adds a local GatePass create-verify-reject round trip with deterministic create, verify, reject, explain, and receipt-style result paths for valid, identity-only, missing-mandate, missing-evidence, stale, replayed, tampered, high-risk, and pre-settlement GatePass examples. It adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
 ## P3-M135 - Agent-Readable GatePass Benefit and Voluntary Referral Pack

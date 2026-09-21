@@ -126,14 +126,6 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
   const links = extractLinks(indexHtml);
   const allNormalisedLinks = publicHtml.flatMap(extractLinks).map((href) => href.replace(/^\.\//, ""));
   const scriptSources = publicHtml.flatMap(extractScriptSources);
-  const analyticsUrlLiterals = Array.from(
-    corporateScript.matchAll(/https:\/\/[^'"\s)]+/g),
-    (match) => match[0] ?? "",
-  );
-  const analyticsEventNames = Array.from(
-    corporateScript.matchAll(/eventName\s*=\s*'([^']+)'/g),
-    (match) => match[1] ?? "",
-  );
   const indexJsonLdValues = extractJsonLd(indexHtml);
   const allJsonLdValues = publicHtmlFiles.flatMap((path) => extractJsonLd(read(path)));
   const trackedPaths = listFiles(".");
@@ -287,9 +279,9 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
     },
     {
       id: "active_verified_wording",
-      passed: /Verify authority before AI acts\./i.test(indexHtml) &&
-        /local-first trust enforcement demonstrator/i.test(indexHtml) &&
-        /Public demonstrator only; production deployment is not claimed\./i.test(indexHtml) &&
+      passed: /Exact Action Trust Gateway for AI agents\./i.test(indexHtml) &&
+        /Local synthetic prototype/i.test(indexHtml) &&
+        /Production deployment is not claimed\./i.test(indexHtml) &&
         !obsoleteStatusPattern.test(indexHtml),
       detail: "index.html states the current corporate proposition and non-production boundary without obsolete pending wording",
     },
@@ -336,36 +328,16 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
       detail: "public pages have no forms, uploads, iframes, live chat, or newsletter signup",
     },
     {
-      id: "privacy_conscious_analytics_only",
-      passed: corporateScript.includes("if (!isPublicAtgSite) return;") &&
-        corporateScript.includes("api_host: 'https://us.i.posthog.com'") &&
-        corporateScript.includes("person_profiles: 'identified_only'") &&
-        corporateScript.includes("persistence: 'localStorage'") &&
-        corporateScript.includes("autocapture: false") &&
-        corporateScript.includes("capture_pageview: false") &&
-        corporateScript.includes("capture_pageleave: false") &&
-        corporateScript.includes("disable_session_recording: true") &&
-        corporateScript.includes("disable_surveys: true") &&
-        corporateScript.includes("respect_dnt: true") &&
-        corporateScript.includes("$geoip_disable: true") &&
-        analyticsUrlLiterals.length === 2 &&
-        analyticsUrlLiterals.every((url) => url === "https://us.i.posthog.com" || url === "https://us.posthog.com") &&
-        analyticsEventNames.length === 3 &&
-        analyticsEventNames.every((event) => [
-          "atg_contact_email_click",
-          "atg_github_click",
-          "atg_reviewer_resource_click",
-        ].includes(event)) &&
-        (corporateScript.match(/window\.posthog\.capture\s*\(/g)?.length ?? 0) === 2 &&
-        !/posthog\.identify\s*\(|posthog\.startSessionRecording\s*\(|document\.cookie|Set-Cookie|fingerprint|\beval\s*\(|new\s+Function\s*\(/i.test(corporateScript) &&
-        /PostHog autocapture, surveys and session recording are disabled/i.test(privacyHtml) &&
-        /anonymous browser identifier is stored in local storage/i.test(privacyHtml),
-      detail: "the sole analytics path is hostname-gated PostHog with disclosed local storage, DNT, no autocapture, no surveys, no session recording, no GeoIP enrichment and no visitor identification",
+      id: "no_analytics_or_tracking",
+      passed: !/posthog|analytics|telemetry|tracking|localStorage|sessionStorage|document\.cookie|Set-Cookie|fingerprint|sendBeacon|https?:\/\//i.test(corporateScript) &&
+        /no contact forms, analytics, tracking/i.test(privacyHtml) &&
+        /does not load third-party scripts, analytics or telemetry/i.test(privacyHtml),
+      detail: "the checked-in runtime has no analytics, tracking, telemetry, browser identifier or third-party script loader",
     },
     {
       id: "no_public_network_or_submission_code",
       passed: !/\bfetch\s*\(|XMLHttpRequest|WebSocket|EventSource|sendBeacon|\.submit\s*\(/i.test(`${combinedPublicHtml}\n${corporateScript}`),
-      detail: "public source contains no fetch, socket, beacon or form-submission path beyond the separately constrained analytics loader",
+      detail: "public source contains no fetch, socket, beacon or form-submission path",
     },
     {
       id: "no_payment_or_checkout_links",

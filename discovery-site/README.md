@@ -26,11 +26,9 @@ the static review invitation. The catalogue is draft-ARD-compatible static
 metadata only. It does not advertise an executable remote agent, A2A service,
 MCP server, registry or hosted GatePass API.
 
-The site uses one checked-in script, `corporate.js`. On the public ATG hostname
-only, it loads PostHog for page views and a small allowlist of link events.
-Autocapture, page-leave capture, surveys, session recording, visitor
-identification and GeoIP enrichment are disabled; Do Not Track is respected.
-The disclosed anonymous identifier uses local storage. See `privacy.html`.
+The site uses one checked-in script, `corporate.js`, only for mobile navigation
+and the displayed copyright year. It loads no analytics, tracking, telemetry or
+third-party script and creates no browser identifier. See `privacy.html`.
 There are no forms, checkout or payment links, external fonts, third-party
 images, videos, iframes, live chat, or hosted ATG API calls.
 

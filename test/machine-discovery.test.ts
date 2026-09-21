@@ -285,18 +285,12 @@ test("static discovery site permits only the constrained corporate script and no
   assert.doesNotMatch(html, /<script[^>]+src=["']https?:\/\//i);
   assert.doesNotMatch(html, /<form\b/i);
   assert.doesNotMatch(html, /<iframe\b/i);
-  assert.match(corporateScript, /if \(!isPublicAtgSite\) return;/);
-  assert.match(corporateScript, /autocapture: false/);
-  assert.match(corporateScript, /disable_session_recording: true/);
-  assert.match(corporateScript, /respect_dnt: true/);
-  const analyticsUrls = [...corporateScript.matchAll(/https:\/\/[^'"\s)]+/g)].map((match) => match[0]);
-  assert.deepEqual(analyticsUrls, ["https://us.i.posthog.com", "https://us.posthog.com"]);
-  assert.doesNotMatch(corporateScript, /posthog\.identify\s*\(|posthog\.startSessionRecording\s*\(|document\.cookie|Set-Cookie|fingerprint|\beval\s*\(|new\s+Function\s*\(/i);
+  assert.doesNotMatch(corporateScript, /posthog|analytics|tracking|telemetry|https?:\/\/|fetch\s*\(|XMLHttpRequest|WebSocket|sendBeacon|localStorage|sessionStorage|document\.cookie|Set-Cookie|fingerprint|\beval\s*\(|new\s+Function\s*\(/i);
   assert.doesNotMatch(html, /paypal|stripe/i);
   assert.match(html, /https:\/\/agenttrustgate\.com\//i);
   assert.match(html, /No production deployment, payment execution, security certification/i);
   assert.match(read("discovery-site/README.md"), /active and verified/i);
-  assert.match(read("discovery-site/privacy.html"), /PostHog autocapture, surveys and session recording are disabled/i);
+  assert.match(read("discovery-site/privacy.html"), /no contact forms, analytics, tracking/i);
 });
 
 test("A2A MCP npm Pages and registry boundaries remain inactive", () => {

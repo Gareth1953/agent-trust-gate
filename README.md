@@ -2,19 +2,75 @@
 
 ![Agent Trust Gate human-in-the-loop governance architecture](docs/assets/agent-trust-gate-readme-hero.png)
 
-## What is Agent Trust Gate?
+## Exact Action Trust Gateway for AI agents
 
 Agent Trust Gate™ is a local-first, pre-action and pre-settlement trust
-enforcement layer for reviewer demonstration. It checks whether an AI agent or
-automated workflow has enough scoped proof before a sensitive action. GatePass
-is its scoped, time-bound, exact-action proof primitive for expressing
-authority, mandate, scope, freshness, evidence and approval.
+enforcement layer for reviewer demonstration. It checks whether an AI agent's
+exact proposed action remains within a human-authorised mandate at the point
+where action authority would be granted. It returns deterministic evidence
+and, only where permitted, a tightly bound one-use GatePass.
 
-Current product status: **working local pilot-ready prototype**. It remains
-synthetic, local-only and outside production use.
+ATG does not decide whether an action is commercially wise, beneficial or
+correct. It verifies declared authority, exact-action integrity, policy
+conditions and lifecycle state.
+
+Current product status: **working local synthetic evaluation prototype**. It
+is not production ready, customer validated or connected to a real purchasing,
+payment, settlement or customer-communication system.
 
 Legacy repository capability flag: **Current status: local_demo_only.** This
 continues to describe the absence of any hosted or production capability.
+
+### What ATG does
+
+- Accepts an exact action proposal through a local MCP-over-stdio integration.
+- Verifies registered tool/schema identity, agent standing, human mandate,
+  policy, evidence freshness and lifecycle state.
+- Returns deterministic `ACCEPT`, `REJECT` or `REFER` orchestration outcomes;
+  internal `REVOKE` lifecycle control invalidates unused authority.
+- May issue an exact-action-bound, expiring, revocable, one-use GatePass only
+  after a valid enforced `ACCEPT`.
+- Keeps policy decision evidence separate from synthetic execution evidence.
+- Produces non-authorising Customer Trust Receipts, a Coverage Map and
+  evidence-derived metrics from the locked synthetic demonstration.
+
+### What ATG does not do
+
+- It does not infer authority from model confidence or decide commercial
+  wisdom, value or outcome correctness.
+- It does not expose execution, policy administration, revocation or emergency
+  controls through MCP.
+- It does not perform live procurement, payment, settlement, capital movement
+  or customer communication.
+- It does not provide production IAM/key custody, distributed durability,
+  real external-effect reconciliation, compliance certification or guaranteed
+  safety, ROI, savings, fraud prevention or loss reduction.
+
+### One product architecture
+
+1. **Agent Integration Gateway** — MCP protocol `2025-06-18` over local stdio,
+   exposing exactly `atg.evaluate_action` for evaluation only.
+2. **Exact Action Trust Gateway** — canonical action, standing, mandate,
+   policy, evidence and lifecycle checks, with bounded GatePass issuance.
+3. **Business Assurance and Customer Trust** — buyer policy contracts,
+   Shadow Mode, aggregate exposure, emergency stop/recovery and independently
+   verifiable evidence summaries.
+
+These layers reuse one exact-action authority core. A capability passport,
+policy contract, Shadow receipt or Customer Trust Receipt cannot create human
+authority or become a GatePass.
+
+### Outcome vocabulary
+
+| Outcome | Meaning |
+|---|---|
+| `ACCEPT` | Every mandatory check passed; enforced mode may issue a one-use GatePass. |
+| `REJECT` | The action is prohibited, invalid, altered, unauthorised or unverifiable; no GatePass. |
+| `REFER` | No authority is granted; human review or additional evidence is required. |
+| `REVOKE` | Internal lifecycle control invalidates unused issued authority; it does not reverse an executed action. |
+
+Shadow Mode uses the same proposed-verdict path but grants no authority,
+issues no GatePass and does not mutate enforcement state.
 
 ## LOCAL MCP EXACT-ACTION GATEWAY FOUNDATION
 
@@ -95,6 +151,19 @@ can acknowledge the permitted case after point-of-action verification. No
 procurement, payment, settlement, customer communication or external action
 occurs. See [the P3-M161 guide](docs/P3-M161-local-purchasing-lifecycle-demonstration.md).
 
+| Case | Outcome | GatePass | Execution evidence |
+|---|---|---|---|
+| Exact authorised purchase | `ACCEPT` | Issued and consumed | Synthetic acknowledgement |
+| Quantity substitution | `REJECT` | None | None |
+| Supplier substitution | `REJECT` | None | None |
+| Price-band breach | `REFER` | None | Human review required |
+| GatePass reuse | `REJECT` | Already consumed | Blocked |
+| GatePass revocation | `REJECT` | Revoked | Blocked |
+| Shadow Mode | would `ACCEPT` | None | None |
+| Aggregate ceiling | `REFER` | None for breaching action | None |
+| Authority expansion | `REJECT` | None | None |
+| Emergency/recovery | `REJECT` | Progression blocked | No automatic retry |
+
 ### P3-M162 customer trust evidence and buyer adoption pack
 
 Generate and verify the deterministic evidence bundle derived from the locked
@@ -113,6 +182,21 @@ evidence; they are not GatePasses, do not execute actions, and do not establish
 production readiness, customer validation, compliance, ROI, or business
 outcomes. See the [M162 evidence guide](docs/P3-M162-customer-trust-receipt-and-assurance-evidence.md)
 and [proof-pack guide](docs/P3-M162-buyer-adoption-proof-pack.md).
+
+Locked P3-M162 evidence reports **18 DEMONSTRATED**, **2
+PARTIALLY_DEMONSTRATED**, **3 NOT_DEMONSTRATED** and **2 OUT_OF_SCOPE**
+controls (25 total). The ten synthetic cases contain **1/10 ACCEPT**, **6/10
+REJECT**, **2/10 REFER** and **1/10 SHADOW**. Shadow issued **0/1 GatePasses**,
+the intact decision/execution evidence link verified **1/1**, and automatic
+retry after the uncertain crash state remained **0**. These figures are
+observed in the deterministic ten-case synthetic demonstration; they are not
+customer, production, statistical, compliance, ROI or real-world risk-
+reduction results.
+
+- [M162 Customer Trust Receipt and assurance guide](docs/P3-M162-customer-trust-receipt-and-assurance-evidence.md)
+- [M162 implementation and validation report](docs/P3-M162-implementation-and-validation-report.md)
+- [Generated Buyer Adoption Proof Pack](examples/p3-m162/buyer-adoption-proof-pack.md)
+- [Complete Coverage Map](examples/p3-m162/assurance-coverage-map.json)
 
 ## WORKING EXACT ACTION TRUST GATEWAY PROTOTYPE
 

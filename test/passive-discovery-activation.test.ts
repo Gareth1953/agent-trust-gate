@@ -109,7 +109,7 @@ test("static discovery site is accessible source with safe machine discovery met
   const evidence = read("discovery-site/evidence.html");
   const robots = read("discovery-site/robots.txt");
   const sitemap = read("discovery-site/sitemap.xml");
-  assert.match(html, /<title>Agent Trust Gate™ \| Verify Authority Before AI Acts<\/title>/);
+  assert.match(html, /<title>Agent Trust Gate™ \| Exact Action Trust Gateway for AI Agents<\/title>/);
   assert.match(html, /<meta name="description"/);
   assert.match(html, new RegExp(`rel="canonical" href="${currentSiteUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`));
   assert.match(html, /property="og:title"/);
@@ -125,7 +125,7 @@ test("static discovery site is accessible source with safe machine discovery met
   assert.match(sitemap, new RegExp(currentSiteUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
 });
 
-test("corporate discovery site constrains local assets and privacy-conscious analytics", () => {
+test("corporate discovery site constrains local assets and contains no analytics or tracking", () => {
   const html = read("discovery-site/index.html");
   const corporateScript = read("discovery-site/corporate.js");
   const privacy = read("discovery-site/privacy.html");
@@ -143,25 +143,9 @@ test("corporate discovery site constrains local assets and privacy-conscious ana
   }
   assert.doesNotMatch(html, /<img\b[^>]*\bsrc=["']https?:\/\//i);
   assert.doesNotMatch(html, /<video\b/i);
-  assert.ok(corporateScript.indexOf("if (!isPublicAtgSite) return;") < corporateScript.indexOf("window.posthog.init"));
-  assert.match(corporateScript, /api_host: 'https:\/\/us\.i\.posthog\.com'/);
-  assert.match(corporateScript, /person_profiles: 'identified_only'/);
-  assert.match(corporateScript, /persistence: 'localStorage'/);
-  assert.match(corporateScript, /autocapture: false/);
-  assert.match(corporateScript, /capture_pageview: false/);
-  assert.match(corporateScript, /capture_pageleave: false/);
-  assert.match(corporateScript, /disable_session_recording: true/);
-  assert.match(corporateScript, /disable_surveys: true/);
-  assert.match(corporateScript, /respect_dnt: true/);
-  assert.match(corporateScript, /\$geoip_disable: true/);
-  const analyticsUrls = [...corporateScript.matchAll(/https:\/\/[^'"\s)]+/g)].map((match) => match[0]);
-  assert.deepEqual(analyticsUrls, ["https://us.i.posthog.com", "https://us.posthog.com"]);
-  const eventNames = [...corporateScript.matchAll(/eventName\s*=\s*'([^']+)'/g)].map((match) => match[1]);
-  assert.deepEqual(eventNames, ["atg_contact_email_click", "atg_github_click", "atg_reviewer_resource_click"]);
-  assert.equal(corporateScript.match(/window\.posthog\.capture\s*\(/g)?.length, 2);
-  assert.doesNotMatch(corporateScript, /posthog\.identify\s*\(|posthog\.startSessionRecording\s*\(|document\.cookie|Set-Cookie|fingerprint|\beval\s*\(|new\s+Function\s*\(/i);
-  assert.match(privacy, /PostHog autocapture, surveys and session recording are disabled/i);
-  assert.match(privacy, /anonymous browser identifier is stored in local storage/i);
+  assert.doesNotMatch(corporateScript, /posthog|analytics|tracking|telemetry|https?:\/\/|fetch\s*\(|XMLHttpRequest|WebSocket|sendBeacon|localStorage|sessionStorage|document\.cookie|Set-Cookie|fingerprint|\beval\s*\(|new\s+Function\s*\(/i);
+  assert.match(privacy, /no contact forms, analytics, tracking/i);
+  assert.match(privacy, /does not load third-party scripts, analytics or telemetry/i);
   assert.doesNotMatch(allSiteText, /paypal\.com|stripe\.com|buy-now|payment-button/i);
   assert.equal(existsSync(join(root, "discovery-site", "CNAME")), false);
   const imageFiles = filesUnder("discovery-site").filter((file) => /\.(png|jpe?g|gif|webp|svg)$/i.test(file));

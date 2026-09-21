@@ -577,3 +577,5 @@ export { ASSURANCE_COVERAGE_MAP_VERSION,ASSURANCE_METRICS_VERSION,BUYER_ADOPTION
 export type { AssuranceCoverageEntry,AssuranceCoverageMap,AssuranceMetric,AssuranceMetrics,BuyerAdoptionProofPack,CoverageStatus,CustomerTrustReceipt,EvidenceManifestEntry,EvidenceVerificationResult,M162EvidenceBundle,M162EvidenceManifest } from "./customer-trust-evidence-pack.js";
 export { runCustomerTrustEvidencePackCli } from "./customer-trust-evidence-pack-cli.js";
 export type { CustomerTrustEvidenceCliIo } from "./customer-trust-evidence-pack-cli.js";
+export { renderPublicClaimsValidation,validatePublicClaims } from "./public-claims-evidence-validator.js";
+export type { PublicClaimCheck,PublicClaimsValidationOverrides,PublicClaimsValidationReport } from "./public-claims-evidence-validator.js";
