@@ -558,3 +558,9 @@ export { DEFAULT_EXACT_ACTION_PROTOTYPE_HOST,DEFAULT_EXACT_ACTION_PROTOTYPE_LOG,
 export type { ExactActionPrototypeServerOptions } from "./exact-action-trust-gateway-prototype-server.js";
 export { runExactActionPrototypeCli } from "./exact-action-trust-gateway-prototype-cli.js";
 export type { ExactActionPrototypeCliIo } from "./exact-action-trust-gateway-prototype-cli.js";
+export { ACTION_CAPABILITY_PASSPORT_REFERENCE_TIME,ACTION_CAPABILITY_PASSPORT_SCHEMA_VERSION,ActionCapabilityPassportRegistry,MCP_EXACT_ACTION_INPUT_SCHEMA_IDENTITY,MCP_EXACT_ACTION_INPUT_SCHEMA_VERSION,MCP_EXACT_ACTION_OPERATION,MCP_EXACT_ACTION_SERVER_IDENTITY,MCP_EXACT_ACTION_TOOL_NAME,computeActionCapabilityPassportDigest,createActionCapabilityPassport,verifyActionCapabilityPassportIntegrity } from "./action-capability-passport.js";
+export type { ActionCapabilityPassport,ActionCapabilityPassportReference,ActionCapabilityPassportResolution,ActionCapabilityPassportReversibility,ActionCapabilityPassportRisk,ActionCapabilityPassportStatus,PassportResolutionReasonCode } from "./action-capability-passport.js";
+export { DEFAULT_ACTION_CAPABILITY_PASSPORT,MCP_EXACT_ACTION_GATEWAY_VERSION,MCP_EXACT_ACTION_INPUT_SCHEMA_DIGEST,MCP_EXACT_ACTION_PROTOCOL_VERSION,MCP_EXACT_ACTION_REQUEST_VERSION,MCP_EXACT_ACTION_RESULT_VERSION,MCP_EXACT_ACTION_TOOL_INPUT_SCHEMA,MCP_EXACT_ACTION_TOOL_OUTPUT_SCHEMA,McpExactActionGateway,McpExactActionInputError,REGISTERED_EVIDENCE_REFERENCES,createDefaultMcpExactActionRequest,validateMcpExactActionRequest } from "./mcp-exact-action-gateway.js";
+export type { McpExactActionEvidenceReferences,McpExactActionOutcome,McpExactActionRequest,McpExactActionResult,McpExactActionToolBinding } from "./mcp-exact-action-gateway.js";
+export { MCP_STDIO_MAX_LINE_BYTES,MCP_STDIO_SERVER_VERSION,McpStdioProtocolServer,runMcpStdioServer } from "./mcp-stdio-server.js";
+export type { JsonRpcError,JsonRpcResponse,JsonRpcSuccess } from "./mcp-stdio-server.js";

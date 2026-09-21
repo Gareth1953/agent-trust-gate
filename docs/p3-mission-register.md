@@ -6,6 +6,7 @@ No mandate. No evidence. No verified intent. No signed gate pass. No settlement.
 
 | Mission | Purpose |
 |---|---|
+| P3-M158 | Local MCP stdio Exact-Action Gateway Foundation and Action Capability Passport |
 | P3-M089 | Strategic Trust Gate Expansion Pack |
 | P3-M090 | Local Gate Pass Demo Flow |
 | P3-M091 | Receipt and Audit Trail Strengthening |
@@ -118,6 +119,25 @@ P3-M144A strengthens public discovery and commercial positioning for Embedded Co
 P3-M145 adds a local end-to-end GatePass pilot for a delegated payment-style action before simulated settlement. It shows a permitted local-demo signed GatePass path, a refused over-limit path, simulated settlement allowed or blocked, ignored local audit artefacts, and commercial feasibility-pilot documentation. It adds no live payment processing, real settlement, external API, network call, customer data, credential, production key, blockchain or cryptocurrency logic, live MCP proxy, SSO, production deployment, autonomous financial execution, tag, release, publish, push, or action execution.
 
 No live APIs, payments, settlement execution, external-agent contact, AUC merge, cloud/network calls, MCP server functionality, live traffic monitoring, real bot detection, crawler blocking, browser fingerprinting, scraping, contact harvesting, tracking, analytics, telemetry, outreach automation, secrets, credentials, hosted services, tag/package publish/deployment, or autonomous action execution. AUC is not integrated. Agent Contact System is not integrated.
+
+## P3-M158 — Local MCP Exact-Action Gateway Foundation
+
+**Status:** Implemented local evaluation-only stdio gateway.
+
+P3-M158 adds a dependency-free MCP protocol `2025-06-18` stdio boundary over
+the existing exact-action authority evaluator. It supports `initialize`, the
+`notifications/initialized` lifecycle notification, `ping`, `tools/list`, and
+`tools/call`, and exposes exactly `atg.evaluate_action`. A repository-registered
+Action Capability Passport binds the server, tool, operation and input schema.
+The additive orchestration result maps existing authorised issuance to
+`ACCEPT` and existing refusal to `REJECT` without changing any existing v1
+verdict or schema.
+
+The mission adds no HTTP or remote transport, OAuth, policy administration,
+authority expansion, Shadow Mode, `REFER`, `REVOKE`, business-policy contract,
+aggregate exposure control, durable state, emergency stop, crash recovery,
+Customer Trust Receipt, downstream forwarding, simulated execution or live
+execution. MCP compatibility does not imply production readiness.
 ## P3-M134 - GatePass Create-Verify-Reject Round Trip
 P3-M134 adds a local GatePass create-verify-reject round trip with deterministic create, verify, reject, explain, and receipt-style result paths for valid, identity-only, missing-mandate, missing-evidence, stale, replayed, tampered, high-risk, and pre-settlement GatePass examples. It adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
 ## P3-M135 - Agent-Readable GatePass Benefit and Voluntary Referral Pack

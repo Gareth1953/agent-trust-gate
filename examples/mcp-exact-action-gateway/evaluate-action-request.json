@@ -1,0 +1,40 @@
+{
+  "requestVersion": "atg.mcp-exact-action-request.local.v1",
+  "passportReference": {
+    "passportId": "passport.atg.local.procurement-evaluation.v1",
+    "passportVersion": "1.0.0",
+    "passportDigest": "sha256:b9a0ed1a81e393d7adb2cc776d6b42dd0e295e31fe75f1756d57beec445e7f93"
+  },
+  "toolBinding": {
+    "mcpServerIdentity": "io.github.gareth1953.agent-trust-gate.local-stdio",
+    "toolIdentity": "atg.evaluate_action",
+    "operation": "evaluate_exact_action",
+    "inputSchemaIdentity": "atg.mcp-exact-action-request.local",
+    "inputSchemaVersion": "1.0.0",
+    "inputSchemaDigest": "sha256:604880696812076db94a2f8903c11287cb52f3fc7ef3f68ec242432b8951e8cf"
+  },
+  "evidenceReferences": {
+    "humanAuthority": "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
+    "humanApproval": "fixture://northstar/human-approval/EMP-NORTHSTAR-0042",
+    "agentStanding": "fixture://northstar/agent-standing/procurement-agent-04",
+    "mandate": "fixture://northstar/mandate/procurement-purchase-v1"
+  },
+  "proposedAction": {
+    "organisationId": "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+    "agentId": "agent:northstar-retail:procurement:04",
+    "supplierId": "SUP-HARBOUR-001",
+    "supplierName": "Harbour Supply Ltd",
+    "product": "Product X",
+    "category": "product_x",
+    "quantity": 200,
+    "totalAmount": 23750,
+    "currency": "GBP",
+    "commercialTermsReference": "TERMS-HARBOUR-NEGOTIATED-001",
+    "actionType": "purchase",
+    "jurisdiction": "GB",
+    "riskTier": "medium",
+    "timestamp": "2026-09-02T09:00:00.000Z",
+    "nonce": "nonce_northstar_allowed_001",
+    "policyVersion": "northstar-exact-action-policy-2026-09-02.v1"
+  }
+}

@@ -16,6 +16,32 @@ synthetic, local-only and outside production use.
 Legacy repository capability flag: **Current status: local_demo_only.** This
 continues to describe the absence of any hosted or production capability.
 
+## LOCAL MCP EXACT-ACTION GATEWAY FOUNDATION
+
+P3-M158 adds a genuine local MCP `stdio` server for evaluation-only access to
+the existing exact-action core. It supports MCP protocol `2025-06-18`, the
+required initialization lifecycle, `tools/list`, and `tools/call`. It exposes
+exactly one tool: `atg.evaluate_action`.
+
+```powershell
+npm run build
+npm run --silent mcp:stdio
+```
+
+The server reads newline-delimited JSON-RPC from standard input and writes only
+protocol messages to standard output. It has no HTTP listener, network call,
+telemetry, remote transport, policy-administration tool, or execution tool.
+An `ACCEPT` result may include the existing local one-use GatePass; it does not
+mean that an action was executed. `REJECT` includes deterministic reason codes
+and no GatePass. `REFER`, `REVOKE`, Shadow Mode and action execution are not
+implemented by P3-M158.
+
+Every request must match a repository-registered Action Capability Passport.
+The passport binds the MCP server, tool, operation and input-schema digest, but
+does not create human authority, agent standing, mandate or approval. MCP tool
+descriptions and annotations are untrusted metadata. See the
+[P3-M158 integration guide](docs/P3-M158-local-mcp-exact-action-gateway.md).
+
 ## WORKING EXACT ACTION TRUST GATEWAY PROTOTYPE
 
 Agent Trust Gate™ — Exact Action Trust Gateway provides a buyer-usable local

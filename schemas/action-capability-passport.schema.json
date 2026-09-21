@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Gareth1953/agent-trust-gate/schemas/action-capability-passport.schema.json",
+  "title": "ATG Action Capability Passport",
+  "description": "Versioned local registry record binding one MCP evaluation tool, operation and input schema. It creates no human authority, agent standing or execution permission.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["passportSchemaVersion", "passportId", "passportVersion", "mcpServerIdentity", "toolIdentity", "operation", "inputSchema", "permittedActionType", "permittedEnvironment", "permittedAdapterClass", "riskClassification", "reversibilityClassification", "evidenceRequirements", "effectiveAt", "expiresAt", "status", "revocationReference", "localOnly", "executionAvailable", "passportDigest"],
+  "properties": {
+    "passportSchemaVersion": { "const": "atg.action-capability-passport.local.v1" },
+    "passportId": { "type": "string", "minLength": 1, "maxLength": 160 },
+    "passportVersion": { "type": "string", "minLength": 1, "maxLength": 40 },
+    "mcpServerIdentity": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "toolIdentity": { "const": "atg.evaluate_action" },
+    "operation": { "const": "evaluate_exact_action" },
+    "inputSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity", "version", "digest"],
+      "properties": {
+        "identity": { "type": "string", "minLength": 1 },
+        "version": { "type": "string", "minLength": 1 },
+        "digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+      }
+    },
+    "permittedActionType": { "const": "purchase" },
+    "permittedEnvironment": { "const": "local_synthetic_procurement_simulation" },
+    "permittedAdapterClass": { "const": "evaluation_only_non_executable" },
+    "riskClassification": { "enum": ["low", "medium", "high"] },
+    "reversibilityClassification": { "enum": ["not_applicable_evaluation_only", "reversible", "irreversible"] },
+    "evidenceRequirements": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+    "effectiveAt": { "type": "string", "format": "date-time" },
+    "expiresAt": { "oneOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }] },
+    "status": { "enum": ["active", "revoked"] },
+    "revocationReference": { "oneOf": [{ "type": "string", "minLength": 1 }, { "type": "null" }] },
+    "localOnly": { "const": true },
+    "executionAvailable": { "const": false },
+    "passportDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "active" } } },
+      "then": { "properties": { "revocationReference": { "type": "null" } } }
+    },
+    {
+      "if": { "properties": { "status": { "const": "revoked" } } },
+      "then": { "properties": { "revocationReference": { "type": "string", "minLength": 1 } } }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "passportSchemaVersion": "atg.action-capability-passport.local.v1",
+  "passportId": "passport.atg.local.procurement-evaluation.v1",
+  "passportVersion": "1.0.0",
+  "mcpServerIdentity": "io.github.gareth1953.agent-trust-gate.local-stdio",
+  "toolIdentity": "atg.evaluate_action",
+  "operation": "evaluate_exact_action",
+  "inputSchema": {
+    "identity": "atg.mcp-exact-action-request.local",
+    "version": "1.0.0",
+    "digest": "sha256:604880696812076db94a2f8903c11287cb52f3fc7ef3f68ec242432b8951e8cf"
+  },
+  "permittedActionType": "purchase",
+  "permittedEnvironment": "local_synthetic_procurement_simulation",
+  "permittedAdapterClass": "evaluation_only_non_executable",
+  "riskClassification": "medium",
+  "reversibilityClassification": "not_applicable_evaluation_only",
+  "evidenceRequirements": [
+    "registered human authority evidence",
+    "registered human approval evidence",
+    "registered agent standing evidence",
+    "registered bounded mandate",
+    "fresh synthetic procurement evidence"
+  ],
+  "effectiveAt": "2026-09-01T00:00:00.000Z",
+  "expiresAt": "2027-09-01T00:00:00.000Z",
+  "status": "active",
+  "revocationReference": null,
+  "localOnly": true,
+  "executionAvailable": false,
+  "passportDigest": "sha256:b9a0ed1a81e393d7adb2cc776d6b42dd0e295e31fe75f1756d57beec445e7f93"
+}

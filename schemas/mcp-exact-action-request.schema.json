@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Gareth1953/agent-trust-gate/schemas/mcp-exact-action-request.schema.json",
+  "title": "ATG MCP Exact-Action Request",
+  "description": "Arguments for the local atg.evaluate_action MCP tool. Authority is resolved from repository-owned records, not agent assertions.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["requestVersion", "passportReference", "toolBinding", "evidenceReferences", "proposedAction"],
+  "properties": {
+    "requestVersion": { "const": "atg.mcp-exact-action-request.local.v1" },
+    "passportReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["passportId", "passportVersion", "passportDigest"],
+      "properties": {
+        "passportId": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "passportVersion": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "passportDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+      }
+    },
+    "toolBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mcpServerIdentity", "toolIdentity", "operation", "inputSchemaIdentity", "inputSchemaVersion", "inputSchemaDigest"],
+      "properties": {
+        "mcpServerIdentity": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "toolIdentity": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "operation": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "inputSchemaIdentity": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "inputSchemaVersion": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "inputSchemaDigest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+      }
+    },
+    "evidenceReferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["humanAuthority", "humanApproval", "agentStanding", "mandate"],
+      "properties": {
+        "humanAuthority": { "type": "string", "minLength": 1, "maxLength": 240 },
+        "humanApproval": { "type": "string", "minLength": 1, "maxLength": 240 },
+        "agentStanding": { "type": "string", "minLength": 1, "maxLength": 240 },
+        "mandate": { "type": "string", "minLength": 1, "maxLength": 240 }
+      }
+    },
+    "proposedAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["organisationId", "agentId", "supplierId", "supplierName", "product", "category", "quantity", "totalAmount", "currency", "commercialTermsReference", "actionType", "jurisdiction", "riskTier", "timestamp", "nonce", "policyVersion"],
+      "properties": {
+        "organisationId": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "agentId": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "supplierId": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "supplierName": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "product": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "category": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "quantity": { "type": "integer", "minimum": 1, "maximum": 1000000 },
+        "totalAmount": { "type": "number", "minimum": 0, "maximum": 1000000000 },
+        "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+        "commercialTermsReference": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "actionType": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "jurisdiction": { "type": "string", "minLength": 2, "maxLength": 32 },
+        "riskTier": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "timestamp": { "type": "string", "format": "date-time", "maxLength": 40 },
+        "nonce": { "type": "string", "minLength": 8, "maxLength": 200 },
+        "policyVersion": { "type": "string", "minLength": 1, "maxLength": 160 }
+      }
+    }
+  }
+}
