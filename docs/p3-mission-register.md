@@ -225,6 +225,23 @@ authority inflation, invalid commands/links and analytics/tracking code. The
 mission changes no decision semantics, GatePass rules, policy/lifecycle state,
 adapter boundary, MCP tool surface, dependency, lockfile or M162 evidence. It
 performs no push, publication, deployment, outreach or external action.
+
+## P3-M164A — Controlled Buyer-Pilot Reconciliation
+
+**Status:** Reconciled locally; not pushed or published.
+
+P3-M164A preserves the three remote buyer-pilot commits as the second-parent
+history of a controlled merge while reconciling their public page, sitemap and
+homepage discovery with the locked P3-M163 evidence and claims boundaries.
+Outdated readiness scores, test totals, PASS/REFUSE-only vocabulary, authority-
+like receipt wording and a newly exposed backup personal email were not carried
+forward. The retained pilot route is bounded, local-first, evidence-led,
+synthetic or non-production, scope-dependent and buyer-controlled.
+
+P3-M164 real-browser validation and controlled publication remain pending. No
+browser validation, push, publication, deployment, tag or release occurs in
+P3-M164A.
+
 ## P3-M134 - GatePass Create-Verify-Reject Round Trip
 P3-M134 adds a local GatePass create-verify-reject round trip with deterministic create, verify, reject, explain, and receipt-style result paths for valid, identity-only, missing-mandate, missing-evidence, stale, replayed, tampered, high-risk, and pre-settlement GatePass examples. It adds no live APIs, MCP server functionality, live systems contact, direct bot messaging, live agent-to-agent communication, production signing, production-grade crypto, payment processing, settlement execution, real tool execution, or action execution.
 ## P3-M135 - Agent-Readable GatePass Benefit and Voluntary Referral Pack

@@ -40,6 +40,7 @@ const requiredSiteFiles = [
   "discovery-site/README.md",
   "discovery-site/company.html",
   "discovery-site/contact.html",
+  "discovery-site/controlled-buyer-pilot.html",
   "discovery-site/corporate.css",
   "discovery-site/corporate.js",
   "discovery-site/evidence.html",
@@ -76,6 +77,7 @@ const publicHtmlFiles = [
   "discovery-site/404.html",
   "discovery-site/company.html",
   "discovery-site/contact.html",
+  "discovery-site/controlled-buyer-pilot.html",
   "discovery-site/evidence.html",
   "discovery-site/privacy.html",
   "discovery-site/solutions.html",
@@ -92,6 +94,7 @@ const publicHtmlFiles = [
 ] as const;
 const seoPublicHtmlFiles = [
   "discovery-site/index.html",
+  "discovery-site/controlled-buyer-pilot.html",
   "discovery-site/exact-action-authority-control-model.html",
   "discovery-site/evidence-and-reviewer.html",
   "discovery-site/retail-supply-chain-ai-agent-authority.html",
@@ -196,7 +199,8 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
     {
       id: "index_at_artifact_root",
       passed: workflow.includes("cp -R discovery-site/. _site/") &&
-        workflow.includes("test -f _site/index.html"),
+        workflow.includes("test -f _site/index.html") &&
+        workflow.includes("test -f _site/controlled-buyer-pilot.html"),
       detail: "workflow copies discovery-site contents so index.html is at the Pages artifact root",
     },
     {

@@ -17,6 +17,7 @@ export interface PublicClaimsValidationOverrides {
   technologyHtml?: string;
   contactHtml?: string;
   privacyHtml?: string;
+  pilotHtml?: string;
   corporateScript?: string;
   corporateCss?: string;
   evidenceBundle?: Record<string, unknown>;
@@ -37,12 +38,13 @@ export function validatePublicClaims(overrides: PublicClaimsValidationOverrides 
   const technologyHtml = overrides.technologyHtml ?? read("discovery-site/technology.html");
   const contactHtml = overrides.contactHtml ?? read("discovery-site/contact.html");
   const privacyHtml = overrides.privacyHtml ?? read("discovery-site/privacy.html");
+  const pilotHtml = overrides.pilotHtml ?? read("discovery-site/controlled-buyer-pilot.html");
   const corporateScript = overrides.corporateScript ?? read("discovery-site/corporate.js");
   const corporateCss = overrides.corporateCss ?? read("discovery-site/corporate.css");
   const evidenceBundle = overrides.evidenceBundle ?? json("examples/p3-m162/evidence-bundle.json");
   const claimsRegister = overrides.claimsRegister ?? json("docs/P3-M163-public-claims-evidence-register.json");
   const packageJson = overrides.packageJson ?? json("package.json");
-  const publicText = [readme, indexHtml, evidenceHtml, technologyHtml, contactHtml, privacyHtml].join("\n");
+  const publicText = [readme, indexHtml, evidenceHtml, technologyHtml, contactHtml, privacyHtml, pilotHtml].join("\n");
   const checks: PublicClaimCheck[] = [];
   const check = (id: string, passed: boolean, detail: string) => checks.push({ id, passed, detail });
 
@@ -68,9 +70,9 @@ export function validatePublicClaims(overrides: PublicClaimsValidationOverrides 
   const scripts = record(packageJson.scripts);
   check("package_commands", requiredCommands.every((command) => typeof scripts[command] === "string") && requiredCommands.every((command) => publicText.includes(command)), "all published commands exist in package.json and appear on a public review surface");
   check("readme_links", markdownLinkTargets(readme).every((target) => repositoryLinkResolves(target)), "all README relative links resolve locally");
-  check("site_links", [indexHtml, evidenceHtml, technologyHtml, contactHtml, privacyHtml].every((html) => htmlLinkTargets(html).every((target) => siteLinkResolves(target))), "all modified-site relative links resolve in the static site");
+  check("site_links", [indexHtml, evidenceHtml, technologyHtml, contactHtml, privacyHtml, pilotHtml].every((html) => htmlLinkTargets(html).every((target) => siteLinkResolves(target))), "all modified-site relative links resolve in the static site");
 
-  check("single_h1", [indexHtml, evidenceHtml, technologyHtml, contactHtml, privacyHtml].every((html) => (html.match(/<h1\b/gi) ?? []).length === 1), "each modified public page has one logical H1");
+  check("single_h1", [indexHtml, evidenceHtml, technologyHtml, contactHtml, privacyHtml, pilotHtml].every((html) => (html.match(/<h1\b/gi) ?? []).length === 1), "each modified public page has one logical H1");
   check("accessible_navigation", /<nav\b[^>]*aria-label="Primary navigation"/i.test(indexHtml) && /aria-controls="primary-navigation"/i.test(indexHtml), "home navigation has explicit accessible name and menu relationship");
   check("focus_and_motion", /:focus-visible/.test(corporateCss) && /prefers-reduced-motion:\s*reduce/.test(corporateCss), "visible focus and reduced-motion treatment are present");
   check("responsive_table", /class="table-scroll"[^>]*role="region"[^>]*tabindex="0"/i.test(indexHtml) && /overflow-x:\s*auto/.test(corporateCss), "the ten-case table has a keyboard-focusable responsive container");
@@ -79,7 +81,7 @@ export function validatePublicClaims(overrides: PublicClaimsValidationOverrides 
   check("receipt_non_authority", /Customer Trust Receipts[^.]*non-authorising/i.test(publicText) && /cannot reserve, execute, retry, revoke or act as GatePasses/i.test(publicText), "Customer Trust Receipts are never described as authority");
   check("shadow_non_authority", /Shadow Mode[\s\S]{0,220}(?:issues no GatePass|no GatePass)/i.test(publicText) && !/Shadow Mode[^.]{0,120}(?:issues|creates|grants) (?:a )?GatePass/i.test(publicText), "Shadow Mode is explicitly non-authorising");
   check("synthetic_adapter_boundary", /frozen in-process synthetic adapter/i.test(indexHtml) && /makes no real order or payment/i.test(indexHtml), "synthetic acknowledgement is not described as real execution");
-  check("pilot_claim", /Paid evaluation pilots starting from £1,500/i.test(indexHtml) && /indicative, scope-dependent/i.test(indexHtml) && /Paid evaluation pilots starting from £1,500/i.test(contactHtml) && /indicative and scope-dependent/i.test(contactHtml), "pilot price is consistently qualified as indicative and scope-dependent");
+  check("pilot_claim", /Paid evaluation pilots starting from £1,500/i.test(indexHtml) && /indicative, scope-dependent/i.test(indexHtml) && /Paid evaluation pilots starting from £1,500/i.test(contactHtml) && /indicative and scope-dependent/i.test(contactHtml) && /Paid evaluation pilots starting from £1,500/i.test(pilotHtml) && /indicative and scope-dependent/i.test(pilotHtml), "pilot price is consistently qualified as indicative and scope-dependent");
 
   const limitationConcepts = ["not production ready", "customer adoption", "regulatory approval", "guaranteed compliance", "guaranteed safety", "proven ROI", "statistical significance", "distributed durability", "real external-effect reconciliation", "business-outcome correctness"];
   check("required_limitations", limitationConcepts.every((phrase) => publicText.toLowerCase().includes(phrase.toLowerCase())), "required limitations and non-claims are visible");

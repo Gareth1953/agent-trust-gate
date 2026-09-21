@@ -10,6 +10,7 @@ import { McpStdioProtocolServer, type JsonRpcResponse } from "../src/mcp-stdio-s
 const read = (path: string) => readFileSync(path, "utf8");
 const bundle = JSON.parse(read("examples/p3-m162/evidence-bundle.json")) as Record<string, unknown>;
 const index = read("discovery-site/index.html");
+const pilot = read("discovery-site/controlled-buyer-pilot.html");
 const readme = read("README.md");
 
 test("public claims validate against locked M162 evidence", () => {
@@ -65,8 +66,19 @@ test("pilot price is indicative, scope-dependent and has no checkout path", () =
   const contact = read("discovery-site/contact.html");
   assert.match(index, /Paid evaluation pilots starting from £1,500/);
   assert.match(contact, /Paid evaluation pilots starting from £1,500/);
-  assert.match(`${index}\n${contact}`, /indicative[^.]*scope-dependent/i);
-  assert.doesNotMatch(`${index}\n${contact}`, /<form\b|href=["'][^"']*(?:paypal|stripe|checkout)/i);
+  assert.match(`${index}\n${contact}\n${pilot}`, /indicative[^.]*scope-dependent/i);
+  assert.match(pilot, /Paid evaluation pilots starting from £1,500/);
+  assert.doesNotMatch(`${index}\n${contact}\n${pilot}`, /<form\b|href=["'][^"']*(?:paypal|stripe|checkout)/i);
+});
+
+test("controlled buyer pilot is discoverable and preserves M163 authority boundaries", () => {
+  assert.match(index, /href="\.\/controlled-buyer-pilot\.html"/);
+  assert.match(read("discovery-site/sitemap.xml"), /controlled-buyer-pilot\.html/);
+  assert.match(pilot, /Only <code>atg\.evaluate_action<\/code> is exposed/);
+  assert.match(pilot, /Customer Trust Receipts are non-authorising/);
+  assert.match(pilot, /buyer retains control of any real execution boundary/i);
+  assert.match(pilot, /Observed in the deterministic ten-case synthetic demonstration\./);
+  assert.doesNotMatch(pilot, /93\/100|1,394 tests|Executive Trust Receipt|gpmiddleton71@gmail\.com/i);
 });
 
 test("site runtime contains no analytics, telemetry, tracking or network call", () => {

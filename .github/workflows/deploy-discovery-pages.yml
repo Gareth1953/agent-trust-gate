@@ -65,6 +65,7 @@ jobs:
           test -f _site/evidence.html
           test -f _site/company.html
           test -f _site/contact.html
+          test -f _site/controlled-buyer-pilot.html
           test -f _site/privacy.html
           test -f _site/corporate.css
           test -f _site/corporate.js
