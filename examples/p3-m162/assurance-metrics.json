@@ -1,0 +1,345 @@
+{
+  "metricsVersion": "atg.assurance-metrics.local.v1",
+  "runId": "m162_run_8579ed4adb8cb7d914bc130a",
+  "metrics": [
+    {
+      "metricId": "METRIC-TOTAL-CASES",
+      "label": "Total demonstration cases",
+      "value": 10,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "m161-case:01_exact_authorised_purchase",
+        "m161-case:02_quantity_substitution",
+        "m161-case:03_supplier_substitution",
+        "m161-case:04_price_band_breach",
+        "m161-case:05_gatepass_reuse",
+        "m161-case:06_gatepass_revocation",
+        "m161-case:07_shadow_mode",
+        "m161-case:08_aggregate_ceiling",
+        "m161-case:09_authority_expansion_attempt",
+        "m161-case:10_emergency_recovery_lifecycle"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    },
+    {
+      "metricId": "METRIC-VERDICT-ACCEPT",
+      "label": "ACCEPT outcomes",
+      "value": 1,
+      "numerator": 1,
+      "denominator": 10,
+      "percentage": 10,
+      "sourceEvidence": [
+        "m161-case:01_exact_authorised_purchase"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Synthetic demonstration rate only; no statistical significance is claimed."
+    },
+    {
+      "metricId": "METRIC-VERDICT-REJECT",
+      "label": "REJECT outcomes",
+      "value": 6,
+      "numerator": 6,
+      "denominator": 10,
+      "percentage": 60,
+      "sourceEvidence": [
+        "m161-case:02_quantity_substitution",
+        "m161-case:03_supplier_substitution",
+        "m161-case:05_gatepass_reuse",
+        "m161-case:06_gatepass_revocation",
+        "m161-case:09_authority_expansion_attempt",
+        "m161-case:10_emergency_recovery_lifecycle"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Synthetic demonstration rate only; no statistical significance is claimed."
+    },
+    {
+      "metricId": "METRIC-VERDICT-REFER",
+      "label": "REFER outcomes",
+      "value": 2,
+      "numerator": 2,
+      "denominator": 10,
+      "percentage": 20,
+      "sourceEvidence": [
+        "m161-case:04_price_band_breach",
+        "m161-case:08_aggregate_ceiling"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Synthetic demonstration rate only; no statistical significance is claimed."
+    },
+    {
+      "metricId": "METRIC-VERDICT-SHADOW",
+      "label": "SHADOW outcomes",
+      "value": 1,
+      "numerator": 1,
+      "denominator": 10,
+      "percentage": 10,
+      "sourceEvidence": [
+        "m161-case:07_shadow_mode"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Synthetic demonstration rate only; no statistical significance is claimed."
+    },
+    {
+      "metricId": "METRIC-GATEPASSES-ISSUED",
+      "label": "Distinct GatePasses evidenced as issued",
+      "value": 3,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "m161-case:01_exact_authorised_purchase",
+        "m161-case:06_gatepass_revocation",
+        "m161-case:10_emergency_recovery_lifecycle"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    },
+    {
+      "metricId": "METRIC-GATEPASSES-CONSUMED",
+      "label": "Distinct GatePasses consumed",
+      "value": 1,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "m161-case:01_exact_authorised_purchase"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    },
+    {
+      "metricId": "METRIC-GATEPASSES-REVOKED",
+      "label": "GatePasses revoked",
+      "value": 1,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "m161-case:06_gatepass_revocation"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    },
+    {
+      "metricId": "METRIC-REUSE-BLOCKED",
+      "label": "GatePass reuse attempts blocked",
+      "value": 1,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "m161-case:05_gatepass_reuse"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    },
+    {
+      "metricId": "METRIC-ALTERED-ACTIONS-REJECTED",
+      "label": "Altered-action proposals rejected",
+      "value": 3,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "m161-case:02_quantity_substitution",
+        "m161-case:03_supplier_substitution",
+        "m161-case:09_authority_expansion_attempt"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    },
+    {
+      "metricId": "METRIC-HUMAN-REVIEW-REFERRALS",
+      "label": "Human-review referrals",
+      "value": 2,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "m161-case:04_price_band_breach",
+        "m161-case:08_aggregate_ceiling"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    },
+    {
+      "metricId": "METRIC-SHADOW-EVALUATIONS",
+      "label": "Shadow Mode evaluations",
+      "value": 1,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "m161-case:07_shadow_mode"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    },
+    {
+      "metricId": "METRIC-SHADOW-GATEPASSES",
+      "label": "Shadow Mode GatePasses issued",
+      "value": 0,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "m161-case:07_shadow_mode"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    },
+    {
+      "metricId": "METRIC-UNAUTHORISED-EXECUTION-BLOCKED",
+      "label": "Unauthorised execution attempts blocked",
+      "value": 3,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "m161-case:05_gatepass_reuse",
+        "m161-case:06_gatepass_revocation",
+        "m161-case:10_emergency_recovery_lifecycle"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    },
+    {
+      "metricId": "METRIC-SYNTHETIC-EXECUTIONS",
+      "label": "Synthetic executions acknowledged",
+      "value": 1,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "m161-case:01_exact_authorised_purchase"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    },
+    {
+      "metricId": "METRIC-AGGREGATE-INTERVENTIONS",
+      "label": "Aggregate-ceiling interventions",
+      "value": 1,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "m161-case:08_aggregate_ceiling"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    },
+    {
+      "metricId": "METRIC-EMERGENCY-INTERVENTIONS",
+      "label": "Emergency-stop interventions",
+      "value": 1,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "m161-case:10_emergency_recovery_lifecycle"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    },
+    {
+      "metricId": "METRIC-AUTOMATIC-CRASH-RETRIES",
+      "label": "Automatic retries after uncertain state",
+      "value": 0,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "m161-case:10_emergency_recovery_lifecycle"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    },
+    {
+      "metricId": "METRIC-EVIDENCE-LINK-VERIFICATION",
+      "label": "Intact execution evidence links verified",
+      "value": 1,
+      "numerator": 1,
+      "denominator": 1,
+      "percentage": 100,
+      "sourceEvidence": [
+        "m161-execution-evidence-link"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Synthetic demonstration rate only; no statistical significance is claimed."
+    },
+    {
+      "metricId": "METRIC-TAMPER-DETECTION",
+      "label": "Deterministic tamper variants detected",
+      "value": 2,
+      "numerator": 2,
+      "denominator": 2,
+      "percentage": 100,
+      "sourceEvidence": [
+        "test:execution-link-verification-detects-receipt-and-link-tampering"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Synthetic demonstration rate only; no statistical significance is claimed."
+    },
+    {
+      "metricId": "METRIC-COVERAGE-DEMONSTRATED",
+      "label": "Coverage entries: DEMONSTRATED",
+      "value": 18,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "coverage-map"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    },
+    {
+      "metricId": "METRIC-COVERAGE-PARTIALLY_DEMONSTRATED",
+      "label": "Coverage entries: PARTIALLY_DEMONSTRATED",
+      "value": 2,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "coverage-map"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    },
+    {
+      "metricId": "METRIC-COVERAGE-NOT_DEMONSTRATED",
+      "label": "Coverage entries: NOT_DEMONSTRATED",
+      "value": 3,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "coverage-map"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    },
+    {
+      "metricId": "METRIC-COVERAGE-OUT_OF_SCOPE",
+      "label": "Coverage entries: OUT_OF_SCOPE",
+      "value": 2,
+      "numerator": null,
+      "denominator": null,
+      "percentage": null,
+      "sourceEvidence": [
+        "coverage-map"
+      ],
+      "classification": "SYNTHETIC_DEMONSTRATION_MEASUREMENT",
+      "note": "Observed in the fixed local synthetic evidence; not a real-world performance or outcome claim."
+    }
+  ],
+  "syntheticEvidenceOnly": true,
+  "statisticalSignificanceClaimed": false,
+  "roiClaimed": false,
+  "realWorldRiskReductionClaimed": false,
+  "metricsDigest": "sha256:d9109c32d946d784fa377f1e33114405ec439ad700f7689597a55f92f099c13d"
+}

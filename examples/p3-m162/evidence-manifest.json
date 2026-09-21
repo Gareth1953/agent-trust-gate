@@ -1,0 +1,49 @@
+{
+  "manifestVersion": "atg.m162-evidence-manifest.local.v1",
+  "runId": "m162_run_8579ed4adb8cb7d914bc130a",
+  "entries": [
+    {
+      "artefactId": "source-m161",
+      "artefactType": "M161_DEMONSTRATION",
+      "schemaVersion": "atg.purchasing-lifecycle-demo.local.v1",
+      "canonicalDigest": "sha256:8579ed4adb8cb7d914bc130a7bdacca8a3b686c74e15e50ae0505737ae17eca8",
+      "required": true
+    },
+    {
+      "artefactId": "customer-trust-receipts",
+      "artefactType": "CUSTOMER_TRUST_RECEIPTS",
+      "schemaVersion": "atg.customer-trust-receipt.local.v1",
+      "canonicalDigest": "sha256:1ede31ccbe8882c85d4dfa0a0be17faba8bf2847f0276cd8332b47bd7c015936",
+      "required": true
+    },
+    {
+      "artefactId": "assurance-coverage-map",
+      "artefactType": "ASSURANCE_COVERAGE_MAP",
+      "schemaVersion": "atg.assurance-coverage-map.local.v1",
+      "canonicalDigest": "sha256:f88efc79e71301440b2b576cb36fe17bfbbbcdf9dd2a60a5ccc16cdce8318d00",
+      "required": true
+    },
+    {
+      "artefactId": "assurance-metrics",
+      "artefactType": "ASSURANCE_METRICS",
+      "schemaVersion": "atg.assurance-metrics.local.v1",
+      "canonicalDigest": "sha256:ee28b3d0f1476df30a0158eb4cb576211c9d6b94b32168564ddd5360e7dae88c",
+      "required": true
+    },
+    {
+      "artefactId": "buyer-adoption-proof-pack",
+      "artefactType": "BUYER_ADOPTION_PROOF_PACK",
+      "schemaVersion": "atg.buyer-adoption-proof-pack.local.v1",
+      "canonicalDigest": "sha256:e168a6ffcc206d15f28a91d05404c3fa5dd6f4f743e9782f00b5ba62da340268",
+      "required": true
+    },
+    {
+      "artefactId": "buyer-adoption-proof-pack-markdown",
+      "artefactType": "REVIEWER_MARKDOWN",
+      "schemaVersion": "atg.buyer-adoption-proof-pack.markdown.v1",
+      "canonicalDigest": "sha256:b4872fac1e3fa9b33bd913f323d39b97f6c0d24587e05ff5f809cc1439aa3c0e",
+      "required": true
+    }
+  ],
+  "manifestDigest": "sha256:2398dd9c4b74be77623dcf09519926f37c8ea898fb216ceb2392c08a66e65734"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Gareth1953/agent-trust-gate/schemas/buyer-adoption-proof-pack.schema.json",
+  "title": "ATG Buyer Adoption Proof Pack",
+  "type": "object",
+  "required": ["packVersion", "packId", "runId", "executiveEvidenceSummary", "whatAtgDoes", "whatAtgDoesNotDo", "scenario", "tenCaseOutcomeReferences", "customerTrustReceiptReferences", "coverageMapReference", "metricsReference", "evidenceManifestReference", "verificationInstructions", "reproductionInstructions", "architectureAndTrustBoundary", "integrationAssumptions", "pilotEntryRequirements", "buyerResponsibilities", "securityAndDataHandling", "knownLimitationsAndNonClaims", "evidenceClassifications", "localOnly", "syntheticOnly", "productionReady", "customerValidated", "packDigest"],
+  "properties": {
+    "packVersion": { "const": "atg.buyer-adoption-proof-pack.local.v1" },
+    "packId": { "type": "string", "minLength": 1 },
+    "runId": { "type": "string", "minLength": 1 },
+    "tenCaseOutcomeReferences": { "type": "array", "minItems": 10, "maxItems": 10 },
+    "customerTrustReceiptReferences": { "type": "array", "minItems": 10, "maxItems": 10 },
+    "localOnly": { "const": true },
+    "syntheticOnly": { "const": true },
+    "productionReady": { "const": false },
+    "customerValidated": { "const": false },
+    "packDigest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+  }
+}

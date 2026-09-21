@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Gareth1953/agent-trust-gate/schemas/m162-evidence-bundle.schema.json",
+  "title": "ATG P3-M162 Evidence Bundle",
+  "type": "object",
+  "required": ["bundleVersion", "runId", "generatedAt", "sourceM161", "customerTrustReceipts", "coverageMap", "metrics", "buyerAdoptionProofPack", "reviewerMarkdown", "manifest", "localOnly", "syntheticOnly", "authorityGranted", "executionAvailable", "productionReady", "externalActionOccurred", "bundleDigest"],
+  "properties": {
+    "bundleVersion": { "const": "atg.m162-evidence-bundle.local.v1" },
+    "runId": { "type": "string", "minLength": 1 },
+    "generatedAt": { "const": "2026-09-02T09:00:00.000Z" },
+    "sourceM161": { "type": "object", "required": ["demoVersion", "canonicalDigest", "caseCount"] },
+    "customerTrustReceipts": { "type": "array", "minItems": 10, "maxItems": 10, "items": { "$ref": "customer-trust-receipt.schema.json" } },
+    "coverageMap": { "$ref": "assurance-coverage-map.schema.json" },
+    "metrics": { "$ref": "assurance-metrics.schema.json" },
+    "buyerAdoptionProofPack": { "$ref": "buyer-adoption-proof-pack.schema.json" },
+    "reviewerMarkdown": { "type": "string", "minLength": 1 },
+    "manifest": { "type": "object", "required": ["manifestVersion", "runId", "entries", "manifestDigest"] },
+    "localOnly": { "const": true },
+    "syntheticOnly": { "const": true },
+    "authorityGranted": { "const": false },
+    "executionAvailable": { "const": false },
+    "productionReady": { "const": false },
+    "externalActionOccurred": { "const": false },
+    "bundleDigest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+  }
+}

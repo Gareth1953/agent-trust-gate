@@ -1,0 +1,441 @@
+{
+  "mapVersion": "atg.assurance-coverage-map.local.v1",
+  "runId": "m162_run_8579ed4adb8cb7d914bc130a",
+  "entries": [
+    {
+      "controlId": "CTRL-EXACT-001",
+      "controlObjective": "Bind authority to one canonical action",
+      "concern": "Action mutation",
+      "implementationComponent": "exact-action GatePass",
+      "applicableCases": [
+        "01_exact_authorised_purchase",
+        "02_quantity_substitution",
+        "03_supplier_substitution"
+      ],
+      "evidenceReference": "01_exact_authorised_purchase,02_quantity_substitution,03_supplier_substitution",
+      "evidenceDigest": "sha256:a7175ba7e846d536dc7cc89ca2d2e478d61a0520af0ad9553492698097d92f2f",
+      "acceptanceTestReference": "test:m161:ctrl-exact-001",
+      "status": "DEMONSTRATED",
+      "explanation": "Canonical action binding accepts the exact action and rejects mutations.",
+      "knownLimitation": "Local fixture signatures only.",
+      "verificationMethod": "Recompute source-case and receipt digests.",
+      "entryDigest": "sha256:e68e41482b1be3b41a0da9cd30023e2f907ea345fa5c0463529139da0d17918e"
+    },
+    {
+      "controlId": "CTRL-MANDATE-001",
+      "controlObjective": "Enforce human mandate boundaries",
+      "concern": "Self-authorisation",
+      "implementationComponent": "exact-action authority evaluator",
+      "applicableCases": [
+        "01_exact_authorised_purchase",
+        "09_authority_expansion_attempt"
+      ],
+      "evidenceReference": "01_exact_authorised_purchase,09_authority_expansion_attempt",
+      "evidenceDigest": "sha256:273ac10f9a9cd6c5c170f820beccb95316e9780701bb4d4e0ea7f1d3b46b838b",
+      "acceptanceTestReference": "test:m161:ctrl-mandate-001",
+      "status": "DEMONSTRATED",
+      "explanation": "The valid mandate passes and agent expansion claims reject.",
+      "knownLimitation": "Synthetic registered authority only.",
+      "verificationMethod": "Verify cases 01 and 09.",
+      "entryDigest": "sha256:9c7e682efe824c1b25199d4c24068729e247e61b4626d035534e2510087a4a9a"
+    },
+    {
+      "controlId": "CTRL-MUTATION-001",
+      "controlObjective": "Detect supplier, quantity and price changes",
+      "concern": "Commercial-term substitution",
+      "implementationComponent": "business policy contract",
+      "applicableCases": [
+        "02_quantity_substitution",
+        "03_supplier_substitution",
+        "04_price_band_breach"
+      ],
+      "evidenceReference": "02_quantity_substitution,03_supplier_substitution,04_price_band_breach",
+      "evidenceDigest": "sha256:4b29fc80aa97808595c3121d745040168151c40ea86a19f63dd2098921b6a726",
+      "acceptanceTestReference": "test:m161:ctrl-mutation-001",
+      "status": "DEMONSTRATED",
+      "explanation": "Quantity and supplier reject; the bounded price band refers.",
+      "knownLimitation": "Only the fixture action family is covered.",
+      "verificationMethod": "Verify outcomes and reason codes.",
+      "entryDigest": "sha256:96fb2a984cea885eb4204011ece28837043920513ab40c0111778a6c511985c7"
+    },
+    {
+      "controlId": "CTRL-OUTCOME-001",
+      "controlObjective": "Keep ACCEPT, REJECT, REFER and revocation distinct",
+      "concern": "Outcome ambiguity",
+      "implementationComponent": "gateway plus lifecycle store",
+      "applicableCases": [
+        "01_exact_authorised_purchase",
+        "04_price_band_breach",
+        "06_gatepass_revocation"
+      ],
+      "evidenceReference": "01_exact_authorised_purchase,04_price_band_breach,06_gatepass_revocation",
+      "evidenceDigest": "sha256:e45ff1b46e9bc50dc05003ff3a124d73e065ea28e2e9f66e9afacc79b988e882",
+      "acceptanceTestReference": "test:m161:ctrl-outcome-001",
+      "status": "DEMONSTRATED",
+      "explanation": "Distinct evidence exists for acceptance, refusal/referral and revocation.",
+      "knownLimitation": "REVOKE is an internal lifecycle control, not an MCP verdict.",
+      "verificationMethod": "Verify cases and revocation receipt reference.",
+      "entryDigest": "sha256:e95810da2e46d96f2f3f5930648e94790933bfd80f5fa06f443b89dc2c0d9733"
+    },
+    {
+      "controlId": "CTRL-SHADOW-001",
+      "controlObjective": "Prevent Shadow Mode authority",
+      "concern": "Observation becoming permission",
+      "implementationComponent": "Shadow Decision Receipt",
+      "applicableCases": [
+        "07_shadow_mode"
+      ],
+      "evidenceReference": "07_shadow_mode",
+      "evidenceDigest": "sha256:968843376c96ae8f32fe7ec958a84614b5e5a952efc7d9acb946201eca4af16c",
+      "acceptanceTestReference": "test:m161:ctrl-shadow-001",
+      "status": "DEMONSTRATED",
+      "explanation": "Shadow would accept but issues no GatePass.",
+      "knownLimitation": "One synthetic policy fixture.",
+      "verificationMethod": "Verify Shadow receipt and zero GatePass metric.",
+      "entryDigest": "sha256:6fe84d315f60c9abc96701aa9996e0692c99f7ab2413a84f50793295ccce6eb3"
+    },
+    {
+      "controlId": "CTRL-ONEUSE-001",
+      "controlObjective": "Prevent GatePass replay",
+      "concern": "Duplicate execution",
+      "implementationComponent": "durable lifecycle CAS",
+      "applicableCases": [
+        "01_exact_authorised_purchase",
+        "05_gatepass_reuse"
+      ],
+      "evidenceReference": "01_exact_authorised_purchase,05_gatepass_reuse",
+      "evidenceDigest": "sha256:c95db64ad404ffafa13317e99b16230cd94fe3780692e7786afac126bf9ca379",
+      "acceptanceTestReference": "test:m161:ctrl-oneuse-001",
+      "status": "DEMONSTRATED",
+      "explanation": "Consumed authority is blocked after restart.",
+      "knownLimitation": "Single-process store only.",
+      "verificationMethod": "Verify EXECUTED lifecycle and replay rejection.",
+      "entryDigest": "sha256:10bbc973ac285d3511971a2806a8ba858ce9f53d6c14d00c6f7c9082a8630c82"
+    },
+    {
+      "controlId": "CTRL-EXPIRY-001",
+      "controlObjective": "Reject expired or revoked authority",
+      "concern": "Stale authority",
+      "implementationComponent": "lifecycle expiry and revocation",
+      "applicableCases": [
+        "06_gatepass_revocation"
+      ],
+      "evidenceReference": "06_gatepass_revocation",
+      "evidenceDigest": "sha256:76e4a96a284da81509bd8f5bffdae583befe6f76564dc277b4780780bc27118f",
+      "acceptanceTestReference": "test:m161:ctrl-expiry-001",
+      "status": "PARTIALLY_DEMONSTRATED",
+      "explanation": "Revocation is in the ten-case run; expiry is proved by the M161 acceptance suite.",
+      "knownLimitation": "Expiry is test evidence rather than a named ten-case outcome.",
+      "verificationMethod": "Run the M161 expired-authority test.",
+      "entryDigest": "sha256:2a2566cf7cc25ce1f7259fe345faf7990acc261adb2ab9606a254eeea6fdde45"
+    },
+    {
+      "controlId": "CTRL-EXPOSURE-001",
+      "controlObjective": "Enforce aggregate exposure",
+      "concern": "Many small actions bypass ceiling",
+      "implementationComponent": "aggregate exposure ledger",
+      "applicableCases": [
+        "08_aggregate_ceiling"
+      ],
+      "evidenceReference": "08_aggregate_ceiling",
+      "evidenceDigest": "sha256:9b841597edf04b2ef3761b7a092e2e6fe77dc8915ed031aff900a7d8b6a1f3b8",
+      "acceptanceTestReference": "test:m161:ctrl-exposure-001",
+      "status": "DEMONSTRATED",
+      "explanation": "Two outstanding actions count and the third refers.",
+      "knownLimitation": "No cross-currency conversion.",
+      "verificationMethod": "Verify case 08 and exposure reason code.",
+      "entryDigest": "sha256:baed4adbf4619a1182dd569afbb40f43b4bc9968c59c5acec62abfee568833de"
+    },
+    {
+      "controlId": "CTRL-STOP-001",
+      "controlObjective": "Persist emergency stop",
+      "concern": "Continued issuance during incident",
+      "implementationComponent": "durable emergency-stop record",
+      "applicableCases": [
+        "10_emergency_recovery_lifecycle"
+      ],
+      "evidenceReference": "10_emergency_recovery_lifecycle",
+      "evidenceDigest": "sha256:655b5cbd26d6fe381eb7c207dc2a35a1eb7a411566d77b2da2dda2c8ca049501",
+      "acceptanceTestReference": "test:m161:ctrl-stop-001",
+      "status": "DEMONSTRATED",
+      "explanation": "Stop state survives restart and blocks progression.",
+      "knownLimitation": "Global local-gateway scope only.",
+      "verificationMethod": "Verify case 10 evidence codes.",
+      "entryDigest": "sha256:2b5c051b644497d51b27b4780d8257315800f0ebc0e2420ee59c481aff889770"
+    },
+    {
+      "controlId": "CTRL-RESTART-001",
+      "controlObjective": "Persist nonce, revocation and exposure",
+      "concern": "State loss on restart",
+      "implementationComponent": "local durable store",
+      "applicableCases": [
+        "05_gatepass_reuse",
+        "06_gatepass_revocation",
+        "10_emergency_recovery_lifecycle"
+      ],
+      "evidenceReference": "05_gatepass_reuse,06_gatepass_revocation,10_emergency_recovery_lifecycle",
+      "evidenceDigest": "sha256:ba1eb60da76f2361e68e166b0c0919cc426aa17c24a33e370286b442f99894d2",
+      "acceptanceTestReference": "test:m161:ctrl-restart-001",
+      "status": "DEMONSTRATED",
+      "explanation": "All three evidence classes survive restart.",
+      "knownLimitation": "No multi-process guarantee.",
+      "verificationMethod": "Verify restart evidence codes.",
+      "entryDigest": "sha256:872918d29cfcc2e2b0fc9cd4f2e21e329378c0fef5aff449744d70c0a788e576"
+    },
+    {
+      "controlId": "CTRL-CRASH-001",
+      "controlObjective": "Avoid retry after uncertain effect",
+      "concern": "Duplicate effect after crash",
+      "implementationComponent": "UNKNOWN reconciliation",
+      "applicableCases": [
+        "10_emergency_recovery_lifecycle"
+      ],
+      "evidenceReference": "10_emergency_recovery_lifecycle",
+      "evidenceDigest": "sha256:655b5cbd26d6fe381eb7c207dc2a35a1eb7a411566d77b2da2dda2c8ca049501",
+      "acceptanceTestReference": "test:m161:ctrl-crash-001",
+      "status": "DEMONSTRATED",
+      "explanation": "UNKNOWN is not retried and needs explicit reconciliation.",
+      "knownLimitation": "No real external acknowledgement source.",
+      "verificationMethod": "Verify no-auto-retry metric.",
+      "entryDigest": "sha256:167658c97127ed78e23751eb162207d41de5bf222df79740bc17bf359ef8a769"
+    },
+    {
+      "controlId": "CTRL-CONCURRENCY-001",
+      "controlObjective": "Allow one reservation and prevent overcommit",
+      "concern": "Concurrent double use",
+      "implementationComponent": "process-local serialized CAS",
+      "applicableCases": [
+        "08_aggregate_ceiling"
+      ],
+      "evidenceReference": "08_aggregate_ceiling",
+      "evidenceDigest": "sha256:9b841597edf04b2ef3761b7a092e2e6fe77dc8915ed031aff900a7d8b6a1f3b8",
+      "acceptanceTestReference": "test:m161:ctrl-concurrency-001",
+      "status": "DEMONSTRATED",
+      "explanation": "Concurrent fixture attempts do not overcommit.",
+      "knownLimitation": "Not distributed or multi-process.",
+      "verificationMethod": "Run concurrent issuance/reservation tests.",
+      "entryDigest": "sha256:c4e7b6a7475a7733fa9ba6f37c5a380e50dc84f70ccff76265f70facb2ac17b0"
+    },
+    {
+      "controlId": "CTRL-ADAPTER-001",
+      "controlObjective": "Restrict execution to registered adapter",
+      "concern": "Arbitrary executor",
+      "implementationComponent": "frozen synthetic adapter registry",
+      "applicableCases": [
+        "01_exact_authorised_purchase"
+      ],
+      "evidenceReference": "01_exact_authorised_purchase",
+      "evidenceDigest": "sha256:1ed1fc238abd1d50d60abdf117bbf7cba49e7e0bc25624cbe8bd7e28dfafb9f1",
+      "acceptanceTestReference": "test:m161:ctrl-adapter-001",
+      "status": "DEMONSTRATED",
+      "explanation": "Exactly one frozen synthetic adapter is registered.",
+      "knownLimitation": "Synthetic in-process callback only.",
+      "verificationMethod": "Run adapter registration test.",
+      "entryDigest": "sha256:2e86d48c89a4656ddeafac6b285c8fecc633a61bac3f95feb0e0c1d086c3f4bc"
+    },
+    {
+      "controlId": "CTRL-RESOURCE-001",
+      "controlObjective": "Reject unregistered resources",
+      "concern": "Resource substitution",
+      "implementationComponent": "synthetic execution boundary",
+      "applicableCases": [
+        "01_exact_authorised_purchase"
+      ],
+      "evidenceReference": "01_exact_authorised_purchase",
+      "evidenceDigest": "sha256:1ed1fc238abd1d50d60abdf117bbf7cba49e7e0bc25624cbe8bd7e28dfafb9f1",
+      "acceptanceTestReference": "test:m161:ctrl-resource-001",
+      "status": "DEMONSTRATED",
+      "explanation": "Unknown resources stop before reservation.",
+      "knownLimitation": "One fixture resource.",
+      "verificationMethod": "Run unregistered-resource test.",
+      "entryDigest": "sha256:3ad7edeb3c0ac74807fba899f861e07eba9ccd841bb6258eb49a5f7de153fdbe"
+    },
+    {
+      "controlId": "CTRL-RECEIPT-001",
+      "controlObjective": "Separate and link decision/execution evidence",
+      "concern": "Decision mistaken for execution",
+      "implementationComponent": "digest-bound evidence link",
+      "applicableCases": [
+        "01_exact_authorised_purchase"
+      ],
+      "evidenceReference": "01_exact_authorised_purchase",
+      "evidenceDigest": "sha256:1ed1fc238abd1d50d60abdf117bbf7cba49e7e0bc25624cbe8bd7e28dfafb9f1",
+      "acceptanceTestReference": "test:m161:ctrl-receipt-001",
+      "status": "DEMONSTRATED",
+      "explanation": "Receipts remain distinct and link to one action.",
+      "knownLimitation": "Synthetic acknowledgement only.",
+      "verificationMethod": "Verify M161 evidence link.",
+      "entryDigest": "sha256:3552a41ec14ee21a05af4d6b420880a0d47b5ed4b4e8bdc6c3fc55c42aa2ec20"
+    },
+    {
+      "controlId": "CTRL-TAMPER-001",
+      "controlObjective": "Detect evidence tampering",
+      "concern": "Receipt substitution",
+      "implementationComponent": "canonical SHA-256 digests",
+      "applicableCases": [
+        "01_exact_authorised_purchase"
+      ],
+      "evidenceReference": "01_exact_authorised_purchase",
+      "evidenceDigest": "sha256:1ed1fc238abd1d50d60abdf117bbf7cba49e7e0bc25624cbe8bd7e28dfafb9f1",
+      "acceptanceTestReference": "test:m161:ctrl-tamper-001",
+      "status": "DEMONSTRATED",
+      "explanation": "Receipt and link tampering fail verification.",
+      "knownLimitation": "Hashing is not hostile-host protection.",
+      "verificationMethod": "Run M161/M162 tamper tests.",
+      "entryDigest": "sha256:345b25a63129264a33723242378d81bb69687a8e4a9e9f8df0151ce7637ea2d5"
+    },
+    {
+      "controlId": "CTRL-FAILCLOSED-001",
+      "controlObjective": "Fail closed on malformed, stale and rollback state",
+      "concern": "Unsafe fallback",
+      "implementationComponent": "validators and trusted clock",
+      "applicableCases": [
+        "10_emergency_recovery_lifecycle"
+      ],
+      "evidenceReference": "10_emergency_recovery_lifecycle",
+      "evidenceDigest": "sha256:655b5cbd26d6fe381eb7c207dc2a35a1eb7a411566d77b2da2dda2c8ca049501",
+      "acceptanceTestReference": "test:m161:ctrl-failclosed-001",
+      "status": "PARTIALLY_DEMONSTRATED",
+      "explanation": "Expiry and rollback are tested; not every production outage mode is modelled.",
+      "knownLimitation": "Fixture clock and local storage only.",
+      "verificationMethod": "Run stale/rollback/corruption tests.",
+      "entryDigest": "sha256:c8d2e72cb5a1903fc30e95e76040b95f9842a6979778a0068918b22166edb05a"
+    },
+    {
+      "controlId": "CTRL-BYPASS-001",
+      "controlObjective": "Block executor bypass",
+      "concern": "Calling effect without authority",
+      "implementationComponent": "private adapter plus verifier",
+      "applicableCases": [
+        "01_exact_authorised_purchase",
+        "05_gatepass_reuse",
+        "06_gatepass_revocation"
+      ],
+      "evidenceReference": "01_exact_authorised_purchase,05_gatepass_reuse,06_gatepass_revocation",
+      "evidenceDigest": "sha256:839efc1fbab9087f82ffa58ebedd09319ef6e00eb2bf9838f74321fcc4853a02",
+      "acceptanceTestReference": "test:m161:ctrl-bypass-001",
+      "status": "DEMONSTRATED",
+      "explanation": "Missing, mutated, replayed and revoked authority cannot reach the adapter.",
+      "knownLimitation": "No real platform enforcement integration.",
+      "verificationMethod": "Run adapter reachability tests.",
+      "entryDigest": "sha256:88c433d0a444f5729b670c99454c9b6dcceed8d569551592dd97ac09aa4505bd"
+    },
+    {
+      "controlId": "CTRL-DATA-001",
+      "controlObjective": "Minimise evidence data",
+      "concern": "Sensitive-data leakage",
+      "implementationComponent": "opaque synthetic references",
+      "applicableCases": [
+        "01_exact_authorised_purchase"
+      ],
+      "evidenceReference": "01_exact_authorised_purchase",
+      "evidenceDigest": "sha256:1ed1fc238abd1d50d60abdf117bbf7cba49e7e0bc25624cbe8bd7e28dfafb9f1",
+      "acceptanceTestReference": "test:m161:ctrl-data-001",
+      "status": "DEMONSTRATED",
+      "explanation": "Evidence uses synthetic opaque references and digests.",
+      "knownLimitation": "No production retention/deletion service.",
+      "verificationMethod": "Scan generated artefacts for prohibited material.",
+      "entryDigest": "sha256:70a17a92a66a1066df2e51377335580efdc3d492756805bdbf99a4bfb416f077"
+    },
+    {
+      "controlId": "CTRL-LOCAL-001",
+      "controlObjective": "Preserve local-only/no-live-effect boundary",
+      "concern": "Unintended external action",
+      "implementationComponent": "local CLI and synthetic adapter",
+      "applicableCases": [
+        "01_exact_authorised_purchase"
+      ],
+      "evidenceReference": "01_exact_authorised_purchase",
+      "evidenceDigest": "sha256:1ed1fc238abd1d50d60abdf117bbf7cba49e7e0bc25624cbe8bd7e28dfafb9f1",
+      "acceptanceTestReference": "test:m161:ctrl-local-001",
+      "status": "DEMONSTRATED",
+      "explanation": "All operational flags remain local and externalActionOccurred is false.",
+      "knownLimitation": "Does not prove safety of a future external adapter.",
+      "verificationMethod": "Verify flags and source scan.",
+      "entryDigest": "sha256:46654504ad462da093c2e8f22d5bdd872a2b0bf5a7187778d2e336233aaa9bcd"
+    },
+    {
+      "controlId": "CTRL-IAM-001",
+      "controlObjective": "Use production IAM and key custody",
+      "concern": "Identity/key compromise",
+      "implementationComponent": "not implemented",
+      "applicableCases": [],
+      "evidenceReference": null,
+      "evidenceDigest": null,
+      "acceptanceTestReference": null,
+      "status": "NOT_DEMONSTRATED",
+      "explanation": "Only repository fixture identities and keys exist.",
+      "knownLimitation": "Production IAM and key custody are absent.",
+      "verificationMethod": "No verification method is claimed.",
+      "entryDigest": "sha256:97a8a185ce18ec5c864e6a244fc28b6b3bd5fc6a4348a16666dcfc0d349c6a31"
+    },
+    {
+      "controlId": "CTRL-DISTRIBUTED-001",
+      "controlObjective": "Provide distributed durability",
+      "concern": "Cross-process races and regional failure",
+      "implementationComponent": "not implemented",
+      "applicableCases": [],
+      "evidenceReference": null,
+      "evidenceDigest": null,
+      "acceptanceTestReference": null,
+      "status": "NOT_DEMONSTRATED",
+      "explanation": "The store is local and single-process.",
+      "knownLimitation": "No distributed consensus or HA.",
+      "verificationMethod": "No verification method is claimed.",
+      "entryDigest": "sha256:c1ac904044ee8796ec29ad8146588ed2dbd73a65741130c20afb4fdaf61c7c4f"
+    },
+    {
+      "controlId": "CTRL-EXTERNAL-REC-001",
+      "controlObjective": "Reconcile real external effects",
+      "concern": "Unknown real-world outcome",
+      "implementationComponent": "not implemented",
+      "applicableCases": [],
+      "evidenceReference": null,
+      "evidenceDigest": null,
+      "acceptanceTestReference": null,
+      "status": "NOT_DEMONSTRATED",
+      "explanation": "Only synthetic reconciliation evidence exists.",
+      "knownLimitation": "No external acknowledgement source.",
+      "verificationMethod": "No verification method is claimed.",
+      "entryDigest": "sha256:bc067e30221daf6bc9324059cc285cedcddf3de311f73cc2100be43df2f9e54f"
+    },
+    {
+      "controlId": "CTRL-COMPLIANCE-001",
+      "controlObjective": "Establish regulatory compliance",
+      "concern": "Regulatory obligations",
+      "implementationComponent": "outside demonstrator",
+      "applicableCases": [],
+      "evidenceReference": null,
+      "evidenceDigest": null,
+      "acceptanceTestReference": null,
+      "status": "OUT_OF_SCOPE",
+      "explanation": "No compliance determination is made.",
+      "knownLimitation": "Requires buyer-specific legal assessment.",
+      "verificationMethod": "Out of scope.",
+      "entryDigest": "sha256:0da649c463fd2e6e1076f63acd7c2b6a9c8d9a7aeda6af5858b959196afe0f2e"
+    },
+    {
+      "controlId": "CTRL-REAL-PROC-001",
+      "controlObjective": "Execute real procurement or payment",
+      "concern": "Capital movement",
+      "implementationComponent": "outside demonstrator",
+      "applicableCases": [],
+      "evidenceReference": null,
+      "evidenceDigest": null,
+      "acceptanceTestReference": null,
+      "status": "OUT_OF_SCOPE",
+      "explanation": "No real order, payment or settlement is performed.",
+      "knownLimitation": "Buyer retains any real execution boundary.",
+      "verificationMethod": "Out of scope.",
+      "entryDigest": "sha256:66b55c2cfa47928bdbf8addc9568416103f5f3643a0b34deee36f18699053804"
+    }
+  ],
+  "totals": {
+    "DEMONSTRATED": 18,
+    "PARTIALLY_DEMONSTRATED": 2,
+    "NOT_DEMONSTRATED": 3,
+    "OUT_OF_SCOPE": 2
+  },
+  "syntheticEvidenceOnly": true,
+  "mapDigest": "sha256:a7d53b6f0af0adfb6da76a542fbfe9c885bacd4370eae69ee9494d62888c0a58"
+}

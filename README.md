@@ -95,6 +95,25 @@ can acknowledge the permitted case after point-of-action verification. No
 procurement, payment, settlement, customer communication or external action
 occurs. See [the P3-M161 guide](docs/P3-M161-local-purchasing-lifecycle-demonstration.md).
 
+### P3-M162 customer trust evidence and buyer adoption pack
+
+Generate and verify the deterministic evidence bundle derived from the locked
+ten-case demonstration:
+
+```powershell
+npm run evidence:m162 -- --output-dir examples/p3-m162
+npm run verify:m162 -- --input examples/p3-m162/evidence-bundle.json
+npm run test:customer-trust-evidence
+```
+
+The bundle contains non-authorising Customer Trust Receipts, an honest
+Coverage Map, synthetic evidence metrics, and machine- and reviewer-readable
+Buyer Adoption Proof Pack forms. These artefacts explain and verify existing
+evidence; they are not GatePasses, do not execute actions, and do not establish
+production readiness, customer validation, compliance, ROI, or business
+outcomes. See the [M162 evidence guide](docs/P3-M162-customer-trust-receipt-and-assurance-evidence.md)
+and [proof-pack guide](docs/P3-M162-buyer-adoption-proof-pack.md).
+
 ## WORKING EXACT ACTION TRUST GATEWAY PROTOTYPE
 
 Agent Trust Gate™ — Exact Action Trust Gateway provides a buyer-usable local

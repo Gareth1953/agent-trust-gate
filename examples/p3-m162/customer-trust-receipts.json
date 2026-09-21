@@ -1,0 +1,588 @@
+[
+  {
+    "receiptVersion": "atg.customer-trust-receipt.local.v1",
+    "receiptId": "customer_trust_receipt_386ead92f31b1d7fce22b105",
+    "runId": "m162_run_8579ed4adb8cb7d914bc130a",
+    "sourceCaseId": "01_exact_authorised_purchase",
+    "sourceCaseDigest": "sha256:386ead92f31b1d7fce22b1059f970231636591e1a4e6607fa49ff7b8b3394119",
+    "mandateReference": "mandate://local/MANDATE-NORTHSTAR-ALLOWED-001",
+    "actionReference": "action:sha256:16e662b04eb472b3ad0a3c6a3d801cbdbdc2f8972598a2bb35f6b0c9765bd24d",
+    "atgVerdict": "ACCEPT",
+    "shadowMode": {
+      "observational": false,
+      "wouldOutcome": null
+    },
+    "gatePassStatus": "CONSUMED",
+    "syntheticExecutionStatus": "ACKNOWLEDGED",
+    "decisionEvidence": {
+      "reference": "decision_receipt_b36da39504666d7ac4ea7bc9",
+      "digest": "sha256:d09b25942ccdca46987f9563d8e8ff0b2c01703c207bab5998b09066238cafea",
+      "digestStatus": "VERIFIED_EMBEDDED"
+    },
+    "executionEvidence": {
+      "reference": "execution_receipt_75acf8be2e2664d08945fbc9",
+      "digest": "sha256:06b7451f0e3cb3afd846f9eb960e5de77a635b0cb016962ff5079551185bc1f6",
+      "digestStatus": "VERIFIED_EMBEDDED"
+    },
+    "evidenceLink": {
+      "reference": "purchase_link_75acf8be2e2664d08945fbc9",
+      "digest": "sha256:6154406cde4f6bbbd0af1dcf6a4b613d680500212002db2339fde42826cc2cac",
+      "verified": true
+    },
+    "lifecycleStateReference": "lifecycle:01_exact_authorised_purchase:EXECUTED",
+    "controlsEvaluated": [
+      "CTRL-EXACT-001",
+      "CTRL-MANDATE-001",
+      "CTRL-LOCAL-001",
+      "CTRL-ADAPTER-001",
+      "CTRL-RECEIPT-001"
+    ],
+    "plainEnglishControlOutcome": "The exact 100-unit Supplier A purchase remained within declared authority and policy, so its one-use GatePass reached the registered synthetic adapter.",
+    "evidenceTime": "2026-09-02T09:00:00.000Z",
+    "verificationStatus": "VERIFIED_LOCAL_SYNTHETIC_EVIDENCE",
+    "scope": "P3-M161_LOCAL_SYNTHETIC_PURCHASING_DEMONSTRATION",
+    "limitations": [
+      "Ten deterministic synthetic cases are not statistical evidence.",
+      "No real external action or business outcome is evidenced."
+    ],
+    "nonAuthorityStatement": "This Customer Trust Receipt is evidence only. It is not a GatePass and grants no authority to reserve, execute, retry, revoke or expand an action.",
+    "syntheticNonProductionStatement": "Local synthetic demonstration evidence only; not production ready and not evidence of a real purchase or successful business outcome.",
+    "authorityGranted": false,
+    "executable": false,
+    "reservable": false,
+    "retryPermitted": false,
+    "revocationControl": false,
+    "commercialWisdomProven": false,
+    "customerApprovalProven": false,
+    "productionReadinessProven": false,
+    "regulatoryApprovalProven": false,
+    "receiptDigest": "sha256:0be9801ac6569d10f0c449329282cde9adbfcb00b1fec4177f0e55b57f88b4df"
+  },
+  {
+    "receiptVersion": "atg.customer-trust-receipt.local.v1",
+    "receiptId": "customer_trust_receipt_157d09de915937606f04629b",
+    "runId": "m162_run_8579ed4adb8cb7d914bc130a",
+    "sourceCaseId": "02_quantity_substitution",
+    "sourceCaseDigest": "sha256:157d09de915937606f04629b453dfe8027466e33305d1108d4d331ed6d207899",
+    "mandateReference": null,
+    "actionReference": "action:sha256:a80fa6b0a02200cd89b7b1facd42be946ccab44a185b5977b1c7b38d8b4fe02b",
+    "atgVerdict": "REJECT",
+    "shadowMode": {
+      "observational": false,
+      "wouldOutcome": null
+    },
+    "gatePassStatus": "NOT_ISSUED",
+    "syntheticExecutionStatus": "NOT_ATTEMPTED",
+    "decisionEvidence": {
+      "reference": "decision_receipt_643cd2692e1f2be7f7300b7f",
+      "digest": null,
+      "digestStatus": "REFERENCE_ONLY"
+    },
+    "executionEvidence": {
+      "reference": null,
+      "digest": null,
+      "digestStatus": "NOT_APPLICABLE"
+    },
+    "evidenceLink": {
+      "reference": null,
+      "digest": null,
+      "verified": false
+    },
+    "lifecycleStateReference": "lifecycle:02_quantity_substitution:REJECTED",
+    "controlsEvaluated": [
+      "CTRL-EXACT-001",
+      "CTRL-MANDATE-001",
+      "CTRL-LOCAL-001",
+      "CTRL-MUTATION-001"
+    ],
+    "plainEnglishControlOutcome": "Changing the authorised quantity from 100 to 120 exceeded the bounded policy; no GatePass or execution authority was created.",
+    "evidenceTime": "2026-09-02T09:00:00.000Z",
+    "verificationStatus": "VERIFIED_LOCAL_SYNTHETIC_EVIDENCE",
+    "scope": "P3-M161_LOCAL_SYNTHETIC_PURCHASING_DEMONSTRATION",
+    "limitations": [
+      "Ten deterministic synthetic cases are not statistical evidence.",
+      "No real external action or business outcome is evidenced."
+    ],
+    "nonAuthorityStatement": "This Customer Trust Receipt is evidence only. It is not a GatePass and grants no authority to reserve, execute, retry, revoke or expand an action.",
+    "syntheticNonProductionStatement": "Local synthetic demonstration evidence only; not production ready and not evidence of a real purchase or successful business outcome.",
+    "authorityGranted": false,
+    "executable": false,
+    "reservable": false,
+    "retryPermitted": false,
+    "revocationControl": false,
+    "commercialWisdomProven": false,
+    "customerApprovalProven": false,
+    "productionReadinessProven": false,
+    "regulatoryApprovalProven": false,
+    "receiptDigest": "sha256:49d8a50b05c8049dabafbbfd4731b95433ebc035f91158645b5eb765a27a0bec"
+  },
+  {
+    "receiptVersion": "atg.customer-trust-receipt.local.v1",
+    "receiptId": "customer_trust_receipt_7066d41a91c114ac4e1d8fe2",
+    "runId": "m162_run_8579ed4adb8cb7d914bc130a",
+    "sourceCaseId": "03_supplier_substitution",
+    "sourceCaseDigest": "sha256:7066d41a91c114ac4e1d8fe29606d7b66c189938e2a714550e35f5c130ab6718",
+    "mandateReference": null,
+    "actionReference": "action:sha256:fd51ec358abfe3a4b3cb37632f908755e19bbec001bfd565566475a498064cf9",
+    "atgVerdict": "REJECT",
+    "shadowMode": {
+      "observational": false,
+      "wouldOutcome": null
+    },
+    "gatePassStatus": "NOT_ISSUED",
+    "syntheticExecutionStatus": "NOT_ATTEMPTED",
+    "decisionEvidence": {
+      "reference": "decision_receipt_6fc16ca854de33881a38101b",
+      "digest": null,
+      "digestStatus": "REFERENCE_ONLY"
+    },
+    "executionEvidence": {
+      "reference": null,
+      "digest": null,
+      "digestStatus": "NOT_APPLICABLE"
+    },
+    "evidenceLink": {
+      "reference": null,
+      "digest": null,
+      "verified": false
+    },
+    "lifecycleStateReference": "lifecycle:03_supplier_substitution:REJECTED",
+    "controlsEvaluated": [
+      "CTRL-EXACT-001",
+      "CTRL-MANDATE-001",
+      "CTRL-LOCAL-001",
+      "CTRL-MUTATION-001"
+    ],
+    "plainEnglishControlOutcome": "The substituted supplier was outside the human mandate and buyer policy; ATG failed closed before GatePass issuance.",
+    "evidenceTime": "2026-09-02T09:00:00.000Z",
+    "verificationStatus": "VERIFIED_LOCAL_SYNTHETIC_EVIDENCE",
+    "scope": "P3-M161_LOCAL_SYNTHETIC_PURCHASING_DEMONSTRATION",
+    "limitations": [
+      "Ten deterministic synthetic cases are not statistical evidence.",
+      "No real external action or business outcome is evidenced."
+    ],
+    "nonAuthorityStatement": "This Customer Trust Receipt is evidence only. It is not a GatePass and grants no authority to reserve, execute, retry, revoke or expand an action.",
+    "syntheticNonProductionStatement": "Local synthetic demonstration evidence only; not production ready and not evidence of a real purchase or successful business outcome.",
+    "authorityGranted": false,
+    "executable": false,
+    "reservable": false,
+    "retryPermitted": false,
+    "revocationControl": false,
+    "commercialWisdomProven": false,
+    "customerApprovalProven": false,
+    "productionReadinessProven": false,
+    "regulatoryApprovalProven": false,
+    "receiptDigest": "sha256:ebddf54ad1747ee04fb2990e8fab8910aa78297ed4eddc623d572e9b34afe76a"
+  },
+  {
+    "receiptVersion": "atg.customer-trust-receipt.local.v1",
+    "receiptId": "customer_trust_receipt_7e46407228c1fac90c686ece",
+    "runId": "m162_run_8579ed4adb8cb7d914bc130a",
+    "sourceCaseId": "04_price_band_breach",
+    "sourceCaseDigest": "sha256:7e46407228c1fac90c686ece1eeda3a816f3aeeaf547fb0bd58ddae1d9b6d00c",
+    "mandateReference": null,
+    "actionReference": "action:sha256:dd4e994a82220044ac782f5ac5c133c7d2e288def6a05654cdb96a6ac78909b9",
+    "atgVerdict": "REFER",
+    "shadowMode": {
+      "observational": false,
+      "wouldOutcome": null
+    },
+    "gatePassStatus": "NOT_ISSUED",
+    "syntheticExecutionStatus": "NOT_ATTEMPTED",
+    "decisionEvidence": {
+      "reference": "decision_receipt_9926eb8657b286a3229cc8d5",
+      "digest": null,
+      "digestStatus": "REFERENCE_ONLY"
+    },
+    "executionEvidence": {
+      "reference": null,
+      "digest": null,
+      "digestStatus": "NOT_APPLICABLE"
+    },
+    "evidenceLink": {
+      "reference": null,
+      "digest": null,
+      "verified": false
+    },
+    "lifecycleStateReference": "lifecycle:04_price_band_breach:REFERRED",
+    "controlsEvaluated": [
+      "CTRL-EXACT-001",
+      "CTRL-MANDATE-001",
+      "CTRL-LOCAL-001",
+      "CTRL-MUTATION-001",
+      "CTRL-OUTCOME-001"
+    ],
+    "plainEnglishControlOutcome": "The £6,000 proposal is within the absolute policy maximum but above automatic authority, so a separate verified human review is required.",
+    "evidenceTime": "2026-09-02T09:00:00.000Z",
+    "verificationStatus": "VERIFIED_LOCAL_SYNTHETIC_EVIDENCE",
+    "scope": "P3-M161_LOCAL_SYNTHETIC_PURCHASING_DEMONSTRATION",
+    "limitations": [
+      "Ten deterministic synthetic cases are not statistical evidence.",
+      "No real external action or business outcome is evidenced."
+    ],
+    "nonAuthorityStatement": "This Customer Trust Receipt is evidence only. It is not a GatePass and grants no authority to reserve, execute, retry, revoke or expand an action.",
+    "syntheticNonProductionStatement": "Local synthetic demonstration evidence only; not production ready and not evidence of a real purchase or successful business outcome.",
+    "authorityGranted": false,
+    "executable": false,
+    "reservable": false,
+    "retryPermitted": false,
+    "revocationControl": false,
+    "commercialWisdomProven": false,
+    "customerApprovalProven": false,
+    "productionReadinessProven": false,
+    "regulatoryApprovalProven": false,
+    "receiptDigest": "sha256:99c18d37d02509e7f29d1bcf4b3beddb1cd2fbd248e19c697164e506a07ecf2e"
+  },
+  {
+    "receiptVersion": "atg.customer-trust-receipt.local.v1",
+    "receiptId": "customer_trust_receipt_71393cefa8b153bb9bb6970e",
+    "runId": "m162_run_8579ed4adb8cb7d914bc130a",
+    "sourceCaseId": "05_gatepass_reuse",
+    "sourceCaseDigest": "sha256:71393cefa8b153bb9bb6970ea62c2dc8883a3cc535b0e2affd66b4553ee9cf43",
+    "mandateReference": "mandate://local/MANDATE-NORTHSTAR-ALLOWED-001",
+    "actionReference": "action:sha256:16e662b04eb472b3ad0a3c6a3d801cbdbdc2f8972598a2bb35f6b0c9765bd24d",
+    "atgVerdict": "REJECT",
+    "shadowMode": {
+      "observational": false,
+      "wouldOutcome": null
+    },
+    "gatePassStatus": "CONSUMED",
+    "syntheticExecutionStatus": "BLOCKED",
+    "decisionEvidence": {
+      "reference": "decision_receipt_b36da39504666d7ac4ea7bc9",
+      "digest": null,
+      "digestStatus": "REFERENCE_ONLY"
+    },
+    "executionEvidence": {
+      "reference": null,
+      "digest": null,
+      "digestStatus": "NOT_APPLICABLE"
+    },
+    "evidenceLink": {
+      "reference": null,
+      "digest": null,
+      "verified": false
+    },
+    "lifecycleStateReference": "lifecycle:05_gatepass_reuse:EXECUTED",
+    "controlsEvaluated": [
+      "CTRL-EXACT-001",
+      "CTRL-MANDATE-001",
+      "CTRL-LOCAL-001",
+      "CTRL-ONEUSE-001",
+      "CTRL-BYPASS-001"
+    ],
+    "plainEnglishControlOutcome": "The durable EXECUTED lifecycle survived restart and blocked reuse of the consumed one-use GatePass before the adapter.",
+    "evidenceTime": "2026-09-02T09:00:00.000Z",
+    "verificationStatus": "VERIFIED_LOCAL_SYNTHETIC_EVIDENCE",
+    "scope": "P3-M161_LOCAL_SYNTHETIC_PURCHASING_DEMONSTRATION",
+    "limitations": [
+      "Ten deterministic synthetic cases are not statistical evidence.",
+      "No real external action or business outcome is evidenced."
+    ],
+    "nonAuthorityStatement": "This Customer Trust Receipt is evidence only. It is not a GatePass and grants no authority to reserve, execute, retry, revoke or expand an action.",
+    "syntheticNonProductionStatement": "Local synthetic demonstration evidence only; not production ready and not evidence of a real purchase or successful business outcome.",
+    "authorityGranted": false,
+    "executable": false,
+    "reservable": false,
+    "retryPermitted": false,
+    "revocationControl": false,
+    "commercialWisdomProven": false,
+    "customerApprovalProven": false,
+    "productionReadinessProven": false,
+    "regulatoryApprovalProven": false,
+    "receiptDigest": "sha256:048e7c8ec38391ba6fcdcdf003308491e0cd52512d4bbd4bd7f280291db1588e"
+  },
+  {
+    "receiptVersion": "atg.customer-trust-receipt.local.v1",
+    "receiptId": "customer_trust_receipt_0ec9086454cb05ada54870ff",
+    "runId": "m162_run_8579ed4adb8cb7d914bc130a",
+    "sourceCaseId": "06_gatepass_revocation",
+    "sourceCaseDigest": "sha256:0ec9086454cb05ada54870ff37eeb6a910ff10a5ec9fb42cc1a7f9fb4d7abf04",
+    "mandateReference": "mandate://local/MANDATE-NORTHSTAR-ALLOWED-001",
+    "actionReference": "action:sha256:220cd90cc3d26ac0f8a518287ae114bd1e9c4975e7164db2c8e40ba75a08ca19",
+    "atgVerdict": "REJECT",
+    "shadowMode": {
+      "observational": false,
+      "wouldOutcome": null
+    },
+    "gatePassStatus": "REVOKED",
+    "syntheticExecutionStatus": "BLOCKED",
+    "decisionEvidence": {
+      "reference": "decision_receipt_d4a14725aa073a1a53cdcf08",
+      "digest": null,
+      "digestStatus": "REFERENCE_ONLY"
+    },
+    "executionEvidence": {
+      "reference": null,
+      "digest": null,
+      "digestStatus": "NOT_APPLICABLE"
+    },
+    "evidenceLink": {
+      "reference": null,
+      "digest": null,
+      "verified": false
+    },
+    "lifecycleStateReference": "lifecycle:06_gatepass_revocation:REVOKED",
+    "controlsEvaluated": [
+      "CTRL-EXACT-001",
+      "CTRL-MANDATE-001",
+      "CTRL-LOCAL-001",
+      "CTRL-EXPIRY-001",
+      "CTRL-OUTCOME-001"
+    ],
+    "plainEnglishControlOutcome": "Operator revocation persisted across restart and the revoked GatePass could not be reserved or used.",
+    "evidenceTime": "2026-09-02T09:00:00.000Z",
+    "verificationStatus": "VERIFIED_LOCAL_SYNTHETIC_EVIDENCE",
+    "scope": "P3-M161_LOCAL_SYNTHETIC_PURCHASING_DEMONSTRATION",
+    "limitations": [
+      "Ten deterministic synthetic cases are not statistical evidence.",
+      "No real external action or business outcome is evidenced."
+    ],
+    "nonAuthorityStatement": "This Customer Trust Receipt is evidence only. It is not a GatePass and grants no authority to reserve, execute, retry, revoke or expand an action.",
+    "syntheticNonProductionStatement": "Local synthetic demonstration evidence only; not production ready and not evidence of a real purchase or successful business outcome.",
+    "authorityGranted": false,
+    "executable": false,
+    "reservable": false,
+    "retryPermitted": false,
+    "revocationControl": false,
+    "commercialWisdomProven": false,
+    "customerApprovalProven": false,
+    "productionReadinessProven": false,
+    "regulatoryApprovalProven": false,
+    "receiptDigest": "sha256:3c0c46d6cf0bae2b45ce523de616efb3864945699d1f3329cb550ae81c57ece7"
+  },
+  {
+    "receiptVersion": "atg.customer-trust-receipt.local.v1",
+    "receiptId": "customer_trust_receipt_388759373b7844119797b578",
+    "runId": "m162_run_8579ed4adb8cb7d914bc130a",
+    "sourceCaseId": "07_shadow_mode",
+    "sourceCaseDigest": "sha256:388759373b7844119797b5789157575e3371dffd4e6a9967b2dbe1678a6c8f57",
+    "mandateReference": null,
+    "actionReference": "action:sha256:7836d2809bbac65ace8e5d1d6ccc8368d28b39929c7e7936ca794acfb0a564be",
+    "atgVerdict": "SHADOW",
+    "shadowMode": {
+      "observational": true,
+      "wouldOutcome": "ACCEPT"
+    },
+    "gatePassStatus": "NOT_ISSUED",
+    "syntheticExecutionStatus": "NOT_ATTEMPTED",
+    "decisionEvidence": {
+      "reference": null,
+      "digest": null,
+      "digestStatus": "NOT_APPLICABLE"
+    },
+    "executionEvidence": {
+      "reference": null,
+      "digest": null,
+      "digestStatus": "NOT_APPLICABLE"
+    },
+    "evidenceLink": {
+      "reference": null,
+      "digest": null,
+      "verified": false
+    },
+    "lifecycleStateReference": null,
+    "controlsEvaluated": [
+      "CTRL-EXACT-001",
+      "CTRL-MANDATE-001",
+      "CTRL-LOCAL-001",
+      "CTRL-SHADOW-001"
+    ],
+    "plainEnglishControlOutcome": "Shadow Mode observed that the proposal would be accepted but created no GatePass, lifecycle authority or execution permission.",
+    "evidenceTime": "2026-09-02T09:00:00.000Z",
+    "verificationStatus": "VERIFIED_LOCAL_SYNTHETIC_EVIDENCE",
+    "scope": "P3-M161_LOCAL_SYNTHETIC_PURCHASING_DEMONSTRATION",
+    "limitations": [
+      "Ten deterministic synthetic cases are not statistical evidence.",
+      "No real external action or business outcome is evidenced."
+    ],
+    "nonAuthorityStatement": "This Customer Trust Receipt is evidence only. It is not a GatePass and grants no authority to reserve, execute, retry, revoke or expand an action.",
+    "syntheticNonProductionStatement": "Local synthetic demonstration evidence only; not production ready and not evidence of a real purchase or successful business outcome.",
+    "authorityGranted": false,
+    "executable": false,
+    "reservable": false,
+    "retryPermitted": false,
+    "revocationControl": false,
+    "commercialWisdomProven": false,
+    "customerApprovalProven": false,
+    "productionReadinessProven": false,
+    "regulatoryApprovalProven": false,
+    "receiptDigest": "sha256:564ea4c57fe4bae00fe65f364d2a6ae92e24394775022db1959eee80b6bb48d3"
+  },
+  {
+    "receiptVersion": "atg.customer-trust-receipt.local.v1",
+    "receiptId": "customer_trust_receipt_52ff9126fdc35c4a721cb360",
+    "runId": "m162_run_8579ed4adb8cb7d914bc130a",
+    "sourceCaseId": "08_aggregate_ceiling",
+    "sourceCaseDigest": "sha256:52ff9126fdc35c4a721cb3602d43f728a9b7c7498327073a7adbeadcf7091638",
+    "mandateReference": null,
+    "actionReference": "action:sha256:01312ad49bff8aa9d84bf7122a36d8ff6a57dd1c209b35b895202c0fd310b931",
+    "atgVerdict": "REFER",
+    "shadowMode": {
+      "observational": false,
+      "wouldOutcome": null
+    },
+    "gatePassStatus": "NOT_ISSUED",
+    "syntheticExecutionStatus": "NOT_ATTEMPTED",
+    "decisionEvidence": {
+      "reference": "decision_receipt_625904149f267914d003a116",
+      "digest": null,
+      "digestStatus": "REFERENCE_ONLY"
+    },
+    "executionEvidence": {
+      "reference": null,
+      "digest": null,
+      "digestStatus": "NOT_APPLICABLE"
+    },
+    "evidenceLink": {
+      "reference": null,
+      "digest": null,
+      "verified": false
+    },
+    "lifecycleStateReference": "lifecycle:08_aggregate_ceiling:REFERRED",
+    "controlsEvaluated": [
+      "CTRL-EXACT-001",
+      "CTRL-MANDATE-001",
+      "CTRL-LOCAL-001",
+      "CTRL-EXPOSURE-001",
+      "CTRL-CONCURRENCY-001"
+    ],
+    "plainEnglishControlOutcome": "Two £4,000 outstanding GatePasses counted toward the £10,000 ceiling; the concurrent third proposal was referred without double counting.",
+    "evidenceTime": "2026-09-02T09:00:00.000Z",
+    "verificationStatus": "VERIFIED_LOCAL_SYNTHETIC_EVIDENCE",
+    "scope": "P3-M161_LOCAL_SYNTHETIC_PURCHASING_DEMONSTRATION",
+    "limitations": [
+      "Ten deterministic synthetic cases are not statistical evidence.",
+      "No real external action or business outcome is evidenced."
+    ],
+    "nonAuthorityStatement": "This Customer Trust Receipt is evidence only. It is not a GatePass and grants no authority to reserve, execute, retry, revoke or expand an action.",
+    "syntheticNonProductionStatement": "Local synthetic demonstration evidence only; not production ready and not evidence of a real purchase or successful business outcome.",
+    "authorityGranted": false,
+    "executable": false,
+    "reservable": false,
+    "retryPermitted": false,
+    "revocationControl": false,
+    "commercialWisdomProven": false,
+    "customerApprovalProven": false,
+    "productionReadinessProven": false,
+    "regulatoryApprovalProven": false,
+    "receiptDigest": "sha256:081b1a2c0ea55a9b79d6f55a6140f47c127345185111810b698a2f6443f90b13"
+  },
+  {
+    "receiptVersion": "atg.customer-trust-receipt.local.v1",
+    "receiptId": "customer_trust_receipt_0fd288b9fa8355be46b1d48f",
+    "runId": "m162_run_8579ed4adb8cb7d914bc130a",
+    "sourceCaseId": "09_authority_expansion_attempt",
+    "sourceCaseDigest": "sha256:0fd288b9fa8355be46b1d48ff848ce0bc99f5eaf2e02756ed5200bb47092a387",
+    "mandateReference": null,
+    "actionReference": "action:sha256:74aa0d7a22a59bccbce383e90611bdb078c336d87248c22982f1ecf8067308c8",
+    "atgVerdict": "REJECT",
+    "shadowMode": {
+      "observational": false,
+      "wouldOutcome": null
+    },
+    "gatePassStatus": "NOT_ISSUED",
+    "syntheticExecutionStatus": "NOT_ATTEMPTED",
+    "decisionEvidence": {
+      "reference": "decision_receipt_fa45924118f9491203f05092",
+      "digest": null,
+      "digestStatus": "REFERENCE_ONLY"
+    },
+    "executionEvidence": {
+      "reference": null,
+      "digest": null,
+      "digestStatus": "NOT_APPLICABLE"
+    },
+    "evidenceLink": {
+      "reference": null,
+      "digest": null,
+      "verified": false
+    },
+    "lifecycleStateReference": "lifecycle:09_authority_expansion_attempt:REJECTED",
+    "controlsEvaluated": [
+      "CTRL-EXACT-001",
+      "CTRL-MANDATE-001",
+      "CTRL-LOCAL-001"
+    ],
+    "plainEnglishControlOutcome": "Agent-supplied claims could not widen or approve its policy, mandate, supplier, purpose, amount or other bounded authority.",
+    "evidenceTime": "2026-09-02T09:00:00.000Z",
+    "verificationStatus": "VERIFIED_LOCAL_SYNTHETIC_EVIDENCE",
+    "scope": "P3-M161_LOCAL_SYNTHETIC_PURCHASING_DEMONSTRATION",
+    "limitations": [
+      "Ten deterministic synthetic cases are not statistical evidence.",
+      "No real external action or business outcome is evidenced."
+    ],
+    "nonAuthorityStatement": "This Customer Trust Receipt is evidence only. It is not a GatePass and grants no authority to reserve, execute, retry, revoke or expand an action.",
+    "syntheticNonProductionStatement": "Local synthetic demonstration evidence only; not production ready and not evidence of a real purchase or successful business outcome.",
+    "authorityGranted": false,
+    "executable": false,
+    "reservable": false,
+    "retryPermitted": false,
+    "revocationControl": false,
+    "commercialWisdomProven": false,
+    "customerApprovalProven": false,
+    "productionReadinessProven": false,
+    "regulatoryApprovalProven": false,
+    "receiptDigest": "sha256:be7434454a3cbfd6a8625a7edf49e644f862b15c377cd44abc223a4ad0ebd471"
+  },
+  {
+    "receiptVersion": "atg.customer-trust-receipt.local.v1",
+    "receiptId": "customer_trust_receipt_300aedc0c8fdb0027c291e2b",
+    "runId": "m162_run_8579ed4adb8cb7d914bc130a",
+    "sourceCaseId": "10_emergency_recovery_lifecycle",
+    "sourceCaseDigest": "sha256:300aedc0c8fdb0027c291e2b44d5b7882eb01d4f426427b3b99ee774567c9ea2",
+    "mandateReference": "mandate://local/MANDATE-NORTHSTAR-ALLOWED-001",
+    "actionReference": "action:sha256:bc994ceaa4851e7c1b27878e6e0ef8b514f8278e1aac10619da24da6b8139824",
+    "atgVerdict": "REJECT",
+    "shadowMode": {
+      "observational": false,
+      "wouldOutcome": null
+    },
+    "gatePassStatus": "ISSUED",
+    "syntheticExecutionStatus": "BLOCKED",
+    "decisionEvidence": {
+      "reference": "decision_receipt_59af495626f2e415170d2c2d",
+      "digest": null,
+      "digestStatus": "REFERENCE_ONLY"
+    },
+    "executionEvidence": {
+      "reference": null,
+      "digest": null,
+      "digestStatus": "NOT_APPLICABLE"
+    },
+    "evidenceLink": {
+      "reference": null,
+      "digest": null,
+      "verified": false
+    },
+    "lifecycleStateReference": "lifecycle:10_emergency_recovery_lifecycle:ABANDONED",
+    "controlsEvaluated": [
+      "CTRL-EXACT-001",
+      "CTRL-MANDATE-001",
+      "CTRL-LOCAL-001",
+      "CTRL-STOP-001",
+      "CTRL-RESTART-001",
+      "CTRL-CRASH-001"
+    ],
+    "plainEnglishControlOutcome": "The stop, nonce, revocation and exposure state survived restart; an uncertain action stayed UNKNOWN without retry until explicit confirmed-not-executed reconciliation.",
+    "evidenceTime": "2026-09-02T09:00:00.000Z",
+    "verificationStatus": "VERIFIED_LOCAL_SYNTHETIC_EVIDENCE",
+    "scope": "P3-M161_LOCAL_SYNTHETIC_PURCHASING_DEMONSTRATION",
+    "limitations": [
+      "Ten deterministic synthetic cases are not statistical evidence.",
+      "No real external action or business outcome is evidenced."
+    ],
+    "nonAuthorityStatement": "This Customer Trust Receipt is evidence only. It is not a GatePass and grants no authority to reserve, execute, retry, revoke or expand an action.",
+    "syntheticNonProductionStatement": "Local synthetic demonstration evidence only; not production ready and not evidence of a real purchase or successful business outcome.",
+    "authorityGranted": false,
+    "executable": false,
+    "reservable": false,
+    "retryPermitted": false,
+    "revocationControl": false,
+    "commercialWisdomProven": false,
+    "customerApprovalProven": false,
+    "productionReadinessProven": false,
+    "regulatoryApprovalProven": false,
+    "receiptDigest": "sha256:a91e485536a72457e162ff83e589ed2003ddf1638215a38d315e5072ae8dd84b"
+  }
+]

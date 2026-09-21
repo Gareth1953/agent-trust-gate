@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Gareth1953/agent-trust-gate/schemas/assurance-metrics.schema.json",
+  "title": "ATG Synthetic Assurance Metrics",
+  "type": "object",
+  "required": ["metricsVersion", "runId", "metrics", "metricsDigest", "syntheticEvidenceOnly", "statisticalSignificanceClaimed", "roiClaimed", "realWorldRiskReductionClaimed"],
+  "properties": {
+    "metricsVersion": { "const": "atg.assurance-metrics.local.v1" },
+    "runId": { "type": "string", "minLength": 1 },
+    "metrics": { "type": "array", "minItems": 20, "items": { "type": "object", "required": ["metricId", "label", "value", "numerator", "denominator", "percentage", "sourceEvidence", "classification", "note"] } },
+    "metricsDigest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "syntheticEvidenceOnly": { "const": true },
+    "statisticalSignificanceClaimed": { "const": false },
+    "roiClaimed": { "const": false },
+    "realWorldRiskReductionClaimed": { "const": false }
+  }
+}

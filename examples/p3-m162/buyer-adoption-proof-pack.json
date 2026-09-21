@@ -1,0 +1,125 @@
+{
+  "packVersion": "atg.buyer-adoption-proof-pack.local.v1",
+  "packId": "buyer_proof_pack_m162_run_8579ed4adb8cb7d",
+  "runId": "m162_run_8579ed4adb8cb7d914bc130a",
+  "executiveEvidenceSummary": "A reproducible ten-case local synthetic evaluation shows exact-action authority checks, bounded referral, durable replay/revocation controls and non-authorising Shadow evidence. It is evaluation evidence, not customer or production validation.",
+  "whatAtgDoes": [
+    "Evaluates exact proposed actions against registered authority and policy evidence.",
+    "Issues one-use GatePasses only for enforced ACCEPT outcomes.",
+    "Produces separate local decision and synthetic execution evidence."
+  ],
+  "whatAtgDoesNotDo": [
+    "Decide commercial wisdom.",
+    "Execute real procurement, payment or settlement.",
+    "Establish production readiness, compliance, ROI or customer validation."
+  ],
+  "scenario": "Agent Trust Gate local purchasing lifecycle demonstration",
+  "tenCaseOutcomeReferences": [
+    "01_exact_authorised_purchase",
+    "02_quantity_substitution",
+    "03_supplier_substitution",
+    "04_price_band_breach",
+    "05_gatepass_reuse",
+    "06_gatepass_revocation",
+    "07_shadow_mode",
+    "08_aggregate_ceiling",
+    "09_authority_expansion_attempt",
+    "10_emergency_recovery_lifecycle"
+  ],
+  "customerTrustReceiptReferences": [
+    "customer_trust_receipt_386ead92f31b1d7fce22b105",
+    "customer_trust_receipt_157d09de915937606f04629b",
+    "customer_trust_receipt_7066d41a91c114ac4e1d8fe2",
+    "customer_trust_receipt_7e46407228c1fac90c686ece",
+    "customer_trust_receipt_71393cefa8b153bb9bb6970e",
+    "customer_trust_receipt_0ec9086454cb05ada54870ff",
+    "customer_trust_receipt_388759373b7844119797b578",
+    "customer_trust_receipt_52ff9126fdc35c4a721cb360",
+    "customer_trust_receipt_0fd288b9fa8355be46b1d48f",
+    "customer_trust_receipt_300aedc0c8fdb0027c291e2b"
+  ],
+  "coverageMapReference": "sha256:a7d53b6f0af0adfb6da76a542fbfe9c885bacd4370eae69ee9494d62888c0a58",
+  "metricsReference": "sha256:d9109c32d946d784fa377f1e33114405ec439ad700f7689597a55f92f099c13d",
+  "evidenceManifestReference": "evidence-manifest.json",
+  "verificationInstructions": [
+    "npm run verify:m162 -- --input examples/p3-m162/evidence-bundle.json",
+    "Treat any non-zero exit as verification failure."
+  ],
+  "reproductionInstructions": [
+    "npm run evidence:m162 -- --output-dir examples/p3-m162",
+    "npm run test:customer-trust-evidence"
+  ],
+  "architectureAndTrustBoundary": [
+    "M162 reads M161 evidence and grants no authority.",
+    "MCP remains local stdio with only atg.evaluate_action.",
+    "The synthetic adapter is not reachable from M162 artefacts."
+  ],
+  "integrationAssumptions": [
+    "Node.js and existing repository dependencies.",
+    "Synthetic fixtures and local filesystem only.",
+    "A buyer would retain control of any future real adapter."
+  ],
+  "pilotEntryRequirements": [
+    "One buyer-selected action family.",
+    "Synthetic or explicitly approved data.",
+    "No production execution during initial evaluation.",
+    "Buyer-approved policy and human authority evidence."
+  ],
+  "buyerResponsibilities": [
+    "Define authority and policy boundaries.",
+    "Provide approved non-sensitive test data.",
+    "Review referrals and retain control of execution.",
+    "Perform independent security, legal and operational review."
+  ],
+  "securityAndDataHandling": [
+    "Opaque synthetic references and canonical digests.",
+    "No credentials, personal data, customer data or production secrets.",
+    "Local artefact retention remains the operator's responsibility."
+  ],
+  "knownLimitationsAndNonClaims": [
+    "Ten synthetic cases are not statistically significant.",
+    "No customer deployment or independent validation.",
+    "No distributed durability, production IAM/key custody or real external reconciliation.",
+    "No guaranteed compliance, ROI, savings, fraud reduction or business outcome."
+  ],
+  "evidenceClassifications": {
+    "demonstratedLocally": [
+      "CTRL-EXACT-001",
+      "CTRL-MANDATE-001",
+      "CTRL-MUTATION-001",
+      "CTRL-OUTCOME-001",
+      "CTRL-SHADOW-001",
+      "CTRL-ONEUSE-001",
+      "CTRL-EXPOSURE-001",
+      "CTRL-STOP-001",
+      "CTRL-RESTART-001",
+      "CTRL-CRASH-001",
+      "CTRL-CONCURRENCY-001",
+      "CTRL-ADAPTER-001",
+      "CTRL-RESOURCE-001",
+      "CTRL-RECEIPT-001",
+      "CTRL-TAMPER-001",
+      "CTRL-BYPASS-001",
+      "CTRL-DATA-001",
+      "CTRL-LOCAL-001"
+    ],
+    "designedNotProductionIntegrated": [
+      "CTRL-EXPIRY-001",
+      "CTRL-FAILCLOSED-001"
+    ],
+    "notDemonstrated": [
+      "CTRL-IAM-001",
+      "CTRL-DISTRIBUTED-001",
+      "CTRL-EXTERNAL-REC-001"
+    ],
+    "outOfScope": [
+      "CTRL-COMPLIANCE-001",
+      "CTRL-REAL-PROC-001"
+    ]
+  },
+  "localOnly": true,
+  "syntheticOnly": true,
+  "productionReady": false,
+  "customerValidated": false,
+  "packDigest": "sha256:d4e73d462beb643f5c1a0cadcf337b3f83f5481909962e2899fa3777f7d1262a"
+}
