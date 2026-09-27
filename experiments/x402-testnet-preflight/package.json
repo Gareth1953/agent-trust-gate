@@ -1,0 +1,16 @@
+{
+  "name": "atg-x402-testnet-preflight",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test smoke.test.mjs"
+  },
+  "dependencies": {
+    "@x402/core": "2.27.0",
+    "@x402/evm": "2.27.0",
+    "@x402/express": "2.27.0",
+    "express": "5.2.1"
+  }
+}
