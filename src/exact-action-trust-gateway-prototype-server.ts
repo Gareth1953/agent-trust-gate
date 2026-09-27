@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { createServer, type IncomingMessage, type Server, type ServerResponse } from "node:http";
-import { extname, resolve } from "node:path";
+import { extname, resolve, sep } from "node:path";
 
 import { CONTRACT_VERSION } from "./contract.js";
 import {
@@ -272,7 +272,7 @@ function serveStatic(
     return;
   }
   const filePath = resolve(staticDirectory, relative);
-  if (!filePath.startsWith(`${staticDirectory}\\`) && filePath !== staticDirectory) {
+  if (!filePath.startsWith(`${staticDirectory}${sep}`) && filePath !== staticDirectory) {
     writeJson(response, context, 403, { ok: false, error: { code: "ASSET_PATH_BLOCKED", message: "Asset path blocked." } }, "ASSET_PATH_BLOCKED");
     return;
   }
