@@ -1,0 +1,37 @@
+{
+  "receiptVersion": "atg.human-trust-receipt.local.v1",
+  "receiptReference": "ATG-HR-COMPLETED-77291",
+  "status": "COMPLETED_EXACTLY_AS_AUTHORISED",
+  "plainLanguageAction": "Refund £475.00 to the original payment method",
+  "purpose": "Returned defective item",
+  "amount": 475,
+  "currency": "GBP",
+  "counterparty": "Customer order ending 7291",
+  "agent": {
+    "identity": "AGENT-RETURNS-17",
+    "standingVerified": true
+  },
+  "authority": {
+    "humanApprovalRequired": true,
+    "verified": true,
+    "authorisedBy": "Sarah Collins — Senior Returns Supervisor",
+    "authoritySummary": "Verified refund authority up to GBP 1,000"
+  },
+  "checks": {
+    "policyChecked": true,
+    "exactActionVerified": true,
+    "executionMatched": true
+  },
+  "refusalReason": null,
+  "evidence": {
+    "actionDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "gatePassId": "GP-REFUND-77291",
+    "humanAuthorityProofReference": "HAP-REFUND-77291",
+    "decisionReceiptReference": "PDR-REFUND-77291",
+    "executionReceiptReference": "EXEC-REFUND-77291"
+  },
+  "issuedAt": "2026-08-12T06:30:00.000Z",
+  "localOnly": true,
+  "simulatedOnly": true,
+  "claimBoundary": "Human-readable presentation of underlying ATG evidence. The receipt is not itself the source of proof and does not certify that an AI system is universally safe or compliant."
+}
