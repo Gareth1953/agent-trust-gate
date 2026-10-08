@@ -27,6 +27,9 @@ try {
   const cli = join(scratch, 'node_modules/@agent-trust-gate/plugin/dist/src/standalone-plugin-cli.js');
   const demo = JSON.parse(run(process.execPath, [cli, 'demo', '--state', join(scratch, 'cli-state.json')], scratch));
   assert.equal(demo.passed, true);
+  const orderDemo = JSON.parse(run(process.execPath, [cli, 'order-demo', '--state', join(scratch, 'order-demo')], scratch));
+  assert.equal(orderDemo.passed, true);
+  assert.equal(orderDemo.capabilities.liveConnector, false);
   assert.equal(demo.capabilities.liveExecutionAvailable, false);
   writeFileSync(join(scratch, 'sdk.mjs'), `
     import assert from 'node:assert/strict';
@@ -57,7 +60,7 @@ try {
   assert.equal(replies[2].result.structuredContent.outcome, 'SHADOW');
   assert.equal(replies[2].result.structuredContent.gatePassIssued, false);
   assert.equal(readFileSync(join(scratch, 'node_modules/@agent-trust-gate/plugin/package.json'), 'utf8').includes('"private": true'), true);
-  console.log('Installed archive: SDK gated execution/reuse, changed request, CLI demo and MCP shadow evaluation passed outside repository.');
+  console.log('Installed archive: SDK gated execution/reuse, changed request, CLI purchase-order reconciliation and MCP shadow evaluation passed outside repository.');
 } finally {
   rmSync(scratch, { recursive: true, force: true });
 }

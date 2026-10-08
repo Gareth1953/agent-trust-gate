@@ -30,7 +30,7 @@ cpSync(join(root, 'src/human-authority-demo.mjs'), join(output, 'src/human-autho
 cpSync(join(root, 'LICENSE'), join(output, 'LICENSE'));
 cpSync(join(root, 'docs/standalone-plugin.md'), join(output, 'README.md'));
 writeFileSync(join(output, 'package.json'), JSON.stringify({
-  name: '@agent-trust-gate/plugin', version: '0.1.0-local.1', private: true,
+  name: '@agent-trust-gate/plugin', version: '0.1.0-local.2', private: true,
   description: 'Installable local synthetic ATG evaluation plugin; no live execution.',
   main: './dist/src/standalone-plugin.js', types: './dist/src/standalone-plugin.d.ts',
   exports: { '.': { types: './dist/src/standalone-plugin.d.ts', default: './dist/src/standalone-plugin.js' } },

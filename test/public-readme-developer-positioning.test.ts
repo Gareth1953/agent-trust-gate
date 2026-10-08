@@ -124,7 +124,7 @@ test("README limits URLs to local demos and approved public resources, with no c
         url === currentCorporateSiteUrl ||
         url === "https://agenttrustgate.com/plugin.html" ||
         url === "https://agenttrustgate.com/downloads/SHA256SUMS" ||
-        url === "https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.1.tgz",
+        url === "https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.2.tgz",
       url,
     );
   }

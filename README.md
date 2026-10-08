@@ -26,11 +26,12 @@ continues to describe the absence of any hosted or production capability.
 ATG now includes a standalone Node.js plugin package using the same exact-action core. Install it in another project to use the SDK or the existing local MCP evaluation tool without depending on the repository working directory. The SDK also provides a gated **synthetic** execution example; it does not accept live tool callbacks.
 
 ```powershell
-npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.1.tgz
+npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.2.tgz
 npx --no-install atg-plugin --help
 ```
 
 - [Installation, SDK and MCP guide](docs/standalone-plugin.md)
+- [Purchase-order evaluation: changed-state approval and uncertain-outcome reconciliation](docs/purchase-order-connector.md)
 - [Website plugin overview](https://agenttrustgate.com/plugin.html)
 - [Download checksum](https://agenttrustgate.com/downloads/SHA256SUMS)
 - Build from reviewed source: `npm ci --ignore-scripts` then `npm run plugin:pack`.

@@ -1,6 +1,6 @@
 # ATG standalone plugin — local evaluation edition
 
-Version: **0.1.0-local.1**. This is an installable Node.js package using ATG's existing exact-action authority core, not a second policy engine. It provides an SDK facade, the existing local MCP evaluation server and an optional gated **synthetic** purchasing example.
+Version: **0.1.0-local.2**. This is an installable Node.js package using ATG's existing exact-action authority core, not a second policy engine. It provides an SDK facade, the existing local MCP evaluation server and an optional gated **synthetic** purchasing example.
 
 **Current boundaries:** repository-registered synthetic authority, policies, evidence and fixture signing keys; a fixed synthetic reference clock; local single-process lifecycle storage. Not production ready, customer validated, a hosted service or a live purchasing/payment connector. There is no self-learning or automatic authority expansion. Installation does not make fixture credentials trustworthy for real actions.
 
@@ -9,7 +9,7 @@ Version: **0.1.0-local.1**. This is an installable Node.js package using ATG's e
 Requires Node.js 20 or newer and npm. From your project's directory:
 
 ```powershell
-npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.1.tgz
+npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.2.tgz
 npx --no-install atg-plugin --help
 npx --no-install atg-plugin request
 ```
@@ -101,3 +101,7 @@ The plugin tests include exact-request substitution, receipt tampering, refusal/
 Repository: https://github.com/Gareth1953/agent-trust-gate
 
 Controlled evaluation enquiries: gareth@agenttrustgate.com
+
+## Purchase-order evaluation added in local.2
+
+The installed SDK now exports `AtgPurchaseOrderConnector`. Run `atg-plugin order-demo --state <new-absolute-directory>` to reproduce an unchanged order, a changed supplier bank reference, an acknowledgement lost after commit and a timeout before commit. The connector binds approval to a privately held state snapshot, records the local destination outcome and derives reconciliation from it. No live ERP integration or independent execution capture is claimed. See the [purchase-order connector guide](https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/purchase-order-connector.md) for the complete SDK example, recovery procedure and trust boundaries.

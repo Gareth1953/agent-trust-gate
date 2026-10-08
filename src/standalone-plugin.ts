@@ -15,7 +15,7 @@ import {
 } from "./local-purchasing-lifecycle-demo.js";
 import { createCanonicalPayloadHash } from "./local-signed-proof.js";
 
-export const STANDALONE_PLUGIN_VERSION = "0.1.0-local.1" as const;
+export const STANDALONE_PLUGIN_VERSION = "0.1.0-local.2" as const;
 export const STANDALONE_PLUGIN_BOUNDARY = Object.freeze({
   localOnly: true, syntheticOnly: true, productionReady: false,
   liveExecutionAvailable: false, learningEnabled: false,
@@ -120,3 +120,6 @@ function blocked(reason: string): SyntheticExecutionAttempt {
   return { outcome: "REJECTED", reasonCodes: [reason], adapterReached: false,
     executionReceipt: null, evidenceLink: null, lifecycleStatus: null };
 }
+
+export { AtgPurchaseOrderConnector, PURCHASE_ORDER_CONNECTOR_BOUNDARY, PURCHASE_ORDER_CONNECTOR_VERSION } from "./purchase-order-connector.js";
+export type { PurchaseOrderBusinessState, PurchaseOrderEvidence, PurchaseOrderResult } from "./purchase-order-connector.js";
