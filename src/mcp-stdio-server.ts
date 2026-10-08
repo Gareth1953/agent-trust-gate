@@ -212,8 +212,9 @@ export async function runMcpStdioServer(
   input: Readable = process.stdin,
   output: Writable = process.stdout,
   diagnostics: Writable = process.stderr,
+  gateway: McpExactActionGateway = new McpExactActionGateway(),
 ): Promise<void> {
-  const server = new McpStdioProtocolServer();
+  const server = new McpStdioProtocolServer(gateway);
   let pending = Buffer.alloc(0);
   let discardingOversizedLine = false;
 

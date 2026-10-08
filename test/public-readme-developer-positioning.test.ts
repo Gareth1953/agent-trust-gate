@@ -114,14 +114,17 @@ test("README identifies the current readiness baseline and recent milestones", (
   }
 });
 
-test("README contains no live URLs, real credentials, financial details, or rail activation instructions", () => {
+test("README limits URLs to local demos and approved public resources, with no credentials or rail activation", () => {
   const source = readme();
   const urls = source.match(/https?:\/\/[^\s)`]+/g) ?? [];
   for (const url of urls) {
     assert.ok(
       /^http:\/\/(?:127\.0\.0\.1|localhost)(?::\d+)?(?:\/|$)/.test(url) ||
         url === expectedPagesUrl ||
-        url === currentCorporateSiteUrl,
+        url === currentCorporateSiteUrl ||
+        url === "https://agenttrustgate.com/plugin.html" ||
+        url === "https://agenttrustgate.com/downloads/SHA256SUMS" ||
+        url === "https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.1.tgz",
       url,
     );
   }

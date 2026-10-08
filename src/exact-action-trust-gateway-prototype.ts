@@ -1774,8 +1774,8 @@ function renderHumanReadableReceipt(input: Omit<ExactActionTrustReceipt, "humanR
 
 async function loadHumanAuthorityModule(): Promise<HumanAuthorityDemoModule> {
   humanAuthorityModulePromise ??= import(pathToFileURL(resolve(
-    process.cwd(),
-    "src",
+    __dirname,
+    "../../src",
     "human-authority-demo.mjs",
   )).href) as Promise<HumanAuthorityDemoModule>;
   return humanAuthorityModulePromise;

@@ -579,3 +579,6 @@ export { runCustomerTrustEvidencePackCli } from "./customer-trust-evidence-pack-
 export type { CustomerTrustEvidenceCliIo } from "./customer-trust-evidence-pack-cli.js";
 export { renderPublicClaimsValidation,validatePublicClaims } from "./public-claims-evidence-validator.js";
 export type { PublicClaimCheck,PublicClaimsValidationOverrides,PublicClaimsValidationReport } from "./public-claims-evidence-validator.js";
+
+export { AtgStandalonePlugin, createSyntheticPluginRequest, STANDALONE_PLUGIN_VERSION, STANDALONE_PLUGIN_BOUNDARY } from "./standalone-plugin.js";
+export type { PluginEvaluation } from "./standalone-plugin.js";

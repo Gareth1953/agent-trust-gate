@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import {
@@ -50,7 +50,7 @@ test("--gateway-admin --json outputs parseable JSON", () => {
     assert.equal(result.status, 0);
     assert.equal(result.stderr, "");
     assert.equal(output.contract_version, "atg.v1");
-    assert.equal(output.gateway_logs_path, "gateway-logs\\gateway-requests.jsonl");
+    assert.equal(output.gateway_logs_path, join("gateway-logs", "gateway-requests.jsonl"));
     assert.equal(output.clients[0]?.client_id, "local-demo-agent");
   } finally {
     rmSync(directory, { recursive: true, force: true });

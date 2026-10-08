@@ -20,3 +20,6 @@ reports/*.json
 reports/gatepass-pilot/
 incidents/*.json
 local-commercial/
+
+plugin-build/
+.atg-evaluation/

@@ -683,3 +683,8 @@ false, autonomousProductChanges false, autonomousRoadmapChanges false,
 autonomousCodeChanges false, autonomousOutreach false, scraping false,
 networkCalls false, liveAgentContact false, directBotMessaging false,
 actionExecution false, predictionGuarantee false.
+
+## Standalone local evaluation plugin
+- Overview: https://agenttrustgate.com/plugin.html
+- Technical guide: https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/standalone-plugin.md
+- Installable Node.js SDK and local MCP; version 0.1.0-local.1. Synthetic fixtures and fixed clock; no live execution, production readiness, self-learning or implemented Salmon integration.

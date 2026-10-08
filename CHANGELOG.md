@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-10-08 — Standalone plugin local evaluation edition
+
+- Added an installable `@agent-trust-gate/plugin` archive with SDK and MCP CLI, sharing the existing exact-action authority core.
+- Removed the synthetic human-authority loader's dependency on the caller's working directory.
+- Added private evaluation snapshots, exact-request checks and gated built-in synthetic execution with durable one-use lifecycle checks.
+- Added archive installation verification in a fresh external project, SDK adversarial tests and a website download/guide.
+- Corrected existing Windows-specific log-path and prototype static-asset path assumptions for cross-platform evaluation.
+- Preserved synthetic authority, fixture keys, fixed-time and single-process boundaries. No live execution adapter, autonomous learning or Salmon integration added.
+
+
 All notable project changes are recorded here. The package remains pre-release, private in package metadata, and `local_demo_only`.
 
 No mandate. No evidence. No verified intent. No signed gate pass. No settlement.

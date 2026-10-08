@@ -21,6 +21,23 @@ payment, settlement or customer-communication system.
 Legacy repository capability flag: **Current status: local_demo_only.** This
 continues to describe the absence of any hosted or production capability.
 
+### Installable standalone plugin — local evaluation edition
+
+ATG now includes a standalone Node.js plugin package using the same exact-action core. Install it in another project to use the SDK or the existing local MCP evaluation tool without depending on the repository working directory. The SDK also provides a gated **synthetic** execution example; it does not accept live tool callbacks.
+
+```powershell
+npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.1.tgz
+npx --no-install atg-plugin --help
+```
+
+- [Installation, SDK and MCP guide](docs/standalone-plugin.md)
+- [Website plugin overview](https://agenttrustgate.com/plugin.html)
+- [Download checksum](https://agenttrustgate.com/downloads/SHA256SUMS)
+- Build from reviewed source: `npm ci --ignore-scripts` then `npm run plugin:pack`.
+- Verify the installed archive: `npm run test:plugin`.
+
+**Local evaluation only:** synthetic authority/evidence and fixture keys, fixed synthetic clock, single-process state. No production readiness, real execution, self-learning, automatic policy changes or implemented Salmon integration. A live partner adapter and real trust infrastructure remain future work.
+
 ### What ATG does
 
 - Accepts an exact action proposal through a local MCP-over-stdio integration.
