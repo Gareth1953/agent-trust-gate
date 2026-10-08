@@ -32,6 +32,7 @@ npx --no-install atg-plugin --help
 
 - [Installation, SDK and MCP guide](docs/standalone-plugin.md)
 - [Purchase-order evaluation: changed-state approval and uncertain-outcome reconciliation](docs/purchase-order-connector.md)
+- [ATG Challenge reproduction guide](docs/atg-challenge.md)
 - [Website plugin overview](https://agenttrustgate.com/plugin.html)
 - [Download checksum](https://agenttrustgate.com/downloads/SHA256SUMS)
 - Build from reviewed source: `npm ci --ignore-scripts` then `npm run plugin:pack`.

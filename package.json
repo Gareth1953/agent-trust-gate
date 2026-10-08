@@ -98,7 +98,8 @@
     "test:enterprise-reviewer-pack": "npm run build --silent && node --test dist/test/enterprise-reviewer-pack.test.js",
     "validate:enterprise-reviewer-pack": "npm run build --silent && node scripts/validate-enterprise-reviewer-pack.mjs",
     "plugin:pack": "npm run build --silent && node scripts/build-standalone-plugin.mjs && npm pack ./plugin-build/package --pack-destination ./plugin-build",
-    "test:plugin": "npm run build --silent && node --test dist/test/standalone-plugin.test.js dist/test/purchase-order-connector.test.js && node scripts/test-standalone-plugin-package.mjs"
+    "test:plugin": "npm run build --silent && node --test dist/test/standalone-plugin.test.js dist/test/purchase-order-connector.test.js && node scripts/test-standalone-plugin-package.mjs",
+    "demo:challenge": "npm run build --silent && node scripts/run-atg-challenge.mjs"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
