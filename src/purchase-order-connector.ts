@@ -235,8 +235,12 @@ export class AtgPurchaseOrderConnector {
     try {
       const journal = this.#journal(); const attempt = journal.attempts.find(a => a.evaluationId === evaluationId);
       if (!attempt) return result("REJECTED", "ATTEMPT_UNKNOWN");
-      const record = this.#destination().records.find(r => r.evaluationId === evaluationId) ?? null;
+      // An unsigned handle edit must not hide a record for the same signed authority.
+      const record = this.#destination().records.find(r => r.evaluationId === evaluationId
+        || r.gatePassId === attempt.gatePassId || r.actionDigest === attempt.actionDigest) ?? null;
       const evidence = makeEvidence(attempt, record);
+      if ((attempt.gatePass !== undefined || attempt.businessStateBinding !== undefined)
+        && !evidence.signedBusinessStateVerified) return result("UNKNOWN", "SIGNED_RECOVERY_EVIDENCE_INVALID");
       if (record && !evidence.authorisedRequestMatchesRecordedOutcome) return result("UNKNOWN", "DESTINATION_EVIDENCE_MISMATCH");
       const outcome = record ? "EXECUTED" as const : "NOT_EXECUTED" as const;
       const lifecycle = this.#store.getLifecycleByGatePassId(attempt.gatePassId);

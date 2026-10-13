@@ -67,3 +67,7 @@ Approval still evaluates repository synthetic human-authority/approval fixtures.
 Single-process locking and synchronous writes are not multi-worker transactions. The journal, authority store and destination remain separate files; power-loss durability and crash-lock recovery remain limited as documented in the connector guide. No live ERP, payment, customer data, distributed safety or production readiness is claimed.
 
 A real partner sandbox needs explicit non-production authorisation and synthetic data; authoritative order/supplier/payment versions and terms; exact-state human review and trusted keys/time; destination-owned least-privilege credentials and closure of bypass write routes; native conditional transactions and idempotency; shared atomic consumption/exposure controls; crash and lost-acknowledgement recovery; authenticated independent destination/audit reads; and agreed stop/reconciliation procedures. Those external capabilities remain future work.
+
+## Final review follow-up
+
+The final review found and fixed recovery consistency, a double-read of a host binding accessor, and numeric subprocess exit-code propagation. [Final code review and validation](mission-01-final-review.md) records the updated result: 1,555 regression tests, 42 plugin/launcher tests plus installed-archive smoke, and all requested compatibility checks passed. The earlier validation above remains the historical integration result.

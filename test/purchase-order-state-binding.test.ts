@@ -136,3 +136,33 @@ test("invalid host approval digest fails before signing", async t => {
   await assert.rejects(new McpExactActionGateway({ durableStatePath: join(root, "separate.json") }).evaluateAction(req,
     { approvedPurchaseOrderStateBinding: binding }), /Host-approved state binding/);
 });
+
+test("reconciliation cannot declare absence when a retagged journal handle hides the same signed destination order", async t => {
+  const { c, root } = setup(t); const req = createSyntheticPluginRequest("enforced"); const a = await c.approve(req);
+  assert.equal((await c.execute(a.evaluationId, req, { fault: "timeout_after_commit" })).outcome, "UNKNOWN");
+  const retagged = "12345678-1234-1234-1234-123456789abc";
+  editPayload(root, "journal.json", p => { p.attempts[0].evaluationId = retagged; });
+  assert.equal(c.reconcile(retagged).outcome, "UNKNOWN");
+  assert.equal(c.getDestinationRecords().length, 1);
+  const authority = JSON.parse(readFileSync(join(root, "authority.json"), "utf8"));
+  assert.equal(authority.lifecycles[0].status, "UNKNOWN"); assert.equal(authority.exposureEntries[0].status, "UNKNOWN");
+});
+test("invalid signed recovery evidence cannot release UNKNOWN exposure even when destination is absent", async t => {
+  const { c, root } = setup(t); const req = createSyntheticPluginRequest("enforced"); const a = await c.approve(req);
+  assert.equal((await c.execute(a.evaluationId, req, { fault: "timeout_before_commit" })).outcome, "UNKNOWN");
+  editPayload(root, "journal.json", p => { p.attempts[0].businessStateBinding.businessStateDigest = "sha256:" + "0".repeat(64); });
+  assert.equal(c.reconcile(a.evaluationId).outcome, "UNKNOWN");
+  const authority = JSON.parse(readFileSync(join(root, "authority.json"), "utf8"));
+  assert.equal(authority.exposureEntries[0].status, "UNKNOWN"); assert.equal(c.getDestinationRecords().length, 0);
+});
+
+test("gateway reads a host-approved binding accessor once instead of substituting its second value", async t => {
+  const { c, root } = setup(t); const req = createSyntheticPluginRequest("enforced");
+  const approved = createPurchaseOrderStateBinding(c.getBusinessState(), req);
+  const newer = createPurchaseOrderStateBinding({ ...c.getBusinessState(), orderVersion: 2, revision: 2 }, req);
+  let reads = 0;
+  const options = { get approvedPurchaseOrderStateBinding() { reads += 1; return reads === 1 ? approved : newer; } };
+  const decision = await new McpExactActionGateway({ durableStatePath: join(root, "accessor-authority.json") }).evaluateAction(req, options) as McpBusinessPolicyResult;
+  assert.equal(reads, 1);
+  assert.equal((decision.gatePass!.action.canonicalArguments as any).businessStateBinding.businessStateDigest, approved.businessStateDigest);
+});

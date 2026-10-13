@@ -503,8 +503,9 @@ export class McpExactActionGateway {
 
   async evaluateAction(value: unknown, options: { approvedPurchaseOrderStateBinding?: PurchaseOrderStateBinding } = {}): Promise<McpExactActionResult | McpBusinessPolicyResult> {
     // Snapshot the host-approved bytes before any assessment await. Never refresh state at signing.
-    const approvedBinding = options.approvedPurchaseOrderStateBinding === undefined
-      ? undefined : structuredClone(options.approvedPurchaseOrderStateBinding);
+    const approvedBindingSource = options.approvedPurchaseOrderStateBinding;
+    const approvedBinding = approvedBindingSource === undefined
+      ? undefined : structuredClone(approvedBindingSource);
     if (isRecordValue(value) && value.requestVersion === MCP_BUSINESS_POLICY_REQUEST_VERSION) {
       return this.#evaluateBusinessPolicyAction(value, approvedBinding);
     }

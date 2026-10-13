@@ -80,3 +80,7 @@ Select one customer/partner sandbox and its purchase-order API. Define authorita
 ## Verification
 
 `npm run test:purchase-order-state-binding` tests the approval-to-signing and approval-to-commit boundaries. `npm run test:plugin` covers the connector failure cases and installs the packed archive in a separate fresh project to run the CLI scenarios. Full regression and public-claims checks are recorded in [standalone-plugin-verification.md](standalone-plugin-verification.md).
+
+## Final Mission 01 review
+
+Reconciliation searches by the journal handle, GatePass identity and signed action digest. An inconsistent handle cannot hide a destination record for the same approved action and release its UNKNOWN hold. When signed recovery fields are present, invalid signatures or state bindings retain UNKNOWN even if no destination record is found. Legacy journals without either signed field retain the documented absence-only recovery behaviour. See [the final code review](mission-01-final-review.md) for reproduced defects, fixes and current validation.

@@ -1,0 +1,77 @@
+{
+  "baseCommit": "2730a9379a1f620b8d2ab934b62eddf2c7d934be",
+  "reviewedCommit": "e659874495c782cbb29c752e6e5deee54c0778f1",
+  "branch": "mission-01-current-main",
+  "findings": [
+    {
+      "severity": "P2",
+      "fixed": true,
+      "issue": "Reconciliation could report false absence for a retagged journal handle and release UNKNOWN exposure"
+    },
+    {
+      "severity": "P2",
+      "fixed": true,
+      "issue": "Invalid signed recovery evidence could release UNKNOWN exposure when destination was absent"
+    },
+    {
+      "severity": "P3",
+      "fixed": true,
+      "issue": "Host-approved binding accessor read twice before signing"
+    },
+    {
+      "severity": "P3",
+      "fixed": true,
+      "issue": "Package smoke converted numeric subprocess failure codes to 1"
+    }
+  ],
+  "checks": [
+    {
+      "command": "focused safety + launcher regression",
+      "exitCode": 0,
+      "tests": 102
+    },
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "mainTests": 675,
+      "posttestTests": 880,
+      "failures": 0
+    },
+    {
+      "command": "npm run test:plugin",
+      "exitCode": 0,
+      "tests": 42,
+      "installedArchiveSmoke": true
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run reviewer",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run demo:challenge",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run validate:public-claims",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run validate:discovery-site",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "recommendation": "READY FOR LOCAL MERGE",
+  "syntheticOnly": true,
+  "pushed": false,
+  "published": false,
+  "released": false,
+  "merged": false
+}
