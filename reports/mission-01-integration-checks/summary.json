@@ -1,0 +1,74 @@
+{
+  "upstream": "https://github.com/Gareth1953/agent-trust-gate.git",
+  "preservedMissionCommit": "2e452b6db73bd5784ab7fff5696711d5f86d2667",
+  "preservedMissionBranch": "mission-01-preserved",
+  "baseCommit": "2730a9379a1f620b8d2ab934b62eddf2c7d934be",
+  "branch": "mission-01-current-main",
+  "worktree": "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-01-current-main",
+  "baseline": [
+    {
+      "command": "test:plugin",
+      "exitCode": 1
+    },
+    {
+      "command": "demo:challenge",
+      "exitCode": 0
+    },
+    {
+      "command": "validate:public-claims",
+      "exitCode": 0
+    },
+    {
+      "command": "validate:discovery-site",
+      "exitCode": 0
+    }
+  ],
+  "checks": [
+    {
+      "command": "focused tests",
+      "exitCode": 0,
+      "tests": 93
+    },
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "mainTests": 675,
+      "posttestTests": 871,
+      "failed": 0
+    },
+    {
+      "command": "npm run test:plugin",
+      "exitCode": 0,
+      "tests": 33,
+      "installedArchiveSmoke": true
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run reviewer",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run demo:challenge",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run validate:public-claims",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run validate:discovery-site",
+      "exitCode": 0
+    },
+    {
+      "command": "git diff --check",
+      "exitCode": 0
+    }
+  ],
+  "published": false,
+  "merged": false,
+  "syntheticOnly": true,
+  "productionReady": false
+}

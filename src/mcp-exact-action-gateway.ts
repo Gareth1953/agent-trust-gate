@@ -1,3 +1,4 @@
+import { purchaseOrderStateBindingMatches, type PurchaseOrderStateBinding } from "./purchase-order-state-binding.js";
 import {
   createCanonicalActionEnvelope,
   createFixedTrustedClock,
@@ -500,9 +501,12 @@ export class McpExactActionGateway {
     this.#exposureRule = structuredClone(options.exposureRule ?? DEFAULT_AGGREGATE_EXPOSURE_RULE);
   }
 
-  async evaluateAction(value: unknown): Promise<McpExactActionResult | McpBusinessPolicyResult> {
+  async evaluateAction(value: unknown, options: { approvedPurchaseOrderStateBinding?: PurchaseOrderStateBinding } = {}): Promise<McpExactActionResult | McpBusinessPolicyResult> {
+    // Snapshot the host-approved bytes before any assessment await. Never refresh state at signing.
+    const approvedBinding = options.approvedPurchaseOrderStateBinding === undefined
+      ? undefined : structuredClone(options.approvedPurchaseOrderStateBinding);
     if (isRecordValue(value) && value.requestVersion === MCP_BUSINESS_POLICY_REQUEST_VERSION) {
-      return this.#evaluateBusinessPolicyAction(value);
+      return this.#evaluateBusinessPolicyAction(value, approvedBinding);
     }
     return this.#evaluateLegacyAction(value);
   }
@@ -599,8 +603,11 @@ export class McpExactActionGateway {
     });
   }
 
-  async #evaluateBusinessPolicyAction(value: unknown): Promise<McpBusinessPolicyResult> {
-    const request = validateMcpBusinessPolicyRequest(value);
+  async #evaluateBusinessPolicyAction(value: unknown, approvedBinding?: PurchaseOrderStateBinding): Promise<McpBusinessPolicyResult> {
+    const request = structuredClone(validateMcpBusinessPolicyRequest(value));
+    if (approvedBinding !== undefined && !purchaseOrderStateBindingMatches(approvedBinding, approvedBinding.businessState, request)) {
+      throw new McpExactActionInputError("APPROVED_BUSINESS_STATE_BINDING_INVALID", "Host-approved state binding does not match its snapshot and exact request.");
+    }
     const passportResolution = this.#registry.resolve(request.passportReference, this.#evaluatedAt);
     if (!passportResolution.verified || passportResolution.passport === null) {
       return rejectedBusinessResult(request, passportResolution.reasonCode, false, false);
@@ -640,6 +647,7 @@ export class McpExactActionGateway {
       canonicalArguments: {
         requestVersion: request.requestVersion,
         mode: request.mode,
+        ...(approvedBinding === undefined ? {} : { businessStateBinding: approvedBinding }),
         passportReference: request.passportReference,
         businessPolicyReference: request.businessPolicyReference,
         evidenceSetReference: request.evidenceSetReference,

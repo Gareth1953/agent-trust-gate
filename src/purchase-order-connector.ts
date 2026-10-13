@@ -1,9 +1,11 @@
+import { createPurchaseOrderStateBinding, purchaseOrderStateBindingMatches, validatePurchaseOrderBusinessState, type PurchaseOrderStateBinding, type PurchaseOrderBusinessState } from "./purchase-order-state-binding.js";
+export type { PurchaseOrderBusinessState, PurchaseOrderStateBinding } from "./purchase-order-state-binding.js";
 import { randomUUID } from "node:crypto";
 import { closeSync, existsSync, fsyncSync, lstatSync, mkdirSync, openSync, readFileSync, renameSync, unlinkSync, writeFileSync } from "node:fs";
 import { isAbsolute, join } from "node:path";
 import { LocalDurableLifecycleStore, createOperatorAuthorityEvidence } from "./durable-action-lifecycle.js";
-import { InMemoryNonceStore, createFixedTrustedClock, createVerifierContext, verifyAndExecuteSimulatedAction,
-  type ExecutionReceipt, type PolicyDecisionReceipt } from "./exact-action-gatepass.js";
+import { InMemoryNonceStore, createFixedTrustedClock, createVerifierContext, verifyAndExecuteSimulatedAction, verifyExactActionAtExecution,
+  type ExactActionGatePass, type ExecutionReceipt, type PolicyDecisionReceipt } from "./exact-action-gatepass.js";
 import { McpExactActionGateway, validateMcpBusinessPolicyRequest, type McpBusinessPolicyRequest,
   type McpBusinessPolicyResult } from "./mcp-exact-action-gateway.js";
 import { createCanonicalPayloadHash } from "./local-signed-proof.js";
@@ -14,13 +16,6 @@ export const PURCHASE_ORDER_CONNECTOR_BOUNDARY = Object.freeze({ localOnly: true
   liveConnector: false, productionReady: false, independentExecutionCapture: false,
   automaticRetry: false, learningEnabled: false });
 
-export interface PurchaseOrderBusinessState {
-  orderId: "PO-SYNTHETIC-001";
-  orderVersion: number;
-  supplierBankVersion: number;
-  supplierBankReference: string;
-  revision: number;
-}
 interface DestinationRecord {
   orderId: "PO-SYNTHETIC-001";
   evaluationId: string;
@@ -33,6 +28,8 @@ interface DestinationRecord {
 }
 interface DestinationState { version: typeof PURCHASE_ORDER_CONNECTOR_VERSION; businessState: PurchaseOrderBusinessState; records: DestinationRecord[] }
 interface Attempt {
+  gatePass?: ExactActionGatePass;
+  businessStateBinding?: PurchaseOrderStateBinding;
   approvedRequest: McpBusinessPolicyRequest;
   evaluationId: string;
   gatePassId: string;
@@ -44,7 +41,7 @@ interface Attempt {
   executionReceipt: ExecutionReceipt | null;
 }
 interface Journal { version: typeof PURCHASE_ORDER_CONNECTOR_VERSION; attempts: Attempt[] }
-interface Approval { request: McpBusinessPolicyRequest; requestDigest: string; businessState: PurchaseOrderBusinessState; decision: McpBusinessPolicyResult }
+interface Approval { businessStateBinding: PurchaseOrderStateBinding; request: McpBusinessPolicyRequest; requestDigest: string; businessState: PurchaseOrderBusinessState; decision: McpBusinessPolicyResult }
 export interface PurchaseOrderEvidence {
   version: typeof PURCHASE_ORDER_CONNECTOR_VERSION;
   evaluationId: string;
@@ -52,6 +49,7 @@ export interface PurchaseOrderEvidence {
   actionDigest: string;
   approvedRequestDigest: string;
   approvedBusinessStateDigest: string;
+  signedBusinessStateVerified: boolean;
   decisionReceiptDigest: string;
   executionReceiptDigest: string | null;
   destinationRecord: DestinationRecord | null;
@@ -133,7 +131,7 @@ export class AtgPurchaseOrderConnector {
     return structuredClone(next);
   }
 
-  async approve(value: unknown): Promise<{ evaluationId: string; decision: McpBusinessPolicyResult; businessState: PurchaseOrderBusinessState }> {
+  async approve(value: unknown): Promise<{ evaluationId: string; decision: McpBusinessPolicyResult; businessState: PurchaseOrderBusinessState; businessStateBinding: PurchaseOrderStateBinding; approvedBusinessStateDigest: string }> {
     this.#assertIdle(); this.#busy = true;
     try {
       if (this.#approvals.size >= 100) throw new Error("CONNECTOR_APPROVAL_CAPACITY_REACHED");
@@ -142,20 +140,21 @@ export class AtgPurchaseOrderConnector {
       if (destination.records.length > 0) throw new Error("ORDER_ALREADY_RECORDED");
       if (this.#journal().attempts.some(a => a.status === "UNKNOWN" || a.status === "PREPARED")) throw new Error("RECONCILIATION_REQUIRED");
       if (this.#store.snapshot().lifecycles.some(a => a.status === "RESERVED" || a.status === "UNKNOWN")) throw new Error("RECONCILIATION_REQUIRED");
-      const decision = await this.#gateway.evaluateAction(request) as McpBusinessPolicyResult;
-      const evaluationId = randomUUID();
       const businessState = structuredClone(destination.businessState);
-      this.#approvals.set(evaluationId, { request, requestDigest: createCanonicalPayloadHash(request), businessState, decision: structuredClone(decision) });
-      return { evaluationId, decision: structuredClone(decision), businessState: structuredClone(businessState) };
+      const businessStateBinding = createPurchaseOrderStateBinding(businessState, request);
+      const decision = await this.#gateway.evaluateAction(request, { approvedPurchaseOrderStateBinding: structuredClone(businessStateBinding) }) as McpBusinessPolicyResult;
+      const evaluationId = randomUUID();
+      this.#approvals.set(evaluationId, { request, requestDigest: createCanonicalPayloadHash(request), businessState, businessStateBinding: structuredClone(businessStateBinding), decision: structuredClone(decision) });
+      return { evaluationId, decision: structuredClone(decision), businessState: structuredClone(businessState), businessStateBinding: structuredClone(businessStateBinding), approvedBusinessStateDigest: businessStateBinding.businessStateDigest };
     } finally { this.#busy = false; }
   }
 
-  async execute(evaluationId: string, value: unknown, options: { fault?: "none" | "timeout_before_commit" | "timeout_after_commit" } = {}): Promise<PurchaseOrderResult> {
+  async execute(evaluationId: string, value: unknown, options: { fault?: "none" | "timeout_before_commit" | "timeout_after_commit" | "business_state_change_before_commit" } = {}): Promise<PurchaseOrderResult> {
     this.#assertIdle(); this.#busy = true;
     try {
       if (options === null || typeof options !== "object" || Array.isArray(options)
         || Object.keys(options).some(k => k !== "fault")
-        || ![undefined, "none", "timeout_before_commit", "timeout_after_commit"].includes(options.fault)) return result("REJECTED", "EXECUTION_OPTIONS_INVALID");
+        || ![undefined, "none", "timeout_before_commit", "timeout_after_commit", "business_state_change_before_commit"].includes(options.fault)) return result("REJECTED", "EXECUTION_OPTIONS_INVALID");
       const approval = this.#approvals.get(evaluationId);
       if (!approval) return result("REJECTED", "APPROVAL_UNKNOWN");
       let request: McpBusinessPolicyRequest;
@@ -172,11 +171,15 @@ export class AtgPurchaseOrderConnector {
       if (journal.attempts.some(a => a.status === "UNKNOWN" || a.status === "PREPARED")) return result("REJECTED", "RECONCILIATION_REQUIRED");
       if (this.#store.snapshot().lifecycles.some(a => a.status === "RESERVED" || a.status === "UNKNOWN")) return result("REJECTED", "RECONCILIATION_REQUIRED");
       const gatePass = decision.gatePass;
+      if (approval.businessStateBinding.businessStateDigest !== createCanonicalPayloadHash(approval.businessState)
+        || !signedStateAuthorityMatches(gatePass, decision.policyDecisionReceipt, request, approval.businessStateBinding)) {
+        return result("REJECTED", "SIGNED_BUSINESS_STATE_BINDING_INVALID");
+      }
       const lifecycle = this.#store.getLifecycleByGatePassId(gatePass.gatePassId);
       if (!lifecycle) return result("REJECTED", "LIFECYCLE_MISSING");
       const reserved = this.#store.reserve(gatePass, lifecycle.lifecycleRevision, PURCHASING_DEMO_EXECUTION_TIME);
       if (!reserved.changed) return result("REJECTED", reserved.reasonCode);
-      const attempt: Attempt = { approvedRequest: structuredClone(request), evaluationId, gatePassId: gatePass.gatePassId, actionDigest: gatePass.action.actionDigest,
+      const attempt: Attempt = { gatePass: structuredClone(gatePass), businessStateBinding: structuredClone(approval.businessStateBinding), approvedRequest: structuredClone(request), evaluationId, gatePassId: gatePass.gatePassId, actionDigest: gatePass.action.actionDigest,
         requestDigest: approval.requestDigest, businessStateDigest: createCanonicalPayloadHash(approval.businessState),
         decisionReceipt: structuredClone(decision.policyDecisionReceipt), status: "PREPARED", executionReceipt: null };
       journal.attempts.push(attempt);
@@ -189,9 +192,16 @@ export class AtgPurchaseOrderConnector {
           { trustedClock: createFixedTrustedClock(PURCHASING_DEMO_EXECUTION_TIME) }), () => {
           reached = true;
           if (options.fault === "timeout_before_commit") throw new Error("SYNTHETIC_TIMEOUT");
-          // Re-read and compare at the synchronous local commit boundary; no intervening await.
+          // Synthetic host fault; no arbitrary executor or callback is exposed.
+          if (options.fault === "business_state_change_before_commit") {
+            const changed = this.#destination();
+            changed.businessState.orderVersion += 1; changed.businessState.revision += 1;
+            validateBusinessState(changed.businessState); this.#write("destination.json", changed);
+          }
+          // Reverify the signed approved bytes and compare current state at the synchronous commit boundary.
           const current = this.#destination();
-          if (current.records.length || createCanonicalPayloadHash(current.businessState) !== attempt.businessStateDigest) throw new Error("DESTINATION_CONFLICT");
+          if (current.records.length || !purchaseOrderStateBindingMatches(attempt.businessStateBinding, current.businessState, request)
+            || !signedStateAuthorityMatches(gatePass, decision.policyDecisionReceipt!, request, approval.businessStateBinding)) throw new Error("DESTINATION_CONFLICT");
           current.records.push({ orderId: current.businessState.orderId, evaluationId, gatePassId: gatePass.gatePassId,
             actionDigest: attempt.actionDigest, requestDigest: attempt.requestDigest, businessState: structuredClone(current.businessState),
             proposedAction: structuredClone(request.proposedAction), amountMinorUnits: request.amountMinorUnits });
@@ -296,15 +306,15 @@ export class AtgPurchaseOrderConnector {
 function validId(x: unknown): x is string { return typeof x === "string" && /^[a-f0-9-]{36}$/.test(x); }
 function validText(x: unknown): x is string { return typeof x === "string" && x.length > 0 && x.length <= 240; }
 function validDigest(x: unknown): x is string { return typeof x === "string" && /^sha256:[a-f0-9]{64}$/.test(x); }
-function validateBusinessState(s: PurchaseOrderBusinessState): void {
-  if (!s || s.orderId !== "PO-SYNTHETIC-001" || !/^fixture-bank-[A-Z]$/.test(s.supplierBankReference)
-    || ![s.orderVersion, s.supplierBankVersion, s.revision].every(v => Number.isSafeInteger(v) && v >= 1)) throw new Error("BUSINESS_STATE_INVALID");
-}
+function validateBusinessState(s: PurchaseOrderBusinessState): void { validatePurchaseOrderBusinessState(s); }
 function result(outcome: PurchaseOrderResult["outcome"], reason: string, destinationReached = false, evidence: PurchaseOrderEvidence | null = null): PurchaseOrderResult {
   return { outcome, reason, destinationReached, automaticRetryPermitted: false, evidence };
 }
 function makeEvidence(a: Attempt, record: DestinationRecord | null): PurchaseOrderEvidence {
-  const matches = record !== null && record.gatePassId === a.gatePassId && record.actionDigest === a.actionDigest
+  const signedBusinessStateVerified = a.gatePass !== undefined && a.businessStateBinding !== undefined
+    && a.businessStateBinding.businessStateDigest === a.businessStateDigest
+    && signedStateAuthorityMatches(a.gatePass, a.decisionReceipt, a.approvedRequest, a.businessStateBinding);
+  const matches = signedBusinessStateVerified && record !== null && record.gatePassId === a.gatePassId && record.actionDigest === a.actionDigest
     && record.requestDigest === a.requestDigest && createCanonicalPayloadHash(record.businessState) === a.businessStateDigest
     && createCanonicalPayloadHash(record.proposedAction) === createCanonicalPayloadHash(a.approvedRequest.proposedAction)
     && record.amountMinorUnits === a.approvedRequest.amountMinorUnits
@@ -313,6 +323,28 @@ function makeEvidence(a: Attempt, record: DestinationRecord | null): PurchaseOrd
     actionDigest: a.actionDigest, approvedRequestDigest: a.requestDigest, approvedBusinessStateDigest: a.businessStateDigest,
     decisionReceiptDigest: createCanonicalPayloadHash(a.decisionReceipt), executionReceiptDigest: a.executionReceipt ? createCanonicalPayloadHash(a.executionReceipt) : null,
     destinationRecord: structuredClone(record), destinationRecordDigest: record ? createCanonicalPayloadHash(record) : null,
-    authorisedRequestMatchesRecordedOutcome: matches, localOnly: true as const, syntheticOnly: true as const, independentExecutionCapture: false as const };
+    signedBusinessStateVerified, authorisedRequestMatchesRecordedOutcome: matches, localOnly: true as const, syntheticOnly: true as const, independentExecutionCapture: false as const };
   return { ...body, evidenceDigest: createCanonicalPayloadHash(body) };
+}
+
+/** Reuses the core signature verifier; durable reservation/journal remain the consumption authority. */
+function signedStateAuthorityMatches(pass: ExactActionGatePass, receipt: PolicyDecisionReceipt, request: McpBusinessPolicyRequest, binding: PurchaseOrderStateBinding): boolean {
+  try {
+    if (!purchaseOrderStateBindingMatches(binding, binding.businessState, request)) return false;
+    const signedArguments = pass.action.canonicalArguments as unknown as Record<string, unknown>;
+    const signedBinding = signedArguments.businessStateBinding;
+    const { humanAuthorityProofReference: _authority, mandateId: _mandate, ...proposedAction } = signedArguments.proposedAction as Record<string, unknown>;
+    const { businessStateBinding: _binding, ...signedRequest } = signedArguments;
+    const canonicalRequest = validateMcpBusinessPolicyRequest({ ...signedRequest, toolBinding: request.toolBinding, proposedAction });
+    if (createCanonicalPayloadHash(canonicalRequest) !== binding.approvedRequestDigest
+      || pass.action.toolIdentity !== request.toolBinding.toolIdentity || pass.action.operationName !== request.toolBinding.operation
+      || pass.action.toolSchemaVersion !== `${request.toolBinding.inputSchemaIdentity}@${request.toolBinding.inputSchemaVersion}#${request.toolBinding.inputSchemaDigest}`
+      || pass.action.targetIdentity !== request.proposedAction.supplierId
+      || pass.action.amount !== request.proposedAction.totalAmount || pass.action.currency !== request.proposedAction.currency) return false;
+    if (!purchaseOrderStateBindingMatches(signedBinding, binding.businessState, request)) return false;
+    const { actionEnvelopeVersion: _v, canonicalizationVersion: _c, digestAlgorithm: _d, actionDigest: _h, ...action } = pass.action;
+    const nonce = new InMemoryNonceStore(); nonce.registerUnused(pass);
+    return verifyExactActionAtExecution(pass, action, createVerifierContext({ gatePass: pass, decisionReceipt: receipt }, nonce,
+      { trustedClock: createFixedTrustedClock(PURCHASING_DEMO_EXECUTION_TIME) })).verified;
+  } catch { return false; }
 }

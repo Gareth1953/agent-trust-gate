@@ -2,6 +2,8 @@
 
 Available in `@agent-trust-gate/plugin` **0.1.0-local.2**. This adds a host-owned synthetic destination to the existing authority core. It contacts no ERP, payment system or external API and executes no real purchase. It is not production ready or customer validated.
 
+Mission 01 integration below describes the local source candidate. The previously published `0.1.0-local.2` download remains unchanged and does not contain this signed state-binding upgrade. No archive, public Challenge results or release has been replaced.
+
 ## What can be demonstrated
 
 | Situation | Local behaviour | Client question it helps evaluate |
@@ -53,11 +55,15 @@ try {
 
 ## Authority and evidence boundaries
 
-The existing signed GatePass binds the canonical request. The connector privately retains an additional business-state snapshot and compares it before reservation and at the synchronous local commit boundary. **The new business-state snapshot is not an extension of the signed GatePass schema.** It relies on the host keeping connector state inaccessible to the agent.
+The connector captures the exact business-state snapshot and digest before assessment, then passes a copy to the existing signing path. `atg.purchase-order-state-binding.local.v1` lives inside the canonical arguments covered by the GatePass signature. It binds order identity/version, supplier-bank reference/version and revision, the exact approved request digest, supplier, amount in minor units, currency and the fixed destination identity. Supplier/amount/currency are approved request terms; this fixture has no independent pre-existing ERP order terms. The binding itself is not an authority token.
+
+The gateway snapshots the host-approved binding before any assessment await and never refreshes destination state at signing. `approve()` returns `businessState`, `approvedBusinessStateDigest` and `businessStateBinding` for inspection; returned objects cannot mutate private authority. Execution requires the same approved digest in the signed payload, existing signature verification and a durable reservation. The destination re-verifies those signed bytes and compares current state synchronously immediately before its local write. A newer snapshot cannot be substituted even with a valid fixture signature. Legacy unbound authority cannot authorise this connector path. The original standalone evaluation facade and generic simulated adapter remain API-compatible and do not acquire a destination-state guarantee.
+
+`approve()` still uses repository synthetic authority/approval fixtures. No real human sees and signs an ERP snapshot here. The cryptographic state binding is under ATG's existing fixture signature, not an independently authenticated human approval to authoritative external state.
 
 Approval handles are process-local and do not survive restart. The attempt journal, authority lifecycle and local destination records persist. Reconciliation derives its finding from the local destination; it never accepts a caller-supplied finding. The old attempt is never automatically retried. Confirmed absence releases its lifecycle hold and requires a fresh request/approval. Unused approvals rejected because state changed remain conservatively outstanding under existing lifecycle rules.
 
-Evidence includes request, business-state, decision receipt, execution receipt and destination record digests, plus an explicit outcome comparison. These are **same-host synthetic records**, not independent execution capture, an external cryptographic attestation, or proof that a real ERP executed correctly. Hash wrappers detect accidental/unrehash edits; an administrator able to rewrite all local state can forge them. The combined evidence digest is not a signature. The existing synthetic execution receipt alone does not resolve an acknowledgement loss; the separately recorded destination outcome does.
+Evidence includes request, business-state, decision receipt, execution receipt and destination record digests, plus an explicit outcome comparison. The journal retains the signed GatePass and exact binding; reconciliation verifies them and reports `signedBusinessStateVerified`. Legacy journal records without a signed binding cannot establish matching executed-state evidence and remain UNKNOWN when a destination record exists. Confirmed absence may still release the old hold without granting old authority. These are **same-host synthetic records**, not independent execution capture, an external cryptographic attestation, or proof that a real ERP executed correctly. Hash wrappers detect accidental/unrehash edits; an administrator able to rewrite all local state can forge them. The combined evidence digest is not a signature. The existing synthetic execution receipt alone does not resolve an acknowledgement loss; the separately recorded destination outcome does.
 
 ## Storage and recovery limits
 
@@ -67,8 +73,10 @@ Files use restricted modes, file fsync and atomic replacement. They are not a di
 
 ## Next engineering step for a real integration
 
-Select one customer/partner sandbox and its purchase-order API. Define authoritative state versions, destination idempotency and status queries; bind state cryptographically if required; use conditional writes or destination-side transactions to prevent races. Establish protected keys, trusted time, agent bypass prevention, recovery operations and an externally maintained audit record. Validate with that partner before claiming live purchasing, production safety, independent verification or commercial savings. Shared exposure controls remain in the existing local core; distributed multi-agent budgeting is not added by this connector.
+Select one customer/partner sandbox and its purchase-order API. Define authoritative state versions, destination idempotency and status queries; carry the exact approved state binding to the partner destination; use destination-native conditional writes or transactions to prevent races. Establish protected keys, trusted time, agent bypass prevention, recovery operations and an externally maintained audit record. Validate with that partner before claiming live purchasing, production safety, independent verification or commercial savings. Shared exposure controls remain in the existing local core; distributed multi-agent budgeting is not added by this connector.
+
+`fault: "business_state_change_before_commit"` is a bounded synthetic host fault that advances the order version after preliminary verification and before the synchronous commit check. It writes no order, retains UNKNOWN exposure, requires reconciliation to confirm absence, and then requires fresh approval. No arbitrary callback, executor or caller-selected destination is introduced.
 
 ## Verification
 
-`npm run test:plugin` covers the connector failure cases and installs the packed archive in a separate fresh project to run the CLI scenarios. Full regression and public-claims checks are recorded in [standalone-plugin-verification.md](standalone-plugin-verification.md).
+`npm run test:purchase-order-state-binding` tests the approval-to-signing and approval-to-commit boundaries. `npm run test:plugin` covers the connector failure cases and installs the packed archive in a separate fresh project to run the CLI scenarios. Full regression and public-claims checks are recorded in [standalone-plugin-verification.md](standalone-plugin-verification.md).

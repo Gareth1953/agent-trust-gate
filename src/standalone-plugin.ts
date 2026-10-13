@@ -122,4 +122,4 @@ function blocked(reason: string): SyntheticExecutionAttempt {
 }
 
 export { AtgPurchaseOrderConnector, PURCHASE_ORDER_CONNECTOR_BOUNDARY, PURCHASE_ORDER_CONNECTOR_VERSION } from "./purchase-order-connector.js";
-export type { PurchaseOrderBusinessState, PurchaseOrderEvidence, PurchaseOrderResult } from "./purchase-order-connector.js";
+export type { PurchaseOrderBusinessState, PurchaseOrderStateBinding, PurchaseOrderEvidence, PurchaseOrderResult } from "./purchase-order-connector.js";

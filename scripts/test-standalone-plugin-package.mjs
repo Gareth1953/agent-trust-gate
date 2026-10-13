@@ -7,23 +7,25 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const scratch = mkdtempSync(join(tmpdir(), 'atg-plugin-installed-'));
-const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+// npm supplies its CLI path to lifecycle scripts; run it directly to avoid Windows shell quoting/shims.
+const npm = process.env.npm_execpath;
+if (!npm) throw new Error('Run this check with npm run test:plugin.');
+function runNpm(args, cwd = root) { return run(process.execPath, [npm, "--cache", join(scratch, "npm-cache"), ...args], cwd); }
 function run(command, args, cwd = root, input) {
   const result = spawnSync(command, args, { cwd, input, encoding: 'utf8',
-    timeout: 120_000, maxBuffer: 10 * 1024 * 1024,
-    shell: process.platform === 'win32' && command === npm });
+    timeout: 120_000, maxBuffer: 10 * 1024 * 1024 });
   if (result.error || result.status !== 0) {
-    throw new Error(`Failed ${command}: ${result.error?.message ?? result.stderr ?? result.stdout}`);
+    throw new Error(`Failed ${command}: ${result.error?.message ?? (result.stderr || result.stdout || `exit status ${result.status}`)}`);
   }
   return result.stdout;
 }
 try {
   run(process.execPath, ['scripts/build-standalone-plugin.mjs']);
-  const packed = JSON.parse(run(npm, ['pack', './plugin-build/package', '--pack-destination', './plugin-build', '--json', '--silent']))[0];
+  const packed = JSON.parse(runNpm(['pack', './plugin-build/package', '--pack-destination', './plugin-build', '--json', '--silent']))[0];
   assert.ok(packed.files.every(file => !/(^|\/)(test|node_modules|state\.json)(\/|$)/.test(file.path)));
   const archive = join(root, 'plugin-build', packed.filename);
   writeFileSync(join(scratch, 'package.json'), JSON.stringify({ name: 'atg-install-smoke', private: true, type: 'module' }));
-  run(npm, ['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', archive], scratch);
+  runNpm(['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', archive], scratch);
   const cli = join(scratch, 'node_modules/@agent-trust-gate/plugin/dist/src/standalone-plugin-cli.js');
   const demo = JSON.parse(run(process.execPath, [cli, 'demo', '--state', join(scratch, 'cli-state.json')], scratch));
   assert.equal(demo.passed, true);
