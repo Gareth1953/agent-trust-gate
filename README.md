@@ -23,10 +23,10 @@ continues to describe the absence of any hosted or production capability.
 
 ### Installable standalone plugin — local evaluation edition
 
-ATG now includes a standalone Node.js plugin package using the same exact-action core. Install it in another project to use the SDK or the existing local MCP evaluation tool without depending on the repository working directory. The SDK also provides a gated **synthetic** execution example; it does not accept live tool callbacks.
+ATG now includes a standalone Node.js plugin package using the same exact-action core. Install it in another project to use the SDK or the existing local MCP evaluation tool without depending on the repository working directory. The SDK also provides a gated **synthetic** execution example; it does not accept live tool callbacks. In local.3 the purchase-order approval carries a signed business-state binding, checked again at synthetic commit and during reconciliation.
 
 ```powershell
-npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.2.tgz
+npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz
 npx --no-install atg-plugin --help
 ```
 

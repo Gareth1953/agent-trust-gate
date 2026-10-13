@@ -23,3 +23,6 @@ local-commercial/
 
 plugin-build/
 .atg-evaluation/
+
+# Preserve local review worktrees without including nested repositories in release scans.
+.worktrees/

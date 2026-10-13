@@ -1,6 +1,6 @@
 # ATG standalone plugin — local evaluation edition
 
-Version: **0.1.0-local.2**. This is an installable Node.js package using ATG's existing exact-action authority core, not a second policy engine. It provides an SDK facade, the existing local MCP evaluation server and an optional gated **synthetic** purchasing example.
+Version: **0.1.0-local.3**. This is an installable Node.js package using ATG's existing exact-action authority core, not a second policy engine. It provides an SDK facade, the existing local MCP evaluation server and an optional gated **synthetic** purchasing example.
 
 **Current boundaries:** repository-registered synthetic authority, policies, evidence and fixture signing keys; a fixed synthetic reference clock; local single-process lifecycle storage. Not production ready, customer validated, a hosted service or a live purchasing/payment connector. There is no self-learning or automatic authority expansion. Installation does not make fixture credentials trustworthy for real actions.
 
@@ -9,7 +9,7 @@ Version: **0.1.0-local.2**. This is an installable Node.js package using ATG's e
 Requires Node.js 20 or newer and npm. From your project's directory:
 
 ```powershell
-npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.2.tgz
+npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz
 npx --no-install atg-plugin --help
 npx --no-install atg-plugin request
 ```
@@ -102,6 +102,10 @@ Repository: https://github.com/Gareth1953/agent-trust-gate
 
 Controlled evaluation enquiries: gareth@agenttrustgate.com
 
-## Purchase-order evaluation added in local.2
+## Signed purchase-order business state in local.3
 
-The installed SDK now exports `AtgPurchaseOrderConnector`. Run `atg-plugin order-demo --state <new-absolute-directory>` to reproduce an unchanged order, a changed supplier bank reference, an acknowledgement lost after commit and a timeout before commit. The published archive binds approval to a privately held state snapshot. The Mission 01 local source candidate additionally includes the exact approved state digest in signed canonical arguments, verifies it at commit and reconciliation, and records the local destination outcome. The published download has not been replaced. No live ERP integration or independent execution capture is claimed. See the [purchase-order connector guide](https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/purchase-order-connector.md) for the complete SDK example, recovery procedure and trust boundaries.
+The SDK exports `AtgPurchaseOrderConnector`. In local.3, the exact synthetic approval snapshot and request digest are included in the canonical arguments covered by the existing GatePass signature. The destination checks that same approved state again at its synchronous synthetic commit boundary, and reconciliation verifies it against the recorded outcome. State changes require fresh approval; changing state between preliminary verification and commit records no order. Invalid recovery evidence retains UNKNOWN exposure, and replay remains blocked.
+
+Run `atg-plugin order-demo --state <new-absolute-directory>` to reproduce an unchanged order, changed supplier-bank state, lost acknowledgement and timeout before commit. `npm run test:plugin -- --archive discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz` installs that exact archive in a fresh temporary project and checks SDK, CLI, MCP, signature tampering, changed state, the commit race and recovery.
+
+The earlier local.2 archive is retained unchanged. Approvals are synthetic fixtures, signing keys and time are fixtures, records are same-host evidence, and controls are single-process. No live ERP integration, distributed safety, independently sourced external execution evidence or production readiness is claimed. See the [purchase-order connector guide](https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/purchase-order-connector.md) for the SDK example and recovery limits.

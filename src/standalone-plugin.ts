@@ -15,7 +15,7 @@ import {
 } from "./local-purchasing-lifecycle-demo.js";
 import { createCanonicalPayloadHash } from "./local-signed-proof.js";
 
-export const STANDALONE_PLUGIN_VERSION = "0.1.0-local.2" as const;
+export const STANDALONE_PLUGIN_VERSION = "0.1.0-local.3" as const;
 export const STANDALONE_PLUGIN_BOUNDARY = Object.freeze({
   localOnly: true, syntheticOnly: true, productionReady: false,
   liveExecutionAvailable: false, learningEnabled: false,

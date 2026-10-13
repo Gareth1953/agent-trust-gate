@@ -1,7 +1,7 @@
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { AtgPurchaseOrderConnector, createSyntheticPluginRequest } from '../dist/src/standalone-plugin.js';
+import { AtgPurchaseOrderConnector, createSyntheticPluginRequest, STANDALONE_PLUGIN_VERSION } from '../dist/src/standalone-plugin.js';
 
 const root = mkdtempSync(join(tmpdir(), 'atg-challenge-'));
 const cases = [];
@@ -23,11 +23,12 @@ try {
         : id === 'reused-approval'
           ? first?.outcome === 'EXECUTED' && execution.outcome === 'REJECTED' && recordCount === 1
           : execution.outcome === 'UNKNOWN' && reconciliation?.outcome === 'EXECUTED'
-            && reconciliation.evidence?.authorisedRequestMatchesRecordedOutcome === true && recordCount === 1;
-      cases.push({ id, passed, decisionOutcome: approval.decision.outcome, first, execution, reconciliation, recordCount });
+            && reconciliation.evidence?.authorisedRequestMatchesRecordedOutcome === true && reconciliation.evidence?.signedBusinessStateVerified === true && recordCount === 1;
+      cases.push({ id, passed, approval: { businessState: approval.businessState, approvedBusinessStateDigest: approval.approvedBusinessStateDigest,
+        businessStateBinding: approval.businessStateBinding, gatePass: approval.decision.gatePass, decisionReceipt: approval.decision.policyDecisionReceipt }, decisionOutcome: approval.decision.outcome, first, execution, reconciliation, recordCount });
     } finally { connector.close(); }
   }
-  const result = { version: 'atg.challenge.recorded.v1', capturedAt: new Date().toISOString(),
+  const result = { version: 'atg.challenge.recorded.v1', pluginVersion: STANDALONE_PLUGIN_VERSION, capturedAt: new Date().toISOString(),
     boundary: { localOnly: true, syntheticOnly: true, browserRunsAgents: false, productionReady: false,
       independentExecutionCapture: false, customerAgentTested: false, certification: false },
     command: 'npm ci --ignore-scripts && npm run demo:challenge',

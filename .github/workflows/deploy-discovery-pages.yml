@@ -60,6 +60,11 @@ jobs:
           cp schemas/ard-ai-catalog-v1.0.schema.json _site/schemas/
           cp examples/bring-your-agent-scenario.example.json _site/examples/
           test -f _site/index.html
+          test -f _site/plugin.html
+          test -f _site/challenge.html
+          test -f _site/challenge-results.json
+          test -f _site/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz
+          (cd _site/downloads && sha256sum --check SHA256SUMS)
           test -f _site/technology.html
           test -f _site/solutions.html
           test -f _site/evidence.html

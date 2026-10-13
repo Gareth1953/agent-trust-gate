@@ -100,7 +100,8 @@
     "plugin:pack": "npm run build --silent && node scripts/build-standalone-plugin.mjs && npm pack ./plugin-build/package --pack-destination ./plugin-build",
     "test:purchase-order-state-binding": "npm run build --silent && node --test dist/test/purchase-order-state-binding.test.js",
     "test:plugin": "npm run build --silent && node --test dist/test/standalone-plugin.test.js dist/test/purchase-order-connector.test.js dist/test/purchase-order-state-binding.test.js test/checked-command.test.mjs && node scripts/test-standalone-plugin-package.mjs",
-    "demo:challenge": "npm run build --silent && node scripts/run-atg-challenge.mjs"
+    "demo:challenge": "npm run build --silent && node scripts/run-atg-challenge.mjs",
+    "validate:plugin-release": "npm run build --silent && node scripts/validate-plugin-release.mjs"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

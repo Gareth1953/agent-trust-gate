@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { CommandExecutionError, runCheckedCommand } from './checked-command.mjs';
-import { mkdtempSync, writeFileSync, rmSync, readFileSync } from 'node:fs';
+import { mkdtempSync, writeFileSync, rmSync, readFileSync, copyFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { resolve, join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -15,10 +15,16 @@ try {
   const npm = process.env.npm_execpath;
   if (!npm) throw new Error('Run this check with npm run test:plugin.');
   const runNpm = (args, cwd = root) => run(process.execPath, [npm, '--cache', join(scratch, 'npm-cache'), ...args], cwd);
-  run(process.execPath, ['scripts/build-standalone-plugin.mjs']);
-  const packed = JSON.parse(runNpm(['pack', './plugin-build/package', '--pack-destination', './plugin-build', '--json', '--silent']))[0];
-  assert.ok(packed.files.every(file => !/(^|\/)(test|node_modules|state\.json)(\/|$)/.test(file.path)));
-  const archive = join(root, 'plugin-build', packed.filename);
+  const args = process.argv.slice(2);
+  if (args.length !== 0 && (args.length !== 2 || args[0] !== '--archive')) throw new Error('Use --archive PATH or no arguments.');
+  let archive;
+  if (args.length === 2) archive = resolve(args[1]);
+  else {
+    run(process.execPath, ['scripts/build-standalone-plugin.mjs']);
+    const packed = JSON.parse(runNpm(['pack', './plugin-build/package', '--pack-destination', './plugin-build', '--json', '--silent']))[0];
+    assert.ok(packed.files.every(file => !/(^|\/)(test|node_modules|state\.json)(\/|$)/.test(file.path)));
+    archive = join(root, 'plugin-build', packed.filename);
+  }
   writeFileSync(join(scratch, 'package.json'), JSON.stringify({ name: 'atg-install-smoke', private: true, type: 'module' }));
   runNpm(['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', archive], scratch);
   const cli = join(scratch, 'node_modules/@agent-trust-gate/plugin/dist/src/standalone-plugin-cli.js');
@@ -42,6 +48,10 @@ try {
     assert.equal((await plugin.executeSynthetic(result.evaluationId, request)).adapterReached, false);
   `);
   run(process.execPath, ['sdk.mjs'], scratch);
+  copyFileSync(join(root, 'scripts/plugin-installed-state-binding-smoke.mjs'), join(scratch, 'state-binding-sdk.mjs'));
+  const bindingSmoke = JSON.parse(run(process.execPath, ['state-binding-sdk.mjs'], scratch));
+  assert.equal(bindingSmoke.passed, true);
+  assert.equal(bindingSmoke.cases.length, 5);
   const request = JSON.parse(run(process.execPath, [cli, 'request'], scratch));
   const lines = [
     { jsonrpc: '2.0', id: 1, method: 'initialize', params: { protocolVersion: '2025-06-18', capabilities: {}, clientInfo: { name: 'installed-smoke', version: '1' } } },
@@ -57,7 +67,8 @@ try {
   assert.equal(replies[2].result.structuredContent.outcome, 'SHADOW');
   assert.equal(replies[2].result.structuredContent.gatePassIssued, false);
   assert.equal(readFileSync(join(scratch, 'node_modules/@agent-trust-gate/plugin/package.json'), 'utf8').includes('"private": true'), true);
-  console.log('Installed archive: SDK gated execution/reuse, changed request, CLI purchase-order reconciliation and MCP shadow evaluation passed outside repository.');
+  console.log(JSON.stringify({ archive, installedVersion: bindingSmoke.installedVersion, stateBindingCases: bindingSmoke.cases, passed: true }));
+  console.log('Installed archive: SDK, signed state binding/tampering/commit race/recovery, CLI and MCP shadow evaluation passed outside repository.');
 } catch (error) {
   process.exitCode = error instanceof CommandExecutionError ? error.exitCode : 1;
   console.error(error);

@@ -1,8 +1,8 @@
 # Purchase-order connector — controlled local evaluation
 
-Available in `@agent-trust-gate/plugin` **0.1.0-local.2**. This adds a host-owned synthetic destination to the existing authority core. It contacts no ERP, payment system or external API and executes no real purchase. It is not production ready or customer validated.
+Available in `@agent-trust-gate/plugin` **0.1.0-local.3**. This adds a host-owned synthetic destination to the existing authority core. It contacts no ERP, payment system or external API and executes no real purchase. It is not production ready or customer validated.
 
-Mission 01 integration below describes the local source candidate. The previously published `0.1.0-local.2` download remains unchanged and does not contain this signed state-binding upgrade. No archive, public Challenge results or release has been replaced.
+The prepared local.3 archive includes the reviewed Mission 01 signed state-binding and recovery fixes. The previously published local.2 archive remains unchanged. This is a local release candidate until Gareth approves GitHub/Pages publication.
 
 ## What can be demonstrated
 
@@ -21,7 +21,7 @@ These are reusable evaluation scenarios, not measured financial benefits, compet
 Use a **new absolute directory for each run**, outside the installed package. Node.js 20 or newer is required.
 
 ```sh
-npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.2.tgz
+npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz
 npx --no-install atg-plugin order-demo --state /absolute/path/to/new-atg-order-evaluation
 ```
 

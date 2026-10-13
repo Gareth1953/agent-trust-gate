@@ -28,6 +28,7 @@
     { "claimId": "CLAIM-DISTRIBUTED-001", "claim": "Distributed durability is not demonstrated", "classification": "NOT_DEMONSTRATED", "evidenceSource": "examples/p3-m162/assurance-coverage-map.json", "evidenceDetail": "CTRL-DISTRIBUTED-001." },
     { "claimId": "CLAIM-EXTERNAL-001", "claim": "Real external-effect reconciliation is not demonstrated", "classification": "NOT_DEMONSTRATED", "evidenceSource": "examples/p3-m162/assurance-coverage-map.json", "evidenceDetail": "CTRL-EXTERNAL-REC-001." },
     { "claimId": "CLAIM-COMPLIANCE-001", "claim": "Regulatory compliance is out of scope", "classification": "OUT_OF_SCOPE", "evidenceSource": "examples/p3-m162/assurance-coverage-map.json", "evidenceDetail": "CTRL-COMPLIANCE-001." },
-    { "claimId": "CLAIM-REAL-PROC-001", "claim": "Real procurement and payment execution are out of scope", "classification": "OUT_OF_SCOPE", "evidenceSource": "examples/p3-m162/assurance-coverage-map.json", "evidenceDetail": "CTRL-REAL-PROC-001." }
+    { "claimId": "CLAIM-REAL-PROC-001", "claim": "Real procurement and payment execution are out of scope", "classification": "OUT_OF_SCOPE", "evidenceSource": "examples/p3-m162/assurance-coverage-map.json", "evidenceDetail": "CTRL-REAL-PROC-001." },
+    {"claimId":"CLAIM-M01-SIGNED-STATE-001","claim":"Exact synthetic purchase-order approval state is bound inside the existing GatePass signature and checked at commit and reconciliation","classification":"DEMONSTRATED","evidenceSource":"test/purchase-order-state-binding.test.ts","evidenceDetail":"Local synthetic approval/signing snapshot, signed substitution, conditional commit race and recovery tests. Fixture authority/keys/time; same-host records; single-process controls only."}
   ]
 }

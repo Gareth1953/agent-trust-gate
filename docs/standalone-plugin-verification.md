@@ -1,4 +1,18 @@
-# Standalone plugin verification — 8 October 2026
+# Standalone plugin verification — local.3 candidate
+
+Package: `@agent-trust-gate/plugin` **0.1.0-local.3**, prepared locally for Gareth’s publication approval.
+
+- `npm test`: 675 main + 880 posttest = **1,555 passed, zero failures**.
+- `npm run test:plugin`: **42/42 passed**, plus fresh-project packed installation and SDK/CLI/MCP smoke.
+- `npm run test:plugin -- --archive discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz`: installs the exact checked-in candidate and passes five installed connector scenarios: exact signed state, changed state, commit race, lost acknowledgement/restart recovery and invalid recovery evidence. Signature tampering is also refused.
+- Typecheck, reviewer, Challenge, public-claims and discovery-site validators pass.
+- `npm run validate:plugin-release`: verifies three archive checksums, 46 compiled archive files against the reviewed build, current links, and all three recorded Challenge approval signatures/outcome bindings.
+
+The original-checkout regression initially exposed 14 existing scans that treated the nested worktree directory as a file. `.worktrees/` is now ignored without deletion or branch changes; the rerun passes. No product authority checks were relaxed.
+
+See [the release candidate and publication runbook](mission-01-buyer-release.md) for the exact hash, files, commands and publication gate. Fixture approvals/keys/time, same-host evidence and single-process controls remain explicit. This is not a live ERP connector, independent external evidence, distributed safety or production readiness.
+
+## Historical local.2 verification — 8 October 2026
 
 Package: `@agent-trust-gate/plugin`, version `0.1.0-local.2`.
 

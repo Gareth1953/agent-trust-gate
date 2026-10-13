@@ -1,5 +1,14 @@
 # Changelog
 
+## Plugin 0.1.0-local.3 — local release candidate
+
+- Packages reviewed Mission 01 signed purchase-order business-state binding and UNKNOWN recovery fixes.
+- Rechecks approved state at synthetic commit and during reconciliation; stale state requires fresh approval.
+- Adds exact-download SDK/CLI/MCP/state-binding installation verification and refreshed Challenge evidence.
+- Updates download links and buyer copy; retains local.1/local.2 archives unchanged.
+- Synthetic approvals, fixture keys/time, same-host records and single-process controls only. No live ERP, independent external evidence, distributed safety or production readiness.
+- Prepared locally; publication requires Gareth’s approval.
+
 ## 2026-10-08 — Standalone plugin local evaluation edition
 
 - Added an installable `@agent-trust-gate/plugin` archive with SDK and MCP CLI, sharing the existing exact-action authority core.
