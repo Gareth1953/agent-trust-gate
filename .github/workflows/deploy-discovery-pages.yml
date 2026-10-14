@@ -64,6 +64,8 @@ jobs:
           test -f _site/challenge.html
           test -f _site/challenge-results.json
           test -f _site/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz
+          test -f _site/downloads/agent-trust-gate-plugin-0.1.0-local.4.tgz
+          test -f _site/multi-worker-results-local.4.json
           (cd _site/downloads && sha256sum --check SHA256SUMS)
           test -f _site/technology.html
           test -f _site/solutions.html

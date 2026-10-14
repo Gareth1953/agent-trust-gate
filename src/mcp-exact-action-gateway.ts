@@ -460,6 +460,8 @@ export class McpExactActionInputError extends Error {
   }
 }
 
+export type EvaluationLifecycleStore = Pick<LocalDurableLifecycleStore, "issue" | "previewExposure" | "isEmergencyStopActive" | "recordNonAuthorisingDecision">;
+
 export class McpExactActionGateway {
   readonly #prototype: ExactActionTrustGatewayPrototype;
   readonly #registry: ActionCapabilityPassportRegistry;
@@ -467,7 +469,7 @@ export class McpExactActionGateway {
   readonly #evidenceRegistry: EvidenceObservationRegistry;
   readonly #evaluatedAt: string;
   readonly #clock: TrustedClock | null;
-  readonly #durableStore: LocalDurableLifecycleStore;
+  readonly #durableStore: EvaluationLifecycleStore;
   readonly #exposureRule: AggregateExposureRule;
 
   constructor(options: {
@@ -477,7 +479,7 @@ export class McpExactActionGateway {
     evidenceRegistry?: EvidenceObservationRegistry;
     evaluatedAt?: string;
     clock?: TrustedClock | null;
-    durableStore?: LocalDurableLifecycleStore;
+    durableStore?: EvaluationLifecycleStore;
     durableStatePath?: string;
     exposureRule?: AggregateExposureRule;
   } = {}) {

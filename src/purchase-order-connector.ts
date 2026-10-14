@@ -332,7 +332,7 @@ function makeEvidence(a: Attempt, record: DestinationRecord | null): PurchaseOrd
 }
 
 /** Reuses the core signature verifier; durable reservation/journal remain the consumption authority. */
-function signedStateAuthorityMatches(pass: ExactActionGatePass, receipt: PolicyDecisionReceipt, request: McpBusinessPolicyRequest, binding: PurchaseOrderStateBinding): boolean {
+export function signedStateAuthorityMatches(pass: ExactActionGatePass, receipt: PolicyDecisionReceipt, request: McpBusinessPolicyRequest, binding: PurchaseOrderStateBinding): boolean {
   try {
     if (!purchaseOrderStateBindingMatches(binding, binding.businessState, request)) return false;
     const signedArguments = pass.action.canonicalArguments as unknown as Record<string, unknown>;

@@ -1,0 +1,221 @@
+{
+  "baseCommit": "56cd3707c767f9e40d211617ad9b4b17867f9419",
+  "version": "0.1.0-local.4",
+  "node": "v24.21.0",
+  "node20": "v20.19.0",
+  "node20Sha256": "6e3a39787e667d50487f7335c85636c2823a53e636d73c2c841d45da4e57906c",
+  "platform": "win32",
+  "archive": "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.4.tgz",
+  "sha256": "164a25d41fdda287c4da265f7511802af4f358e7a3f5460395d6bf9377a66800",
+  "evidence": "discovery-site/multi-worker-results-local.4.json",
+  "evidenceSha256": "4bd837315a90ffd0a479df228a033bad9b6b94fe881ab2e4b983fdff0ff714be",
+  "preservedArtifacts": {
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.2.tgz": "3303ae690b2b00de22e9b0ed6c52078d06fd1571d77984ea10d0f8484c02ee2a",
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz": "62086a6cf7740ff72dafa81b821097d593b262ec019481654fb84caca5b673f0",
+    "discovery-site/challenge-results.json": "9cce1c1db60ae4cf1f610ab6f8af46c52aa5f28b409d6c4e6f27efe80920fd74"
+  },
+  "startedAt": "2026-10-14T07:49:40.392Z",
+  "checks": [
+    {
+      "name": "typecheck",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 5556,
+      "log": "reports/mission-02-buyer-release/typecheck.log",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "counts": []
+    },
+    {
+      "name": "full-regression",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 45752,
+      "log": "reports/mission-02-buyer-release/full-regression.log",
+      "sha256": "3cb53e8675c824682828ae0551c73bf6936540577e24084bb8f3e6a1aa04dd4b",
+      "counts": [
+        {
+          "kind": "tests",
+          "count": 675
+        },
+        {
+          "kind": "pass",
+          "count": 675
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        },
+        {
+          "kind": "tests",
+          "count": 910
+        },
+        {
+          "kind": "pass",
+          "count": 910
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "name": "plugin-exact-node24",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test:plugin",
+        "--",
+        "--archive",
+        "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.4.tgz"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 15102,
+      "log": "reports/mission-02-buyer-release/plugin-exact-node24.log",
+      "sha256": "5d5747198fcbdc75e76d13463d10c591f1170aef96e9d428c2040dcf89fed8a0",
+      "counts": [
+        {
+          "kind": "tests",
+          "count": 42
+        },
+        {
+          "kind": "pass",
+          "count": 42
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "name": "plugin-exact-node20",
+      "executable": "C:\\Users\\Gareth\\agent-trust-gate\\.atg-evaluation\\mission-02-node20\\node.exe",
+      "args": [
+        "scripts/test-standalone-plugin-package.mjs",
+        "--archive",
+        "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.4.tgz"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 3595,
+      "log": "reports/mission-02-buyer-release/plugin-exact-node20.log",
+      "sha256": "570358c47a4fb20810650370b99599699d2dacc8d2ccb613ae78396783085708",
+      "counts": []
+    },
+    {
+      "name": "reviewer",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "reviewer"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7526,
+      "log": "reports/mission-02-buyer-release/reviewer.log",
+      "sha256": "bef0691a197e726484352c76cf786dc4f8cf1e08fbc5bdeed8c52cf39bbb858b",
+      "counts": []
+    },
+    {
+      "name": "challenge",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "demo:challenge"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7683,
+      "log": "reports/mission-02-buyer-release/challenge.log",
+      "sha256": "031f5384ae7f2f88140230416719033c5212547ac172182d7dcb34a5fbf1a69b",
+      "counts": []
+    },
+    {
+      "name": "public-claims",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "validate:public-claims"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7478,
+      "log": "reports/mission-02-buyer-release/public-claims.log",
+      "sha256": "88fa04f01415584f878d2dc727253d77a1c3f5ed8d86276e0d7350afa3f6a6c2",
+      "counts": []
+    },
+    {
+      "name": "discovery-site",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "validate:discovery-site"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7619,
+      "log": "reports/mission-02-buyer-release/discovery-site.log",
+      "sha256": "68938e34c40a924537ec1481c5eb103862fe92f9ee82bb184492cb1bec5c68f2",
+      "counts": []
+    },
+    {
+      "name": "archive-checksums-links",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "validate:plugin-release"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7536,
+      "log": "reports/mission-02-buyer-release/archive-checksums-links.log",
+      "sha256": "c5a5a9a97479a5e6335b296c1cfa1833c11ae1d2841bc1a13f27503a52896be2",
+      "counts": []
+    }
+  ],
+  "finishedAt": "2026-10-14T07:51:28.262Z",
+  "initialRegressionFailure": {
+    "log": "reports/mission-02-buyer-release/initial-readme-allowlist-failure.log",
+    "sha256": "a57c493899edb410a98a84fd389b46f91047d6d9b16b71ad4d9db50dc47f0b8c",
+    "reason": "README current archive URL allowlist was hard-coded to local.3; corrected to current package version; final full regression passed"
+  },
+  "review": {
+    "decision": "READY FOR GARETH APPROVAL",
+    "published": false,
+    "merged": false,
+    "pushed": false,
+    "tagged": false,
+    "installedNodeReplaced": false,
+    "workingDiffCheckExitCode": 0,
+    "stagedDiffCheckExitCode": 0
+  },
+  "finalReadmeCheck": {
+    "command": "node --test dist/test/public-readme-developer-positioning.test.js",
+    "exitCode": 0,
+    "tests": 7,
+    "passed": 7,
+    "failed": 0,
+    "log": "reports/mission-02-buyer-release/final-readme-check.log",
+    "sha256": "225a15351c3bb148a76a336eba28d3441f9cb9aecdb4a9e9fdc3fa8d2220196c"
+  }
+}

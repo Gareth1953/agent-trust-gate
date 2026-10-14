@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
+import { STANDALONE_PLUGIN_VERSION } from "../src/standalone-plugin.js";
 
 const readmePath = "README.md";
 const coreRule = "No mandate. No evidence. No verified intent. No signed gate pass. No settlement.";
@@ -124,7 +125,7 @@ test("README limits URLs to local demos and approved public resources, with no c
         url === currentCorporateSiteUrl ||
         url === "https://agenttrustgate.com/plugin.html" ||
         url === "https://agenttrustgate.com/downloads/SHA256SUMS" ||
-        url === "https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz",
+        url === `https://agenttrustgate.com/downloads/agent-trust-gate-plugin-${STANDALONE_PLUGIN_VERSION}.tgz`,
       url,
     );
   }

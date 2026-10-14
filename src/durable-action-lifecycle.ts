@@ -355,17 +355,23 @@ export class LocalDurableLifecycleStore {
   readonly statePath: string;
   readonly localSingleProcessOnly = true as const;
   readonly productionGrade = false as const;
+  readonly #persistSnapshot: ((state: DurableStoreSnapshot) => void) | undefined;
   readonly #faultInjector: ((stage: DurableWriteStage) => void) | undefined;
   #state: DurableLifecycleState | null = null;
   #failure: DurableStateError | null = null;
 
   constructor(options: {
     statePath?: string;
+    /** Host transaction adapter; never use without external transactional serialization. */
+    transactionalSnapshot?: { state: unknown | null; persist: (state: DurableStoreSnapshot) => void };
     faultInjector?: (stage: DurableWriteStage) => void;
   } = {}) {
     this.statePath = options.statePath ?? process.env.ATG_LOCAL_STATE_PATH ?? createAnonymousDurableStatePath();
     this.#faultInjector = options.faultInjector;
-    this.#load();
+    this.#persistSnapshot = options.transactionalSnapshot?.persist;
+    if (options.transactionalSnapshot) {
+      this.#state = options.transactionalSnapshot.state === null ? createEmptyState() : validateStoredState(options.transactionalSnapshot.state);
+    } else this.#load();
   }
 
   health(): { available: boolean; reasonCode: DurableLifecycleReasonCode | null; statePath: string } {
@@ -814,6 +820,12 @@ export class LocalDurableLifecycleStore {
     mutator(next);
     next.storeRevision += 1;
     next.integrityDigest = computeStateDigest(next);
+    if (this.#persistSnapshot) {
+      const confirmed = validateStoredState(next);
+      this.#persistSnapshot(structuredClone(confirmed));
+      this.#state = confirmed;
+      return;
+    }
     const directory = dirname(this.statePath);
     const temporaryPath = `${this.statePath}.tmp-${process.pid}-${next.storeRevision}`;
     let fd: number | null = null;

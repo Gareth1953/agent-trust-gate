@@ -1,0 +1,413 @@
+{
+  "baseCommit": "c93d25aa810d3a813cfa5aefe2f85997089dc7f8",
+  "node": "v24.21.0",
+  "platform": "win32",
+  "startedAt": "2026-10-14T06:35:35.827Z",
+  "checks": [
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 5224,
+      "log": "typecheck.log",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "counts": []
+    },
+    {
+      "command": "npm run test:multi-worker",
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 27224,
+      "log": "test-multi-worker.log",
+      "sha256": "26fe7420aefe3116cbacafe35226667b1b4b3c46abb3ae5dd99aa4ad8d4889b4",
+      "counts": [
+        {
+          "kind": "tests",
+          "count": 30
+        },
+        {
+          "kind": "pass",
+          "count": 30
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "command": "npm run test",
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 44247,
+      "log": "test.log",
+      "sha256": "ce03fac3fb0dc12565ce2e719853c29d6276d0787962bb75fa681488b5db2143",
+      "counts": [
+        {
+          "kind": "tests",
+          "count": 675
+        },
+        {
+          "kind": "pass",
+          "count": 675
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        },
+        {
+          "kind": "tests",
+          "count": 910
+        },
+        {
+          "kind": "pass",
+          "count": 910
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "command": "npm run test:plugin",
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 16569,
+      "log": "test-plugin.log",
+      "sha256": "89e7d9716648e884214e6440f50cb05632dfc223a9ef6a9aed63c8b4eb0b6396",
+      "counts": [
+        {
+          "kind": "tests",
+          "count": 42
+        },
+        {
+          "kind": "pass",
+          "count": 42
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "command": "npm run reviewer",
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7174,
+      "log": "reviewer.log",
+      "sha256": "bef0691a197e726484352c76cf786dc4f8cf1e08fbc5bdeed8c52cf39bbb858b",
+      "counts": []
+    },
+    {
+      "command": "npm run demo:challenge",
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7300,
+      "log": "demo-challenge.log",
+      "sha256": "9e060f60bc9bad8c0a2966a9b8d2777f95255a99924a2b418be7383a03349e92",
+      "counts": []
+    },
+    {
+      "command": "npm run validate:public-claims",
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7173,
+      "log": "validate-public-claims.log",
+      "sha256": "88fa04f01415584f878d2dc727253d77a1c3f5ed8d86276e0d7350afa3f6a6c2",
+      "counts": []
+    },
+    {
+      "command": "npm run validate:discovery-site",
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7252,
+      "log": "validate-discovery-site.log",
+      "sha256": "68938e34c40a924537ec1481c5eb103862fe92f9ee82bb184492cb1bec5c68f2",
+      "counts": []
+    }
+  ],
+  "finishedAt": "2026-10-14T06:37:37.995Z",
+  "reviewedCommit": "ca60aa12e1cd4b260ff17d438e5a9237962dd178",
+  "reviewDecision": "READY FOR LOCAL MERGE",
+  "additionalEvidence": [
+    {
+      "label": "before-fix regressions",
+      "path": "reports/mission-02/review-before-fix.log",
+      "exitCode": 1,
+      "sha256": "18c58ef74cb8e714950a86cfe6a5818e82edb675f2b8bfd49d032fe9f649f908"
+    },
+    {
+      "label": "expanded focused process suite",
+      "path": "reports/mission-02/review-focused.log",
+      "exitCode": 0,
+      "sha256": "ec32d9281ea87ed339ff9634c744634a8ed4578e4daacd97d4b3e3e11f6c9448"
+    },
+    {
+      "label": "actual Node 20 installed-package smoke",
+      "path": "reports/mission-02/review-node20.log",
+      "exitCode": 0,
+      "sha256": "1f754ea9c718626f0dcef6b73f5cb740208df2bcc7ca4f9484c03bbea6f12f88"
+    },
+    {
+      "label": "corrected replay assertion failure",
+      "path": "reports/mission-02-final-review/orphan-replay-assertion.log",
+      "exitCode": 1,
+      "sha256": "ec06de50f1709444a2173458ddb591cc9fe157237b1a793248a9b2a15e3042c0"
+    }
+  ],
+  "node20": {
+    "version": "v20.19.0",
+    "exeSha256": "6e3a39787e667d50487f7335c85636c2823a53e636d73c2c841d45da4e57906c",
+    "officialSource": "https://nodejs.org/dist/v20.19.0/win-x64/node.exe",
+    "officialChecksumSource": "https://nodejs.org/dist/v20.19.0/SHASUMS256.txt",
+    "installedMachineNodeReplaced": false,
+    "installedPackageLegacySdkCliMcpPassed": true,
+    "unsupportedSharedImportError": "ATG_SHARED_WORKER_REQUIRES_NODE_24",
+    "legacyImportAfterOptionalFailurePassed": true
+  },
+  "observedOutcomes": [
+    {
+      "scenario": "same-approval",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "EXECUTED"
+      ]
+    },
+    {
+      "scenario": "budget-600000",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "EXECUTED",
+        "REFERRED"
+      ]
+    },
+    {
+      "scenario": "crash-false",
+      "writes": 0,
+      "exposure": 0,
+      "statuses": [
+        "ABANDONED"
+      ]
+    },
+    {
+      "scenario": "crash-true",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "EXECUTED"
+      ]
+    },
+    {
+      "scenario": "delayed-worker",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "ABANDONED",
+        "EXECUTED"
+      ]
+    },
+    {
+      "scenario": "state-and-nonauthorising",
+      "writes": 0,
+      "exposure": 0,
+      "statuses": [
+        "REFERRED",
+        "ABANDONED"
+      ]
+    },
+    {
+      "scenario": "revoke",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "ABANDONED",
+        "EXECUTED"
+      ]
+    },
+    {
+      "scenario": "stop",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "ABANDONED",
+        "EXECUTED"
+      ]
+    },
+    {
+      "scenario": "storage-unavailable",
+      "writes": 0,
+      "exposure": 400000,
+      "statuses": [
+        "RESERVED"
+      ]
+    },
+    {
+      "scenario": "authority_before_commit",
+      "writes": 0,
+      "exposure": 0,
+      "statuses": [
+        "ABANDONED"
+      ]
+    },
+    {
+      "scenario": "destination_committed",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "EXECUTED"
+      ]
+    },
+    {
+      "scenario": "destination_fenced",
+      "writes": 0,
+      "exposure": 0,
+      "statuses": [
+        "ABANDONED"
+      ]
+    },
+    {
+      "scenario": "lookup-unavailable",
+      "writes": 0,
+      "exposure": 400000,
+      "statuses": [
+        "RESERVED"
+      ]
+    },
+    {
+      "scenario": "invalid-gatePassId",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "RESERVED"
+      ]
+    },
+    {
+      "scenario": "invalid-nonce",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "RESERVED"
+      ]
+    },
+    {
+      "scenario": "invalid-both-identifiers",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "RESERVED"
+      ]
+    },
+    {
+      "scenario": "invalid-actionDigest",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "RESERVED"
+      ]
+    },
+    {
+      "scenario": "invalid-proposedAction",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "RESERVED"
+      ]
+    },
+    {
+      "scenario": "invalid-binding",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "RESERVED"
+      ]
+    },
+    {
+      "scenario": "issued-budget-600000",
+      "writes": 0,
+      "exposure": 400000,
+      "statuses": [
+        "ISSUED",
+        "REFERRED"
+      ]
+    },
+    {
+      "scenario": "reserved-budget-600000",
+      "writes": 0,
+      "exposure": 400000,
+      "statuses": [
+        "RESERVED",
+        "REFERRED"
+      ]
+    },
+    {
+      "scenario": "issued-budget-1000000",
+      "writes": 0,
+      "exposure": 800000,
+      "statuses": [
+        "ISSUED",
+        "ISSUED"
+      ]
+    },
+    {
+      "scenario": "reserved-budget-1000000",
+      "writes": 0,
+      "exposure": 800000,
+      "statuses": [
+        "RESERVED",
+        "RESERVED"
+      ]
+    },
+    {
+      "scenario": "one-order-with-two-reservations",
+      "writes": 1,
+      "exposure": 800000,
+      "statuses": [
+        "RESERVED",
+        "RESERVED"
+      ]
+    },
+    {
+      "scenario": "orphan-issuance_committed",
+      "writes": 0,
+      "exposure": 400000,
+      "statuses": [
+        "ISSUED",
+        "REFERRED"
+      ]
+    },
+    {
+      "scenario": "orphan-fence_registered",
+      "writes": 0,
+      "exposure": 400000,
+      "statuses": [
+        "ISSUED",
+        "REFERRED"
+      ]
+    },
+    {
+      "scenario": "concurrent-stop",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "EXECUTED"
+      ]
+    },
+    {
+      "scenario": "concurrent-revoke",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "EXECUTED"
+      ]
+    }
+  ],
+  "diffChecks": {
+    "workingExitCode": 0,
+    "stagedExitCode": 0,
+    "lineEndingNoticesOnly": true
+  }
+}

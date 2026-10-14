@@ -1,0 +1,222 @@
+{
+  "version": "atg.packaged-multi-worker-evidence.v1",
+  "pluginVersion": "0.1.0-local.4",
+  "capturedAt": "2026-10-14T07:40:43.580Z",
+  "platform": "win32",
+  "node": "v24.21.0",
+  "command": "atg-multi-worker --state ABSOLUTE_NEW_DIRECTORY",
+  "boundary": {
+    "localOnly": true,
+    "syntheticOnly": true,
+    "multipleProcessesOneMachine": true,
+    "storage": "SQLite shared v2",
+    "fixedSyntheticClock": "2026-09-02T09:01:00.000Z",
+    "oneOrderPerScenario": true,
+    "sameHostDestinationEvidence": true,
+    "independentEvidence": false,
+    "multiMachineSafety": false,
+    "productionReady": false
+  },
+  "passed": true,
+  "cases": [
+    {
+      "id": "approval-competition",
+      "passed": true,
+      "claimCount": 1,
+      "reserved": {
+        "writes": 0,
+        "heldMinorUnits": 400000,
+        "reservedMinorUnits": 400000,
+        "committedMinorUnits": 0,
+        "lifecycleStatuses": [
+          "RESERVED"
+        ]
+      },
+      "final": {
+        "writes": 1,
+        "heldMinorUnits": 400000,
+        "reservedMinorUnits": 0,
+        "committedMinorUnits": 400000,
+        "lifecycleStatuses": [
+          "EXECUTED"
+        ]
+      }
+    },
+    {
+      "id": "shared-budget-600000",
+      "passed": true,
+      "limitMinorUnits": 600000,
+      "approvalOutcomes": [
+        "REFER",
+        "ACCEPT"
+      ],
+      "issued": {
+        "writes": 0,
+        "heldMinorUnits": 400000,
+        "reservedMinorUnits": 0,
+        "committedMinorUnits": 0,
+        "lifecycleStatuses": [
+          "ISSUED",
+          "REFERRED"
+        ]
+      },
+      "reserved": {
+        "writes": 0,
+        "heldMinorUnits": 400000,
+        "reservedMinorUnits": 400000,
+        "committedMinorUnits": 0,
+        "lifecycleStatuses": [
+          "RESERVED",
+          "REFERRED"
+        ]
+      }
+    },
+    {
+      "id": "shared-budget-1000000",
+      "passed": true,
+      "limitMinorUnits": 1000000,
+      "approvalOutcomes": [
+        "ACCEPT",
+        "ACCEPT"
+      ],
+      "issued": {
+        "writes": 0,
+        "heldMinorUnits": 800000,
+        "reservedMinorUnits": 0,
+        "committedMinorUnits": 0,
+        "lifecycleStatuses": [
+          "ISSUED",
+          "ISSUED"
+        ]
+      },
+      "reserved": {
+        "writes": 0,
+        "heldMinorUnits": 800000,
+        "reservedMinorUnits": 800000,
+        "committedMinorUnits": 0,
+        "lifecycleStatuses": [
+          "RESERVED",
+          "RESERVED"
+        ]
+      }
+    },
+    {
+      "id": "crash-after-reservation",
+      "passed": true,
+      "beforeRecovery": {
+        "writes": 0,
+        "heldMinorUnits": 400000,
+        "reservedMinorUnits": 400000,
+        "committedMinorUnits": 0,
+        "lifecycleStatuses": [
+          "RESERVED"
+        ]
+      },
+      "recovery": {
+        "outcome": "NOT_EXECUTED",
+        "reason": "DESTINATION_RECONCILED_FRESH_APPROVAL_REQUIRED",
+        "automaticRetryPermitted": false
+      },
+      "final": {
+        "writes": 0,
+        "heldMinorUnits": 0,
+        "reservedMinorUnits": 0,
+        "committedMinorUnits": 0,
+        "lifecycleStatuses": [
+          "ABANDONED"
+        ]
+      }
+    },
+    {
+      "id": "crash-after-commit",
+      "passed": true,
+      "beforeRecovery": {
+        "writes": 1,
+        "heldMinorUnits": 400000,
+        "reservedMinorUnits": 400000,
+        "committedMinorUnits": 0,
+        "lifecycleStatuses": [
+          "RESERVED"
+        ]
+      },
+      "recovery": {
+        "outcome": "EXECUTED",
+        "reason": "DESTINATION_RECONCILED_FRESH_APPROVAL_REQUIRED",
+        "automaticRetryPermitted": false
+      },
+      "final": {
+        "writes": 1,
+        "heldMinorUnits": 400000,
+        "reservedMinorUnits": 0,
+        "committedMinorUnits": 400000,
+        "lifecycleStatuses": [
+          "EXECUTED"
+        ]
+      }
+    },
+    {
+      "id": "delayed-worker",
+      "passed": true,
+      "beforeRecovery": {
+        "writes": 0,
+        "heldMinorUnits": 400000,
+        "reservedMinorUnits": 400000,
+        "committedMinorUnits": 0,
+        "lifecycleStatuses": [
+          "RESERVED"
+        ]
+      },
+      "recovery": {
+        "outcome": "NOT_EXECUTED",
+        "reason": "DESTINATION_RECONCILED_FRESH_APPROVAL_REQUIRED",
+        "automaticRetryPermitted": false
+      },
+      "delayed": {
+        "outcome": "REJECTED",
+        "reason": "STALE_AUTHORITY",
+        "automaticRetryPermitted": false
+      },
+      "final": {
+        "writes": 0,
+        "heldMinorUnits": 0,
+        "reservedMinorUnits": 0,
+        "committedMinorUnits": 0,
+        "lifecycleStatuses": [
+          "ABANDONED"
+        ]
+      }
+    },
+    {
+      "id": "recovery-fence-crash",
+      "passed": true,
+      "beforeRecovery": {
+        "writes": 0,
+        "heldMinorUnits": 400000,
+        "reservedMinorUnits": 400000,
+        "committedMinorUnits": 0,
+        "lifecycleStatuses": [
+          "RESERVED"
+        ]
+      },
+      "stale": {
+        "outcome": "REJECTED",
+        "reason": "DESTINATION_FENCED",
+        "automaticRetryPermitted": false
+      },
+      "recovery": {
+        "outcome": "NOT_EXECUTED",
+        "reason": "DESTINATION_RECONCILED_FRESH_APPROVAL_REQUIRED",
+        "automaticRetryPermitted": false
+      },
+      "final": {
+        "writes": 0,
+        "heldMinorUnits": 0,
+        "reservedMinorUnits": 0,
+        "committedMinorUnits": 0,
+        "lifecycleStatuses": [
+          "ABANDONED"
+        ]
+      }
+    }
+  ]
+}

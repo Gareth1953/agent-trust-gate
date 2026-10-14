@@ -1,0 +1,269 @@
+{
+  "baseCommit": "c93d25aa810d3a813cfa5aefe2f85997089dc7f8",
+  "node": "v24.21.0",
+  "platform": "win32",
+  "startedAt": "2026-10-14T05:52:41.454Z",
+  "checks": [
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 5173,
+      "log": "typecheck.log",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "counts": []
+    },
+    {
+      "command": "npm run test:multi-worker",
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 23937,
+      "log": "test-multi-worker.log",
+      "sha256": "0b1afd5f6b1953f297cb31b95482805b726d6dfac80ad18fdd13a5127b3716a8",
+      "counts": [
+        {
+          "kind": "tests",
+          "count": 18
+        },
+        {
+          "kind": "pass",
+          "count": 18
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "command": "npm run test",
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 39051,
+      "log": "test.log",
+      "sha256": "77f382f4d44eeab5469118cb0456e3508f4721c2bc71782c49cf494cc223e125",
+      "counts": [
+        {
+          "kind": "tests",
+          "count": 675
+        },
+        {
+          "kind": "pass",
+          "count": 675
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        },
+        {
+          "kind": "tests",
+          "count": 898
+        },
+        {
+          "kind": "pass",
+          "count": 898
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "command": "npm run test:plugin",
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 13296,
+      "log": "test-plugin.log",
+      "sha256": "3505c52bdedde2fd6ab7b6e930b31b3cf6f7f17915aea7c3cbcf093c5502f6dc",
+      "counts": [
+        {
+          "kind": "tests",
+          "count": 42
+        },
+        {
+          "kind": "pass",
+          "count": 42
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "command": "npm run reviewer",
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7224,
+      "log": "reviewer.log",
+      "sha256": "bef0691a197e726484352c76cf786dc4f8cf1e08fbc5bdeed8c52cf39bbb858b",
+      "counts": []
+    },
+    {
+      "command": "npm run demo:challenge",
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7395,
+      "log": "demo-challenge.log",
+      "sha256": "0265bab62da96dd58f1c5151d00807117f79cac94c3f9844e112e85ebd50f7c8",
+      "counts": []
+    },
+    {
+      "command": "npm run validate:public-claims",
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7245,
+      "log": "validate-public-claims.log",
+      "sha256": "88fa04f01415584f878d2dc727253d77a1c3f5ed8d86276e0d7350afa3f6a6c2",
+      "counts": []
+    },
+    {
+      "command": "npm run validate:discovery-site",
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7354,
+      "log": "validate-discovery-site.log",
+      "sha256": "68938e34c40a924537ec1481c5eb103862fe92f9ee82bb184492cb1bec5c68f2",
+      "counts": []
+    }
+  ],
+  "finishedAt": "2026-10-14T05:54:32.138Z",
+  "observedOutcomes": [
+    {
+      "scenario": "same-approval",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "EXECUTED"
+      ]
+    },
+    {
+      "scenario": "budget-600000",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "EXECUTED",
+        "REFERRED"
+      ]
+    },
+    {
+      "scenario": "crash-false",
+      "writes": 0,
+      "exposure": 0,
+      "statuses": [
+        "ABANDONED"
+      ]
+    },
+    {
+      "scenario": "crash-true",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "EXECUTED"
+      ]
+    },
+    {
+      "scenario": "delayed-worker",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "ABANDONED",
+        "EXECUTED"
+      ]
+    },
+    {
+      "scenario": "state-and-nonauthorising",
+      "writes": 0,
+      "exposure": 0,
+      "statuses": [
+        "REFERRED",
+        "ABANDONED"
+      ]
+    },
+    {
+      "scenario": "revoke",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "ABANDONED",
+        "EXECUTED"
+      ]
+    },
+    {
+      "scenario": "stop",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "ABANDONED",
+        "EXECUTED"
+      ]
+    },
+    {
+      "scenario": "storage-unavailable",
+      "writes": 0,
+      "exposure": 400000,
+      "statuses": [
+        "RESERVED"
+      ]
+    },
+    {
+      "scenario": "authority_before_commit",
+      "writes": 0,
+      "exposure": 0,
+      "statuses": [
+        "ABANDONED"
+      ]
+    },
+    {
+      "scenario": "destination_committed",
+      "writes": 1,
+      "exposure": 400000,
+      "statuses": [
+        "EXECUTED"
+      ]
+    },
+    {
+      "scenario": "destination_fenced",
+      "writes": 0,
+      "exposure": 0,
+      "statuses": [
+        "ABANDONED"
+      ]
+    },
+    {
+      "scenario": "lookup-unavailable",
+      "writes": 0,
+      "exposure": 400000,
+      "statuses": [
+        "RESERVED"
+      ]
+    }
+  ],
+  "postReviewChecks": [
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "evidence": "Codex command output after initialization cleanup"
+    },
+    {
+      "command": "npm run test:multi-worker",
+      "exitCode": 0,
+      "tests": 18,
+      "passed": 18,
+      "failed": 0,
+      "evidence": "Codex command output after initialization cleanup"
+    },
+    {
+      "command": "node scripts/test-standalone-plugin-package.mjs (npm_execpath supplied)",
+      "exitCode": 0,
+      "installedSharedSdkSmoke": true,
+      "evidence": "Codex command output after initialization cleanup"
+    },
+    {
+      "command": "git diff --check and git diff --cached --check",
+      "exitCode": 0,
+      "evidence": "Codex command output; line-ending notices only"
+    }
+  ]
+}

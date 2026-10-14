@@ -1,8 +1,8 @@
 # Purchase-order connector — controlled local evaluation
 
-Available in `@agent-trust-gate/plugin` **0.1.0-local.3**. This adds a host-owned synthetic destination to the existing authority core. It contacts no ERP, payment system or external API and executes no real purchase. It is not production ready or customer validated.
+Available in `@agent-trust-gate/plugin` **0.1.0-local.4**. This adds a host-owned synthetic destination to the existing authority core. It contacts no ERP, payment system or external API and executes no real purchase. It is not production ready or customer validated.
 
-The prepared local.3 archive includes the reviewed Mission 01 signed state-binding and recovery fixes. The previously published local.2 archive remains unchanged. This is a local release candidate until Gareth approves GitHub/Pages publication.
+The prepared local.4 archive retains the reviewed signed state-binding/recovery controls and adds the optional shared-worker path. Previously published local.2 and local.3 archives remain unchanged. This is a local release candidate until Gareth approves GitHub/Pages publication.
 
 ## What can be demonstrated
 
@@ -21,7 +21,7 @@ These are reusable evaluation scenarios, not measured financial benefits, compet
 Use a **new absolute directory for each run**, outside the installed package. Node.js 20 or newer is required.
 
 ```sh
-npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz
+npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.4.tgz
 npx --no-install atg-plugin order-demo --state /absolute/path/to/new-atg-order-evaluation
 ```
 
@@ -84,3 +84,7 @@ Select one customer/partner sandbox and its purchase-order API. Define authorita
 ## Final Mission 01 review
 
 Reconciliation searches by the journal handle, GatePass identity and signed action digest. An inconsistent handle cannot hide a destination record for the same approved action and release its UNKNOWN hold. When signed recovery fields are present, invalid signatures or state bindings retain UNKNOWN even if no destination record is found. Legacy journals without either signed field retain the documented absence-only recovery behaviour. See [the final code review](mission-01-final-review.md) for reproduced defects, fixes and current validation.
+
+## Separate-process evaluation in local.4
+
+This guide describes the legacy single-owner AtgPurchaseOrderConnector. Use the separate [Node 24+ shared-worker guide](shared-worker-evaluation.md) for SQLite v2 and multiple worker processes on one machine. The legacy root, CLI and MCP remain Node 20 compatible. Shared v1 directories fail closed and must be preserved; no automatic migration or reset is implemented. Neither path establishes multi-machine distributed safety or independently captured evidence.

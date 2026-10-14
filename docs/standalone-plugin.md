@@ -1,20 +1,20 @@
 # ATG standalone plugin — local evaluation edition
 
-Version: **0.1.0-local.3**. This is an installable Node.js package using ATG's existing exact-action authority core, not a second policy engine. It provides an SDK facade, the existing local MCP evaluation server and an optional gated **synthetic** purchasing example.
+Version: **0.1.0-local.4**. This is an installable Node.js package using ATG's existing exact-action authority core, not a second policy engine. It provides an SDK facade, the existing local MCP evaluation server and an optional gated **synthetic** purchasing example.
 
-**Current boundaries:** repository-registered synthetic authority, policies, evidence and fixture signing keys; a fixed synthetic reference clock; local single-process lifecycle storage. Not production ready, customer validated, a hosted service or a live purchasing/payment connector. There is no self-learning or automatic authority expansion. Installation does not make fixture credentials trustworthy for real actions.
+**Current boundaries:** repository-registered synthetic authority, policies, evidence and fixture signing keys; a fixed synthetic reference clock; legacy single-process lifecycle storage, plus optional Node 24+ shared-worker SQLite v2 storage on one machine. Not production ready, customer validated, a hosted service or a live purchasing/payment connector. There is no self-learning or automatic authority expansion. Installation does not make fixture credentials trustworthy for real actions.
 
 ## Install into an existing Node.js project
 
 Requires Node.js 20 or newer and npm. From your project's directory:
 
 ```powershell
-npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz
+npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.4.tgz
 npx --no-install atg-plugin --help
 npx --no-install atg-plugin request
 ```
 
-The versioned archive is served by the ATG website; it is **not published to the npm registry**. Review the repository and compare the downloaded archive against [the published checksum](https://agenttrustgate.com/downloads/SHA256SUMS). On Windows, `Get-FileHash -Algorithm SHA256 <downloaded-file>` reports the checksum. Keep the state file in a host-controlled directory outside `node_modules`. Use one process per state file; this edition has no cross-process locking or distributed storage guarantees. Do not provide production credentials or personal/customer data.
+The local.4 archive is prepared locally for approval; its website URL activates only after publication. Until then install the local archive path. The versioned archive is served by the ATG website after approval; it is **not published to the npm registry**. Review the repository and compare the downloaded archive against [the published checksum](https://agenttrustgate.com/downloads/SHA256SUMS). On Windows, `Get-FileHash -Algorithm SHA256 <downloaded-file>` reports the checksum. Keep the state file in a host-controlled directory outside `node_modules`. Use one process per legacy state file. The optional shared-worker export supports separate processes on one machine through local SQLite; it provides no multi-machine guarantee. Do not provide production credentials or personal/customer data.
 
 To build the archive yourself from a reviewed repository checkout:
 
@@ -106,6 +106,12 @@ Controlled evaluation enquiries: gareth@agenttrustgate.com
 
 The SDK exports `AtgPurchaseOrderConnector`. In local.3, the exact synthetic approval snapshot and request digest are included in the canonical arguments covered by the existing GatePass signature. The destination checks that same approved state again at its synchronous synthetic commit boundary, and reconciliation verifies it against the recorded outcome. State changes require fresh approval; changing state between preliminary verification and commit records no order. Invalid recovery evidence retains UNKNOWN exposure, and replay remains blocked.
 
-Run `atg-plugin order-demo --state <new-absolute-directory>` to reproduce an unchanged order, changed supplier-bank state, lost acknowledgement and timeout before commit. `npm run test:plugin -- --archive discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz` installs that exact archive in a fresh temporary project and checks SDK, CLI, MCP, signature tampering, changed state, the commit race and recovery.
+Run `atg-plugin order-demo --state <new-absolute-directory>` to reproduce an unchanged order, changed supplier-bank state, lost acknowledgement and timeout before commit. `npm run test:plugin -- --archive discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.4.tgz` installs that exact archive in a fresh temporary project and checks SDK, CLI, MCP, signature tampering, changed state, the commit race and recovery.
 
-The earlier local.2 archive is retained unchanged. Approvals are synthetic fixtures, signing keys and time are fixtures, records are same-host evidence, and controls are single-process. No live ERP integration, distributed safety, independently sourced external execution evidence or production readiness is claimed. See the [purchase-order connector guide](https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/purchase-order-connector.md) for the SDK example and recovery limits.
+The earlier local.2 and local.3 archives are retained unchanged. Approvals are synthetic fixtures, signing keys and time are fixtures, records are same-host evidence, and controls are single-process. No live ERP integration, distributed safety, independently sourced external execution evidence or production readiness is claimed. See the [purchase-order connector guide](https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/purchase-order-connector.md) for the SDK example and recovery limits.
+
+## New in local.4: optional shared workers
+
+The package adds the Node 24+ optional export @agent-trust-gate/plugin/shared-purchase-order and the packaged atg-multi-worker demonstration. Legacy root/SDK/CLI/MCP remain Node 20 compatible. Run npx --no-install atg-multi-worker --state ABSOLUTE_NEW_DIRECTORY. This creates fresh SQLite v2 state, retains it for inspection, and prints seven coordinated separate-process scenarios.
+
+Read the [shared-worker guide](https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/shared-worker-evaluation.md) for fresh setup, expected reserved exposure/write counts and recovery. Existing shared v1 directories fail closed: preserve them, do not reset or automatically migrate them. Synthetic fixture authority, fixed time and same-host destination records do not establish independent evidence or multi-machine distributed safety.

@@ -23,10 +23,10 @@ continues to describe the absence of any hosted or production capability.
 
 ### Installable standalone plugin — local evaluation edition
 
-ATG now includes a standalone Node.js plugin package using the same exact-action core. Install it in another project to use the SDK or the existing local MCP evaluation tool without depending on the repository working directory. The SDK also provides a gated **synthetic** execution example; it does not accept live tool callbacks. In local.3 the purchase-order approval carries a signed business-state binding, checked again at synthetic commit and during reconciliation.
+ATG now includes a standalone Node.js plugin package using the same exact-action core. Install it in another project to use the SDK or the existing local MCP evaluation tool without depending on the repository working directory. The SDK also provides a gated **synthetic** execution example; it does not accept live tool callbacks. The purchase-order approval carries a signed business-state binding, checked again at synthetic commit and during reconciliation.
 
 ```powershell
-npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz
+npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.4.tgz
 npx --no-install atg-plugin --help
 ```
 
@@ -38,7 +38,7 @@ npx --no-install atg-plugin --help
 - Build from reviewed source: `npm ci --ignore-scripts` then `npm run plugin:pack`.
 - Verify the installed archive: `npm run test:plugin`.
 
-**Local evaluation only:** synthetic authority/evidence and fixture keys, fixed synthetic clock, single-process state. No production readiness, real execution, self-learning, automatic policy changes or implemented Salmon integration. A live partner adapter and real trust infrastructure remain future work.
+**Local evaluation only:** synthetic authority/evidence and fixture keys, fixed synthetic clock; legacy single-process state and optional Node 24+ shared workers using SQLite on one machine. No production readiness, real execution, self-learning, automatic policy changes or implemented Salmon integration. A live partner adapter and real trust infrastructure remain future work.
 
 ### What ATG does
 
@@ -151,7 +151,7 @@ path for the process. Shadow Mode reads and simulates durable controls but
 creates no lifecycle, exposure, revocation or emergency state.
 
 See [the P3-M160 lifecycle guide](docs/P3-M160-durable-lifecycle-and-emergency-controls.md).
-This remains a single-process synthetic demonstrator, not distributed,
+The legacy path remains single-process; optional shared workers run on one machine. This synthetic demonstrator is not multi-machine distributed,
 tamper-proof, high-availability or production-grade storage.
 
 ### P3-M161 local purchasing lifecycle demonstration
@@ -3635,3 +3635,7 @@ The [local end-to-end money gate proof](docs/local-end-to-end-money-gate-proof-p
 ### Code-Readable Developer Integration Pack
 
 Static local discovery is documented through the [manifest](agent-trust-gate.manifest.json), [integration pack](docs/code-readable-developer-integration-pack.md), [local discovery metadata](docs/local-discovery-metadata.md), [code-only contact readiness](docs/code-only-contact-readiness.md), and [developer checklist](docs/developer-integration-checklist.md). Documentation-only schemas cover the [local request](schemas/local-agent-action-request.schema.json), [trust receipt](schemas/local-trust-receipt.schema.json), and [money-gate proof](schemas/local-money-gate-proof.schema.json). These files create no live API, contact, payment, settlement, network call, signing, or action execution.
+
+### local.4 shared-worker evaluation candidate
+
+The optional shared-worker export and packaged atg-multi-worker demo require Node 24+. Legacy SDK, CLI and evaluation-only MCP remain compatible with Node 20. Run the installed demo with --state ABSOLUTE_NEW_DIRECTORY to retain fresh SQLite v2 state and seven process-coordinated observations. Existing v1 shared state is preserved and refused without automatic migration/reset. Read the [buyer guide](docs/shared-worker-evaluation.md). The new archive and website changes are prepared for approval; no publication has occurred.
