@@ -830,6 +830,8 @@ export class LocalDurableLifecycleStore {
     const temporaryPath = `${this.statePath}.tmp-${process.pid}-${next.storeRevision}`;
     let fd: number | null = null;
     try {
+      // POSIX modes do not set NTFS DACLs. Windows callers must provision
+      // a private parent directory; see docs/mission-04-windows-review.md.
       mkdirSync(directory, { recursive: true, mode: 0o700 });
       this.#faultInjector?.("before_write");
       writeFileSync(temporaryPath, `${JSON.stringify(next, null, 2)}\n`, { encoding: "utf8", flag: "wx", mode: 0o600 });

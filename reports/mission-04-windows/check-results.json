@@ -1,0 +1,42 @@
+[
+  {
+    "name": "focused-node24",
+    "exitCode": 0
+  },
+  {
+    "name": "focused-node20",
+    "exitCode": 0
+  },
+  {
+    "name": "typecheck",
+    "exitCode": 1
+  },
+  {
+    "name": "public-claims",
+    "exitCode": 0
+  },
+  {
+    "name": "discovery-site",
+    "exitCode": 0
+  },
+  {
+    "name": "reviewer",
+    "exitCode": 0
+  },
+  {
+    "name": "plugin",
+    "exitCode": 0
+  },
+  {
+    "name": "immutable-local5-comparison",
+    "exitCode": 1
+  },
+  {
+    "name": "npm-audit",
+    "exitCode": 0
+  },
+  {
+    "name": "ntfs-acl-elevated",
+    "exitCode": 0
+  }
+]

@@ -62,6 +62,10 @@ files with owner-only permissions and new containing directories with mode
 0700. This is a source change pending a separately reviewed package release;
 published local.5 is unchanged. Existing directory permissions are not repaired.
 Windows deployments require separately configured and checked NTFS ACLs.
+A fresh Windows probe found inherited Modify access for sandbox principals,
+including on atomic temporary and replacement files. These source modes do
+not create an owner-only Windows ACL. See the
+[Windows follow-up](docs/mission-04-windows-review.md) and its fresh-state probe.
 These controls do not isolate processes running as the same OS user.
 
 ## Before any client-data evaluation
