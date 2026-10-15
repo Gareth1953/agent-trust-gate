@@ -92,9 +92,23 @@
     "existingAclsChanged": false
   },
   "visualReview": {
-    "desktop": "not performed",
-    "mobile": "not performed",
-    "reason": "No available CUA browsers; iab and chrome sessions unavailable. No authentication restart."
+    "desktop": "Screenshot assessment reported by Gareth: Dave found no visible clipping or overlap. Not directly inspected in this session.",
+    "desktopInteractions": "unverified",
+    "desktopReadability": "not separately confirmed",
+    "mobile390": "unverified",
+    "mobile320": "unverified",
+    "mobile": "unverified; no pass from source inspection",
+    "sourceWording": "Security/release limitations present; rendered visibility pending",
+    "latestBrowserCheck": {
+      "inventory": "no apps or browsers",
+      "edgeControl": "Browser is not available: edge",
+      "installedEdgePath": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
+      "installedEdgeExists": true
+    },
+    "manualGuide": "docs/mission-04-windows-review.md",
+    "softwareInstalled": false,
+    "settingsChanged": false,
+    "authenticationRestart": false
   },
   "preservation": {
     "originalRefsUnchanged": true,

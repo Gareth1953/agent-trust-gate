@@ -62,6 +62,32 @@ Initial environment failures are retained: the default shell helper failed to st
 
 Raw logs and their hashes, initial check results and the final machine-readable summary are retained under `reports/mission-04-windows`. They are Windows follow-up results, not replacements for the supplied Linux report.
 
-## Desktop/mobile visual review remains blocked
+## Visual review status and manual preview
 
-The in-app browser was unavailable, browser inventory returned an empty list, and an explicit dedicated Chrome session was unavailable. No authentication was started or restarted. **No desktop or mobile rendering was inspected, and no screenshot, menu-interaction or visual pass is claimed.** The page was read as source and its static validators passed. Desktop/mobile visual inspection remains required before any publication, including the added release-status paragraph. The current page, source fixes and report remain local.
+Earlier automated visual review was blocked: the in-app browser and Chrome were unavailable. On the latest continuation, browser inventory again returned no surfaces and an explicit Edge tab request returned "Browser is not available: edge". Read-only filesystem checks confirmed Edge is installed at `C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`, and the local security page exists. No software was installed, settings changed or authentication started/restarted.
+
+Gareth reports that Dave inspected a supplied full-page desktop screenshot and found no visible clipping or overlap. This is a reported screenshot assessment, not a screenshot directly inspected in this session. It does not confirm desktop interactions, all text readability or any mobile behaviour.
+
+| Check | Actual status |
+| --- | --- |
+| Desktop screenshot: clipping/overlap | No visible issue reported by Gareth from Dave's inspection |
+| Desktop navigation, links and keyboard interactions | Unverified |
+| Desktop text readability as a separate check | Not separately confirmed |
+| Mobile at 390px and 320px: layout, text, Menu, links and footer | Unverified; no mobile pass claimed |
+| Security/release wording | Source inspection confirms synthetic/same-host limits, no production assurance, unencrypted local records, separate NTFS responsibility, and local.5 missing Mission 04 fixes; rendered visibility remains to be checked |
+
+Gareth can run this PowerShell command outside this session to open the existing local page in installed Edge. It edits no repository file, installs nothing and changes no settings:
+
+```powershell
+Start-Process -FilePath 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe' -ArgumentList 'file:///C:/Users/Gareth/agent-trust-gate/.worktrees/mission-04-windows-review/discovery-site/security.html'
+```
+
+Manual checklist, with results still pending:
+
+1. At desktop width, check the navigation links and visible keyboard focus using Tab. Scroll through all text and the footer; confirm comfortable readability. The existing screenshot assessment alone does not complete these interaction checks.
+2. Open DevTools with F12 (or Ctrl+Shift+I), then toggle the device toolbar with Ctrl+Shift+M. Choose Responsive and enter width **390**, height **844**, with device emulation zoom at 100%. Repeat the remaining checks at width **320**.
+3. At each width, scroll from heading to footer. Check heading and paragraph wrapping, email addresses, card boundaries and footer links. Confirm no clipped/overlapping text or unwanted horizontal page scrolling.
+4. Open and close **Menu**. Open it again and press Escape; confirm it closes and focus returns to Menu. Follow a local `.html` navigation link, return with Alt+Left, and check the plugin, privacy and footer links. Check email link destinations without sending anything. The Home/brand `./` link may open a folder under `file://`; record this as a local-file preview limitation rather than a deployed HTTP navigation result.
+5. Confirm the rendered limitations remain readable at both widths: synthetic/same-host evaluation, no production or independent-assurance claim, local records not encrypted by ATG, separately configured Windows NTFS permissions, and published local.5 missing the Mission 04 source fixes.
+
+Report results separately for **390px** and **320px**, listing text/overflow, Menu open/close/Escape, navigation links, footer and release-limit visibility as passed, failed or not checked. Note the exact width and section for any issue. Source inspection and the desktop screenshot do not establish a mobile pass. The current page, source fixes and report remain local; no publication is authorised.
