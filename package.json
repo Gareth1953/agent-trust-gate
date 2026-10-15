@@ -113,7 +113,10 @@
     "validate:mission-03-buyer-release": "node scripts/validate-mission-03-buyer-release.mjs",
     "test:security-mission-04": "npm run build --silent && node --test dist/test/mission-04-security.test.js",
     "prepare:mission-04-candidate": "npm run build --silent && node scripts/prepare-mission-04-candidate.mjs",
-    "validate:mission-04-buyer-release": "node scripts/validate-mission-04-buyer-release.mjs"
+    "validate:mission-04-buyer-release": "node scripts/validate-mission-04-buyer-release.mjs",
+    "prepare:mission-04-local7-candidate": "npm run build --silent && node scripts/prepare-mission-04-local7-candidate.mjs",
+    "validate:mission-04-local7-buyer-release": "node scripts/validate-mission-04-local7-buyer-release.mjs",
+    "review:mission-04-local7-pages": "node scripts/review-mission-04-local7-release-pages.mjs"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

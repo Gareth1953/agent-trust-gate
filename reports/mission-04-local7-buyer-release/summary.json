@@ -1,0 +1,262 @@
+{
+  "status": "Unpublished local.7 candidate for renewed Gareth and Dave review",
+  "version": "0.1.0-local.7",
+  "branch": "mission-04-local7-buyer-release",
+  "reviewedParent": "ce7259ad05d4f82cc0c865ea213ba90d9020d34a",
+  "reviewedSigningAncestor": "8ca808a05afd46f2c034f9ced613b9929d11710d",
+  "reviewedWindowsAncestor": "be72c69097c3faca1e5b2f91369e68b8aa777aba",
+  "exactCandidateCommit": "Resolve the branch after the local preparation commit; full commit is reported in the handoff",
+  "archive": {
+    "filename": "agent-trust-gate-plugin-0.1.0-local.7.tgz",
+    "size": 157102,
+    "sha256": "dcf75970db520fdd10afea63aa1a9d20780dc12a053c8e09f49b0f21ed1dddad",
+    "sealed": true,
+    "builtOnce": true,
+    "repackedDuringValidation": false
+  },
+  "runtime": {
+    "node24": "v24.21.0",
+    "node20": "v20.19.0",
+    "node20Sha256": "6e3a39787e667d50487f7335c85636c2823a53e636d73c2c841d45da4e57906c"
+  },
+  "regression": {
+    "node24": {
+      "tests": 1630,
+      "passed": 1629,
+      "failed": 0,
+      "posixSkipped": 1
+    },
+    "node20Compatible": {
+      "tests": 1565,
+      "passed": 1564,
+      "failed": 0,
+      "posixSkipped": 1,
+      "excludedNode24Only": 65
+    }
+  },
+  "exactArchive": {
+    "freshProjects": true,
+    "sixInstalledChecksPassed": true,
+    "securityPerRuntime": {
+      "passed": 7,
+      "posixSkipped": 1,
+      "repairTestsPassed": 2
+    },
+    "nativeWindowsCasesPerRuntime": 4,
+    "nativeDenials": "EPERM rename with two owned reader-sharing configurations; EEXIST open on a deliberate collision. Committed reservation bytes remain unchanged and RESERVED after restart. Colliding evidence is preserved.",
+    "destinationNode24": {
+      "cliScenarios": 8,
+      "installedTests": 35
+    },
+    "destinationNode20": "Actual restricted public verifier passes with no write/private-key authority; optional Node24 setup rejects without state.",
+    "legacyBoth": "SDK/CLI/MCP and five signed state-binding cases pass; Node24 packaged worker cases also pass."
+  },
+  "validation": {
+    "all17StepsPassed": true,
+    "rawSummary": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\summary.json",
+    "rawSummarySha256": "ec2c21f3b4c5021abb33f895cc0dde5d78414258b0839d9dfac4e22ecb9610a5",
+    "checks": [
+      {
+        "name": "build",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\build.log",
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "name": "typecheck",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\typecheck.log",
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "name": "installed-destination-node24",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\installed-destination-node24.log",
+        "sha256": "7f3680db42d85f753693469519b6f56e9be7ec9d939cfbaacd5d765b38a6c9b1"
+      },
+      {
+        "name": "installed-destination-node20",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\installed-destination-node20.log",
+        "sha256": "09a3d3740b9510c28e2cffae09e01e2a4db85fe5f88fba754d0ba6824e9c5576"
+      },
+      {
+        "name": "installed-security-node24",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\installed-security-node24.log",
+        "sha256": "05dd261c2fbb229129a5617564ec621e3251d2bb2c6532f57f7cdc159078caa3"
+      },
+      {
+        "name": "installed-security-node20",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\installed-security-node20.log",
+        "sha256": "632b57cfba4a8bc3546ec666236876a77c62a1d93936105286bc03e2a1a4ba4d"
+      },
+      {
+        "name": "installed-legacy-node24",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\installed-legacy-node24.log",
+        "sha256": "231c799f5bd7cb68cd18a065a887437ed7c40d513d4b352cda792180ee0ebccc"
+      },
+      {
+        "name": "installed-legacy-node20",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\installed-legacy-node20.log",
+        "sha256": "dde90eea1745df25e92f803fa160a09cd45c744c60e0fbdd1f57d68529a4862c"
+      },
+      {
+        "name": "full-regression-node24",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\full-regression-node24.log",
+        "sha256": "eacf4231560816a45d24caca84b8b0b045b40cabd1fb41165d887f00e9c7398c"
+      },
+      {
+        "name": "legacy-main-regression-node20",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\legacy-main-regression-node20.log",
+        "sha256": "e69c207b8e94d59cfaa6f540dea52abfb073f13a43d743fc75b21549121cc8c3"
+      },
+      {
+        "name": "compatible-post-regression-node20",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\compatible-post-regression-node20.log",
+        "sha256": "557952304c9e07f3c74d28beca10abe24e60ff313456029f7e4bed1bc64f03fb"
+      },
+      {
+        "name": "reviewer",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\reviewer.log",
+        "sha256": "bef0691a197e726484352c76cf786dc4f8cf1e08fbc5bdeed8c52cf39bbb858b"
+      },
+      {
+        "name": "public-claims",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\public-claims.log",
+        "sha256": "88fa04f01415584f878d2dc727253d77a1c3f5ed8d86276e0d7350afa3f6a6c2"
+      },
+      {
+        "name": "discovery-site",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\discovery-site.log",
+        "sha256": "68938e34c40a924537ec1481c5eb103862fe92f9ee82bb184492cb1bec5c68f2"
+      },
+      {
+        "name": "archive-bytes-checksums-links-evidence",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\archive-bytes-checksums-links-evidence.log",
+        "sha256": "61228521d639c86c7d45a2db237fa76ba7db4c223375a1b5c7bcdf61748e99c8"
+      },
+      {
+        "name": "npm-audit",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\npm-audit.log",
+        "sha256": "7c9d4457d9f744f984a9e70d88c3178484d9c0fe5b19bd0efadb7a75e3e50f06"
+      },
+      {
+        "name": "diff-check",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\diff-check.log",
+        "sha256": "1799ef3c62ca725d78104e1ea036d265243aaaf0316b0b8513bf5ed3a8c0da86"
+      }
+    ],
+    "compiledRuntimeMembersCompared": 54,
+    "checksumArchives": 7,
+    "recordingsVerified": {
+      "challengeLocal3": 3,
+      "workerLocal4": 7,
+      "destinationLocal5Local6Local7": 8
+    },
+    "npmAuditAdvisories": 0,
+    "finalTargetedWebsiteTests": 20,
+    "postRegressionChanges": "Website reproduction panel uses explicit sealed-archive argument; new local.7 capture includes repair ancestry/incident provenance; browser harness also exercises horizontal scrolling. Runtime/archive/bundled docs unchanged.",
+    "finalChecks": [
+      {
+        "name": "archive-final",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-preparation\\archive-final.log",
+        "sha256": "61228521d639c86c7d45a2db237fa76ba7db4c223375a1b5c7bcdf61748e99c8"
+      },
+      {
+        "name": "public-claims-final",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-preparation\\public-claims-final.log",
+        "sha256": "88fa04f01415584f878d2dc727253d77a1c3f5ed8d86276e0d7350afa3f6a6c2"
+      },
+      {
+        "name": "discovery-final",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-preparation\\discovery-final.log",
+        "sha256": "68938e34c40a924537ec1481c5eb103862fe92f9ee82bb184492cb1bec5c68f2"
+      },
+      {
+        "name": "website-tests-final",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-preparation\\website-tests-final.log",
+        "sha256": "c6bd5f2ec1eaf937eb7dfdf21a099c9e1d289a4643037d3bc8a7ba760518e4b0"
+      },
+      {
+        "name": "diff-final",
+        "exitCode": 0,
+        "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-preparation\\diff-final.log",
+        "sha256": "7c657ec45332ecfdddd4144648097732cf387505705704ce09d7e67ef0a9e946"
+      }
+    ],
+    "auditActual": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    }
+  },
+  "website": {
+    "assessment": "website-assessment.json",
+    "completedViewports": 9,
+    "directOrIdenticalInspectedPanels": 21,
+    "clickedLocalLinks": 195,
+    "pageOverflow": false,
+    "proseClipping": false,
+    "horizontalCodeScrollVerified": true
+  },
+  "preservation": {
+    "report": "preservation.json",
+    "protectedFiles": 7875,
+    "changedFiles": 0,
+    "originalBranchesChanged": 0,
+    "originalWorktrees": 7,
+    "unpublishedLocal6Retained": true,
+    "publishedLocal5Retained": true
+  },
+  "originalIncident": {
+    "attributed": false,
+    "originalFailureEvidencePreserved": true,
+    "matchingEpermMechanismReproduced": true,
+    "separateCleanupDefectFixed": true,
+    "passingRerunsClearIncident": false
+  },
+  "findings": [
+    {
+      "issue": "Website reproduction panel used generic pack/test commands.",
+      "fix": "Use build plus test:plugin -- --archive with the sealed local.7 path; rerun targeted validators/browser checks. No repack."
+    }
+  ],
+  "limitations": [
+    "Original Windows incident remains unattributed; no historical native error or handle-owner trace can be recovered. Matching controlled EPERM is not historical attribution.",
+    "Windows-only runtime/NTFS evidence; POSIX mode test skips. No new POSIX exact-archive test.",
+    "ATG does not enforce private NTFS DACLs, same-user/admin isolation or record encryption. Existing state/ACLs are not repaired.",
+    "Synthetic same-host records, fixture authority/approval keys/clocks and same-host destination evaluation keys; no independent external capture/security assurance or production readiness.",
+    "Browser evidence uses installed headless Edge/local preview, not deployed live bytes or physical touch devices/iOS/Safari/screen-reader/full contrast/zoom audit.",
+    "Unpublished candidate. Current remote/authentication/live deployment state was not verified or changed; future publication requires explicit renewed exact-commit/bytes approval."
+  ],
+  "publicationRunbook": "docs/mission-04-publication-runbook.md",
+  "publication": {
+    "merged": false,
+    "pushed": false,
+    "deployed": false,
+    "published": false,
+    "tagged": false,
+    "githubRelease": false,
+    "authenticationRestarted": false
+  }
+}

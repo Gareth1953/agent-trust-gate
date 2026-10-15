@@ -70,6 +70,8 @@ jobs:
           test -f _site/destination-evidence-results-local.5.json
           test -f _site/downloads/agent-trust-gate-plugin-0.1.0-local.6.tgz
           test -f _site/destination-evidence-results-local.6.json
+          test -f _site/downloads/agent-trust-gate-plugin-0.1.0-local.7.tgz
+          test -f _site/destination-evidence-results-local.7.json
           test -f _site/security.html
           test -f _site/schemas/destination-evidence.synthetic.v1.schema.json
           (cd _site/downloads && sha256sum --check SHA256SUMS)

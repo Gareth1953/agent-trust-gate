@@ -1,0 +1,23 @@
+{
+  "baseline": "C:\\Users\\Gareth\\agent-trust-gate\\.atg-evaluation\\mission04-local7-preparation\\baseline-0RNMcp\\preservation-baseline.json",
+  "baselineSha256": "278a2f0bdb73c1fc40c3705d961ce55c688900f1e9767eedbcb4bd02eddb4c0d",
+  "protectedFilesChecked": 7875,
+  "changedProtectedFiles": [],
+  "changedOriginalBranches": [],
+  "originalWorktreeStatuses": {
+    "C:/Users/Gareth/agent-trust-gate": "",
+    "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-01-current-main": "",
+    "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-03-buyer-release": "",
+    "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-03-destination-evidence": "",
+    "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-04-buyer-release": "",
+    "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-04-durable-write-repair": "",
+    "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-04-windows-review": ""
+  },
+  "originalMain": "8044c65b3ffba8da5ee0bea6eb6933882e3e56e0",
+  "originalUnpublishedLocal6Commit": "807c5faf017bd15e4114594fa9e5296b2a723392",
+  "reviewedRepairCommit": "ce7259ad05d4f82cc0c865ea213ba90d9020d34a",
+  "newBranch": "mission-04-local7-buyer-release",
+  "earlierArchivesAndEvidenceUnchanged": true,
+  "existingAclsChanged": false,
+  "heldStateResetOrMigrated": false
+}

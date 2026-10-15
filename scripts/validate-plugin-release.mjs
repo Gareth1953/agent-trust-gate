@@ -13,6 +13,8 @@ const entries = readFileSync(join(directory, 'SHA256SUMS'), 'utf8').trim().split
 });
 assert.equal(new Set(entries.map(entry => entry.filename)).size, entries.length, 'Duplicate checksum entries');
 for (const entry of entries) assert.equal(createHash('sha256').update(readFileSync(join(directory, entry.filename))).digest('hex'), entry.digest, 'Archive checksum mismatch: ' + entry.filename);
+assert.equal(entries.length, Number(STANDALONE_PLUGIN_VERSION.split('local.')[1]), 'All versioned archives must remain listed');
+for (let version=1; version<=entries.length; version++) assert.ok(entries.some(entry=>entry.filename==='agent-trust-gate-plugin-0.1.0-local.'+version+'.tgz'), 'Retained manifest entry missing: '+version);
 const expected = entries.find(entry => entry.filename === filename); assert.ok(expected, 'Current archive missing from checksum manifest');
 const tar = gunzipSync(readFileSync(join(directory, filename)));
 // Git may convert authored text to CRLF on Windows; compiled runtime bytes stay exact.
@@ -108,7 +110,7 @@ assert.equal(workers.cases[5].delayed.reason,'STALE_AUTHORITY');assert.equal(wor
 assert.ok(readFileSync(join(root,'discovery-site/plugin.html'),'utf8').includes('./multi-worker-results-local.4.json'));
 console.log('Seven recorded packaged-worker cases, scope boundaries and evidence link verified.');
 
-for (const version of ['0.1.0-local.5', STANDALONE_PLUGIN_VERSION]) {
+for (const version of ['0.1.0-local.5', '0.1.0-local.6', STANDALONE_PLUGIN_VERSION]) {
 const releaseFilename='agent-trust-gate-plugin-'+version+'.tgz';
 const recordedArchive=entries.find(entry=>entry.filename===releaseFilename);assert.ok(recordedArchive);
 const destination=JSON.parse(readFileSync(join(root,'discovery-site/destination-evidence-results-local.'+version.split('local.')[1]+'.json'),'utf8'));
@@ -124,12 +126,12 @@ assert.equal(destination.cases[3].rejected.reason,'FENCE_REQUIRED');assert.equal
 assert.equal(destination.cases[5].rejected.reason,'UNFENCED_ABSENCE');assert.equal(destination.cases[6].destinationRejectedOldCapability,true);
 assert.ok(!JSON.stringify(destination).includes('BEGIN PRIVATE KEY'),'No private key in published recording');
 const page=readFileSync(join(root,'discovery-site/plugin.html'),'utf8');
-for(const text of ['./destination-evidence-results-local.5.json','./destination-evidence-results-local.6.json','Node 20','Node 24','same-host','host-administrator','fixed test clock','v1/v2'])assert.ok(page.includes(text),'Buyer boundary/link missing: '+text);
+for(const text of ['./destination-evidence-results-local.5.json','./destination-evidence-results-local.6.json','./destination-evidence-results-local.7.json','Node 20','Node 24','same-host','host-administrator','fixed test clock','v1/v2'])assert.ok(page.includes(text),'Buyer boundary/link missing: '+text);
 }
 for(const required of ['package/SECURITY.md','package/RELEASE-NOTES.md'])assert.ok(members.has(required),'Candidate security documentation missing: '+required);
 const workflow=readFileSync(join(root,'.github/workflows/deploy-discovery-pages.yml'),'utf8');
-for(const required of ['_site/downloads/'+filename,'_site/destination-evidence-results-local.6.json','_site/security.html'])assert.ok(workflow.includes('test -f '+required),'Pages artifact guard missing: '+required);
+for(const required of ['_site/downloads/'+filename,'_site/destination-evidence-results-local.6.json','_site/destination-evidence-results-local.7.json','_site/downloads/agent-trust-gate-plugin-0.1.0-local.6.tgz','_site/security.html'])assert.ok(workflow.includes('test -f '+required),'Pages artifact guard missing: '+required);
 authoredTextMatches(readFileSync(join(root,'discovery-site/schemas/destination-evidence.synthetic.v1.schema.json')),'schemas/destination-evidence.synthetic.v1.schema.json','Static evidence schema mismatch');
-console.log('Eight cases in each historical local.5 and current candidate destination recording verified, with package contents and scope boundaries.');
+console.log('Eight cases in historical local.5/local.6 and current candidate destination recording verified, with package contents and scope boundaries.');
 
 console.log(JSON.stringify({ version: STANDALONE_PLUGIN_VERSION, archive: 'discovery-site/downloads/' + filename, sha256: expected.digest, checksums: entries.length, checkedRuntimeFiles, challengeCases: 3, passed: true }, null, 2));

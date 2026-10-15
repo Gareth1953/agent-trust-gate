@@ -10,7 +10,7 @@ const args=process.argv.slice(2),options={};
 for(let i=0;i<args.length;i+=2){assert.ok(['--archive','--public-case','--expected-version'].includes(args[i])&&!options[args[i]]);options[args[i]]=args[i+1];}
 assert.ok(options['--archive'],'Use --archive EXACT_CANDIDATE_PATH [--public-case NODE24_PUBLIC_CASE_DIRECTORY]');
 const expectedVersion=options['--expected-version']??'0.1.0-local.5';
-assert.ok(['0.1.0-local.5','0.1.0-local.6'].includes(expectedVersion));
+assert.ok(['0.1.0-local.5','0.1.0-local.6','0.1.0-local.7'].includes(expectedVersion));
 const archive=resolve(options['--archive']),npm=process.env.npm_execpath??join(dirname(process.execPath),'node_modules/npm/bin/npm-cli.js');
 const scratch=mkdtempSync(join(tmpdir(),'atg-local5-installed-'));
 const run=(exe,argv,cwd=scratch)=>runCheckedCommand(exe,argv,{cwd});

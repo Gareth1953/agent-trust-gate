@@ -1,0 +1,11 @@
+{
+  "version": "0.1.0-local.7",
+  "unpublished": true,
+  "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.7.tgz",
+  "filename": "agent-trust-gate-plugin-0.1.0-local.7.tgz",
+  "size": 157102,
+  "sha256": "dcf75970db520fdd10afea63aa1a9d20780dc12a053c8e09f49b0f21ed1dddad",
+  "staging": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-candidate-UugPL4",
+  "priorArchivesUnchanged": true,
+  "instruction": "Sealed candidate bytes. Validation must install this archive, not repack it."
+}

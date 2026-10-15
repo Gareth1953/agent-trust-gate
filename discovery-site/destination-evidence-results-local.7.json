@@ -1,0 +1,2636 @@
+{
+  "pluginVersion": "0.1.0-local.7",
+  "runtime": "v24.21.0",
+  "testClock": "2026-09-02T09:01:00.000Z",
+  "boundary": {
+    "separatelySignedDestinationEvidence": true,
+    "separateProcesses": true,
+    "sameHost": true,
+    "oneMachine": true,
+    "syntheticOnly": true,
+    "independentExternalCapture": false,
+    "hostAdministratorProtection": false,
+    "livePartnerIntegration": false,
+    "liveTimeFreshness": false,
+    "productionReady": false,
+    "automaticRetry": false
+  },
+  "cases": [
+    {
+      "id": "signed-outcome",
+      "verified": {
+        "verified": true,
+        "outcome": "EXECUTED",
+        "reason": "SIGNED_DESTINATION_VERIFIED"
+      },
+      "outcome": {
+        "outcome": "EXECUTED",
+        "reason": "SIGNED_DESTINATION_RECONCILED_NO_RETRY",
+        "automaticRetryPermitted": false
+      },
+      "publicVerification": {
+        "trust": {
+          "destinationIdentity": "destination.local.synthetic-purchase-order.v1",
+          "destinationKeyId": "mission03-synthetic-destination",
+          "destinationPublicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAp72IhW9KojufIdnazxaznmrdjRe6jvinhDwQFVT4QG4=\n-----END PUBLIC KEY-----\n",
+          "approvalIssuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+          "approvalKeyId": "local-demo-ed25519-p3-m117",
+          "approvalPublicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAtPo88xjbno/utAGGwrL4AXvDeK7IjBwwV4ztiuahGnE=\n-----END PUBLIC KEY-----\n",
+          "clockId": "mission-03-fixed-test-clock",
+          "maximumAgeMs": 5000
+        },
+        "approval": {
+          "approvalId": "gatepass_exact_4129e0557e513babc52aed01",
+          "request": {
+            "requestVersion": "atg.mcp-exact-action-request.local.v2",
+            "mode": "enforced",
+            "passportReference": {
+              "passportId": "passport.atg.local.procurement-policy-evaluation.v2",
+              "passportVersion": "2.0.0",
+              "passportDigest": "sha256:87341f73cb0c88d9290f263aaaa8788a0dd0d2205c6f22f458cedf0193de579d"
+            },
+            "toolBinding": {
+              "mcpServerIdentity": "io.github.gareth1953.agent-trust-gate.local-stdio",
+              "toolIdentity": "atg.evaluate_action",
+              "operation": "evaluate_exact_action",
+              "inputSchemaIdentity": "atg.mcp-exact-action-request.local",
+              "inputSchemaVersion": "2.0.0",
+              "inputSchemaDigest": "sha256:27157ca88fa80fbb7d6d1faf946328c82605832bb27d823816e29ad9a1ee38dc"
+            },
+            "businessPolicyReference": {
+              "policyId": "policy.synthetic-buyer.procurement.v1",
+              "policyVersion": "1.0.0",
+              "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b"
+            },
+            "evidenceSetReference": "evidence-set.fresh.v1",
+            "evidenceReferences": {
+              "humanAuthority": "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
+              "humanApproval": "fixture://northstar/human-approval/EMP-NORTHSTAR-0042",
+              "agentStanding": "fixture://northstar/agent-standing/procurement-agent-04",
+              "mandate": "fixture://northstar/mandate/procurement-purchase-v1"
+            },
+            "amountMinorUnits": 400000,
+            "businessContext": {
+              "destinationClass": "approved_warehouse",
+              "supplierAccountReferenceClass": "approved_supplier_account",
+              "counterpartyClass": "supplier_a",
+              "recipientClass": "approved_supplier",
+              "environment": "local_synthetic_procurement_simulation",
+              "customerImpactClass": "none",
+              "customerContactRequested": false,
+              "discountBasisPoints": 0,
+              "refundAmountMinorUnits": 0,
+              "cancellationAmountMinorUnits": 0,
+              "additionalApprovalReference": null,
+              "requestedAuthorityExpansion": false,
+              "agentClaimsPolicyApproval": false
+            },
+            "proposedAction": {
+              "organisationId": "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+              "agentId": "agent:northstar-retail:procurement:04",
+              "supplierId": "SUP-HARBOUR-001",
+              "supplierName": "Harbour Supply Ltd",
+              "product": "Product X",
+              "category": "product_x",
+              "quantity": 100,
+              "totalAmount": 4000,
+              "currency": "GBP",
+              "commercialTermsReference": "TERMS-HARBOUR-NEGOTIATED-001",
+              "actionType": "purchase",
+              "jurisdiction": "GB",
+              "riskTier": "medium",
+              "timestamp": "2026-09-02T09:00:00.000Z",
+              "nonce": "nonce_plugin_d27bf6de-29f7-462f-84af-ed02cf7e8a83",
+              "policyVersion": "northstar-exact-action-policy-2026-09-02.v1"
+            }
+          },
+          "binding": {
+            "bindingVersion": "atg.purchase-order-state-binding.local.v1",
+            "businessState": {
+              "orderId": "PO-SYNTHETIC-001",
+              "orderVersion": 1,
+              "supplierBankVersion": 1,
+              "supplierBankReference": "fixture-bank-A",
+              "revision": 1
+            },
+            "businessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+            "approvedRequestDigest": "sha256:c919906fddbebebb722444b21a01dff266a078909c116f141bbebe2e4a3aaafb",
+            "supplierId": "SUP-HARBOUR-001",
+            "amountMinorUnits": 400000,
+            "currency": "GBP",
+            "destination": "destination.local.synthetic-purchase-order.v1"
+          },
+          "gatePass": {
+            "gatePassVersion": "atg.exact-action-gatepass.local.v1",
+            "gatePassId": "gatepass_exact_4129e0557e513babc52aed01",
+            "decision": "allow",
+            "action": {
+              "actionEnvelopeVersion": "atg.canonical-action-envelope.v1",
+              "canonicalizationVersion": "atg.canonical-json.v1",
+              "digestAlgorithm": "sha256",
+              "issuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+              "issuerKeyId": "local-demo-ed25519-p3-m117",
+              "verificationProfile": "atg:local:northstar-point-of-action-verifier",
+              "subjectAgentIdentity": "agent:northstar-retail:procurement:04",
+              "nativeSessionId": "northstar_session_nonce_plugin_d27bf6de-29f7-462f-84af-ed02cf7e8a83",
+              "nativeRunId": "northstar_run_nonce_plugin_d27bf6de-29f7-462f-84af-ed02cf7e8a83",
+              "operatorIdentity": "EMP-NORTHSTAR-0042",
+              "mandateIdentity": "MANDATE-NORTHSTAR-ALLOWED-001",
+              "mandateReference": "mandate://local/MANDATE-NORTHSTAR-ALLOWED-001",
+              "mandateDigest": "sha256:15c43654af9a85e9cc35eaf2ce977a6c29085766181037265665b870ab1e4cd9",
+              "policyReference": "policy://local/policy.synthetic-buyer.procurement.v1/1.0.0",
+              "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+              "evidenceReference": "evidence://local/EVIDENCE-NORTHSTAR-PROCUREMENT-001",
+              "evidenceDigest": "sha256:726d6a3e57cf4829982766313c1be9abd0d8136fe56b976642a155257451c044",
+              "approvalRequired": true,
+              "humanApprovalReference": "HAP-NORTHSTAR_ALLOWED",
+              "humanApprovalDigest": "sha256:c4f33183251fd124ca25718307bec41ba090aea845e62c1e0fef2d1537ff9234",
+              "toolIdentity": "atg.evaluate_action",
+              "toolSchemaVersion": "atg.mcp-exact-action-request.local@2.0.0#sha256:27157ca88fa80fbb7d6d1faf946328c82605832bb27d823816e29ad9a1ee38dc",
+              "operationName": "evaluate_exact_action",
+              "canonicalArguments": {
+                "amountMinorUnits": 400000,
+                "businessContext": {
+                  "additionalApprovalReference": null,
+                  "agentClaimsPolicyApproval": false,
+                  "cancellationAmountMinorUnits": 0,
+                  "counterpartyClass": "supplier_a",
+                  "customerContactRequested": false,
+                  "customerImpactClass": "none",
+                  "destinationClass": "approved_warehouse",
+                  "discountBasisPoints": 0,
+                  "environment": "local_synthetic_procurement_simulation",
+                  "recipientClass": "approved_supplier",
+                  "refundAmountMinorUnits": 0,
+                  "requestedAuthorityExpansion": false,
+                  "supplierAccountReferenceClass": "approved_supplier_account"
+                },
+                "businessPolicyReference": {
+                  "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+                  "policyId": "policy.synthetic-buyer.procurement.v1",
+                  "policyVersion": "1.0.0"
+                },
+                "businessStateBinding": {
+                  "amountMinorUnits": 400000,
+                  "approvedRequestDigest": "sha256:c919906fddbebebb722444b21a01dff266a078909c116f141bbebe2e4a3aaafb",
+                  "bindingVersion": "atg.purchase-order-state-binding.local.v1",
+                  "businessState": {
+                    "orderId": "PO-SYNTHETIC-001",
+                    "orderVersion": 1,
+                    "revision": 1,
+                    "supplierBankReference": "fixture-bank-A",
+                    "supplierBankVersion": 1
+                  },
+                  "businessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+                  "currency": "GBP",
+                  "destination": "destination.local.synthetic-purchase-order.v1",
+                  "supplierId": "SUP-HARBOUR-001"
+                },
+                "evidenceReferences": {
+                  "agentStanding": "fixture://northstar/agent-standing/procurement-agent-04",
+                  "humanApproval": "fixture://northstar/human-approval/EMP-NORTHSTAR-0042",
+                  "humanAuthority": "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
+                  "mandate": "fixture://northstar/mandate/procurement-purchase-v1"
+                },
+                "evidenceSetReference": "evidence-set.fresh.v1",
+                "mode": "enforced",
+                "passportReference": {
+                  "passportDigest": "sha256:87341f73cb0c88d9290f263aaaa8788a0dd0d2205c6f22f458cedf0193de579d",
+                  "passportId": "passport.atg.local.procurement-policy-evaluation.v2",
+                  "passportVersion": "2.0.0"
+                },
+                "proposedAction": {
+                  "actionType": "purchase",
+                  "agentId": "agent:northstar-retail:procurement:04",
+                  "category": "product_x",
+                  "commercialTermsReference": "TERMS-HARBOUR-NEGOTIATED-001",
+                  "currency": "GBP",
+                  "humanAuthorityProofReference": "HAP-NORTHSTAR_ALLOWED",
+                  "jurisdiction": "GB",
+                  "mandateId": "MANDATE-NORTHSTAR-ALLOWED-001",
+                  "nonce": "nonce_plugin_d27bf6de-29f7-462f-84af-ed02cf7e8a83",
+                  "organisationId": "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+                  "policyVersion": "northstar-exact-action-policy-2026-09-02.v1",
+                  "product": "Product X",
+                  "quantity": 100,
+                  "riskTier": "medium",
+                  "supplierId": "SUP-HARBOUR-001",
+                  "supplierName": "Harbour Supply Ltd",
+                  "timestamp": "2026-09-02T09:00:00.000Z",
+                  "totalAmount": 4000
+                },
+                "requestVersion": "atg.mcp-exact-action-request.local.v2"
+              },
+              "targetIdentity": "SUP-HARBOUR-001",
+              "issuedAt": "2026-09-02T09:00:00.000Z",
+              "notBefore": "2026-09-02T09:00:00.000Z",
+              "expiresAt": "2026-09-02T09:05:00.000Z",
+              "amount": 4000,
+              "currency": "GBP",
+              "operatingEnvironment": "local_synthetic_procurement_simulation",
+              "nonce": "nonce_plugin_d27bf6de-29f7-462f-84af-ed02cf7e8a83",
+              "idempotencyKey": "idempotency_nonce_plugin_d27bf6de-29f7-462f-84af-ed02cf7e8a83",
+              "usageSemantics": "one_shot",
+              "actionDigest": "sha256:1ade17e1d1058864e7f8ee40b6ed8012c6f66b586e631bd1127db4ffdc683edf"
+            },
+            "oneUse": true,
+            "allowedDoesNotMeanExecuted": true,
+            "localOnly": true,
+            "simulatedActionsOnly": true,
+            "productionEnforcement": false,
+            "signature": {
+              "algorithm": "ed25519-local-demo",
+              "keyId": "local-demo-ed25519-p3-m117",
+              "signedAt": "2026-09-02T09:00:00.000Z",
+              "signature": "x0zh7L+j+3D8pbVevXILaCtH1ftAP0IES4xXaO4P6sJRNszib7rTQH/nLEPHMtXkWLtvk7AhHMWtWPF9yy8eCA==",
+              "localFixtureOnly": true,
+              "productionKeyCustody": false
+            }
+          },
+          "decisionReceipt": {
+            "receiptVersion": "atg.policy-decision-receipt.local.v1",
+            "receiptId": "decision_receipt_7df7b4faab01dccccff26d61",
+            "decision": "allowed",
+            "policyReference": "policy://local/policy.synthetic-buyer.procurement.v1/1.0.0",
+            "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+            "reasons": [
+              "POLICY_EXACT_ACTION_ALLOWED",
+              "GATEPASS_ISSUED_FOR_ONE_EXACT_LOCAL_SIMULATED_ACTION",
+              "ALLOWED_DOES_NOT_MEAN_EXECUTED"
+            ],
+            "evidenceState": "present",
+            "approvalState": "approved",
+            "decidedAt": "2026-09-02T09:00:00.000Z",
+            "gatePassIssuance": {
+              "gatePassId": "gatepass_exact_4129e0557e513babc52aed01",
+              "actionDigest": "sha256:1ade17e1d1058864e7f8ee40b6ed8012c6f66b586e631bd1127db4ffdc683edf",
+              "nonce": "nonce_plugin_d27bf6de-29f7-462f-84af-ed02cf7e8a83",
+              "issuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+              "issuerKeyId": "local-demo-ed25519-p3-m117",
+              "issuedAt": "2026-09-02T09:00:00.000Z"
+            },
+            "executionState": "not_executed",
+            "allowedDoesNotMeanExecuted": true,
+            "localOnly": true,
+            "simulatedActionsOnly": true
+          }
+        },
+        "lookup": {
+          "requestId": "12cec827-692d-4364-9fa1-e0f473660d90",
+          "challenge": "c92ecc87-27ac-4634-8344-8afe970f643d",
+          "requestedAt": "2026-09-02T09:01:00.000Z",
+          "clockId": "mission-03-fixed-test-clock",
+          "fenceId": null
+        },
+        "evidence": {
+          "schema": "atg.destination-evidence.synthetic.v1",
+          "algorithm": "Ed25519",
+          "keyId": "mission03-synthetic-destination",
+          "payload": {
+            "schema": "atg.destination-evidence.synthetic.v1",
+            "destinationIdentity": "destination.local.synthetic-purchase-order.v1",
+            "approvalId": "gatepass_exact_4129e0557e513babc52aed01",
+            "gatePassId": "gatepass_exact_4129e0557e513babc52aed01",
+            "actionDigest": "sha256:1ade17e1d1058864e7f8ee40b6ed8012c6f66b586e631bd1127db4ffdc683edf",
+            "approvedRequestDigest": "sha256:c919906fddbebebb722444b21a01dff266a078909c116f141bbebe2e4a3aaafb",
+            "approvedBusinessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+            "approvedBusinessState": {
+              "orderId": "PO-SYNTHETIC-001",
+              "orderVersion": 1,
+              "supplierBankVersion": 1,
+              "supplierBankReference": "fixture-bank-A",
+              "revision": 1
+            },
+            "idempotencyId": "nonce_plugin_d27bf6de-29f7-462f-84af-ed02cf7e8a83",
+            "transactionId": "1c161863-8d7d-4a6f-8765-4fb41d7b9626",
+            "outcome": "EXECUTED",
+            "resultingRecordVersion": 2,
+            "recordDigest": "sha256:50ce71dd85aee60354f11eea890431f9f27c73da1b866f6aec53a8dba15b0f9f",
+            "lookup": {
+              "requestId": "12cec827-692d-4364-9fa1-e0f473660d90",
+              "challenge": "c92ecc87-27ac-4634-8344-8afe970f643d",
+              "requestedAt": "2026-09-02T09:01:00.000Z",
+              "clockId": "mission-03-fixed-test-clock",
+              "fenceId": null
+            },
+            "observedAt": "2026-09-02T09:01:00.000Z",
+            "clockId": "mission-03-fixed-test-clock",
+            "authoritativeLookup": true,
+            "destinationSequence": 2,
+            "fence": null,
+            "syntheticOnly": true,
+            "sameHost": true
+          },
+          "signature": "ZxlFxwVzLyNpo/2cBHrliB5Cuc0FxBFuAKF50X5BHcw8nKyuldZ/4UEbP0Vt6K/h6aFOyfjBMtJBrx3+sTgFBA=="
+        }
+      },
+      "final": {
+        "heldMinorUnits": 400000,
+        "unknownMinorUnits": 0,
+        "committedMinorUnits": 400000,
+        "statuses": [
+          "EXECUTED"
+        ]
+      },
+      "passed": true,
+      "retainedState": "Retained locally in the fresh exact-archive installation project; see local release report."
+    },
+    {
+      "id": "tampering",
+      "rejected": {
+        "outcome": "UNKNOWN",
+        "reason": "DESTINATION_SIGNATURE_INVALID",
+        "automaticRetryPermitted": false
+      },
+      "outcome": {
+        "outcome": "EXECUTED",
+        "reason": "SIGNED_DESTINATION_RECONCILED_NO_RETRY",
+        "automaticRetryPermitted": false
+      },
+      "publicVerification": {
+        "trust": {
+          "destinationIdentity": "destination.local.synthetic-purchase-order.v1",
+          "destinationKeyId": "mission03-synthetic-destination",
+          "destinationPublicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEArvE4R48uNmQ3ruXlC1zEuvunYBQKbOaYExf+L1sG4nY=\n-----END PUBLIC KEY-----\n",
+          "approvalIssuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+          "approvalKeyId": "local-demo-ed25519-p3-m117",
+          "approvalPublicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAtPo88xjbno/utAGGwrL4AXvDeK7IjBwwV4ztiuahGnE=\n-----END PUBLIC KEY-----\n",
+          "clockId": "mission-03-fixed-test-clock",
+          "maximumAgeMs": 5000
+        },
+        "approval": {
+          "approvalId": "gatepass_exact_c4748fc9c58428a843156e53",
+          "request": {
+            "requestVersion": "atg.mcp-exact-action-request.local.v2",
+            "mode": "enforced",
+            "passportReference": {
+              "passportId": "passport.atg.local.procurement-policy-evaluation.v2",
+              "passportVersion": "2.0.0",
+              "passportDigest": "sha256:87341f73cb0c88d9290f263aaaa8788a0dd0d2205c6f22f458cedf0193de579d"
+            },
+            "toolBinding": {
+              "mcpServerIdentity": "io.github.gareth1953.agent-trust-gate.local-stdio",
+              "toolIdentity": "atg.evaluate_action",
+              "operation": "evaluate_exact_action",
+              "inputSchemaIdentity": "atg.mcp-exact-action-request.local",
+              "inputSchemaVersion": "2.0.0",
+              "inputSchemaDigest": "sha256:27157ca88fa80fbb7d6d1faf946328c82605832bb27d823816e29ad9a1ee38dc"
+            },
+            "businessPolicyReference": {
+              "policyId": "policy.synthetic-buyer.procurement.v1",
+              "policyVersion": "1.0.0",
+              "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b"
+            },
+            "evidenceSetReference": "evidence-set.fresh.v1",
+            "evidenceReferences": {
+              "humanAuthority": "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
+              "humanApproval": "fixture://northstar/human-approval/EMP-NORTHSTAR-0042",
+              "agentStanding": "fixture://northstar/agent-standing/procurement-agent-04",
+              "mandate": "fixture://northstar/mandate/procurement-purchase-v1"
+            },
+            "amountMinorUnits": 400000,
+            "businessContext": {
+              "destinationClass": "approved_warehouse",
+              "supplierAccountReferenceClass": "approved_supplier_account",
+              "counterpartyClass": "supplier_a",
+              "recipientClass": "approved_supplier",
+              "environment": "local_synthetic_procurement_simulation",
+              "customerImpactClass": "none",
+              "customerContactRequested": false,
+              "discountBasisPoints": 0,
+              "refundAmountMinorUnits": 0,
+              "cancellationAmountMinorUnits": 0,
+              "additionalApprovalReference": null,
+              "requestedAuthorityExpansion": false,
+              "agentClaimsPolicyApproval": false
+            },
+            "proposedAction": {
+              "organisationId": "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+              "agentId": "agent:northstar-retail:procurement:04",
+              "supplierId": "SUP-HARBOUR-001",
+              "supplierName": "Harbour Supply Ltd",
+              "product": "Product X",
+              "category": "product_x",
+              "quantity": 100,
+              "totalAmount": 4000,
+              "currency": "GBP",
+              "commercialTermsReference": "TERMS-HARBOUR-NEGOTIATED-001",
+              "actionType": "purchase",
+              "jurisdiction": "GB",
+              "riskTier": "medium",
+              "timestamp": "2026-09-02T09:00:00.000Z",
+              "nonce": "nonce_plugin_3c8dba6b-5750-4d51-bc93-e35662ab3111",
+              "policyVersion": "northstar-exact-action-policy-2026-09-02.v1"
+            }
+          },
+          "binding": {
+            "bindingVersion": "atg.purchase-order-state-binding.local.v1",
+            "businessState": {
+              "orderId": "PO-SYNTHETIC-001",
+              "orderVersion": 1,
+              "supplierBankVersion": 1,
+              "supplierBankReference": "fixture-bank-A",
+              "revision": 1
+            },
+            "businessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+            "approvedRequestDigest": "sha256:5e0c80ccaaa7aa015de183f7132b355990b0ee8ba1d8c96a369ff74e0a2c39a8",
+            "supplierId": "SUP-HARBOUR-001",
+            "amountMinorUnits": 400000,
+            "currency": "GBP",
+            "destination": "destination.local.synthetic-purchase-order.v1"
+          },
+          "gatePass": {
+            "gatePassVersion": "atg.exact-action-gatepass.local.v1",
+            "gatePassId": "gatepass_exact_c4748fc9c58428a843156e53",
+            "decision": "allow",
+            "action": {
+              "actionEnvelopeVersion": "atg.canonical-action-envelope.v1",
+              "canonicalizationVersion": "atg.canonical-json.v1",
+              "digestAlgorithm": "sha256",
+              "issuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+              "issuerKeyId": "local-demo-ed25519-p3-m117",
+              "verificationProfile": "atg:local:northstar-point-of-action-verifier",
+              "subjectAgentIdentity": "agent:northstar-retail:procurement:04",
+              "nativeSessionId": "northstar_session_nonce_plugin_3c8dba6b-5750-4d51-bc93-e35662ab3111",
+              "nativeRunId": "northstar_run_nonce_plugin_3c8dba6b-5750-4d51-bc93-e35662ab3111",
+              "operatorIdentity": "EMP-NORTHSTAR-0042",
+              "mandateIdentity": "MANDATE-NORTHSTAR-ALLOWED-001",
+              "mandateReference": "mandate://local/MANDATE-NORTHSTAR-ALLOWED-001",
+              "mandateDigest": "sha256:15c43654af9a85e9cc35eaf2ce977a6c29085766181037265665b870ab1e4cd9",
+              "policyReference": "policy://local/policy.synthetic-buyer.procurement.v1/1.0.0",
+              "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+              "evidenceReference": "evidence://local/EVIDENCE-NORTHSTAR-PROCUREMENT-001",
+              "evidenceDigest": "sha256:726d6a3e57cf4829982766313c1be9abd0d8136fe56b976642a155257451c044",
+              "approvalRequired": true,
+              "humanApprovalReference": "HAP-NORTHSTAR_ALLOWED",
+              "humanApprovalDigest": "sha256:c4f33183251fd124ca25718307bec41ba090aea845e62c1e0fef2d1537ff9234",
+              "toolIdentity": "atg.evaluate_action",
+              "toolSchemaVersion": "atg.mcp-exact-action-request.local@2.0.0#sha256:27157ca88fa80fbb7d6d1faf946328c82605832bb27d823816e29ad9a1ee38dc",
+              "operationName": "evaluate_exact_action",
+              "canonicalArguments": {
+                "amountMinorUnits": 400000,
+                "businessContext": {
+                  "additionalApprovalReference": null,
+                  "agentClaimsPolicyApproval": false,
+                  "cancellationAmountMinorUnits": 0,
+                  "counterpartyClass": "supplier_a",
+                  "customerContactRequested": false,
+                  "customerImpactClass": "none",
+                  "destinationClass": "approved_warehouse",
+                  "discountBasisPoints": 0,
+                  "environment": "local_synthetic_procurement_simulation",
+                  "recipientClass": "approved_supplier",
+                  "refundAmountMinorUnits": 0,
+                  "requestedAuthorityExpansion": false,
+                  "supplierAccountReferenceClass": "approved_supplier_account"
+                },
+                "businessPolicyReference": {
+                  "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+                  "policyId": "policy.synthetic-buyer.procurement.v1",
+                  "policyVersion": "1.0.0"
+                },
+                "businessStateBinding": {
+                  "amountMinorUnits": 400000,
+                  "approvedRequestDigest": "sha256:5e0c80ccaaa7aa015de183f7132b355990b0ee8ba1d8c96a369ff74e0a2c39a8",
+                  "bindingVersion": "atg.purchase-order-state-binding.local.v1",
+                  "businessState": {
+                    "orderId": "PO-SYNTHETIC-001",
+                    "orderVersion": 1,
+                    "revision": 1,
+                    "supplierBankReference": "fixture-bank-A",
+                    "supplierBankVersion": 1
+                  },
+                  "businessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+                  "currency": "GBP",
+                  "destination": "destination.local.synthetic-purchase-order.v1",
+                  "supplierId": "SUP-HARBOUR-001"
+                },
+                "evidenceReferences": {
+                  "agentStanding": "fixture://northstar/agent-standing/procurement-agent-04",
+                  "humanApproval": "fixture://northstar/human-approval/EMP-NORTHSTAR-0042",
+                  "humanAuthority": "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
+                  "mandate": "fixture://northstar/mandate/procurement-purchase-v1"
+                },
+                "evidenceSetReference": "evidence-set.fresh.v1",
+                "mode": "enforced",
+                "passportReference": {
+                  "passportDigest": "sha256:87341f73cb0c88d9290f263aaaa8788a0dd0d2205c6f22f458cedf0193de579d",
+                  "passportId": "passport.atg.local.procurement-policy-evaluation.v2",
+                  "passportVersion": "2.0.0"
+                },
+                "proposedAction": {
+                  "actionType": "purchase",
+                  "agentId": "agent:northstar-retail:procurement:04",
+                  "category": "product_x",
+                  "commercialTermsReference": "TERMS-HARBOUR-NEGOTIATED-001",
+                  "currency": "GBP",
+                  "humanAuthorityProofReference": "HAP-NORTHSTAR_ALLOWED",
+                  "jurisdiction": "GB",
+                  "mandateId": "MANDATE-NORTHSTAR-ALLOWED-001",
+                  "nonce": "nonce_plugin_3c8dba6b-5750-4d51-bc93-e35662ab3111",
+                  "organisationId": "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+                  "policyVersion": "northstar-exact-action-policy-2026-09-02.v1",
+                  "product": "Product X",
+                  "quantity": 100,
+                  "riskTier": "medium",
+                  "supplierId": "SUP-HARBOUR-001",
+                  "supplierName": "Harbour Supply Ltd",
+                  "timestamp": "2026-09-02T09:00:00.000Z",
+                  "totalAmount": 4000
+                },
+                "requestVersion": "atg.mcp-exact-action-request.local.v2"
+              },
+              "targetIdentity": "SUP-HARBOUR-001",
+              "issuedAt": "2026-09-02T09:00:00.000Z",
+              "notBefore": "2026-09-02T09:00:00.000Z",
+              "expiresAt": "2026-09-02T09:05:00.000Z",
+              "amount": 4000,
+              "currency": "GBP",
+              "operatingEnvironment": "local_synthetic_procurement_simulation",
+              "nonce": "nonce_plugin_3c8dba6b-5750-4d51-bc93-e35662ab3111",
+              "idempotencyKey": "idempotency_nonce_plugin_3c8dba6b-5750-4d51-bc93-e35662ab3111",
+              "usageSemantics": "one_shot",
+              "actionDigest": "sha256:1992a0f08ca2ff10ab418a7327847f0e1ddb14e745288eca6e622d96c5d6f127"
+            },
+            "oneUse": true,
+            "allowedDoesNotMeanExecuted": true,
+            "localOnly": true,
+            "simulatedActionsOnly": true,
+            "productionEnforcement": false,
+            "signature": {
+              "algorithm": "ed25519-local-demo",
+              "keyId": "local-demo-ed25519-p3-m117",
+              "signedAt": "2026-09-02T09:00:00.000Z",
+              "signature": "qhHG2r1reTRMh4W6CUuBjR0EI0sQoSmpuSMrwSXpa2CqJ7opHKZM3W79JCj6zI6E9yJx1UVD+E4A4cZHt9ZBBA==",
+              "localFixtureOnly": true,
+              "productionKeyCustody": false
+            }
+          },
+          "decisionReceipt": {
+            "receiptVersion": "atg.policy-decision-receipt.local.v1",
+            "receiptId": "decision_receipt_d54641faac70947477ffd5d3",
+            "decision": "allowed",
+            "policyReference": "policy://local/policy.synthetic-buyer.procurement.v1/1.0.0",
+            "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+            "reasons": [
+              "POLICY_EXACT_ACTION_ALLOWED",
+              "GATEPASS_ISSUED_FOR_ONE_EXACT_LOCAL_SIMULATED_ACTION",
+              "ALLOWED_DOES_NOT_MEAN_EXECUTED"
+            ],
+            "evidenceState": "present",
+            "approvalState": "approved",
+            "decidedAt": "2026-09-02T09:00:00.000Z",
+            "gatePassIssuance": {
+              "gatePassId": "gatepass_exact_c4748fc9c58428a843156e53",
+              "actionDigest": "sha256:1992a0f08ca2ff10ab418a7327847f0e1ddb14e745288eca6e622d96c5d6f127",
+              "nonce": "nonce_plugin_3c8dba6b-5750-4d51-bc93-e35662ab3111",
+              "issuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+              "issuerKeyId": "local-demo-ed25519-p3-m117",
+              "issuedAt": "2026-09-02T09:00:00.000Z"
+            },
+            "executionState": "not_executed",
+            "allowedDoesNotMeanExecuted": true,
+            "localOnly": true,
+            "simulatedActionsOnly": true
+          }
+        },
+        "lookup": {
+          "requestId": "89e3dd7b-0e0e-4d11-a4bd-fcfd410207a9",
+          "challenge": "a65d27fb-03c6-47d6-8159-b82ba891d321",
+          "requestedAt": "2026-09-02T09:01:00.000Z",
+          "clockId": "mission-03-fixed-test-clock",
+          "fenceId": null
+        },
+        "evidence": {
+          "schema": "atg.destination-evidence.synthetic.v1",
+          "algorithm": "Ed25519",
+          "keyId": "mission03-synthetic-destination",
+          "payload": {
+            "schema": "atg.destination-evidence.synthetic.v1",
+            "destinationIdentity": "destination.local.synthetic-purchase-order.v1",
+            "approvalId": "gatepass_exact_c4748fc9c58428a843156e53",
+            "gatePassId": "gatepass_exact_c4748fc9c58428a843156e53",
+            "actionDigest": "sha256:1992a0f08ca2ff10ab418a7327847f0e1ddb14e745288eca6e622d96c5d6f127",
+            "approvedRequestDigest": "sha256:5e0c80ccaaa7aa015de183f7132b355990b0ee8ba1d8c96a369ff74e0a2c39a8",
+            "approvedBusinessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+            "approvedBusinessState": {
+              "orderId": "PO-SYNTHETIC-001",
+              "orderVersion": 1,
+              "supplierBankVersion": 1,
+              "supplierBankReference": "fixture-bank-A",
+              "revision": 1
+            },
+            "idempotencyId": "nonce_plugin_3c8dba6b-5750-4d51-bc93-e35662ab3111",
+            "transactionId": "ce177206-b276-4187-b0f0-aee66ce159ef",
+            "outcome": "EXECUTED",
+            "resultingRecordVersion": 2,
+            "recordDigest": "sha256:df3efdddfac76abe5406c67ed53ac78803513ba16d4c28cd797a29311296df2a",
+            "lookup": {
+              "requestId": "89e3dd7b-0e0e-4d11-a4bd-fcfd410207a9",
+              "challenge": "a65d27fb-03c6-47d6-8159-b82ba891d321",
+              "requestedAt": "2026-09-02T09:01:00.000Z",
+              "clockId": "mission-03-fixed-test-clock",
+              "fenceId": null
+            },
+            "observedAt": "2026-09-02T09:01:00.000Z",
+            "clockId": "mission-03-fixed-test-clock",
+            "authoritativeLookup": true,
+            "destinationSequence": 2,
+            "fence": null,
+            "syntheticOnly": true,
+            "sameHost": true
+          },
+          "signature": "DAUvlbmNMK82SXIpuUKKDu8CGWtCzYDGOIXTRU8LI/DqbFKGlifQZdJG8Mm618UE6p5gyMcRwZW1GbM4gVkWAA=="
+        }
+      },
+      "final": {
+        "heldMinorUnits": 400000,
+        "unknownMinorUnits": 0,
+        "committedMinorUnits": 400000,
+        "statuses": [
+          "EXECUTED"
+        ]
+      },
+      "passed": true,
+      "retainedState": "Retained locally in the fresh exact-archive installation project; see local release report."
+    },
+    {
+      "id": "lookup-replay-and-stale",
+      "replayed": {
+        "outcome": "UNKNOWN",
+        "reason": "EVIDENCE_BINDING_INVALID",
+        "automaticRetryPermitted": false
+      },
+      "stale": {
+        "verified": false,
+        "outcome": "UNKNOWN",
+        "reason": "EVIDENCE_STALE"
+      },
+      "outcome": {
+        "outcome": "NOT_EXECUTED",
+        "reason": "SIGNED_DESTINATION_RECONCILED_NO_RETRY",
+        "automaticRetryPermitted": false
+      },
+      "reused": {
+        "outcome": "UNKNOWN",
+        "reason": "NO_PENDING_LOOKUP_OR_ALREADY_CONSUMED",
+        "automaticRetryPermitted": false
+      },
+      "publicVerification": {
+        "trust": {
+          "destinationIdentity": "destination.local.synthetic-purchase-order.v1",
+          "destinationKeyId": "mission03-synthetic-destination",
+          "destinationPublicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAKBYZe9dgrJrraGsABVb2sOdlARyz/16UcBiU/wciv5k=\n-----END PUBLIC KEY-----\n",
+          "approvalIssuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+          "approvalKeyId": "local-demo-ed25519-p3-m117",
+          "approvalPublicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAtPo88xjbno/utAGGwrL4AXvDeK7IjBwwV4ztiuahGnE=\n-----END PUBLIC KEY-----\n",
+          "clockId": "mission-03-fixed-test-clock",
+          "maximumAgeMs": 5000
+        },
+        "approval": {
+          "approvalId": "gatepass_exact_98ec7694e44e0f0451f2c66f",
+          "request": {
+            "requestVersion": "atg.mcp-exact-action-request.local.v2",
+            "mode": "enforced",
+            "passportReference": {
+              "passportId": "passport.atg.local.procurement-policy-evaluation.v2",
+              "passportVersion": "2.0.0",
+              "passportDigest": "sha256:87341f73cb0c88d9290f263aaaa8788a0dd0d2205c6f22f458cedf0193de579d"
+            },
+            "toolBinding": {
+              "mcpServerIdentity": "io.github.gareth1953.agent-trust-gate.local-stdio",
+              "toolIdentity": "atg.evaluate_action",
+              "operation": "evaluate_exact_action",
+              "inputSchemaIdentity": "atg.mcp-exact-action-request.local",
+              "inputSchemaVersion": "2.0.0",
+              "inputSchemaDigest": "sha256:27157ca88fa80fbb7d6d1faf946328c82605832bb27d823816e29ad9a1ee38dc"
+            },
+            "businessPolicyReference": {
+              "policyId": "policy.synthetic-buyer.procurement.v1",
+              "policyVersion": "1.0.0",
+              "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b"
+            },
+            "evidenceSetReference": "evidence-set.fresh.v1",
+            "evidenceReferences": {
+              "humanAuthority": "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
+              "humanApproval": "fixture://northstar/human-approval/EMP-NORTHSTAR-0042",
+              "agentStanding": "fixture://northstar/agent-standing/procurement-agent-04",
+              "mandate": "fixture://northstar/mandate/procurement-purchase-v1"
+            },
+            "amountMinorUnits": 400000,
+            "businessContext": {
+              "destinationClass": "approved_warehouse",
+              "supplierAccountReferenceClass": "approved_supplier_account",
+              "counterpartyClass": "supplier_a",
+              "recipientClass": "approved_supplier",
+              "environment": "local_synthetic_procurement_simulation",
+              "customerImpactClass": "none",
+              "customerContactRequested": false,
+              "discountBasisPoints": 0,
+              "refundAmountMinorUnits": 0,
+              "cancellationAmountMinorUnits": 0,
+              "additionalApprovalReference": null,
+              "requestedAuthorityExpansion": false,
+              "agentClaimsPolicyApproval": false
+            },
+            "proposedAction": {
+              "organisationId": "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+              "agentId": "agent:northstar-retail:procurement:04",
+              "supplierId": "SUP-HARBOUR-001",
+              "supplierName": "Harbour Supply Ltd",
+              "product": "Product X",
+              "category": "product_x",
+              "quantity": 100,
+              "totalAmount": 4000,
+              "currency": "GBP",
+              "commercialTermsReference": "TERMS-HARBOUR-NEGOTIATED-001",
+              "actionType": "purchase",
+              "jurisdiction": "GB",
+              "riskTier": "medium",
+              "timestamp": "2026-09-02T09:00:00.000Z",
+              "nonce": "nonce_plugin_a5730a1c-d5fa-4679-81f3-d8b812ddd6f8",
+              "policyVersion": "northstar-exact-action-policy-2026-09-02.v1"
+            }
+          },
+          "binding": {
+            "bindingVersion": "atg.purchase-order-state-binding.local.v1",
+            "businessState": {
+              "orderId": "PO-SYNTHETIC-001",
+              "orderVersion": 1,
+              "supplierBankVersion": 1,
+              "supplierBankReference": "fixture-bank-A",
+              "revision": 1
+            },
+            "businessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+            "approvedRequestDigest": "sha256:f6809c515a26ad95594974cb21f66fec1404fa4e6707d8810e2d60a3e2a98cf5",
+            "supplierId": "SUP-HARBOUR-001",
+            "amountMinorUnits": 400000,
+            "currency": "GBP",
+            "destination": "destination.local.synthetic-purchase-order.v1"
+          },
+          "gatePass": {
+            "gatePassVersion": "atg.exact-action-gatepass.local.v1",
+            "gatePassId": "gatepass_exact_98ec7694e44e0f0451f2c66f",
+            "decision": "allow",
+            "action": {
+              "actionEnvelopeVersion": "atg.canonical-action-envelope.v1",
+              "canonicalizationVersion": "atg.canonical-json.v1",
+              "digestAlgorithm": "sha256",
+              "issuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+              "issuerKeyId": "local-demo-ed25519-p3-m117",
+              "verificationProfile": "atg:local:northstar-point-of-action-verifier",
+              "subjectAgentIdentity": "agent:northstar-retail:procurement:04",
+              "nativeSessionId": "northstar_session_nonce_plugin_a5730a1c-d5fa-4679-81f3-d8b812ddd6f8",
+              "nativeRunId": "northstar_run_nonce_plugin_a5730a1c-d5fa-4679-81f3-d8b812ddd6f8",
+              "operatorIdentity": "EMP-NORTHSTAR-0042",
+              "mandateIdentity": "MANDATE-NORTHSTAR-ALLOWED-001",
+              "mandateReference": "mandate://local/MANDATE-NORTHSTAR-ALLOWED-001",
+              "mandateDigest": "sha256:15c43654af9a85e9cc35eaf2ce977a6c29085766181037265665b870ab1e4cd9",
+              "policyReference": "policy://local/policy.synthetic-buyer.procurement.v1/1.0.0",
+              "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+              "evidenceReference": "evidence://local/EVIDENCE-NORTHSTAR-PROCUREMENT-001",
+              "evidenceDigest": "sha256:726d6a3e57cf4829982766313c1be9abd0d8136fe56b976642a155257451c044",
+              "approvalRequired": true,
+              "humanApprovalReference": "HAP-NORTHSTAR_ALLOWED",
+              "humanApprovalDigest": "sha256:c4f33183251fd124ca25718307bec41ba090aea845e62c1e0fef2d1537ff9234",
+              "toolIdentity": "atg.evaluate_action",
+              "toolSchemaVersion": "atg.mcp-exact-action-request.local@2.0.0#sha256:27157ca88fa80fbb7d6d1faf946328c82605832bb27d823816e29ad9a1ee38dc",
+              "operationName": "evaluate_exact_action",
+              "canonicalArguments": {
+                "amountMinorUnits": 400000,
+                "businessContext": {
+                  "additionalApprovalReference": null,
+                  "agentClaimsPolicyApproval": false,
+                  "cancellationAmountMinorUnits": 0,
+                  "counterpartyClass": "supplier_a",
+                  "customerContactRequested": false,
+                  "customerImpactClass": "none",
+                  "destinationClass": "approved_warehouse",
+                  "discountBasisPoints": 0,
+                  "environment": "local_synthetic_procurement_simulation",
+                  "recipientClass": "approved_supplier",
+                  "refundAmountMinorUnits": 0,
+                  "requestedAuthorityExpansion": false,
+                  "supplierAccountReferenceClass": "approved_supplier_account"
+                },
+                "businessPolicyReference": {
+                  "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+                  "policyId": "policy.synthetic-buyer.procurement.v1",
+                  "policyVersion": "1.0.0"
+                },
+                "businessStateBinding": {
+                  "amountMinorUnits": 400000,
+                  "approvedRequestDigest": "sha256:f6809c515a26ad95594974cb21f66fec1404fa4e6707d8810e2d60a3e2a98cf5",
+                  "bindingVersion": "atg.purchase-order-state-binding.local.v1",
+                  "businessState": {
+                    "orderId": "PO-SYNTHETIC-001",
+                    "orderVersion": 1,
+                    "revision": 1,
+                    "supplierBankReference": "fixture-bank-A",
+                    "supplierBankVersion": 1
+                  },
+                  "businessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+                  "currency": "GBP",
+                  "destination": "destination.local.synthetic-purchase-order.v1",
+                  "supplierId": "SUP-HARBOUR-001"
+                },
+                "evidenceReferences": {
+                  "agentStanding": "fixture://northstar/agent-standing/procurement-agent-04",
+                  "humanApproval": "fixture://northstar/human-approval/EMP-NORTHSTAR-0042",
+                  "humanAuthority": "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
+                  "mandate": "fixture://northstar/mandate/procurement-purchase-v1"
+                },
+                "evidenceSetReference": "evidence-set.fresh.v1",
+                "mode": "enforced",
+                "passportReference": {
+                  "passportDigest": "sha256:87341f73cb0c88d9290f263aaaa8788a0dd0d2205c6f22f458cedf0193de579d",
+                  "passportId": "passport.atg.local.procurement-policy-evaluation.v2",
+                  "passportVersion": "2.0.0"
+                },
+                "proposedAction": {
+                  "actionType": "purchase",
+                  "agentId": "agent:northstar-retail:procurement:04",
+                  "category": "product_x",
+                  "commercialTermsReference": "TERMS-HARBOUR-NEGOTIATED-001",
+                  "currency": "GBP",
+                  "humanAuthorityProofReference": "HAP-NORTHSTAR_ALLOWED",
+                  "jurisdiction": "GB",
+                  "mandateId": "MANDATE-NORTHSTAR-ALLOWED-001",
+                  "nonce": "nonce_plugin_a5730a1c-d5fa-4679-81f3-d8b812ddd6f8",
+                  "organisationId": "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+                  "policyVersion": "northstar-exact-action-policy-2026-09-02.v1",
+                  "product": "Product X",
+                  "quantity": 100,
+                  "riskTier": "medium",
+                  "supplierId": "SUP-HARBOUR-001",
+                  "supplierName": "Harbour Supply Ltd",
+                  "timestamp": "2026-09-02T09:00:00.000Z",
+                  "totalAmount": 4000
+                },
+                "requestVersion": "atg.mcp-exact-action-request.local.v2"
+              },
+              "targetIdentity": "SUP-HARBOUR-001",
+              "issuedAt": "2026-09-02T09:00:00.000Z",
+              "notBefore": "2026-09-02T09:00:00.000Z",
+              "expiresAt": "2026-09-02T09:05:00.000Z",
+              "amount": 4000,
+              "currency": "GBP",
+              "operatingEnvironment": "local_synthetic_procurement_simulation",
+              "nonce": "nonce_plugin_a5730a1c-d5fa-4679-81f3-d8b812ddd6f8",
+              "idempotencyKey": "idempotency_nonce_plugin_a5730a1c-d5fa-4679-81f3-d8b812ddd6f8",
+              "usageSemantics": "one_shot",
+              "actionDigest": "sha256:c6cdeae5750d6ef23709ad4604852dc386efa19486bdf40c0afb886c4ebab646"
+            },
+            "oneUse": true,
+            "allowedDoesNotMeanExecuted": true,
+            "localOnly": true,
+            "simulatedActionsOnly": true,
+            "productionEnforcement": false,
+            "signature": {
+              "algorithm": "ed25519-local-demo",
+              "keyId": "local-demo-ed25519-p3-m117",
+              "signedAt": "2026-09-02T09:00:00.000Z",
+              "signature": "7cMZ2BjRJUIssKctVR9dj9ojxagqvgq8T0hYnZewUJacua82Q4/FUoNK5VkPxdhCaceyA9NlQjG9ScNb6ttICg==",
+              "localFixtureOnly": true,
+              "productionKeyCustody": false
+            }
+          },
+          "decisionReceipt": {
+            "receiptVersion": "atg.policy-decision-receipt.local.v1",
+            "receiptId": "decision_receipt_107ec0d9f2fcd75c609fcb4e",
+            "decision": "allowed",
+            "policyReference": "policy://local/policy.synthetic-buyer.procurement.v1/1.0.0",
+            "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+            "reasons": [
+              "POLICY_EXACT_ACTION_ALLOWED",
+              "GATEPASS_ISSUED_FOR_ONE_EXACT_LOCAL_SIMULATED_ACTION",
+              "ALLOWED_DOES_NOT_MEAN_EXECUTED"
+            ],
+            "evidenceState": "present",
+            "approvalState": "approved",
+            "decidedAt": "2026-09-02T09:00:00.000Z",
+            "gatePassIssuance": {
+              "gatePassId": "gatepass_exact_98ec7694e44e0f0451f2c66f",
+              "actionDigest": "sha256:c6cdeae5750d6ef23709ad4604852dc386efa19486bdf40c0afb886c4ebab646",
+              "nonce": "nonce_plugin_a5730a1c-d5fa-4679-81f3-d8b812ddd6f8",
+              "issuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+              "issuerKeyId": "local-demo-ed25519-p3-m117",
+              "issuedAt": "2026-09-02T09:00:00.000Z"
+            },
+            "executionState": "not_executed",
+            "allowedDoesNotMeanExecuted": true,
+            "localOnly": true,
+            "simulatedActionsOnly": true
+          }
+        },
+        "lookup": {
+          "requestId": "a4611bdb-cde1-4725-8055-0ff4fdd357c2",
+          "challenge": "be575ead-197e-4fb4-8f6f-216d5b625f8c",
+          "requestedAt": "2026-09-02T09:01:00.000Z",
+          "clockId": "mission-03-fixed-test-clock",
+          "fenceId": "1c692220-9329-41ef-b461-c08f4455054b"
+        },
+        "evidence": {
+          "schema": "atg.destination-evidence.synthetic.v1",
+          "algorithm": "Ed25519",
+          "keyId": "mission03-synthetic-destination",
+          "payload": {
+            "schema": "atg.destination-evidence.synthetic.v1",
+            "destinationIdentity": "destination.local.synthetic-purchase-order.v1",
+            "approvalId": "gatepass_exact_98ec7694e44e0f0451f2c66f",
+            "gatePassId": "gatepass_exact_98ec7694e44e0f0451f2c66f",
+            "actionDigest": "sha256:c6cdeae5750d6ef23709ad4604852dc386efa19486bdf40c0afb886c4ebab646",
+            "approvedRequestDigest": "sha256:f6809c515a26ad95594974cb21f66fec1404fa4e6707d8810e2d60a3e2a98cf5",
+            "approvedBusinessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+            "approvedBusinessState": {
+              "orderId": "PO-SYNTHETIC-001",
+              "orderVersion": 1,
+              "supplierBankVersion": 1,
+              "supplierBankReference": "fixture-bank-A",
+              "revision": 1
+            },
+            "idempotencyId": "nonce_plugin_a5730a1c-d5fa-4679-81f3-d8b812ddd6f8",
+            "transactionId": null,
+            "outcome": "ABSENT",
+            "resultingRecordVersion": null,
+            "recordDigest": null,
+            "lookup": {
+              "requestId": "a4611bdb-cde1-4725-8055-0ff4fdd357c2",
+              "challenge": "be575ead-197e-4fb4-8f6f-216d5b625f8c",
+              "requestedAt": "2026-09-02T09:01:00.000Z",
+              "clockId": "mission-03-fixed-test-clock",
+              "fenceId": "1c692220-9329-41ef-b461-c08f4455054b"
+            },
+            "observedAt": "2026-09-02T09:01:00.000Z",
+            "clockId": "mission-03-fixed-test-clock",
+            "authoritativeLookup": true,
+            "destinationSequence": 2,
+            "fence": {
+              "fenceId": "1c692220-9329-41ef-b461-c08f4455054b",
+              "gatePassId": "gatepass_exact_98ec7694e44e0f0451f2c66f",
+              "idempotencyId": "nonce_plugin_a5730a1c-d5fa-4679-81f3-d8b812ddd6f8",
+              "completed": true,
+              "sequence": 2
+            },
+            "syntheticOnly": true,
+            "sameHost": true
+          },
+          "signature": "fS4sF9pM4CUd90A4i54JaW99a4fJq6WSJQTKKLXsf4MDtkqWxf5FNlVshEuIG9NY9wS2u/wU1DG5TYO457PqCw=="
+        }
+      },
+      "final": {
+        "heldMinorUnits": 0,
+        "unknownMinorUnits": 0,
+        "committedMinorUnits": 0,
+        "statuses": [
+          "ABANDONED"
+        ]
+      },
+      "passed": true,
+      "retainedState": "Retained locally in the fresh exact-archive installation project; see local release report."
+    },
+    {
+      "id": "incomplete-fence",
+      "rejected": {
+        "outcome": "UNKNOWN",
+        "reason": "FENCE_REQUIRED",
+        "automaticRetryPermitted": false
+      },
+      "outcome": {
+        "outcome": "EXECUTED",
+        "reason": "SIGNED_DESTINATION_RECONCILED_NO_RETRY",
+        "automaticRetryPermitted": false
+      },
+      "publicVerification": {
+        "trust": {
+          "destinationIdentity": "destination.local.synthetic-purchase-order.v1",
+          "destinationKeyId": "mission03-synthetic-destination",
+          "destinationPublicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEA/n/K8UidqsE7MzT7gHkimW1seOP+cviBCCMIipK9MEw=\n-----END PUBLIC KEY-----\n",
+          "approvalIssuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+          "approvalKeyId": "local-demo-ed25519-p3-m117",
+          "approvalPublicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAtPo88xjbno/utAGGwrL4AXvDeK7IjBwwV4ztiuahGnE=\n-----END PUBLIC KEY-----\n",
+          "clockId": "mission-03-fixed-test-clock",
+          "maximumAgeMs": 5000
+        },
+        "approval": {
+          "approvalId": "gatepass_exact_7988ca11881a29b9b585f610",
+          "request": {
+            "requestVersion": "atg.mcp-exact-action-request.local.v2",
+            "mode": "enforced",
+            "passportReference": {
+              "passportId": "passport.atg.local.procurement-policy-evaluation.v2",
+              "passportVersion": "2.0.0",
+              "passportDigest": "sha256:87341f73cb0c88d9290f263aaaa8788a0dd0d2205c6f22f458cedf0193de579d"
+            },
+            "toolBinding": {
+              "mcpServerIdentity": "io.github.gareth1953.agent-trust-gate.local-stdio",
+              "toolIdentity": "atg.evaluate_action",
+              "operation": "evaluate_exact_action",
+              "inputSchemaIdentity": "atg.mcp-exact-action-request.local",
+              "inputSchemaVersion": "2.0.0",
+              "inputSchemaDigest": "sha256:27157ca88fa80fbb7d6d1faf946328c82605832bb27d823816e29ad9a1ee38dc"
+            },
+            "businessPolicyReference": {
+              "policyId": "policy.synthetic-buyer.procurement.v1",
+              "policyVersion": "1.0.0",
+              "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b"
+            },
+            "evidenceSetReference": "evidence-set.fresh.v1",
+            "evidenceReferences": {
+              "humanAuthority": "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
+              "humanApproval": "fixture://northstar/human-approval/EMP-NORTHSTAR-0042",
+              "agentStanding": "fixture://northstar/agent-standing/procurement-agent-04",
+              "mandate": "fixture://northstar/mandate/procurement-purchase-v1"
+            },
+            "amountMinorUnits": 400000,
+            "businessContext": {
+              "destinationClass": "approved_warehouse",
+              "supplierAccountReferenceClass": "approved_supplier_account",
+              "counterpartyClass": "supplier_a",
+              "recipientClass": "approved_supplier",
+              "environment": "local_synthetic_procurement_simulation",
+              "customerImpactClass": "none",
+              "customerContactRequested": false,
+              "discountBasisPoints": 0,
+              "refundAmountMinorUnits": 0,
+              "cancellationAmountMinorUnits": 0,
+              "additionalApprovalReference": null,
+              "requestedAuthorityExpansion": false,
+              "agentClaimsPolicyApproval": false
+            },
+            "proposedAction": {
+              "organisationId": "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+              "agentId": "agent:northstar-retail:procurement:04",
+              "supplierId": "SUP-HARBOUR-001",
+              "supplierName": "Harbour Supply Ltd",
+              "product": "Product X",
+              "category": "product_x",
+              "quantity": 100,
+              "totalAmount": 4000,
+              "currency": "GBP",
+              "commercialTermsReference": "TERMS-HARBOUR-NEGOTIATED-001",
+              "actionType": "purchase",
+              "jurisdiction": "GB",
+              "riskTier": "medium",
+              "timestamp": "2026-09-02T09:00:00.000Z",
+              "nonce": "nonce_plugin_20169a9f-2999-489c-870a-d5a9824bb9aa",
+              "policyVersion": "northstar-exact-action-policy-2026-09-02.v1"
+            }
+          },
+          "binding": {
+            "bindingVersion": "atg.purchase-order-state-binding.local.v1",
+            "businessState": {
+              "orderId": "PO-SYNTHETIC-001",
+              "orderVersion": 1,
+              "supplierBankVersion": 1,
+              "supplierBankReference": "fixture-bank-A",
+              "revision": 1
+            },
+            "businessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+            "approvedRequestDigest": "sha256:20e84074c0b561cbd3a61f0202c4f21ae574dd2f28b104bbcb6ae0d099c75634",
+            "supplierId": "SUP-HARBOUR-001",
+            "amountMinorUnits": 400000,
+            "currency": "GBP",
+            "destination": "destination.local.synthetic-purchase-order.v1"
+          },
+          "gatePass": {
+            "gatePassVersion": "atg.exact-action-gatepass.local.v1",
+            "gatePassId": "gatepass_exact_7988ca11881a29b9b585f610",
+            "decision": "allow",
+            "action": {
+              "actionEnvelopeVersion": "atg.canonical-action-envelope.v1",
+              "canonicalizationVersion": "atg.canonical-json.v1",
+              "digestAlgorithm": "sha256",
+              "issuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+              "issuerKeyId": "local-demo-ed25519-p3-m117",
+              "verificationProfile": "atg:local:northstar-point-of-action-verifier",
+              "subjectAgentIdentity": "agent:northstar-retail:procurement:04",
+              "nativeSessionId": "northstar_session_nonce_plugin_20169a9f-2999-489c-870a-d5a9824bb9aa",
+              "nativeRunId": "northstar_run_nonce_plugin_20169a9f-2999-489c-870a-d5a9824bb9aa",
+              "operatorIdentity": "EMP-NORTHSTAR-0042",
+              "mandateIdentity": "MANDATE-NORTHSTAR-ALLOWED-001",
+              "mandateReference": "mandate://local/MANDATE-NORTHSTAR-ALLOWED-001",
+              "mandateDigest": "sha256:15c43654af9a85e9cc35eaf2ce977a6c29085766181037265665b870ab1e4cd9",
+              "policyReference": "policy://local/policy.synthetic-buyer.procurement.v1/1.0.0",
+              "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+              "evidenceReference": "evidence://local/EVIDENCE-NORTHSTAR-PROCUREMENT-001",
+              "evidenceDigest": "sha256:726d6a3e57cf4829982766313c1be9abd0d8136fe56b976642a155257451c044",
+              "approvalRequired": true,
+              "humanApprovalReference": "HAP-NORTHSTAR_ALLOWED",
+              "humanApprovalDigest": "sha256:c4f33183251fd124ca25718307bec41ba090aea845e62c1e0fef2d1537ff9234",
+              "toolIdentity": "atg.evaluate_action",
+              "toolSchemaVersion": "atg.mcp-exact-action-request.local@2.0.0#sha256:27157ca88fa80fbb7d6d1faf946328c82605832bb27d823816e29ad9a1ee38dc",
+              "operationName": "evaluate_exact_action",
+              "canonicalArguments": {
+                "amountMinorUnits": 400000,
+                "businessContext": {
+                  "additionalApprovalReference": null,
+                  "agentClaimsPolicyApproval": false,
+                  "cancellationAmountMinorUnits": 0,
+                  "counterpartyClass": "supplier_a",
+                  "customerContactRequested": false,
+                  "customerImpactClass": "none",
+                  "destinationClass": "approved_warehouse",
+                  "discountBasisPoints": 0,
+                  "environment": "local_synthetic_procurement_simulation",
+                  "recipientClass": "approved_supplier",
+                  "refundAmountMinorUnits": 0,
+                  "requestedAuthorityExpansion": false,
+                  "supplierAccountReferenceClass": "approved_supplier_account"
+                },
+                "businessPolicyReference": {
+                  "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+                  "policyId": "policy.synthetic-buyer.procurement.v1",
+                  "policyVersion": "1.0.0"
+                },
+                "businessStateBinding": {
+                  "amountMinorUnits": 400000,
+                  "approvedRequestDigest": "sha256:20e84074c0b561cbd3a61f0202c4f21ae574dd2f28b104bbcb6ae0d099c75634",
+                  "bindingVersion": "atg.purchase-order-state-binding.local.v1",
+                  "businessState": {
+                    "orderId": "PO-SYNTHETIC-001",
+                    "orderVersion": 1,
+                    "revision": 1,
+                    "supplierBankReference": "fixture-bank-A",
+                    "supplierBankVersion": 1
+                  },
+                  "businessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+                  "currency": "GBP",
+                  "destination": "destination.local.synthetic-purchase-order.v1",
+                  "supplierId": "SUP-HARBOUR-001"
+                },
+                "evidenceReferences": {
+                  "agentStanding": "fixture://northstar/agent-standing/procurement-agent-04",
+                  "humanApproval": "fixture://northstar/human-approval/EMP-NORTHSTAR-0042",
+                  "humanAuthority": "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
+                  "mandate": "fixture://northstar/mandate/procurement-purchase-v1"
+                },
+                "evidenceSetReference": "evidence-set.fresh.v1",
+                "mode": "enforced",
+                "passportReference": {
+                  "passportDigest": "sha256:87341f73cb0c88d9290f263aaaa8788a0dd0d2205c6f22f458cedf0193de579d",
+                  "passportId": "passport.atg.local.procurement-policy-evaluation.v2",
+                  "passportVersion": "2.0.0"
+                },
+                "proposedAction": {
+                  "actionType": "purchase",
+                  "agentId": "agent:northstar-retail:procurement:04",
+                  "category": "product_x",
+                  "commercialTermsReference": "TERMS-HARBOUR-NEGOTIATED-001",
+                  "currency": "GBP",
+                  "humanAuthorityProofReference": "HAP-NORTHSTAR_ALLOWED",
+                  "jurisdiction": "GB",
+                  "mandateId": "MANDATE-NORTHSTAR-ALLOWED-001",
+                  "nonce": "nonce_plugin_20169a9f-2999-489c-870a-d5a9824bb9aa",
+                  "organisationId": "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+                  "policyVersion": "northstar-exact-action-policy-2026-09-02.v1",
+                  "product": "Product X",
+                  "quantity": 100,
+                  "riskTier": "medium",
+                  "supplierId": "SUP-HARBOUR-001",
+                  "supplierName": "Harbour Supply Ltd",
+                  "timestamp": "2026-09-02T09:00:00.000Z",
+                  "totalAmount": 4000
+                },
+                "requestVersion": "atg.mcp-exact-action-request.local.v2"
+              },
+              "targetIdentity": "SUP-HARBOUR-001",
+              "issuedAt": "2026-09-02T09:00:00.000Z",
+              "notBefore": "2026-09-02T09:00:00.000Z",
+              "expiresAt": "2026-09-02T09:05:00.000Z",
+              "amount": 4000,
+              "currency": "GBP",
+              "operatingEnvironment": "local_synthetic_procurement_simulation",
+              "nonce": "nonce_plugin_20169a9f-2999-489c-870a-d5a9824bb9aa",
+              "idempotencyKey": "idempotency_nonce_plugin_20169a9f-2999-489c-870a-d5a9824bb9aa",
+              "usageSemantics": "one_shot",
+              "actionDigest": "sha256:91e0b4fb1c5877c596f46c15bef5d5ff3d6758ceaf6b5ca97d2fefda1d5993af"
+            },
+            "oneUse": true,
+            "allowedDoesNotMeanExecuted": true,
+            "localOnly": true,
+            "simulatedActionsOnly": true,
+            "productionEnforcement": false,
+            "signature": {
+              "algorithm": "ed25519-local-demo",
+              "keyId": "local-demo-ed25519-p3-m117",
+              "signedAt": "2026-09-02T09:00:00.000Z",
+              "signature": "G5RsbS6hoeU6i3ifMC0aspVVmZSxQyHAI2QiVc711qL3YDvjhezQssUC6bNRTPkFIL0G6NZZF0AOxQiIgkJEBA==",
+              "localFixtureOnly": true,
+              "productionKeyCustody": false
+            }
+          },
+          "decisionReceipt": {
+            "receiptVersion": "atg.policy-decision-receipt.local.v1",
+            "receiptId": "decision_receipt_507e61753fbbeaee1e2568de",
+            "decision": "allowed",
+            "policyReference": "policy://local/policy.synthetic-buyer.procurement.v1/1.0.0",
+            "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+            "reasons": [
+              "POLICY_EXACT_ACTION_ALLOWED",
+              "GATEPASS_ISSUED_FOR_ONE_EXACT_LOCAL_SIMULATED_ACTION",
+              "ALLOWED_DOES_NOT_MEAN_EXECUTED"
+            ],
+            "evidenceState": "present",
+            "approvalState": "approved",
+            "decidedAt": "2026-09-02T09:00:00.000Z",
+            "gatePassIssuance": {
+              "gatePassId": "gatepass_exact_7988ca11881a29b9b585f610",
+              "actionDigest": "sha256:91e0b4fb1c5877c596f46c15bef5d5ff3d6758ceaf6b5ca97d2fefda1d5993af",
+              "nonce": "nonce_plugin_20169a9f-2999-489c-870a-d5a9824bb9aa",
+              "issuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+              "issuerKeyId": "local-demo-ed25519-p3-m117",
+              "issuedAt": "2026-09-02T09:00:00.000Z"
+            },
+            "executionState": "not_executed",
+            "allowedDoesNotMeanExecuted": true,
+            "localOnly": true,
+            "simulatedActionsOnly": true
+          }
+        },
+        "lookup": {
+          "requestId": "b98b2272-6bc8-4138-bad4-b354b93c5c76",
+          "challenge": "db59b5f3-10bb-403d-880f-758bd822616f",
+          "requestedAt": "2026-09-02T09:01:00.000Z",
+          "clockId": "mission-03-fixed-test-clock",
+          "fenceId": "9d59fa07-9359-4462-8fda-3bd3fc330d2d"
+        },
+        "evidence": {
+          "schema": "atg.destination-evidence.synthetic.v1",
+          "algorithm": "Ed25519",
+          "keyId": "mission03-synthetic-destination",
+          "payload": {
+            "schema": "atg.destination-evidence.synthetic.v1",
+            "destinationIdentity": "destination.local.synthetic-purchase-order.v1",
+            "approvalId": "gatepass_exact_7988ca11881a29b9b585f610",
+            "gatePassId": "gatepass_exact_7988ca11881a29b9b585f610",
+            "actionDigest": "sha256:91e0b4fb1c5877c596f46c15bef5d5ff3d6758ceaf6b5ca97d2fefda1d5993af",
+            "approvedRequestDigest": "sha256:20e84074c0b561cbd3a61f0202c4f21ae574dd2f28b104bbcb6ae0d099c75634",
+            "approvedBusinessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+            "approvedBusinessState": {
+              "orderId": "PO-SYNTHETIC-001",
+              "orderVersion": 1,
+              "supplierBankVersion": 1,
+              "supplierBankReference": "fixture-bank-A",
+              "revision": 1
+            },
+            "idempotencyId": "nonce_plugin_20169a9f-2999-489c-870a-d5a9824bb9aa",
+            "transactionId": "3d0d8ac0-e63c-45f4-a168-342c0a21593f",
+            "outcome": "EXECUTED",
+            "resultingRecordVersion": 2,
+            "recordDigest": "sha256:a3b92f5e47ca92d9d944946d7bec1c064b07578107c0fd5a78d713ac8c1745a8",
+            "lookup": {
+              "requestId": "b98b2272-6bc8-4138-bad4-b354b93c5c76",
+              "challenge": "db59b5f3-10bb-403d-880f-758bd822616f",
+              "requestedAt": "2026-09-02T09:01:00.000Z",
+              "clockId": "mission-03-fixed-test-clock",
+              "fenceId": "9d59fa07-9359-4462-8fda-3bd3fc330d2d"
+            },
+            "observedAt": "2026-09-02T09:01:00.000Z",
+            "clockId": "mission-03-fixed-test-clock",
+            "authoritativeLookup": true,
+            "destinationSequence": 3,
+            "fence": {
+              "fenceId": "9d59fa07-9359-4462-8fda-3bd3fc330d2d",
+              "gatePassId": "gatepass_exact_7988ca11881a29b9b585f610",
+              "idempotencyId": "nonce_plugin_20169a9f-2999-489c-870a-d5a9824bb9aa",
+              "completed": true,
+              "sequence": 3
+            },
+            "syntheticOnly": true,
+            "sameHost": true
+          },
+          "signature": "ql7+yqku4WQivuD8hrWbEo4bZGKMMdnLZcPb7jUkWymP1uQGoTqLBjHuv/R9Xdwwx1iK56sxUIo/TGuNPSHCDQ=="
+        }
+      },
+      "final": {
+        "heldMinorUnits": 400000,
+        "unknownMinorUnits": 0,
+        "committedMinorUnits": 400000,
+        "statuses": [
+          "EXECUTED"
+        ]
+      },
+      "passed": true,
+      "retainedState": "Retained locally in the fresh exact-archive installation project; see local release report."
+    },
+    {
+      "id": "lost-acknowledgement",
+      "beforeRecovery": {
+        "heldMinorUnits": 400000,
+        "unknownMinorUnits": 400000,
+        "committedMinorUnits": 0,
+        "statuses": [
+          "UNKNOWN"
+        ]
+      },
+      "crashBoundary": "destination commit before acknowledgement; explicit barrier then SIGKILL",
+      "outcome": {
+        "outcome": "EXECUTED",
+        "reason": "SIGNED_DESTINATION_RECONCILED_NO_RETRY",
+        "automaticRetryPermitted": false
+      },
+      "publicVerification": {
+        "trust": {
+          "destinationIdentity": "destination.local.synthetic-purchase-order.v1",
+          "destinationKeyId": "mission03-synthetic-destination",
+          "destinationPublicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAD4l8M8MIpSos6tDFtn7XygUrHrkQVPKYRusDSmUhotY=\n-----END PUBLIC KEY-----\n",
+          "approvalIssuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+          "approvalKeyId": "local-demo-ed25519-p3-m117",
+          "approvalPublicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAtPo88xjbno/utAGGwrL4AXvDeK7IjBwwV4ztiuahGnE=\n-----END PUBLIC KEY-----\n",
+          "clockId": "mission-03-fixed-test-clock",
+          "maximumAgeMs": 5000
+        },
+        "approval": {
+          "approvalId": "gatepass_exact_cfeadd32d86e6a250502e97e",
+          "request": {
+            "requestVersion": "atg.mcp-exact-action-request.local.v2",
+            "mode": "enforced",
+            "passportReference": {
+              "passportId": "passport.atg.local.procurement-policy-evaluation.v2",
+              "passportVersion": "2.0.0",
+              "passportDigest": "sha256:87341f73cb0c88d9290f263aaaa8788a0dd0d2205c6f22f458cedf0193de579d"
+            },
+            "toolBinding": {
+              "mcpServerIdentity": "io.github.gareth1953.agent-trust-gate.local-stdio",
+              "toolIdentity": "atg.evaluate_action",
+              "operation": "evaluate_exact_action",
+              "inputSchemaIdentity": "atg.mcp-exact-action-request.local",
+              "inputSchemaVersion": "2.0.0",
+              "inputSchemaDigest": "sha256:27157ca88fa80fbb7d6d1faf946328c82605832bb27d823816e29ad9a1ee38dc"
+            },
+            "businessPolicyReference": {
+              "policyId": "policy.synthetic-buyer.procurement.v1",
+              "policyVersion": "1.0.0",
+              "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b"
+            },
+            "evidenceSetReference": "evidence-set.fresh.v1",
+            "evidenceReferences": {
+              "humanAuthority": "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
+              "humanApproval": "fixture://northstar/human-approval/EMP-NORTHSTAR-0042",
+              "agentStanding": "fixture://northstar/agent-standing/procurement-agent-04",
+              "mandate": "fixture://northstar/mandate/procurement-purchase-v1"
+            },
+            "amountMinorUnits": 400000,
+            "businessContext": {
+              "destinationClass": "approved_warehouse",
+              "supplierAccountReferenceClass": "approved_supplier_account",
+              "counterpartyClass": "supplier_a",
+              "recipientClass": "approved_supplier",
+              "environment": "local_synthetic_procurement_simulation",
+              "customerImpactClass": "none",
+              "customerContactRequested": false,
+              "discountBasisPoints": 0,
+              "refundAmountMinorUnits": 0,
+              "cancellationAmountMinorUnits": 0,
+              "additionalApprovalReference": null,
+              "requestedAuthorityExpansion": false,
+              "agentClaimsPolicyApproval": false
+            },
+            "proposedAction": {
+              "organisationId": "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+              "agentId": "agent:northstar-retail:procurement:04",
+              "supplierId": "SUP-HARBOUR-001",
+              "supplierName": "Harbour Supply Ltd",
+              "product": "Product X",
+              "category": "product_x",
+              "quantity": 100,
+              "totalAmount": 4000,
+              "currency": "GBP",
+              "commercialTermsReference": "TERMS-HARBOUR-NEGOTIATED-001",
+              "actionType": "purchase",
+              "jurisdiction": "GB",
+              "riskTier": "medium",
+              "timestamp": "2026-09-02T09:00:00.000Z",
+              "nonce": "nonce_plugin_992448e4-01ce-41bb-8a4f-26baaec06107",
+              "policyVersion": "northstar-exact-action-policy-2026-09-02.v1"
+            }
+          },
+          "binding": {
+            "bindingVersion": "atg.purchase-order-state-binding.local.v1",
+            "businessState": {
+              "orderId": "PO-SYNTHETIC-001",
+              "orderVersion": 1,
+              "supplierBankVersion": 1,
+              "supplierBankReference": "fixture-bank-A",
+              "revision": 1
+            },
+            "businessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+            "approvedRequestDigest": "sha256:608acfd56012c17e30493996233ca9a2bba6439b72ae8a207e335a01265d7b8d",
+            "supplierId": "SUP-HARBOUR-001",
+            "amountMinorUnits": 400000,
+            "currency": "GBP",
+            "destination": "destination.local.synthetic-purchase-order.v1"
+          },
+          "gatePass": {
+            "gatePassVersion": "atg.exact-action-gatepass.local.v1",
+            "gatePassId": "gatepass_exact_cfeadd32d86e6a250502e97e",
+            "decision": "allow",
+            "action": {
+              "actionEnvelopeVersion": "atg.canonical-action-envelope.v1",
+              "canonicalizationVersion": "atg.canonical-json.v1",
+              "digestAlgorithm": "sha256",
+              "issuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+              "issuerKeyId": "local-demo-ed25519-p3-m117",
+              "verificationProfile": "atg:local:northstar-point-of-action-verifier",
+              "subjectAgentIdentity": "agent:northstar-retail:procurement:04",
+              "nativeSessionId": "northstar_session_nonce_plugin_992448e4-01ce-41bb-8a4f-26baaec06107",
+              "nativeRunId": "northstar_run_nonce_plugin_992448e4-01ce-41bb-8a4f-26baaec06107",
+              "operatorIdentity": "EMP-NORTHSTAR-0042",
+              "mandateIdentity": "MANDATE-NORTHSTAR-ALLOWED-001",
+              "mandateReference": "mandate://local/MANDATE-NORTHSTAR-ALLOWED-001",
+              "mandateDigest": "sha256:15c43654af9a85e9cc35eaf2ce977a6c29085766181037265665b870ab1e4cd9",
+              "policyReference": "policy://local/policy.synthetic-buyer.procurement.v1/1.0.0",
+              "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+              "evidenceReference": "evidence://local/EVIDENCE-NORTHSTAR-PROCUREMENT-001",
+              "evidenceDigest": "sha256:726d6a3e57cf4829982766313c1be9abd0d8136fe56b976642a155257451c044",
+              "approvalRequired": true,
+              "humanApprovalReference": "HAP-NORTHSTAR_ALLOWED",
+              "humanApprovalDigest": "sha256:c4f33183251fd124ca25718307bec41ba090aea845e62c1e0fef2d1537ff9234",
+              "toolIdentity": "atg.evaluate_action",
+              "toolSchemaVersion": "atg.mcp-exact-action-request.local@2.0.0#sha256:27157ca88fa80fbb7d6d1faf946328c82605832bb27d823816e29ad9a1ee38dc",
+              "operationName": "evaluate_exact_action",
+              "canonicalArguments": {
+                "amountMinorUnits": 400000,
+                "businessContext": {
+                  "additionalApprovalReference": null,
+                  "agentClaimsPolicyApproval": false,
+                  "cancellationAmountMinorUnits": 0,
+                  "counterpartyClass": "supplier_a",
+                  "customerContactRequested": false,
+                  "customerImpactClass": "none",
+                  "destinationClass": "approved_warehouse",
+                  "discountBasisPoints": 0,
+                  "environment": "local_synthetic_procurement_simulation",
+                  "recipientClass": "approved_supplier",
+                  "refundAmountMinorUnits": 0,
+                  "requestedAuthorityExpansion": false,
+                  "supplierAccountReferenceClass": "approved_supplier_account"
+                },
+                "businessPolicyReference": {
+                  "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+                  "policyId": "policy.synthetic-buyer.procurement.v1",
+                  "policyVersion": "1.0.0"
+                },
+                "businessStateBinding": {
+                  "amountMinorUnits": 400000,
+                  "approvedRequestDigest": "sha256:608acfd56012c17e30493996233ca9a2bba6439b72ae8a207e335a01265d7b8d",
+                  "bindingVersion": "atg.purchase-order-state-binding.local.v1",
+                  "businessState": {
+                    "orderId": "PO-SYNTHETIC-001",
+                    "orderVersion": 1,
+                    "revision": 1,
+                    "supplierBankReference": "fixture-bank-A",
+                    "supplierBankVersion": 1
+                  },
+                  "businessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+                  "currency": "GBP",
+                  "destination": "destination.local.synthetic-purchase-order.v1",
+                  "supplierId": "SUP-HARBOUR-001"
+                },
+                "evidenceReferences": {
+                  "agentStanding": "fixture://northstar/agent-standing/procurement-agent-04",
+                  "humanApproval": "fixture://northstar/human-approval/EMP-NORTHSTAR-0042",
+                  "humanAuthority": "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
+                  "mandate": "fixture://northstar/mandate/procurement-purchase-v1"
+                },
+                "evidenceSetReference": "evidence-set.fresh.v1",
+                "mode": "enforced",
+                "passportReference": {
+                  "passportDigest": "sha256:87341f73cb0c88d9290f263aaaa8788a0dd0d2205c6f22f458cedf0193de579d",
+                  "passportId": "passport.atg.local.procurement-policy-evaluation.v2",
+                  "passportVersion": "2.0.0"
+                },
+                "proposedAction": {
+                  "actionType": "purchase",
+                  "agentId": "agent:northstar-retail:procurement:04",
+                  "category": "product_x",
+                  "commercialTermsReference": "TERMS-HARBOUR-NEGOTIATED-001",
+                  "currency": "GBP",
+                  "humanAuthorityProofReference": "HAP-NORTHSTAR_ALLOWED",
+                  "jurisdiction": "GB",
+                  "mandateId": "MANDATE-NORTHSTAR-ALLOWED-001",
+                  "nonce": "nonce_plugin_992448e4-01ce-41bb-8a4f-26baaec06107",
+                  "organisationId": "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+                  "policyVersion": "northstar-exact-action-policy-2026-09-02.v1",
+                  "product": "Product X",
+                  "quantity": 100,
+                  "riskTier": "medium",
+                  "supplierId": "SUP-HARBOUR-001",
+                  "supplierName": "Harbour Supply Ltd",
+                  "timestamp": "2026-09-02T09:00:00.000Z",
+                  "totalAmount": 4000
+                },
+                "requestVersion": "atg.mcp-exact-action-request.local.v2"
+              },
+              "targetIdentity": "SUP-HARBOUR-001",
+              "issuedAt": "2026-09-02T09:00:00.000Z",
+              "notBefore": "2026-09-02T09:00:00.000Z",
+              "expiresAt": "2026-09-02T09:05:00.000Z",
+              "amount": 4000,
+              "currency": "GBP",
+              "operatingEnvironment": "local_synthetic_procurement_simulation",
+              "nonce": "nonce_plugin_992448e4-01ce-41bb-8a4f-26baaec06107",
+              "idempotencyKey": "idempotency_nonce_plugin_992448e4-01ce-41bb-8a4f-26baaec06107",
+              "usageSemantics": "one_shot",
+              "actionDigest": "sha256:05bad02ad198fba358c066ca0c89cbfcd64fcb1fcfbe45aa9ba5f308631801e0"
+            },
+            "oneUse": true,
+            "allowedDoesNotMeanExecuted": true,
+            "localOnly": true,
+            "simulatedActionsOnly": true,
+            "productionEnforcement": false,
+            "signature": {
+              "algorithm": "ed25519-local-demo",
+              "keyId": "local-demo-ed25519-p3-m117",
+              "signedAt": "2026-09-02T09:00:00.000Z",
+              "signature": "X9lRcu0zLiBqmSShFu40hE5iPjO8xoHtxZc5xu2I8D0XSydoHHXoTrK70GCAag2SN6Wcc/8ONCzLwQDy0tYjAw==",
+              "localFixtureOnly": true,
+              "productionKeyCustody": false
+            }
+          },
+          "decisionReceipt": {
+            "receiptVersion": "atg.policy-decision-receipt.local.v1",
+            "receiptId": "decision_receipt_4960e471ecd2fb404581d5cd",
+            "decision": "allowed",
+            "policyReference": "policy://local/policy.synthetic-buyer.procurement.v1/1.0.0",
+            "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+            "reasons": [
+              "POLICY_EXACT_ACTION_ALLOWED",
+              "GATEPASS_ISSUED_FOR_ONE_EXACT_LOCAL_SIMULATED_ACTION",
+              "ALLOWED_DOES_NOT_MEAN_EXECUTED"
+            ],
+            "evidenceState": "present",
+            "approvalState": "approved",
+            "decidedAt": "2026-09-02T09:00:00.000Z",
+            "gatePassIssuance": {
+              "gatePassId": "gatepass_exact_cfeadd32d86e6a250502e97e",
+              "actionDigest": "sha256:05bad02ad198fba358c066ca0c89cbfcd64fcb1fcfbe45aa9ba5f308631801e0",
+              "nonce": "nonce_plugin_992448e4-01ce-41bb-8a4f-26baaec06107",
+              "issuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+              "issuerKeyId": "local-demo-ed25519-p3-m117",
+              "issuedAt": "2026-09-02T09:00:00.000Z"
+            },
+            "executionState": "not_executed",
+            "allowedDoesNotMeanExecuted": true,
+            "localOnly": true,
+            "simulatedActionsOnly": true
+          }
+        },
+        "lookup": {
+          "requestId": "6baf507e-ec8e-479d-b0f9-41830e389064",
+          "challenge": "1a83bd36-6c1d-4839-8f11-e69c2e76a51b",
+          "requestedAt": "2026-09-02T09:01:00.000Z",
+          "clockId": "mission-03-fixed-test-clock",
+          "fenceId": "5c6cd95d-0e4b-4199-b577-3c40989b2dd2"
+        },
+        "evidence": {
+          "schema": "atg.destination-evidence.synthetic.v1",
+          "algorithm": "Ed25519",
+          "keyId": "mission03-synthetic-destination",
+          "payload": {
+            "schema": "atg.destination-evidence.synthetic.v1",
+            "destinationIdentity": "destination.local.synthetic-purchase-order.v1",
+            "approvalId": "gatepass_exact_cfeadd32d86e6a250502e97e",
+            "gatePassId": "gatepass_exact_cfeadd32d86e6a250502e97e",
+            "actionDigest": "sha256:05bad02ad198fba358c066ca0c89cbfcd64fcb1fcfbe45aa9ba5f308631801e0",
+            "approvedRequestDigest": "sha256:608acfd56012c17e30493996233ca9a2bba6439b72ae8a207e335a01265d7b8d",
+            "approvedBusinessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+            "approvedBusinessState": {
+              "orderId": "PO-SYNTHETIC-001",
+              "orderVersion": 1,
+              "supplierBankVersion": 1,
+              "supplierBankReference": "fixture-bank-A",
+              "revision": 1
+            },
+            "idempotencyId": "nonce_plugin_992448e4-01ce-41bb-8a4f-26baaec06107",
+            "transactionId": "fe1064a2-eee2-4f08-9c92-e1d25cfecab2",
+            "outcome": "EXECUTED",
+            "resultingRecordVersion": 2,
+            "recordDigest": "sha256:28c6af47372fcdc52ee573a555e1eacd166ba9d6b62d67962e034a71bdba25dc",
+            "lookup": {
+              "requestId": "6baf507e-ec8e-479d-b0f9-41830e389064",
+              "challenge": "1a83bd36-6c1d-4839-8f11-e69c2e76a51b",
+              "requestedAt": "2026-09-02T09:01:00.000Z",
+              "clockId": "mission-03-fixed-test-clock",
+              "fenceId": "5c6cd95d-0e4b-4199-b577-3c40989b2dd2"
+            },
+            "observedAt": "2026-09-02T09:01:00.000Z",
+            "clockId": "mission-03-fixed-test-clock",
+            "authoritativeLookup": true,
+            "destinationSequence": 3,
+            "fence": {
+              "fenceId": "5c6cd95d-0e4b-4199-b577-3c40989b2dd2",
+              "gatePassId": "gatepass_exact_cfeadd32d86e6a250502e97e",
+              "idempotencyId": "nonce_plugin_992448e4-01ce-41bb-8a4f-26baaec06107",
+              "completed": true,
+              "sequence": 3
+            },
+            "syntheticOnly": true,
+            "sameHost": true
+          },
+          "signature": "ve3QZyQp1bUjLc+M7J0muVZdKYDo0rHimL2G915r2gzn6b/xEb0ZJdiR/VdUblEYOdjqzBZ/7yofyNLV6LoICA=="
+        }
+      },
+      "final": {
+        "heldMinorUnits": 400000,
+        "unknownMinorUnits": 0,
+        "committedMinorUnits": 400000,
+        "statuses": [
+          "EXECUTED"
+        ]
+      },
+      "passed": true,
+      "retainedState": "Retained locally in the fresh exact-archive installation project; see local release report."
+    },
+    {
+      "id": "fenced-absence",
+      "rejected": {
+        "outcome": "UNKNOWN",
+        "reason": "UNFENCED_ABSENCE",
+        "automaticRetryPermitted": false
+      },
+      "outcome": {
+        "outcome": "NOT_EXECUTED",
+        "reason": "SIGNED_DESTINATION_RECONCILED_NO_RETRY",
+        "automaticRetryPermitted": false
+      },
+      "publicVerification": {
+        "trust": {
+          "destinationIdentity": "destination.local.synthetic-purchase-order.v1",
+          "destinationKeyId": "mission03-synthetic-destination",
+          "destinationPublicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAX7/716KqoQkcJZ/Inpc8XKU93Nc8OD3W1hYgaMduw3A=\n-----END PUBLIC KEY-----\n",
+          "approvalIssuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+          "approvalKeyId": "local-demo-ed25519-p3-m117",
+          "approvalPublicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAtPo88xjbno/utAGGwrL4AXvDeK7IjBwwV4ztiuahGnE=\n-----END PUBLIC KEY-----\n",
+          "clockId": "mission-03-fixed-test-clock",
+          "maximumAgeMs": 5000
+        },
+        "approval": {
+          "approvalId": "gatepass_exact_0d7a49f7f5e38c9e383d3927",
+          "request": {
+            "requestVersion": "atg.mcp-exact-action-request.local.v2",
+            "mode": "enforced",
+            "passportReference": {
+              "passportId": "passport.atg.local.procurement-policy-evaluation.v2",
+              "passportVersion": "2.0.0",
+              "passportDigest": "sha256:87341f73cb0c88d9290f263aaaa8788a0dd0d2205c6f22f458cedf0193de579d"
+            },
+            "toolBinding": {
+              "mcpServerIdentity": "io.github.gareth1953.agent-trust-gate.local-stdio",
+              "toolIdentity": "atg.evaluate_action",
+              "operation": "evaluate_exact_action",
+              "inputSchemaIdentity": "atg.mcp-exact-action-request.local",
+              "inputSchemaVersion": "2.0.0",
+              "inputSchemaDigest": "sha256:27157ca88fa80fbb7d6d1faf946328c82605832bb27d823816e29ad9a1ee38dc"
+            },
+            "businessPolicyReference": {
+              "policyId": "policy.synthetic-buyer.procurement.v1",
+              "policyVersion": "1.0.0",
+              "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b"
+            },
+            "evidenceSetReference": "evidence-set.fresh.v1",
+            "evidenceReferences": {
+              "humanAuthority": "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
+              "humanApproval": "fixture://northstar/human-approval/EMP-NORTHSTAR-0042",
+              "agentStanding": "fixture://northstar/agent-standing/procurement-agent-04",
+              "mandate": "fixture://northstar/mandate/procurement-purchase-v1"
+            },
+            "amountMinorUnits": 400000,
+            "businessContext": {
+              "destinationClass": "approved_warehouse",
+              "supplierAccountReferenceClass": "approved_supplier_account",
+              "counterpartyClass": "supplier_a",
+              "recipientClass": "approved_supplier",
+              "environment": "local_synthetic_procurement_simulation",
+              "customerImpactClass": "none",
+              "customerContactRequested": false,
+              "discountBasisPoints": 0,
+              "refundAmountMinorUnits": 0,
+              "cancellationAmountMinorUnits": 0,
+              "additionalApprovalReference": null,
+              "requestedAuthorityExpansion": false,
+              "agentClaimsPolicyApproval": false
+            },
+            "proposedAction": {
+              "organisationId": "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+              "agentId": "agent:northstar-retail:procurement:04",
+              "supplierId": "SUP-HARBOUR-001",
+              "supplierName": "Harbour Supply Ltd",
+              "product": "Product X",
+              "category": "product_x",
+              "quantity": 100,
+              "totalAmount": 4000,
+              "currency": "GBP",
+              "commercialTermsReference": "TERMS-HARBOUR-NEGOTIATED-001",
+              "actionType": "purchase",
+              "jurisdiction": "GB",
+              "riskTier": "medium",
+              "timestamp": "2026-09-02T09:00:00.000Z",
+              "nonce": "nonce_plugin_eea2d7c5-a7e0-4856-8239-9e536e39bf84",
+              "policyVersion": "northstar-exact-action-policy-2026-09-02.v1"
+            }
+          },
+          "binding": {
+            "bindingVersion": "atg.purchase-order-state-binding.local.v1",
+            "businessState": {
+              "orderId": "PO-SYNTHETIC-001",
+              "orderVersion": 1,
+              "supplierBankVersion": 1,
+              "supplierBankReference": "fixture-bank-A",
+              "revision": 1
+            },
+            "businessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+            "approvedRequestDigest": "sha256:d745c087db6902ab3bb4ee07c88cfb6cb4051ae917833b5a6acb15c5ca96d8a5",
+            "supplierId": "SUP-HARBOUR-001",
+            "amountMinorUnits": 400000,
+            "currency": "GBP",
+            "destination": "destination.local.synthetic-purchase-order.v1"
+          },
+          "gatePass": {
+            "gatePassVersion": "atg.exact-action-gatepass.local.v1",
+            "gatePassId": "gatepass_exact_0d7a49f7f5e38c9e383d3927",
+            "decision": "allow",
+            "action": {
+              "actionEnvelopeVersion": "atg.canonical-action-envelope.v1",
+              "canonicalizationVersion": "atg.canonical-json.v1",
+              "digestAlgorithm": "sha256",
+              "issuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+              "issuerKeyId": "local-demo-ed25519-p3-m117",
+              "verificationProfile": "atg:local:northstar-point-of-action-verifier",
+              "subjectAgentIdentity": "agent:northstar-retail:procurement:04",
+              "nativeSessionId": "northstar_session_nonce_plugin_eea2d7c5-a7e0-4856-8239-9e536e39bf84",
+              "nativeRunId": "northstar_run_nonce_plugin_eea2d7c5-a7e0-4856-8239-9e536e39bf84",
+              "operatorIdentity": "EMP-NORTHSTAR-0042",
+              "mandateIdentity": "MANDATE-NORTHSTAR-ALLOWED-001",
+              "mandateReference": "mandate://local/MANDATE-NORTHSTAR-ALLOWED-001",
+              "mandateDigest": "sha256:15c43654af9a85e9cc35eaf2ce977a6c29085766181037265665b870ab1e4cd9",
+              "policyReference": "policy://local/policy.synthetic-buyer.procurement.v1/1.0.0",
+              "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+              "evidenceReference": "evidence://local/EVIDENCE-NORTHSTAR-PROCUREMENT-001",
+              "evidenceDigest": "sha256:726d6a3e57cf4829982766313c1be9abd0d8136fe56b976642a155257451c044",
+              "approvalRequired": true,
+              "humanApprovalReference": "HAP-NORTHSTAR_ALLOWED",
+              "humanApprovalDigest": "sha256:c4f33183251fd124ca25718307bec41ba090aea845e62c1e0fef2d1537ff9234",
+              "toolIdentity": "atg.evaluate_action",
+              "toolSchemaVersion": "atg.mcp-exact-action-request.local@2.0.0#sha256:27157ca88fa80fbb7d6d1faf946328c82605832bb27d823816e29ad9a1ee38dc",
+              "operationName": "evaluate_exact_action",
+              "canonicalArguments": {
+                "amountMinorUnits": 400000,
+                "businessContext": {
+                  "additionalApprovalReference": null,
+                  "agentClaimsPolicyApproval": false,
+                  "cancellationAmountMinorUnits": 0,
+                  "counterpartyClass": "supplier_a",
+                  "customerContactRequested": false,
+                  "customerImpactClass": "none",
+                  "destinationClass": "approved_warehouse",
+                  "discountBasisPoints": 0,
+                  "environment": "local_synthetic_procurement_simulation",
+                  "recipientClass": "approved_supplier",
+                  "refundAmountMinorUnits": 0,
+                  "requestedAuthorityExpansion": false,
+                  "supplierAccountReferenceClass": "approved_supplier_account"
+                },
+                "businessPolicyReference": {
+                  "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+                  "policyId": "policy.synthetic-buyer.procurement.v1",
+                  "policyVersion": "1.0.0"
+                },
+                "businessStateBinding": {
+                  "amountMinorUnits": 400000,
+                  "approvedRequestDigest": "sha256:d745c087db6902ab3bb4ee07c88cfb6cb4051ae917833b5a6acb15c5ca96d8a5",
+                  "bindingVersion": "atg.purchase-order-state-binding.local.v1",
+                  "businessState": {
+                    "orderId": "PO-SYNTHETIC-001",
+                    "orderVersion": 1,
+                    "revision": 1,
+                    "supplierBankReference": "fixture-bank-A",
+                    "supplierBankVersion": 1
+                  },
+                  "businessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+                  "currency": "GBP",
+                  "destination": "destination.local.synthetic-purchase-order.v1",
+                  "supplierId": "SUP-HARBOUR-001"
+                },
+                "evidenceReferences": {
+                  "agentStanding": "fixture://northstar/agent-standing/procurement-agent-04",
+                  "humanApproval": "fixture://northstar/human-approval/EMP-NORTHSTAR-0042",
+                  "humanAuthority": "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
+                  "mandate": "fixture://northstar/mandate/procurement-purchase-v1"
+                },
+                "evidenceSetReference": "evidence-set.fresh.v1",
+                "mode": "enforced",
+                "passportReference": {
+                  "passportDigest": "sha256:87341f73cb0c88d9290f263aaaa8788a0dd0d2205c6f22f458cedf0193de579d",
+                  "passportId": "passport.atg.local.procurement-policy-evaluation.v2",
+                  "passportVersion": "2.0.0"
+                },
+                "proposedAction": {
+                  "actionType": "purchase",
+                  "agentId": "agent:northstar-retail:procurement:04",
+                  "category": "product_x",
+                  "commercialTermsReference": "TERMS-HARBOUR-NEGOTIATED-001",
+                  "currency": "GBP",
+                  "humanAuthorityProofReference": "HAP-NORTHSTAR_ALLOWED",
+                  "jurisdiction": "GB",
+                  "mandateId": "MANDATE-NORTHSTAR-ALLOWED-001",
+                  "nonce": "nonce_plugin_eea2d7c5-a7e0-4856-8239-9e536e39bf84",
+                  "organisationId": "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+                  "policyVersion": "northstar-exact-action-policy-2026-09-02.v1",
+                  "product": "Product X",
+                  "quantity": 100,
+                  "riskTier": "medium",
+                  "supplierId": "SUP-HARBOUR-001",
+                  "supplierName": "Harbour Supply Ltd",
+                  "timestamp": "2026-09-02T09:00:00.000Z",
+                  "totalAmount": 4000
+                },
+                "requestVersion": "atg.mcp-exact-action-request.local.v2"
+              },
+              "targetIdentity": "SUP-HARBOUR-001",
+              "issuedAt": "2026-09-02T09:00:00.000Z",
+              "notBefore": "2026-09-02T09:00:00.000Z",
+              "expiresAt": "2026-09-02T09:05:00.000Z",
+              "amount": 4000,
+              "currency": "GBP",
+              "operatingEnvironment": "local_synthetic_procurement_simulation",
+              "nonce": "nonce_plugin_eea2d7c5-a7e0-4856-8239-9e536e39bf84",
+              "idempotencyKey": "idempotency_nonce_plugin_eea2d7c5-a7e0-4856-8239-9e536e39bf84",
+              "usageSemantics": "one_shot",
+              "actionDigest": "sha256:4c95f727e73179a3cafa48cd5e80716b78d3834059cf0ca9bf6300a3c30724e4"
+            },
+            "oneUse": true,
+            "allowedDoesNotMeanExecuted": true,
+            "localOnly": true,
+            "simulatedActionsOnly": true,
+            "productionEnforcement": false,
+            "signature": {
+              "algorithm": "ed25519-local-demo",
+              "keyId": "local-demo-ed25519-p3-m117",
+              "signedAt": "2026-09-02T09:00:00.000Z",
+              "signature": "PXNm/DcPGua+kLEEo4wmVhh2FCGjECwl9gw8YApcluACvP+N138AF9gc83BAYIgdj0lYqP4z5RLOyeeS5xX3CQ==",
+              "localFixtureOnly": true,
+              "productionKeyCustody": false
+            }
+          },
+          "decisionReceipt": {
+            "receiptVersion": "atg.policy-decision-receipt.local.v1",
+            "receiptId": "decision_receipt_a3b63ed8e07111c32477a8a1",
+            "decision": "allowed",
+            "policyReference": "policy://local/policy.synthetic-buyer.procurement.v1/1.0.0",
+            "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+            "reasons": [
+              "POLICY_EXACT_ACTION_ALLOWED",
+              "GATEPASS_ISSUED_FOR_ONE_EXACT_LOCAL_SIMULATED_ACTION",
+              "ALLOWED_DOES_NOT_MEAN_EXECUTED"
+            ],
+            "evidenceState": "present",
+            "approvalState": "approved",
+            "decidedAt": "2026-09-02T09:00:00.000Z",
+            "gatePassIssuance": {
+              "gatePassId": "gatepass_exact_0d7a49f7f5e38c9e383d3927",
+              "actionDigest": "sha256:4c95f727e73179a3cafa48cd5e80716b78d3834059cf0ca9bf6300a3c30724e4",
+              "nonce": "nonce_plugin_eea2d7c5-a7e0-4856-8239-9e536e39bf84",
+              "issuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+              "issuerKeyId": "local-demo-ed25519-p3-m117",
+              "issuedAt": "2026-09-02T09:00:00.000Z"
+            },
+            "executionState": "not_executed",
+            "allowedDoesNotMeanExecuted": true,
+            "localOnly": true,
+            "simulatedActionsOnly": true
+          }
+        },
+        "lookup": {
+          "requestId": "a07d2851-084d-414a-a50b-62db310c3690",
+          "challenge": "1ef05920-a650-4de2-9cd1-b00190e936e7",
+          "requestedAt": "2026-09-02T09:01:00.000Z",
+          "clockId": "mission-03-fixed-test-clock",
+          "fenceId": "de064875-d7cf-45bc-9a6f-1627729a2529"
+        },
+        "evidence": {
+          "schema": "atg.destination-evidence.synthetic.v1",
+          "algorithm": "Ed25519",
+          "keyId": "mission03-synthetic-destination",
+          "payload": {
+            "schema": "atg.destination-evidence.synthetic.v1",
+            "destinationIdentity": "destination.local.synthetic-purchase-order.v1",
+            "approvalId": "gatepass_exact_0d7a49f7f5e38c9e383d3927",
+            "gatePassId": "gatepass_exact_0d7a49f7f5e38c9e383d3927",
+            "actionDigest": "sha256:4c95f727e73179a3cafa48cd5e80716b78d3834059cf0ca9bf6300a3c30724e4",
+            "approvedRequestDigest": "sha256:d745c087db6902ab3bb4ee07c88cfb6cb4051ae917833b5a6acb15c5ca96d8a5",
+            "approvedBusinessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+            "approvedBusinessState": {
+              "orderId": "PO-SYNTHETIC-001",
+              "orderVersion": 1,
+              "supplierBankVersion": 1,
+              "supplierBankReference": "fixture-bank-A",
+              "revision": 1
+            },
+            "idempotencyId": "nonce_plugin_eea2d7c5-a7e0-4856-8239-9e536e39bf84",
+            "transactionId": null,
+            "outcome": "ABSENT",
+            "resultingRecordVersion": null,
+            "recordDigest": null,
+            "lookup": {
+              "requestId": "a07d2851-084d-414a-a50b-62db310c3690",
+              "challenge": "1ef05920-a650-4de2-9cd1-b00190e936e7",
+              "requestedAt": "2026-09-02T09:01:00.000Z",
+              "clockId": "mission-03-fixed-test-clock",
+              "fenceId": "de064875-d7cf-45bc-9a6f-1627729a2529"
+            },
+            "observedAt": "2026-09-02T09:01:00.000Z",
+            "clockId": "mission-03-fixed-test-clock",
+            "authoritativeLookup": true,
+            "destinationSequence": 2,
+            "fence": {
+              "fenceId": "de064875-d7cf-45bc-9a6f-1627729a2529",
+              "gatePassId": "gatepass_exact_0d7a49f7f5e38c9e383d3927",
+              "idempotencyId": "nonce_plugin_eea2d7c5-a7e0-4856-8239-9e536e39bf84",
+              "completed": true,
+              "sequence": 2
+            },
+            "syntheticOnly": true,
+            "sameHost": true
+          },
+          "signature": "3K+cL1/bXNyyI2B3wgojATFNmhU7N0Q4GS99ZVC0EXDIXfy0rvg29JIDGiNTXTANdztJIotKCmRW2P3gYvC7Aw=="
+        }
+      },
+      "final": {
+        "heldMinorUnits": 0,
+        "unknownMinorUnits": 0,
+        "committedMinorUnits": 0,
+        "statuses": [
+          "ABANDONED"
+        ]
+      },
+      "passed": true,
+      "retainedState": "Retained locally in the fresh exact-archive installation project; see local release report."
+    },
+    {
+      "id": "delayed-worker",
+      "outcome": {
+        "outcome": "NOT_EXECUTED",
+        "reason": "SIGNED_DESTINATION_RECONCILED_NO_RETRY",
+        "automaticRetryPermitted": false
+      },
+      "delayed": {
+        "outcome": "REJECTED",
+        "reason": "STALE_OR_CONSUMED_AUTHORITY",
+        "automaticRetryPermitted": false
+      },
+      "destinationRejectedOldCapability": true,
+      "publicVerification": {
+        "trust": {
+          "destinationIdentity": "destination.local.synthetic-purchase-order.v1",
+          "destinationKeyId": "mission03-synthetic-destination",
+          "destinationPublicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAcLm16mhRGcPiMFhcdet7aytr65vPVeFc3UacRLTrRvY=\n-----END PUBLIC KEY-----\n",
+          "approvalIssuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+          "approvalKeyId": "local-demo-ed25519-p3-m117",
+          "approvalPublicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAtPo88xjbno/utAGGwrL4AXvDeK7IjBwwV4ztiuahGnE=\n-----END PUBLIC KEY-----\n",
+          "clockId": "mission-03-fixed-test-clock",
+          "maximumAgeMs": 5000
+        },
+        "approval": {
+          "approvalId": "gatepass_exact_6a66ea6dfd666352fc72d10a",
+          "request": {
+            "requestVersion": "atg.mcp-exact-action-request.local.v2",
+            "mode": "enforced",
+            "passportReference": {
+              "passportId": "passport.atg.local.procurement-policy-evaluation.v2",
+              "passportVersion": "2.0.0",
+              "passportDigest": "sha256:87341f73cb0c88d9290f263aaaa8788a0dd0d2205c6f22f458cedf0193de579d"
+            },
+            "toolBinding": {
+              "mcpServerIdentity": "io.github.gareth1953.agent-trust-gate.local-stdio",
+              "toolIdentity": "atg.evaluate_action",
+              "operation": "evaluate_exact_action",
+              "inputSchemaIdentity": "atg.mcp-exact-action-request.local",
+              "inputSchemaVersion": "2.0.0",
+              "inputSchemaDigest": "sha256:27157ca88fa80fbb7d6d1faf946328c82605832bb27d823816e29ad9a1ee38dc"
+            },
+            "businessPolicyReference": {
+              "policyId": "policy.synthetic-buyer.procurement.v1",
+              "policyVersion": "1.0.0",
+              "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b"
+            },
+            "evidenceSetReference": "evidence-set.fresh.v1",
+            "evidenceReferences": {
+              "humanAuthority": "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
+              "humanApproval": "fixture://northstar/human-approval/EMP-NORTHSTAR-0042",
+              "agentStanding": "fixture://northstar/agent-standing/procurement-agent-04",
+              "mandate": "fixture://northstar/mandate/procurement-purchase-v1"
+            },
+            "amountMinorUnits": 400000,
+            "businessContext": {
+              "destinationClass": "approved_warehouse",
+              "supplierAccountReferenceClass": "approved_supplier_account",
+              "counterpartyClass": "supplier_a",
+              "recipientClass": "approved_supplier",
+              "environment": "local_synthetic_procurement_simulation",
+              "customerImpactClass": "none",
+              "customerContactRequested": false,
+              "discountBasisPoints": 0,
+              "refundAmountMinorUnits": 0,
+              "cancellationAmountMinorUnits": 0,
+              "additionalApprovalReference": null,
+              "requestedAuthorityExpansion": false,
+              "agentClaimsPolicyApproval": false
+            },
+            "proposedAction": {
+              "organisationId": "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+              "agentId": "agent:northstar-retail:procurement:04",
+              "supplierId": "SUP-HARBOUR-001",
+              "supplierName": "Harbour Supply Ltd",
+              "product": "Product X",
+              "category": "product_x",
+              "quantity": 100,
+              "totalAmount": 4000,
+              "currency": "GBP",
+              "commercialTermsReference": "TERMS-HARBOUR-NEGOTIATED-001",
+              "actionType": "purchase",
+              "jurisdiction": "GB",
+              "riskTier": "medium",
+              "timestamp": "2026-09-02T09:00:00.000Z",
+              "nonce": "nonce_plugin_6c960b8c-cf3b-4263-9045-2f634849192e",
+              "policyVersion": "northstar-exact-action-policy-2026-09-02.v1"
+            }
+          },
+          "binding": {
+            "bindingVersion": "atg.purchase-order-state-binding.local.v1",
+            "businessState": {
+              "orderId": "PO-SYNTHETIC-001",
+              "orderVersion": 1,
+              "supplierBankVersion": 1,
+              "supplierBankReference": "fixture-bank-A",
+              "revision": 1
+            },
+            "businessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+            "approvedRequestDigest": "sha256:0d4c296cc40a03977165582ebc30b1ef6a516f1599d93639868e133982a6e7d4",
+            "supplierId": "SUP-HARBOUR-001",
+            "amountMinorUnits": 400000,
+            "currency": "GBP",
+            "destination": "destination.local.synthetic-purchase-order.v1"
+          },
+          "gatePass": {
+            "gatePassVersion": "atg.exact-action-gatepass.local.v1",
+            "gatePassId": "gatepass_exact_6a66ea6dfd666352fc72d10a",
+            "decision": "allow",
+            "action": {
+              "actionEnvelopeVersion": "atg.canonical-action-envelope.v1",
+              "canonicalizationVersion": "atg.canonical-json.v1",
+              "digestAlgorithm": "sha256",
+              "issuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+              "issuerKeyId": "local-demo-ed25519-p3-m117",
+              "verificationProfile": "atg:local:northstar-point-of-action-verifier",
+              "subjectAgentIdentity": "agent:northstar-retail:procurement:04",
+              "nativeSessionId": "northstar_session_nonce_plugin_6c960b8c-cf3b-4263-9045-2f634849192e",
+              "nativeRunId": "northstar_run_nonce_plugin_6c960b8c-cf3b-4263-9045-2f634849192e",
+              "operatorIdentity": "EMP-NORTHSTAR-0042",
+              "mandateIdentity": "MANDATE-NORTHSTAR-ALLOWED-001",
+              "mandateReference": "mandate://local/MANDATE-NORTHSTAR-ALLOWED-001",
+              "mandateDigest": "sha256:15c43654af9a85e9cc35eaf2ce977a6c29085766181037265665b870ab1e4cd9",
+              "policyReference": "policy://local/policy.synthetic-buyer.procurement.v1/1.0.0",
+              "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+              "evidenceReference": "evidence://local/EVIDENCE-NORTHSTAR-PROCUREMENT-001",
+              "evidenceDigest": "sha256:726d6a3e57cf4829982766313c1be9abd0d8136fe56b976642a155257451c044",
+              "approvalRequired": true,
+              "humanApprovalReference": "HAP-NORTHSTAR_ALLOWED",
+              "humanApprovalDigest": "sha256:c4f33183251fd124ca25718307bec41ba090aea845e62c1e0fef2d1537ff9234",
+              "toolIdentity": "atg.evaluate_action",
+              "toolSchemaVersion": "atg.mcp-exact-action-request.local@2.0.0#sha256:27157ca88fa80fbb7d6d1faf946328c82605832bb27d823816e29ad9a1ee38dc",
+              "operationName": "evaluate_exact_action",
+              "canonicalArguments": {
+                "amountMinorUnits": 400000,
+                "businessContext": {
+                  "additionalApprovalReference": null,
+                  "agentClaimsPolicyApproval": false,
+                  "cancellationAmountMinorUnits": 0,
+                  "counterpartyClass": "supplier_a",
+                  "customerContactRequested": false,
+                  "customerImpactClass": "none",
+                  "destinationClass": "approved_warehouse",
+                  "discountBasisPoints": 0,
+                  "environment": "local_synthetic_procurement_simulation",
+                  "recipientClass": "approved_supplier",
+                  "refundAmountMinorUnits": 0,
+                  "requestedAuthorityExpansion": false,
+                  "supplierAccountReferenceClass": "approved_supplier_account"
+                },
+                "businessPolicyReference": {
+                  "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+                  "policyId": "policy.synthetic-buyer.procurement.v1",
+                  "policyVersion": "1.0.0"
+                },
+                "businessStateBinding": {
+                  "amountMinorUnits": 400000,
+                  "approvedRequestDigest": "sha256:0d4c296cc40a03977165582ebc30b1ef6a516f1599d93639868e133982a6e7d4",
+                  "bindingVersion": "atg.purchase-order-state-binding.local.v1",
+                  "businessState": {
+                    "orderId": "PO-SYNTHETIC-001",
+                    "orderVersion": 1,
+                    "revision": 1,
+                    "supplierBankReference": "fixture-bank-A",
+                    "supplierBankVersion": 1
+                  },
+                  "businessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+                  "currency": "GBP",
+                  "destination": "destination.local.synthetic-purchase-order.v1",
+                  "supplierId": "SUP-HARBOUR-001"
+                },
+                "evidenceReferences": {
+                  "agentStanding": "fixture://northstar/agent-standing/procurement-agent-04",
+                  "humanApproval": "fixture://northstar/human-approval/EMP-NORTHSTAR-0042",
+                  "humanAuthority": "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
+                  "mandate": "fixture://northstar/mandate/procurement-purchase-v1"
+                },
+                "evidenceSetReference": "evidence-set.fresh.v1",
+                "mode": "enforced",
+                "passportReference": {
+                  "passportDigest": "sha256:87341f73cb0c88d9290f263aaaa8788a0dd0d2205c6f22f458cedf0193de579d",
+                  "passportId": "passport.atg.local.procurement-policy-evaluation.v2",
+                  "passportVersion": "2.0.0"
+                },
+                "proposedAction": {
+                  "actionType": "purchase",
+                  "agentId": "agent:northstar-retail:procurement:04",
+                  "category": "product_x",
+                  "commercialTermsReference": "TERMS-HARBOUR-NEGOTIATED-001",
+                  "currency": "GBP",
+                  "humanAuthorityProofReference": "HAP-NORTHSTAR_ALLOWED",
+                  "jurisdiction": "GB",
+                  "mandateId": "MANDATE-NORTHSTAR-ALLOWED-001",
+                  "nonce": "nonce_plugin_6c960b8c-cf3b-4263-9045-2f634849192e",
+                  "organisationId": "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+                  "policyVersion": "northstar-exact-action-policy-2026-09-02.v1",
+                  "product": "Product X",
+                  "quantity": 100,
+                  "riskTier": "medium",
+                  "supplierId": "SUP-HARBOUR-001",
+                  "supplierName": "Harbour Supply Ltd",
+                  "timestamp": "2026-09-02T09:00:00.000Z",
+                  "totalAmount": 4000
+                },
+                "requestVersion": "atg.mcp-exact-action-request.local.v2"
+              },
+              "targetIdentity": "SUP-HARBOUR-001",
+              "issuedAt": "2026-09-02T09:00:00.000Z",
+              "notBefore": "2026-09-02T09:00:00.000Z",
+              "expiresAt": "2026-09-02T09:05:00.000Z",
+              "amount": 4000,
+              "currency": "GBP",
+              "operatingEnvironment": "local_synthetic_procurement_simulation",
+              "nonce": "nonce_plugin_6c960b8c-cf3b-4263-9045-2f634849192e",
+              "idempotencyKey": "idempotency_nonce_plugin_6c960b8c-cf3b-4263-9045-2f634849192e",
+              "usageSemantics": "one_shot",
+              "actionDigest": "sha256:df1ae71ae6737f1bc3eeb635918197682b631c0c5c8212b22113568f90039e70"
+            },
+            "oneUse": true,
+            "allowedDoesNotMeanExecuted": true,
+            "localOnly": true,
+            "simulatedActionsOnly": true,
+            "productionEnforcement": false,
+            "signature": {
+              "algorithm": "ed25519-local-demo",
+              "keyId": "local-demo-ed25519-p3-m117",
+              "signedAt": "2026-09-02T09:00:00.000Z",
+              "signature": "vFeBhdQKJ8gkc/u991+Q8C6I1PzfBSbpaTm+O4nR3uLSl6UXvGziHs5zXmklnBYqk+WE1d2+X0Jt5v2O8Eu1CA==",
+              "localFixtureOnly": true,
+              "productionKeyCustody": false
+            }
+          },
+          "decisionReceipt": {
+            "receiptVersion": "atg.policy-decision-receipt.local.v1",
+            "receiptId": "decision_receipt_92ae8994e6c085ae2d6721bf",
+            "decision": "allowed",
+            "policyReference": "policy://local/policy.synthetic-buyer.procurement.v1/1.0.0",
+            "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+            "reasons": [
+              "POLICY_EXACT_ACTION_ALLOWED",
+              "GATEPASS_ISSUED_FOR_ONE_EXACT_LOCAL_SIMULATED_ACTION",
+              "ALLOWED_DOES_NOT_MEAN_EXECUTED"
+            ],
+            "evidenceState": "present",
+            "approvalState": "approved",
+            "decidedAt": "2026-09-02T09:00:00.000Z",
+            "gatePassIssuance": {
+              "gatePassId": "gatepass_exact_6a66ea6dfd666352fc72d10a",
+              "actionDigest": "sha256:df1ae71ae6737f1bc3eeb635918197682b631c0c5c8212b22113568f90039e70",
+              "nonce": "nonce_plugin_6c960b8c-cf3b-4263-9045-2f634849192e",
+              "issuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+              "issuerKeyId": "local-demo-ed25519-p3-m117",
+              "issuedAt": "2026-09-02T09:00:00.000Z"
+            },
+            "executionState": "not_executed",
+            "allowedDoesNotMeanExecuted": true,
+            "localOnly": true,
+            "simulatedActionsOnly": true
+          }
+        },
+        "lookup": {
+          "requestId": "6215474e-a8e0-4de8-a091-6bb1f437ab9f",
+          "challenge": "c2e4e546-d019-4159-bb52-092a012bc090",
+          "requestedAt": "2026-09-02T09:01:00.000Z",
+          "clockId": "mission-03-fixed-test-clock",
+          "fenceId": "1bf46519-9c32-482b-8cd1-7cb54a3072c2"
+        },
+        "evidence": {
+          "schema": "atg.destination-evidence.synthetic.v1",
+          "algorithm": "Ed25519",
+          "keyId": "mission03-synthetic-destination",
+          "payload": {
+            "schema": "atg.destination-evidence.synthetic.v1",
+            "destinationIdentity": "destination.local.synthetic-purchase-order.v1",
+            "approvalId": "gatepass_exact_6a66ea6dfd666352fc72d10a",
+            "gatePassId": "gatepass_exact_6a66ea6dfd666352fc72d10a",
+            "actionDigest": "sha256:df1ae71ae6737f1bc3eeb635918197682b631c0c5c8212b22113568f90039e70",
+            "approvedRequestDigest": "sha256:0d4c296cc40a03977165582ebc30b1ef6a516f1599d93639868e133982a6e7d4",
+            "approvedBusinessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+            "approvedBusinessState": {
+              "orderId": "PO-SYNTHETIC-001",
+              "orderVersion": 1,
+              "supplierBankVersion": 1,
+              "supplierBankReference": "fixture-bank-A",
+              "revision": 1
+            },
+            "idempotencyId": "nonce_plugin_6c960b8c-cf3b-4263-9045-2f634849192e",
+            "transactionId": null,
+            "outcome": "ABSENT",
+            "resultingRecordVersion": null,
+            "recordDigest": null,
+            "lookup": {
+              "requestId": "6215474e-a8e0-4de8-a091-6bb1f437ab9f",
+              "challenge": "c2e4e546-d019-4159-bb52-092a012bc090",
+              "requestedAt": "2026-09-02T09:01:00.000Z",
+              "clockId": "mission-03-fixed-test-clock",
+              "fenceId": "1bf46519-9c32-482b-8cd1-7cb54a3072c2"
+            },
+            "observedAt": "2026-09-02T09:01:00.000Z",
+            "clockId": "mission-03-fixed-test-clock",
+            "authoritativeLookup": true,
+            "destinationSequence": 2,
+            "fence": {
+              "fenceId": "1bf46519-9c32-482b-8cd1-7cb54a3072c2",
+              "gatePassId": "gatepass_exact_6a66ea6dfd666352fc72d10a",
+              "idempotencyId": "nonce_plugin_6c960b8c-cf3b-4263-9045-2f634849192e",
+              "completed": true,
+              "sequence": 2
+            },
+            "syntheticOnly": true,
+            "sameHost": true
+          },
+          "signature": "LtxyK3jpsX1UdjyIcRMSIBGJ+bGborBwJvyndyvNsXnTKTUu3K7VcJTFxslnrN0WsN2fGKi/ah8P3tEWJRRhBQ=="
+        }
+      },
+      "final": {
+        "heldMinorUnits": 0,
+        "unknownMinorUnits": 0,
+        "committedMinorUnits": 0,
+        "statuses": [
+          "ABANDONED"
+        ]
+      },
+      "passed": true,
+      "retainedState": "Retained locally in the fresh exact-archive installation project; see local release report."
+    },
+    {
+      "id": "missing-evidence",
+      "missing": {
+        "outcome": "UNKNOWN",
+        "reason": "ENVELOPE_INVALID",
+        "automaticRetryPermitted": false
+      },
+      "outcome": {
+        "outcome": "NOT_EXECUTED",
+        "reason": "SIGNED_DESTINATION_RECONCILED_NO_RETRY",
+        "automaticRetryPermitted": false
+      },
+      "publicVerification": {
+        "trust": {
+          "destinationIdentity": "destination.local.synthetic-purchase-order.v1",
+          "destinationKeyId": "mission03-synthetic-destination",
+          "destinationPublicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEA7AKjA6PTjtrCpPhM9H4xjXSoiS8Tja6Kr7stv5+RiUI=\n-----END PUBLIC KEY-----\n",
+          "approvalIssuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+          "approvalKeyId": "local-demo-ed25519-p3-m117",
+          "approvalPublicKeyPem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAtPo88xjbno/utAGGwrL4AXvDeK7IjBwwV4ztiuahGnE=\n-----END PUBLIC KEY-----\n",
+          "clockId": "mission-03-fixed-test-clock",
+          "maximumAgeMs": 5000
+        },
+        "approval": {
+          "approvalId": "gatepass_exact_a531f0a7301fa227923da6f6",
+          "request": {
+            "requestVersion": "atg.mcp-exact-action-request.local.v2",
+            "mode": "enforced",
+            "passportReference": {
+              "passportId": "passport.atg.local.procurement-policy-evaluation.v2",
+              "passportVersion": "2.0.0",
+              "passportDigest": "sha256:87341f73cb0c88d9290f263aaaa8788a0dd0d2205c6f22f458cedf0193de579d"
+            },
+            "toolBinding": {
+              "mcpServerIdentity": "io.github.gareth1953.agent-trust-gate.local-stdio",
+              "toolIdentity": "atg.evaluate_action",
+              "operation": "evaluate_exact_action",
+              "inputSchemaIdentity": "atg.mcp-exact-action-request.local",
+              "inputSchemaVersion": "2.0.0",
+              "inputSchemaDigest": "sha256:27157ca88fa80fbb7d6d1faf946328c82605832bb27d823816e29ad9a1ee38dc"
+            },
+            "businessPolicyReference": {
+              "policyId": "policy.synthetic-buyer.procurement.v1",
+              "policyVersion": "1.0.0",
+              "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b"
+            },
+            "evidenceSetReference": "evidence-set.fresh.v1",
+            "evidenceReferences": {
+              "humanAuthority": "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
+              "humanApproval": "fixture://northstar/human-approval/EMP-NORTHSTAR-0042",
+              "agentStanding": "fixture://northstar/agent-standing/procurement-agent-04",
+              "mandate": "fixture://northstar/mandate/procurement-purchase-v1"
+            },
+            "amountMinorUnits": 400000,
+            "businessContext": {
+              "destinationClass": "approved_warehouse",
+              "supplierAccountReferenceClass": "approved_supplier_account",
+              "counterpartyClass": "supplier_a",
+              "recipientClass": "approved_supplier",
+              "environment": "local_synthetic_procurement_simulation",
+              "customerImpactClass": "none",
+              "customerContactRequested": false,
+              "discountBasisPoints": 0,
+              "refundAmountMinorUnits": 0,
+              "cancellationAmountMinorUnits": 0,
+              "additionalApprovalReference": null,
+              "requestedAuthorityExpansion": false,
+              "agentClaimsPolicyApproval": false
+            },
+            "proposedAction": {
+              "organisationId": "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+              "agentId": "agent:northstar-retail:procurement:04",
+              "supplierId": "SUP-HARBOUR-001",
+              "supplierName": "Harbour Supply Ltd",
+              "product": "Product X",
+              "category": "product_x",
+              "quantity": 100,
+              "totalAmount": 4000,
+              "currency": "GBP",
+              "commercialTermsReference": "TERMS-HARBOUR-NEGOTIATED-001",
+              "actionType": "purchase",
+              "jurisdiction": "GB",
+              "riskTier": "medium",
+              "timestamp": "2026-09-02T09:00:00.000Z",
+              "nonce": "nonce_plugin_eb9dc8e0-2650-4051-b869-07acbe72af02",
+              "policyVersion": "northstar-exact-action-policy-2026-09-02.v1"
+            }
+          },
+          "binding": {
+            "bindingVersion": "atg.purchase-order-state-binding.local.v1",
+            "businessState": {
+              "orderId": "PO-SYNTHETIC-001",
+              "orderVersion": 1,
+              "supplierBankVersion": 1,
+              "supplierBankReference": "fixture-bank-A",
+              "revision": 1
+            },
+            "businessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+            "approvedRequestDigest": "sha256:859adbb5851f1befca6cc4847352c209e7b7f50458228356543a09100af0dac3",
+            "supplierId": "SUP-HARBOUR-001",
+            "amountMinorUnits": 400000,
+            "currency": "GBP",
+            "destination": "destination.local.synthetic-purchase-order.v1"
+          },
+          "gatePass": {
+            "gatePassVersion": "atg.exact-action-gatepass.local.v1",
+            "gatePassId": "gatepass_exact_a531f0a7301fa227923da6f6",
+            "decision": "allow",
+            "action": {
+              "actionEnvelopeVersion": "atg.canonical-action-envelope.v1",
+              "canonicalizationVersion": "atg.canonical-json.v1",
+              "digestAlgorithm": "sha256",
+              "issuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+              "issuerKeyId": "local-demo-ed25519-p3-m117",
+              "verificationProfile": "atg:local:northstar-point-of-action-verifier",
+              "subjectAgentIdentity": "agent:northstar-retail:procurement:04",
+              "nativeSessionId": "northstar_session_nonce_plugin_eb9dc8e0-2650-4051-b869-07acbe72af02",
+              "nativeRunId": "northstar_run_nonce_plugin_eb9dc8e0-2650-4051-b869-07acbe72af02",
+              "operatorIdentity": "EMP-NORTHSTAR-0042",
+              "mandateIdentity": "MANDATE-NORTHSTAR-ALLOWED-001",
+              "mandateReference": "mandate://local/MANDATE-NORTHSTAR-ALLOWED-001",
+              "mandateDigest": "sha256:15c43654af9a85e9cc35eaf2ce977a6c29085766181037265665b870ab1e4cd9",
+              "policyReference": "policy://local/policy.synthetic-buyer.procurement.v1/1.0.0",
+              "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+              "evidenceReference": "evidence://local/EVIDENCE-NORTHSTAR-PROCUREMENT-001",
+              "evidenceDigest": "sha256:726d6a3e57cf4829982766313c1be9abd0d8136fe56b976642a155257451c044",
+              "approvalRequired": true,
+              "humanApprovalReference": "HAP-NORTHSTAR_ALLOWED",
+              "humanApprovalDigest": "sha256:c4f33183251fd124ca25718307bec41ba090aea845e62c1e0fef2d1537ff9234",
+              "toolIdentity": "atg.evaluate_action",
+              "toolSchemaVersion": "atg.mcp-exact-action-request.local@2.0.0#sha256:27157ca88fa80fbb7d6d1faf946328c82605832bb27d823816e29ad9a1ee38dc",
+              "operationName": "evaluate_exact_action",
+              "canonicalArguments": {
+                "amountMinorUnits": 400000,
+                "businessContext": {
+                  "additionalApprovalReference": null,
+                  "agentClaimsPolicyApproval": false,
+                  "cancellationAmountMinorUnits": 0,
+                  "counterpartyClass": "supplier_a",
+                  "customerContactRequested": false,
+                  "customerImpactClass": "none",
+                  "destinationClass": "approved_warehouse",
+                  "discountBasisPoints": 0,
+                  "environment": "local_synthetic_procurement_simulation",
+                  "recipientClass": "approved_supplier",
+                  "refundAmountMinorUnits": 0,
+                  "requestedAuthorityExpansion": false,
+                  "supplierAccountReferenceClass": "approved_supplier_account"
+                },
+                "businessPolicyReference": {
+                  "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+                  "policyId": "policy.synthetic-buyer.procurement.v1",
+                  "policyVersion": "1.0.0"
+                },
+                "businessStateBinding": {
+                  "amountMinorUnits": 400000,
+                  "approvedRequestDigest": "sha256:859adbb5851f1befca6cc4847352c209e7b7f50458228356543a09100af0dac3",
+                  "bindingVersion": "atg.purchase-order-state-binding.local.v1",
+                  "businessState": {
+                    "orderId": "PO-SYNTHETIC-001",
+                    "orderVersion": 1,
+                    "revision": 1,
+                    "supplierBankReference": "fixture-bank-A",
+                    "supplierBankVersion": 1
+                  },
+                  "businessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+                  "currency": "GBP",
+                  "destination": "destination.local.synthetic-purchase-order.v1",
+                  "supplierId": "SUP-HARBOUR-001"
+                },
+                "evidenceReferences": {
+                  "agentStanding": "fixture://northstar/agent-standing/procurement-agent-04",
+                  "humanApproval": "fixture://northstar/human-approval/EMP-NORTHSTAR-0042",
+                  "humanAuthority": "fixture://northstar/human-authority/EMP-NORTHSTAR-0042",
+                  "mandate": "fixture://northstar/mandate/procurement-purchase-v1"
+                },
+                "evidenceSetReference": "evidence-set.fresh.v1",
+                "mode": "enforced",
+                "passportReference": {
+                  "passportDigest": "sha256:87341f73cb0c88d9290f263aaaa8788a0dd0d2205c6f22f458cedf0193de579d",
+                  "passportId": "passport.atg.local.procurement-policy-evaluation.v2",
+                  "passportVersion": "2.0.0"
+                },
+                "proposedAction": {
+                  "actionType": "purchase",
+                  "agentId": "agent:northstar-retail:procurement:04",
+                  "category": "product_x",
+                  "commercialTermsReference": "TERMS-HARBOUR-NEGOTIATED-001",
+                  "currency": "GBP",
+                  "humanAuthorityProofReference": "HAP-NORTHSTAR_ALLOWED",
+                  "jurisdiction": "GB",
+                  "mandateId": "MANDATE-NORTHSTAR-ALLOWED-001",
+                  "nonce": "nonce_plugin_eb9dc8e0-2650-4051-b869-07acbe72af02",
+                  "organisationId": "ORG-NORTHSTAR-RETAIL-SYNTHETIC",
+                  "policyVersion": "northstar-exact-action-policy-2026-09-02.v1",
+                  "product": "Product X",
+                  "quantity": 100,
+                  "riskTier": "medium",
+                  "supplierId": "SUP-HARBOUR-001",
+                  "supplierName": "Harbour Supply Ltd",
+                  "timestamp": "2026-09-02T09:00:00.000Z",
+                  "totalAmount": 4000
+                },
+                "requestVersion": "atg.mcp-exact-action-request.local.v2"
+              },
+              "targetIdentity": "SUP-HARBOUR-001",
+              "issuedAt": "2026-09-02T09:00:00.000Z",
+              "notBefore": "2026-09-02T09:00:00.000Z",
+              "expiresAt": "2026-09-02T09:05:00.000Z",
+              "amount": 4000,
+              "currency": "GBP",
+              "operatingEnvironment": "local_synthetic_procurement_simulation",
+              "nonce": "nonce_plugin_eb9dc8e0-2650-4051-b869-07acbe72af02",
+              "idempotencyKey": "idempotency_nonce_plugin_eb9dc8e0-2650-4051-b869-07acbe72af02",
+              "usageSemantics": "one_shot",
+              "actionDigest": "sha256:c15e2960f1920840e530e08a8f325e7d6ac4f046de63c6bf24c4414f89d8c182"
+            },
+            "oneUse": true,
+            "allowedDoesNotMeanExecuted": true,
+            "localOnly": true,
+            "simulatedActionsOnly": true,
+            "productionEnforcement": false,
+            "signature": {
+              "algorithm": "ed25519-local-demo",
+              "keyId": "local-demo-ed25519-p3-m117",
+              "signedAt": "2026-09-02T09:00:00.000Z",
+              "signature": "Kvq7vQCTuSEDB9uVg+tTzefU6uIbbZwyJH5kKiMeximQMRxXckqorOqZf95gSWfRj+ymWWviZg8w2cWGPCoCAg==",
+              "localFixtureOnly": true,
+              "productionKeyCustody": false
+            }
+          },
+          "decisionReceipt": {
+            "receiptVersion": "atg.policy-decision-receipt.local.v1",
+            "receiptId": "decision_receipt_72afbebfb40046643e14f41f",
+            "decision": "allowed",
+            "policyReference": "policy://local/policy.synthetic-buyer.procurement.v1/1.0.0",
+            "policyDigest": "sha256:eee35af9e03f8c590c0e2fe908dd4c5a6c072c7f3ae54c8e3f2652fed0311a2b",
+            "reasons": [
+              "POLICY_EXACT_ACTION_ALLOWED",
+              "GATEPASS_ISSUED_FOR_ONE_EXACT_LOCAL_SIMULATED_ACTION",
+              "ALLOWED_DOES_NOT_MEAN_EXECUTED"
+            ],
+            "evidenceState": "present",
+            "approvalState": "approved",
+            "decidedAt": "2026-09-02T09:00:00.000Z",
+            "gatePassIssuance": {
+              "gatePassId": "gatepass_exact_a531f0a7301fa227923da6f6",
+              "actionDigest": "sha256:c15e2960f1920840e530e08a8f325e7d6ac4f046de63c6bf24c4414f89d8c182",
+              "nonce": "nonce_plugin_eb9dc8e0-2650-4051-b869-07acbe72af02",
+              "issuerIdentity": "atg:local:northstar-exact-action-policy-authority",
+              "issuerKeyId": "local-demo-ed25519-p3-m117",
+              "issuedAt": "2026-09-02T09:00:00.000Z"
+            },
+            "executionState": "not_executed",
+            "allowedDoesNotMeanExecuted": true,
+            "localOnly": true,
+            "simulatedActionsOnly": true
+          }
+        },
+        "lookup": {
+          "requestId": "daf79ad4-d0f6-4b58-97b1-f12263550c3f",
+          "challenge": "66ded977-4698-478b-bd97-fb726af8d9e1",
+          "requestedAt": "2026-09-02T09:01:00.000Z",
+          "clockId": "mission-03-fixed-test-clock",
+          "fenceId": "2fc566b9-ea1e-433d-97bc-770bf249f4c7"
+        },
+        "evidence": {
+          "schema": "atg.destination-evidence.synthetic.v1",
+          "algorithm": "Ed25519",
+          "keyId": "mission03-synthetic-destination",
+          "payload": {
+            "schema": "atg.destination-evidence.synthetic.v1",
+            "destinationIdentity": "destination.local.synthetic-purchase-order.v1",
+            "approvalId": "gatepass_exact_a531f0a7301fa227923da6f6",
+            "gatePassId": "gatepass_exact_a531f0a7301fa227923da6f6",
+            "actionDigest": "sha256:c15e2960f1920840e530e08a8f325e7d6ac4f046de63c6bf24c4414f89d8c182",
+            "approvedRequestDigest": "sha256:859adbb5851f1befca6cc4847352c209e7b7f50458228356543a09100af0dac3",
+            "approvedBusinessStateDigest": "sha256:d67ac2efd9b005f0e90bc0d77962bcdd62ef5ae2fbf8b53a738f6fa187a51a89",
+            "approvedBusinessState": {
+              "orderId": "PO-SYNTHETIC-001",
+              "orderVersion": 1,
+              "supplierBankVersion": 1,
+              "supplierBankReference": "fixture-bank-A",
+              "revision": 1
+            },
+            "idempotencyId": "nonce_plugin_eb9dc8e0-2650-4051-b869-07acbe72af02",
+            "transactionId": null,
+            "outcome": "ABSENT",
+            "resultingRecordVersion": null,
+            "recordDigest": null,
+            "lookup": {
+              "requestId": "daf79ad4-d0f6-4b58-97b1-f12263550c3f",
+              "challenge": "66ded977-4698-478b-bd97-fb726af8d9e1",
+              "requestedAt": "2026-09-02T09:01:00.000Z",
+              "clockId": "mission-03-fixed-test-clock",
+              "fenceId": "2fc566b9-ea1e-433d-97bc-770bf249f4c7"
+            },
+            "observedAt": "2026-09-02T09:01:00.000Z",
+            "clockId": "mission-03-fixed-test-clock",
+            "authoritativeLookup": true,
+            "destinationSequence": 2,
+            "fence": {
+              "fenceId": "2fc566b9-ea1e-433d-97bc-770bf249f4c7",
+              "gatePassId": "gatepass_exact_a531f0a7301fa227923da6f6",
+              "idempotencyId": "nonce_plugin_eb9dc8e0-2650-4051-b869-07acbe72af02",
+              "completed": true,
+              "sequence": 2
+            },
+            "syntheticOnly": true,
+            "sameHost": true
+          },
+          "signature": "C/5kWs9YB4YnjWns6xGthUWm8Qp501+9iaCfsXfSD7rEt3jutuGURLdRAJ3W5OMSg/X12FdrPf2Uy/X9ZC4bCA=="
+        }
+      },
+      "final": {
+        "heldMinorUnits": 0,
+        "unknownMinorUnits": 0,
+        "committedMinorUnits": 0,
+        "statuses": [
+          "ABANDONED"
+        ]
+      },
+      "passed": true,
+      "retainedState": "Retained locally in the fresh exact-archive installation project; see local release report."
+    }
+  ],
+  "passed": true,
+  "capture": {
+    "archiveFile": "agent-trust-gate-plugin-0.1.0-local.7.tgz",
+    "archiveSha256": "dcf75970db520fdd10afea63aa1a9d20780dc12a053c8e09f49b0f21ed1dddad",
+    "installedFromExactArchive": true,
+    "freshProjectOutsideRepository": true,
+    "recordedAt": "2026-10-15T19:06:21.210Z",
+    "reviewedMissionCommit": "be72c69097c3faca1e5b2f91369e68b8aa777aba",
+    "unpublishedCandidate": true,
+    "provenance": "Captured from the exact local.7 installed archive in a fresh project. Synthetic destination keys, fixed clock and same-host records; not independent external capture.",
+    "reviewedRepairCommit": "ce7259ad05d4f82cc0c865ea213ba90d9020d34a",
+    "originalWindowsIncidentAttributed": false
+  }
+}

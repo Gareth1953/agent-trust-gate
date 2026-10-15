@@ -1,0 +1,382 @@
+[
+  {
+    "name": "installed-destination-node24",
+    "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\installed-destination-node24.log",
+    "logSha256": "7f3680db42d85f753693469519b6f56e9be7ec9d939cfbaacd5d765b38a6c9b1",
+    "result": {
+      "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.7.tgz",
+      "sha256": "dcf75970db520fdd10afea63aa1a9d20780dc12a053c8e09f49b0f21ed1dddad",
+      "runtime": "v24.21.0",
+      "project": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-dBI1WZ",
+      "checks": [
+        {
+          "name": "installed metadata/exports/CLIs and no setup on help",
+          "passed": true
+        },
+        {
+          "name": "exact installed CLI eight signed destination scenarios",
+          "passed": true,
+          "cases": [
+            "signed-outcome",
+            "tampering",
+            "lookup-replay-and-stale",
+            "incomplete-fence",
+            "lost-acknowledgement",
+            "fenced-absence",
+            "delayed-worker",
+            "missing-evidence"
+          ]
+        },
+        {
+          "name": "35 reviewed cases against installed exports/runtime, including actual Node 20 restricted verification",
+          "passed": true,
+          "tests": 35
+        }
+      ],
+      "passed": true,
+      "publicVerificationDirectory": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-dBI1WZ\\destination-state\\signed-outcome\\public",
+      "observations": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-dBI1WZ\\destination-state\\results.json",
+      "summary": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-dBI1WZ\\summary.json"
+    }
+  },
+  {
+    "name": "installed-destination-node20",
+    "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\installed-destination-node20.log",
+    "logSha256": "09a3d3740b9510c28e2cffae09e01e2a4db85fe5f88fba754d0ba6824e9c5576",
+    "result": {
+      "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.7.tgz",
+      "sha256": "dcf75970db520fdd10afea63aa1a9d20780dc12a053c8e09f49b0f21ed1dddad",
+      "runtime": "v20.19.0",
+      "project": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-52lDRo",
+      "checks": [
+        {
+          "name": "installed metadata/exports/CLIs and no setup on help",
+          "passed": true
+        },
+        {
+          "name": "actual Node 20 standalone installed verifier with no writable state/private-key access",
+          "passed": true,
+          "outcome": "EXECUTED"
+        },
+        {
+          "name": "optional Node 24 exports/setup/demo reject Node 20 without state/key creation; legacy import remains usable",
+          "passed": true
+        }
+      ],
+      "passed": true,
+      "summary": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-52lDRo\\summary.json"
+    }
+  },
+  {
+    "name": "installed-security-node24",
+    "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\installed-security-node24.log",
+    "logSha256": "05dd261c2fbb229129a5617564ec621e3251d2bb2c6532f57f7cdc159078caa3",
+    "result": {
+      "runtime": "v24.21.0",
+      "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.7.tgz",
+      "sha256": "dcf75970db520fdd10afea63aa1a9d20780dc12a053c8e09f49b0f21ed1dddad",
+      "scratch": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-installed-security-kATajH",
+      "passed": true,
+      "securityTests": 8,
+      "securityPassed": 7,
+      "posixSkipped": 1,
+      "repairTestsPassed": 2,
+      "nativeWindowsWrites": {
+        "runtime": "v24.21.0",
+        "runtimeRoot": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-installed-security-kATajH\\node_modules\\@agent-trust-gate\\plugin\\dist\\src",
+        "scratch": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-mAfLk4",
+        "aclsChanged": false,
+        "historicalIncidentAttributed": false,
+        "cases": [
+          {
+            "kind": "normal",
+            "directory": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-mAfLk4\\case-iUglyl",
+            "revisionBefore": 2,
+            "revisionAfter": 3,
+            "committedBytesUnchanged": false,
+            "temporaryRemains": false,
+            "health": {
+              "available": true,
+              "reasonCode": null,
+              "statePath": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-mAfLk4\\case-iUglyl\\state.json"
+            },
+            "passed": true
+          },
+          {
+            "kind": "reader-no-delete-share",
+            "directory": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-mAfLk4\\case-HgwFnJ",
+            "revisionBefore": 2,
+            "revisionAfter": 2,
+            "committedBytesUnchanged": true,
+            "temporaryRemains": false,
+            "health": {
+              "available": false,
+              "reasonCode": "DURABLE_WRITE_FAILED",
+              "statePath": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-mAfLk4\\case-HgwFnJ\\state.json"
+            },
+            "reader": {
+              "aclBefore": "O:S-1-5-21-884222727-2268899625-373168730-1001G:S-1-5-21-884222727-2268899625-373168730-513D:AI(A;ID;0x1301bf;;;S-1-5-21-3830170013-540735458-2395729578-4100602064)(A;ID;0x1301bf;;;S-1-5-21-884222727-2268899625-373168730-1002)(A;ID;0x1301bf;;;S-1-5-21-4262760030-1429795816-410243204-1215521866)(A;ID;FA;;;SY)(A;ID;FA;;;BA)(A;ID;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)(A;ID;0x1301bf;;;S-1-5-21-715745301-1172149471-2490689245-1626957673)(A;ID;0x1301bf;;;S-1-5-21-515431488-3885978456-391655353-87447169)(A;ID;0x1301bf;;;S-1-5-21-1065419036-2048970783-340542631-2615506565)(A;ID;0x1301bf;;;S-1-5-21-3933573161-43893288-857327681-3398293179)(A;ID;0x1301bf;;;S-1-5-21-1729742438-1762310116-3965806446-3084126381)",
+              "share": 3,
+              "pid": 21024,
+              "aclAfter": "O:S-1-5-21-884222727-2268899625-373168730-1001G:S-1-5-21-884222727-2268899625-373168730-513D:AI(A;ID;0x1301bf;;;S-1-5-21-3830170013-540735458-2395729578-4100602064)(A;ID;0x1301bf;;;S-1-5-21-884222727-2268899625-373168730-1002)(A;ID;0x1301bf;;;S-1-5-21-4262760030-1429795816-410243204-1215521866)(A;ID;FA;;;SY)(A;ID;FA;;;BA)(A;ID;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)(A;ID;0x1301bf;;;S-1-5-21-715745301-1172149471-2490689245-1626957673)(A;ID;0x1301bf;;;S-1-5-21-515431488-3885978456-391655353-87447169)(A;ID;0x1301bf;;;S-1-5-21-1065419036-2048970783-340542631-2615506565)(A;ID;0x1301bf;;;S-1-5-21-3933573161-43893288-857327681-3398293179)(A;ID;0x1301bf;;;S-1-5-21-1729742438-1762310116-3965806446-3084126381)",
+              "attributes": "Archive"
+            },
+            "failure": {
+              "reasonCode": "DURABLE_WRITE_FAILED",
+              "code": "EPERM",
+              "errno": -4048,
+              "syscall": "rename"
+            },
+            "restartedStatus": "RESERVED",
+            "passed": true
+          },
+          {
+            "kind": "reader-with-delete-share",
+            "directory": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-mAfLk4\\case-anwgXh",
+            "revisionBefore": 2,
+            "revisionAfter": 2,
+            "committedBytesUnchanged": true,
+            "temporaryRemains": false,
+            "health": {
+              "available": false,
+              "reasonCode": "DURABLE_WRITE_FAILED",
+              "statePath": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-mAfLk4\\case-anwgXh\\state.json"
+            },
+            "reader": {
+              "pid": 10404,
+              "aclAfter": "O:S-1-5-21-884222727-2268899625-373168730-1001G:S-1-5-21-884222727-2268899625-373168730-513D:AI(A;ID;0x1301bf;;;S-1-5-21-3830170013-540735458-2395729578-4100602064)(A;ID;0x1301bf;;;S-1-5-21-884222727-2268899625-373168730-1002)(A;ID;0x1301bf;;;S-1-5-21-4262760030-1429795816-410243204-1215521866)(A;ID;FA;;;SY)(A;ID;FA;;;BA)(A;ID;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)(A;ID;0x1301bf;;;S-1-5-21-715745301-1172149471-2490689245-1626957673)(A;ID;0x1301bf;;;S-1-5-21-515431488-3885978456-391655353-87447169)(A;ID;0x1301bf;;;S-1-5-21-1065419036-2048970783-340542631-2615506565)(A;ID;0x1301bf;;;S-1-5-21-3933573161-43893288-857327681-3398293179)(A;ID;0x1301bf;;;S-1-5-21-1729742438-1762310116-3965806446-3084126381)",
+              "attributes": "Archive",
+              "aclBefore": "O:S-1-5-21-884222727-2268899625-373168730-1001G:S-1-5-21-884222727-2268899625-373168730-513D:AI(A;ID;0x1301bf;;;S-1-5-21-3830170013-540735458-2395729578-4100602064)(A;ID;0x1301bf;;;S-1-5-21-884222727-2268899625-373168730-1002)(A;ID;0x1301bf;;;S-1-5-21-4262760030-1429795816-410243204-1215521866)(A;ID;FA;;;SY)(A;ID;FA;;;BA)(A;ID;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)(A;ID;0x1301bf;;;S-1-5-21-715745301-1172149471-2490689245-1626957673)(A;ID;0x1301bf;;;S-1-5-21-515431488-3885978456-391655353-87447169)(A;ID;0x1301bf;;;S-1-5-21-1065419036-2048970783-340542631-2615506565)(A;ID;0x1301bf;;;S-1-5-21-3933573161-43893288-857327681-3398293179)(A;ID;0x1301bf;;;S-1-5-21-1729742438-1762310116-3965806446-3084126381)",
+              "share": 7
+            },
+            "failure": {
+              "reasonCode": "DURABLE_WRITE_FAILED",
+              "code": "EPERM",
+              "errno": -4048,
+              "syscall": "rename"
+            },
+            "restartedStatus": "RESERVED",
+            "passed": true
+          },
+          {
+            "kind": "temporary-collision",
+            "directory": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-mAfLk4\\case-QjbslT",
+            "revisionBefore": 2,
+            "revisionAfter": 2,
+            "committedBytesUnchanged": true,
+            "temporaryRemains": true,
+            "health": {
+              "available": false,
+              "reasonCode": "DURABLE_WRITE_FAILED",
+              "statePath": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-mAfLk4\\case-QjbslT\\state.json"
+            },
+            "failure": {
+              "reasonCode": "DURABLE_WRITE_FAILED",
+              "code": "EEXIST",
+              "errno": -4075,
+              "syscall": "open"
+            },
+            "restartedStatus": "RESERVED",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "summary": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-mAfLk4\\summary.json"
+      },
+      "ntfs": {
+        "observationalProbePassed": true,
+        "aclEnforcementClaimed": false,
+        "evidence": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-installed-security-kATajH\\ntfs-acl.json"
+      }
+    }
+  },
+  {
+    "name": "installed-security-node20",
+    "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\installed-security-node20.log",
+    "logSha256": "632b57cfba4a8bc3546ec666236876a77c62a1d93936105286bc03e2a1a4ba4d",
+    "result": {
+      "runtime": "v20.19.0",
+      "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.7.tgz",
+      "sha256": "dcf75970db520fdd10afea63aa1a9d20780dc12a053c8e09f49b0f21ed1dddad",
+      "scratch": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-installed-security-k5MSXC",
+      "passed": true,
+      "securityTests": 8,
+      "securityPassed": 7,
+      "posixSkipped": 1,
+      "repairTestsPassed": 2,
+      "nativeWindowsWrites": {
+        "runtime": "v20.19.0",
+        "runtimeRoot": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-installed-security-k5MSXC\\node_modules\\@agent-trust-gate\\plugin\\dist\\src",
+        "scratch": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-Sp9Yj6",
+        "aclsChanged": false,
+        "historicalIncidentAttributed": false,
+        "cases": [
+          {
+            "kind": "normal",
+            "directory": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-Sp9Yj6\\case-HT3tUZ",
+            "revisionBefore": 2,
+            "revisionAfter": 3,
+            "committedBytesUnchanged": false,
+            "temporaryRemains": false,
+            "health": {
+              "available": true,
+              "reasonCode": null,
+              "statePath": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-Sp9Yj6\\case-HT3tUZ\\state.json"
+            },
+            "passed": true
+          },
+          {
+            "kind": "reader-no-delete-share",
+            "directory": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-Sp9Yj6\\case-qhRRB8",
+            "revisionBefore": 2,
+            "revisionAfter": 2,
+            "committedBytesUnchanged": true,
+            "temporaryRemains": false,
+            "health": {
+              "available": false,
+              "reasonCode": "DURABLE_WRITE_FAILED",
+              "statePath": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-Sp9Yj6\\case-qhRRB8\\state.json"
+            },
+            "reader": {
+              "aclAfter": "O:S-1-5-21-884222727-2268899625-373168730-1001G:S-1-5-21-884222727-2268899625-373168730-513D:AI(A;ID;0x1301bf;;;S-1-5-21-3830170013-540735458-2395729578-4100602064)(A;ID;0x1301bf;;;S-1-5-21-884222727-2268899625-373168730-1002)(A;ID;0x1301bf;;;S-1-5-21-4262760030-1429795816-410243204-1215521866)(A;ID;FA;;;SY)(A;ID;FA;;;BA)(A;ID;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)(A;ID;0x1301bf;;;S-1-5-21-715745301-1172149471-2490689245-1626957673)(A;ID;0x1301bf;;;S-1-5-21-515431488-3885978456-391655353-87447169)(A;ID;0x1301bf;;;S-1-5-21-1065419036-2048970783-340542631-2615506565)(A;ID;0x1301bf;;;S-1-5-21-3933573161-43893288-857327681-3398293179)(A;ID;0x1301bf;;;S-1-5-21-1729742438-1762310116-3965806446-3084126381)",
+              "aclBefore": "O:S-1-5-21-884222727-2268899625-373168730-1001G:S-1-5-21-884222727-2268899625-373168730-513D:AI(A;ID;0x1301bf;;;S-1-5-21-3830170013-540735458-2395729578-4100602064)(A;ID;0x1301bf;;;S-1-5-21-884222727-2268899625-373168730-1002)(A;ID;0x1301bf;;;S-1-5-21-4262760030-1429795816-410243204-1215521866)(A;ID;FA;;;SY)(A;ID;FA;;;BA)(A;ID;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)(A;ID;0x1301bf;;;S-1-5-21-715745301-1172149471-2490689245-1626957673)(A;ID;0x1301bf;;;S-1-5-21-515431488-3885978456-391655353-87447169)(A;ID;0x1301bf;;;S-1-5-21-1065419036-2048970783-340542631-2615506565)(A;ID;0x1301bf;;;S-1-5-21-3933573161-43893288-857327681-3398293179)(A;ID;0x1301bf;;;S-1-5-21-1729742438-1762310116-3965806446-3084126381)",
+              "pid": 812,
+              "share": 3,
+              "attributes": "Archive"
+            },
+            "failure": {
+              "reasonCode": "DURABLE_WRITE_FAILED",
+              "code": "EPERM",
+              "errno": -4048,
+              "syscall": "rename"
+            },
+            "restartedStatus": "RESERVED",
+            "passed": true
+          },
+          {
+            "kind": "reader-with-delete-share",
+            "directory": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-Sp9Yj6\\case-9XRTbu",
+            "revisionBefore": 2,
+            "revisionAfter": 2,
+            "committedBytesUnchanged": true,
+            "temporaryRemains": false,
+            "health": {
+              "available": false,
+              "reasonCode": "DURABLE_WRITE_FAILED",
+              "statePath": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-Sp9Yj6\\case-9XRTbu\\state.json"
+            },
+            "reader": {
+              "aclAfter": "O:S-1-5-21-884222727-2268899625-373168730-1001G:S-1-5-21-884222727-2268899625-373168730-513D:AI(A;ID;0x1301bf;;;S-1-5-21-3830170013-540735458-2395729578-4100602064)(A;ID;0x1301bf;;;S-1-5-21-884222727-2268899625-373168730-1002)(A;ID;0x1301bf;;;S-1-5-21-4262760030-1429795816-410243204-1215521866)(A;ID;FA;;;SY)(A;ID;FA;;;BA)(A;ID;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)(A;ID;0x1301bf;;;S-1-5-21-715745301-1172149471-2490689245-1626957673)(A;ID;0x1301bf;;;S-1-5-21-515431488-3885978456-391655353-87447169)(A;ID;0x1301bf;;;S-1-5-21-1065419036-2048970783-340542631-2615506565)(A;ID;0x1301bf;;;S-1-5-21-3933573161-43893288-857327681-3398293179)(A;ID;0x1301bf;;;S-1-5-21-1729742438-1762310116-3965806446-3084126381)",
+              "pid": 12044,
+              "attributes": "Archive",
+              "share": 7,
+              "aclBefore": "O:S-1-5-21-884222727-2268899625-373168730-1001G:S-1-5-21-884222727-2268899625-373168730-513D:AI(A;ID;0x1301bf;;;S-1-5-21-3830170013-540735458-2395729578-4100602064)(A;ID;0x1301bf;;;S-1-5-21-884222727-2268899625-373168730-1002)(A;ID;0x1301bf;;;S-1-5-21-4262760030-1429795816-410243204-1215521866)(A;ID;FA;;;SY)(A;ID;FA;;;BA)(A;ID;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)(A;ID;0x1301bf;;;S-1-5-21-715745301-1172149471-2490689245-1626957673)(A;ID;0x1301bf;;;S-1-5-21-515431488-3885978456-391655353-87447169)(A;ID;0x1301bf;;;S-1-5-21-1065419036-2048970783-340542631-2615506565)(A;ID;0x1301bf;;;S-1-5-21-3933573161-43893288-857327681-3398293179)(A;ID;0x1301bf;;;S-1-5-21-1729742438-1762310116-3965806446-3084126381)"
+            },
+            "failure": {
+              "reasonCode": "DURABLE_WRITE_FAILED",
+              "code": "EPERM",
+              "errno": -4048,
+              "syscall": "rename"
+            },
+            "restartedStatus": "RESERVED",
+            "passed": true
+          },
+          {
+            "kind": "temporary-collision",
+            "directory": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-Sp9Yj6\\case-5OPtNY",
+            "revisionBefore": 2,
+            "revisionAfter": 2,
+            "committedBytesUnchanged": true,
+            "temporaryRemains": true,
+            "health": {
+              "available": false,
+              "reasonCode": "DURABLE_WRITE_FAILED",
+              "statePath": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-Sp9Yj6\\case-5OPtNY\\state.json"
+            },
+            "failure": {
+              "reasonCode": "DURABLE_WRITE_FAILED",
+              "code": "EEXIST",
+              "errno": -4075,
+              "syscall": "open"
+            },
+            "restartedStatus": "RESERVED",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "summary": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-native-writes-Sp9Yj6\\summary.json"
+      },
+      "ntfs": {
+        "observationalProbePassed": true,
+        "aclEnforcementClaimed": false,
+        "evidence": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local7-installed-security-k5MSXC\\ntfs-acl.json"
+      }
+    }
+  },
+  {
+    "name": "installed-legacy-node24",
+    "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\installed-legacy-node24.log",
+    "logSha256": "231c799f5bd7cb68cd18a065a887437ed7c40d513d4b352cda792180ee0ebccc",
+    "result": {
+      "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.7.tgz",
+      "runtime": "v24.21.0",
+      "installedVersion": "0.1.0-local.7",
+      "stateBindingCases": [
+        {
+          "name": "exact",
+          "passed": true
+        },
+        {
+          "name": "changed-state",
+          "passed": true
+        },
+        {
+          "name": "commit-race",
+          "passed": true
+        },
+        {
+          "name": "lost-ack",
+          "passed": true
+        },
+        {
+          "name": "invalid-recovery",
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  },
+  {
+    "name": "installed-legacy-node20",
+    "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-validation\\run-s9Hz59\\installed-legacy-node20.log",
+    "logSha256": "dde90eea1745df25e92f803fa160a09cd45c744c60e0fbdd1f57d68529a4862c",
+    "result": {
+      "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.7.tgz",
+      "runtime": "v20.19.0",
+      "installedVersion": "0.1.0-local.7",
+      "stateBindingCases": [
+        {
+          "name": "exact",
+          "passed": true
+        },
+        {
+          "name": "changed-state",
+          "passed": true
+        },
+        {
+          "name": "commit-race",
+          "passed": true
+        },
+        {
+          "name": "lost-ack",
+          "passed": true
+        },
+        {
+          "name": "invalid-recovery",
+          "passed": true
+        }
+      ],
+      "passed": true
+    }
+  }
+]

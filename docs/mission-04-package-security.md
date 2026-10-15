@@ -1,7 +1,8 @@
-# Mission 04 security boundary — local.6 unpublished candidate
+# Mission 04 security boundary — local.7 unpublished candidate
 
-This candidate contains the reviewed Mission 04 fixes. Published local.5 and
-all older versioned archives are unchanged and do not acquire these fixes.
+This candidate contains the reviewed Mission 04 fixes and durable-write repair.
+Published local.5 and all older versioned archives remain unchanged. Retained
+unpublished local.6 contains the signing/POSIX fixes but not the durable-write repair.
 This package is prepared locally for Gareth and Dave's review; no publication,
 independent security assurance or production readiness is claimed.
 
@@ -13,6 +14,16 @@ independent security assurance or production readiness is claimed.
 - Newly created durable JSON containing directories request POSIX mode 0700;
   atomic temporary files request mode 0600, which replacement retains.
   Existing directories and ancestors are not repaired or migrated.
+
+## Durable-write repair and incident limitation
+
+The original Windows DURABLE_WRITE_FAILED incident remains unattributed. A matching EPERM atomic-replacement mechanism was reproduced with an owned open file handle; this does not identify the original failing operation or process. A separate cleanup defect was fixed: colliding temporary files are now preserved and native filesystem errors are retained in Error.cause. Denied writes still fail closed; no automatic retries, permission weakening or clearing of held state was added.
+
+The temporary file is exclusively opened at mode 0600, written/fsynced through
+the same descriptor, then closed before atomic replacement/read-back. Cleanup
+only removes files created by that attempt. Error.cause is non-enumerable local
+diagnostic data and may contain filesystem paths; it is not a public response
+field. This is not a fix for Windows open-handle replacement denial.
 
 ## Windows and data handling
 

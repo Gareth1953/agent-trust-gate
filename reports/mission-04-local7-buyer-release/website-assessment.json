@@ -1,0 +1,151 @@
+{
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Edg/155.0.4283.45",
+    "revision": "@50f24ef2aa5369a074b8888b7db82d9c0652d642",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+    "jsVersion": "15.5.9.4"
+  },
+  "finalInteractionRun": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-browser\\edge-qYqbJF\\results.json",
+  "finalInteractionRunSha256": "dcf322674563ad6ed9d062dcb0bfafb6c4776254e646722a125cbf928d103dd7",
+  "scrollRun": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-local7-buyer-release\\.atg-evaluation\\mission04-local7-browser\\edge-pEr3aH\\results.json",
+  "scrollRunSha256": "e337c1b1760343198618675e7fff34bc6cf8cfb27fc5ece209f363faf01ec85b",
+  "pages": [
+    "security.html",
+    "plugin.html",
+    "index.html"
+  ],
+  "widths": [
+    1440,
+    390,
+    320
+  ],
+  "completedViewports": 9,
+  "allNavigationAndMenuChecksPassed": true,
+  "clickedLocalLinks": 195,
+  "pageOverflow": false,
+  "proseClipping": [],
+  "horizontalCodeScrollVerified": true,
+  "inspectedImages": [
+    {
+      "file": "security-1440-detail-1.png",
+      "sha256": "5abd67533de808654e6561be7dd027b3a9756adbc9d6fccde50601cd664ef206",
+      "inspection": "Directly inspected initial capture; final capture is byte-identical"
+    },
+    {
+      "file": "security-390-detail-1.png",
+      "sha256": "905f9e8d9d72a6c241f1d2a849052fd280f581be5d618a84d283925c5826dfbb",
+      "inspection": "Directly inspected initial capture; final capture is byte-identical"
+    },
+    {
+      "file": "security-320-detail-1.png",
+      "sha256": "e48bf4dde9152013e3082e8117174017fbec37ea07d012bb26c5ac4c71423106",
+      "inspection": "Directly inspected initial capture; final capture is byte-identical"
+    },
+    {
+      "file": "plugin-1440-detail-0.png",
+      "sha256": "a833604181af16cb27b1bcb7023bee0ab6f8fd11fd447fffd4437f729cfa850f",
+      "inspection": "Directly inspected initial capture; final capture is byte-identical"
+    },
+    {
+      "file": "plugin-390-detail-0.png",
+      "sha256": "2e00b477c70831e244344748de66c722c95598088b2b3ef87ebd6c9bb992ce44",
+      "inspection": "Directly inspected initial capture; final capture is byte-identical"
+    },
+    {
+      "file": "plugin-320-detail-0.png",
+      "sha256": "9b6e02d3976b8f2a32f35c5e60e67323da826fac6e929a2ca4bdf906a324159c",
+      "inspection": "Directly inspected initial capture; final capture is byte-identical"
+    },
+    {
+      "file": "index-1440-detail-0.png",
+      "sha256": "e2feb4b4b3720d27a2e58b6113776da72424bafd6ee10c1a775938988afbc04f",
+      "inspection": "Directly inspected initial capture; final capture is byte-identical"
+    },
+    {
+      "file": "index-390-detail-0.png",
+      "sha256": "0aa846efdc7cf15e70662b2eecfb1e152a7c5aa93b242f005a53b2abd8d95db9",
+      "inspection": "Directly inspected initial capture; final capture is byte-identical"
+    },
+    {
+      "file": "index-320-detail-0.png",
+      "sha256": "ab07e1596a4dfafbdc66b0d4649305041c74cd447235a0f5e8d5574c8a145a6b",
+      "inspection": "Directly inspected initial capture; final capture is byte-identical"
+    },
+    {
+      "file": "plugin-390-menu-open.png",
+      "sha256": "501c33cbd9fd0753fe0e8901274a2a68c597b7ed2e0bb9254710bb02c319ee32",
+      "inspection": "Directly inspected initial capture; final capture is byte-identical"
+    },
+    {
+      "file": "index-320-menu-open.png",
+      "sha256": "5629314168ecc21a24d457064b00f1874e272955653417864c8f3673e3374039",
+      "inspection": "Directly inspected initial capture; final capture is byte-identical"
+    },
+    {
+      "file": "plugin-1440-detail-1.png",
+      "sha256": "3d4a5a2a57fb73659e44d726cad205d8d4bf2b41a5e68c678e18770a77237626",
+      "inspection": "Directly inspected final capture"
+    },
+    {
+      "file": "plugin-390-detail-1.png",
+      "sha256": "ccc0869f9f992b88439351f1595e2cdbddc51b9e31a38d18ee7e1cc93e5d4c37",
+      "inspection": "Directly inspected final capture"
+    },
+    {
+      "file": "plugin-320-detail-1.png",
+      "sha256": "de37ef1047e74b8f48717b8761d293502415753875846195640a456973fcbd8f",
+      "inspection": "Directly inspected final capture"
+    },
+    {
+      "file": "security-320-menu-open.png",
+      "sha256": "161712aa58b6ec67dd2c49bcfc0f69bea0b16a787f24cb832dbb84040d6a16eb",
+      "inspection": "Directly inspected final capture"
+    },
+    {
+      "file": "security-320-detail-2.png",
+      "sha256": "d68ca753ee90cc41c0e9e8ecf30345f6bb6755d293d582da91d305e28806da39",
+      "inspection": "Directly inspected final capture"
+    },
+    {
+      "file": "plugin-320-detail-2.png",
+      "sha256": "8c769ef593892b194232e7fd9492da38a64928e01679bf5a8674d03040b665da",
+      "inspection": "Directly inspected final capture"
+    },
+    {
+      "file": "index-320-detail-1.png",
+      "sha256": "20481ed5adf81c68b70e4c8b8f16ebfae15f6d5e1574755a204195d9976010a1",
+      "inspection": "Directly inspected final capture"
+    },
+    {
+      "file": "security-1440-detail-2.png",
+      "sha256": "fca08509d50f2ed3fba75bfa310564527275d28a3d5805f67391f474b23b888f",
+      "inspection": "Directly inspected final capture"
+    },
+    {
+      "file": "plugin-1440-detail-2.png",
+      "sha256": "e149870778f9eba3573e00a481a7a261d7e6a7d7ec8f91ca61f0fc5662f1624e",
+      "inspection": "Directly inspected final capture"
+    },
+    {
+      "file": "index-1440-detail-1.png",
+      "sha256": "81f8e9a6688936393e9f5da8db01342d8a0d81ff9e0a825d086aaaee91f09618",
+      "inspection": "Directly inspected final capture"
+    }
+  ],
+  "normalProfileUsed": false,
+  "softwareInstalled": false,
+  "persistentSettingsChanged": false,
+  "localPreviewOnly": true,
+  "nonBlockingDiagnostics": [
+    {
+      "source": "network",
+      "level": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "timestamp": 1792091417083.806,
+      "url": "http://127.0.0.1:56586/favicon.ico",
+      "networkRequestId": "8120.6"
+    }
+  ],
+  "cleanup": "Local preview server closed. Only the owned fresh-profile Edge process was closed; temporary profile and evidence retained."
+}
