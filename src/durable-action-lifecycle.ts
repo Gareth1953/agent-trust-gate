@@ -334,8 +334,8 @@ export interface ReconciliationResult extends DurableTransitionResult {
 export type DurableWriteStage = "before_write" | "after_temp_fsync" | "after_replace";
 
 export class DurableStateError extends Error {
-  constructor(readonly reasonCode: DurableLifecycleReasonCode, message: string) {
-    super(message);
+  constructor(readonly reasonCode: DurableLifecycleReasonCode, message: string, options?: ErrorOptions) {
+    super(message, options);
     this.name = "DurableStateError";
   }
 }
@@ -829,18 +829,21 @@ export class LocalDurableLifecycleStore {
     const directory = dirname(this.statePath);
     const temporaryPath = `${this.statePath}.tmp-${process.pid}-${next.storeRevision}`;
     let fd: number | null = null;
+    let ownsTemporaryFile = false;
     try {
       // POSIX modes do not set NTFS DACLs. Windows callers must provision
       // a private parent directory; see docs/mission-04-windows-review.md.
       mkdirSync(directory, { recursive: true, mode: 0o700 });
       this.#faultInjector?.("before_write");
-      writeFileSync(temporaryPath, `${JSON.stringify(next, null, 2)}\n`, { encoding: "utf8", flag: "wx", mode: 0o600 });
-      fd = openSync(temporaryPath, "r+");
+      fd = openSync(temporaryPath, "wx", 0o600);
+      ownsTemporaryFile = true;
+      writeFileSync(fd, `${JSON.stringify(next, null, 2)}\n`, { encoding: "utf8" });
       fsyncSync(fd);
       closeSync(fd);
       fd = null;
       this.#faultInjector?.("after_temp_fsync");
       renameSync(temporaryPath, this.statePath);
+      ownsTemporaryFile = false;
       this.#faultInjector?.("after_replace");
       const confirmed = validateStoredState(JSON.parse(readFileSync(this.statePath, "utf8")) as unknown);
       if (confirmed.storeRevision !== next.storeRevision || confirmed.integrityDigest !== next.integrityDigest) {
@@ -848,17 +851,19 @@ export class LocalDurableLifecycleStore {
       }
       this.#state = confirmed;
     } catch (error) {
-      if (fd !== null) closeSync(fd);
-      if (existsSync(temporaryPath)) {
+      if (fd !== null) {
+        try { closeSync(fd); } catch { /* preserve the original failure below */ }
+      }
+      if (ownsTemporaryFile) {
         try { unlinkSync(temporaryPath); } catch { /* fail closed below */ }
       }
       const reason = error instanceof DurableStateError ? error.reasonCode : "DURABLE_WRITE_FAILED";
-      throw this.#fail(reason, "Local durable state write failed closed.");
+      throw this.#fail(reason, "Local durable state write failed closed.", error);
     }
   }
 
-  #fail(reasonCode: DurableLifecycleReasonCode, message: string): DurableStateError {
-    this.#failure = new DurableStateError(reasonCode, message);
+  #fail(reasonCode: DurableLifecycleReasonCode, message: string, cause?: unknown): DurableStateError {
+    this.#failure = new DurableStateError(reasonCode, message, { cause });
     return this.#failure;
   }
 }

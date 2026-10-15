@@ -1,0 +1,396 @@
+{
+  "status": "Local repair ready for review; original incident cause not conclusively identified; publication remains blocked",
+  "approvedCommit": "807c5faf017bd15e4114594fa9e5296b2a723392",
+  "repairBranch": "mission-04-durable-write-repair",
+  "repairParent": "807c5faf017bd15e4114594fa9e5296b2a723392",
+  "sealedArchive": {
+    "filename": "agent-trust-gate-plugin-0.1.0-local.6.tgz",
+    "size": 156138,
+    "sha256": "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10",
+    "rebuilt": false,
+    "containsRepair": false
+  },
+  "diagnosis": {
+    "historicalNativeError": "Unknown: original catch discarded it and its demo finally deleted the owned temp root. No historical native trace or handle owner is available.",
+    "controlledExactSameTestAndStack": {
+      "errorCode": "EPERM",
+      "errno": -4048,
+      "syscall": "rename",
+      "win32ControlError": 5,
+      "win32ControlMessage": "Access is denied",
+      "transition": "markPossibleExternalEffect",
+      "revisionBefore": 6,
+      "attemptedRevision": 7,
+      "causalCondition": "Deliberately owned external read handle; native operations, not mocked errors",
+      "committedBytesPreserved": true,
+      "historicalAttribution": false
+    },
+    "collision": {
+      "nativeError": "EEXIST",
+      "oldCodeDeletedUnownedCollision": true,
+      "repairPreservesCollision": true
+    },
+    "permissions": {
+      "existingAclsChanged": false,
+      "nativeBeforeAfterAclEquality": true,
+      "nativeReplacementAfterOwnedHandleClosed": true,
+      "fileAttributes": "Archive, not ReadOnly",
+      "privateDaclEnforced": false
+    },
+    "parallel": {
+      "isolatedFailedTestRuns": 20,
+      "isolatedFailures": 0,
+      "correctedParallelRuns": 3,
+      "correctedParallelFailures": 0,
+      "case10Replacements": 1140,
+      "uniqueCase10StatePaths": 114,
+      "multipleProcessStatePaths": [],
+      "targetCase10NativeErrors": [],
+      "otherNativeErrors": [
+        {
+          "code": "EEXIST",
+          "path": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-m04-diagnose-9PB0qs\\atg-order-lRIPDA\\connector.lock",
+          "context": "Expected connector.lock collision inside assert.throws in purchase-order-connector test; unrelated to case-10 writer."
+        },
+        {
+          "code": "EEXIST",
+          "path": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-m04-diagnose-ojFsbr\\atg-order-bDqIZP\\connector.lock",
+          "context": "Expected connector.lock collision inside assert.throws in purchase-order-connector test; unrelated to case-10 writer."
+        },
+        {
+          "code": "EEXIST",
+          "path": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-m04-diagnose-y4HVkl\\atg-order-OMGOrY\\connector.lock",
+          "context": "Expected connector.lock collision inside assert.throws in purchase-order-connector test; unrelated to case-10 writer."
+        }
+      ],
+      "completeProcessExitTraces": 360,
+      "incompleteExitTraces": 10
+    },
+    "defender": "Process running; no matching operational events in original 18:30–18:35 UTC window. Does not establish or rule out a file-scanning lock."
+  },
+  "repair": {
+    "files": [
+      "src/durable-action-lifecycle.ts",
+      "test/durable-action-lifecycle.test.ts"
+    ],
+    "sourceSha256": "f8b05f648c28703f39076d437fa881a00575113ec7e43071217cb6ba7e545290",
+    "compiledRuntimeSha256": "4236f01396ef720c6ef903f55fbfd034bfe84cf79747c7c2d2aeb2dd6d4f46ef",
+    "behaviour": [
+      "Exclusive open at mode 0600, write/fsync through the same descriptor, then close/rename/read-back confirmation.",
+      "Clean up only a temporary file successfully created by this attempt; preserve colliding files.",
+      "Keep original failure in non-enumerable Error.cause, including code/errno/syscall/path/dest.",
+      "No automatic retry, permission changes, hold release, replacement semantics change, reason-code weakening or failure masking."
+    ]
+  },
+  "validation": {
+    "node24": {
+      "runtime": "v24.21.0",
+      "tests": 1630,
+      "passed": 1629,
+      "failed": 0,
+      "skipped": 1
+    },
+    "node20Compatible": {
+      "runtime": "v20.19.0",
+      "tests": 1565,
+      "passed": 1564,
+      "failed": 0,
+      "skipped": 1,
+      "excludedNode24Only": 65
+    },
+    "originalFailedTestPassedOnBothRuntimes": true,
+    "redAgainstOriginalRuntime": {
+      "tests": 2,
+      "failedAsExpected": 2
+    },
+    "nativeRepairedControls": {
+      "node24Cases": 4,
+      "node20Cases": 4,
+      "passed": true
+    },
+    "stagedDirectoryInstall": {
+      "passed": true,
+      "archiveBuilt": false,
+      "compiledMembersComparedPerRuntime": 54,
+      "repairTestsPassedPerRuntime": 2,
+      "securityTestsPerRuntime": {
+        "passed": 7,
+        "posixSkipped": 1
+      },
+      "summary": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-durable-write-repair\\.atg-evaluation\\mission04-repair-validation\\staged-install-summary.json"
+    },
+    "releaseGate": {
+      "passed": false,
+      "summary": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-durable-write-repair\\.atg-evaluation\\mission04-repair-validation\\release-validation\\summary.json",
+      "checks": [
+        {
+          "name": "build",
+          "exitCode": 0,
+          "counts": []
+        },
+        {
+          "name": "typecheck",
+          "exitCode": 0,
+          "counts": []
+        },
+        {
+          "name": "installed-destination-node24",
+          "exitCode": 0,
+          "counts": []
+        },
+        {
+          "name": "installed-destination-node20",
+          "exitCode": 0,
+          "counts": []
+        },
+        {
+          "name": "installed-security-node24",
+          "exitCode": 0,
+          "counts": []
+        },
+        {
+          "name": "installed-security-node20",
+          "exitCode": 0,
+          "counts": []
+        },
+        {
+          "name": "installed-legacy-node24",
+          "exitCode": 0,
+          "counts": []
+        },
+        {
+          "name": "installed-legacy-node20",
+          "exitCode": 0,
+          "counts": []
+        },
+        {
+          "name": "full-regression-node24",
+          "exitCode": 0,
+          "counts": [
+            {
+              "kind": "tests",
+              "count": 675
+            },
+            {
+              "kind": "pass",
+              "count": 675
+            },
+            {
+              "kind": "fail",
+              "count": 0
+            },
+            {
+              "kind": "skipped",
+              "count": 0
+            },
+            {
+              "kind": "tests",
+              "count": 955
+            },
+            {
+              "kind": "pass",
+              "count": 954
+            },
+            {
+              "kind": "fail",
+              "count": 0
+            },
+            {
+              "kind": "skipped",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "name": "legacy-main-regression-node20",
+          "exitCode": 0,
+          "counts": [
+            {
+              "kind": "tests",
+              "count": 675
+            },
+            {
+              "kind": "pass",
+              "count": 675
+            },
+            {
+              "kind": "fail",
+              "count": 0
+            },
+            {
+              "kind": "skipped",
+              "count": 0
+            }
+          ]
+        },
+        {
+          "name": "compatible-post-regression-node20",
+          "exitCode": 0,
+          "counts": [
+            {
+              "kind": "tests",
+              "count": 890
+            },
+            {
+              "kind": "pass",
+              "count": 889
+            },
+            {
+              "kind": "fail",
+              "count": 0
+            },
+            {
+              "kind": "skipped",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "name": "reviewer",
+          "exitCode": 0,
+          "counts": []
+        },
+        {
+          "name": "public-claims",
+          "exitCode": 0,
+          "counts": []
+        },
+        {
+          "name": "discovery-site",
+          "exitCode": 0,
+          "counts": []
+        },
+        {
+          "name": "archive-bytes-checksums-links-evidence",
+          "exitCode": 1,
+          "counts": []
+        }
+      ],
+      "blocker": "Archive compiled bytes differ from reviewed build: package/dist/src/durable-action-lifecycle.js. Expected guard rejection: sealed approved archive has not been rebuilt; guard not bypassed.",
+      "sixInstalledArchiveChecks": "Passed against ORIGINAL sealed archive, not repaired code. Separate staged installs verify repaired code."
+    },
+    "auditAdvisories": 0,
+    "diffCheckPassed": true
+  },
+  "preservation": {
+    "protectedOriginalFiles": 3903,
+    "changedProtectedFiles": [],
+    "originalBranchChanges": [],
+    "originalEvidence": [
+      {
+        "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-publication\\run-20261015-807c5fa\\prepublication-validation\\build.log",
+        "expectedSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "actualSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-publication\\run-20261015-807c5fa\\prepublication-validation\\typecheck.log",
+        "expectedSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "actualSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+      },
+      {
+        "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-publication\\run-20261015-807c5fa\\prepublication-validation\\installed-destination-node24.log",
+        "expectedSha256": "4f02f8cdb4743b0d1443334fc3f0fe6836ca70d78ab10491834b65408122d88a",
+        "actualSha256": "4f02f8cdb4743b0d1443334fc3f0fe6836ca70d78ab10491834b65408122d88a"
+      },
+      {
+        "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-publication\\run-20261015-807c5fa\\prepublication-validation\\installed-destination-node20.log",
+        "expectedSha256": "de895098b7ddea8cb37679adef78f7a6645ca06ff293fbc2bb6b468a60064663",
+        "actualSha256": "de895098b7ddea8cb37679adef78f7a6645ca06ff293fbc2bb6b468a60064663"
+      },
+      {
+        "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-publication\\run-20261015-807c5fa\\prepublication-validation\\installed-security-node24.log",
+        "expectedSha256": "f9a916b1edf5bb8c08296dd49aab1ceaefd2e8ffbb7e0a17887cce110e29d19b",
+        "actualSha256": "f9a916b1edf5bb8c08296dd49aab1ceaefd2e8ffbb7e0a17887cce110e29d19b"
+      },
+      {
+        "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-publication\\run-20261015-807c5fa\\prepublication-validation\\installed-security-node20.log",
+        "expectedSha256": "3fbc76787641d60129e1727fc39ce30a41c62bed007abc1a761186ba0edf6c12",
+        "actualSha256": "3fbc76787641d60129e1727fc39ce30a41c62bed007abc1a761186ba0edf6c12"
+      },
+      {
+        "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-publication\\run-20261015-807c5fa\\prepublication-validation\\installed-legacy-node24.log",
+        "expectedSha256": "bb485268b9727c61765f10cef9e872b4952ed788614e0a6bf102d384762424e1",
+        "actualSha256": "bb485268b9727c61765f10cef9e872b4952ed788614e0a6bf102d384762424e1"
+      },
+      {
+        "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-publication\\run-20261015-807c5fa\\prepublication-validation\\installed-legacy-node20.log",
+        "expectedSha256": "677dc0463458b7ce08b6af474b1b0a11c6c6138a4dcde059fd8a4ee602426dd3",
+        "actualSha256": "677dc0463458b7ce08b6af474b1b0a11c6c6138a4dcde059fd8a4ee602426dd3"
+      },
+      {
+        "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-publication\\run-20261015-807c5fa\\prepublication-validation\\full-regression-node24.log",
+        "expectedSha256": "b7e5cc6b6b98d0f0abb8d9a3e5f6626002f403a3c07e7f8774bdb85c1c5d0f18",
+        "actualSha256": "b7e5cc6b6b98d0f0abb8d9a3e5f6626002f403a3c07e7f8774bdb85c1c5d0f18"
+      }
+    ],
+    "divergentMain": "8044c65b3ffba8da5ee0bea6eb6933882e3e56e0",
+    "normalBrowserProfileUsed": false,
+    "settingsChanged": false
+  },
+  "diagnosticLimitations": [
+    "First diagnostic logger used PID-only names, causing four diagnostic exit failures; retained, corrected to UUID filenames, then three parallel runs passed. Not an application collision.",
+    "Ten corrected process-exit traces are empty; retained and reported, no claims inferred from their missing data.",
+    "Initial control harness attempts failed on a child PowerShell Get-Acl module dependency, an incorrect expectation about delete sharing, and failure to trace newly exclusive-open collisions. All retained; v6 controls passed.",
+    "Windows only; POSIX mode test skipped. No independent security assurance, production readiness, real destination authority or encryption claim.",
+    "No conclusive historical cause or locking-process identity. Passing reruns do not clear the original incident.",
+    "No replacement archive or new release version; a separately reviewed new candidate/version, exact-archive checks and renewed approval are still required."
+  ],
+  "evidence": [
+    {
+      "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-investigation\\run-20261015\\controlled-exact-mark-test\\test.log",
+      "sha256": "6985690d0d60e473b64f23d9e9263ffa5d77264be87787bd5bd8045b06a5ba05"
+    },
+    {
+      "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-investigation\\run-20261015\\controlled-exact-mark-test\\exact-test-native-error.json",
+      "sha256": "23629afe1ba2fc45d61fa9b6dbd0447ab5c906885f8e6996554a624822b2c5ae"
+    },
+    {
+      "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-investigation\\run-20261015\\controlled-filesystem-v4-results.json",
+      "sha256": "33f0a61c64a1d89951dbac47248523302d90fcbc8913c6df059faf5390a141f0"
+    },
+    {
+      "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-investigation\\run-20261015\\repaired-v6-controls-24.json",
+      "sha256": "1785d70fa4786efd800c29b829461201e0fcea16811bb9722162c827d92e48a0"
+    },
+    {
+      "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-investigation\\run-20261015\\repaired-v6-controls-20.json",
+      "sha256": "53c28c33c85d15bb2b20ad7e5a8861eee80ec1008e81fdf3b0f3b42b15de0ec0"
+    },
+    {
+      "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-investigation\\run-20261015\\trace-assessment.json",
+      "sha256": "436aae2d576853b58e0910414f252fc6930b137c728542bb49396efa0b2e53df"
+    },
+    {
+      "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-investigation\\run-20261015\\results\\red-original-runtime.log",
+      "sha256": "587236adf643bb73fda3028e4e969edf93daa644fa2b175cff168cd300e40483"
+    },
+    {
+      "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-investigation\\run-20261015\\parallel-v2-post-runs.json",
+      "sha256": "4c68f07687d7829b21816233d0586e83f343b8075b2ac00b9125d22c324f96a6"
+    },
+    {
+      "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-investigation\\run-20261015\\defender-window.json",
+      "sha256": "a53f01c1a7a9285d7220a1cbc30d5d164437ea79ab38d4718d9691234a99eec2"
+    },
+    {
+      "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-investigation\\run-20261015\\trace-v2.cjs",
+      "sha256": "98a4536fdfa48597dbb6e315d9fc49e3bd0ed89009d77392a33042711d990755"
+    },
+    {
+      "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-investigation\\run-20261015\\controlled-repaired-v6.cjs",
+      "sha256": "86302f7a580f55001d2e41e6d69a7c8dcb5fe8dbde15f462d2740cb5580d1caa"
+    },
+    {
+      "file": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\.atg-evaluation\\mission04-investigation\\run-20261015\\native-replacement.ps1",
+      "sha256": "aa5d5c906b48aec19bf9ba129ec76b11fe09ae02a2d15003ae7f3f3d363cf5a6"
+    }
+  ],
+  "publication": {
+    "push": false,
+    "deploy": false,
+    "publish": false,
+    "tag": false,
+    "githubRelease": false,
+    "authenticationRestart": false
+  }
+}

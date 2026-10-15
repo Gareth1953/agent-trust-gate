@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { afterEach, test } from "node:test";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 
@@ -67,6 +67,58 @@ async function issued(
 }
 
 const operator = createOperatorAuthorityEvidence();
+
+test("a colliding temporary file is preserved and the native failure remains diagnosable", () => {
+  const path = statePath();
+  const temporaryPath = `${path}.tmp-${process.pid}-1`;
+  const sentinel = "pre-existing synthetic collision evidence";
+  writeFileSync(temporaryPath, sentinel, { flag: "wx", mode: 0o600 });
+  const store = new LocalDurableLifecycleStore({ statePath: path });
+  let caught: DurableStateError | undefined;
+  assert.throws(() => store.setEmergencyStop({
+    active: true, reason: "collision probe", recordedAt: "2026-09-02T09:01:00.000Z", authorityEvidence: operator,
+  }), (error: unknown) => {
+    assert.ok(error instanceof DurableStateError);
+    assert.equal(error.reasonCode, "DURABLE_WRITE_FAILED");
+    const cause = error.cause as NodeJS.ErrnoException;
+    assert.equal(cause.code, "EEXIST");
+    assert.equal(cause.syscall, "open");
+    assert.equal(cause.path, temporaryPath);
+    assert.equal(Object.prototype.propertyIsEnumerable.call(error, "cause"), false);
+    caught = error;
+    return true;
+  });
+  assert.equal(readFileSync(temporaryPath, "utf8"), sentinel);
+  assert.equal(existsSync(path), false);
+  assert.equal(store.health().available, false);
+  assert.throws(() => store.snapshot(), error => error === caught);
+});
+
+test("failed writes clean up only their owned temporary file and preserve the committed reservation", async () => {
+  const path = statePath();
+  const store = new LocalDurableLifecycleStore({ statePath: path });
+  const { gatePass } = await issued(store, "nonce_owned_temporary_001");
+  assert.equal(store.reserve(gatePass, 1, "2026-09-02T09:01:00.000Z").changed, true);
+  const before = readFileSync(path);
+  const revision = store.snapshot().storeRevision;
+  const nativeFailure = Object.assign(new Error("synthetic failure after fsync"), { code: "EIO" });
+  const failing = new LocalDurableLifecycleStore({
+    statePath: path,
+    faultInjector: stage => { if (stage === "after_temp_fsync") throw nativeFailure; },
+  });
+  assert.throws(() => failing.markPossibleExternalEffect(gatePass.gatePassId, "2026-09-02T09:02:30.000Z"), (error: unknown) => {
+    assert.ok(error instanceof DurableStateError);
+    assert.equal(error.reasonCode, "DURABLE_WRITE_FAILED");
+    assert.equal(error.cause, nativeFailure);
+    return true;
+  });
+  assert.deepEqual(readFileSync(path), before);
+  assert.equal(existsSync(`${path}.tmp-${process.pid}-${revision + 1}`), false);
+  assert.equal(failing.health().available, false);
+  const restarted = new LocalDurableLifecycleStore({ statePath: path });
+  assert.equal(restarted.getLifecycleByGatePassId(gatePass.gatePassId)?.status, "RESERVED");
+  assert.equal(restarted.snapshot().exposureEntries[0]?.status, "RESERVED");
+});
 
 test("transition table is explicit and terminal states cannot create authority", () => {
   assert.deepEqual(LIFECYCLE_TRANSITION_TABLE.EXECUTED, []);
