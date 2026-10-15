@@ -92,23 +92,36 @@
     "existingAclsChanged": false
   },
   "visualReview": {
-    "desktop": "Screenshot assessment reported by Gareth: Dave found no visible clipping or overlap. Not directly inspected in this session.",
-    "desktopInteractions": "unverified",
-    "desktopReadability": "not separately confirmed",
-    "mobile390": "unverified",
-    "mobile320": "unverified",
-    "mobile": "unverified; no pass from source inspection",
-    "sourceWording": "Security/release limitations present; rendered visibility pending",
-    "latestBrowserCheck": {
-      "inventory": "no apps or browsers",
-      "edgeControl": "Browser is not available: edge",
-      "installedEdgePath": "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
-      "installedEdgeExists": true
-    },
-    "manualGuide": "docs/mission-04-windows-review.md",
+    "status": "Completed for the specified local desktop/mobile viewport scope",
+    "browser": "Edg/155.0.4283.45",
+    "desktop": "1440x900: full-page capture inspected; local links and keyboard skip link passed",
+    "mobile390": "390x844: full-page/menu captures inspected; overflow, readable limitations/footer, menu open/close/Escape, all local links and skip link passed",
+    "mobile320": "320x844: full-page/menu captures inspected; overflow, readable limitations/footer, menu open/close/Escape, all local links and skip link passed",
+    "evidence": "reports/mission-04-windows/website/edge-n1QVxI/visual-assessment.json",
+    "rawRun": "reports/mission-04-windows/website/edge-n1QVxI/results.json",
+    "reportedDesktopScreenshot": "Earlier Dave screenshot assessment preserved in Git history; superseded for this scope by direct Edge capture inspection.",
+    "nonBlockingObservation": "Browser auto-request for /favicon.ico returns 404 in the local preview. No application JavaScript exception in final run.",
+    "initialInstrumentationIssue": "Extended run edge-lQWBmD stopped at a wrapped link when the helper clicked union-bounding-box whitespace. Actual rendered client rectangles are now hit-tested before pointer input; final run passed.",
+    "untested": [
+      "Physical mobile devices, touch gestures and iOS/Safari",
+      "Screen readers, full accessibility/contrast audit and unusual font/zoom settings",
+      "Live external GitHub destinations and email delivery; hrefs inspected only",
+      "Published site deployment; all checks ran against local source"
+    ],
     "softwareInstalled": false,
     "settingsChanged": false,
-    "authenticationRestart": false
+    "normalBrowserProfileUsed": false,
+    "authenticationRestart": false,
+    "preservation": {
+      "originalRefsUnchanged": true,
+      "originalWorktreesClean": true,
+      "protectedStateAndDownloadFilesChecked": 33,
+      "changedProtectedFiles": 0,
+      "ownedEdgeProcessesRemaining": 0,
+      "localPreviewServerClosed": true,
+      "temporaryProfilesRetained": true,
+      "existingArchivesRebuilt": false
+    }
   },
   "preservation": {
     "originalRefsUnchanged": true,
@@ -153,7 +166,10 @@
     "website-static-tests-final.log": "ef81d2ebaa009fffe09405cc6cf9fb29a332b84f441e753a5ffb4fd82460371b",
     "ntfs-acl-final.log": "06d8eee475eb4b199ba99d0965965c6e57d103fbf0d939258bf07674d1ff450b",
     "private-parent-acl.log": "4ba52f829762cbd2e3ec10d93c57b7ced541093a1f5bad6112e534bff03e1beb",
-    "private-parent-acl-final.log": "acc88ec2462024eeada6b9049c5823bd1ad83f5410ad30c0d84ac983df8f6040"
+    "private-parent-acl-final.log": "acc88ec2462024eeada6b9049c5823bd1ad83f5410ad30c0d84ac983df8f6040",
+    "website-edge-launch.log": "966eaed126aac3ef4564d40e26c71d35fb9b0bb63bc28888d167e0fa286a6667",
+    "website-edge-links.log": "f179fc991940e8f6b309b3cb9f1685321c00ae682554f62da2ca9cc61f13fa8e",
+    "website-edge-final.log": "628125934f752abfed7298acd5333e387723c764d7eb52fbe1789bec3e2144b0"
   },
   "diffCheck": 0
 }

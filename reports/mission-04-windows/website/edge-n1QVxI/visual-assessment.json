@@ -1,0 +1,161 @@
+{
+  "reviewedSourceCommit": "5b0fb7cde4eb3cdd471c7f4438dd16f315647228",
+  "browser": "Edg/155.0.4283.45",
+  "run": "edge-n1QVxI",
+  "completed": true,
+  "method": "Installed Edge headless, fresh temporary profile per run, localhost-only static preview, CDP input events and measurements, direct inspection of full-page and menu screenshots.",
+  "viewports": [
+    {
+      "width": 1440,
+      "height": 900,
+      "clientWidth": 1425,
+      "scrollWidth": 1425,
+      "documentOverflow": false,
+      "outOfViewportElements": 0,
+      "clippedElements": 0,
+      "bodyFont": "16px",
+      "visualLayout": "passed; no visible clipping or overlap",
+      "limitationsReadable": true,
+      "footerReadable": true,
+      "clickedLocalLinks": 16,
+      "distinctLocalDestinations": 9,
+      "allLocalResponses200": true,
+      "menu": "not applicable: desktop navigation visible",
+      "keyboardSkipLink": {
+        "focused": true,
+        "activated": true
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "documentOverflow": false,
+      "outOfViewportElements": 0,
+      "clippedElements": 0,
+      "bodyFont": "16px",
+      "visualLayout": "passed; no visible clipping or overlap",
+      "limitationsReadable": true,
+      "footerReadable": true,
+      "clickedLocalLinks": 16,
+      "distinctLocalDestinations": 9,
+      "allLocalResponses200": true,
+      "menu": {
+        "opened": {
+          "expanded": "true",
+          "visible": true,
+          "focused": true
+        },
+        "buttonClosed": {
+          "expanded": "false",
+          "visible": false,
+          "focused": true
+        },
+        "escapeClosed": {
+          "expanded": "false",
+          "visible": false,
+          "focused": true
+        }
+      },
+      "keyboardSkipLink": {
+        "focused": true,
+        "activated": true
+      }
+    },
+    {
+      "width": 320,
+      "height": 844,
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "documentOverflow": false,
+      "outOfViewportElements": 0,
+      "clippedElements": 0,
+      "bodyFont": "16px",
+      "visualLayout": "passed; no visible clipping or overlap",
+      "limitationsReadable": true,
+      "footerReadable": true,
+      "clickedLocalLinks": 16,
+      "distinctLocalDestinations": 9,
+      "allLocalResponses200": true,
+      "menu": {
+        "opened": {
+          "expanded": "true",
+          "visible": true,
+          "focused": true
+        },
+        "buttonClosed": {
+          "expanded": "false",
+          "visible": false,
+          "focused": true
+        },
+        "escapeClosed": {
+          "expanded": "false",
+          "visible": false,
+          "focused": true
+        }
+      },
+      "keyboardSkipLink": {
+        "focused": true,
+        "activated": true
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "security-1440-full.png",
+      "sha256": "e017ab8ae555db40830165b3d55563f1643ac6992ba05fb407caa84ab44fcf3c",
+      "inspectedDirectly": true,
+      "identicalToInitiallyInspectedCapture": true
+    },
+    {
+      "file": "security-390-full.png",
+      "sha256": "39c9bb55c8e8e6f6da58943cc02d089065d3f981e556f794b590e071652ff20b",
+      "inspectedDirectly": true,
+      "identicalToInitiallyInspectedCapture": true
+    },
+    {
+      "file": "security-320-full.png",
+      "sha256": "e096951855edf24f1b86113945ccb141f68587271de5107dbac42e77ffef04f7",
+      "inspectedDirectly": true,
+      "identicalToInitiallyInspectedCapture": true
+    },
+    {
+      "file": "security-390-menu-open.png",
+      "sha256": "c427b11e2e746286966a953c62a174991ef2d3464e1eca45822e8a578ba8b9a3",
+      "inspectedDirectly": true,
+      "identicalToInitiallyInspectedCapture": true
+    },
+    {
+      "file": "security-320-menu-open.png",
+      "sha256": "161712aa58b6ec67dd2c49bcfc0f69bea0b16a787f24cb832dbb84040d6a16eb",
+      "inspectedDirectly": true,
+      "identicalToInitiallyInspectedCapture": true
+    }
+  ],
+  "releaseWording": "Rendered local.5/source distinction, missing Mission 04 fixes, separate NTFS requirements, synthetic same-host/non-production boundaries, unencrypted records and email handling limits are readable and consistent with the review evidence.",
+  "applicationSourceChanges": [],
+  "nonBlockingObservation": "Browser auto-request for /favicon.ico returns 404 in the local preview. No application JavaScript exception in final run.",
+  "initialInstrumentationIssue": "Extended run edge-lQWBmD stopped at a wrapped link when the helper clicked union-bounding-box whitespace. Actual rendered client rectangles are now hit-tested before pointer input; final run passed.",
+  "untested": [
+    "Physical mobile devices, touch gestures and iOS/Safari",
+    "Screen readers, full accessibility/contrast audit and unusual font/zoom settings",
+    "Live external GitHub destinations and email delivery; hrefs inspected only",
+    "Published site deployment; all checks ran against local source"
+  ],
+  "normalBrowserProfileUsed": false,
+  "softwareInstalled": false,
+  "persistentSettingsChanged": false,
+  "pushed": false,
+  "published": false,
+  "preservation": {
+    "originalRefsUnchanged": true,
+    "originalWorktreesClean": true,
+    "protectedStateAndDownloadFilesChecked": 33,
+    "changedProtectedFiles": 0,
+    "ownedEdgeProcessesRemaining": 0,
+    "localPreviewServerClosed": true,
+    "temporaryProfilesRetained": true,
+    "existingArchivesRebuilt": false
+  }
+}

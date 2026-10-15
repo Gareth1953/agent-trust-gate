@@ -1,0 +1,2439 @@
+{
+  "output": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-windows-review\\reports\\mission-04-windows\\website\\edge-lQWBmD",
+  "scratch": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-m04-edge-zOsgne",
+  "profile": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-m04-edge-zOsgne\\fresh-profile",
+  "startedAt": "2026-10-15T13:46:11.125Z",
+  "checks": [],
+  "viewports": [
+    {
+      "width": 1440,
+      "clientWidth": 1425,
+      "scrollWidth": 1425,
+      "height": 3066,
+      "bodyFont": "16px",
+      "overflow": [],
+      "clipped": [],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#main"
+        },
+        {
+          "text": "Agent Trust Gate™\nEXACT-ACTION AUTHORITY",
+          "href": "./"
+        },
+        {
+          "text": "Technology",
+          "href": "./technology.html"
+        },
+        {
+          "text": "Solutions",
+          "href": "./solutions.html"
+        },
+        {
+          "text": "Evidence",
+          "href": "./evidence.html"
+        },
+        {
+          "text": "Company",
+          "href": "./company.html"
+        },
+        {
+          "text": "Contact",
+          "href": "./contact.html"
+        },
+        {
+          "text": "Home",
+          "href": "./"
+        },
+        {
+          "text": "Inspect the plugin and reproduction guides →",
+          "href": "./plugin.html"
+        },
+        {
+          "text": "gpmiddleton71@gmail.com",
+          "href": "mailto:gpmiddleton71@gmail.com?subject=ATG%20security%20report"
+        },
+        {
+          "text": "Read the repository security policy",
+          "href": "https://github.com/Gareth1953/agent-trust-gate/blob/main/SECURITY.md"
+        },
+        {
+          "text": "website privacy information",
+          "href": "./privacy.html"
+        },
+        {
+          "text": "Technology",
+          "href": "./technology.html"
+        },
+        {
+          "text": "Solutions",
+          "href": "./solutions.html"
+        },
+        {
+          "text": "Evidence",
+          "href": "./evidence.html"
+        },
+        {
+          "text": "GitHub",
+          "href": "https://github.com/Gareth1953/agent-trust-gate"
+        },
+        {
+          "text": "About",
+          "href": "./company.html"
+        },
+        {
+          "text": "Contact",
+          "href": "./contact.html"
+        },
+        {
+          "text": "Privacy",
+          "href": "./privacy.html"
+        },
+        {
+          "text": "Security & Trust",
+          "href": "./security.html"
+        },
+        {
+          "text": "gareth@agenttrustgate.com",
+          "href": "mailto:gareth@agenttrustgate.com"
+        },
+        {
+          "text": "Gmail: gpmiddleton71@gmail.com",
+          "href": "mailto:gpmiddleton71@gmail.com"
+        }
+      ],
+      "limitations": [
+        {
+          "text": "Human and operator authority, approval signing keys and clocks remain fixtures. The separate destination key remains on the same host. This does not provide independent external capture, protection against a host administrator, a live ERP integration or production payment security.",
+          "font": "16px",
+          "rect": {
+            "x": 772.5,
+            "y": 865.625,
+            "width": 497,
+            "height": 127.96875,
+            "top": 865.625,
+            "right": 1269.5,
+            "bottom": 993.59375,
+            "left": 772.5
+          }
+        },
+        {
+          "text": "Local evaluation records are not encrypted by ATG. OS permissions and deployment isolation remain the evaluator’s responsibility. Do not expose local demo endpoints to the internet.",
+          "font": "16px",
+          "rect": {
+            "x": 772.5,
+            "y": 1009.59375,
+            "width": 497,
+            "height": 76.78125,
+            "top": 1009.59375,
+            "right": 1269.5,
+            "bottom": 1086.375,
+            "left": 772.5
+          }
+        },
+        {
+          "text": "No security certification or independent penetration test is claimed.\nRepository tests establish specific synthetic behaviours, not comprehensive security assurance.",
+          "font": "16px",
+          "rect": {
+            "x": 772.5,
+            "y": 1102.375,
+            "width": 497,
+            "height": 138.375,
+            "top": 1102.375,
+            "right": 1269.5,
+            "bottom": 1240.75,
+            "left": 772.5
+          }
+        },
+        {
+          "text": "Email gpmiddleton71@gmail.com with a minimal redacted description, affected version and safe local reproduction. Ordinary email is not a secure secret-transfer channel. Agree a suitable handling route before sharing sensitive evidence.",
+          "font": "16px",
+          "rect": {
+            "x": 122.5,
+            "y": 2256.96875,
+            "width": 563,
+            "height": 102.375,
+            "top": 2256.96875,
+            "right": 685.5,
+            "bottom": 2359.34375,
+            "left": 122.5
+          }
+        },
+        {
+          "text": "The local.5 download does not include the Mission 04 source fixes for legacy signed JSON fields and POSIX state-file permissions. Those source changes do not configure private Windows NTFS permissions.",
+          "font": "16px",
+          "rect": {
+            "x": 772.5,
+            "y": 2403.3125,
+            "width": 497,
+            "height": 76.78125,
+            "top": 2403.3125,
+            "right": 1269.5,
+            "bottom": 2480.09375,
+            "left": 772.5
+          }
+        },
+        {
+          "text": "The published plugin remains an evaluation demonstrator. No production version is supported.",
+          "font": "16px",
+          "rect": {
+            "x": 772.5,
+            "y": 2496.09375,
+            "width": 497,
+            "height": 51.1875,
+            "top": 2496.09375,
+            "right": 1269.5,
+            "bottom": 2547.28125,
+            "left": 772.5
+          }
+        }
+      ],
+      "screenshots": [
+        {
+          "file": "security-1440-full.png",
+          "width": 1440,
+          "height": 3066,
+          "y": 0
+        }
+      ],
+      "headerNavigation": {
+        "path": "/technology.html",
+        "title": "Technology | Agent Trust Gate™",
+        "menuExpanded": "false"
+      },
+      "footerNavigation": {
+        "path": "/privacy.html",
+        "title": "Privacy | Agent Trust Gate™"
+      },
+      "homeNavigation": {
+        "path": "/",
+        "title": "Agent Trust Gate™ | Exact Action Trust Gateway for AI Agents"
+      },
+      "linkResponses": [
+        {
+          "href": "./",
+          "status": 200
+        },
+        {
+          "href": "./technology.html",
+          "status": 200
+        },
+        {
+          "href": "./solutions.html",
+          "status": 200
+        },
+        {
+          "href": "./evidence.html",
+          "status": 200
+        },
+        {
+          "href": "./company.html",
+          "status": 200
+        },
+        {
+          "href": "./contact.html",
+          "status": 200
+        },
+        {
+          "href": "./plugin.html",
+          "status": 200
+        },
+        {
+          "href": "./privacy.html",
+          "status": 200
+        },
+        {
+          "href": "./security.html",
+          "status": 200
+        }
+      ],
+      "clickedLocalLinks": [
+        {
+          "text": "Agent Trust Gate™\nEXACT-ACTION AUTHORITY",
+          "href": "./",
+          "index": 1,
+          "path": "/",
+          "passed": true
+        },
+        {
+          "text": "Technology",
+          "href": "./technology.html",
+          "index": 2,
+          "path": "/technology.html",
+          "passed": true
+        },
+        {
+          "text": "Solutions",
+          "href": "./solutions.html",
+          "index": 3,
+          "path": "/solutions.html",
+          "passed": true
+        },
+        {
+          "text": "Evidence",
+          "href": "./evidence.html",
+          "index": 4,
+          "path": "/evidence.html",
+          "passed": true
+        },
+        {
+          "text": "Company",
+          "href": "./company.html",
+          "index": 5,
+          "path": "/company.html",
+          "passed": true
+        },
+        {
+          "text": "Contact",
+          "href": "./contact.html",
+          "index": 6,
+          "path": "/contact.html",
+          "passed": true
+        },
+        {
+          "text": "Home",
+          "href": "./",
+          "index": 7,
+          "path": "/",
+          "passed": true
+        },
+        {
+          "text": "Inspect the plugin and reproduction guides →",
+          "href": "./plugin.html",
+          "index": 8,
+          "path": "/plugin.html",
+          "passed": true
+        },
+        {
+          "text": "website privacy information",
+          "href": "./privacy.html",
+          "index": 11,
+          "path": "/privacy.html",
+          "passed": true
+        },
+        {
+          "text": "Technology",
+          "href": "./technology.html",
+          "index": 12,
+          "path": "/technology.html",
+          "passed": true
+        },
+        {
+          "text": "Solutions",
+          "href": "./solutions.html",
+          "index": 13,
+          "path": "/solutions.html",
+          "passed": true
+        },
+        {
+          "text": "Evidence",
+          "href": "./evidence.html",
+          "index": 14,
+          "path": "/evidence.html",
+          "passed": true
+        },
+        {
+          "text": "About",
+          "href": "./company.html",
+          "index": 16,
+          "path": "/company.html",
+          "passed": true
+        },
+        {
+          "text": "Contact",
+          "href": "./contact.html",
+          "index": 17,
+          "path": "/contact.html",
+          "passed": true
+        },
+        {
+          "text": "Privacy",
+          "href": "./privacy.html",
+          "index": 18,
+          "path": "/privacy.html",
+          "passed": true
+        },
+        {
+          "text": "Security & Trust",
+          "href": "./security.html",
+          "index": 19,
+          "path": "/security.html",
+          "passed": true
+        }
+      ],
+      "skipLinkFocused": true,
+      "skipLinkActivated": true,
+      "documentOverflow": false
+    },
+    {
+      "width": 390,
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "height": 5244,
+      "bodyFont": "16px",
+      "overflow": [],
+      "clipped": [],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#main"
+        },
+        {
+          "text": "Agent Trust Gate™\nEXACT-ACTION AUTHORITY",
+          "href": "./"
+        },
+        {
+          "text": "Technology",
+          "href": "./technology.html"
+        },
+        {
+          "text": "Solutions",
+          "href": "./solutions.html"
+        },
+        {
+          "text": "Evidence",
+          "href": "./evidence.html"
+        },
+        {
+          "text": "Company",
+          "href": "./company.html"
+        },
+        {
+          "text": "Contact",
+          "href": "./contact.html"
+        },
+        {
+          "text": "Home",
+          "href": "./"
+        },
+        {
+          "text": "Inspect the plugin and reproduction guides →",
+          "href": "./plugin.html"
+        },
+        {
+          "text": "gpmiddleton71@gmail.com",
+          "href": "mailto:gpmiddleton71@gmail.com?subject=ATG%20security%20report"
+        },
+        {
+          "text": "Read the repository security policy",
+          "href": "https://github.com/Gareth1953/agent-trust-gate/blob/main/SECURITY.md"
+        },
+        {
+          "text": "website privacy information",
+          "href": "./privacy.html"
+        },
+        {
+          "text": "Technology",
+          "href": "./technology.html"
+        },
+        {
+          "text": "Solutions",
+          "href": "./solutions.html"
+        },
+        {
+          "text": "Evidence",
+          "href": "./evidence.html"
+        },
+        {
+          "text": "GitHub",
+          "href": "https://github.com/Gareth1953/agent-trust-gate"
+        },
+        {
+          "text": "About",
+          "href": "./company.html"
+        },
+        {
+          "text": "Contact",
+          "href": "./contact.html"
+        },
+        {
+          "text": "Privacy",
+          "href": "./privacy.html"
+        },
+        {
+          "text": "Security & Trust",
+          "href": "./security.html"
+        },
+        {
+          "text": "gareth@agenttrustgate.com",
+          "href": "mailto:gareth@agenttrustgate.com"
+        },
+        {
+          "text": "Gmail: gpmiddleton71@gmail.com",
+          "href": "mailto:gpmiddleton71@gmail.com"
+        }
+      ],
+      "limitations": [
+        {
+          "text": "Human and operator authority, approval signing keys and clocks remain fixtures. The separate destination key remains on the same host. This does not provide independent external capture, protection against a host administrator, a live ERP integration or production payment security.",
+          "font": "16px",
+          "rect": {
+            "x": 47,
+            "y": 1370.671875,
+            "width": 296,
+            "height": 204.75,
+            "top": 1370.671875,
+            "right": 343,
+            "bottom": 1575.421875,
+            "left": 47
+          }
+        },
+        {
+          "text": "Local evaluation records are not encrypted by ATG. OS permissions and deployment isolation remain the evaluator’s responsibility. Do not expose local demo endpoints to the internet.",
+          "font": "16px",
+          "rect": {
+            "x": 47,
+            "y": 1591.421875,
+            "width": 296,
+            "height": 127.96875,
+            "top": 1591.421875,
+            "right": 343,
+            "bottom": 1719.390625,
+            "left": 47
+          }
+        },
+        {
+          "text": "No security certification or independent penetration test is claimed.\nRepository tests establish specific synthetic behaviours, not comprehensive security assurance.",
+          "font": "16px",
+          "rect": {
+            "x": 47,
+            "y": 1735.390625,
+            "width": 296,
+            "height": 189.5625,
+            "top": 1735.390625,
+            "right": 343,
+            "bottom": 1924.953125,
+            "left": 47
+          }
+        },
+        {
+          "text": "Email gpmiddleton71@gmail.com with a minimal redacted description, affected version and safe local reproduction. Ordinary email is not a secure secret-transfer channel. Agree a suitable handling route before sharing sensitive evidence.",
+          "font": "16px",
+          "rect": {
+            "x": 14,
+            "y": 3334.078125,
+            "width": 362,
+            "height": 127.96875,
+            "top": 3334.078125,
+            "right": 376,
+            "bottom": 3462.046875,
+            "left": 14
+          }
+        },
+        {
+          "text": "The local.5 download does not include the Mission 04 source fixes for legacy signed JSON fields and POSIX state-file permissions. Those source changes do not configure private Windows NTFS permissions.",
+          "font": "16px",
+          "rect": {
+            "x": 47,
+            "y": 4065.109375,
+            "width": 296,
+            "height": 153.5625,
+            "top": 4065.109375,
+            "right": 343,
+            "bottom": 4218.671875,
+            "left": 47
+          }
+        },
+        {
+          "text": "The published plugin remains an evaluation demonstrator. No production version is supported.",
+          "font": "16px",
+          "rect": {
+            "x": 47,
+            "y": 4234.671875,
+            "width": 296,
+            "height": 76.78125,
+            "top": 4234.671875,
+            "right": 343,
+            "bottom": 4311.453125,
+            "left": 47
+          }
+        }
+      ],
+      "screenshots": [
+        {
+          "file": "security-390-full.png",
+          "width": 390,
+          "height": 5244,
+          "y": 0
+        },
+        {
+          "file": "security-390-menu-open.png",
+          "width": 390,
+          "height": 844,
+          "y": 0
+        }
+      ],
+      "menuOpened": {
+        "expanded": "true",
+        "visible": true,
+        "focused": true
+      },
+      "menuButtonClosed": {
+        "expanded": "false",
+        "visible": false,
+        "focused": true
+      },
+      "menuEscapeClosed": {
+        "expanded": "false",
+        "visible": false,
+        "focused": true
+      },
+      "headerNavigation": {
+        "path": "/technology.html",
+        "title": "Technology | Agent Trust Gate™",
+        "menuExpanded": "false"
+      },
+      "footerNavigation": {
+        "path": "/privacy.html",
+        "title": "Privacy | Agent Trust Gate™"
+      },
+      "homeNavigation": {
+        "path": "/",
+        "title": "Agent Trust Gate™ | Exact Action Trust Gateway for AI Agents"
+      },
+      "linkResponses": [
+        {
+          "href": "./",
+          "status": 200
+        },
+        {
+          "href": "./technology.html",
+          "status": 200
+        },
+        {
+          "href": "./solutions.html",
+          "status": 200
+        },
+        {
+          "href": "./evidence.html",
+          "status": 200
+        },
+        {
+          "href": "./company.html",
+          "status": 200
+        },
+        {
+          "href": "./contact.html",
+          "status": 200
+        },
+        {
+          "href": "./plugin.html",
+          "status": 200
+        },
+        {
+          "href": "./privacy.html",
+          "status": 200
+        },
+        {
+          "href": "./security.html",
+          "status": 200
+        }
+      ],
+      "clickedLocalLinks": [
+        {
+          "text": "Agent Trust Gate™\nEXACT-ACTION AUTHORITY",
+          "href": "./",
+          "index": 1,
+          "path": "/",
+          "passed": true
+        },
+        {
+          "text": "Technology",
+          "href": "./technology.html",
+          "index": 2,
+          "path": "/technology.html",
+          "passed": true
+        },
+        {
+          "text": "Solutions",
+          "href": "./solutions.html",
+          "index": 3,
+          "path": "/solutions.html",
+          "passed": true
+        },
+        {
+          "text": "Evidence",
+          "href": "./evidence.html",
+          "index": 4,
+          "path": "/evidence.html",
+          "passed": true
+        },
+        {
+          "text": "Company",
+          "href": "./company.html",
+          "index": 5,
+          "path": "/company.html",
+          "passed": true
+        },
+        {
+          "text": "Contact",
+          "href": "./contact.html",
+          "index": 6,
+          "path": "/contact.html",
+          "passed": true
+        },
+        {
+          "text": "Home",
+          "href": "./",
+          "index": 7,
+          "path": "/",
+          "passed": true
+        },
+        {
+          "text": "Inspect the plugin and reproduction guides →",
+          "href": "./plugin.html",
+          "index": 8,
+          "path": "/plugin.html",
+          "passed": true
+        },
+        {
+          "text": "website privacy information",
+          "href": "./privacy.html",
+          "index": 11,
+          "path": "/privacy.html",
+          "passed": true
+        },
+        {
+          "text": "Technology",
+          "href": "./technology.html",
+          "index": 12,
+          "path": "/technology.html",
+          "passed": true
+        },
+        {
+          "text": "Solutions",
+          "href": "./solutions.html",
+          "index": 13,
+          "path": "/solutions.html",
+          "passed": true
+        },
+        {
+          "text": "Evidence",
+          "href": "./evidence.html",
+          "index": 14,
+          "path": "/evidence.html",
+          "passed": true
+        },
+        {
+          "text": "About",
+          "href": "./company.html",
+          "index": 16,
+          "path": "/company.html",
+          "passed": true
+        },
+        {
+          "text": "Contact",
+          "href": "./contact.html",
+          "index": 17,
+          "path": "/contact.html",
+          "passed": true
+        },
+        {
+          "text": "Privacy",
+          "href": "./privacy.html",
+          "index": 18,
+          "path": "/privacy.html",
+          "passed": true
+        },
+        {
+          "text": "Security & Trust",
+          "href": "./security.html",
+          "index": 19,
+          "path": "/security.html",
+          "passed": true
+        }
+      ],
+      "skipLinkFocused": true,
+      "skipLinkActivated": true,
+      "documentOverflow": false
+    },
+    {
+      "width": 320,
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "height": 6169,
+      "bodyFont": "16px",
+      "overflow": [],
+      "clipped": [],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#main"
+        },
+        {
+          "text": "Agent Trust Gate™\nEXACT-ACTION AUTHORITY",
+          "href": "./"
+        },
+        {
+          "text": "Technology",
+          "href": "./technology.html"
+        },
+        {
+          "text": "Solutions",
+          "href": "./solutions.html"
+        },
+        {
+          "text": "Evidence",
+          "href": "./evidence.html"
+        },
+        {
+          "text": "Company",
+          "href": "./company.html"
+        },
+        {
+          "text": "Contact",
+          "href": "./contact.html"
+        },
+        {
+          "text": "Home",
+          "href": "./"
+        },
+        {
+          "text": "Inspect the plugin and reproduction guides →",
+          "href": "./plugin.html"
+        },
+        {
+          "text": "gpmiddleton71@gmail.com",
+          "href": "mailto:gpmiddleton71@gmail.com?subject=ATG%20security%20report"
+        },
+        {
+          "text": "Read the repository security policy",
+          "href": "https://github.com/Gareth1953/agent-trust-gate/blob/main/SECURITY.md"
+        },
+        {
+          "text": "website privacy information",
+          "href": "./privacy.html"
+        },
+        {
+          "text": "Technology",
+          "href": "./technology.html"
+        },
+        {
+          "text": "Solutions",
+          "href": "./solutions.html"
+        },
+        {
+          "text": "Evidence",
+          "href": "./evidence.html"
+        },
+        {
+          "text": "GitHub",
+          "href": "https://github.com/Gareth1953/agent-trust-gate"
+        },
+        {
+          "text": "About",
+          "href": "./company.html"
+        },
+        {
+          "text": "Contact",
+          "href": "./contact.html"
+        },
+        {
+          "text": "Privacy",
+          "href": "./privacy.html"
+        },
+        {
+          "text": "Security & Trust",
+          "href": "./security.html"
+        },
+        {
+          "text": "gareth@agenttrustgate.com",
+          "href": "mailto:gareth@agenttrustgate.com"
+        },
+        {
+          "text": "Gmail: gpmiddleton71@gmail.com",
+          "href": "mailto:gpmiddleton71@gmail.com"
+        }
+      ],
+      "limitations": [
+        {
+          "text": "Human and operator authority, approval signing keys and clocks remain fixtures. The separate destination key remains on the same host. This does not provide independent external capture, protection against a host administrator, a live ERP integration or production payment security.",
+          "font": "16px",
+          "rect": {
+            "x": 47,
+            "y": 1670.328125,
+            "width": 226,
+            "height": 255.9375,
+            "top": 1670.328125,
+            "right": 273,
+            "bottom": 1926.265625,
+            "left": 47
+          }
+        },
+        {
+          "text": "Local evaluation records are not encrypted by ATG. OS permissions and deployment isolation remain the evaluator’s responsibility. Do not expose local demo endpoints to the internet.",
+          "font": "16px",
+          "rect": {
+            "x": 47,
+            "y": 1942.265625,
+            "width": 226,
+            "height": 179.15625,
+            "top": 1942.265625,
+            "right": 273,
+            "bottom": 2121.421875,
+            "left": 47
+          }
+        },
+        {
+          "text": "No security certification or independent penetration test is claimed.\nRepository tests establish specific synthetic behaviours, not comprehensive security assurance.",
+          "font": "16px",
+          "rect": {
+            "x": 47,
+            "y": 2137.421875,
+            "width": 226,
+            "height": 266.34375,
+            "top": 2137.421875,
+            "right": 273,
+            "bottom": 2403.765625,
+            "left": 47
+          }
+        },
+        {
+          "text": "Email gpmiddleton71@gmail.com with a minimal redacted description, affected version and safe local reproduction. Ordinary email is not a secure secret-transfer channel. Agree a suitable handling route before sharing sensitive evidence.",
+          "font": "16px",
+          "rect": {
+            "x": 14,
+            "y": 3964.171875,
+            "width": 292,
+            "height": 179.15625,
+            "top": 3964.171875,
+            "right": 306,
+            "bottom": 4143.328125,
+            "left": 14
+          }
+        },
+        {
+          "text": "The local.5 download does not include the Mission 04 source fixes for legacy signed JSON fields and POSIX state-file permissions. Those source changes do not configure private Windows NTFS permissions.",
+          "font": "16px",
+          "rect": {
+            "x": 47,
+            "y": 4913.234375,
+            "width": 226,
+            "height": 204.75,
+            "top": 4913.234375,
+            "right": 273,
+            "bottom": 5117.984375,
+            "left": 47
+          }
+        },
+        {
+          "text": "The published plugin remains an evaluation demonstrator. No production version is supported.",
+          "font": "16px",
+          "rect": {
+            "x": 47,
+            "y": 5133.984375,
+            "width": 226,
+            "height": 102.375,
+            "top": 5133.984375,
+            "right": 273,
+            "bottom": 5236.359375,
+            "left": 47
+          }
+        }
+      ],
+      "screenshots": [
+        {
+          "file": "security-320-full.png",
+          "width": 320,
+          "height": 6169,
+          "y": 0
+        },
+        {
+          "file": "security-320-menu-open.png",
+          "width": 320,
+          "height": 844,
+          "y": 0
+        }
+      ],
+      "menuOpened": {
+        "expanded": "true",
+        "visible": true,
+        "focused": true
+      },
+      "menuButtonClosed": {
+        "expanded": "false",
+        "visible": false,
+        "focused": true
+      },
+      "menuEscapeClosed": {
+        "expanded": "false",
+        "visible": false,
+        "focused": true
+      },
+      "headerNavigation": {
+        "path": "/technology.html",
+        "title": "Technology | Agent Trust Gate™",
+        "menuExpanded": "false"
+      },
+      "footerNavigation": {
+        "path": "/privacy.html",
+        "title": "Privacy | Agent Trust Gate™"
+      },
+      "homeNavigation": {
+        "path": "/",
+        "title": "Agent Trust Gate™ | Exact Action Trust Gateway for AI Agents"
+      },
+      "linkResponses": [
+        {
+          "href": "./",
+          "status": 200
+        },
+        {
+          "href": "./technology.html",
+          "status": 200
+        },
+        {
+          "href": "./solutions.html",
+          "status": 200
+        },
+        {
+          "href": "./evidence.html",
+          "status": 200
+        },
+        {
+          "href": "./company.html",
+          "status": 200
+        },
+        {
+          "href": "./contact.html",
+          "status": 200
+        },
+        {
+          "href": "./plugin.html",
+          "status": 200
+        },
+        {
+          "href": "./privacy.html",
+          "status": 200
+        },
+        {
+          "href": "./security.html",
+          "status": 200
+        }
+      ],
+      "clickedLocalLinks": [
+        {
+          "text": "Agent Trust Gate™\nEXACT-ACTION AUTHORITY",
+          "href": "./",
+          "index": 1,
+          "path": "/",
+          "passed": true
+        },
+        {
+          "text": "Technology",
+          "href": "./technology.html",
+          "index": 2,
+          "path": "/technology.html",
+          "passed": true
+        },
+        {
+          "text": "Solutions",
+          "href": "./solutions.html",
+          "index": 3,
+          "path": "/solutions.html",
+          "passed": true
+        },
+        {
+          "text": "Evidence",
+          "href": "./evidence.html",
+          "index": 4,
+          "path": "/evidence.html",
+          "passed": true
+        },
+        {
+          "text": "Company",
+          "href": "./company.html",
+          "index": 5,
+          "path": "/company.html",
+          "passed": true
+        },
+        {
+          "text": "Contact",
+          "href": "./contact.html",
+          "index": 6,
+          "path": "/contact.html",
+          "passed": true
+        },
+        {
+          "text": "Home",
+          "href": "./",
+          "index": 7,
+          "path": "/",
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "consoleErrors": [
+    {
+      "source": "network",
+      "level": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "timestamp": 1792071971926.663,
+      "url": "http://127.0.0.1:56343/favicon.ico",
+      "networkRequestId": "28388.6"
+    }
+  ],
+  "requests": [
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/favicon.ico",
+      "status": 404
+    },
+    {
+      "path": "/technology.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/privacy.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/technology.html",
+      "status": 200
+    },
+    {
+      "path": "/solutions.html",
+      "status": 200
+    },
+    {
+      "path": "/evidence.html",
+      "status": 200
+    },
+    {
+      "path": "/company.html",
+      "status": 200
+    },
+    {
+      "path": "/contact.html",
+      "status": 200
+    },
+    {
+      "path": "/plugin.html",
+      "status": 200
+    },
+    {
+      "path": "/privacy.html",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/technology.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/solutions.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/evidence.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/company.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/contact.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/plugin.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/privacy.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/technology.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/solutions.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/evidence.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/company.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/contact.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/privacy.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/technology.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/privacy.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/technology.html",
+      "status": 200
+    },
+    {
+      "path": "/solutions.html",
+      "status": 200
+    },
+    {
+      "path": "/evidence.html",
+      "status": 200
+    },
+    {
+      "path": "/company.html",
+      "status": 200
+    },
+    {
+      "path": "/contact.html",
+      "status": 200
+    },
+    {
+      "path": "/plugin.html",
+      "status": 200
+    },
+    {
+      "path": "/privacy.html",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/technology.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/solutions.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/evidence.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/company.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/contact.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/plugin.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/privacy.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/technology.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/solutions.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/evidence.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/company.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/contact.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/privacy.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/technology.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/privacy.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/technology.html",
+      "status": 200
+    },
+    {
+      "path": "/solutions.html",
+      "status": 200
+    },
+    {
+      "path": "/evidence.html",
+      "status": 200
+    },
+    {
+      "path": "/company.html",
+      "status": 200
+    },
+    {
+      "path": "/contact.html",
+      "status": 200
+    },
+    {
+      "path": "/plugin.html",
+      "status": 200
+    },
+    {
+      "path": "/privacy.html",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/technology.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/solutions.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/evidence.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/company.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/contact.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    }
+  ],
+  "preview": "http://127.0.0.1:56343",
+  "edgeArguments": [
+    "--headless=new",
+    "--remote-debugging-address=127.0.0.1",
+    "--remote-debugging-port=0",
+    "--user-data-dir=C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-m04-edge-zOsgne\\fresh-profile",
+    "--no-first-run",
+    "--no-default-browser-check",
+    "--disable-background-networking",
+    "about:blank"
+  ],
+  "browserPid": 24776,
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Edg/155.0.4283.45",
+    "revision": "@50f24ef2aa5369a074b8888b7db82d9c0652d642",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+    "jsVersion": "15.5.9.4"
+  },
+  "completed": false,
+  "blocker": "Error: {\"exceptionId\":1,\"text\":\"Uncaught\",\"lineNumber\":0,\"columnNumber\":308,\"scriptId\":\"57\",\"stackTrace\":{\"callFrames\":[{\"functionName\":\"\",\"scriptId\":\"57\",\"url\":\"\",\"lineNumber\":0,\"columnNumber\":314},{\"functionName\":\"\",\"scriptId\":\"57\",\"url\":\"\",\"lineNumber\":0,\"columnNumber\":360}]},\"exception\":{\"type\":\"object\",\"subtype\":\"error\",\"className\":\"Error\",\"description\":\"Error: Click target obscured\\n    at <anonymous>:1:315\\n    at <anonymous>:1:361\",\"objectId\":\"8522329092261195924.103.2\"}}\n    at evaluate (file:///C:/Users/Gareth/agent-trust-gate/.worktrees/mission-04-windows-review/scripts/review-mission-04-security-page.mjs:97:40)\n    at async click (file:///C:/Users/Gareth/agent-trust-gate/.worktrees/mission-04-windows-review/scripts/review-mission-04-security-page.mjs:110:19)\n    at async file:///C:/Users/Gareth/agent-trust-gate/.worktrees/mission-04-windows-review/scripts/review-mission-04-security-page.mjs:164:7",
+  "finishedAt": "2026-10-15T13:46:20.141Z",
+  "cleanup": "Local preview server closed. Only the owned fresh-profile Edge process was closed; temporary profile and evidence retained."
+}
