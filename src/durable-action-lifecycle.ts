@@ -830,9 +830,9 @@ export class LocalDurableLifecycleStore {
     const temporaryPath = `${this.statePath}.tmp-${process.pid}-${next.storeRevision}`;
     let fd: number | null = null;
     try {
-      mkdirSync(directory, { recursive: true });
+      mkdirSync(directory, { recursive: true, mode: 0o700 });
       this.#faultInjector?.("before_write");
-      writeFileSync(temporaryPath, `${JSON.stringify(next, null, 2)}\n`, { encoding: "utf8", flag: "wx" });
+      writeFileSync(temporaryPath, `${JSON.stringify(next, null, 2)}\n`, { encoding: "utf8", flag: "wx", mode: 0o600 });
       fd = openSync(temporaryPath, "r+");
       fsyncSync(fd);
       closeSync(fd);

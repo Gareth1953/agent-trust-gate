@@ -1,0 +1,9 @@
+{
+  "baseline": "e8d398b7165c3bf8f6df23809fadb9b2b127b92d",
+  "canonicalDropsOwnField": true,
+  "payloadHashCollisionByOmission": true,
+  "umask022FileMode": "0644",
+  "umask022NewDirectoryMode": "0755",
+  "baselineOutdatedGmailAssertionFails": true,
+  "notes": "Canonicalisation and modes reproduced before patch; Gmail assertion checked against git show baseline. Node20 test requires ATG_NODE20_PATH."
+}

@@ -415,7 +415,9 @@ function toCanonicalValue(value: unknown): unknown {
   const output: Record<string, unknown> = {};
   for (const key of Object.keys(value).sort()) {
     const item = value[key];
-    if (item !== undefined) output[key] = toCanonicalValue(item);
+    if (item !== undefined) Object.defineProperty(output, key, {
+      value: toCanonicalValue(item), enumerable: true, writable: true, configurable: true,
+    });
   }
   return output;
 }

@@ -1128,7 +1128,12 @@ function toCanonicalJsonValue(value: unknown, path: string, active: Set<object>)
       if (descriptor === undefined || descriptor.get !== undefined || descriptor.set !== undefined) {
         throw new TypeError(`${path}.${key} must be a data property`);
       }
-      output[key] = toCanonicalJsonValue(descriptor.value, `${path}.${key}`, active);
+      // Assignment to __proto__ invokes Object.prototype's setter and omits
+      // attacker-controlled data from the signed bytes. Define an own data key.
+      Object.defineProperty(output, key, {
+        value: toCanonicalJsonValue(descriptor.value, `${path}.${key}`, active),
+        enumerable: true, writable: true, configurable: true,
+      });
     }
     return output;
   } finally {

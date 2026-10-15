@@ -1,0 +1,90 @@
+[
+  {
+    "check": "typecheck",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "exitCode": 0,
+    "log": "reports/mission-04/typecheck-final.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "check": "reviewer",
+    "command": [
+      "npm",
+      "run",
+      "reviewer"
+    ],
+    "exitCode": 0,
+    "log": "reports/mission-04/reviewer-final.log",
+    "sha256": "2a3c6826a00b125211ea01d63679802224a96f1cb8d7da083516b307e7fb7bf6"
+  },
+  {
+    "check": "challenge",
+    "command": [
+      "npm",
+      "run",
+      "demo:challenge"
+    ],
+    "exitCode": 0,
+    "log": "reports/mission-04/challenge-final.log",
+    "sha256": "14ff1b53db43954e35c30bc02caeb5c0dcc5fd0440fa7902782939aa3952f775"
+  },
+  {
+    "check": "public-claims",
+    "command": [
+      "npm",
+      "run",
+      "validate:public-claims"
+    ],
+    "exitCode": 0,
+    "log": "reports/mission-04/public-claims-final.log",
+    "sha256": "96929380fbee2fdd7181882da78f263db562c1133d98ea65a71609e61bafebb6"
+  },
+  {
+    "check": "discovery-site",
+    "command": [
+      "npm",
+      "run",
+      "validate:discovery-site"
+    ],
+    "exitCode": 0,
+    "log": "reports/mission-04/discovery-site-final.log",
+    "sha256": "abc8b6bb41290fe05a6d0c2fc6aca0297b08c43f80ff758d2b0653807928f3c5"
+  },
+  {
+    "check": "plugin",
+    "command": [
+      "npm",
+      "run",
+      "test:plugin"
+    ],
+    "exitCode": 0,
+    "log": "reports/mission-04/plugin-final.log",
+    "sha256": "7b88a9c0def9c8622517ceadf7c3d29618453c63f722942e3a0300b20e26b8ca"
+  },
+  {
+    "check": "node20-focused",
+    "command": [
+      "/workspace/scratch/0b06909c2953/node-v20.19.0-linux-x64/bin/node",
+      "--test",
+      "dist/test/mission-04-security.test.js"
+    ],
+    "exitCode": 0,
+    "log": "reports/mission-04/node20-focused-final.log",
+    "sha256": "44d5941d055c40f704b5554794ec9a50d4f44dd666459cc1e9e6edc47f278cfc"
+  },
+  {
+    "check": "diff-check",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exitCode": 0,
+    "log": "reports/mission-04/diff-check-final.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

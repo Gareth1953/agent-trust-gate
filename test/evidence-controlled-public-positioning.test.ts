@@ -78,7 +78,10 @@ test("controlled buyer pilot is discoverable and preserves M163 authority bounda
   assert.match(pilot, /Customer Trust Receipts are non-authorising/);
   assert.match(pilot, /buyer retains control of any real execution boundary/i);
   assert.match(pilot, /Observed in the deterministic ten-case synthetic demonstration\./);
-  assert.doesNotMatch(pilot, /93\/100|1,394 tests|Executive Trust Receipt|gpmiddleton71@gmail\.com/i);
+  assert.doesNotMatch(pilot, /93\/100|1,394 tests|Executive Trust Receipt/i);
+  // The approved corporate-site contact update added this backup address.
+  // Preserve its explicit mailto route without reviving obsolete readiness claims.
+  assert.match(pilot, /href="mailto:gpmiddleton71@gmail\.com"/);
 });
 
 test("site runtime contains no analytics, telemetry, tracking or network call", () => {

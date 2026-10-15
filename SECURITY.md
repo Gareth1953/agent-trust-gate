@@ -8,10 +8,14 @@ version is currently supported.
 ## Reporting a potential security issue
 
 Potential security issues in this repository may be reported responsibly to
-`gpmiddleton71@gmail.com`. No private security-reporting channel is configured
-or assumed by this repository. If GitHub private security reporting or a
+`gpmiddleton71@gmail.com`. This mailbox accepts initial redacted reports;
+ordinary email is not a secure channel for transferring secrets or client
+datasets. If GitHub private security reporting or a
 private security advisory is enabled and appropriate for the issue, that route
 may also be used.
+
+No private security-reporting channel is configured for sensitive evidence
+transfer; agree a suitable handling route before sharing such material.
 
 Send only a minimal, redacted description and safe reproduction steps. Do not
 include customer data, personal data, credentials, secrets, tokens, production
@@ -38,10 +42,40 @@ safe local reproduction.
 
 ## Current boundary
 
-The review surface is the repository code, documentation, schemas, static
-examples and local CLI. No live API, external-agent contact, cloud call, real
-payment, settlement execution, action execution or production cryptographic
-signing is active.
+The review surface includes the repository, packaged evaluation plugin,
+local CLI/MCP and optional loopback HTTP prototype, synthetic purchasing
+execution, one-machine shared-worker SQLite stores and separate synthetic
+destination process. These can write local evaluation state. MCP is evaluation
+only; the optional destination runs local synthetic commits, not real orders
+or payments. The static public website does not provide a customer upload,
+account, payment checkout or hosted execution API.
+
+Approval/operator identities, approval signing keys and evaluation clocks are
+fixtures. A generated destination signing key is separate but remains on the
+same host. Neither signatures nor local checksums protect against a host
+administrator or establish independent partner evidence. Local records are
+not encrypted by ATG. Do not use real client information, live credentials or
+production keys in these demonstrations.
+
+On POSIX systems, the Mission 04 source changes create new durable JSON state
+files with owner-only permissions and new containing directories with mode
+0700. This is a source change pending a separately reviewed package release;
+published local.5 is unchanged. Existing directory permissions are not repaired.
+Windows deployments require separately configured and checked NTFS ACLs.
+These controls do not isolate processes running as the same OS user.
+
+## Before any client-data evaluation
+
+Keep initial evaluations synthetic. Before accepting real information, agree
+an explicit data-flow and deployment boundary, data minimisation, permitted
+processors, access/retention/deletion responsibilities, credential/key custody,
+authenticated roles, monitoring and incident handling. Test backup/restore,
+anti-rollback and partner-controlled conditional writes/fencing. Complete an
+independent security assessment appropriate to the agreed deployment. A
+passing repository test suite is not a substitute for that assessment.
+
+See [Mission 04 review](docs/mission-04-security-review.md) for the bounded
+source review and remaining gates. No supported production version is implied.
 
 This policy is not a security audit, certification, warranty or deployment
 approval.

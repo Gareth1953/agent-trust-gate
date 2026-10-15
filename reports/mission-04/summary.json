@@ -1,0 +1,157 @@
+{
+  "mission": "04",
+  "scope": "Local synthetic source/demo security review; website draft",
+  "baseline": "e8d398b7165c3bf8f6df23809fadb9b2b127b92d",
+  "branch": "mission-04-security-review",
+  "runtime": "v24.19.0",
+  "node20Runtime": "v20.19.0",
+  "findings": [
+    {
+      "id": "M04-01",
+      "severity": "P2 (maintainer assessment)",
+      "status": "fixed in source",
+      "finding": "Own __proto__ property omitted from legacy signed/hash bytes"
+    },
+    {
+      "id": "M04-02",
+      "severity": "P3 (maintainer assessment)",
+      "status": "fixed in source; Windows ACLs unverified",
+      "finding": "Permissive POSIX durable JSON state creation"
+    },
+    {
+      "id": "M04-03",
+      "status": "updated documentation draft",
+      "finding": "Security policy predates synthetic execution paths"
+    }
+  ],
+  "checks": [
+    {
+      "check": "typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "log": "reports/mission-04/typecheck-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "check": "reviewer",
+      "command": [
+        "npm",
+        "run",
+        "reviewer"
+      ],
+      "exitCode": 0,
+      "log": "reports/mission-04/reviewer-final.log",
+      "sha256": "2a3c6826a00b125211ea01d63679802224a96f1cb8d7da083516b307e7fb7bf6"
+    },
+    {
+      "check": "challenge",
+      "command": [
+        "npm",
+        "run",
+        "demo:challenge"
+      ],
+      "exitCode": 0,
+      "log": "reports/mission-04/challenge-final.log",
+      "sha256": "14ff1b53db43954e35c30bc02caeb5c0dcc5fd0440fa7902782939aa3952f775"
+    },
+    {
+      "check": "public-claims",
+      "command": [
+        "npm",
+        "run",
+        "validate:public-claims"
+      ],
+      "exitCode": 0,
+      "log": "reports/mission-04/public-claims-final.log",
+      "sha256": "96929380fbee2fdd7181882da78f263db562c1133d98ea65a71609e61bafebb6"
+    },
+    {
+      "check": "discovery-site",
+      "command": [
+        "npm",
+        "run",
+        "validate:discovery-site"
+      ],
+      "exitCode": 0,
+      "log": "reports/mission-04/discovery-site-final.log",
+      "sha256": "abc8b6bb41290fe05a6d0c2fc6aca0297b08c43f80ff758d2b0653807928f3c5"
+    },
+    {
+      "check": "plugin",
+      "command": [
+        "npm",
+        "run",
+        "test:plugin"
+      ],
+      "exitCode": 0,
+      "log": "reports/mission-04/plugin-final.log",
+      "sha256": "7b88a9c0def9c8622517ceadf7c3d29618453c63f722942e3a0300b20e26b8ca"
+    },
+    {
+      "check": "node20-focused",
+      "command": [
+        "/workspace/scratch/0b06909c2953/node-v20.19.0-linux-x64/bin/node",
+        "--test",
+        "dist/test/mission-04-security.test.js"
+      ],
+      "exitCode": 0,
+      "log": "reports/mission-04/node20-focused-final.log",
+      "sha256": "44d5941d055c40f704b5554794ec9a50d4f44dd666459cc1e9e6edc47f278cfc"
+    },
+    {
+      "check": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "log": "reports/mission-04/diff-check-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "check": "full-regression",
+      "command": "ATG_NODE20_PATH=/workspace/scratch/0b06909c2953/node-v20.19.0-linux-x64/bin/node npm test",
+      "exitCode": 0,
+      "tests": 1628,
+      "passed": 1628,
+      "failed": 0,
+      "log": "reports/mission-04/verified-regression.log",
+      "sha256": "a8c2041d332ca724cf7e85595af3639fb8520863dfa154dc11c28be6e106a075"
+    }
+  ],
+  "npmAuditKnownVulnerabilities": 0,
+  "credentialPatternReview": "Matches were public fixture private-key literals in src/local-signed-proof.ts and src/human-authority-demo.mjs, plus a validator pattern. This limited search found no production credential; not a comprehensive secret audit.",
+  "initialFailures": [
+    "Missing ATG_NODE20_PATH in initial run (also one intermediate posttest); final full run explicitly configured actual Node 20",
+    "Baseline positioning test prohibited approved Gmail contact: corrected narrowly",
+    "Intermediate security policy wording assertion failed: restored explicit sensitive-transfer restriction"
+  ],
+  "expectedNonPassingCheck": {
+    "command": "node scripts/validate-plugin-release.mjs",
+    "exitCode": 1,
+    "reason": "Patched compiled source differs from immutable local.5 archive; new reviewed package version required",
+    "log": "reports/mission-04/unchanged-local5-source-comparison.log"
+  },
+  "websiteVisualReview": {
+    "status": "not completed",
+    "reason": "Playwright browser absent; browser download returned invalid ZIP. Static checks passed."
+  },
+  "archiveHashes": {
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.1.tgz": "636b4e50e78af5560588663ac761700a637c1643974b31b3c4cbacf22bd64590",
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.2.tgz": "3303ae690b2b00de22e9b0ed6c52078d06fd1571d77984ea10d0f8484c02ee2a",
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz": "62086a6cf7740ff72dafa81b821097d593b262ec019481654fb84caca5b673f0",
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.4.tgz": "164a25d41fdda287c4da265f7511802af4f358e7a3f5460395d6bf9377a66800",
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.5.tgz": "672484c3d3ac3e2efe69f2dee66fef465f10700c73c992274a6b1ea382bb2d7e"
+  },
+  "archiveManifestAndRecordingsUnchanged": true,
+  "publishedPackagePatched": false,
+  "independentSecurityAudit": false,
+  "productionReady": false,
+  "pushOrPublicationPerformed": false,
+  "logs": "Ignored raw logs retained locally; hashes recorded. Review ZIP includes them."
+}
