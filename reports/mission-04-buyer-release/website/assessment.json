@@ -1,0 +1,421 @@
+{
+  "status": "passed for the recorded changed-page/viewport scope after concrete CSS fix",
+  "browser": "Edg/155.0.4283.45",
+  "interactionRun": "edge-5WJgXg",
+  "detailRun": "edge-rmZuTD",
+  "testedPages": [
+    "security.html",
+    "plugin.html",
+    "index.html"
+  ],
+  "viewportWidths": [
+    1440,
+    390,
+    320
+  ],
+  "actualResults": [
+    {
+      "page": "/security.html",
+      "width": 1440,
+      "clientWidth": 1425,
+      "scrollWidth": 1425,
+      "bodyFont": "16px",
+      "clickedLocalLinks": 17,
+      "allLocalResources200": true,
+      "skipLinkFocused": true,
+      "skipLinkActivated": true,
+      "candidateArchiveServedHashes": []
+    },
+    {
+      "page": "/security.html",
+      "width": 390,
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "bodyFont": "16px",
+      "clickedLocalLinks": 17,
+      "allLocalResources200": true,
+      "menuOpen": {
+        "expanded": "true",
+        "visible": true,
+        "focused": true
+      },
+      "menuButtonClose": {
+        "expanded": "false",
+        "visible": false,
+        "focused": true
+      },
+      "menuEscapeClose": {
+        "expanded": "false",
+        "visible": false,
+        "focused": true
+      },
+      "skipLinkFocused": true,
+      "skipLinkActivated": true,
+      "candidateArchiveServedHashes": []
+    },
+    {
+      "page": "/security.html",
+      "width": 320,
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "bodyFont": "16px",
+      "clickedLocalLinks": 17,
+      "allLocalResources200": true,
+      "menuOpen": {
+        "expanded": "true",
+        "visible": true,
+        "focused": true
+      },
+      "menuButtonClose": {
+        "expanded": "false",
+        "visible": false,
+        "focused": true
+      },
+      "menuEscapeClose": {
+        "expanded": "false",
+        "visible": false,
+        "focused": true
+      },
+      "skipLinkFocused": true,
+      "skipLinkActivated": true,
+      "candidateArchiveServedHashes": []
+    },
+    {
+      "page": "/plugin.html",
+      "width": 1440,
+      "clientWidth": 1425,
+      "scrollWidth": 1425,
+      "bodyFont": "16px",
+      "clickedLocalLinks": 24,
+      "allLocalResources200": true,
+      "skipLinkFocused": true,
+      "skipLinkActivated": true,
+      "candidateArchiveServedHashes": [
+        "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10"
+      ]
+    },
+    {
+      "page": "/plugin.html",
+      "width": 390,
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "bodyFont": "16px",
+      "clickedLocalLinks": 24,
+      "allLocalResources200": true,
+      "menuOpen": {
+        "expanded": "true",
+        "visible": true,
+        "focused": true
+      },
+      "menuButtonClose": {
+        "expanded": "false",
+        "visible": false,
+        "focused": true
+      },
+      "menuEscapeClose": {
+        "expanded": "false",
+        "visible": false,
+        "focused": true
+      },
+      "skipLinkFocused": true,
+      "skipLinkActivated": true,
+      "candidateArchiveServedHashes": [
+        "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10"
+      ]
+    },
+    {
+      "page": "/plugin.html",
+      "width": 320,
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "bodyFont": "16px",
+      "clickedLocalLinks": 24,
+      "allLocalResources200": true,
+      "menuOpen": {
+        "expanded": "true",
+        "visible": true,
+        "focused": true
+      },
+      "menuButtonClose": {
+        "expanded": "false",
+        "visible": false,
+        "focused": true
+      },
+      "menuEscapeClose": {
+        "expanded": "false",
+        "visible": false,
+        "focused": true
+      },
+      "skipLinkFocused": true,
+      "skipLinkActivated": true,
+      "candidateArchiveServedHashes": [
+        "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10"
+      ]
+    },
+    {
+      "page": "/index.html",
+      "width": 1440,
+      "clientWidth": 1425,
+      "scrollWidth": 1425,
+      "bodyFont": "16px",
+      "clickedLocalLinks": 23,
+      "allLocalResources200": true,
+      "skipLinkFocused": true,
+      "skipLinkActivated": true,
+      "candidateArchiveServedHashes": [
+        "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10"
+      ]
+    },
+    {
+      "page": "/index.html",
+      "width": 390,
+      "clientWidth": 390,
+      "scrollWidth": 390,
+      "bodyFont": "16px",
+      "clickedLocalLinks": 23,
+      "allLocalResources200": true,
+      "menuOpen": {
+        "expanded": "true",
+        "visible": true,
+        "focused": true
+      },
+      "menuButtonClose": {
+        "expanded": "false",
+        "visible": false,
+        "focused": true
+      },
+      "menuEscapeClose": {
+        "expanded": "false",
+        "visible": false,
+        "focused": true
+      },
+      "skipLinkFocused": true,
+      "skipLinkActivated": true,
+      "candidateArchiveServedHashes": [
+        "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10"
+      ]
+    },
+    {
+      "page": "/index.html",
+      "width": 320,
+      "clientWidth": 320,
+      "scrollWidth": 320,
+      "bodyFont": "16px",
+      "clickedLocalLinks": 23,
+      "allLocalResources200": true,
+      "menuOpen": {
+        "expanded": "true",
+        "visible": true,
+        "focused": true
+      },
+      "menuButtonClose": {
+        "expanded": "false",
+        "visible": false,
+        "focused": true
+      },
+      "menuEscapeClose": {
+        "expanded": "false",
+        "visible": false,
+        "focused": true
+      },
+      "skipLinkFocused": true,
+      "skipLinkActivated": true,
+      "candidateArchiveServedHashes": [
+        "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10"
+      ]
+    }
+  ],
+  "detailChecks": [
+    {
+      "page": "/security.html",
+      "width": 1440,
+      "uncontainedOverflow": []
+    },
+    {
+      "page": "/security.html",
+      "width": 390,
+      "uncontainedOverflow": []
+    },
+    {
+      "page": "/security.html",
+      "width": 320,
+      "uncontainedOverflow": []
+    },
+    {
+      "page": "/plugin.html",
+      "width": 1440,
+      "uncontainedOverflow": []
+    },
+    {
+      "page": "/plugin.html",
+      "width": 390,
+      "uncontainedOverflow": []
+    },
+    {
+      "page": "/plugin.html",
+      "width": 320,
+      "uncontainedOverflow": []
+    },
+    {
+      "page": "/index.html",
+      "width": 1440,
+      "uncontainedOverflow": []
+    },
+    {
+      "page": "/index.html",
+      "width": 390,
+      "uncontainedOverflow": []
+    },
+    {
+      "page": "/index.html",
+      "width": 320,
+      "uncontainedOverflow": []
+    }
+  ],
+  "directlyInspectedImages": [
+    {
+      "run": "edge-5WJgXg",
+      "file": "security-1440-full.png",
+      "sha256": "5e3b46b3962053d7430c218a2e502fdace425558b040461af4051365d203cf6a"
+    },
+    {
+      "run": "edge-5WJgXg",
+      "file": "plugin-1440-full.png",
+      "sha256": "7e292247d8a474d192a71e2493c99263a562d341ae1b7643eb25089679589dbf"
+    },
+    {
+      "run": "edge-5WJgXg",
+      "file": "index-1440-full.png",
+      "sha256": "016cb7a922ad8db676c0aaa482b7d836a7714be8ce6d6cc2a384843a6faa5814"
+    },
+    {
+      "run": "edge-5WJgXg",
+      "file": "security-320-menu-open.png",
+      "sha256": "161712aa58b6ec67dd2c49bcfc0f69bea0b16a787f24cb832dbb84040d6a16eb"
+    },
+    {
+      "run": "edge-5WJgXg",
+      "file": "plugin-320-menu-open.png",
+      "sha256": "4db4387bb8660c0b9dd3282e70fec5a46e0e8d778af7a07d2e6bbc59f4305311"
+    },
+    {
+      "run": "edge-5WJgXg",
+      "file": "index-320-menu-open.png",
+      "sha256": "5629314168ecc21a24d457064b00f1874e272955653417864c8f3673e3374039"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "security-1440-detail-1.png",
+      "sha256": "2ca4e63fbb4de9898d1c0b0f91e24d9f51c39343018619f232e249b91d38ef13"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "plugin-1440-detail-0.png",
+      "sha256": "09b33982f183f54eee0b24ea60b9cea5336991fa314c52195f2f024587e6c638"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "plugin-1440-detail-1.png",
+      "sha256": "c27f7c533b2d3cad3136681f6e1a931967e9062ddd3faaaeb11fe505fd45539d"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "index-1440-detail-0.png",
+      "sha256": "6e68e6afa80c63f9a0bc81d9e3efcfd0446ef957687264f15f98a9059c783ba2"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "security-390-detail-1.png",
+      "sha256": "7688a2e3915e6f8d7c66802d040a7a77e64dde7b346ea3ea49e93746a63c941b"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "plugin-390-detail-0.png",
+      "sha256": "e018e0784cdc00a46ec343ad5bd5c037d76fdf147666fc997880ccf8b0f7035f"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "plugin-390-detail-1.png",
+      "sha256": "fc8576f7fd062c78444e9d26b83138d5bcc917f5d9e5221ff74143e1392df795"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "index-390-detail-0.png",
+      "sha256": "deca68b25c837bf83a1f39052b960828185b852d5109387e9a215a3e529f1a20"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "security-390-detail-2.png",
+      "sha256": "12b91d19512147109ca03ee262123811739f726c54106a7852ea5c9fc594b162"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "plugin-390-detail-2.png",
+      "sha256": "69c0788b6234f0232d25d53ae4f2c0664e2f805d0ec2721e2296e005a9f60335"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "index-390-detail-1.png",
+      "sha256": "2731c6bea5849f58c95366eca37f362a2911ef6a701a634df2bb9d4ffc569a73"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "security-320-detail-1.png",
+      "sha256": "534f506b73255f30de3f287cab6b84b613c1556dbdfda7a8a629849871429f45"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "plugin-320-detail-0.png",
+      "sha256": "0ec2253cd0c03ba7dad8d0b6154b423f4379257a4319ac3c0e418788c192d6e6"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "plugin-320-detail-1.png",
+      "sha256": "3fd712b330151b6fb41e9b4fc7584d39b8780b1b1801721744452f311c1378dc"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "index-320-detail-0.png",
+      "sha256": "b7e60dba438a6bc31b3b94b8afbe07738e3a685c196933a8f5912c89835f30d8"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "security-320-detail-2.png",
+      "sha256": "915b0442e47c0810540a85b7680bd1015f2bcd51c965c896f709da2bc51b4c4a"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "plugin-320-detail-2.png",
+      "sha256": "59c58d9bb2e2ab57a9f377f7c3b5c3e0091d800b396a4faed380c70c170a21d4"
+    },
+    {
+      "run": "edge-rmZuTD",
+      "file": "index-320-detail-1.png",
+      "sha256": "840fb09a5d29ae2f1b3a919d637da2085720a36034d61bd9e42b6dc382b3c071"
+    }
+  ],
+  "findings": [
+    {
+      "id": "M04-R01",
+      "status": "fixed",
+      "finding": "Mobile plugin install grid expanded layout to 534px at a 390px viewport and clipped copy.",
+      "fix": "Set .split > * min-width:0, keeping code scrolling inside the grid item.",
+      "final": "All three changed pages have matching requested/layout widths and scrollWidth=clientWidth at all requested sizes."
+    }
+  ],
+  "notes": [
+    "Homepage wide tables and plugin preformatted commands intentionally scroll inside their own containers; raw out-of-viewport descendants are retained in measurements and all were classified as contained by the detail run.",
+    "Candidate and published labels, Mission 04 fixes, NTFS/no-encryption and fixture/same-host limits are readable in directly inspected panels.",
+    "Initial hidden skip-link pointer attempt was a harness error; the skip link is tested by keyboard.",
+    "Only final browser diagnostic is the absent optional favicon (404); no final application JavaScript exception."
+  ],
+  "limits": [
+    "No physical mobile, iOS/Safari, screen-reader, full contrast/zoom or deployed-site audit.",
+    "External GitHub links and email destinations were inspected, not activated.",
+    "Main phase uses mouse CDP events and keyboard events in mobile emulation, not physical touch gestures."
+  ],
+  "normalProfileUsed": false,
+  "softwareInstalled": false,
+  "persistentSettingsChanged": false,
+  "published": false
+}

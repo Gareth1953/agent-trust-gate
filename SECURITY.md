@@ -59,7 +59,7 @@ production keys in these demonstrations.
 
 On POSIX systems, the Mission 04 source changes create new durable JSON state
 files with owner-only permissions and new containing directories with mode
-0700. This is a source change pending a separately reviewed package release;
+0700. These fixes are included in the unpublished local.6 buyer candidate pending review;
 published local.5 is unchanged. Existing directory permissions are not repaired.
 Windows deployments require separately configured and checked NTFS ACLs.
 A fresh Windows probe found inherited Modify access for sandbox principals,

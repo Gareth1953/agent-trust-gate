@@ -1,0 +1,460 @@
+{
+  "output": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\website\\edge-RJupre",
+  "scratch": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local6-edge-WxwT7I",
+  "profile": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local6-edge-WxwT7I\\fresh-profile",
+  "startedAt": "2026-10-15T18:07:22.209Z",
+  "checks": [],
+  "viewports": [
+    {
+      "page": "/security.html",
+      "width": 1440,
+      "clientWidth": 1425,
+      "scrollWidth": 1425,
+      "height": 3194,
+      "bodyFont": "16px",
+      "overflow": [],
+      "clipped": [],
+      "links": [
+        {
+          "text": "Skip to content",
+          "href": "#main"
+        },
+        {
+          "text": "Agent Trust Gate™\nEXACT-ACTION AUTHORITY",
+          "href": "./"
+        },
+        {
+          "text": "Technology",
+          "href": "./technology.html"
+        },
+        {
+          "text": "Solutions",
+          "href": "./solutions.html"
+        },
+        {
+          "text": "Evidence",
+          "href": "./evidence.html"
+        },
+        {
+          "text": "Company",
+          "href": "./company.html"
+        },
+        {
+          "text": "Contact",
+          "href": "./contact.html"
+        },
+        {
+          "text": "Home",
+          "href": "./"
+        },
+        {
+          "text": "Inspect the plugin and reproduction guides →",
+          "href": "./plugin.html"
+        },
+        {
+          "text": "gpmiddleton71@gmail.com",
+          "href": "mailto:gpmiddleton71@gmail.com?subject=ATG%20security%20report"
+        },
+        {
+          "text": "Read the repository security policy",
+          "href": "https://github.com/Gareth1953/agent-trust-gate/blob/main/SECURITY.md"
+        },
+        {
+          "text": "website privacy information",
+          "href": "./privacy.html"
+        },
+        {
+          "text": "unpublished local.6 candidate",
+          "href": "./plugin.html#mission-04"
+        },
+        {
+          "text": "Technology",
+          "href": "./technology.html"
+        },
+        {
+          "text": "Solutions",
+          "href": "./solutions.html"
+        },
+        {
+          "text": "Evidence",
+          "href": "./evidence.html"
+        },
+        {
+          "text": "GitHub",
+          "href": "https://github.com/Gareth1953/agent-trust-gate"
+        },
+        {
+          "text": "About",
+          "href": "./company.html"
+        },
+        {
+          "text": "Contact",
+          "href": "./contact.html"
+        },
+        {
+          "text": "Privacy",
+          "href": "./privacy.html"
+        },
+        {
+          "text": "Security & Trust",
+          "href": "./security.html"
+        },
+        {
+          "text": "gareth@agenttrustgate.com",
+          "href": "mailto:gareth@agenttrustgate.com"
+        },
+        {
+          "text": "Gmail: gpmiddleton71@gmail.com",
+          "href": "mailto:gpmiddleton71@gmail.com"
+        }
+      ],
+      "limitations": [
+        {
+          "text": "Human and operator authority, approval signing keys and clocks remain fixtures. The separate destination key remains on the same host. This does not provide independent external capture, protection against a host administrator, a live ERP integration or production payment security.",
+          "font": "16px",
+          "rect": {
+            "x": 772.5,
+            "y": 865.625,
+            "width": 497,
+            "height": 127.96875,
+            "top": 865.625,
+            "right": 1269.5,
+            "bottom": 993.59375,
+            "left": 772.5
+          }
+        },
+        {
+          "text": "Local evaluation records are not encrypted by ATG. OS permissions and deployment isolation remain the evaluator’s responsibility. Do not expose local demo endpoints to the internet.",
+          "font": "16px",
+          "rect": {
+            "x": 772.5,
+            "y": 1009.59375,
+            "width": 497,
+            "height": 76.78125,
+            "top": 1009.59375,
+            "right": 1269.5,
+            "bottom": 1086.375,
+            "left": 772.5
+          }
+        },
+        {
+          "text": "No security certification or independent penetration test is claimed.\nRepository tests establish specific synthetic behaviours, not comprehensive security assurance.",
+          "font": "16px",
+          "rect": {
+            "x": 772.5,
+            "y": 1102.375,
+            "width": 497,
+            "height": 138.375,
+            "top": 1102.375,
+            "right": 1269.5,
+            "bottom": 1240.75,
+            "left": 772.5
+          }
+        },
+        {
+          "text": "Email gpmiddleton71@gmail.com with a minimal redacted description, affected version and safe local reproduction. Ordinary email is not a secure secret-transfer channel. Agree a suitable handling route before sharing sensitive evidence.",
+          "font": "16px",
+          "rect": {
+            "x": 122.5,
+            "y": 2256.96875,
+            "width": 563,
+            "height": 102.375,
+            "top": 2256.96875,
+            "right": 685.5,
+            "bottom": 2359.34375,
+            "left": 122.5
+          }
+        },
+        {
+          "text": "The published local.5 download does not include the Mission 04 fixes for legacy signed JSON fields and POSIX state-file permissions. The unpublished local.6 candidate includes those reviewed fixes and is prepared locally for Gareth and Dave’s review; it is not a live release. It does not configure private Windows NTFS permissions. New and replacement files inherit their parent’s DACL, which must be separately provisioned and checked. No existing held state is repaired or migrated.",
+          "font": "16px",
+          "rect": {
+            "x": 772.5,
+            "y": 2403.3125,
+            "width": 497,
+            "height": 204.75,
+            "top": 2403.3125,
+            "right": 1269.5,
+            "bottom": 2608.0625,
+            "left": 772.5
+          }
+        },
+        {
+          "text": "The published plugin remains an evaluation demonstrator. No production version is supported.",
+          "font": "16px",
+          "rect": {
+            "x": 772.5,
+            "y": 2624.0625,
+            "width": 497,
+            "height": 51.1875,
+            "top": 2624.0625,
+            "right": 1269.5,
+            "bottom": 2675.25,
+            "left": 772.5
+          }
+        }
+      ],
+      "screenshots": [
+        {
+          "file": "security-1440-full.png",
+          "width": 1440,
+          "height": 3194,
+          "y": 0
+        }
+      ],
+      "releaseCopy": "Skip to content\nAgent Trust Gate™\nEXACT-ACTION AUTHORITY\nTechnology\nSolutions\nEvidence\nCompany\nContact\nHome / Security & Trust\nEVALUATION SECURITY\nSecurity with clear boundaries.\n\nInspectable controls, explicit limitations and an agreed process before any client information is introduced.\n\nWHAT YOU CAN EVALUATE\nControl and evidence.\n\nThe published local.5 plugin demonstrates signed exact-action and business-state binding, replay controls, optional shared approval and budget controls across processes on one machine, and separately signed synthetic destination evidence.\n\nThe destination rechecks approved state before a synthetic commit. Ambiguous outcomes retain UNKNOWN holds and require explicit reconciliation rather than automatic retry. A standalone public-key verifier can inspect destination evidence without writable ATG state or destination private-key access.\n\nInspect the plugin and reproduction guides →\n\nCurrent limits\nSynthetic. Same host. No production claim.\n\nHuman and operator authority, approval signing keys and clocks remain fixtures. The separate destination key remains on the same host. This does not provide independent external capture, protection against a host administrator, a live ERP integration or production payment security.\n\nLocal evaluation records are not encrypted by ATG. OS permissions and deployment isolation remain the evaluator’s responsibility. Do not expose local demo endpoints to the internet.\n\nNo security certification or independent penetration test is claimed.\nRepository tests establish specific synthetic behaviours, not comprehensive security assurance.\nCLIENT INFORMATION\nStart with fictional records.\n\nThe public website has no customer-data upload, hosted agent execution API or customer-account system.\n\nMinimise the data\n\nInitial evaluations use synthetic business records. Do not send customer records, personal information, production logs, source secrets, payment details or live credentials by email.\n\nAgree the boundary\n\nAny proposed client-data work needs a separately agreed data flow, permitted processors, access controls, key custody, retention and deletion responsibilities.\n\nReview before deployment\n\nA real deployment needs its own threat assessment, authenticated roles, partner enforcement, incident and recovery procedures, and independent security assessment appropriate to the scope.\n\nRESPONSIBLE REPORTING\nReport a concern privately.\n\nEmail gpmiddleton71@gmail.com with a minimal redacted description, affected version and safe local reproduction. Ordinary email is not a secure secret-transfer channel. Agree a suitable handling route before sharing sensitive evidence.\n\nPlease do not post secrets or sensitive exploit details in public issues. Test only local synthetic systems you own or are explicitly authorised to assess. No fixed response or remediation time is promised.\n\nSource review and release status\n\nMaintainer security review is distinct from independent assurance. Source changes and downloadable packages can have different review and release dates. Check the exact version and checksum you evaluate; a source fix does not automatically update a published archive.\n\nRead the repository security policy and website privacy information.\n\nThe published local.5 download does not include the Mission 04 fixes for legacy signed JSON fields and POSIX state-file permissions. The unpublished local.6 candidate includes those reviewed fixes and is prepared locally for Gareth and Dave’s review; it is not a live release. It does not configure private Windows NTFS permissions. New and replacement files inherit their parent’s DACL, which must be separately provisioned and checked. No existing held state is repaired or migrated.\n\nThe published plugin remains an evaluation demonstrator. No production version is supported.\n\nAgent Trust Gate™\nVERIFY BEFORE CONSEQUENTIAL ACTION\n\nIndependent UK technology project. Public local demonstrator; production deployment is not claimed.\n\nExplore\nTechnology\nSolutions\nEvidence\nGitHub\nCompany\nAbout\nContact\nPrivacy\nSecurity & Trust\ngareth@agenttrustgate.com\nGmail: gpmiddleton71@gmail.com\n© 2026 Agent Trust Gate™.\nUnited Kingdom · Public local demonstrator",
+      "scrollableBlocks": [],
+      "headerNavigation": {
+        "path": "/technology.html",
+        "title": "Technology | Agent Trust Gate™",
+        "menuExpanded": "false"
+      },
+      "footerNavigation": {
+        "path": "/privacy.html",
+        "title": "Privacy | Agent Trust Gate™"
+      },
+      "homeNavigation": {
+        "path": "/",
+        "title": "Agent Trust Gate™ | Exact Action Trust Gateway for AI Agents"
+      },
+      "linkResponses": [
+        {
+          "href": "./",
+          "status": 200,
+          "size": 23211,
+          "sha256": "5d13a829debafb63c431af05dab5d1ef1f2bd0f7a8c0d9338b8a3e9809364760"
+        },
+        {
+          "href": "./technology.html",
+          "status": 200,
+          "size": 11405,
+          "sha256": "59076ef8a301bbba981dad3e96bc570a1027f921b3160eefaea4c2bba4d69cf1"
+        },
+        {
+          "href": "./solutions.html",
+          "status": 200,
+          "size": 10123,
+          "sha256": "a48662adb6003562c3fe09e09e9fb13bfd15758efce3e3420556ebcb6558921b"
+        },
+        {
+          "href": "./evidence.html",
+          "status": 200,
+          "size": 13360,
+          "sha256": "a94f8ec0af067eb7e2c7528886b6d2328c4b8b529bb3550d2328713e5d6cf4d1"
+        },
+        {
+          "href": "./company.html",
+          "status": 200,
+          "size": 8191,
+          "sha256": "b021a077b973e53a25b3b9e87b0a538b76a20f577a4994015e4e6a1c53642c0f"
+        },
+        {
+          "href": "./contact.html",
+          "status": 200,
+          "size": 7315,
+          "sha256": "e7da08aea5e114fec91b6c0876bb45ee92ea919acbdf02b456063b0dda8f86e7"
+        },
+        {
+          "href": "./plugin.html",
+          "status": 200,
+          "size": 15045,
+          "sha256": "94f672989016d0bd54a81a8ee5f8328f402e87d3b3b6ae5198019e95432a299a"
+        },
+        {
+          "href": "./privacy.html",
+          "status": 200,
+          "size": 5707,
+          "sha256": "1209481b167265f726f18a19a9d40748ec76f2f0c983aa298065caa2652302d3"
+        },
+        {
+          "href": "./plugin.html#mission-04",
+          "status": 200,
+          "size": 15045,
+          "sha256": "94f672989016d0bd54a81a8ee5f8328f402e87d3b3b6ae5198019e95432a299a"
+        },
+        {
+          "href": "./security.html",
+          "status": 200,
+          "size": 7307,
+          "sha256": "87771ac0d0925b364e35b6e543d708231430efc2145cf49efb59e8df9fa25819"
+        }
+      ],
+      "clickedLocalLinks": []
+    }
+  ],
+  "consoleErrors": [
+    {
+      "source": "network",
+      "level": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "timestamp": 1792087643221.647,
+      "url": "http://127.0.0.1:59298/favicon.ico",
+      "networkRequestId": "17220.6"
+    }
+  ],
+  "requests": [
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/favicon.ico",
+      "status": 404
+    },
+    {
+      "path": "/technology.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/privacy.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/technology.html",
+      "status": 200
+    },
+    {
+      "path": "/solutions.html",
+      "status": 200
+    },
+    {
+      "path": "/evidence.html",
+      "status": 200
+    },
+    {
+      "path": "/company.html",
+      "status": 200
+    },
+    {
+      "path": "/contact.html",
+      "status": 200
+    },
+    {
+      "path": "/plugin.html",
+      "status": 200
+    },
+    {
+      "path": "/privacy.html",
+      "status": 200
+    },
+    {
+      "path": "/plugin.html",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/security.html",
+      "status": 200
+    },
+    {
+      "path": "/corporate.js",
+      "status": 200
+    },
+    {
+      "path": "/corporate.css",
+      "status": 200
+    }
+  ],
+  "preview": "http://127.0.0.1:59298",
+  "edgeArguments": [
+    "--headless=new",
+    "--remote-debugging-address=127.0.0.1",
+    "--remote-debugging-port=0",
+    "--user-data-dir=C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local6-edge-WxwT7I\\fresh-profile",
+    "--no-first-run",
+    "--no-default-browser-check",
+    "--disable-background-networking",
+    "about:blank"
+  ],
+  "browserPid": 25380,
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Edg/155.0.4283.45",
+    "revision": "@50f24ef2aa5369a074b8888b7db82d9c0652d642",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+    "jsVersion": "15.5.9.4"
+  },
+  "completed": false,
+  "blocker": "Error: {\"exceptionId\":1,\"text\":\"Uncaught\",\"lineNumber\":0,\"columnNumber\":352,\"scriptId\":\"25\",\"stackTrace\":{\"callFrames\":[{\"functionName\":\"\",\"scriptId\":\"25\",\"url\":\"\",\"lineNumber\":0,\"columnNumber\":358},{\"functionName\":\"\",\"scriptId\":\"25\",\"url\":\"\",\"lineNumber\":0,\"columnNumber\":419}]},\"exception\":{\"type\":\"object\",\"subtype\":\"error\",\"className\":\"Error\",\"description\":\"Error: No unobscured rendered click rect: Skip to content\\n    at <anonymous>:1:359\\n    at <anonymous>:1:420\",\"objectId\":\"3510598135077525800.9.2\"}}\n    at evaluate (file:///C:/Users/Gareth/agent-trust-gate/.worktrees/mission-04-buyer-release/scripts/review-mission-04-release-pages.mjs:98:40)\n    at async click (file:///C:/Users/Gareth/agent-trust-gate/.worktrees/mission-04-buyer-release/scripts/review-mission-04-release-pages.mjs:113:19)\n    at async file:///C:/Users/Gareth/agent-trust-gate/.worktrees/mission-04-buyer-release/scripts/review-mission-04-release-pages.mjs:172:7",
+  "finishedAt": "2026-10-15T18:07:25.405Z",
+  "cleanup": "Local preview server closed. Only the owned fresh-profile Edge process was closed; temporary profile and evidence retained."
+}

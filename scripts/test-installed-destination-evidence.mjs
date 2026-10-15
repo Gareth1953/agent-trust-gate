@@ -7,8 +7,10 @@ import { createHash } from 'node:crypto';
 import { runCheckedCommand } from './checked-command.mjs';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const args=process.argv.slice(2),options={};
-for(let i=0;i<args.length;i+=2){assert.ok(['--archive','--public-case'].includes(args[i])&&!options[args[i]]);options[args[i]]=args[i+1];}
+for(let i=0;i<args.length;i+=2){assert.ok(['--archive','--public-case','--expected-version'].includes(args[i])&&!options[args[i]]);options[args[i]]=args[i+1];}
 assert.ok(options['--archive'],'Use --archive EXACT_CANDIDATE_PATH [--public-case NODE24_PUBLIC_CASE_DIRECTORY]');
+const expectedVersion=options['--expected-version']??'0.1.0-local.5';
+assert.ok(['0.1.0-local.5','0.1.0-local.6'].includes(expectedVersion));
 const archive=resolve(options['--archive']),npm=process.env.npm_execpath??join(dirname(process.execPath),'node_modules/npm/bin/npm-cli.js');
 const scratch=mkdtempSync(join(tmpdir(),'atg-local5-installed-'));
 const run=(exe,argv,cwd=scratch)=>runCheckedCommand(exe,argv,{cwd});
@@ -18,7 +20,7 @@ try {
   writeFileSync(join(scratch,'package.json'),JSON.stringify({name:'atg-local5-destination-evidence-installed',private:true,type:'module'}));
   run(process.execPath,[npm,'--cache',join(scratch,'npm-cache'),'install','--offline','--ignore-scripts','--no-audit','--no-fund',archive]);
   const pkg=join(scratch,'node_modules/@agent-trust-gate/plugin'),metadata=JSON.parse(readFileSync(join(pkg,'package.json'),'utf8'));
-  assert.equal(metadata.version,'0.1.0-local.5');assert.equal(metadata.private,true);assert.equal(metadata.engines.node,'>=20');
+  assert.equal(metadata.version,expectedVersion);assert.equal(metadata.private,true);assert.equal(metadata.engines.node,'>=20');
   for(const name of ['destination-evidence','destination-process-client','separate-destination-authority','destination-evidence-fixture','destination-evidence-schema'])assert.ok(metadata.exports['./'+name]);
   assert.equal(metadata.bin['atg-destination-evidence'],'./scripts/destination-evidence-demo.mjs');assert.equal(metadata.bin['atg-evidence-verify'],'./scripts/verify-destination-evidence.mjs');
   const demo=join(pkg,'scripts/destination-evidence-demo.mjs'),verifier=join(pkg,'scripts/verify-destination-evidence.mjs');
@@ -28,7 +30,7 @@ try {
   if(Number(process.versions.node.split('.')[0])>=24) {
     const state=join(scratch,'destination-state');
     const observations=JSON.parse(run(process.execPath,[demo,'--state',state]));
-    assert.equal(observations.passed,true);assert.equal(observations.pluginVersion,'0.1.0-local.5');assert.equal(observations.cases.length,8);
+    assert.equal(observations.passed,true);assert.equal(observations.pluginVersion,expectedVersion);assert.equal(observations.cases.length,8);
     assert.ok(observations.cases.every(c=>c.passed));assert.equal(observations.boundary.independentExternalCapture,false);assert.equal(observations.boundary.hostAdministratorProtection,false);
     summary.publicVerificationDirectory=join(state,'signed-outcome/public');summary.observations=join(state,'results.json');
     summary.checks.push({name:'exact installed CLI eight signed destination scenarios',passed:true,cases:observations.cases.map(c=>c.id)});

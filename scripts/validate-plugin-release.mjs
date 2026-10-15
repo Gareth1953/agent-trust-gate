@@ -43,6 +43,8 @@ for (let offset = 0; offset + 512 <= tar.length;) {
     checkedRuntimeFiles += 1;
   }
   if (name === 'package/README.md') authoredTextMatches(member, 'docs/standalone-plugin.md', 'Archive README mismatch');
+  if (name === 'package/SECURITY.md') authoredTextMatches(member, 'docs/mission-04-package-security.md', 'Archive security boundary mismatch');
+  if (name === 'package/RELEASE-NOTES.md') authoredTextMatches(member, 'docs/mission-04-package-release-notes.md', 'Archive release notes mismatch');
   if (name === 'package/src/human-authority-demo.mjs') authoredTextMatches(member, 'src/human-authority-demo.mjs', 'Archive fixture module mismatch');
   if (name === 'package/package.json') metadata = JSON.parse(tar.subarray(offset + 512, offset + 512 + size).toString('utf8'));
   offset += 512 + Math.ceil(size / 512) * 512;
@@ -106,9 +108,12 @@ assert.equal(workers.cases[5].delayed.reason,'STALE_AUTHORITY');assert.equal(wor
 assert.ok(readFileSync(join(root,'discovery-site/plugin.html'),'utf8').includes('./multi-worker-results-local.4.json'));
 console.log('Seven recorded packaged-worker cases, scope boundaries and evidence link verified.');
 
-const destination=JSON.parse(readFileSync(join(root,'discovery-site/destination-evidence-results-local.5.json'),'utf8'));
-assert.equal(destination.pluginVersion,STANDALONE_PLUGIN_VERSION);assert.equal(destination.passed,true);assert.equal(destination.capture.archiveSha256,expected.digest);
-assert.equal(destination.capture.archiveFile,filename);assert.equal(destination.capture.installedFromExactArchive,true);assert.match(destination.runtime,/^v24\./);
+for (const version of ['0.1.0-local.5', STANDALONE_PLUGIN_VERSION]) {
+const releaseFilename='agent-trust-gate-plugin-'+version+'.tgz';
+const recordedArchive=entries.find(entry=>entry.filename===releaseFilename);assert.ok(recordedArchive);
+const destination=JSON.parse(readFileSync(join(root,'discovery-site/destination-evidence-results-local.'+version.split('local.')[1]+'.json'),'utf8'));
+assert.equal(destination.pluginVersion,version);assert.equal(destination.passed,true);assert.equal(destination.capture.archiveSha256,recordedArchive.digest);
+assert.equal(destination.capture.archiveFile,releaseFilename);assert.equal(destination.capture.installedFromExactArchive,true);assert.match(destination.runtime,/^v24\./);
 assert.equal(destination.boundary.separatelySignedDestinationEvidence,true);
 for(const field of ['sameHost','oneMachine','syntheticOnly'])assert.equal(destination.boundary[field],true);
 for(const field of ['independentExternalCapture','hostAdministratorProtection','livePartnerIntegration','liveTimeFreshness','productionReady','automaticRetry'])assert.equal(destination.boundary[field],false);
@@ -119,8 +124,12 @@ assert.equal(destination.cases[3].rejected.reason,'FENCE_REQUIRED');assert.equal
 assert.equal(destination.cases[5].rejected.reason,'UNFENCED_ABSENCE');assert.equal(destination.cases[6].destinationRejectedOldCapability,true);
 assert.ok(!JSON.stringify(destination).includes('BEGIN PRIVATE KEY'),'No private key in published recording');
 const page=readFileSync(join(root,'discovery-site/plugin.html'),'utf8');
-for(const text of ['./destination-evidence-results-local.5.json','Node 20','Node 24','same-host','host-administrator','fixed test clock','v1/v2'])assert.ok(page.includes(text),'Buyer boundary/link missing: '+text);
+for(const text of ['./destination-evidence-results-local.5.json','./destination-evidence-results-local.6.json','Node 20','Node 24','same-host','host-administrator','fixed test clock','v1/v2'])assert.ok(page.includes(text),'Buyer boundary/link missing: '+text);
+}
+for(const required of ['package/SECURITY.md','package/RELEASE-NOTES.md'])assert.ok(members.has(required),'Candidate security documentation missing: '+required);
+const workflow=readFileSync(join(root,'.github/workflows/deploy-discovery-pages.yml'),'utf8');
+for(const required of ['_site/downloads/'+filename,'_site/destination-evidence-results-local.6.json','_site/security.html'])assert.ok(workflow.includes('test -f '+required),'Pages artifact guard missing: '+required);
 authoredTextMatches(readFileSync(join(root,'discovery-site/schemas/destination-evidence.synthetic.v1.schema.json')),'schemas/destination-evidence.synthetic.v1.schema.json','Static evidence schema mismatch');
-console.log('Eight exact-archive separately signed destination cases, public proofs, package contents and scope boundaries verified.');
+console.log('Eight cases in each historical local.5 and current candidate destination recording verified, with package contents and scope boundaries.');
 
 console.log(JSON.stringify({ version: STANDALONE_PLUGIN_VERSION, archive: 'discovery-site/downloads/' + filename, sha256: expected.digest, checksums: entries.length, checkedRuntimeFiles, challengeCases: 3, passed: true }, null, 2));

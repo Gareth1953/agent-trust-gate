@@ -1,5 +1,10 @@
 # Changelog
 
+## Plugin 0.1.0-local.6 — unpublished Mission 04 candidate
+
+Prepared locally for Gareth and Dave: reviewed own-JSON-field signing integrity and POSIX durable-state creation permissions. Published local.5 and earlier archives remain unchanged. No NTFS ACL enforcement, ATG record encryption, independent security assurance or production readiness is claimed. Synthetic fixture keys/clocks and same-host boundaries remain. See [candidate release notes](docs/mission-04-package-release-notes.md) and [security limits](docs/mission-04-package-security.md).
+
+
 ## Plugin 0.1.0-local.3 — local release candidate
 
 - Packages reviewed Mission 01 signed purchase-order business-state binding and UNKNOWN recovery fixes.

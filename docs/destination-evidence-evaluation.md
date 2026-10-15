@@ -1,7 +1,7 @@
-# Separately signed destination evidence — local.5 buyer evaluation
+# Separately signed destination evidence — local.6 candidate buyer evaluation
 
-Package: `@agent-trust-gate/plugin`, **0.1.0-local.5**. This candidate includes
-the reviewed Mission 03 functionality. Its website download activates only
+Package: `@agent-trust-gate/plugin`, **0.1.0-local.6**. This candidate includes
+the reviewed Mission 03 functionality and Mission 04 signing/POSIX creation-mode fixes. Published local.5 is unchanged. Its website download activates only
 after explicit publication approval. Before publication, install the exact
 local candidate archive. It is not published to the npm registry.
 
@@ -35,7 +35,7 @@ a new project and the downloaded/local archive, never an unreviewed repack:
 
 ```powershell
 npm init -y
-npm install C:\path\to\agent-trust-gate-plugin-0.1.0-local.5.tgz
+npm install C:\path\to\agent-trust-gate-plugin-0.1.0-local.6.tgz
 npx --no-install atg-plugin --help
 npx --no-install atg-destination-evidence --help
 ```
@@ -92,7 +92,7 @@ clock synchronisation, live expiry/window rollover or power-loss durability.
 
 The older `shared-purchase-order` export and `atg-multi-worker` command remain
 available on Node 24+, with legacy SDK/CLI/MCP on Node 20. Historical local.4
-worker evidence remains available separately; it is not relabelled as local.5.
+worker evidence remains available separately; it is not relabelled as local.6.
 
 ## Recovery and state
 
@@ -123,3 +123,7 @@ External partner evidence still requires partner-owned key custody and ledger,
 authenticated out-of-band trust pins/transport, durable atomic idempotency and
 fencing, live clock/replay/key-revocation semantics and actual partner-run
 failure/audit evidence. See bundled `PARTNER-ADAPTER-CONTRACT.md`.
+
+## Mission 04 security boundary
+
+Read bundled SECURITY.md: records are not encrypted by ATG, Windows requires separately configured private NTFS parent permissions, and same-user/administrator isolation is not established. Existing held state remains untouched.

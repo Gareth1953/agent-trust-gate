@@ -1,0 +1,188 @@
+{
+  "status": "unpublished candidate ready for Gareth and Dave review",
+  "version": "0.1.0-local.6",
+  "branch": "mission-04-buyer-release",
+  "worktree": "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-04-buyer-release",
+  "reviewedParent": "be72c69097c3faca1e5b2f91369e68b8aa777aba",
+  "reviewedSigningPermissionCommit": "8ca808a05afd46f2c034f9ced613b9929d11710d",
+  "archive": {
+    "file": "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.6.tgz",
+    "size": 156138,
+    "sha256": "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10",
+    "sealed": true,
+    "repackedDuringValidation": false
+  },
+  "runtimes": {
+    "node24": "v24.21.0",
+    "node20": "v20.19.0",
+    "node20Sha256": "6e3a39787e667d50487f7335c85636c2823a53e636d73c2c841d45da4e57906c"
+  },
+  "regression": {
+    "node24": {
+      "tests": 1628,
+      "passed": 1627,
+      "failed": 0,
+      "skipped": 1
+    },
+    "node20Compatible": {
+      "tests": 1563,
+      "passed": 1562,
+      "failed": 0,
+      "skipped": 1,
+      "excludedNode24OnlyTests": 65,
+      "excludedFiles": [
+        "test/multi-worker.test.mjs",
+        "test/destination-evidence.test.mjs"
+      ]
+    }
+  },
+  "installed": {
+    "source": "installed-checks.json",
+    "allSixChecksPassed": true,
+    "securityPerRuntime": {
+      "tests": 8,
+      "passed": 7,
+      "failed": 0,
+      "posixSkippedOnWindows": 1
+    },
+    "destinationNode24": {
+      "cliScenarios": 8,
+      "installedTests": 35
+    },
+    "destinationNode20": "Restricted public verifier passed; unsupported optional setup rejected without state creation.",
+    "legacyBoth": "SDK/CLI/MCP and five state-binding scenarios passed; Node24 seven packaged worker scenarios passed."
+  },
+  "validation": {
+    "all17StepsPassed": true,
+    "rawSummary": "validation/run-Y7EEHr/summary.json",
+    "priorExactInstallEvidence": "validation/run-4gRSAw/summary.json",
+    "finalTargetedWebsiteTests": 20,
+    "finalCompiledMembersCompared": 54,
+    "manifestArchivesVerified": 6,
+    "npmAuditAdvisories": 0,
+    "workflowArtifactGuardsChecked": true,
+    "actionsExecuted": false
+  },
+  "website": {
+    "browser": "Edg/155.0.4283.45",
+    "pages": [
+      "security.html",
+      "plugin.html",
+      "index.html"
+    ],
+    "widths": [
+      1440,
+      390,
+      320
+    ],
+    "allNineViewportChecksPassed": true,
+    "pageHorizontalOverflow": false,
+    "localLinkClicks": 192,
+    "servedCandidateHashMatched": true,
+    "menusAndKeyboardSkipLinksPassed": true,
+    "directVisualAssessment": "website/assessment.json",
+    "imageEqualityRel": [
+      {
+        "file": "security-1440-full.png",
+        "sha256": "5e3b46b3962053d7430c218a2e502fdace425558b040461af4051365d203cf6a",
+        "identicalBetweenInteractionAndDetailRuns": true
+      },
+      {
+        "file": "security-390-full.png",
+        "sha256": "61f7e8128acd0c0342d8318458734f0701d853d41ed326dfd48b710bc2ea9f92",
+        "identicalBetweenInteractionAndDetailRuns": true
+      },
+      {
+        "file": "security-320-full.png",
+        "sha256": "ea41d04c503ea75a84a13c615c0966c2067efe657ba08c25423cf284499b2644",
+        "identicalBetweenInteractionAndDetailRuns": true
+      },
+      {
+        "file": "plugin-1440-full.png",
+        "sha256": "7e292247d8a474d192a71e2493c99263a562d341ae1b7643eb25089679589dbf",
+        "identicalBetweenInteractionAndDetailRuns": true
+      },
+      {
+        "file": "plugin-390-full.png",
+        "sha256": "ece6fd272b7e477182159914f9a477c9e9ce33c26279fe5e7d4cc3866ba04d20",
+        "identicalBetweenInteractionAndDetailRuns": true
+      },
+      {
+        "file": "plugin-320-full.png",
+        "sha256": "33ce1dbdd0d91dd3208df6326f3388004eee49f69740a9369056d1b3fdddc3c3",
+        "identicalBetweenInteractionAndDetailRuns": true
+      },
+      {
+        "file": "index-1440-full.png",
+        "sha256": "016cb7a922ad8db676c0aaa482b7d836a7714be8ce6d6cc2a384843a6faa5814",
+        "identicalBetweenInteractionAndDetailRuns": true
+      },
+      {
+        "file": "index-390-full.png",
+        "sha256": "c9dd6cbb16f04629eae3d428557f582cf4e803e66fa91fc87ef2ce83c7604ce0",
+        "identicalBetweenInteractionAndDetailRuns": true
+      },
+      {
+        "file": "index-320-full.png",
+        "sha256": "1a2f944b54c160a300217edb8ceca2d920adc8b711f2101b0fdad99e3af53cd7",
+        "identicalBetweenInteractionAndDetailRuns": true
+      }
+    ],
+    "sourceFix": "Set .split > * min-width:0 to prevent long code commands widening the mobile plugin page.",
+    "normalBrowserProfileUsed": false,
+    "softwareInstalled": false,
+    "persistentSettingsChanged": false,
+    "remainingOwnedEdgeProcesses": 0,
+    "nonBlockingDiagnostic": "Optional favicon request 404"
+  },
+  "preservation": {
+    "file": "preservation.json",
+    "protectedExistingFiles": 3903,
+    "changedProtectedFiles": 0,
+    "originalWorktrees": 5,
+    "originalRefsUnchanged": true,
+    "oldVersionedArchivesUnchanged": true,
+    "historicalRecordingsUnchanged": true,
+    "heldStateMigrated": false,
+    "existingAclsChanged": false
+  },
+  "limits": [
+    "Synthetic same-host evaluation; fixture approval/operator authority, approval keys and fixed clocks.",
+    "No ATG record encryption, independent external capture, independent security assurance or production readiness.",
+    "Windows ACLs require separate private-parent provisioning; no same-user/admin isolation or general existing-state remediation.",
+    "POSIX permission tests skip on Windows; no fresh POSIX runtime test of final archive.",
+    "No physical-device/iOS/Safari/screen-reader/full contrast/zoom or live external-destination/deployed-site audit.",
+    "Remote/authentication/publication state unverified and unchanged; draft copy remains unpublished."
+  ],
+  "initialFailures": [
+    "Five Node24 claim-copy checks matched a negative README sentence; wording corrected without changing tests.",
+    "Browser pointer attempt on hidden skip link corrected to keyboard-only handling.",
+    "Plugin mobile grid overflow observed and fixed; final browser checks passed."
+  ],
+  "publicationRunbook": "docs/mission-04-publication-runbook.md",
+  "merge": false,
+  "push": false,
+  "deploy": false,
+  "publish": false,
+  "tag": false,
+  "githubRelease": false,
+  "authenticationRestart": false,
+  "logSha256": {
+    "archive-final.log": "08333475a3d11c3dddb9b3d3af1735a0f5bb0c8de916aba525dc73d58736094a",
+    "archive-guard-final.log": "08333475a3d11c3dddb9b3d3af1735a0f5bb0c8de916aba525dc73d58736094a",
+    "discovery-final.log": "da6dca03fe45e74b6f68bf46c52d3c4b994885e9b34163a6ceafab4357cda15c",
+    "discovery-guard-final.log": "da6dca03fe45e74b6f68bf46c52d3c4b994885e9b34163a6ceafab4357cda15c",
+    "npm-ci.log": "e528ceb89bd2190ddf2f98d2c90188efd99e90cade4539a55c440b13deabdde0",
+    "prepare-candidate.log": "734b16a98786a39d6083faa87757ca237f1d1d1011fcf4d1047998dc809546c7",
+    "public-claims-final.log": "acf5c675c17a171d5cd2bbc38d9839ce6b2f63d56a32288b2c8823774dbe520d",
+    "public-claims-guard-final.log": "acf5c675c17a171d5cd2bbc38d9839ce6b2f63d56a32288b2c8823774dbe520d",
+    "static-guard-final.log": "05ada3404739b01be65239e308ce57f6b6b9c435816aac8c2a178ad67f0466f3",
+    "validation-initial.log": "b3ca9e3b348cee8a6ddb089c8beed3bda7b7ad2e518ebb74f9f320fba7d4a2e4",
+    "validation-second.log": "dfdf0fe580b08ba93348fb7158aeb55c3234669649a8f4ce584443cb501497fd",
+    "website-details.log": "674ef63dbacfb0d4044dfcb6f028b09fd1a2e582e62aa8e905da3980dba5fe61",
+    "website-final.log": "7c2b9def0935ff814ec6e88139e40457a8fd404c7d5fde6f4677ee0aa307f938",
+    "website-initial.log": "a900208f192eb7837765bfc0f636ba4f991663a09f8d03341ef382d1631a3fd5",
+    "website-second.log": "dd6c2021e14170c511b1f0e321df43fdaaec505eb999650a0fac72c3c7ebdd21",
+    "website-static-final.log": "7cec62e0c5f983739e094046f957e04c206aba8e46d62c1ba71d5469a06b94a4"
+  }
+}

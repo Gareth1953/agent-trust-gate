@@ -1,0 +1,817 @@
+{
+  "reviewedMissionCommit": "8ca808a05afd46f2c034f9ced613b9929d11710d",
+  "reviewedWindowsCommit": "be72c69097c3faca1e5b2f91369e68b8aa777aba",
+  "version": "0.1.0-local.6",
+  "unpublished": true,
+  "archive": "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.6.tgz",
+  "archiveSize": 156138,
+  "sha256": "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10",
+  "node24": "v24.21.0",
+  "node20": "v20.19.0",
+  "node20Sha256": "6e3a39787e667d50487f7335c85636c2823a53e636d73c2c841d45da4e57906c",
+  "output": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-Y7EEHr",
+  "node20Scope": {
+    "mainFiles": [
+      "dist/test/verify-before-action.test.js",
+      "dist/test/cli.test.js",
+      "dist/test/receipt-audit.test.js",
+      "dist/test/policy-profiles.test.js",
+      "dist/test/contract.test.js",
+      "dist/test/action-validation.test.js",
+      "dist/test/integration-examples.test.js",
+      "dist/test/gateway-quickstart.test.js",
+      "dist/test/gateway-sdk.test.js",
+      "dist/test/mcp-adapter.test.js",
+      "dist/test/batch-review.test.js",
+      "dist/test/approval-pack.test.js",
+      "dist/test/human-review.test.js",
+      "dist/test/review-audit.test.js",
+      "dist/test/evidence-bundle.test.js",
+      "dist/test/gateway-server.test.js",
+      "dist/test/gateway-logging.test.js",
+      "dist/test/gateway-auth.test.js",
+      "dist/test/gateway-usage-limits.test.js",
+      "dist/test/gateway-rate-limits.test.js",
+      "dist/test/gateway-entitlements.test.js",
+      "dist/test/gateway-admin.test.js",
+      "dist/test/gateway-openapi.test.js",
+      "dist/test/agent-manifest.test.js",
+      "dist/test/commercial-readiness.test.js",
+      "dist/test/hosted-readiness.test.js",
+      "dist/test/security-readiness.test.js",
+      "dist/test/monitoring-health.test.js",
+      "dist/test/incident-response-readiness.test.js",
+      "dist/test/customer-tenant-readiness.test.js",
+      "dist/test/billing-payment-readiness.test.js",
+      "dist/test/machine-purchase-policy-readiness.test.js",
+      "dist/test/launch-readiness.test.js",
+      "dist/test/global-marketing-readiness.test.js",
+      "dist/test/commercial-launch-control.test.js",
+      "dist/test/public-trust-page.test.js",
+      "dist/test/developer-integration-safety.test.js",
+      "dist/test/agent-to-agent-trust-handshake.test.js",
+      "dist/test/refusalgraph-core.test.js",
+      "dist/test/agent-clearing-house-foundation.test.js",
+      "dist/test/refusalgraph-signal-engine.test.js",
+      "dist/test/refusalgraph-query-engine.test.js",
+      "dist/test/agent-clearing-decision-engine.test.js",
+      "dist/test/agent-clearing-receipt-engine.test.js",
+      "dist/test/unique-advantage-radar.test.js",
+      "dist/test/receipt-verification-readiness.test.js",
+      "dist/test/fee-metering-readiness.test.js",
+      "dist/test/agent-clearing-pipeline-demo.test.js",
+      "dist/test/agent-clearing-demo-cli.test.js",
+      "dist/test/agent-clearing-demo-report.test.js",
+      "dist/test/agent-clearing-public-demo-narrative.test.js",
+      "dist/test/agent-clearing-investor-partner-brief.test.js",
+      "dist/test/local-clearing-ledger.test.js",
+      "dist/test/refusalgraph-local-signal-store.test.js",
+      "dist/test/batch-agent-clearing-runner.test.js",
+      "dist/test/receipt-verification-cli.test.js",
+      "dist/test/fee-metering-ledger.test.js",
+      "dist/test/clearing-evidence-bundle.test.js",
+      "dist/test/clearing-replay-runner.test.js",
+      "dist/test/clearing-integrity-snapshot.test.js",
+      "dist/test/local-agent-clearing-engine.test.js",
+      "dist/test/machine-to-machine-paid-use-profit-test.test.js",
+      "dist/test/profit-demo-scenario-runner.test.js",
+      "dist/test/controlled-sandbox-readiness.test.js",
+      "dist/test/sandbox-end-to-end-smoke-test.test.js",
+      "dist/test/private-sandbox-decision-gate.test.js",
+      "dist/test/gareth-go-no-go-review-brief.test.js",
+      "dist/test/private-sandbox-preparation-plan.test.js",
+      "dist/test/private-sandbox-test-harness.test.js",
+      "dist/test/private-sandbox-final-readiness-certificate.test.js",
+      "dist/test/gareth-final-approval-record.test.js",
+      "dist/test/direct-agent-system-pilot-offer-pack.test.js",
+      "dist/test/direct-target-list-builder.test.js",
+      "dist/test/global-direct-target-expansion-pack.test.js",
+      "dist/test/global-educational-technical-review-pack.test.js",
+      "dist/test/gareth-manual-outreach-approval-queue.test.js",
+      "dist/test/agent-to-agent-discovery-pack.test.js",
+      "dist/test/global-discovery-live-launch-folder.test.js"
+    ],
+    "compatiblePostFiles": [
+      "dist/test/gareth-global-launch-approval.test.js",
+      "dist/test/global-discovery-verification-record.test.js",
+      "dist/test/agent-discovery-indexing-pack.test.js",
+      "dist/test/commercial-pilot-readiness-rules.test.js",
+      "dist/test/paid-technical-review-pack.test.js",
+      "dist/test/live-api-readiness-gate.test.js",
+      "dist/test/local-gate-pass-demo.test.js",
+      "dist/test/local-gate-pass-receipt.test.js",
+      "dist/test/local-demo-cli.test.js",
+      "dist/test/developer-demo-pack.test.js",
+      "dist/test/agent-capability-sandbox-readiness.test.js",
+      "dist/test/local-policy.test.js",
+      "dist/test/local-settlement-blocker.test.js",
+      "dist/test/local-gate-pass-protection.test.js",
+      "dist/test/local-trust-receipt-verifier.test.js",
+      "dist/test/local-end-to-end-money-gate-proof.test.js",
+      "dist/test/code-readable-developer-integration-pack.test.js",
+      "dist/test/public-readme-developer-positioning.test.js",
+      "dist/test/global-code-launch-readiness.test.js",
+      "dist/test/public-release-candidate-readiness.test.js",
+      "dist/test/public-omnichannel-code-launch-plan.test.js",
+      "dist/test/public-launch-record.test.js",
+      "dist/test/clone-and-run-quickstart.test.js",
+      "dist/test/public-repo-discovery-polish.test.js",
+      "dist/test/commercial-payment-capture-pack.test.js",
+      "dist/test/paid-pilot-offer-contact-copy.test.js",
+      "dist/test/pricing-and-paid-pilot-menu.test.js",
+      "dist/test/external-reviewer-signal-hardening-roadmap.test.js",
+      "dist/test/schema-formalisation-evidence-model.test.js",
+      "dist/test/local-signed-proof.test.js",
+      "dist/test/local-adversarial-evaluation.test.js",
+      "dist/test/developer-cli.test.js",
+      "dist/test/reference-integrations.test.js",
+      "dist/test/paid-pilot-readiness-review.test.js",
+      "dist/test/agent-readable-discovery-metadata.test.js",
+      "dist/test/session-intent-gate.test.js",
+      "dist/test/public-reviewer-paid-pilot-enquiry-pack.test.js",
+      "dist/test/public-repo-commercial-conversion-review.test.js",
+      "dist/test/buyer-use-cases-revenue-triggers.test.js",
+      "dist/test/global-code-discovery-distribution.test.js",
+      "dist/test/controlled-public-visibility-paid-enquiry.test.js",
+      "dist/test/prove-yourself-protocol.test.js",
+      "dist/test/agent-proof-contract.test.js",
+      "dist/test/agent-proof-integration-adapter.test.js",
+      "dist/test/enforceable-tool-gate.test.js",
+      "dist/test/gatepass-core.test.js",
+      "dist/test/gatepass-round-trip.test.js",
+      "dist/test/agent-readable-gatepass-benefit.test.js",
+      "dist/test/gatepass-trust-language.test.js",
+      "dist/test/gatepass-adversarial-scorecard.test.js",
+      "dist/test/gatepass-tool-wrapper.test.js",
+      "dist/test/gatepass-reviewer-kit.test.js",
+      "dist/test/embedded-commerce-gatepass.test.js",
+      "dist/test/end-to-end-gatepass-pilot.test.js",
+      "dist/test/public-reviewer-positioning.test.js",
+      "dist/test/atg-strategic-foresight.test.js",
+      "dist/test/paid-pilot-offer.test.js",
+      "dist/test/machine-discovery.test.js",
+      "dist/test/passive-discovery-activation.test.js",
+      "dist/test/exact-action-gatepass.test.js",
+      "dist/test/reviewer-conversion-cli.test.js",
+      "dist/test/agent-standing.test.js",
+      "dist/test/agent-review-invitation.test.js",
+      "dist/test/supplier-bank-change.test.js",
+      "dist/test/enterprise-reviewer-pack.test.js",
+      "dist/test/exact-action-trust-gateway-prototype.test.js",
+      "dist/test/exact-action-trust-gateway-prototype-server.test.js",
+      "dist/test/exact-action-trust-gateway-adversarial.test.js",
+      "dist/test/exact-action-trust-gateway-buyer-pack.test.js",
+      "dist/test/exact-action-trust-gateway-pilot-readiness.test.js",
+      "dist/test/mcp-exact-action-gateway.test.js",
+      "dist/test/business-policy-shadow-refer.test.js",
+      "dist/test/durable-action-lifecycle.test.js",
+      "dist/test/local-purchasing-lifecycle-demo.test.js",
+      "dist/test/customer-trust-evidence-pack.test.js",
+      "dist/test/evidence-controlled-public-positioning.test.js",
+      "dist/test/browser-publication-readiness.test.js",
+      "dist/test/standalone-plugin.test.js",
+      "dist/test/purchase-order-connector.test.js",
+      "dist/test/purchase-order-state-binding.test.js",
+      "test/checked-command.test.mjs",
+      "dist/test/mission-04-security.test.js"
+    ],
+    "excludedNode24Only": [
+      "test/multi-worker.test.mjs",
+      "test/destination-evidence.test.mjs"
+    ]
+  },
+  "preservedArtifacts": {
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.1.tgz": "636b4e50e78af5560588663ac761700a637c1643974b31b3c4cbacf22bd64590",
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.2.tgz": "3303ae690b2b00de22e9b0ed6c52078d06fd1571d77984ea10d0f8484c02ee2a",
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz": "62086a6cf7740ff72dafa81b821097d593b262ec019481654fb84caca5b673f0",
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.4.tgz": "164a25d41fdda287c4da265f7511802af4f358e7a3f5460395d6bf9377a66800",
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.5.tgz": "672484c3d3ac3e2efe69f2dee66fef465f10700c73c992274a6b1ea382bb2d7e",
+    "discovery-site/challenge-results.json": "27a8cdf85bf901531ebabebe158c46735b652fbc4d482f2140e8d9591e29ad15",
+    "discovery-site/challenge.html": "c2fe90870897bbf696d0ded16d6ce4bf51097c5355b896c342bac37e95a9615f",
+    "discovery-site/multi-worker-results-local.4.json": "0853929cbdac627462baf3243248c98dae42f72515e6616f5ca7ae8fbbf08d8a",
+    "discovery-site/destination-evidence-results-local.5.json": "4913b1ad99a0113ec6be5018a85d6b0fd67db9323ad56cd0f8223d2dc3018ad6"
+  },
+  "startedAt": "2026-10-15T18:09:03.039Z",
+  "checks": [
+    {
+      "name": "build",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-Y7EEHr\\build.log",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "counts": []
+    },
+    {
+      "name": "typecheck",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-Y7EEHr\\typecheck.log",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "counts": []
+    },
+    {
+      "name": "installed-destination-node24",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "scripts/test-installed-destination-evidence.mjs",
+        "--archive",
+        "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.6.tgz",
+        "--expected-version",
+        "0.1.0-local.6"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-4gRSAw\\installed-destination-node24.log",
+      "sha256": "f93c03a9cfa44e823a2e346120669e6bd580d941a8af33e9c57f842762d6012d",
+      "installedSummary": {
+        "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.6.tgz",
+        "sha256": "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10",
+        "runtime": "v24.21.0",
+        "project": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-mqMvsO",
+        "checks": [
+          {
+            "name": "installed metadata/exports/CLIs and no setup on help",
+            "passed": true
+          },
+          {
+            "name": "exact installed CLI eight signed destination scenarios",
+            "passed": true,
+            "cases": [
+              "signed-outcome",
+              "tampering",
+              "lookup-replay-and-stale",
+              "incomplete-fence",
+              "lost-acknowledgement",
+              "fenced-absence",
+              "delayed-worker",
+              "missing-evidence"
+            ]
+          },
+          {
+            "name": "35 reviewed cases against installed exports/runtime, including actual Node 20 restricted verification",
+            "passed": true,
+            "tests": 35
+          }
+        ],
+        "passed": true,
+        "publicVerificationDirectory": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-mqMvsO\\destination-state\\signed-outcome\\public",
+        "observations": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-mqMvsO\\destination-state\\results.json",
+        "summary": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-mqMvsO\\summary.json"
+      },
+      "counts": [],
+      "reusedFrom": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-4gRSAw\\summary.json"
+    },
+    {
+      "name": "installed-destination-node20",
+      "executable": "C:/Users/Gareth/agent-trust-gate/.atg-evaluation/mission-02-node20/node.exe",
+      "args": [
+        "scripts/test-installed-destination-evidence.mjs",
+        "--archive",
+        "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.6.tgz",
+        "--expected-version",
+        "0.1.0-local.6",
+        "--public-case",
+        "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-mqMvsO\\destination-state\\signed-outcome\\public"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-4gRSAw\\installed-destination-node20.log",
+      "sha256": "11732bb2cd91ad849ec6ff12b5854b9978c1643d489907db08cfceda0be017ed",
+      "installedSummary": {
+        "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.6.tgz",
+        "sha256": "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10",
+        "runtime": "v20.19.0",
+        "project": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-26ETRX",
+        "checks": [
+          {
+            "name": "installed metadata/exports/CLIs and no setup on help",
+            "passed": true
+          },
+          {
+            "name": "actual Node 20 standalone installed verifier with no writable state/private-key access",
+            "passed": true,
+            "outcome": "EXECUTED"
+          },
+          {
+            "name": "optional Node 24 exports/setup/demo reject Node 20 without state/key creation; legacy import remains usable",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "summary": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-26ETRX\\summary.json"
+      },
+      "counts": [],
+      "reusedFrom": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-4gRSAw\\summary.json"
+    },
+    {
+      "name": "installed-security-node24",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "scripts/test-installed-mission-04-security.mjs",
+        "--archive",
+        "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.6.tgz"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-4gRSAw\\installed-security-node24.log",
+      "sha256": "a10f3399993b6cf29d845554031174a93e581f6bf7a4741275fedc317492a7f4",
+      "installedSummary": {
+        "runtime": "v24.21.0",
+        "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.6.tgz",
+        "sha256": "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10",
+        "scratch": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local6-installed-security-3538gV",
+        "passed": true,
+        "securityTests": 8,
+        "securityPassed": 7,
+        "posixSkipped": 1,
+        "ntfs": {
+          "observationalProbePassed": true,
+          "aclEnforcementClaimed": false,
+          "evidence": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local6-installed-security-3538gV\\ntfs-acl.json"
+        }
+      },
+      "counts": [],
+      "reusedFrom": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-4gRSAw\\summary.json"
+    },
+    {
+      "name": "installed-security-node20",
+      "executable": "C:/Users/Gareth/agent-trust-gate/.atg-evaluation/mission-02-node20/node.exe",
+      "args": [
+        "scripts/test-installed-mission-04-security.mjs",
+        "--archive",
+        "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.6.tgz"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-4gRSAw\\installed-security-node20.log",
+      "sha256": "68aadae58b88888f09da4b5908c1fe0a040581640a3fe7b16a0993e47b351424",
+      "installedSummary": {
+        "runtime": "v20.19.0",
+        "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.6.tgz",
+        "sha256": "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10",
+        "scratch": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local6-installed-security-6yjgZz",
+        "passed": true,
+        "securityTests": 8,
+        "securityPassed": 7,
+        "posixSkipped": 1,
+        "ntfs": {
+          "observationalProbePassed": true,
+          "aclEnforcementClaimed": false,
+          "evidence": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local6-installed-security-6yjgZz\\ntfs-acl.json"
+        }
+      },
+      "counts": [],
+      "reusedFrom": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-4gRSAw\\summary.json"
+    },
+    {
+      "name": "installed-legacy-node24",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "scripts/test-standalone-plugin-package.mjs",
+        "--archive",
+        "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.6.tgz"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-4gRSAw\\installed-legacy-node24.log",
+      "sha256": "8fcc9724628c5f95040cd48482c70db3330fbcbb06ac659fd210a89b6a629139",
+      "installedSummary": {
+        "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.6.tgz",
+        "runtime": "v24.21.0",
+        "installedVersion": "0.1.0-local.6",
+        "stateBindingCases": [
+          {
+            "name": "exact",
+            "passed": true
+          },
+          {
+            "name": "changed-state",
+            "passed": true
+          },
+          {
+            "name": "commit-race",
+            "passed": true
+          },
+          {
+            "name": "lost-ack",
+            "passed": true
+          },
+          {
+            "name": "invalid-recovery",
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "counts": [],
+      "reusedFrom": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-4gRSAw\\summary.json"
+    },
+    {
+      "name": "installed-legacy-node20",
+      "executable": "C:/Users/Gareth/agent-trust-gate/.atg-evaluation/mission-02-node20/node.exe",
+      "args": [
+        "scripts/test-standalone-plugin-package.mjs",
+        "--archive",
+        "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.6.tgz"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-4gRSAw\\installed-legacy-node20.log",
+      "sha256": "578ea43620b67345188ecf73d38c176b719e50f3492778a1a40263c51304da0d",
+      "installedSummary": {
+        "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.6.tgz",
+        "runtime": "v20.19.0",
+        "installedVersion": "0.1.0-local.6",
+        "stateBindingCases": [
+          {
+            "name": "exact",
+            "passed": true
+          },
+          {
+            "name": "changed-state",
+            "passed": true
+          },
+          {
+            "name": "commit-race",
+            "passed": true
+          },
+          {
+            "name": "lost-ack",
+            "passed": true
+          },
+          {
+            "name": "invalid-recovery",
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "counts": [],
+      "reusedFrom": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-4gRSAw\\summary.json"
+    },
+    {
+      "name": "full-regression-node24",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-Y7EEHr\\full-regression-node24.log",
+      "sha256": "2ca94f881ba9acd4b7b434f5bc676d5e95ecc7bddcbe208bdadc2ca3f41183f2",
+      "counts": [
+        {
+          "kind": "tests",
+          "count": 675
+        },
+        {
+          "kind": "pass",
+          "count": 675
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        },
+        {
+          "kind": "skipped",
+          "count": 0
+        },
+        {
+          "kind": "tests",
+          "count": 953
+        },
+        {
+          "kind": "pass",
+          "count": 952
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        },
+        {
+          "kind": "skipped",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "name": "legacy-main-regression-node20",
+      "executable": "C:/Users/Gareth/agent-trust-gate/.atg-evaluation/mission-02-node20/node.exe",
+      "args": [
+        "--test",
+        "dist/test/verify-before-action.test.js",
+        "dist/test/cli.test.js",
+        "dist/test/receipt-audit.test.js",
+        "dist/test/policy-profiles.test.js",
+        "dist/test/contract.test.js",
+        "dist/test/action-validation.test.js",
+        "dist/test/integration-examples.test.js",
+        "dist/test/gateway-quickstart.test.js",
+        "dist/test/gateway-sdk.test.js",
+        "dist/test/mcp-adapter.test.js",
+        "dist/test/batch-review.test.js",
+        "dist/test/approval-pack.test.js",
+        "dist/test/human-review.test.js",
+        "dist/test/review-audit.test.js",
+        "dist/test/evidence-bundle.test.js",
+        "dist/test/gateway-server.test.js",
+        "dist/test/gateway-logging.test.js",
+        "dist/test/gateway-auth.test.js",
+        "dist/test/gateway-usage-limits.test.js",
+        "dist/test/gateway-rate-limits.test.js",
+        "dist/test/gateway-entitlements.test.js",
+        "dist/test/gateway-admin.test.js",
+        "dist/test/gateway-openapi.test.js",
+        "dist/test/agent-manifest.test.js",
+        "dist/test/commercial-readiness.test.js",
+        "dist/test/hosted-readiness.test.js",
+        "dist/test/security-readiness.test.js",
+        "dist/test/monitoring-health.test.js",
+        "dist/test/incident-response-readiness.test.js",
+        "dist/test/customer-tenant-readiness.test.js",
+        "dist/test/billing-payment-readiness.test.js",
+        "dist/test/machine-purchase-policy-readiness.test.js",
+        "dist/test/launch-readiness.test.js",
+        "dist/test/global-marketing-readiness.test.js",
+        "dist/test/commercial-launch-control.test.js",
+        "dist/test/public-trust-page.test.js",
+        "dist/test/developer-integration-safety.test.js",
+        "dist/test/agent-to-agent-trust-handshake.test.js",
+        "dist/test/refusalgraph-core.test.js",
+        "dist/test/agent-clearing-house-foundation.test.js",
+        "dist/test/refusalgraph-signal-engine.test.js",
+        "dist/test/refusalgraph-query-engine.test.js",
+        "dist/test/agent-clearing-decision-engine.test.js",
+        "dist/test/agent-clearing-receipt-engine.test.js",
+        "dist/test/unique-advantage-radar.test.js",
+        "dist/test/receipt-verification-readiness.test.js",
+        "dist/test/fee-metering-readiness.test.js",
+        "dist/test/agent-clearing-pipeline-demo.test.js",
+        "dist/test/agent-clearing-demo-cli.test.js",
+        "dist/test/agent-clearing-demo-report.test.js",
+        "dist/test/agent-clearing-public-demo-narrative.test.js",
+        "dist/test/agent-clearing-investor-partner-brief.test.js",
+        "dist/test/local-clearing-ledger.test.js",
+        "dist/test/refusalgraph-local-signal-store.test.js",
+        "dist/test/batch-agent-clearing-runner.test.js",
+        "dist/test/receipt-verification-cli.test.js",
+        "dist/test/fee-metering-ledger.test.js",
+        "dist/test/clearing-evidence-bundle.test.js",
+        "dist/test/clearing-replay-runner.test.js",
+        "dist/test/clearing-integrity-snapshot.test.js",
+        "dist/test/local-agent-clearing-engine.test.js",
+        "dist/test/machine-to-machine-paid-use-profit-test.test.js",
+        "dist/test/profit-demo-scenario-runner.test.js",
+        "dist/test/controlled-sandbox-readiness.test.js",
+        "dist/test/sandbox-end-to-end-smoke-test.test.js",
+        "dist/test/private-sandbox-decision-gate.test.js",
+        "dist/test/gareth-go-no-go-review-brief.test.js",
+        "dist/test/private-sandbox-preparation-plan.test.js",
+        "dist/test/private-sandbox-test-harness.test.js",
+        "dist/test/private-sandbox-final-readiness-certificate.test.js",
+        "dist/test/gareth-final-approval-record.test.js",
+        "dist/test/direct-agent-system-pilot-offer-pack.test.js",
+        "dist/test/direct-target-list-builder.test.js",
+        "dist/test/global-direct-target-expansion-pack.test.js",
+        "dist/test/global-educational-technical-review-pack.test.js",
+        "dist/test/gareth-manual-outreach-approval-queue.test.js",
+        "dist/test/agent-to-agent-discovery-pack.test.js",
+        "dist/test/global-discovery-live-launch-folder.test.js"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-Y7EEHr\\legacy-main-regression-node20.log",
+      "sha256": "aca345853e4a487b8211e507b189f97525ec078e047517e2431c7738b4ea6c92",
+      "counts": [
+        {
+          "kind": "tests",
+          "count": 675
+        },
+        {
+          "kind": "pass",
+          "count": 675
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        },
+        {
+          "kind": "skipped",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "name": "compatible-post-regression-node20",
+      "executable": "C:/Users/Gareth/agent-trust-gate/.atg-evaluation/mission-02-node20/node.exe",
+      "args": [
+        "--test",
+        "dist/test/gareth-global-launch-approval.test.js",
+        "dist/test/global-discovery-verification-record.test.js",
+        "dist/test/agent-discovery-indexing-pack.test.js",
+        "dist/test/commercial-pilot-readiness-rules.test.js",
+        "dist/test/paid-technical-review-pack.test.js",
+        "dist/test/live-api-readiness-gate.test.js",
+        "dist/test/local-gate-pass-demo.test.js",
+        "dist/test/local-gate-pass-receipt.test.js",
+        "dist/test/local-demo-cli.test.js",
+        "dist/test/developer-demo-pack.test.js",
+        "dist/test/agent-capability-sandbox-readiness.test.js",
+        "dist/test/local-policy.test.js",
+        "dist/test/local-settlement-blocker.test.js",
+        "dist/test/local-gate-pass-protection.test.js",
+        "dist/test/local-trust-receipt-verifier.test.js",
+        "dist/test/local-end-to-end-money-gate-proof.test.js",
+        "dist/test/code-readable-developer-integration-pack.test.js",
+        "dist/test/public-readme-developer-positioning.test.js",
+        "dist/test/global-code-launch-readiness.test.js",
+        "dist/test/public-release-candidate-readiness.test.js",
+        "dist/test/public-omnichannel-code-launch-plan.test.js",
+        "dist/test/public-launch-record.test.js",
+        "dist/test/clone-and-run-quickstart.test.js",
+        "dist/test/public-repo-discovery-polish.test.js",
+        "dist/test/commercial-payment-capture-pack.test.js",
+        "dist/test/paid-pilot-offer-contact-copy.test.js",
+        "dist/test/pricing-and-paid-pilot-menu.test.js",
+        "dist/test/external-reviewer-signal-hardening-roadmap.test.js",
+        "dist/test/schema-formalisation-evidence-model.test.js",
+        "dist/test/local-signed-proof.test.js",
+        "dist/test/local-adversarial-evaluation.test.js",
+        "dist/test/developer-cli.test.js",
+        "dist/test/reference-integrations.test.js",
+        "dist/test/paid-pilot-readiness-review.test.js",
+        "dist/test/agent-readable-discovery-metadata.test.js",
+        "dist/test/session-intent-gate.test.js",
+        "dist/test/public-reviewer-paid-pilot-enquiry-pack.test.js",
+        "dist/test/public-repo-commercial-conversion-review.test.js",
+        "dist/test/buyer-use-cases-revenue-triggers.test.js",
+        "dist/test/global-code-discovery-distribution.test.js",
+        "dist/test/controlled-public-visibility-paid-enquiry.test.js",
+        "dist/test/prove-yourself-protocol.test.js",
+        "dist/test/agent-proof-contract.test.js",
+        "dist/test/agent-proof-integration-adapter.test.js",
+        "dist/test/enforceable-tool-gate.test.js",
+        "dist/test/gatepass-core.test.js",
+        "dist/test/gatepass-round-trip.test.js",
+        "dist/test/agent-readable-gatepass-benefit.test.js",
+        "dist/test/gatepass-trust-language.test.js",
+        "dist/test/gatepass-adversarial-scorecard.test.js",
+        "dist/test/gatepass-tool-wrapper.test.js",
+        "dist/test/gatepass-reviewer-kit.test.js",
+        "dist/test/embedded-commerce-gatepass.test.js",
+        "dist/test/end-to-end-gatepass-pilot.test.js",
+        "dist/test/public-reviewer-positioning.test.js",
+        "dist/test/atg-strategic-foresight.test.js",
+        "dist/test/paid-pilot-offer.test.js",
+        "dist/test/machine-discovery.test.js",
+        "dist/test/passive-discovery-activation.test.js",
+        "dist/test/exact-action-gatepass.test.js",
+        "dist/test/reviewer-conversion-cli.test.js",
+        "dist/test/agent-standing.test.js",
+        "dist/test/agent-review-invitation.test.js",
+        "dist/test/supplier-bank-change.test.js",
+        "dist/test/enterprise-reviewer-pack.test.js",
+        "dist/test/exact-action-trust-gateway-prototype.test.js",
+        "dist/test/exact-action-trust-gateway-prototype-server.test.js",
+        "dist/test/exact-action-trust-gateway-adversarial.test.js",
+        "dist/test/exact-action-trust-gateway-buyer-pack.test.js",
+        "dist/test/exact-action-trust-gateway-pilot-readiness.test.js",
+        "dist/test/mcp-exact-action-gateway.test.js",
+        "dist/test/business-policy-shadow-refer.test.js",
+        "dist/test/durable-action-lifecycle.test.js",
+        "dist/test/local-purchasing-lifecycle-demo.test.js",
+        "dist/test/customer-trust-evidence-pack.test.js",
+        "dist/test/evidence-controlled-public-positioning.test.js",
+        "dist/test/browser-publication-readiness.test.js",
+        "dist/test/standalone-plugin.test.js",
+        "dist/test/purchase-order-connector.test.js",
+        "dist/test/purchase-order-state-binding.test.js",
+        "test/checked-command.test.mjs",
+        "dist/test/mission-04-security.test.js"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-Y7EEHr\\compatible-post-regression-node20.log",
+      "sha256": "9fe1a05457b39e2c58f5e5092b3a0ed4b0fb602e4aec659c48cf47bb7b876d3b",
+      "counts": [
+        {
+          "kind": "tests",
+          "count": 888
+        },
+        {
+          "kind": "pass",
+          "count": 887
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        },
+        {
+          "kind": "skipped",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "name": "reviewer",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "reviewer"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-Y7EEHr\\reviewer.log",
+      "sha256": "bef0691a197e726484352c76cf786dc4f8cf1e08fbc5bdeed8c52cf39bbb858b",
+      "counts": []
+    },
+    {
+      "name": "public-claims",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "validate:public-claims"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-Y7EEHr\\public-claims.log",
+      "sha256": "88fa04f01415584f878d2dc727253d77a1c3f5ed8d86276e0d7350afa3f6a6c2",
+      "counts": []
+    },
+    {
+      "name": "discovery-site",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "validate:discovery-site"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-Y7EEHr\\discovery-site.log",
+      "sha256": "68938e34c40a924537ec1481c5eb103862fe92f9ee82bb184492cb1bec5c68f2",
+      "counts": []
+    },
+    {
+      "name": "archive-bytes-checksums-links-evidence",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "validate:plugin-release"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-Y7EEHr\\archive-bytes-checksums-links-evidence.log",
+      "sha256": "2705e2146d9b8224a15cb4ebddf2dfdd74e3606cbe924303b1e92749143be046",
+      "counts": []
+    },
+    {
+      "name": "npm-audit",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "audit",
+        "--json"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-Y7EEHr\\npm-audit.log",
+      "sha256": "7c9d4457d9f744f984a9e70d88c3178484d9c0fe5b19bd0efadb7a75e3e50f06",
+      "counts": []
+    },
+    {
+      "name": "diff-check",
+      "executable": "git",
+      "args": [
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\reports\\mission-04-buyer-release\\validation\\run-Y7EEHr\\diff-check.log",
+      "sha256": "8cd3853a65b68a03b1f4cbc4dd8ff62df5bfd943e3512f6c0880a4698b41e324",
+      "counts": []
+    }
+  ],
+  "finishedAt": "2026-10-15T18:11:16.784Z",
+  "preservedArtifactsUnchanged": true,
+  "sealedArchiveUnchanged": true,
+  "passed": true
+}

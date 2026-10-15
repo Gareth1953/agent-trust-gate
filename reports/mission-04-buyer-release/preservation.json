@@ -1,0 +1,23 @@
+{
+  "reviewedParent": "be72c69097c3faca1e5b2f91369e68b8aa777aba",
+  "originalRefsUnchanged": true,
+  "originalWorktreesUnchanged": [
+    "C:/Users/Gareth/agent-trust-gate",
+    "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-01-current-main",
+    "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-03-buyer-release",
+    "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-03-destination-evidence",
+    "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-04-windows-review"
+  ],
+  "originalStatuses": {
+    "C:/Users/Gareth/agent-trust-gate": "",
+    "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-01-current-main": "",
+    "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-03-buyer-release": "",
+    "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-03-destination-evidence": "",
+    "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-04-windows-review": ""
+  },
+  "protectedFilesChecked": 3903,
+  "changedProtectedFiles": [],
+  "baseline": "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-04-buyer-release/.atg-evaluation/mission04-release-preparation/preservation-baseline.json",
+  "baselineSha256": "84bde648740cb62521d5635766ef4964610985c0cca28d16c73a1a25cc110e3e",
+  "sealedCandidateUnchanged": true
+}

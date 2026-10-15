@@ -39,6 +39,8 @@ mkdirSync(join(output, 'scripts'), { recursive: true });
 for (const name of ['shared-worker-demo.mjs', 'multi-worker-child.mjs', 'destination-process.mjs', 'mission-03-fixture.mjs', 'mission-03-worker.mjs', 'destination-evidence-demo.mjs', 'verify-destination-evidence.mjs', 'separate-destination-authority-entry.mjs']) cpSync(join(root, 'scripts', name), join(output, 'scripts', name));
 cpSync(join(root, 'LICENSE'), join(output, 'LICENSE'));
 cpSync(join(root, 'docs/standalone-plugin.md'), join(output, 'README.md'));
+cpSync(join(root, 'docs/mission-04-package-security.md'), join(output, 'SECURITY.md'));
+cpSync(join(root, 'docs/mission-04-package-release-notes.md'), join(output, 'RELEASE-NOTES.md'));
 cpSync(join(root, 'docs/shared-worker-evaluation.md'), join(output, 'SHARED-WORKERS.md'));
 cpSync(join(root, 'docs/destination-evidence-evaluation.md'), join(output, 'DESTINATION-EVIDENCE.md'));
 cpSync(join(root, 'docs/mission-03-partner-adapter-contract.md'), join(output, 'PARTNER-ADAPTER-CONTRACT.md'));
@@ -58,6 +60,6 @@ writeFileSync(join(output, 'package.json'), JSON.stringify({
   bin: { 'atg-plugin': './dist/src/standalone-plugin-cli.js', 'atg-multi-worker': './scripts/shared-worker-demo.mjs',
     'atg-destination-evidence':'./scripts/destination-evidence-demo.mjs', 'atg-evidence-verify':'./scripts/verify-destination-evidence.mjs' },
   engines: { node: '>=20' }, license: 'MIT',
-  files: ['dist/src', 'scripts', 'schemas', 'src/human-authority-demo.mjs', 'README.md', 'SHARED-WORKERS.md', 'DESTINATION-EVIDENCE.md', 'PARTNER-ADAPTER-CONTRACT.md', 'LICENSE'],
+  files: ['dist/src', 'scripts', 'schemas', 'src/human-authority-demo.mjs', 'README.md', 'SECURITY.md', 'RELEASE-NOTES.md', 'SHARED-WORKERS.md', 'DESTINATION-EVIDENCE.md', 'PARTNER-ADAPTER-CONTRACT.md', 'LICENSE'],
 }, null, 2) + '\n');
 console.log(`Standalone plugin staged at ${output}. No registry publication performed.`);

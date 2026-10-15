@@ -1,6 +1,6 @@
 # ATG standalone plugin — local evaluation edition
 
-Version: **0.1.0-local.5**. This is an installable Node.js package using ATG's existing exact-action authority core, not a second policy engine. It provides an SDK facade, the existing local MCP evaluation server and an optional gated **synthetic** purchasing example.
+Version: **0.1.0-local.6 — unpublished candidate**. This is an installable Node.js package using ATG's existing exact-action authority core, not a second policy engine. It provides an SDK facade, the existing local MCP evaluation server and an optional gated **synthetic** purchasing example.
 
 **Current boundaries:** repository-registered synthetic authority, policies, evidence and fixture signing keys; a fixed synthetic reference clock; legacy single-process lifecycle storage, plus optional Node 24+ shared-worker SQLite v2 storage on one machine. Not production ready, customer validated, a hosted service or a live purchasing/payment connector. There is no self-learning or automatic authority expansion. Installation does not make fixture credentials trustworthy for real actions.
 
@@ -9,12 +9,12 @@ Version: **0.1.0-local.5**. This is an installable Node.js package using ATG's e
 Requires Node.js 20 or newer and npm. From your project's directory:
 
 ```powershell
-npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.5.tgz
+npm install C:\path\to\agent-trust-gate-plugin-0.1.0-local.6.tgz
 npx --no-install atg-plugin --help
 npx --no-install atg-plugin request
 ```
 
-The local.5 archive is prepared locally for approval; its website URL activates only after publication. Until then install the local archive path. The versioned archive is served by the ATG website after approval; it is **not published to the npm registry**. Review the repository and compare the downloaded archive against [the published checksum](https://agenttrustgate.com/downloads/SHA256SUMS). On Windows, `Get-FileHash -Algorithm SHA256 <downloaded-file>` reports the checksum. Keep the state file in a host-controlled directory outside `node_modules`. Use one process per legacy state file. The optional shared-worker export supports separate processes on one machine through local SQLite; it provides no multi-machine guarantee. Do not provide production credentials or personal/customer data.
+The local.6 candidate is prepared locally for Gareth and Dave's review; published local.5 remains unchanged. Its candidate link is not a live release. The local.6 archive is prepared locally for approval; its website URL activates only after publication. Until then install the local archive path. The versioned archive is served by the ATG website after approval; it is **not published to the npm registry**. Review the repository and compare the downloaded archive against [the published checksum](https://agenttrustgate.com/downloads/SHA256SUMS). On Windows, `Get-FileHash -Algorithm SHA256 <downloaded-file>` reports the checksum. Keep the state file in a host-controlled directory outside `node_modules`. Use one process per legacy state file. The optional shared-worker export supports separate processes on one machine through local SQLite; it provides no multi-machine guarantee. Do not provide production credentials or personal/customer data.
 
 To build the archive yourself from a reviewed repository checkout:
 
@@ -106,7 +106,7 @@ Controlled evaluation enquiries: gareth@agenttrustgate.com
 
 The SDK exports `AtgPurchaseOrderConnector`. In local.3, the exact synthetic approval snapshot and request digest are included in the canonical arguments covered by the existing GatePass signature. The destination checks that same approved state again at its synchronous synthetic commit boundary, and reconciliation verifies it against the recorded outcome. State changes require fresh approval; changing state between preliminary verification and commit records no order. Invalid recovery evidence retains UNKNOWN exposure, and replay remains blocked.
 
-Run `atg-plugin order-demo --state <new-absolute-directory>` to reproduce an unchanged order, changed supplier-bank state, lost acknowledgement and timeout before commit. `npm run test:plugin -- --archive discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.5.tgz` installs that exact archive in a fresh temporary project and checks SDK, CLI, MCP, signature tampering, changed state, the commit race and recovery.
+Run `atg-plugin order-demo --state <new-absolute-directory>` to reproduce an unchanged order, changed supplier-bank state, lost acknowledgement and timeout before commit. `npm run test:plugin -- --archive discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.6.tgz` installs that exact archive in a fresh temporary project and checks SDK, CLI, MCP, signature tampering, changed state, the commit race and recovery.
 
 The earlier local.2 and local.3 archives are retained unchanged. Approvals are synthetic fixtures, signing keys and time are fixtures, records are same-host evidence, and controls are single-process. No live ERP integration, distributed safety, independently sourced external execution evidence or production readiness is claimed. See the [purchase-order connector guide](https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/purchase-order-connector.md) for the SDK example and recovery limits.
 
@@ -120,3 +120,46 @@ Read the [shared-worker guide](https://github.com/Gareth1953/agent-trust-gate/bl
 ## New in local.5: separately signed destination evidence
 
 The optional public verifier supports Node 20; separate destination/shared authority requires Node 24+. Run `npx --no-install atg-destination-evidence --state ABSOLUTE_NEW_DIRECTORY` only for explicit fresh synthetic setup, then verify copied public inputs with `atg-evidence-verify`. The destination process generates/owns its key; ATG receives only the host-pinned public key. This is one-machine, same-host synthetic evidence and fixed time, not independent external capture, host-administrator protection or live partner integration. Existing v1/v2 state is preserved with no reset/automatic migration, and UNKNOWN is never blindly retried. See bundled DESTINATION-EVIDENCE.md and the repository buyer guide at docs/destination-evidence-evaluation.md.
+
+## Mission 04 fixes in the unpublished local.6 candidate
+
+
+- Legacy exact-action and receipt serializers retain own enumerable JSON
+  __proto__ fields in signed/hash bytes. Previously omitted fields now change
+  the digest and cause a changed signed receipt or approved action to fail.
+- Newly created durable JSON containing directories request POSIX mode 0700;
+  atomic temporary files request mode 0600, which replacement retains.
+  Existing directories and ancestors are not repaired or migrated.
+
+## Windows and data handling
+
+POSIX modes do not configure a private NTFS DACL. Provision and inspect a new
+host-controlled evaluation parent before creating state. Restrict directory
+inheritance through the separately authorised OS process; check temporary,
+initial and replacement file DACLs. Restricting one existing state file does
+not establish the permissions inherited by a replacement. ATG does not
+implement Windows ACL enforcement, and existing held state must be preserved.
+
+The Windows review observed broader inherited sandbox access in its workspace.
+A separately authorised test on one new disposable parent verified inheritance
+of only the evaluation user, SYSTEM and Administrators Full control through
+fresh state creation and replacement. It did not secure existing stores or
+test impersonation/effective access, administrator/SYSTEM token execution,
+backup/restore or same-user isolation. Same-user code and administrators can
+read local keys and records. No client-data deployment approval follows.
+
+ATG does not encrypt local evaluation records. Use synthetic information only;
+do not add client records, real credentials or production keys. Approval and
+operator authority, approval signing keys and clocks remain fixtures. The
+separate destination evaluation key remains on the same host. These are
+one-machine, same-host synthetic controls, not independent external capture,
+live ERP/payment integration, production key custody or multi-machine safety.
+UNKNOWN outcomes retain holds and require explicit reconciliation; never reset,
+migrate or discard held exposure merely to get a passing run.
+
+Legacy SDK/CLI/MCP and public verification support Node 20+. SQLite shared
+workers and the separate destination require Node 24+. Unsupported optional
+use fails closed. No live execution or administrative tool is exposed by MCP.
+
+
+Read bundled SECURITY.md and RELEASE-NOTES.md. These source fixes do not update published local.5.

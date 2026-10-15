@@ -1,5 +1,10 @@
 # Release Notes
 
+## Plugin 0.1.0-local.6 — unpublished Mission 04 candidate
+
+Prepared locally for Gareth and Dave: reviewed own-JSON-field signing integrity and POSIX durable-state creation permissions. Published local.5 and earlier archives remain unchanged. No NTFS ACL enforcement, ATG record encryption, independent security assurance or production readiness is claimed. Synthetic fixture keys/clocks and same-host boundaries remain. See [candidate release notes](docs/mission-04-package-release-notes.md) and [security limits](docs/mission-04-package-security.md).
+
+
 ## P3-M145: End-to-End GatePass Pilot and Commercial Conversion Pack
 
 P3-M145 adds a reviewer-friendly local journey for a delegated payment-style action before simulated settlement.

@@ -294,6 +294,8 @@ h3 { font-size: 1.35rem; }
 .list-check li { position: relative; padding-left: 28px; margin: 11px 0; color: var(--muted); }
 .list-check li::before { content: "✓"; position: absolute; left: 0; color: var(--teal-dark); font-weight: 900; }
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 54px; align-items: start; }
+/* Let code blocks scroll inside a grid item rather than widen the page. */
+.split > * { min-width: 0; }
 .surface { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-soft); }
 .surface.dark { color: var(--white); background: #0d1c2d; border-color: rgba(255,255,255,.08); }
 .surface.dark p { color: #aab9c8; }

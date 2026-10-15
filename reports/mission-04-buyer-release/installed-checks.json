@@ -1,0 +1,146 @@
+{
+  "installed-destination-node24": {
+    "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.6.tgz",
+    "sha256": "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10",
+    "runtime": "v24.21.0",
+    "project": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-mqMvsO",
+    "checks": [
+      {
+        "name": "installed metadata/exports/CLIs and no setup on help",
+        "passed": true
+      },
+      {
+        "name": "exact installed CLI eight signed destination scenarios",
+        "passed": true,
+        "cases": [
+          "signed-outcome",
+          "tampering",
+          "lookup-replay-and-stale",
+          "incomplete-fence",
+          "lost-acknowledgement",
+          "fenced-absence",
+          "delayed-worker",
+          "missing-evidence"
+        ]
+      },
+      {
+        "name": "35 reviewed cases against installed exports/runtime, including actual Node 20 restricted verification",
+        "passed": true,
+        "tests": 35
+      }
+    ],
+    "passed": true,
+    "publicVerificationDirectory": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-mqMvsO\\destination-state\\signed-outcome\\public",
+    "observations": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-mqMvsO\\destination-state\\results.json",
+    "summary": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-mqMvsO\\summary.json"
+  },
+  "installed-destination-node20": {
+    "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.6.tgz",
+    "sha256": "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10",
+    "runtime": "v20.19.0",
+    "project": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-26ETRX",
+    "checks": [
+      {
+        "name": "installed metadata/exports/CLIs and no setup on help",
+        "passed": true
+      },
+      {
+        "name": "actual Node 20 standalone installed verifier with no writable state/private-key access",
+        "passed": true,
+        "outcome": "EXECUTED"
+      },
+      {
+        "name": "optional Node 24 exports/setup/demo reject Node 20 without state/key creation; legacy import remains usable",
+        "passed": true
+      }
+    ],
+    "passed": true,
+    "summary": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-26ETRX\\summary.json"
+  },
+  "installed-security-node24": {
+    "runtime": "v24.21.0",
+    "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.6.tgz",
+    "sha256": "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10",
+    "scratch": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local6-installed-security-3538gV",
+    "passed": true,
+    "securityTests": 8,
+    "securityPassed": 7,
+    "posixSkipped": 1,
+    "ntfs": {
+      "observationalProbePassed": true,
+      "aclEnforcementClaimed": false,
+      "evidence": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local6-installed-security-3538gV\\ntfs-acl.json"
+    }
+  },
+  "installed-security-node20": {
+    "runtime": "v20.19.0",
+    "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.6.tgz",
+    "sha256": "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10",
+    "scratch": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local6-installed-security-6yjgZz",
+    "passed": true,
+    "securityTests": 8,
+    "securityPassed": 7,
+    "posixSkipped": 1,
+    "ntfs": {
+      "observationalProbePassed": true,
+      "aclEnforcementClaimed": false,
+      "evidence": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local6-installed-security-6yjgZz\\ntfs-acl.json"
+    }
+  },
+  "installed-legacy-node24": {
+    "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.6.tgz",
+    "runtime": "v24.21.0",
+    "installedVersion": "0.1.0-local.6",
+    "stateBindingCases": [
+      {
+        "name": "exact",
+        "passed": true
+      },
+      {
+        "name": "changed-state",
+        "passed": true
+      },
+      {
+        "name": "commit-race",
+        "passed": true
+      },
+      {
+        "name": "lost-ack",
+        "passed": true
+      },
+      {
+        "name": "invalid-recovery",
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "installed-legacy-node20": {
+    "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.6.tgz",
+    "runtime": "v20.19.0",
+    "installedVersion": "0.1.0-local.6",
+    "stateBindingCases": [
+      {
+        "name": "exact",
+        "passed": true
+      },
+      {
+        "name": "changed-state",
+        "passed": true
+      },
+      {
+        "name": "commit-race",
+        "passed": true
+      },
+      {
+        "name": "lost-ack",
+        "passed": true
+      },
+      {
+        "name": "invalid-recovery",
+        "passed": true
+      }
+    ],
+    "passed": true
+  }
+}

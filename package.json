@@ -111,7 +111,9 @@
     "validate:mission-03": "node scripts/validate-mission-03.mjs",
     "test:plugin-destination-evidence": "node scripts/test-installed-destination-evidence.mjs",
     "validate:mission-03-buyer-release": "node scripts/validate-mission-03-buyer-release.mjs",
-    "test:security-mission-04": "npm run build --silent && node --test dist/test/mission-04-security.test.js"
+    "test:security-mission-04": "npm run build --silent && node --test dist/test/mission-04-security.test.js",
+    "prepare:mission-04-candidate": "npm run build --silent && node scripts/prepare-mission-04-candidate.mjs",
+    "validate:mission-04-buyer-release": "node scripts/validate-mission-04-buyer-release.mjs"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

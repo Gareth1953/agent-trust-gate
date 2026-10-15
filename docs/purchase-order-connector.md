@@ -1,8 +1,8 @@
 # Purchase-order connector — controlled local evaluation
 
-Available in `@agent-trust-gate/plugin` **0.1.0-local.5**. This adds a host-owned synthetic destination to the existing authority core. It contacts no ERP, payment system or external API and executes no real purchase. It is not production ready or customer validated.
+Available in `@agent-trust-gate/plugin` **0.1.0-local.6**. This adds a host-owned synthetic destination to the existing authority core. It contacts no ERP, payment system or external API and executes no real purchase. It is not production ready or customer validated.
 
-The prepared local.5 archive retains the reviewed signed state-binding/recovery controls and adds the optional shared-worker path. Previously published local.2 and local.3 archives remain unchanged. This is a local release candidate until Gareth approves GitHub/Pages publication.
+The unpublished local.6 candidate archive retains the reviewed signed state-binding/recovery controls and the optional shared-worker path introduced earlier. Published local.5 and all older archives remain unchanged. The candidate also includes reviewed Mission 04 signed-JSON and POSIX state-creation fixes. This is a local release candidate until Gareth approves GitHub/Pages publication.
 
 ## What can be demonstrated
 
@@ -21,7 +21,7 @@ These are reusable evaluation scenarios, not measured financial benefits, compet
 Use a **new absolute directory for each run**, outside the installed package. Node.js 20 or newer is required.
 
 ```sh
-npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.5.tgz
+npm install C:\path\to\agent-trust-gate-plugin-0.1.0-local.6.tgz
 npx --no-install atg-plugin order-demo --state /absolute/path/to/new-atg-order-evaluation
 ```
 
@@ -88,3 +88,5 @@ Reconciliation searches by the journal handle, GatePass identity and signed acti
 ## Separate-process evaluation in local.4
 
 This guide describes the legacy single-owner AtgPurchaseOrderConnector. Use the separate [Node 24+ shared-worker guide](shared-worker-evaluation.md) for SQLite v2 and multiple worker processes on one machine. The legacy root, CLI and MCP remain Node 20 compatible. Shared v1 directories fail closed and must be preserved; no automatic migration or reset is implemented. Neither path establishes multi-machine distributed safety or independently captured evidence.
+
+Local records are not encrypted by ATG. The candidate does not configure Windows NTFS ACLs: provision and verify a private new parent separately, including temporary and replacement-file inheritance. See the [candidate security boundary](mission-04-package-security.md).
