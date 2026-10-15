@@ -1,0 +1,360 @@
+{
+  "publishedBase": "0dcd8dfcb0583c0d242517764390acde9b244920",
+  "reviewedMissionCommit": "327ab2fcae590de89e886abfc12fc181f56f8dac",
+  "pluginVersion": "0.1.0-local.5",
+  "archive": "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.5.tgz",
+  "sha256": "672484c3d3ac3e2efe69f2dee66fef465f10700c73c992274a6b1ea382bb2d7e",
+  "node": "v24.21.0",
+  "node20": "v20.19.0",
+  "node20Sha256": "6e3a39787e667d50487f7335c85636c2823a53e636d73c2c841d45da4e57906c",
+  "preservedArtifacts": {
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.2.tgz": "3303ae690b2b00de22e9b0ed6c52078d06fd1571d77984ea10d0f8484c02ee2a",
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz": "62086a6cf7740ff72dafa81b821097d593b262ec019481654fb84caca5b673f0",
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.4.tgz": "164a25d41fdda287c4da265f7511802af4f358e7a3f5460395d6bf9377a66800",
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.5.tgz": "672484c3d3ac3e2efe69f2dee66fef465f10700c73c992274a6b1ea382bb2d7e",
+    "discovery-site/challenge-results.json": "27a8cdf85bf901531ebabebe158c46735b652fbc4d482f2140e8d9591e29ad15",
+    "discovery-site/challenge.html": "b8ca14a67eab8db5092dfde160fb017bdd07161c53384e88fa5409130596a8aa",
+    "discovery-site/multi-worker-results-local.4.json": "0853929cbdac627462baf3243248c98dae42f72515e6616f5ca7ae8fbbf08d8a"
+  },
+  "startedAt": "2026-10-14T19:13:54.627Z",
+  "output": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-buyer-release\\.atg-evaluation\\mission03-buyer-release-validation\\run-QR4Ijr",
+  "checks": [
+    {
+      "name": "typecheck",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 5541,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-buyer-release\\.atg-evaluation\\mission03-buyer-release-validation\\run-QR4Ijr\\typecheck.log",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "counts": []
+    },
+    {
+      "name": "focused-mission03",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test:destination-evidence"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 18000,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-buyer-release\\.atg-evaluation\\mission03-buyer-release-validation\\run-QR4Ijr\\focused-mission03.log",
+      "sha256": "c96a2f53ca74fd37d299cb30f065072ff693392aa3d0e9f6b4023763be838a1a",
+      "counts": [
+        {
+          "kind": "tests",
+          "count": 35
+        },
+        {
+          "kind": "pass",
+          "count": 35
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "name": "full-regression",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 46635,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-buyer-release\\.atg-evaluation\\mission03-buyer-release-validation\\run-QR4Ijr\\full-regression.log",
+      "sha256": "1628acc47ff3fd5fd83cb7cad242b7955bdbce5f3068983a35885be153f1ea6f",
+      "counts": [
+        {
+          "kind": "tests",
+          "count": 675
+        },
+        {
+          "kind": "pass",
+          "count": 675
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        },
+        {
+          "kind": "tests",
+          "count": 945
+        },
+        {
+          "kind": "pass",
+          "count": 945
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "name": "legacy-exact-node24",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "scripts/test-standalone-plugin-package.mjs",
+        "--archive",
+        "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.5.tgz"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 6445,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-buyer-release\\.atg-evaluation\\mission03-buyer-release-validation\\run-QR4Ijr\\legacy-exact-node24.log",
+      "sha256": "d30ab746e289114f6ef8d9bc2d7f1d5fadfdf947e94f758fa5311caec554b411",
+      "counts": []
+    },
+    {
+      "name": "legacy-exact-node20",
+      "executable": "C:/Users/Gareth/agent-trust-gate/.atg-evaluation/mission-02-node20/node.exe",
+      "args": [
+        "scripts/test-standalone-plugin-package.mjs",
+        "--archive",
+        "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.5.tgz"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 3735,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-buyer-release\\.atg-evaluation\\mission03-buyer-release-validation\\run-QR4Ijr\\legacy-exact-node20.log",
+      "sha256": "63566313caf2ebddfec75dc9dfee8bf5ba7de4aa5a61d2b1d5a82a49ceb11e82",
+      "counts": []
+    },
+    {
+      "name": "mission03-exact-node24",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "scripts/test-installed-destination-evidence.mjs",
+        "--archive",
+        "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.5.tgz"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 15285,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-buyer-release\\.atg-evaluation\\mission03-buyer-release-validation\\run-QR4Ijr\\mission03-exact-node24.log",
+      "sha256": "0f7d8d6504d1fbdd190a825ab537e95084c86fb1c4818dfc4fc4b7a3fbfa4d74",
+      "counts": [],
+      "installedSummary": {
+        "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.5.tgz",
+        "sha256": "672484c3d3ac3e2efe69f2dee66fef465f10700c73c992274a6b1ea382bb2d7e",
+        "runtime": "v24.21.0",
+        "project": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-xRjNoH",
+        "checks": [
+          {
+            "name": "installed metadata/exports/CLIs and no setup on help",
+            "passed": true
+          },
+          {
+            "name": "exact installed CLI eight signed destination scenarios",
+            "passed": true,
+            "cases": [
+              "signed-outcome",
+              "tampering",
+              "lookup-replay-and-stale",
+              "incomplete-fence",
+              "lost-acknowledgement",
+              "fenced-absence",
+              "delayed-worker",
+              "missing-evidence"
+            ]
+          },
+          {
+            "name": "35 reviewed cases against installed exports/runtime, including actual Node 20 restricted verification",
+            "passed": true,
+            "tests": 35
+          }
+        ],
+        "passed": true,
+        "publicVerificationDirectory": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-xRjNoH\\destination-state\\signed-outcome\\public",
+        "observations": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-xRjNoH\\destination-state\\results.json",
+        "summary": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-xRjNoH\\summary.json"
+      }
+    },
+    {
+      "name": "mission03-exact-node20",
+      "executable": "C:/Users/Gareth/agent-trust-gate/.atg-evaluation/mission-02-node20/node.exe",
+      "args": [
+        "scripts/test-installed-destination-evidence.mjs",
+        "--archive",
+        "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.5.tgz",
+        "--public-case",
+        "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-xRjNoH\\destination-state\\signed-outcome\\public"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 2433,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-buyer-release\\.atg-evaluation\\mission03-buyer-release-validation\\run-QR4Ijr\\mission03-exact-node20.log",
+      "sha256": "b62cc61334f173541e07e39340b9581121c7071a98f8c5d94047b0070d728a5a",
+      "counts": [],
+      "installedSummary": {
+        "archive": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-buyer-release\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.5.tgz",
+        "sha256": "672484c3d3ac3e2efe69f2dee66fef465f10700c73c992274a6b1ea382bb2d7e",
+        "runtime": "v20.19.0",
+        "project": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-UXWdrh",
+        "checks": [
+          {
+            "name": "installed metadata/exports/CLIs and no setup on help",
+            "passed": true
+          },
+          {
+            "name": "actual Node 20 standalone installed verifier with no writable state/private-key access",
+            "passed": true,
+            "outcome": "EXECUTED"
+          },
+          {
+            "name": "optional Node 24 exports/setup/demo reject Node 20 without state/key creation; legacy import remains usable",
+            "passed": true
+          }
+        ],
+        "passed": true,
+        "summary": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-local5-installed-UXWdrh\\summary.json"
+      }
+    },
+    {
+      "name": "reviewer",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "reviewer"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7714,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-buyer-release\\.atg-evaluation\\mission03-buyer-release-validation\\run-QR4Ijr\\reviewer.log",
+      "sha256": "bef0691a197e726484352c76cf786dc4f8cf1e08fbc5bdeed8c52cf39bbb858b",
+      "counts": []
+    },
+    {
+      "name": "challenge",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "demo:challenge"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7978,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-buyer-release\\.atg-evaluation\\mission03-buyer-release-validation\\run-QR4Ijr\\challenge.log",
+      "sha256": "a0f0db447f86801fcc2988d091a08db214a68f38f620accb444fef4581a0944e",
+      "counts": []
+    },
+    {
+      "name": "public-claims",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "validate:public-claims"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7663,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-buyer-release\\.atg-evaluation\\mission03-buyer-release-validation\\run-QR4Ijr\\public-claims.log",
+      "sha256": "88fa04f01415584f878d2dc727253d77a1c3f5ed8d86276e0d7350afa3f6a6c2",
+      "counts": []
+    },
+    {
+      "name": "discovery",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "validate:discovery-site"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7896,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-buyer-release\\.atg-evaluation\\mission03-buyer-release-validation\\run-QR4Ijr\\discovery.log",
+      "sha256": "68938e34c40a924537ec1481c5eb103862fe92f9ee82bb184492cb1bec5c68f2",
+      "counts": []
+    },
+    {
+      "name": "archive-checksums-links-evidence",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "validate:plugin-release"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7724,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-buyer-release\\.atg-evaluation\\mission03-buyer-release-validation\\run-QR4Ijr\\archive-checksums-links-evidence.log",
+      "sha256": "826e9ef0a763e718ecbaaaf6a7117cfe759b99ddd2d1ae55abeaf9e0ff5fe44e",
+      "counts": []
+    },
+    {
+      "name": "working-diff-check",
+      "executable": "git",
+      "args": [
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 60,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-buyer-release\\.atg-evaluation\\mission03-buyer-release-validation\\run-QR4Ijr\\working-diff-check.log",
+      "sha256": "4851d4f2614d50f908e5973b644e72f9cdf063eeedf698ef2043c9c1d3cfeec0",
+      "counts": []
+    }
+  ],
+  "sourceHashes": {
+    "package.json": "9236c7ae30abe8d7a10cb014ddec540e4203f81c8f3471582d7f0f32dab91ac7",
+    "src/standalone-plugin.ts": "dfc8cfc822e6163e9b5e64de4ceada01a7a8dcbe6ee4056e22e77ac987f29ac6",
+    "scripts/build-standalone-plugin.mjs": "c2a25d7fd8fc4c43c4e1fecd868119f34e89593cddafedf50998db857112d638",
+    "scripts/mission-03-fixture.mjs": "61194cd7a221c42edce2831c686bae1e39ef5b5a30151fb02b67d6c5e0d088e5",
+    "scripts/separate-destination-authority-entry.mjs": "b2273f0f759bc6e03365889312b1c1a1aecbbafb46287598691a6a40ec412327",
+    "scripts/destination-evidence-demo.mjs": "1ede5e9f1a51db0e0fc29d2d12ceba17a5f8af4556fd65be602250b2426367b4",
+    "scripts/verify-destination-evidence.mjs": "6d5649015304602e68ac6a7fbefcecc6a65f631a0ad62f9f5d65a6ae222b59f8",
+    "scripts/test-standalone-plugin-package.mjs": "5f38b4224951a949e0fcaf1ca3bb4341c9a667e56980a3a2f303d2b58f3c90ec",
+    "scripts/test-installed-destination-evidence.mjs": "cd68bf5c9bab8c47f9f0f538b01afcd900ed3c7dfad6c59c73baa51ebc329a57",
+    "scripts/validate-plugin-release.mjs": "ea3fe8d9e20ccd675aee97bec881d05a17a8ae33ec8056f276c83c10b6436ced",
+    "scripts/validate-mission-03-buyer-release.mjs": "0f126461269723b307e6484219214efc84afc5d01d040bce67c3f9b7e7e73c7c",
+    "docs/destination-evidence-evaluation.md": "50f081d264ce02498d16a308d96daf4cffad4eb02fb1f853005f7b0acccb0e38",
+    "docs/standalone-plugin.md": "60be58013d0ce507c2325d776059cd2c35031c9ec7d1ce4535d28f0947642910",
+    "discovery-site/plugin.html": "4ca2eb33af6f1b63d80d1af9e32f0ec05d68074d684c9572fe0b2a60e58ab849",
+    "discovery-site/destination-evidence-results-local.5.json": "912533613ad848e214e34ae0a700abc6a5151b82e634464422bd9fb3c9873c6a",
+    "schemas/destination-evidence.synthetic.v1.schema.json": "517900c577ec09fc10568da0da9726fd143e3d685860cb5d788d994cc016ba05"
+  },
+  "finishedAt": "2026-10-14T19:16:11.778Z",
+  "preservedHashesMatch": true,
+  "sourcesUnchanged": true,
+  "passed": true,
+  "review": {
+    "decision": "READY FOR GARETH AND DAVE PUBLICATION APPROVAL",
+    "branch": "mission-03-buyer-release",
+    "worktree": "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-03-buyer-release",
+    "archiveBytes": 154124,
+    "packaging": "Integrated Mission 03 optional exports/CLIs in exact local.5 archive",
+    "privateKeyMaterialIncluded": false,
+    "keysGeneratedOnlyDuringExplicitFreshSetup": true,
+    "oldArchivesAndChallengePreserved": true,
+    "originalMain": "8044c65b3ffba8da5ee0bea6eb6933882e3e56e0",
+    "mergedIntoMain": false,
+    "pushed": false,
+    "published": false,
+    "tagged": false,
+    "installedNodeReplaced": false,
+    "authentication": "Unresolved; no login restarted",
+    "developmentDefectFixed": "Unsupported ESM/CommonJS optional import cache interactions: guarded ESM authority entry and fixture guard before dynamic authority loading; actual Node 20 repeated/mixed import checks passed",
+    "priorCandidateArchivesRetained": [
+      ".atg-evaluation/local5-candidate-001/agent-trust-gate-plugin-0.1.0-local.5.tgz",
+      ".atg-evaluation/local5-candidate-002/agent-trust-gate-plugin-0.1.0-local.5.tgz"
+    ],
+    "finalCandidateOrigin": ".atg-evaluation/local5-candidate-003/agent-trust-gate-plugin-0.1.0-local.5.tgz"
+  }
+}

@@ -1,0 +1,272 @@
+{
+  "baseCommit": "0dcd8dfcb0583c0d242517764390acde9b244920",
+  "node": "v24.21.0",
+  "node20": "v20.19.0",
+  "node20Sha256": "6e3a39787e667d50487f7335c85636c2823a53e636d73c2c841d45da4e57906c",
+  "preservedArtifacts": {
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.2.tgz": "3303ae690b2b00de22e9b0ed6c52078d06fd1571d77984ea10d0f8484c02ee2a",
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz": "62086a6cf7740ff72dafa81b821097d593b262ec019481654fb84caca5b673f0",
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.4.tgz": "164a25d41fdda287c4da265f7511802af4f358e7a3f5460395d6bf9377a66800",
+    "discovery-site/challenge-results.json": "27a8cdf85bf901531ebabebe158c46735b652fbc4d482f2140e8d9591e29ad15"
+  },
+  "startedAt": "2026-10-14T18:22:25.221Z",
+  "output": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-RmsHoq",
+  "checks": [
+    {
+      "name": "typecheck",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 5626,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-RmsHoq\\typecheck.log",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "counts": []
+    },
+    {
+      "name": "focused",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test:destination-evidence"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 15749,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-RmsHoq\\focused.log",
+      "sha256": "51e992acaab1fe991410f20074e32108e6bb84cb5119ce06875171d3e8359023",
+      "counts": [
+        {
+          "kind": "tests",
+          "count": 25
+        },
+        {
+          "kind": "pass",
+          "count": 25
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "name": "full-regression",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 46995,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-RmsHoq\\full-regression.log",
+      "sha256": "726c6d5c794fe007508957a96f963c2b545a199916f701b6e9ab1eaff039271a",
+      "counts": [
+        {
+          "kind": "tests",
+          "count": 675
+        },
+        {
+          "kind": "pass",
+          "count": 675
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        },
+        {
+          "kind": "tests",
+          "count": 935
+        },
+        {
+          "kind": "pass",
+          "count": 935
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "name": "installed-node24",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-RmsHoq\\installed-check.mjs",
+        "--archive",
+        "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.4.tgz"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 5941,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-RmsHoq\\installed-node24.log",
+      "sha256": "143bc1cec6e8f26e94c7e443ae923efbe61d39b27bc9f62010d4f46d087e4456",
+      "counts": []
+    },
+    {
+      "name": "installed-node20",
+      "executable": "C:/Users/Gareth/agent-trust-gate/.atg-evaluation/mission-02-node20/node.exe",
+      "args": [
+        "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-RmsHoq\\installed-check.mjs",
+        "--archive",
+        "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.4.tgz"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 3587,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-RmsHoq\\installed-node20.log",
+      "sha256": "b57e2666fdd23147d012d3c0e3b01dc7707d3dd747299d178ffc00ce2d865862",
+      "counts": []
+    },
+    {
+      "name": "reviewer",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "reviewer"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7766,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-RmsHoq\\reviewer.log",
+      "sha256": "bef0691a197e726484352c76cf786dc4f8cf1e08fbc5bdeed8c52cf39bbb858b",
+      "counts": []
+    },
+    {
+      "name": "challenge",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "demo:challenge"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 8129,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-RmsHoq\\challenge.log",
+      "sha256": "49aa8b700a0f40f1891b761541d25d466db0e9862f37885f9a1aee0cb1f21c5f",
+      "counts": []
+    },
+    {
+      "name": "public-claims",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "validate:public-claims"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7825,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-RmsHoq\\public-claims.log",
+      "sha256": "88fa04f01415584f878d2dc727253d77a1c3f5ed8d86276e0d7350afa3f6a6c2",
+      "counts": []
+    },
+    {
+      "name": "discovery",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "validate:discovery-site"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7975,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-RmsHoq\\discovery.log",
+      "sha256": "68938e34c40a924537ec1481c5eb103862fe92f9ee82bb184492cb1bec5c68f2",
+      "counts": []
+    },
+    {
+      "name": "release-preservation",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "validate:plugin-release"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7725,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-RmsHoq\\release-preservation.log",
+      "sha256": "c5a5a9a97479a5e6335b296c1cfa1833c11ae1d2841bc1a13f27503a52896be2",
+      "counts": []
+    },
+    {
+      "name": "demo",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "scripts/mission-03-demo.mjs",
+        "--state",
+        "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-RmsHoq\\demo-state"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 372,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-RmsHoq\\demo.log",
+      "sha256": "0d523941a1e90e98310b677d2a6b6cdb95b1afc239cc5f8b2bac42d142e5ebd8",
+      "counts": []
+    },
+    {
+      "name": "diff-check",
+      "executable": "git",
+      "args": [
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 46,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-RmsHoq\\diff-check.log",
+      "sha256": "1e93ecf36d7414d53439592c07ec435a505a79b5c93b4bc00cafff6c57035248",
+      "counts": []
+    }
+  ],
+  "sourceHashes": {
+    "package.json": "96750cf66ea3fae2b578ce87ba31320f1e8439ff7d952e6581c0fa75557342bd",
+    "src/destination-evidence.ts": "a887cf9c2f9a66fe78b48a297ba6a27615fa55eca70cc49ec22d695e4e086139",
+    "src/destination-process-client.ts": "1169651a38d9f20eafb75823d1e0527981a40ee524c551ffab2ac20f0ac9a0cf",
+    "src/separate-destination-authority.ts": "fb5b221e2a0e10fb9ef2c5cc5282214a68fd9dd9ce4546166bdf2041a1bdd038",
+    "scripts/destination-process.mjs": "baf2edf9b0e98512ace3db713429da8720fe8e35295a6a84cc9685dd105826ff",
+    "scripts/mission-03-fixture.mjs": "30369bd317fe6463385716e725899f20779e12608ee29066827f66801425ace4",
+    "scripts/mission-03-worker.mjs": "8a42e09750b52f7848cd820f88742782789d3db103e8e994656dc909f51c0e2b",
+    "scripts/mission-03-demo.mjs": "9100357eeef5e7284139bbae350eacbd43e6b2df00216674c7bc5499eecb0a32",
+    "scripts/verify-destination-evidence.mjs": "a67e5560a606754078e9109501379b0005709d457e213868fde1f184ebf45998",
+    "scripts/validate-mission-03.mjs": "a59b8818359464f7b5264ec81adeb1dcd5c314b31a59cc40926a940aa67aee88",
+    "test/destination-evidence.test.mjs": "3c6ca0d202bd2633745d19ffad8f3099def5885416602c409907967015b009cc",
+    "schemas/destination-evidence.synthetic.v1.schema.json": "62b8ec9929ecf8bb8c0ea1a74908570fb4dd41112c58e64bf6c0c911c94da8a3",
+    "docs/mission-03-destination-evidence.md": "12a83e8c23f1c5b6a72fda97a1371c999a574baae5b685135eb38301c663e0e1",
+    "docs/mission-03-partner-adapter-contract.md": "7cb7a3e2b14dddabbd6adecad7eaccebd956b85fa9c07ba3817bb1ebf72464cf"
+  },
+  "finishedAt": "2026-10-14T18:24:22.995Z",
+  "preservedHashesMatch": true,
+  "sourcesUnchanged": true,
+  "passed": true,
+  "review": {
+    "decision": "READY FOR GARETH AND DAVE LOCAL REVIEW",
+    "branch": "mission-03-destination-evidence",
+    "published": false,
+    "pushed": false,
+    "merged": false,
+    "installedNodeReplaced": false,
+    "newMissionPackageBuilt": false,
+    "privateKeysIncluded": false,
+    "originalLocalMain": "8044c65b3ffba8da5ee0bea6eb6933882e3e56e0",
+    "matchingReleaseTree": "5565c917f520e856c1ef0292856ce886cf15f194",
+    "limitations": [
+      "Synthetic keys and fixed test clock",
+      "Separate processes/signing roles on one machine",
+      "No independent external capture, hardware isolation, partner attestation, production key custody or host administrator protection",
+      "New Mission 03 functionality is source/demo review work; immutable local.4 archive is unchanged",
+      "External partner key custody, authenticated provisioning/transport, authoritative ledger and durable atomic fencing, live clock/replay/key lifecycle and multi-host testing remain required"
+    ]
+  }
+}

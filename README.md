@@ -26,7 +26,7 @@ continues to describe the absence of any hosted or production capability.
 ATG now includes a standalone Node.js plugin package using the same exact-action core. Install it in another project to use the SDK or the existing local MCP evaluation tool without depending on the repository working directory. The SDK also provides a gated **synthetic** execution example; it does not accept live tool callbacks. The purchase-order approval carries a signed business-state binding, checked again at synthetic commit and during reconciliation.
 
 ```powershell
-npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.4.tgz
+npm install https://agenttrustgate.com/downloads/agent-trust-gate-plugin-0.1.0-local.5.tgz
 npx --no-install atg-plugin --help
 ```
 
@@ -3638,4 +3638,9 @@ Static local discovery is documented through the [manifest](agent-trust-gate.man
 
 ### local.4 shared-worker evaluation candidate
 
-The optional shared-worker export and packaged atg-multi-worker demo require Node 24+. Legacy SDK, CLI and evaluation-only MCP remain compatible with Node 20. Run the installed demo with --state ABSOLUTE_NEW_DIRECTORY to retain fresh SQLite v2 state and seven process-coordinated observations. Existing v1 shared state is preserved and refused without automatic migration/reset. Read the [buyer guide](docs/shared-worker-evaluation.md). The new archive and website changes are prepared for approval; no publication has occurred.
+The optional shared-worker export and packaged atg-multi-worker demo require Node 24+. Legacy SDK, CLI and evaluation-only MCP remain compatible with Node 20. Run the installed demo with --state ABSOLUTE_NEW_DIRECTORY to retain fresh SQLite v2 state and seven process-coordinated observations. Existing v1 shared state is preserved and refused without automatic migration/reset. Read the [buyer guide](docs/shared-worker-evaluation.md). The published local.4 archive remains retained. Local.5 packaging changes are prepared separately for approval.
+
+
+### local.5 separately signed destination evidence candidate
+
+Mission 03 is now included through optional public-verifier/destination-authority exports and the atg-destination-evidence / atg-evidence-verify CLIs. Legacy SDK/CLI/MCP and public verification support Node 20; shared destination authority requires Node 24. Keys are generated only during explicit fresh synthetic setup inside the destination process. [Buyer setup, exact-archive commands and limits](docs/destination-evidence-evaluation.md). Same-host, one-machine, synthetic keys/time; no independent external capture, host-administrator protection or live partner integration. Prior downloads and Challenge evidence remain retained. Prepared locally for approval; no publication performed.

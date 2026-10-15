@@ -1,0 +1,403 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agenttrustgate.com/schemas/destination-evidence.synthetic.v1.schema.json",
+  "title": "Mission 03 synthetic separately signed destination evidence",
+  "description": "Local review schema only; not published. Signature, trust pins, canonical binding, freshness and durable fence semantics require the verifier.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "algorithm",
+    "keyId",
+    "payload",
+    "signature"
+  ],
+  "properties": {
+    "schema": {
+      "const": "atg.destination-evidence.synthetic.v1"
+    },
+    "algorithm": {
+      "const": "Ed25519"
+    },
+    "keyId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "destinationIdentity",
+        "approvalId",
+        "gatePassId",
+        "actionDigest",
+        "approvedRequestDigest",
+        "approvedBusinessStateDigest",
+        "approvedBusinessState",
+        "idempotencyId",
+        "transactionId",
+        "outcome",
+        "resultingRecordVersion",
+        "recordDigest",
+        "lookup",
+        "observedAt",
+        "clockId",
+        "authoritativeLookup",
+        "destinationSequence",
+        "fence",
+        "syntheticOnly",
+        "sameHost"
+      ],
+      "properties": {
+        "schema": {
+          "const": "atg.destination-evidence.synthetic.v1"
+        },
+        "destinationIdentity": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "approvalId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "gatePassId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "actionDigest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "approvedRequestDigest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "approvedBusinessStateDigest": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$"
+        },
+        "approvedBusinessState": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "orderId",
+            "orderVersion",
+            "supplierBankVersion",
+            "supplierBankReference",
+            "revision"
+          ],
+          "properties": {
+            "orderId": {
+              "const": "PO-SYNTHETIC-001"
+            },
+            "orderVersion": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "supplierBankVersion": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "supplierBankReference": {
+              "type": "string",
+              "pattern": "^fixture-bank-[A-Z]$"
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "idempotencyId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 240
+        },
+        "transactionId": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "outcome": {
+          "enum": [
+            "EXECUTED",
+            "ABSENT"
+          ]
+        },
+        "resultingRecordVersion": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 2
+        },
+        "recordDigest": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^sha256:[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lookup": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "requestId",
+            "challenge",
+            "requestedAt",
+            "clockId",
+            "fenceId"
+          ],
+          "properties": {
+            "requestId": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$"
+            },
+            "challenge": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$"
+            },
+            "requestedAt": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "clockId": {
+              "const": "mission-03-fixed-test-clock"
+            },
+            "fenceId": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "observedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "clockId": {
+          "const": "mission-03-fixed-test-clock"
+        },
+        "authoritativeLookup": {
+          "const": true
+        },
+        "destinationSequence": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fence": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "fenceId",
+                "gatePassId",
+                "idempotencyId",
+                "completed",
+                "sequence"
+              ],
+              "properties": {
+                "fenceId": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$"
+                },
+                "gatePassId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 240
+                },
+                "idempotencyId": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 240
+                },
+                "completed": {
+                  "const": true
+                },
+                "sequence": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "syntheticOnly": {
+          "const": true
+        },
+        "sameHost": {
+          "const": true
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "outcome": {
+                "const": "ABSENT"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "fence": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "fenceId",
+                  "gatePassId",
+                  "idempotencyId",
+                  "completed",
+                  "sequence"
+                ],
+                "properties": {
+                  "fenceId": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$"
+                  },
+                  "gatePassId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 240
+                  },
+                  "idempotencyId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 240
+                  },
+                  "completed": {
+                    "const": true
+                  },
+                  "sequence": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                }
+              },
+              "transactionId": {
+                "type": "null"
+              },
+              "recordDigest": {
+                "type": "null"
+              },
+              "resultingRecordVersion": {
+                "type": "null"
+              },
+              "lookup": {
+                "properties": {
+                  "fenceId": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$"
+                  }
+                }
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "transactionId": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$"
+              },
+              "recordDigest": {
+                "type": "string",
+                "pattern": "^sha256:[a-f0-9]{64}$"
+              },
+              "resultingRecordVersion": {
+                "type": "integer",
+                "minimum": 2
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "lookup": {
+                "properties": {
+                  "fenceId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "fence": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "fenceId",
+                  "gatePassId",
+                  "idempotencyId",
+                  "completed",
+                  "sequence"
+                ],
+                "properties": {
+                  "fenceId": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$"
+                  },
+                  "gatePassId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 240
+                  },
+                  "idempotencyId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 240
+                  },
+                  "completed": {
+                    "const": true
+                  },
+                  "sequence": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                }
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "fence": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "signature": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9+/]{86}==$"
+    }
+  }
+}

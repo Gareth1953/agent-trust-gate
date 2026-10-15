@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { CommandExecutionError, runCheckedCommand } from './checked-command.mjs';
-import { mkdtempSync, writeFileSync, rmSync, readFileSync, copyFileSync } from 'node:fs';
+import { mkdtempSync, writeFileSync, readFileSync, copyFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { resolve, join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -20,10 +20,11 @@ try {
   let archive;
   if (args.length === 2) archive = resolve(args[1]);
   else {
-    run(process.execPath, ['scripts/build-standalone-plugin.mjs']);
-    const packed = JSON.parse(runNpm(['pack', './plugin-build/package', '--pack-destination', './plugin-build', '--json', '--silent']))[0];
+    const staged=join(scratch,'package');
+    run(process.execPath, ['scripts/build-standalone-plugin.mjs','--output',staged]);
+    const packed = JSON.parse(runNpm(['pack', staged, '--pack-destination', scratch, '--json', '--silent']))[0];
     assert.ok(packed.files.every(file => !/(^|\/)(test|node_modules|state\.json)(\/|$)/.test(file.path)));
-    archive = join(root, 'plugin-build', packed.filename);
+    archive = join(scratch, packed.filename);
   }
   writeFileSync(join(scratch, 'package.json'), JSON.stringify({ name: 'atg-install-smoke', private: true, type: 'module' }));
   runNpm(['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', archive], scratch);
@@ -117,5 +118,5 @@ try {
   process.exitCode = error instanceof CommandExecutionError ? error.exitCode : 1;
   console.error(error);
 } finally {
-  rmSync(scratch, { recursive: true, force: true });
+  console.log('Retained fresh installed package/state: '+scratch);
 }

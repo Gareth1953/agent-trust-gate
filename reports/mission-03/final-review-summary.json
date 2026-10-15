@@ -1,0 +1,288 @@
+{
+  "baseCommit": "0dcd8dfcb0583c0d242517764390acde9b244920",
+  "packagingScope": "Mission 03 source/demo only; local.4 installed checks are prior-release compatibility, not installed Mission 03 tests",
+  "node": "v24.21.0",
+  "node20": "v20.19.0",
+  "node20Sha256": "6e3a39787e667d50487f7335c85636c2823a53e636d73c2c841d45da4e57906c",
+  "preservedArtifacts": {
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.2.tgz": "3303ae690b2b00de22e9b0ed6c52078d06fd1571d77984ea10d0f8484c02ee2a",
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.3.tgz": "62086a6cf7740ff72dafa81b821097d593b262ec019481654fb84caca5b673f0",
+    "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.4.tgz": "164a25d41fdda287c4da265f7511802af4f358e7a3f5460395d6bf9377a66800",
+    "discovery-site/challenge-results.json": "27a8cdf85bf901531ebabebe158c46735b652fbc4d482f2140e8d9591e29ad15"
+  },
+  "startedAt": "2026-10-14T18:37:36.344Z",
+  "output": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-IBqeZu",
+  "checks": [
+    {
+      "name": "typecheck",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 5704,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-IBqeZu\\typecheck.log",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "counts": []
+    },
+    {
+      "name": "focused",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test:destination-evidence"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 18187,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-IBqeZu\\focused.log",
+      "sha256": "939aa417161771cb991d783a42c6fb067e7616650ef3067b06bcd6f442d13422",
+      "counts": [
+        {
+          "kind": "tests",
+          "count": 35
+        },
+        {
+          "kind": "pass",
+          "count": 35
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "name": "full-regression",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "test"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 46161,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-IBqeZu\\full-regression.log",
+      "sha256": "fc6888807c91a90980655bb9784e3db8c56da6f5db39b8b9f23fab0284e2bcd4",
+      "counts": [
+        {
+          "kind": "tests",
+          "count": 675
+        },
+        {
+          "kind": "pass",
+          "count": 675
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        },
+        {
+          "kind": "tests",
+          "count": 945
+        },
+        {
+          "kind": "pass",
+          "count": 945
+        },
+        {
+          "kind": "fail",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "name": "installed-node24",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-IBqeZu\\installed-check.mjs",
+        "--archive",
+        "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.4.tgz"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 6285,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-IBqeZu\\installed-node24.log",
+      "sha256": "03a7c457509e631840777fb71d733c1efb8b8a622af2d4c405cd2699a0f4db53",
+      "counts": []
+    },
+    {
+      "name": "installed-node20",
+      "executable": "C:/Users/Gareth/agent-trust-gate/.atg-evaluation/mission-02-node20/node.exe",
+      "args": [
+        "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-IBqeZu\\installed-check.mjs",
+        "--archive",
+        "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\discovery-site\\downloads\\agent-trust-gate-plugin-0.1.0-local.4.tgz"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 3554,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-IBqeZu\\installed-node20.log",
+      "sha256": "58e043bb62d1842375798ebf95913d02d2cbaa6782650424b30176e1a04b4b3d",
+      "counts": []
+    },
+    {
+      "name": "reviewer",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "reviewer"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7520,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-IBqeZu\\reviewer.log",
+      "sha256": "bef0691a197e726484352c76cf786dc4f8cf1e08fbc5bdeed8c52cf39bbb858b",
+      "counts": []
+    },
+    {
+      "name": "challenge",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "demo:challenge"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7744,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-IBqeZu\\challenge.log",
+      "sha256": "96ad98e966e3d4d0adecc67edaa227405eb7af0e52efac54ebce630144b8f63d",
+      "counts": []
+    },
+    {
+      "name": "public-claims",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "validate:public-claims"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7607,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-IBqeZu\\public-claims.log",
+      "sha256": "88fa04f01415584f878d2dc727253d77a1c3f5ed8d86276e0d7350afa3f6a6c2",
+      "counts": []
+    },
+    {
+      "name": "discovery",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "validate:discovery-site"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7872,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-IBqeZu\\discovery.log",
+      "sha256": "68938e34c40a924537ec1481c5eb103862fe92f9ee82bb184492cb1bec5c68f2",
+      "counts": []
+    },
+    {
+      "name": "release-preservation",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+        "run",
+        "validate:plugin-release"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 7764,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-IBqeZu\\release-preservation.log",
+      "sha256": "c5a5a9a97479a5e6335b296c1cfa1833c11ae1d2841bc1a13f27503a52896be2",
+      "counts": []
+    },
+    {
+      "name": "demo",
+      "executable": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "scripts/mission-03-demo.mjs",
+        "--state",
+        "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-IBqeZu\\demo-state"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 368,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-IBqeZu\\demo.log",
+      "sha256": "9f9a405f84f91ebbf02aa0fab45c403ca12ba3ade7e7dc51f7d3bd8609b9f5e1",
+      "counts": []
+    },
+    {
+      "name": "diff-check",
+      "executable": "git",
+      "args": [
+        "diff",
+        "--check"
+      ],
+      "exitCode": 0,
+      "error": null,
+      "durationMs": 50,
+      "log": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-03-destination-evidence\\.atg-evaluation\\mission03-validation\\run-IBqeZu\\diff-check.log",
+      "sha256": "893a3cd91e33b8297b7e1f0a5861f194440794cc5f96c770d4c5e6a4dd5fb89c",
+      "counts": []
+    }
+  ],
+  "sourceHashes": {
+    "package.json": "96750cf66ea3fae2b578ce87ba31320f1e8439ff7d952e6581c0fa75557342bd",
+    "src/destination-evidence.ts": "3b2efe7e9288c3d4e8109c18f6f20013cff09dba3c1f3df5094f16aea3ab8e60",
+    "src/destination-process-client.ts": "1169651a38d9f20eafb75823d1e0527981a40ee524c551ffab2ac20f0ac9a0cf",
+    "src/separate-destination-authority.ts": "fb5b221e2a0e10fb9ef2c5cc5282214a68fd9dd9ce4546166bdf2041a1bdd038",
+    "scripts/destination-process.mjs": "1a898125e7909047a26e7f696677383c229cb01c17f876791b73e2560e8fe0a5",
+    "scripts/mission-03-fixture.mjs": "30369bd317fe6463385716e725899f20779e12608ee29066827f66801425ace4",
+    "scripts/mission-03-worker.mjs": "8a42e09750b52f7848cd820f88742782789d3db103e8e994656dc909f51c0e2b",
+    "scripts/mission-03-demo.mjs": "9100357eeef5e7284139bbae350eacbd43e6b2df00216674c7bc5499eecb0a32",
+    "scripts/verify-destination-evidence.mjs": "a67e5560a606754078e9109501379b0005709d457e213868fde1f184ebf45998",
+    "scripts/validate-mission-03.mjs": "f077ba08925ac4be95e5d0bacc960dcf77c138ed561830f2a78fd0c118aaef65",
+    "test/destination-evidence.test.mjs": "0515a4522017af666e45679cb558bd50acafddf904178962bb64e3d8f0ed24d2",
+    "schemas/destination-evidence.synthetic.v1.schema.json": "696952ef111d25bde475d509c073752cf5add99cb3ba9729c4729ffacfc6ed48",
+    "docs/mission-03-destination-evidence.md": "230364c3cd64508fee44565c0b69951a994a097ce9ea75f2fc5297a13206da01",
+    "docs/mission-03-partner-adapter-contract.md": "7cb7a3e2b14dddabbd6adecad7eaccebd956b85fa9c07ba3817bb1ebf72464cf"
+  },
+  "finishedAt": "2026-10-14T18:39:35.200Z",
+  "preservedHashesMatch": true,
+  "sourcesUnchanged": true,
+  "passed": true,
+  "review": {
+    "reviewedDiff": {
+      "base": "0dcd8dfcb0583c0d242517764390acde9b244920",
+      "head": "b3ce99fca5d2372c7ad0205716f92a41fbd69bd5"
+    },
+    "decision": "READY FOR LOCAL INTEGRATION",
+    "integrationScope": "Mission 03 source/demo; not plugin or production release",
+    "findingsFixed": [
+      "Unsigned own __proto__ content accepted by inherited canonical serialization: strict Mission 03 JSON boundary added",
+      "Missing requested fence proof on EXECUTED lookup: now rejected and schema aligned"
+    ],
+    "verificationStrengthened": [
+      "Actual Node 20 subprocess denies all writes and reads of ATG authority state/destination private key, with assertions before successful verification",
+      "Kills inside uncommitted destination write/fence transactions; authority worker killed after durable registration before acknowledgement",
+      "Legitimately signed identity/action/state mismatch and incomplete execution evidence retain UNKNOWN",
+      "Distinct configured signing keys and pinned destination key restart checks"
+    ],
+    "authentication": {
+      "noninteractive": true,
+      "savedAccounts": [
+        "Tempest1953"
+      ],
+      "garethCredentialAvailable": false,
+      "garethAuthenticationVerified": false,
+      "repositoryUsernameSelection": "Gareth1953",
+      "explanation": "Repository username selection is configuration, not a saved authenticated account. No browser login restarted or credentials changed."
+    },
+    "preservedOriginalMain": "8044c65b3ffba8da5ee0bea6eb6933882e3e56e0",
+    "merged": false,
+    "pushed": false,
+    "published": false,
+    "privateKeysIncluded": false,
+    "mission03PluginArchiveBuilt": false
+  }
+}
