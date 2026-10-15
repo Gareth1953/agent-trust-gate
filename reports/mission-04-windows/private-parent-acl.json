@@ -1,0 +1,580 @@
+{
+  "passed": true,
+  "node": "v24.21.0",
+  "identity": "\"ax16pro\\gareth\",\"S-1-5-21-884222727-2268899625-373168730-1001\"\r\n",
+  "allowedSids": [
+    "S-1-5-21-884222727-2268899625-373168730-1001",
+    "S-1-5-18",
+    "S-1-5-32-544"
+  ],
+  "retainedDisposableDirectory": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-m04-private-parent-lR8sXT",
+  "statePath": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-m04-private-parent-lR8sXT\\private\\state.json",
+  "repository": "C:\\Users\\Gareth\\agent-trust-gate\\.worktrees\\mission-04-windows-review",
+  "parentBefore": {
+    "Path": "C:\\Users\\Gareth\\AppData\\Local\\Temp",
+    "OwnerSid": "S-1-5-21-884222727-2268899625-373168730-1001",
+    "Protected": false,
+    "Canonical": true,
+    "Sddl": "O:S-1-5-21-884222727-2268899625-373168730-1001G:S-1-5-21-884222727-2268899625-373168730-513D:AI(A;OICI;FA;;;SY)(A;OICI;FA;;;BA)(A;OICI;0x1301bf;;;S-1-5-21-3830170013-540735458-2395729578-4100602064)(A;OICI;0x1301bf;;;S-1-5-21-4262760030-1429795816-410243204-1215521866)(A;OICI;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)(A;OICI;0x1301bf;;;S-1-5-21-884222727-2268899625-373168730-1002)(A;OICIID;0x1301bf;;;S-1-5-21-715745301-1172149471-2490689245-1626957673)(A;OICIID;0x1301bf;;;S-1-5-21-884222727-2268899625-373168730-1002)(A;OICIID;0x1301bf;;;S-1-5-21-515431488-3885978456-391655353-87447169)(A;OICIID;0x1301bf;;;S-1-5-21-1065419036-2048970783-340542631-2615506565)(A;OICIID;0x1301bf;;;S-1-5-21-3933573161-43893288-857327681-3398293179)(A;OICIID;0x1301bf;;;S-1-5-21-1729742438-1762310116-3965806446-3084126381)(A;OICIID;FA;;;SY)(A;OICIID;FA;;;BA)(A;OICIID;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)",
+    "Rules": [
+      {
+        "Sid": "S-1-5-18",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": false,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-32-544",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": false,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-3830170013-540735458-2395729578-4100602064",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": false,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-4262760030-1429795816-410243204-1215521866",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": false,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-884222727-2268899625-373168730-1001",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": false,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-884222727-2268899625-373168730-1002",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": false,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-715745301-1172149471-2490689245-1626957673",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-884222727-2268899625-373168730-1002",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-515431488-3885978456-391655353-87447169",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-1065419036-2048970783-340542631-2615506565",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-3933573161-43893288-857327681-3398293179",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-1729742438-1762310116-3965806446-3084126381",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-18",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-32-544",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-884222727-2268899625-373168730-1001",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      }
+    ]
+  },
+  "parentAfter": {
+    "Path": "C:\\Users\\Gareth\\AppData\\Local\\Temp",
+    "OwnerSid": "S-1-5-21-884222727-2268899625-373168730-1001",
+    "Protected": false,
+    "Canonical": true,
+    "Sddl": "O:S-1-5-21-884222727-2268899625-373168730-1001G:S-1-5-21-884222727-2268899625-373168730-513D:AI(A;OICI;FA;;;SY)(A;OICI;FA;;;BA)(A;OICI;0x1301bf;;;S-1-5-21-3830170013-540735458-2395729578-4100602064)(A;OICI;0x1301bf;;;S-1-5-21-4262760030-1429795816-410243204-1215521866)(A;OICI;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)(A;OICI;0x1301bf;;;S-1-5-21-884222727-2268899625-373168730-1002)(A;OICIID;0x1301bf;;;S-1-5-21-715745301-1172149471-2490689245-1626957673)(A;OICIID;0x1301bf;;;S-1-5-21-884222727-2268899625-373168730-1002)(A;OICIID;0x1301bf;;;S-1-5-21-515431488-3885978456-391655353-87447169)(A;OICIID;0x1301bf;;;S-1-5-21-1065419036-2048970783-340542631-2615506565)(A;OICIID;0x1301bf;;;S-1-5-21-3933573161-43893288-857327681-3398293179)(A;OICIID;0x1301bf;;;S-1-5-21-1729742438-1762310116-3965806446-3084126381)(A;OICIID;FA;;;SY)(A;OICIID;FA;;;BA)(A;OICIID;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)",
+    "Rules": [
+      {
+        "Sid": "S-1-5-18",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": false,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-32-544",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": false,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-3830170013-540735458-2395729578-4100602064",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": false,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-4262760030-1429795816-410243204-1215521866",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": false,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-884222727-2268899625-373168730-1001",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": false,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-884222727-2268899625-373168730-1002",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": false,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-715745301-1172149471-2490689245-1626957673",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-884222727-2268899625-373168730-1002",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-515431488-3885978456-391655353-87447169",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-1065419036-2048970783-340542631-2615506565",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-3933573161-43893288-857327681-3398293179",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-1729742438-1762310116-3965806446-3084126381",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-18",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-32-544",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-884222727-2268899625-373168730-1001",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      }
+    ]
+  },
+  "initialRoot": {
+    "Path": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-m04-private-parent-lR8sXT",
+    "OwnerSid": "S-1-5-21-884222727-2268899625-373168730-1001",
+    "Protected": false,
+    "Canonical": true,
+    "Sddl": "O:S-1-5-21-884222727-2268899625-373168730-1001G:S-1-5-21-884222727-2268899625-373168730-513D:AI(A;OICIID;0x1301bf;;;S-1-5-21-3830170013-540735458-2395729578-4100602064)(A;OICIID;0x1301bf;;;S-1-5-21-884222727-2268899625-373168730-1002)(A;OICIID;0x1301bf;;;S-1-5-21-4262760030-1429795816-410243204-1215521866)(A;OICIID;FA;;;SY)(A;OICIID;FA;;;BA)(A;OICIID;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)(A;OICIID;0x1301bf;;;S-1-5-21-715745301-1172149471-2490689245-1626957673)(A;OICIID;0x1301bf;;;S-1-5-21-515431488-3885978456-391655353-87447169)(A;OICIID;0x1301bf;;;S-1-5-21-1065419036-2048970783-340542631-2615506565)(A;OICIID;0x1301bf;;;S-1-5-21-3933573161-43893288-857327681-3398293179)(A;OICIID;0x1301bf;;;S-1-5-21-1729742438-1762310116-3965806446-3084126381)",
+    "Rules": [
+      {
+        "Sid": "S-1-5-21-3830170013-540735458-2395729578-4100602064",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-884222727-2268899625-373168730-1002",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-4262760030-1429795816-410243204-1215521866",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-18",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-32-544",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-884222727-2268899625-373168730-1001",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-715745301-1172149471-2490689245-1626957673",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-515431488-3885978456-391655353-87447169",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-1065419036-2048970783-340542631-2615506565",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-3933573161-43893288-857327681-3398293179",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-1729742438-1762310116-3965806446-3084126381",
+        "Type": "Allow",
+        "Rights": 1245631,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      }
+    ]
+  },
+  "grantOutput": "processed file: C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-m04-private-parent-lR8sXT\r\nSuccessfully processed 1 files; Failed processing 0 files\r\n",
+  "protectOutput": "processed file: C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-m04-private-parent-lR8sXT\r\nSuccessfully processed 1 files; Failed processing 0 files\r\n",
+  "protectedRoot": {
+    "Path": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-m04-private-parent-lR8sXT",
+    "OwnerSid": "S-1-5-21-884222727-2268899625-373168730-1001",
+    "Protected": true,
+    "Canonical": true,
+    "Sddl": "O:S-1-5-21-884222727-2268899625-373168730-1001G:S-1-5-21-884222727-2268899625-373168730-513D:PAI(A;OICI;FA;;;SY)(A;OICI;FA;;;BA)(A;OICI;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)",
+    "Rules": [
+      {
+        "Sid": "S-1-5-18",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": false,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-32-544",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": false,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-884222727-2268899625-373168730-1001",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": false,
+        "Inheritance": 3,
+        "Propagation": 0
+      }
+    ]
+  },
+  "directory": {
+    "Path": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-m04-private-parent-lR8sXT\\private",
+    "OwnerSid": "S-1-5-21-884222727-2268899625-373168730-1001",
+    "Protected": false,
+    "Canonical": true,
+    "Sddl": "O:S-1-5-21-884222727-2268899625-373168730-1001G:S-1-5-21-884222727-2268899625-373168730-513D:AI(A;OICIID;FA;;;BA)(A;OICIID;FA;;;SY)(A;OICIID;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)",
+    "Rules": [
+      {
+        "Sid": "S-1-5-32-544",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-18",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-884222727-2268899625-373168730-1001",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 3,
+        "Propagation": 0
+      }
+    ]
+  },
+  "temporaryFiles": [
+    {
+      "Path": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-m04-private-parent-lR8sXT\\private\\state.json.tmp-12136-1",
+      "OwnerSid": "S-1-5-21-884222727-2268899625-373168730-1001",
+      "Protected": false,
+      "Canonical": true,
+      "Sddl": "O:S-1-5-21-884222727-2268899625-373168730-1001G:S-1-5-21-884222727-2268899625-373168730-513D:AI(A;ID;FA;;;BA)(A;ID;FA;;;SY)(A;ID;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)",
+      "Rules": [
+        {
+          "Sid": "S-1-5-32-544",
+          "Type": "Allow",
+          "Rights": 2032127,
+          "Inherited": true,
+          "Inheritance": 0,
+          "Propagation": 0
+        },
+        {
+          "Sid": "S-1-5-18",
+          "Type": "Allow",
+          "Rights": 2032127,
+          "Inherited": true,
+          "Inheritance": 0,
+          "Propagation": 0
+        },
+        {
+          "Sid": "S-1-5-21-884222727-2268899625-373168730-1001",
+          "Type": "Allow",
+          "Rights": 2032127,
+          "Inherited": true,
+          "Inheritance": 0,
+          "Propagation": 0
+        }
+      ]
+    },
+    {
+      "Path": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-m04-private-parent-lR8sXT\\private\\state.json.tmp-12136-2",
+      "OwnerSid": "S-1-5-21-884222727-2268899625-373168730-1001",
+      "Protected": false,
+      "Canonical": true,
+      "Sddl": "O:S-1-5-21-884222727-2268899625-373168730-1001G:S-1-5-21-884222727-2268899625-373168730-513D:AI(A;ID;FA;;;BA)(A;ID;FA;;;SY)(A;ID;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)",
+      "Rules": [
+        {
+          "Sid": "S-1-5-32-544",
+          "Type": "Allow",
+          "Rights": 2032127,
+          "Inherited": true,
+          "Inheritance": 0,
+          "Propagation": 0
+        },
+        {
+          "Sid": "S-1-5-18",
+          "Type": "Allow",
+          "Rights": 2032127,
+          "Inherited": true,
+          "Inheritance": 0,
+          "Propagation": 0
+        },
+        {
+          "Sid": "S-1-5-21-884222727-2268899625-373168730-1001",
+          "Type": "Allow",
+          "Rights": 2032127,
+          "Inherited": true,
+          "Inheritance": 0,
+          "Propagation": 0
+        }
+      ]
+    }
+  ],
+  "initialFile": {
+    "Path": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-m04-private-parent-lR8sXT\\private\\state.json",
+    "OwnerSid": "S-1-5-21-884222727-2268899625-373168730-1001",
+    "Protected": false,
+    "Canonical": true,
+    "Sddl": "O:S-1-5-21-884222727-2268899625-373168730-1001G:S-1-5-21-884222727-2268899625-373168730-513D:AI(A;ID;FA;;;BA)(A;ID;FA;;;SY)(A;ID;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)",
+    "Rules": [
+      {
+        "Sid": "S-1-5-32-544",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 0,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-18",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 0,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-884222727-2268899625-373168730-1001",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 0,
+        "Propagation": 0
+      }
+    ]
+  },
+  "replacedFile": {
+    "Path": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-m04-private-parent-lR8sXT\\private\\state.json",
+    "OwnerSid": "S-1-5-21-884222727-2268899625-373168730-1001",
+    "Protected": false,
+    "Canonical": true,
+    "Sddl": "O:S-1-5-21-884222727-2268899625-373168730-1001G:S-1-5-21-884222727-2268899625-373168730-513D:AI(A;ID;FA;;;BA)(A;ID;FA;;;SY)(A;ID;FA;;;S-1-5-21-884222727-2268899625-373168730-1001)",
+    "Rules": [
+      {
+        "Sid": "S-1-5-32-544",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 0,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-18",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 0,
+        "Propagation": 0
+      },
+      {
+        "Sid": "S-1-5-21-884222727-2268899625-373168730-1001",
+        "Type": "Allow",
+        "Rights": 2032127,
+        "Inherited": true,
+        "Inheritance": 0,
+        "Propagation": 0
+      }
+    ]
+  },
+  "establishes": "New child directory, both temporary files, initial state and replacement inherit only current user, SYSTEM and Administrators FullControl from the protected new root.",
+  "untested": [
+    "Access attempts by other users",
+    "Group membership and effective-token access",
+    "Administrator/SYSTEM execution under their own tokens",
+    "Same-user isolation",
+    "Backup/restore, network shares and other filesystems",
+    "Existing evaluation state and Windows deployment readiness"
+  ],
+  "cleanup": "Retained; no deletion and no ACL changes outside the newly created disposable directory."
+}
