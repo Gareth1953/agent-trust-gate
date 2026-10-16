@@ -1,0 +1,11 @@
+✔ PayeeShield discovery distinguishes local source demo, fixture controls and uncertainty limits (1.8048ms)
+✔ buyer entry points and static metadata discover the same evaluation route (5.0419ms)
+✔ public-claims validation catches an unsupported operational claim on the new route (79.8728ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 200.9608

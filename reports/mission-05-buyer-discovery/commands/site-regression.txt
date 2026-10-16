@@ -1,0 +1,31 @@
+✔ all M164 browser-review pages retain one H1 and shared local assets (8.835ms)
+✔ narrow grid cards can shrink without creating body overflow (0.6985ms)
+✔ pilot limitations panel has explicit dark-surface contrast (1.4937ms)
+✔ mobile menu supports Escape close and restores toggle focus (0.537ms)
+✔ responsive evidence tables support keyboard horizontal scrolling (0.5195ms)
+✔ public claims validate against locked M162 evidence (75.054ms)
+✔ altered M162 coverage and verdict metrics fail public-claim validation (58.7233ms)
+✔ unsupported public metrics and omitted synthetic label fail closed (56.9191ms)
+✔ Customer Trust Receipt authority language and Shadow GatePass claims are prohibited (111.9895ms)
+✔ README and home page use the exact product positioning and trust boundary (0.4315ms)
+✔ home page presents all ten verified purchasing cases without outcome inflation (0.3813ms)
+✔ Coverage Map exposes demonstrated, partial, absent and out-of-scope totals (0.1688ms)
+✔ pilot price is indicative, scope-dependent and has no checkout path (2.0705ms)
+✔ controlled buyer pilot is discoverable and preserves M163 authority boundaries (1.5185ms)
+✔ site runtime contains no analytics, telemetry, tracking or network call (1.4858ms)
+✔ accessibility and responsive controls are present (0.6032ms)
+✔ claims register inventories every evidence class and resolves sources (17.7619ms)
+✔ discovery-site validator passes with internal links and zero analytics (160.2494ms)
+✔ MCP tools/list remains exactly atg.evaluate_action (3.3368ms)
+✔ public positioning preserves local synthetic non-production non-claims (3.9859ms)
+✔ PayeeShield discovery distinguishes local source demo, fixture controls and uncertainty limits (1.8689ms)
+✔ buyer entry points and static metadata discover the same evaluation route (5.6158ms)
+✔ public-claims validation catches an unsupported operational claim on the new route (71.5785ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 656.2228

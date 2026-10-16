@@ -161,6 +161,7 @@ h3 { font-size: 1.35rem; }
 }
 .text-muted { color: var(--muted); }
 .hero-boundary { max-width: 760px; color: #d7e1e9; margin: 20px 0 0; }
+.payeeshield-hero { padding: 64px 0; }
 .hero-actions,
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .btn {

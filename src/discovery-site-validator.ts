@@ -58,6 +58,7 @@ const requiredSiteFiles = [
   "discovery-site/financial-services-ai-agent-authority.html",
   "discovery-site/agent-standing-demo.html",
   "discovery-site/human-authority-demo.html",
+  "discovery-site/payeeshield.html",
   "discovery-site/google8583929aeb1cff63.html",
   "discovery-site/a7f3c9e14d8b42f6a1c75e9d2b6048cf.txt",
 ] as const;
@@ -91,6 +92,7 @@ const publicHtmlFiles = [
   "discovery-site/financial-services-ai-agent-authority.html",
   "discovery-site/agent-standing-demo.html",
   "discovery-site/human-authority-demo.html",
+  "discovery-site/payeeshield.html",
 ] as const;
 const seoPublicHtmlFiles = [
   "discovery-site/index.html",
@@ -102,6 +104,7 @@ const seoPublicHtmlFiles = [
   "discovery-site/financial-services-ai-agent-authority.html",
   "discovery-site/agent-standing-demo.html",
   "discovery-site/human-authority-demo.html",
+  "discovery-site/payeeshield.html",
 ] as const;
 const googleVerificationFile = "discovery-site/google8583929aeb1cff63.html" as const;
 const googleVerificationValue = "google-site-verification: google8583929aeb1cff63.html" as const;
@@ -155,9 +158,11 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
   const seoMetadataFailures = seoPublicHtmlFiles.flatMap((path) => {
     const html = read(path);
     const file = path.replace(/^discovery-site\//, "");
+    // The new buyer route uses the corporate domain; retain historical route expectations.
+    const canonicalBase = file === "payeeshield.html" ? DISCOVERY_SITE_PUBLIC_URL : MACHINE_DISCOVERY_EXPECTED_PAGES_URL;
     const expectedCanonical = file === "index.html"
       ? DISCOVERY_SITE_PUBLIC_URL
-      : `${MACHINE_DISCOVERY_EXPECTED_PAGES_URL}${file}`;
+      : `${canonicalBase}${file}`;
     const failures: string[] = [];
     if (!/<title>[^<]+<\/title>/i.test(html)) failures.push(`${path}: title`);
     if (!/<meta\s+name=["']description["']\s+content=["'][^"']+["']\s*\/?\s*>/i.test(html)) {

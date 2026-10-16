@@ -18,6 +18,7 @@ export interface PublicClaimsValidationOverrides {
   contactHtml?: string;
   privacyHtml?: string;
   pilotHtml?: string;
+  payeeshieldHtml?: string;
   corporateScript?: string;
   corporateCss?: string;
   evidenceBundle?: Record<string, unknown>;
@@ -39,12 +40,14 @@ export function validatePublicClaims(overrides: PublicClaimsValidationOverrides 
   const contactHtml = overrides.contactHtml ?? read("discovery-site/contact.html");
   const privacyHtml = overrides.privacyHtml ?? read("discovery-site/privacy.html");
   const pilotHtml = overrides.pilotHtml ?? read("discovery-site/controlled-buyer-pilot.html");
+  const payeeshieldHtml = overrides.payeeshieldHtml ?? read("discovery-site/payeeshield.html");
   const corporateScript = overrides.corporateScript ?? read("discovery-site/corporate.js");
   const corporateCss = overrides.corporateCss ?? read("discovery-site/corporate.css");
   const evidenceBundle = overrides.evidenceBundle ?? json("examples/p3-m162/evidence-bundle.json");
   const claimsRegister = overrides.claimsRegister ?? json("docs/P3-M163-public-claims-evidence-register.json");
   const packageJson = overrides.packageJson ?? json("package.json");
-  const publicText = [readme, indexHtml, evidenceHtml, technologyHtml, contactHtml, privacyHtml, pilotHtml].join("\n");
+  const reviewedHtml = [indexHtml, evidenceHtml, technologyHtml, contactHtml, privacyHtml, pilotHtml, payeeshieldHtml];
+  const publicText = [readme, ...reviewedHtml].join("\n");
   const checks: PublicClaimCheck[] = [];
   const check = (id: string, passed: boolean, detail: string) => checks.push({ id, passed, detail });
 
@@ -70,9 +73,9 @@ export function validatePublicClaims(overrides: PublicClaimsValidationOverrides 
   const scripts = record(packageJson.scripts);
   check("package_commands", requiredCommands.every((command) => typeof scripts[command] === "string") && requiredCommands.every((command) => publicText.includes(command)), "all published commands exist in package.json and appear on a public review surface");
   check("readme_links", markdownLinkTargets(readme).every((target) => repositoryLinkResolves(target)), "all README relative links resolve locally");
-  check("site_links", [indexHtml, evidenceHtml, technologyHtml, contactHtml, privacyHtml, pilotHtml].every((html) => htmlLinkTargets(html).every((target) => siteLinkResolves(target))), "all modified-site relative links resolve in the static site");
+  check("site_links", reviewedHtml.every((html) => htmlLinkTargets(html).every((target) => siteLinkResolves(target))), "all modified-site relative links resolve in the static site");
 
-  check("single_h1", [indexHtml, evidenceHtml, technologyHtml, contactHtml, privacyHtml, pilotHtml].every((html) => (html.match(/<h1\b/gi) ?? []).length === 1), "each modified public page has one logical H1");
+  check("single_h1", reviewedHtml.every((html) => (html.match(/<h1\b/gi) ?? []).length === 1), "each modified public page has one logical H1");
   check("accessible_navigation", /<nav\b[^>]*aria-label="Primary navigation"/i.test(indexHtml) && /aria-controls="primary-navigation"/i.test(indexHtml), "home navigation has explicit accessible name and menu relationship");
   check("focus_and_motion", /:focus-visible/.test(corporateCss) && /prefers-reduced-motion:\s*reduce/.test(corporateCss), "visible focus and reduced-motion treatment are present");
   check("responsive_table", /class="table-scroll"[^>]*role="region"[^>]*tabindex="0"/i.test(indexHtml) && /overflow-x:\s*auto/.test(corporateCss), "the ten-case table has a keyboard-focusable responsive container");

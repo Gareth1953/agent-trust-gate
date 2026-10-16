@@ -59,6 +59,26 @@
         "publicProcurementRouteUrl": "https://agenttrustgate.com/public-procurement-ai-agent-authority.html",
         "financialServicesRouteUrl": "https://agenttrustgate.com/financial-services-ai-agent-authority.html"
       }
+    },
+    {
+      "identifier": "urn:air:agenttrustgate.com:payeeshield:local-evaluation-guide",
+      "displayName": "PayeeShield local supplier-change evaluation guide",
+      "type": "text/html",
+      "url": "https://agenttrustgate.com/payeeshield.html",
+      "description": "Static buyer guide to the optional ATG source demo. Fictional data, fixture keys and fixed clock, volatile same-process state; no live bank verification, payments, ERP writes, durable recovery or independent evidence. Pages does not run the Node server.",
+      "tags": [
+        "supplier-bank-change",
+        "exact-action-authority",
+        "local-synthetic-evaluation"
+      ],
+      "metadata": {
+        "interactionMode": "static_read",
+        "sourceOnly": true,
+        "nonProduction": true,
+        "executableRemoteAgent": false,
+        "hostedApi": false,
+        "independentDestinationEvidence": false
+      }
     }
   ]
 }

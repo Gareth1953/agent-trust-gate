@@ -1,0 +1,8 @@
+warning: in the working copy of '.github/workflows/deploy-discovery-pages.yml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'discovery-site/ai-catalog.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'discovery-site/index.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'discovery-site/plugin.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'discovery-site/sitemap.xml', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'discovery-site/solutions.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'llms.txt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/discovery-site-validator.ts', LF will be replaced by CRLF the next time Git touches it

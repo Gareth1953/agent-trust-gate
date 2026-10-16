@@ -1,0 +1,11 @@
+Seven recorded packaged-worker cases, scope boundaries and evidence link verified.
+Eight cases in historical local.5/local.6 and current candidate destination recording verified, with package contents and scope boundaries.
+{
+  "version": "0.1.0-local.7",
+  "archive": "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.7.tgz",
+  "sha256": "dcf75970db520fdd10afea63aa1a9d20780dc12a053c8e09f49b0f21ed1dddad",
+  "checksums": 7,
+  "checkedRuntimeFiles": 54,
+  "challengeCases": 3,
+  "passed": true
+}

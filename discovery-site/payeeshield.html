@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PayeeShield Evaluation | ATG Supplier-Change Demo</title>
+<meta name="description" content="Evaluate ATG exact-action controls for fictional supplier bank changes. Run the source-only PayeeShield demo locally; no live bank verification or payments.">
+<link rel="canonical" href="https://agenttrustgate.com/payeeshield.html">
+<meta property="og:title" content="PayeeShield supplier-change evaluation">
+<meta property="og:description" content="A source-only local synthetic workflow, separate from the unchanged local.7 plugin. Inspect approval, refusal and uncertainty handling.">
+<meta property="og:url" content="https://agenttrustgate.com/payeeshield.html">
+<meta property="og:type" content="website">
+<link rel="ai-catalog" href="https://agenttrustgate.com/ai-catalog.json">
+<link rel="stylesheet" href="./corporate.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"PayeeShield supplier-change evaluation","url":"https://agenttrustgate.com/payeeshield.html","description":"Static guide to a source-only local synthetic ATG demonstration. Fictional data, fixture keys and fixed clock; no live bank verification, payments or ERP writes.","isPartOf":{"@type":"WebSite","name":"Agent Trust Gate","url":"https://agenttrustgate.com/"}}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap nav"><a class="brand" href="./" aria-label="Agent Trust Gate home"><span class="brand-mark" aria-hidden="true"></span><span>Agent Trust Gate™<small>Exact Action Trust Gateway</small></span></a><button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="primary-navigation">Menu</button><nav id="primary-navigation" class="nav-links" data-nav-links aria-label="Primary navigation"><a href="./challenge.html">Challenge</a><a href="./plugin.html">Plugin</a><a href="./technology.html">Technology</a><a href="./solutions.html">Solutions</a><a href="./evidence.html">Evidence</a><a href="./controlled-buyer-pilot.html">Pilot</a><a href="./company.html">Company</a><a class="nav-cta" href="./contact.html">Contact</a></nav></div></header>
+<main id="main" tabindex="-1">
+<section class="hero payeeshield-hero"><div class="wrap">
+<span class="eyebrow">Mission 05 · source-only local evaluation</span>
+<h1>Review one exact supplier bank change.</h1>
+<p class="lead">PayeeShield connects a fictional supplier-maintenance screen to ATG's existing supplier-change evaluation and signed exact-action controls. Inspect how approval is bound to one request and the current synthetic destination version before a local simulated change.</p>
+<p class="hero-boundary"><strong>Synthetic demonstration only.</strong> Fictional data, public fixture signing keys, a fixed clock and volatile process-local state. No live bank verification, Confirmation of Payee, sanctions screening, payments, ERP writes or real human authentication. Not production ready.</p>
+<div class="hero-actions"><a class="btn btn-primary" href="#run-locally">Run the source demo locally</a><a class="btn btn-secondary" href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/mission-05-payeeshield.md">Read the technical guide</a></div>
+</div></section>
+<section class="section"><div class="wrap">
+<div class="section-head"><div><span class="kicker">A supplier-maintenance control example</span><h2>From proposed change to one-use authority.</h2></div><p>The amount is related-invoice context, not permission to pay. ATG checks the supplied fixtures; it does not establish bank-account ownership or whether a business decision is correct.</p></div>
+<div class="grid-3">
+<article class="card"><h3>1. Evaluate the fixture</h3><p>Select a registered fictional supplier-change scenario. Existing ATG controls evaluate agent/delegation evidence, exact supplier and account binding, verification fixtures, separation of duties and approval conditions.</p></article>
+<article class="card"><h3>2. Bind one exact request</h3><p>A permitted fixture receives a signed GatePass bound to the complete request and synthetic business state. REVIEW and BLOCK provide no executable authority. Changing an input discards the browser approval handle.</p></article>
+<article class="card"><h3>3. Inspect the outcome</h3><p>The server independently checks request binding and destination version, consumes one-use authority and rechecks before its simulated commit. The fictional ending changes from 1846 to 7319; inspect the resulting JSON.</p></article>
+</div></div></section>
+<section class="section section-alt"><div class="wrap split">
+<div><span class="kicker">Try the refusal paths</span><h2>Approval cannot authorise a different change.</h2><ul class="list-check"><li>Changed supplier, account ending, amount or scenario: the approved request no longer matches.</li><li>Stale destination state: a version edit after approval prevents the old authority from writing.</li><li>Revoked or expired authority: execution is refused without a destination record.</li><li>Replay: a consumed approval cannot execute a second change.</li><li>REVIEW or BLOCK: no execution handle is returned.</li></ul><p>Expiry is demonstrated against the fixed fixture clock. Revocation and one-use state belong to this single demo process, not an operational identity or banking system.</p></div>
+<div class="callout"><h2>UNKNOWN means stop and inspect.</h2><p>“Commit then lose acknowledgement” records an uncertain result and refuses automatic retry. The separate reconciliation handle survives form edits and invalid evaluations.</p><p>Explicit reconciliation checks the <strong>same process's synthetic record</strong> against the approved request. This is not independent destination evidence or durable recovery. A browser reload can lose its handles; restarting the server discards its fictional state.</p><p>All tabs share one process-local destination and approval map. Same-host, same-user code is not isolated by the loopback token. Never restart or reset real held state as a recovery procedure.</p></div>
+</div></section>
+<section class="section" id="run-locally"><div class="wrap split">
+<div><span class="kicker">Source checkout · Node.js 20+</span><h2>Run from the repository root.</h2><p>Obtain the <a href="https://github.com/Gareth1953/agent-trust-gate">ATG source repository</a> in a fresh directory. Use Node.js 20 or newer; Node 24 is recommended for the repository's wider shared-worker evaluation tools. The PayeeShield demo was checked on actual Windows Node 20 and 24.</p><p>After cloning, the directory containing <code>package.json</code> is the repository root. Keep the terminal running while using the page. Use registered fictional fixtures only; do not enter customer data or production credentials.</p><p><strong>This GitHub Pages page is a static guide.</strong> GitHub Pages does not run the Node server. Opening the prototype HTML directly does not start the ATG adapter.</p></div>
+<div><pre class="code-route" tabindex="0" role="region" aria-label="Local setup commands"><code>git clone https://github.com/Gareth1953/agent-trust-gate.git atg-payeeshield-evaluation
+cd atg-payeeshield-evaluation
+node --version
+npm ci --ignore-scripts
+npm run demo:payeeshield</code></pre><p>Open <a href="http://127.0.0.1:8795">http://127.0.0.1:8795</a> on the same computer. Stop the local server with Ctrl+C. Restarting starts a new fictional run; it is not recovery.</p><p><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/mission-05-windows-review.md">Windows review and limitations</a> · <a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/reports/mission-05/summary.json">Original implementation evidence</a></p></div>
+</div></section>
+<section class="section section-alt"><div class="wrap split">
+<div><span class="kicker">Two distinct evaluation routes</span><h2>The source demo is separate from local.7.</h2><p>PayeeShield is an optional repository-source demo. It is not included in the published local.7 plugin. The local.7 archive, its checksum, historical downloads and existing recorded results remain unchanged.</p><p><a href="./plugin.html">Compare the standalone ATG plugin</a> · <a href="./challenge.html">Inspect the recorded ATG Challenge</a></p></div>
+<div class="notice"><h2>Before any real integration</h2><p>This screen supplies no live verification source, destination credentials, real human approval, durable recovery, multi-worker coordination or independent evidence. A separately scoped adapter and review would be required. It is not a hosted API, certification, fraud-protection service or payment product.</p><p>For evaluation enquiries, email <a href="mailto:gareth@agenttrustgate.com?subject=PayeeShield%20evaluation%20enquiry">gareth@agenttrustgate.com</a> with a fictional or sanitised scenario. An enquiry makes no service, price or delivery commitment.</p><p><a href="./security.html">Security &amp; Trust</a> · <a href="./privacy.html">Site privacy</a></p></div>
+</div></section>
+</main>
+<footer class="site-footer"><div class="wrap"><div class="footer-grid"><div><div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>Agent Trust Gate™<small>Exact Action Trust Gateway</small></span></div><p>Local synthetic exact-action authority and evidence demonstrator. Production deployment is not claimed.</p></div><div><div class="footer-title">Review</div><div class="footer-links"><a href="./technology.html">Technology</a><a href="./evidence.html">Evidence</a><a href="https://github.com/Gareth1953/agent-trust-gate">Repository</a><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/CITATION.cff">Citation</a><a href="https://github.com/Gareth1953/agent-trust-gate/blob/main/SECURITY.md">Security</a></div></div><div><div class="footer-title">Contact</div><div class="footer-links"><a href="./company.html">About</a><a href="./contact.html">Controlled pilot</a><a href="./privacy.html">Privacy</a><a href="./security.html">Security &amp; Trust</a><a href="mailto:gareth@agenttrustgate.com">gareth@agenttrustgate.com</a><a href="mailto:gpmiddleton71@gmail.com">Gmail: gpmiddleton71@gmail.com</a></div></div></div><div class="footer-bottom"><span>© <span data-year></span> Agent Trust Gate™.</span><span>United Kingdom · Public local synthetic demonstrator</span></div></div></footer>
+<script src="./corporate.js"></script>
+</body></html>

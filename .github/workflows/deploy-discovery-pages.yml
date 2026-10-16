@@ -60,6 +60,7 @@ jobs:
           cp schemas/ard-ai-catalog-v1.0.schema.json _site/schemas/
           cp examples/bring-your-agent-scenario.example.json _site/examples/
           test -f _site/index.html
+          test -f _site/payeeshield.html
           test -f _site/plugin.html
           test -f _site/challenge.html
           test -f _site/challenge-results.json

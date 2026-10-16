@@ -1,0 +1,10 @@
+{"views":1,"pageErrors":0,"failedRequests":[],"externalPageRequests":[],"failure":"Error: Timed out: document.querySelector('[data-menu-toggle]').getAttribute('aria-expanded')==='true'\n    at wait (file:///C:/Users/Gareth/agent-trust-gate/.worktrees/mission-05-buyer-discovery/scripts/review-payeeshield-discovery-windows.mjs:72:116)\n    at async file:///C:/Users/Gareth/agent-trust-gate/.worktrees/mission-05-buyer-discovery/scripts/review-payeeshield-discovery-windows.mjs:99:7"}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+Error: Timed out: document.querySelector('[data-menu-toggle]').getAttribute('aria-expanded')==='true'
+    at wait (file:///C:/Users/Gareth/agent-trust-gate/.worktrees/mission-05-buyer-discovery/scripts/review-payeeshield-discovery-windows.mjs:72:116)
+    at async file:///C:/Users/Gareth/agent-trust-gate/.worktrees/mission-05-buyer-discovery/scripts/review-payeeshield-discovery-windows.mjs:99:7
+
+Node.js v24.21.0

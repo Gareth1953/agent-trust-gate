@@ -688,3 +688,10 @@ actionExecution false, predictionGuarantee false.
 - Overview: https://agenttrustgate.com/plugin.html
 - Technical guide: https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/standalone-plugin.md
 - Installable Node.js SDK and local MCP; version 0.1.0-local.1. Synthetic fixtures and fixed clock; no live execution, production readiness, self-learning or implemented Salmon integration.
+
+## PayeeShield source-only supplier-change evaluation
+- Static guide: https://agenttrustgate.com/payeeshield.html
+- Source and setup: https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/mission-05-payeeshield.md
+- From the repository root with Node 20+ (Node 24 recommended): npm ci --ignore-scripts then npm run demo:payeeshield. Open http://127.0.0.1:8795 on the same computer.
+- Separate from the unchanged local.7 plugin. GitHub Pages does not run the Node server. Fictional fixtures, public fixture keys and fixed clock; volatile same-process state. No live bank verification, payments, ERP writes, real human authentication, durable recovery or independent destination evidence. UNKNOWN reconciliation uses the same process synthetic record; no automatic retry.
+- Evaluation enquiries: gareth@agenttrustgate.com. No service, price or delivery commitment.

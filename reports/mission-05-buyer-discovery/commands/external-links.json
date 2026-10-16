@@ -1,0 +1,37 @@
+[
+  {
+    "url": "https://agenttrustgate.com/ai-catalog.json",
+    "status": 200,
+    "ok": true
+  },
+  {
+    "url": "https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/mission-05-payeeshield.md",
+    "status": 200,
+    "ok": true
+  },
+  {
+    "url": "https://github.com/Gareth1953/agent-trust-gate",
+    "status": 200,
+    "ok": true
+  },
+  {
+    "url": "https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/mission-05-windows-review.md",
+    "status": 200,
+    "ok": true
+  },
+  {
+    "url": "https://github.com/Gareth1953/agent-trust-gate/blob/main/reports/mission-05/summary.json",
+    "status": 200,
+    "ok": true
+  },
+  {
+    "url": "https://github.com/Gareth1953/agent-trust-gate/blob/main/CITATION.cff",
+    "status": 200,
+    "ok": true
+  },
+  {
+    "url": "https://github.com/Gareth1953/agent-trust-gate/blob/main/SECURITY.md",
+    "status": 200,
+    "ok": true
+  }
+]

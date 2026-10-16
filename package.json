@@ -118,7 +118,8 @@
     "validate:mission-04-local7-buyer-release": "node scripts/validate-mission-04-local7-buyer-release.mjs",
     "review:mission-04-local7-pages": "node scripts/review-mission-04-local7-release-pages.mjs",
     "demo:payeeshield": "npm run build --silent && node dist/src/payeeshield-demo-server.js",
-    "test:payeeshield": "npm run build --silent && node --test dist/test/payeeshield-demo.test.js"
+    "test:payeeshield": "npm run build --silent && node --test dist/test/payeeshield-demo.test.js",
+    "test:payeeshield-discovery": "npm run build --silent && node --test dist/test/payeeshield-discovery.test.js"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

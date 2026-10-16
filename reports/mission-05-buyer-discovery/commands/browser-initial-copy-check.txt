@@ -1,0 +1,16 @@
+{"views":0,"pageErrors":0,"failedRequests":[],"externalPageRequests":[],"failure":"AssertionError [ERR_ASSERTION]: unchanged local.7\n    at file:///C:/Users/Gareth/agent-trust-gate/.worktrees/mission-05-buyer-discovery/scripts/review-payeeshield-discovery-windows.mjs:83:246"}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: unchanged local.7
+    at file:///C:/Users/Gareth/agent-trust-gate/.worktrees/mission-05-buyer-discovery/scripts/review-payeeshield-discovery-windows.mjs:83:246 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.21.0

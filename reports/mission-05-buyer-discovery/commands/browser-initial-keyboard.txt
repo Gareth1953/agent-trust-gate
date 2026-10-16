@@ -1,0 +1,19 @@
+{"views":1,"pageErrors":0,"failedRequests":[],"externalPageRequests":[],"failure":"AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n'false' !== 'true'\n\n    at file:///C:/Users/Gareth/agent-trust-gate/.worktrees/mission-05-buyer-discovery/scripts/review-payeeshield-discovery-windows.mjs:97:14"}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+'false' !== 'true'
+
+    at file:///C:/Users/Gareth/agent-trust-gate/.worktrees/mission-05-buyer-discovery/scripts/review-payeeshield-discovery-windows.mjs:97:14 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'false',
+  expected: 'true',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.21.0

@@ -1,0 +1,36 @@
+Agent Trust Gate discovery-site validation
+Pages URL: https://agenttrustgate.com/
+workflow: .github/workflows/deploy-discovery-pages.yml
+valid: false
+
+- required_files: pass - required discovery-site, metadata, and workflow files exist
+- index_at_artifact_root: pass - workflow copies discovery-site contents so index.html is at the Pages artifact root
+- selected_artifact_files_only: pass - workflow copies selected static files and excludes repository internals
+- official_github_actions_only: pass - workflow uses only the required official GitHub-owned actions and versions
+- minimal_pages_permissions: pass - workflow declares the minimum Pages permissions required for deployment
+- json_ld_parses: pass - all principal public pages include parseable JSON-LD, including the Agent Standing demonstrator
+- seo_metadata_and_indexability: fail - public metadata failures: discovery-site/payeeshield.html: canonical
+- sitemap_membership: pass - the sitemap includes the home, control, reviewer, sector, Human Authority and Agent Standing routes
+- image_alt_text: pass - every public content image has non-empty alternative text
+- search_and_indexnow_verification_preserved: pass - Google Search Console verification and IndexNow key content are preserved and deployment-checked
+- expected_base_path: pass - canonical URL, relative 404 home link, robots.txt, sitemap, Agentmap and catalogue link use the current corporate Pages route
+- active_verified_wording: pass - index.html states the current corporate proposition and non-production boundary without obsolete pending wording
+- required_links: pass - the public site links to the repository, reviewer kit, agent routes, scenario pack, metadata files, paid pilot and corporate contact email
+- no_external_scripts_or_assets: pass - public pages use only the checked-in corporate script and no external stylesheets, third-party images or embedded video
+- no_forms_iframes_or_chat: pass - public pages have no forms, uploads, iframes, live chat, or newsletter signup
+- no_analytics_or_tracking: pass - the checked-in runtime has no analytics, tracking, telemetry, browser identifier or third-party script loader
+- no_public_network_or_submission_code: pass - public source contains no fetch, socket, beacon or form-submission path
+- no_payment_or_checkout_links: pass - static site has no checkout, payment, PayPal, Stripe, or invoice URLs
+- no_unsupported_operational_claims: pass - static site avoids live endpoint, production, guarantee, payment, and settlement claims
+- machine_readable_json_valid: pass - machine-readable JSON files included in the Pages artifact remain valid
+- all_local_public_links_valid: pass - every relative link in each public HTML page resolves within the selected Pages artifact
+- all_local_public_assets_valid: pass - every relative image or media reference resolves within the selected Pages artifact
+- no_cname_or_well_known_endpoint: pass - Pages source has no checked-in CNAME override or operational .well-known A2A endpoint
+
+{
+  "valid": false,
+  "localDemoOnly": true,
+  "networkCalls": false,
+  "githubPagesDeploymentActive": true,
+  "actionExecution": false
+}

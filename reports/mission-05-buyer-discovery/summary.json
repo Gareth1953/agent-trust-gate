@@ -1,0 +1,147 @@
+{
+  "date": "2026-10-16",
+  "runtime": "v24.21.0",
+  "browser": "Edg/155.0.4283.45",
+  "viewports": [
+    1440,
+    390,
+    320
+  ],
+  "browserErrors": 0,
+  "externalPageRequests": 0,
+  "horizontalOverflow": false,
+  "gitWhitespaceCheckExitCode": 0,
+  "noPushOrPublication": true,
+  "repository": "Gareth1953/agent-trust-gate",
+  "branch": "prepare/mission-05-buyer-discovery",
+  "base": "63d1ff252842adc685cb0af72e7bfccdb1bec3c6",
+  "typecheck": true,
+  "discoveryValidator": true,
+  "publicClaimsValidator": true,
+  "targetedSiteTests": {
+    "passed": 23,
+    "failed": 0,
+    "skipped": 0
+  },
+  "focusedDiscoveryTests": {
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browserViews": 12,
+  "localLinkChecks": 75,
+  "externalReferences": [
+    {
+      "url": "https://agenttrustgate.com/ai-catalog.json",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/mission-05-payeeshield.md",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://github.com/Gareth1953/agent-trust-gate",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://github.com/Gareth1953/agent-trust-gate/blob/main/docs/mission-05-windows-review.md",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://github.com/Gareth1953/agent-trust-gate/blob/main/reports/mission-05/summary.json",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://github.com/Gareth1953/agent-trust-gate/blob/main/CITATION.cff",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://github.com/Gareth1953/agent-trust-gate/blob/main/SECURITY.md",
+      "status": 200,
+      "ok": true
+    }
+  ],
+  "archiveValidator": {
+    "passed": true,
+    "checksums": 7,
+    "compiledRuntimeFiles": 54
+  },
+  "protectedArtifactsGitDiffExitCode": 0,
+  "archives": [
+    {
+      "file": "agent-trust-gate-plugin-0.1.0-local.1.tgz",
+      "sha256": "636b4e50e78af5560588663ac761700a637c1643974b31b3c4cbacf22bd64590"
+    },
+    {
+      "file": "agent-trust-gate-plugin-0.1.0-local.2.tgz",
+      "sha256": "3303ae690b2b00de22e9b0ed6c52078d06fd1571d77984ea10d0f8484c02ee2a"
+    },
+    {
+      "file": "agent-trust-gate-plugin-0.1.0-local.3.tgz",
+      "sha256": "62086a6cf7740ff72dafa81b821097d593b262ec019481654fb84caca5b673f0"
+    },
+    {
+      "file": "agent-trust-gate-plugin-0.1.0-local.4.tgz",
+      "sha256": "164a25d41fdda287c4da265f7511802af4f358e7a3f5460395d6bf9377a66800"
+    },
+    {
+      "file": "agent-trust-gate-plugin-0.1.0-local.5.tgz",
+      "sha256": "672484c3d3ac3e2efe69f2dee66fef465f10700c73c992274a6b1ea382bb2d7e"
+    },
+    {
+      "file": "agent-trust-gate-plugin-0.1.0-local.6.tgz",
+      "sha256": "bb22f8b3cad69e9b00182836adc81cd9b6df6cb9e4e621f0cbe4b4e58405fa10"
+    },
+    {
+      "file": "agent-trust-gate-plugin-0.1.0-local.7.tgz",
+      "sha256": "dcf75970db520fdd10afea63aa1a9d20780dc12a053c8e09f49b0f21ed1dddad"
+    }
+  ],
+  "checksumManifestSha256": "6bb1c28d5235dc96ca8d6025d8c7b22977c32f7019fe8f2aaa5a80549a0318f0",
+  "recordings": [
+    {
+      "file": "challenge-results.json",
+      "sha256": "27a8cdf85bf901531ebabebe158c46735b652fbc4d482f2140e8d9591e29ad15"
+    },
+    {
+      "file": "destination-evidence-results-local.5.json",
+      "sha256": "4913b1ad99a0113ec6be5018a85d6b0fd67db9323ad56cd0f8223d2dc3018ad6"
+    },
+    {
+      "file": "destination-evidence-results-local.6.json",
+      "sha256": "31735f5a6f672dfbf2cdda43978c3504096c934ed6214bc2b7ca716dc0be3d71"
+    },
+    {
+      "file": "destination-evidence-results-local.7.json",
+      "sha256": "657d95f472d66d30561df8d137a714e319a41b6d336294a0aadee0aeaab1ae81"
+    },
+    {
+      "file": "multi-worker-results-local.4.json",
+      "sha256": "0853929cbdac627462baf3243248c98dae42f72515e6616f5ca7ae8fbbf08d8a"
+    }
+  ],
+  "hosting": {
+    "build_type": "workflow",
+    "html_url": "https://agenttrustgate.com/",
+    "source": {
+      "branch": "main",
+      "path": "/"
+    },
+    "status": null
+  },
+  "publicationTrigger": "Eligible main push matching discovery-site/** or other existing path filters, or workflow_dispatch; approval required before main update or dispatch",
+  "limitations": [
+    "Static site; Node server must run locally",
+    "No unrelated full or Node20 suites repeated",
+    "No physical-device or screen-reader test",
+    "New canonical route is unpublished",
+    "No operational banking or payment assurance"
+  ],
+  "review": "../../docs/mission-05-buyer-discovery-review.md"
+}
