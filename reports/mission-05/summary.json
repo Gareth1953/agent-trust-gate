@@ -1,0 +1,152 @@
+{
+  "mission": "05 PayeeShield optional local demo",
+  "status": "implemented locally; not published",
+  "base": "bcfb390914d520b75f90270444779fc6cf846e25",
+  "branch": "mission-05-payeeshield-demo",
+  "checks": {
+    "focused_node24": {
+      "version": "24.19.0",
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0
+    },
+    "focused_node20": {
+      "version": "20.19.0",
+      "passed": 32,
+      "failed": 0,
+      "skipped": 0
+    },
+    "full_node24": {
+      "command": "ATG_NODE20_PATH=<verified Node 20 executable> npm test",
+      "main_passed": 675,
+      "posttest_passed": 987,
+      "total_passed": 1662,
+      "failed": 0,
+      "skipped": 0
+    },
+    "initial_full_run": {
+      "passed": false,
+      "reason": "ATG_NODE20_PATH was not configured for an existing cross-runtime test; rerun with checksum-verified actual Node 20 passed"
+    },
+    "browser": {
+      "browser": "Chromium via Playwright",
+      "results": [
+        {
+          "width": 1440,
+          "pass": true,
+          "overflow": {
+            "document": false,
+            "body": false
+          },
+          "scenarios": 16,
+          "scriptErrors": [],
+          "externalRequests": 0
+        },
+        {
+          "width": 390,
+          "pass": true,
+          "overflow": {
+            "document": false,
+            "body": false
+          },
+          "scenarios": 16,
+          "scriptErrors": [],
+          "externalRequests": 0
+        },
+        {
+          "width": 320,
+          "pass": true,
+          "overflow": {
+            "document": false,
+            "body": false
+          },
+          "scenarios": 16,
+          "scriptErrors": [],
+          "externalRequests": 0
+        }
+      ]
+    },
+    "initial_browser_run": {
+      "passed": false,
+      "reason": "390px horizontal overflow from long control codes; fixed wrapping and narrow-screen grid; final rerun passed"
+    },
+    "additional": {
+      "typecheck": true,
+      "reviewer": true,
+      "challenge_three_cases": true,
+      "public_claims": true,
+      "discovery_site": true,
+      "published_archive_and_54_runtime_files": true,
+      "whitespace": true
+    }
+  },
+  "published_local7": {
+    "unchanged": true,
+    "sha256": "dcf75970db520fdd10afea63aa1a9d20780dc12a053c8e09f49b0f21ed1dddad",
+    "retained_archive_checksums": 7
+  },
+  "not_performed": [
+    "Windows runtime verification for this integration",
+    "physical-device testing",
+    "screen-reader testing",
+    "partner API or bank verification",
+    "publication"
+  ],
+  "boundaries": [
+    "source-only adapter, not installed local.7",
+    "in-memory one-process state; no durable restart recovery or distributed budget",
+    "fixture identities, signing key and fixed clock",
+    "same-process reconciliation is not independent destination evidence",
+    "fictional IDs and endings only; no payment or ERP write"
+  ],
+  "logs": {
+    "reports/mission-05/commands/focused-node24.txt": {
+      "sha256": "2294c8cc4b67850821cda7a6acc10b47f09f82246551a11afccf198095f951af",
+      "bytes": 2096
+    },
+    "reports/mission-05/commands/focused-node20.txt": {
+      "sha256": "beaa8d2edfeea158978b6abda54203a417c0209a0aa41df434affab3b56b0183",
+      "bytes": 4738
+    },
+    "reports/mission-05/commands/full-node24.txt": {
+      "sha256": "84244ba24b63945008c349f6caa9c8540909499e8c9001445875a7e43577a49c",
+      "bytes": 143517
+    },
+    "reports/mission-05/commands/initial-full-missing-node20-path.txt": {
+      "sha256": "389c134dd7f51dd93119a04dd015119fbe7b1ac9f37fb4c7c50c2918b2fc871d",
+      "bytes": 144054
+    },
+    "reports/mission-05/commands/browser-final.txt": {
+      "sha256": "d0ea1dfa3776d5f61b38eb8b9912f0800e1163c981acf8813234cd0bfac5bd80",
+      "bytes": 469
+    },
+    "reports/mission-05/commands/browser-initial-overflow.txt": {
+      "sha256": "faa36776fc52b97570b1f9aa2b0d3ae0bdfd3c1bdb8386b40bed090f4fc8f166",
+      "bytes": 433
+    },
+    "reports/mission-05/commands/public-claims.txt": {
+      "sha256": "96929380fbee2fdd7181882da78f263db562c1133d98ea65a71609e61bafebb6",
+      "bytes": 2283
+    },
+    "reports/mission-05/commands/discovery-site.txt": {
+      "sha256": "abc8b6bb41290fe05a6d0c2fc6aca0297b08c43f80ff758d2b0653807928f3c5",
+      "bytes": 3170
+    },
+    "reports/mission-05/commands/published-archive.txt": {
+      "sha256": "f283178a3210eebd0a5bd0ad2626a9907e4c2d9269f6a4407376dac60776027f",
+      "bytes": 507
+    },
+    "reports/mission-05/commands/reviewer.txt": {
+      "sha256": "2a3c6826a00b125211ea01d63679802224a96f1cb8d7da083516b307e7fb7bf6",
+      "bytes": 1379
+    },
+    "reports/mission-05/commands/challenge.txt": {
+      "sha256": "7840c9aed39f1207161b9ba1747b91686fd0de15f7ada6cea65b0a9bbe0b2b34",
+      "bytes": 36446
+    },
+    "reports/mission-05/commands/typecheck.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  }
+}

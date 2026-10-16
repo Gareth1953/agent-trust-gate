@@ -3646,3 +3646,7 @@ The optional shared-worker export and packaged atg-multi-worker demo require Nod
 ### local.5 separately signed destination evidence — published baseline
 
 Mission 03 is now included through optional public-verifier/destination-authority exports and the atg-destination-evidence / atg-evidence-verify CLIs. Legacy SDK/CLI/MCP and public verification support Node 20; shared destination authority requires Node 24. Keys are generated only during explicit fresh synthetic setup inside the destination process. [Buyer setup, exact-archive commands and limits](docs/destination-evidence-evaluation.md). Same-host, one-machine, synthetic keys/time; no independent external capture, host-administrator protection or live partner integration. Prior downloads and Challenge evidence remain retained. This is the unchanged published baseline; local.7 is the separate evaluation release. See the [current publication status](docs/mission-04-local7-publication-status.md).
+
+### Optional local PayeeShield workflow
+
+An unpublished source-only [PayeeShield supplier-change demonstration](docs/mission-05-payeeshield.md) reuses ATG's fixture approval and exact-action execution controls. Run `npm run demo:payeeshield` from the repository root and open `http://127.0.0.1:8795`. It uses fictional account endings and process-local state; no bank verification, payments, ERP writes or independent destination evidence. It is not part of the published local.7 plugin.

@@ -1,0 +1,27 @@
+P3-M163 public claims validation
+valid: true
+- m162_bundle_version: pass - public claims use the locked M162 evidence bundle version
+- coverage_totals: pass - coverage totals reconcile to 18/2/3/2 and 25
+- verdict_metrics: pass - ten-case verdict counts reconcile to M162
+- boundary_metrics: pass - zero Shadow GatePasses, zero automatic retries and 1/1 evidence link reconcile
+- public_numeric_claims: pass - README/site numerical claims match the locked bundle
+- no_unsupported_public_metrics: pass - no altered public coverage or verdict count is present
+- synthetic_metric_label: pass - public metrics carry the required synthetic-observation label
+- claims_register: pass - every registered material claim names an existing evidence source
+- classification_inventory: pass - claim inventory retains demonstrated, partial, absent and out-of-scope classes
+- package_commands: pass - all published commands exist in package.json and appear on a public review surface
+- readme_links: pass - all README relative links resolve locally
+- site_links: pass - all modified-site relative links resolve in the static site
+- single_h1: pass - each modified public page has one logical H1
+- accessible_navigation: pass - home navigation has explicit accessible name and menu relationship
+- focus_and_motion: pass - visible focus and reduced-motion treatment are present
+- responsive_table: pass - the ten-case table has a keyboard-focusable responsive container
+- responsive_breakpoints: pass - desktop/tablet/mobile layout and long-label wrapping are explicit
+- receipt_non_authority: pass - Customer Trust Receipts are never described as authority
+- shadow_non_authority: pass - Shadow Mode is explicitly non-authorising
+- synthetic_adapter_boundary: pass - synthetic acknowledgement is not described as real execution
+- pilot_claim: pass - pilot price is consistently qualified as indicative and scope-dependent
+- required_limitations: pass - required limitations and non-claims are visible
+- prohibited_implications: pass - no prohibited authority, customer, production, guarantee or live-effect implication appears
+- no_analytics_tracking: pass - checked-in runtime has no analytics, tracking or network path
+- one_mcp_tool: pass - public MCP claim remains evaluation-only with one tool
