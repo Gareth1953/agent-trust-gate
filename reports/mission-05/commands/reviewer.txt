@@ -1,0 +1,23 @@
+Agent Trust Gate local reviewer demonstration
+Reference time: 2026-07-20T09:05:00.000Z
+Fixed synthetic fixtures; verifier-controlled clock; no network or external execution.
+
+[PASS] A valid exact-action GatePass is accepted immediately before a local simulated side effect. Expected=allow; observed=allow.
+[PASS] A changed amount is refused because the proposed action no longer matches the GatePass. Expected=refuse; observed=refuse.
+[PASS] A replay of the consumed one-use GatePass is refused. Expected=refuse; observed=refuse.
+[PASS] An expired GatePass is refused using verifier-controlled time. Expected=refuse; observed=refuse.
+[PASS] An action without its required mandate is refused at the local wrapper boundary. Expected=refuse; observed=refuse.
+[PASS] An action without required evidence cannot proceed. Expected=refuse; observed=refuse.
+[PASS] A high-impact action without required approval cannot proceed. Expected=refuse; observed=refuse.
+[PASS] A settlement-sensitive action without a valid signed GatePass cannot proceed. Expected=refuse; observed=refuse.
+
+ATG REVIEWER RESULT
+Expected allows: passed
+Expected refusals: passed
+Replay protection: passed
+Exact-action binding: passed
+Execution receipt separation: passed
+Required authority checks: passed
+Consequential action blocking: passed
+External actions performed: none
+Overall: REVIEWER DEMONSTRATION PASSED

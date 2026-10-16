@@ -1,0 +1,66 @@
+{
+  "profile": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-mission05-edge-ijdzTi",
+  "node": "v24.21.0",
+  "results": [
+    {
+      "width": 1440,
+      "pass": true,
+      "checks": [
+        "BLOCK",
+        "REVIEW",
+        "server refuses changed request",
+        "all input changes discard authority",
+        "stale state",
+        "revocation",
+        "expiry",
+        "lost acknowledgement and reconciliation after validation error",
+        "replay refused",
+        "normal approval executes once"
+      ],
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "pass": true,
+      "checks": [
+        "BLOCK",
+        "REVIEW",
+        "server refuses changed request",
+        "all input changes discard authority",
+        "stale state",
+        "revocation",
+        "expiry",
+        "lost acknowledgement and reconciliation after validation error",
+        "replay refused",
+        "normal approval executes once"
+      ],
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "pass": true,
+      "checks": [
+        "BLOCK",
+        "REVIEW",
+        "server refuses changed request",
+        "all input changes discard authority",
+        "stale state",
+        "revocation",
+        "expiry",
+        "lost acknowledgement and reconciliation after validation error",
+        "replay refused",
+        "normal approval executes once"
+      ],
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Edg/155.0.4283.45",
+    "revision": "@50f24ef2aa5369a074b8888b7db82d9c0652d642",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+    "jsVersion": "15.5.9.4"
+  }
+}

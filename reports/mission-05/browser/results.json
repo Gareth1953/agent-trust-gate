@@ -1,0 +1,38 @@
+{
+  "browser": "Chromium via Playwright",
+  "results": [
+    {
+      "width": 1440,
+      "pass": true,
+      "overflow": {
+        "document": false,
+        "body": false
+      },
+      "scenarios": 16,
+      "scriptErrors": [],
+      "externalRequests": 0
+    },
+    {
+      "width": 390,
+      "pass": true,
+      "overflow": {
+        "document": false,
+        "body": false
+      },
+      "scenarios": 16,
+      "scriptErrors": [],
+      "externalRequests": 0
+    },
+    {
+      "width": 320,
+      "pass": true,
+      "overflow": {
+        "document": false,
+        "body": false
+      },
+      "scenarios": 16,
+      "scriptErrors": [],
+      "externalRequests": 0
+    }
+  ]
+}

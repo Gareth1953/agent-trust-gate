@@ -1,0 +1,31 @@
+
+:root{--bg:#0b1020;--card:#121a32;--line:#1e2e5a;--accent:#3b82f6;--text:#e6edff;--muted:#8aa0c8;--warn:#f59e0b;--danger:#ef4444;--ok:#22c55e}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,sans-serif;background:#0b1020;color:var(--text);line-height:1.5}
+.wrap{max-width:1150px;margin:0 auto;padding:16px 20px 60px}
+.banner{background:repeating-linear-gradient(45deg,#431a1a,#431a1a 12px,#5a2121 12px,#5a2121 24px);border:2px solid #7f1d1d;color:#fecaca;padding:12px 16px;border-radius:12px;text-align:center;font-weight:800;margin-bottom:16px}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:10px 0 16px;border-bottom:1px solid var(--line);margin-bottom:12px;flex-wrap:wrap;gap:10px}
+.logo{display:flex;gap:10px;align-items:center;font-weight:800;font-size:18px}
+.badge{font-size:11px;background:#111c38;border:1px solid var(--line);padding:6px 10px;border-radius:999px;color:var(--muted)}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+@media(max-width:980px){.hero{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01));border:1px solid var(--line);border-radius:16px;padding:18px}
+h1{font-size:32px;line-height:1.05;margin:0 0 8px}h2{margin:0 0 8px;font-size:16px}
+.muted{color:var(--muted)} .small{font-size:12px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.input{width:100%;background:#0a1226;border:1px solid var(--line);border-radius:10px;padding:10px 11px;color:var(--text);outline:0}
+.btn{appearance:none;border:0;border-radius:10px;padding:11px 14px;font-weight:700;cursor:pointer}
+.btn-primary{background:var(--accent);color:white}.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--text)}
+.btn-danger{background:var(--danger);color:white}.btn:disabled{opacity:.35;cursor:not-allowed}
+.tag{padding:3px 8px;border-radius:999px;font-size:11px;font-weight:800;display:inline-block;border:1px solid}
+.tag-demo{background:#1a233f;color:#93c5fd;border-color:#2a3a68}
+.tag-sim{background:rgba(245,158,11,.15);color:#fcd34d;border-color:rgba(245,158,11,.3)}
+.log{font-family:ui-monospace,Menlo,monospace;font-size:11px;background:#070c1a;border:1px solid var(--line);border-radius:10px;padding:10px;max-height:200px;overflow:auto;white-space:pre-wrap}
+.progress{height:8px;background:#0e1932;border-radius:999px;overflow:hidden;border:1px solid var(--line)}
+.progress>div{height:100%;width:0%;transition:width .4s}
+.disclaimer{background:#111827;border:1px solid #2a354f;border-radius:12px;padding:14px;font-size:12px;color:#9fb0d0}
+.footer{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:11px}
+.kbd{font-family:ui-monospace;background:#0f1a33;border:1px solid var(--line);border-radius:6px;padding:2px 6px;font-size:11px}
+
+select,button,input{font:inherit} label{display:block;margin:12px 0 6px} h1,h2{overflow-wrap:anywhere} pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:460px;overflow:auto} .actions{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0} .actions .btn{flex:1 1 160px} .check{padding:9px;border-bottom:1px solid var(--line)} .pass{color:#4ade80}.fail{color:#fca5a5} .hero>*{min-width:0} .banner{line-height:1.6} :focus-visible{outline:2px solid #7dd3fc;outline-offset:3px} .input{min-width:0} .state{overflow-wrap:anywhere}
+/* Long ATG control codes and fixture selectors must fit narrow screens. */
+.card,.logo,.tag{overflow-wrap:anywhere;min-width:0}.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.btn{white-space:normal;overflow-wrap:anywhere}footer.card{margin-top:18px}a{color:#93c5fd}.check{overflow-wrap:anywhere}@media(max-width:480px){.grid2{grid-template-columns:minmax(0,1fr)}.wrap{padding:12px 12px 36px}.card{padding:14px}h1{font-size:28px}}

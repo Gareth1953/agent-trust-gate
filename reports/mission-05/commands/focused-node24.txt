@@ -1,0 +1,40 @@
+✔ valid fixture issues signed authority and commits once (11.979422ms)
+✔ refuses fixture: changed_account_details (0.671601ms)
+✔ refuses fixture: changed_supplier (0.506698ms)
+✔ refuses fixture: missing_independent_verification (0.440981ms)
+✔ refuses fixture: self_verification (0.777137ms)
+✔ refuses fixture: wrong_approver_role (0.616029ms)
+✔ refuses fixture: authority_limit_exceeded (0.721154ms)
+✔ refuses fixture: dual_approval_missing (0.620756ms)
+✔ refuses fixture: approval_expired (0.612604ms)
+✔ refuses fixture: replayed_gatepass (0.759702ms)
+✔ refuses fixture: action_digest_mismatch (1.588464ms)
+✔ refuses fixture: agent_standing_unverifiable (0.529932ms)
+✔ refuses fixture: delegation_out_of_scope (0.524965ms)
+✔ refuses fixture: commercial_authority_confusion (0.406099ms)
+✔ refuses fixture: execution_claim_without_execution_receipt (0.438367ms)
+✔ refuses fixture: revoked_human_authority (0.536171ms)
+✔ amount boundary 1 (1.30045ms)
+✔ amount boundary 1000000 (1.150829ms)
+✔ amount boundary 1000001 (0.660815ms)
+✔ amount boundary 4000000 (0.556722ms)
+✔ amount boundary 4000001 (0.613375ms)
+✔ strict request schema rejects real details, malformed and non-positive amounts (0.409905ms)
+✔ changed supplier or account cannot acquire fixture approval (0.590261ms)
+✔ every changed request field refuses execution (4.633529ms)
+✔ state version edit refuses previously issued authority (1.075327ms)
+✔ revocation and expiry prevent writes (2.665024ms)
+✔ two simultaneous calls and two approvals commit only once (2.535071ms)
+✔ returned mutable values cannot alter signed/private approval (1.533163ms)
+✔ lost acknowledgement retains UNKNOWN, disallows retry and uses labelled local reconciliation (2.458699ms)
+✔ unknown handles never authorise or reconcile (1.127455ms)
+✔ restart is explicitly new volatile demo, not recovery (0.096532ms)
+✔ HTTP loopback, CSRF, strict bodies and static allowlist (61.973025ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 185.072354

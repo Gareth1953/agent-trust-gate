@@ -1,0 +1,170 @@
+TAP version 13
+# Subtest: valid fixture issues signed authority and commits once
+ok 1 - valid fixture issues signed authority and commits once
+  ---
+  duration_ms: 8.916567
+  ...
+# Subtest: refuses fixture: changed_account_details
+ok 2 - refuses fixture: changed_account_details
+  ---
+  duration_ms: 0.924495
+  ...
+# Subtest: refuses fixture: changed_supplier
+ok 3 - refuses fixture: changed_supplier
+  ---
+  duration_ms: 0.815013
+  ...
+# Subtest: refuses fixture: missing_independent_verification
+ok 4 - refuses fixture: missing_independent_verification
+  ---
+  duration_ms: 1.457783
+  ...
+# Subtest: refuses fixture: self_verification
+ok 5 - refuses fixture: self_verification
+  ---
+  duration_ms: 1.139262
+  ...
+# Subtest: refuses fixture: wrong_approver_role
+ok 6 - refuses fixture: wrong_approver_role
+  ---
+  duration_ms: 0.90767
+  ...
+# Subtest: refuses fixture: authority_limit_exceeded
+ok 7 - refuses fixture: authority_limit_exceeded
+  ---
+  duration_ms: 0.986677
+  ...
+# Subtest: refuses fixture: dual_approval_missing
+ok 8 - refuses fixture: dual_approval_missing
+  ---
+  duration_ms: 0.918907
+  ...
+# Subtest: refuses fixture: approval_expired
+ok 9 - refuses fixture: approval_expired
+  ---
+  duration_ms: 0.969101
+  ...
+# Subtest: refuses fixture: replayed_gatepass
+ok 10 - refuses fixture: replayed_gatepass
+  ---
+  duration_ms: 0.957674
+  ...
+# Subtest: refuses fixture: action_digest_mismatch
+ok 11 - refuses fixture: action_digest_mismatch
+  ---
+  duration_ms: 0.880941
+  ...
+# Subtest: refuses fixture: agent_standing_unverifiable
+ok 12 - refuses fixture: agent_standing_unverifiable
+  ---
+  duration_ms: 0.808103
+  ...
+# Subtest: refuses fixture: delegation_out_of_scope
+ok 13 - refuses fixture: delegation_out_of_scope
+  ---
+  duration_ms: 0.915462
+  ...
+# Subtest: refuses fixture: commercial_authority_confusion
+ok 14 - refuses fixture: commercial_authority_confusion
+  ---
+  duration_ms: 0.837316
+  ...
+# Subtest: refuses fixture: execution_claim_without_execution_receipt
+ok 15 - refuses fixture: execution_claim_without_execution_receipt
+  ---
+  duration_ms: 0.8602
+  ...
+# Subtest: refuses fixture: revoked_human_authority
+ok 16 - refuses fixture: revoked_human_authority
+  ---
+  duration_ms: 0.856504
+  ...
+# Subtest: amount boundary 1
+ok 17 - amount boundary 1
+  ---
+  duration_ms: 2.58012
+  ...
+# Subtest: amount boundary 1000000
+ok 18 - amount boundary 1000000
+  ---
+  duration_ms: 2.258976
+  ...
+# Subtest: amount boundary 1000001
+ok 19 - amount boundary 1000001
+  ---
+  duration_ms: 1.392216
+  ...
+# Subtest: amount boundary 4000000
+ok 20 - amount boundary 4000000
+  ---
+  duration_ms: 1.512723
+  ...
+# Subtest: amount boundary 4000001
+ok 21 - amount boundary 4000001
+  ---
+  duration_ms: 1.313019
+  ...
+# Subtest: strict request schema rejects real details, malformed and non-positive amounts
+ok 22 - strict request schema rejects real details, malformed and non-positive amounts
+  ---
+  duration_ms: 0.425278
+  ...
+# Subtest: changed supplier or account cannot acquire fixture approval
+ok 23 - changed supplier or account cannot acquire fixture approval
+  ---
+  duration_ms: 2.121213
+  ...
+# Subtest: every changed request field refuses execution
+ok 24 - every changed request field refuses execution
+  ---
+  duration_ms: 8.084888
+  ...
+# Subtest: state version edit refuses previously issued authority
+ok 25 - state version edit refuses previously issued authority
+  ---
+  duration_ms: 2.181602
+  ...
+# Subtest: revocation and expiry prevent writes
+ok 26 - revocation and expiry prevent writes
+  ---
+  duration_ms: 4.852336
+  ...
+# Subtest: two simultaneous calls and two approvals commit only once
+ok 27 - two simultaneous calls and two approvals commit only once
+  ---
+  duration_ms: 5.396108
+  ...
+# Subtest: returned mutable values cannot alter signed/private approval
+ok 28 - returned mutable values cannot alter signed/private approval
+  ---
+  duration_ms: 3.181719
+  ...
+# Subtest: lost acknowledgement retains UNKNOWN, disallows retry and uses labelled local reconciliation
+ok 29 - lost acknowledgement retains UNKNOWN, disallows retry and uses labelled local reconciliation
+  ---
+  duration_ms: 4.230717
+  ...
+# Subtest: unknown handles never authorise or reconcile
+ok 30 - unknown handles never authorise or reconcile
+  ---
+  duration_ms: 0.133598
+  ...
+# Subtest: restart is explicitly new volatile demo, not recovery
+ok 31 - restart is explicitly new volatile demo, not recovery
+  ---
+  duration_ms: 0.092567
+  ...
+# Subtest: HTTP loopback, CSRF, strict bodies and static allowlist
+ok 32 - HTTP loopback, CSRF, strict bodies and static allowlist
+  ---
+  duration_ms: 84.465151
+  ...
+1..32
+# tests 32
+# suites 0
+# pass 32
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 273.928877
