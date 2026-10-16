@@ -195,7 +195,9 @@ try {
     await cdp('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Enter', code: 'Enter', windowsVirtualKeyCode: 13 });
     await waitFor("location.hash === '#main'");
     view.skipLinkActivated = true;
-    assert.match(view.releaseCopy, /unpublished[\s\S]{0,60}local\.7|local\.7[\s\S]{0,60}unpublished/i);
+    assert.match(view.releaseCopy, /local\.7[\s\S]{0,60}evaluation release|local\.7 evaluation edition/i);
+    assert.doesNotMatch(view.releaseCopy, /unpublished local\.7|local\.7 candidate exists only|not a live release/i);
+    assert.match(view.releaseCopy, /POSIX runtime verification was not performed for this candidate/);
     assert.match(view.releaseCopy, /local\.5/);
     assert.match(view.releaseCopy, /unattributed/);
     assert.match(view.releaseCopy, /EPERM/);

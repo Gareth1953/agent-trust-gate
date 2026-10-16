@@ -2,7 +2,11 @@
 
 This is an unpublished candidate for Gareth and Dave's renewed review. This
 runbook does not authorise a push, deployment, publication, tag or GitHub Release.
-Use the exact final candidate commit and archive hash in the handoff/summary.
+The status-only wording revision is prepared for publication but remains
+unpublished until deployed. Website wording describes the intended deployed
+release, not evidence of an existing deployment. Use the exact final publication
+commit and sealed archive hash in the handoff. See
+[the current status note](mission-04-local7-publication-status.md).
 Prior approval of local.6 does not approve local.7.
 
 - Candidate branch: `mission-04-local7-buyer-release`.
@@ -63,13 +67,13 @@ migrate state, change existing ACLs or replace an archive to obtain a pass.
 1. Review the final candidate commit, exact bytes, actual checks, original
    incident limitation and retained failure evidence. Local.7 has no publication
    authorisation yet. Any new source or archive requires renewed review.
-2. Current website copy intentionally says unpublished/not live. Prepare any
-   status-only publication wording first, run its relevant validators and browser
-   checks, and obtain approval for the resulting exact publication commit while
-   keeping this sealed archive unchanged. Do not silently relabel the candidate
-   or treat a successful local test as deployment. If approval explicitly names
-   the existing candidate-copy commit for publication, report that visible copy
-   accurately; never infer permission to change its approved commit.
+2. Status-only website/current-document wording now describes local.7 as the
+   evaluation release it will be once deployed. Obtain final approval for the
+   exact wording commit and this unchanged sealed archive. The wording revision
+   is not publication approval or deployment evidence. Preserve preparation-time
+   reports, recordings and bundled document snapshots; their unpublished status
+   describes capture/packaging time. Do not treat a successful local check as
+   deployment or infer permission to change the approved commit.
 3. Preserve original divergent local main at
    `8044c65b3ffba8da5ee0bea6eb6933882e3e56e0` and every original branch/worktree.
    Use the separately approved clean buyer-release checkout. Verify origin is

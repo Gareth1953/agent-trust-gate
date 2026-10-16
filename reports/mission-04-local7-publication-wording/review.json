@@ -1,0 +1,210 @@
+{
+  "recordedAt": "2026-10-16T05:31:55.152Z",
+  "status": "Prepared for final publication approval; unpublished until deployed",
+  "reviewedCandidate": "9c47333928c58016b0f26c94d18d4774f6f66e06",
+  "scope": "Release-status wording, explicit unchanged limitations, browser copy assertions and new review evidence only; no runtime/package/archive rebuild",
+  "archive": {
+    "path": "discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.7.tgz",
+    "size": 157102,
+    "sha256": "dcf75970db520fdd10afea63aa1a9d20780dc12a053c8e09f49b0f21ed1dddad"
+  },
+  "checks": {
+    "node": "v24.21.0",
+    "checks": [
+      {
+        "name": "public-claims",
+        "exitCode": 0,
+        "log": ".atg-evaluation/mission04-local7-wording-mzgJaP/public-claims.log",
+        "sha256": "96929380fbee2fdd7181882da78f263db562c1133d98ea65a71609e61bafebb6"
+      },
+      {
+        "name": "discovery-site",
+        "exitCode": 0,
+        "log": ".atg-evaluation/mission04-local7-wording-mzgJaP/discovery-site.log",
+        "sha256": "abc8b6bb41290fe05a6d0c2fc6aca0297b08c43f80ff758d2b0653807928f3c5"
+      },
+      {
+        "name": "archive-guard",
+        "exitCode": 0,
+        "log": ".atg-evaluation/mission04-local7-wording-mzgJaP/archive-guard.log",
+        "sha256": "f283178a3210eebd0a5bd0ad2626a9907e4c2d9269f6a4407376dac60776027f"
+      },
+      {
+        "name": "website-tests",
+        "exitCode": 0,
+        "log": ".atg-evaluation/mission04-local7-wording-mzgJaP/website-tests.log",
+        "sha256": "030ebb804d899b7e3ec1478e69033fcae02f6d9531fc1a1734994c19c62b8825"
+      }
+    ]
+  },
+  "browser": {
+    "product": "Edg/155.0.4283.45",
+    "interactionEvidence": ".atg-evaluation/mission04-local7-browser/edge-RPAjGn/results.json",
+    "interactionSha256": "48fdae3267f271bc0ebbbf598e38771855439da74ef279d8fdabf74aa9a4001a",
+    "recaptureEvidence": ".atg-evaluation/mission04-local7-browser/edge-PpMHZS/results.json",
+    "recaptureSha256": "2f9ea818f9ea69b2688d4c8c15e00d98379e93ae74f28be5d0d038d1e6b5fdb1",
+    "viewports": [
+      {
+        "page": "/security.html",
+        "width": 1440,
+        "documentOverflow": false,
+        "uncontainedOverflow": [],
+        "clipped": [],
+        "clickedLocalLinks": 17
+      },
+      {
+        "page": "/security.html",
+        "width": 390,
+        "documentOverflow": false,
+        "uncontainedOverflow": [],
+        "clipped": [],
+        "clickedLocalLinks": 17
+      },
+      {
+        "page": "/security.html",
+        "width": 320,
+        "documentOverflow": false,
+        "uncontainedOverflow": [],
+        "clipped": [],
+        "clickedLocalLinks": 17
+      },
+      {
+        "page": "/plugin.html",
+        "width": 1440,
+        "documentOverflow": false,
+        "uncontainedOverflow": [],
+        "clipped": [],
+        "clickedLocalLinks": 25
+      },
+      {
+        "page": "/plugin.html",
+        "width": 390,
+        "documentOverflow": false,
+        "uncontainedOverflow": [],
+        "clipped": [],
+        "clickedLocalLinks": 25
+      },
+      {
+        "page": "/plugin.html",
+        "width": 320,
+        "documentOverflow": false,
+        "uncontainedOverflow": [],
+        "clipped": [],
+        "clickedLocalLinks": 25
+      },
+      {
+        "page": "/index.html",
+        "width": 1440,
+        "documentOverflow": false,
+        "uncontainedOverflow": [],
+        "clipped": [],
+        "clickedLocalLinks": 23
+      },
+      {
+        "page": "/index.html",
+        "width": 390,
+        "documentOverflow": false,
+        "uncontainedOverflow": [],
+        "clipped": [],
+        "clickedLocalLinks": 23
+      },
+      {
+        "page": "/index.html",
+        "width": 320,
+        "documentOverflow": false,
+        "uncontainedOverflow": [],
+        "clipped": [],
+        "clickedLocalLinks": 23
+      }
+    ],
+    "directlyInspectedScreenshots": [
+      {
+        "path": ".atg-evaluation/mission04-local7-browser/edge-RPAjGn/security-1440-detail-1.png",
+        "sha256": "26751770235e7b2a3fa0d1a258fe6eb611943febbc4e545516a3d2730417a55c"
+      },
+      {
+        "path": ".atg-evaluation/mission04-local7-browser/edge-RPAjGn/security-390-detail-1.png",
+        "sha256": "b3a34ebd1dea6d4f4c34271336df970c8bab3a3669209c28601bde8c69649ecf"
+      },
+      {
+        "path": ".atg-evaluation/mission04-local7-browser/edge-RPAjGn/security-320-detail-1.png",
+        "sha256": "01dd2d4baad552c50652d3c194a2dc4c078cb5cb3ce854faf61050c7b76a285f"
+      },
+      {
+        "path": ".atg-evaluation/mission04-local7-browser/edge-RPAjGn/plugin-1440-detail-0.png",
+        "sha256": "9ebc9bce4cbc50c279cb679fc55939e1ca9b9cd2818af465905cfff5a1977c53"
+      },
+      {
+        "path": ".atg-evaluation/mission04-local7-browser/edge-RPAjGn/plugin-390-detail-0.png",
+        "sha256": "c99b7e1bf13f6a466d5aea54e1c3ce9e65417cc69d8aa1e574f939df2ea56b79"
+      },
+      {
+        "path": ".atg-evaluation/mission04-local7-browser/edge-RPAjGn/plugin-320-detail-0.png",
+        "sha256": "d1048d66a0e0763924395bf41d8a3e409dc5b8481cd835e2666742c9f94793f1"
+      },
+      {
+        "path": ".atg-evaluation/mission04-local7-browser/edge-RPAjGn/index-1440-detail-0.png",
+        "sha256": "de9672d9e42e6827a789b7b8e824ca87da5dd4c4cc9c89494eb024e182a9eb4c"
+      },
+      {
+        "path": ".atg-evaluation/mission04-local7-browser/edge-RPAjGn/index-390-detail-0.png",
+        "sha256": "315db859640cb24e3994e9f83c55bca156e9e4a9227e0526a21afe52cf459a04"
+      },
+      {
+        "path": ".atg-evaluation/mission04-local7-browser/edge-RPAjGn/index-320-detail-0.png",
+        "sha256": "77a07e4622d811e7b3f4d90d5c5b4da0c7b14bb4de6cd4addcc4a53d72db0c8f"
+      },
+      {
+        "path": ".atg-evaluation/mission04-local7-browser/edge-RPAjGn/plugin-390-detail-1.png",
+        "sha256": "ce56c524cac8b88a257500205f7e98b4c9dffaea9a02d0fc843654645d734207"
+      },
+      {
+        "path": ".atg-evaluation/mission04-local7-browser/edge-RPAjGn/plugin-320-detail-1.png",
+        "sha256": "4c98cc08ebc9075548da00183780d4d2f6c8f198f35024a235d88a60c5841d5e"
+      },
+      {
+        "path": ".atg-evaluation/mission04-local7-browser/edge-RPAjGn/security-320-menu-open.png",
+        "sha256": "161712aa58b6ec67dd2c49bcfc0f69bea0b16a787f24cb832dbb84040d6a16eb"
+      },
+      {
+        "path": ".atg-evaluation/mission04-local7-browser/edge-RPAjGn/security-320-detail-2.png",
+        "sha256": "8ee847f1e1545ba7e71bf74d1d85148cdc0a223d6f97120cd1353838d42bd786"
+      },
+      {
+        "path": ".atg-evaluation/mission04-local7-browser/edge-PpMHZS/plugin-1440-detail-1.png",
+        "sha256": "80c11ee0d3c9f4c4b4466c3ca6e219cb039f20cd5025cbc45f774a1bab3e0d5a"
+      },
+      {
+        "path": ".atg-evaluation/mission04-local7-browser/edge-PpMHZS/plugin-1440-full.png",
+        "sha256": "042c693083165b5ed87aab7fe24c703c3d49826b412c5d0545cf07abcabf8de1"
+      }
+    ],
+    "result": "Changed text readable without visible overlap/clipping in inspected regions at desktop/390/320. Automated local navigation, Menu button open/close/Escape, skip link, code horizontal scrolling and exact download hashes passed.",
+    "captureArtefact": "First interaction-run plugin-1440-detail-1.png was tiled; retained unchanged. Fresh capture-only run produced a directly inspected correct detail and full-page capture; no page/CSS fix required.",
+    "limits": "Local installed headless Edge only; physical devices, Safari/iOS, screen readers and full zoom/contrast assessment not verified."
+  },
+  "preservation": {
+    "baselinePath": "C:/Users/Gareth/agent-trust-gate/.atg-evaluation/mission04-local7-preparation/baseline-0RNMcp/preservation-baseline.json",
+    "baselineSha256": "278a2f0bdb73c1fc40c3705d961ce55c688900f1e9767eedbcb4bd02eddb4c0d",
+    "protectedFilesVerified": 7875,
+    "originalBranchesUnchanged": true,
+    "originalWorktreesClean": {
+      "C:/Users/Gareth/agent-trust-gate": "",
+      "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-01-current-main": "",
+      "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-03-buyer-release": "",
+      "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-03-destination-evidence": "",
+      "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-04-buyer-release": "",
+      "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-04-durable-write-repair": "",
+      "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-04-windows-review": ""
+    },
+    "allSevenArchiveHashes": "Passed archive guard; sealed bundled guide snapshots and historical reports/recordings unchanged"
+  },
+  "unresolved": [
+    "Original Windows incident remains unattributed",
+    "No candidate POSIX runtime verification",
+    "Existing Windows NTFS, same-user/admin/SYSTEM, no-encryption, synthetic same-host fixture-key/clock and no-independent-assurance/production-readiness limitations remain",
+    "Fresh remote identity/access/base checks and live deployment/download/exact-live-byte checks remain future publication steps"
+  ],
+  "notRepeated": "Full regressions and Node 20/24 exact-archive installation/security suites: runtime and archive unchanged; prior candidate evidence remains applicable",
+  "publicationActionsPerformed": false
+}
