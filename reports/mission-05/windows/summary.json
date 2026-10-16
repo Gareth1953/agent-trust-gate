@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-16",
+  "platform": "win32",
+  "status": "reviewed locally; not published",
+  "branch": "mission-05-payeeshield-demo",
+  "worktree": "C:/Users/Gareth/agent-trust-gate/.worktrees/mission-05-payeeshield-demo",
+  "importedCommit": "0d8b4c2ae8fd57a661f274bf7d235334f19837de",
+  "bundle": {
+    "verified": true,
+    "completeHistory": true,
+    "sha256": "1ba5839d8c19630b386d0ed6921e089e9aedb1c241f65db62ca95cb6a8cccac2",
+    "conflictingBranchOrWorktree": false,
+    "originalCheckoutCleanBeforeImport": true
+  },
+  "fix": {
+    "file": "prototype/payeeshield/app.js",
+    "problem": "Invalid evaluation after UNKNOWN disabled reconciliation despite retaining its separate handle",
+    "repair": "Restore reconciliation after every operation while an uncertain handle exists",
+    "reproducedBeforeFix": "browser-before-fix.txt",
+    "regressionPassed": true
+  },
+  "node24": {
+    "version": "24.21.0",
+    "executable": "C:/Program Files/nodejs/node.exe",
+    "typecheckExitCode": 0,
+    "focusedPassed": 32,
+    "focusedFailed": 0,
+    "focusedSkipped": 0
+  },
+  "node20": {
+    "version": "20.19.0",
+    "executable": "C:/Users/Gareth/agent-trust-gate/.atg-evaluation/mission-02-node20/node.exe",
+    "sha256": "6e3a39787e667d50487f7335c85636c2823a53e636d73c2c841d45da4e57906c",
+    "matchesRetainedMission02Provenance": true,
+    "typecheckExitCode": 0,
+    "focusedPassed": 32,
+    "focusedFailed": 0,
+    "focusedSkipped": 0,
+    "installedNodeReplaced": false
+  },
+  "browser": {
+    "product": "Edg/155.0.4283.45",
+    "temporaryProfile": true,
+    "headless": true,
+    "results": "browser/results.json",
+    "viewportsPassed": [1440, 390, 320],
+    "javascriptErrors": 0,
+    "externalPageRequests": 0,
+    "horizontalOverflow": false,
+    "finalScreenshots": 9,
+    "visuallyInspected": ["1440-approved.png", "390-reconciled.png", "320-executed.png"]
+  },
+  "publishedReleaseValidation": {
+    "exitCode": 0,
+    "archiveChecksums": 7,
+    "compiledRuntimeFiles": 54,
+    "local7Sha256": "dcf75970db520fdd10afea63aa1a9d20780dc12a053c8e09f49b0f21ed1dddad",
+    "archivesRebuilt": false
+  },
+  "initialIssues": [
+    "Node20 sandbox ancestor-directory EPERM before TypeScript load; passed outside sandbox",
+    "Sandboxed Edge/CDP timeout; isolated-profile run outside sandbox worked",
+    "Reconciliation button defect reproduced and fixed",
+    "Harness replay initially reused discarded handle; corrected to retain original request"
+  ],
+  "notPerformed": [
+    "full repository suite on Windows",
+    "physical-device and screen-reader testing",
+    "browser reload/restart and arbitrary transport failure recovery",
+    "live bank, ERP, payment or real human authentication verification",
+    "publication"
+  ],
+  "limitations": [
+    "source-only optional demo",
+    "volatile process-local synthetic state",
+    "public fixture keys and fixed clock",
+    "same-process reconciliation is not independent destination evidence"
+  ]
+}

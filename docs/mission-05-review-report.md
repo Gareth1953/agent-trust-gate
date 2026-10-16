@@ -1,5 +1,7 @@
 # Mission 05 review report
 
+**Windows follow-up, 16 October 2026:** [Windows review and local reconciliation UI repair](mission-05-windows-review.md) records passing actual Node 20/24 checks and desktop/390px/320px Edge verification. The results below describe the original Linux implementation review.
+
 Implemented PayeeShield as an optional ATG source demonstration on `mission-05-payeeshield-demo`, based on published local.7 commit `bcfb390914d520b75f90270444779fc6cf846e25`.
 
 The revised user HTML now drives the existing ATG supplier-change evaluator and exact-action signer/verifier rather than browser-only approval strings. The server restricts requests to registered fictional data. Executable decisions sign the exact request and current synthetic business version. One-use intent and nonce consumption precede the synchronous destination recheck and simulated commit. Revoked, expired, replayed, changed-request and stale-state attempts cannot write. Lost acknowledgement produces UNKNOWN with no retry; explicit reconciliation reads the same process's synthetic record without claiming independent evidence.

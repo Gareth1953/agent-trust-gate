@@ -1,0 +1,15 @@
+{
+  "profile": "C:\\Users\\Gareth\\AppData\\Local\\Temp\\atg-mission05-edge-qNmufn",
+  "node": "v24.21.0",
+  "results": [],
+  "errors": [],
+  "externalRequests": [],
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Edg/155.0.4283.45",
+    "revision": "@50f24ef2aa5369a074b8888b7db82d9c0652d642",
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36 Edg/155.0.0.0",
+    "jsVersion": "15.5.9.4"
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: UNKNOWN reconciliation survives invalid evaluation\n\ntrue !== false\n\n    at file:///C:/Users/Gareth/agent-trust-gate/.worktrees/mission-05-payeeshield-demo/scripts/test-payeeshield-windows-browser.mjs:114:14"
+}

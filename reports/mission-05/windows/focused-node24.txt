@@ -1,0 +1,40 @@
+✔ valid fixture issues signed authority and commits once (11.8114ms)
+✔ refuses fixture: changed_account_details (1.3124ms)
+✔ refuses fixture: changed_supplier (1.143ms)
+✔ refuses fixture: missing_independent_verification (1.0012ms)
+✔ refuses fixture: self_verification (1.4321ms)
+✔ refuses fixture: wrong_approver_role (1.2756ms)
+✔ refuses fixture: authority_limit_exceeded (1.2377ms)
+✔ refuses fixture: dual_approval_missing (1.1641ms)
+✔ refuses fixture: approval_expired (1.1621ms)
+✔ refuses fixture: replayed_gatepass (1.2099ms)
+✔ refuses fixture: action_digest_mismatch (2.4821ms)
+✔ refuses fixture: agent_standing_unverifiable (2.0128ms)
+✔ refuses fixture: delegation_out_of_scope (1.2533ms)
+✔ refuses fixture: commercial_authority_confusion (0.9916ms)
+✔ refuses fixture: execution_claim_without_execution_receipt (1.0939ms)
+✔ refuses fixture: revoked_human_authority (1.102ms)
+✔ amount boundary 1 (1.9514ms)
+✔ amount boundary 1000000 (1.6663ms)
+✔ amount boundary 1000001 (1.0454ms)
+✔ amount boundary 4000000 (1.0193ms)
+✔ amount boundary 4000001 (1.0384ms)
+✔ strict request schema rejects real details, malformed and non-positive amounts (0.4788ms)
+✔ changed supplier or account cannot acquire fixture approval (1.5051ms)
+✔ every changed request field refuses execution (6.978ms)
+✔ state version edit refuses previously issued authority (1.6229ms)
+✔ revocation and expiry prevent writes (3.6498ms)
+✔ two simultaneous calls and two approvals commit only once (3.6404ms)
+✔ returned mutable values cannot alter signed/private approval (2.0475ms)
+✔ lost acknowledgement retains UNKNOWN, disallows retry and uses labelled local reconciliation (3.7872ms)
+✔ unknown handles never authorise or reconcile (0.1559ms)
+✔ restart is explicitly new volatile demo, not recovery (0.0833ms)
+✔ HTTP loopback, CSRF, strict bodies and static allowlist (100.5872ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 268.2176
