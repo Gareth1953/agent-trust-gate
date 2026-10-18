@@ -11,6 +11,13 @@ by the historical no-network/no-execution boundary below. Read
 before enabling it. There is no production-supported or certified operational
 release. Existing fixture keys must never be configured as operational keys.
 
+The Entra profile requires an administrator-enforced authentication-context
+policy. An `acrs` claim is not inherently proof of MFA; an unprotected context
+can still be issued. Tenant policy configuration and actual sign-in verification
+are required. The current release pins public keys with explicit operator refresh
+and does not implement Continuous Access Evaluation or automatic directory revocation.
+See [Microsoft setup and limits](docs/entra-setup.md).
+
 Report issues through the existing reporting route below without sending keys,
 tokens, customer records or private configuration by ordinary email.
 

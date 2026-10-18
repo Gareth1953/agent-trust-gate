@@ -1,6 +1,6 @@
 # Operational record plugin: implementation and qualification
 
-Date: 18 October 2026. Version: `@agent-trust-gate/operational@0.2.0-rc.1`.
+Date: 18 October 2026. Version: `@agent-trust-gate/operational@0.2.0-rc.2`.
 Base: `15c8275f85d70eabbb89f9fd59c5d30e85654e1d`.
 
 ## Result
@@ -23,9 +23,9 @@ and all other published evaluation archives are unchanged.
 
 - Repository TypeScript build and typecheck.
 - Existing main test phase: 675 passed.
-- Final posttest phase including the operational suite: 1,006 passed.
-- Final `npm test` total: 1,681 passed, zero failures and zero skipped cases.
-- Operational suite: 19 passed, no skipped cases. Now included in posttest.
+- Final posttest phase including the operational suite: 1,013 passed.
+- Final `npm test` total: 1,688 passed, zero failures and zero skipped cases.
+- Operational suite: 26 passed, no skipped cases. Now included in posttest.
 - Fresh installation: import the public SDK and rerun the operational suite
   against the exact packaged runtime and separate child services.
 - Published-evaluation public-claims validator: passed. Its website-script
@@ -36,6 +36,13 @@ The legacy test suite requires an actual Node 20 executable through
 `ATG_NODE20_PATH`. The first attempt lacked it and failed one environment check.
 A temporary Node 20 runtime was supplied and that suite then passed; the system
 Node 24 runtime was not replaced. No test was disabled to obtain a pass.
+
+The Entra update also passed a live **public metadata** discovery check against
+Microsoft's documented tenant (four public signing keys). This used no user
+authentication, registered ATG application or customer system. It does not
+establish an actual ATG login. Runtime dependency audit reported zero known
+vulnerabilities at the time of the check; this is not a security certification.
+The installed rc.2 archive carries an explicit dependency shrinkwrap.
 
 ## What the operational suite establishes
 
@@ -64,6 +71,18 @@ Node 24 runtime was not replaced. No test was disabled to obtain a pass.
 19. The approver can inspect before/after documents near the supported size
     limit, approve them and obtain the correct persisted result.
 
+20. The Entra profile authenticates a delegated access token using tenant object
+    ID, approves an actual record write and persists the identity evidence.
+21. Wrong tenant, API audience, client, token version/class, user, scope, context,
+    signature and authentication time are refused independently.
+22. Changing identity policy invalidates unused approvals before admission.
+23. Interactive MSAL requests carry the exact API scope, context, fresh-login
+    request and unique nonce; malformed/consumer profiles are refused.
+24. Discovery accepts tenant-pinned metadata and issuer-matched RSA public keys.
+25. Substituted metadata URLs, wrong key issuer, duplicate keys and disabled TLS
+    verification are refused.
+26. The interactive approval CLI refuses unattended input before sign-in.
+
 These are functional integration checks with test-only identity keys, temporary
 databases and local transport. They are not statistical failure rates, payment
 tests, a real IdP authentication ceremony or independent security assurance.
@@ -78,7 +97,7 @@ ATG_NODE20_PATH=/absolute/path/to/node20 npm test
 npm run test:operational
 node scripts/build-operational-plugin.mjs /absolute/new/package-staging
 npm pack /absolute/new/package-staging --pack-destination /absolute/output
-node scripts/test-operational-package.mjs /absolute/output/agent-trust-gate-operational-0.2.0-rc.1.tgz
+node scripts/test-operational-package.mjs /absolute/output/agent-trust-gate-operational-0.2.0-rc.2.tgz
 ```
 
 No script silently resets existing operator state. Operational tests use their
@@ -90,3 +109,15 @@ Draft operational candidate for engineering review. No website deployment,
 production enablement, payment integration, registry publication, customer-data
 access, IdP registration or live customer trial is performed by this change.
 See [installation, security, assumptions and remaining gates](operational-record-plugin.md).
+
+## Entra acceptance still required
+
+No operator-owned Entra tenant/app registration was available in this session.
+The Microsoft MSAL browser sign-in command is implemented but a real interactive
+sign-in has not been exercised. The tests validate claims and service effects
+using ephemeral test-only signing keys, and test the login-request contract;
+they do not simulate a successful production sign-in in the shipped package.
+Follow [the Entra setup and tenant acceptance guide](entra-setup.md) before
+claiming actual Microsoft authentication or MFA enforcement. Conditional Access
+licensing/policies, live public-key refresh operations, desktop/browser behaviour
+and deployment-specific TLS/process isolation remain operator acceptance work.

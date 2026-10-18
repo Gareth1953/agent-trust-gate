@@ -7,6 +7,10 @@ plugin path rather than further fixture-only demonstrations. The new
 `src/operational/` entry points may run explicitly configured authenticated
 HTTP/TLS services and commit versioned non-payment JSON records. Their identity,
 keys, clock and data must come from the operator, never evaluation fixtures.
+Gareth additionally approved Microsoft Entra support on 18 October: explicit
+public-key discovery and MSAL-based human sign-in are within this operational
+path. This does not authorise tenant purchases, creating cloud resources,
+changing tenant security policies, or activating an unconfigured deployment.
 The legacy evaluation package and sealed archives retain their boundaries.
 No payment, banking, wallet, settlement, outreach or arbitrary third-party
 execution is authorised by this bounded implementation. Operational changes

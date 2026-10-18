@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-18",
+  "package": "agent-trust-gate-operational-0.2.0-rc.2.tgz",
+  "sha256": "dee741e1d1baf24a8ea8deb0a5905526c70380a71aa19edafed187520118d24f",
+  "sizeBytes": 26644,
+  "runtime": "Node 24.19.0 / Linux",
+  "repositoryTestPhases": {
+    "pass": [
+      675,
+      1013
+    ],
+    "fail": [
+      0,
+      0
+    ],
+    "skipped": [
+      0,
+      0
+    ]
+  },
+  "repositoryTestTotal": 1688,
+  "installedArchiveIntegrationTests": {
+    "passed": 26,
+    "failed": 0,
+    "skipped": 0
+  },
+  "identityTestMethod": "Ephemeral test-only keys validate Entra claim rules through real separate-process services; login request contract checked without interactive Microsoft authentication.",
+  "livePublicMicrosoftMetadataCheck": {
+    "passed": true,
+    "keysRetrieved": 4,
+    "tenant": "Microsoft documented public tenant; not operator tenant",
+    "authenticated": false
+  },
+  "runtimeDependencyAudit": {
+    "knownVulnerabilitiesReported": 0,
+    "directDependency": "@azure/msal-node@7.1.0",
+    "shrinkwrapIncluded": true
+  },
+  "actualHumanEntraLoginVerified": false,
+  "operatorTenantConfigured": false,
+  "customerIntegrationVerified": false,
+  "paymentsExecuted": false,
+  "externalSecurityReviewPerformed": false,
+  "publicTlsDeploymentQualified": false,
+  "publishedEvaluationArchivesChanged": false,
+  "disposition": "Entra-enabled operational record release candidate; actual tenant acceptance and production qualification remain"
+}

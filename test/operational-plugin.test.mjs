@@ -33,7 +33,7 @@ async function start(mode, path, port) {
   return child;
 }
 async function stop(child) { if (!child || child.exitCode !== null) return; const exited = once(child, 'exit'); child.kill('SIGTERM'); await exited; }
-async function setup(t) {
+async function setup(t, entra = false) {
   const root = mkdtempSync(join(tmpdir(), 'atg-operational-test-'));
   const gatewayPort = await freePort(), destinationPort = await freePort(), proxyPort = await freePort();
   const gatewayUrl = `http://127.0.0.1:${gatewayPort}`, destinationUrl = `http://127.0.0.1:${proxyPort}`, directUrl = `http://127.0.0.1:${destinationPort}`;
@@ -42,6 +42,7 @@ async function setup(t) {
   write(key1, gatewayKeys.privateKey); write(key2, destinationKeys.privateKey); write(claimFile, claim);
   const common = { tenantId: 'test-tenant', policyVersion: 'policy-1', gatewayUrl, destinationUrl, gatewayPublicKeyPem: gatewayKeys.publicKey, destinationPublicKeyPem: destinationKeys.publicKey, agents: [{ id: 'agent-1', recordPrefix: 'order-', tokenHash: tokenHash(token) }], emergencyStop: false };
   const gateway = { ...common, signingPrivateKeyFile: key1, databasePath: join(root, 'gateway.sqlite'), claimTokenHash: tokenHash(claim), approvalTtlSeconds: 120, identity: { issuer: 'https://test-only-issuer.invalid', audience: 'atg-test-approval-api', jwks: [jwk], requiredAmr: ['mfa'], maximumAuthenticationAgeSeconds: 300 }, humans: [{ subject: 'human-1', active: true, recordPrefix: 'order-' }] };
+  if (entra) { gateway.identity = entraTrust(); gateway.humans = [{ subject: entraHuman, active: true, recordPrefix: 'order-' }]; }
   const destination = { ...common, signingPrivateKeyFile: key2, databasePath: join(root, 'destination.sqlite'), claimTokenFile: claimFile };
   const gatewayPath = join(root, 'gateway.json'), destinationPath = join(root, 'destination.json'); write(gatewayPath, gateway); write(destinationPath, destination);
   let fault = '';
@@ -61,7 +62,7 @@ async function setup(t) {
   const seed = (id, document = { status: 'open' }, version = 1) => { const db = new DatabaseSync(destination.databasePath); db.prepare('INSERT OR REPLACE INTO records VALUES (?,?,?)').run(id, version, JSON.stringify(document)); db.close(); };
   seed('order-1');
   const agent = new AtgOperationalPlugin({ gatewayUrl, agentToken: token });
-  const human = new AtgHumanApprovals({ gatewayUrl, accessToken: jwt() });
+  const human = new AtgHumanApprovals({ gatewayUrl, accessToken: entra ? entraJwt() : jwt() });
   const propose = async (id = 'order-1', document = { status: 'approved' }, version = 1) => agent.propose({ recordId: id, expectedVersion: version, document });
   const approved = async () => { const proposal = await propose(); const viewed = await human.inspect(proposal.requestId); assert.equal(viewed.digest, digest(viewed.action)); await human.approve(proposal.requestId, viewed.digest); return proposal; };
   t.after(async () => { await stop(gatewayChild); await stop(destinationChild); await new Promise(yes => proxy.close(yes)); rmSync(root, { recursive: true, force: true }); });
@@ -187,4 +188,91 @@ test('the approver can inspect both before and after documents near the supporte
   const viewed = await h.human.inspect(p.requestId);
   assert.equal(viewed.before.value.length, 32650); assert.equal(viewed.action.document.value.length, 32650);
   await h.human.approve(p.requestId, viewed.digest); assert.equal((await h.agent.execute(p.requestId)).status, 'EXECUTED');
+});
+
+
+const entraTenant = '11111111-1111-4111-8111-111111111111';
+const entraApi = '22222222-2222-4222-8222-222222222222';
+const entraClient = '33333333-3333-4333-8333-333333333333';
+const entraHuman = '44444444-4444-4444-8444-444444444444';
+function entraTrust() { return { provider: 'microsoft-entra', tenantId: entraTenant, issuer: `https://login.microsoftonline.com/${entraTenant}/v2.0`, audience: entraApi, clientId: entraClient, requiredAuthenticationContext: 'c1', maximumAuthenticationAgeSeconds: 300, jwks: [jwk] }; }
+function entraJwt(overrides = {}, wrongSigner = false) {
+  return jwt({ iss: entraTrust().issuer, aud: entraApi, ver: '2.0', tid: entraTenant, azp: entraClient, oid: entraHuman, sub: 'different-pairwise-subject', scp: 'atg.approve', acrs: ['c1'], scope: undefined, token_use: undefined, amr: undefined, ...overrides }, wrongSigner);
+}
+test('Entra delegated access token approves a real write using tenant object ID and persists identity evidence', async t => {
+  const h = await setup(t, true); const p = await h.approved(); const result = await h.agent.execute(p.requestId);
+  assert.equal(result.status, 'EXECUTED'); assert.equal((await h.record()).payload.version, 2);
+  const db = new DatabaseSync(h.gateway.databasePath);
+  const grant = JSON.parse(db.prepare('SELECT grant_json FROM requests WHERE id=?').get(p.requestId).grant_json);
+  db.close(); assert.equal(grant.payload.approver.subject, entraHuman); assert.equal(grant.payload.approver.issuer, entraTrust().issuer);
+  await h.restart(); assert.equal((await h.agent.reconcile(p.requestId)).status, 'EXECUTED');
+});
+test('Entra rejects wrong tenant, API, client, token class, context, age, scope, identity and signature', () => {
+  const config = { identity: entraTrust(), humans: [{ subject: entraHuman, active: true, recordPrefix: 'order-' }] };
+  assert.equal(humanIdentity(entraJwt(), config).subject, entraHuman);
+  const invalid = [
+    { tid: entraApi }, { iss: 'https://login.microsoftonline.com/common/v2.0' }, { aud: entraClient }, { aud: [entraApi] },
+    { azp: entraApi }, { azp: undefined }, { ver: '1.0' }, { oid: undefined }, { oid: 'email@example.com' },
+    { oid: entraClient }, { idtyp: 'app' }, { scp: undefined, roles: ['atg.approve'] }, { scp: 'User.Read' },
+    { scp: undefined, scope: 'atg:approve', token_use: 'access' }, { acrs: undefined }, { acrs: ['c2'] },
+    { auth_time: undefined }, { auth_time: Math.floor(Date.now()/1000)-901 }, { exp: 1 }, { nbf: Math.floor(Date.now()/1000)+300 },
+  ];
+  for (const claims of invalid) assert.throws(() => humanIdentity(entraJwt(claims), config), undefined, JSON.stringify(claims));
+  assert.throws(() => humanIdentity(entraJwt({}, true), config), /JWT_SIGNATURE_INVALID/);
+  assert.throws(() => humanIdentity(entraJwt(), { ...config, humans: [{ ...config.humans[0], active: false }] }), /HUMAN_AUTHORITY_INACTIVE/);
+});
+test('changing Entra client or authentication policy invalidates unused approval before destination admission', async t => {
+  const h = await setup(t, true); const p = await h.approved();
+  h.updateGateway(c => { c.identity.requiredAuthenticationContext = 'c2'; });
+  await assert.rejects(h.agent.execute(p.requestId), /APPROVAL_IDENTITY_POLICY_CHANGED/);
+  assert.equal((await h.record()).payload.version, 1);
+});
+
+const { entraProfile, interactiveRequest, discoverEntraTrust } = await import(pathToFileURL(join(moduleRoot, 'entra.mjs')).href);
+test('Entra sign-in requests the specific API scope, context and fresh login with a unique nonce', () => {
+  const profile = entraProfile( { ...entraTrust(), issuer: 'https://untrusted.invalid' });
+  assert.equal(profile.issuer, entraTrust().issuer);
+  const browser = async () => {};
+  const a = interactiveRequest(profile, browser), b = interactiveRequest(profile, browser);
+  assert.deepEqual(a.scopes, [`api://${entraApi}/atg.approve`]); assert.equal(a.prompt, 'login');
+  assert.equal(a.openBrowser, browser); assert.notEqual(a.nonce, b.nonce); assert.equal(a.extraQueryParameters.max_age, '300');
+  assert.deepEqual(JSON.parse(a.claims), { access_token: { acrs: { essential: true, value: 'c1' } } });
+  for (const patch of [{ tenantId: 'common' }, { tenantId: '9188040d-6c67-4c5b-b112-36a304b66dad' }, { clientId: entraApi }, { requiredAuthenticationContext: '' }, { requiredAuthenticationContext: 'c100' }, { maximumAuthenticationAgeSeconds: 901 }]) assert.throws(() => entraProfile({ ...profile, ...patch }));
+});
+test('Entra metadata discovery uses only tenant-pinned HTTPS endpoints and imports public signing material', async t => {
+  const base = `https://login.microsoftonline.com/${entraTenant}`, requested = [];
+  t.mock.method(globalThis, 'fetch', async (url, options) => {
+    requested.push(url); assert.equal(options.redirect, 'error');
+    return Response.json(url.includes('openid-configuration') ? { issuer: entraTrust().issuer, jwks_uri: `${base}/discovery/v2.0/keys` } : { keys: [{ ...jwk, issuer: 'https://login.microsoftonline.com/{tenantid}/v2.0' }] });
+  });
+  const identity = await discoverEntraTrust(entraTrust());
+  assert.deepEqual(requested, [`${base}/v2.0/.well-known/openid-configuration`, `${base}/discovery/v2.0/keys`]);
+  assert.deepEqual(identity.jwks, [jwk]); assert.equal(identity.provider, 'microsoft-entra');
+});
+test('Entra discovery refuses substituted metadata URLs, wrong key issuer and duplicate keys', async t => {
+  const base = `https://login.microsoftonline.com/${entraTenant}`;
+  let metadata = { issuer: entraTrust().issuer, jwks_uri: `${base}/discovery/v2.0/keys` };
+  let keys = [{ ...jwk, issuer: entraTrust().issuer }]; let requests = 0;
+  t.mock.method(globalThis, 'fetch', async url => { requests++; return Response.json(url.includes('openid-configuration') ? metadata : { keys }); });
+  metadata = { ...metadata, jwks_uri: 'https://attacker.invalid/keys' };
+  await assert.rejects(discoverEntraTrust(entraTrust()), /ENTRA_METADATA_TRUST_MISMATCH/); assert.equal(requests, 1);
+  metadata = { issuer: 'https://attacker.invalid', jwks_uri: `${base}/discovery/v2.0/keys` };
+  await assert.rejects(discoverEntraTrust(entraTrust()), /ENTRA_METADATA_TRUST_MISMATCH/);
+  metadata = { issuer: entraTrust().issuer, jwks_uri: `${base}/discovery/v2.0/keys` };
+  keys = [{ ...jwk, issuer: 'https://attacker.invalid' }];
+  await assert.rejects(discoverEntraTrust(entraTrust()), /ENTRA_KEY_TRUST_MISMATCH/);
+  keys = [{ ...jwk, issuer: entraTrust().issuer }, { ...jwk, issuer: entraTrust().issuer }];
+  await assert.rejects(discoverEntraTrust(entraTrust()), /ENTRA_DUPLICATE_KEY/);
+  const oldTls = process.env.NODE_TLS_REJECT_UNAUTHORIZED;
+  try {
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+    await assert.rejects(discoverEntraTrust(entraTrust()), /TLS_VERIFICATION_REQUIRED/);
+  } finally {
+    if (oldTls === undefined) delete process.env.NODE_TLS_REJECT_UNAUTHORIZED; else process.env.NODE_TLS_REJECT_UNAUTHORIZED = oldTls;
+  }
+});
+test('Entra interactive approval CLI refuses unattended input without attempting login', async () => {
+  const child = spawn(process.execPath, [cli, 'entra', 'review', '/nonexistent-config.json', 'request-id'], { stdio: ['pipe', 'pipe', 'pipe'] });
+  let output = ''; child.stdout.on('data', b => { output += b; }); child.stderr.on('data', b => { output += b; });
+  const [code] = await once(child, 'exit'); assert.equal(code, 1); assert.ok(!output.includes('accessToken')); assert.ok(!output.includes('login.microsoftonline.com'));
 });

@@ -1,4 +1,4 @@
-# ATG operational record plugin — 0.2.0-rc.1
+# ATG operational record plugin — 0.2.0-rc.2
 
 ## What is implemented
 
@@ -46,7 +46,38 @@ are not qualified. Use a controlled Linux deployment until those are tested.
   is signed. This destination owns the actual record database. A provider
   connector needs an authoritative read-back and its own transaction boundary.
 
-## Human identity contract (no demo fallback)
+## Microsoft Entra ID (recommended enterprise profile)
+
+Use `provider: "microsoft-entra"` for single-tenant Microsoft commercial-cloud
+v2 access tokens. See **ENTRA-SETUP.md** in the installed package, or
+[the Entra setup guide](entra-setup.md) in this repository. The profile validates
+RS256 signature, exact tenant/issuer/API audience, allowed public-client ID,
+delegated `atg.approve` scope, tenant user object ID, recent `auth_time` and the
+required `acrs` authentication context. It does not require generic-provider
+`scope`, `token_use` or v1 `amr` claims. Personal-account tenants, app-only
+permissions, Graph tokens and ID tokens cannot authorise this approval API.
+
+The `humans[].subject` value is the user's **object ID in the configured tenant**,
+not email, display name or the pairwise `sub` claim. A guest is eligible only if
+the operator explicitly authorises their object ID in that tenant. There is no
+automatic cross-tenant onboarding or directory synchronisation.
+
+The new `entra review` command signs in with Microsoft's MSAL Node library,
+using browser authorisation code flow with PKCE and an explicit nonce. It
+requests the configured authentication context and shows the authoritative
+before/after proposal before requiring the entire approval digest to be typed.
+The person opens the sign-in URL on the same computer as the CLI. Access tokens
+are neither printed nor persisted; the process-local MSAL cache is cleared.
+The approval CLI requires an interactive terminal. This remains bearer-based
+authenticated approval, not proof that a natural person read every field.
+
+**The tenant administrator must enforce MFA/authentication strength on the
+configured context.** An `acrs` value alone does not prove MFA: Microsoft may
+issue it when no Conditional Access policy protects that context. The gateway
+cannot inspect your tenant's policy configuration. Actual tenant sign-in,
+policy enforcement and deployment remain required acceptance checks.
+
+## Generic human identity contract (no demo fallback)
 
 Configure an actual trusted identity provider to issue **RS256 JWT access
 tokens** for this approval API, with a distinct audience and `atg:approve`
@@ -76,7 +107,7 @@ revocation integration remain future work. Never supply this token to an agent.
 Install the reviewed archive into a clean Node 24.19+ project:
 
 ```sh
-npm install /absolute/path/agent-trust-gate-operational-0.2.0-rc.1.tgz
+npm install /absolute/path/agent-trust-gate-operational-0.2.0-rc.2.tgz
 npx --no-install atg-operational --help
 ```
 
@@ -102,8 +133,9 @@ Create a public trust-policy JSON file from **your actual provider and users**:
 
 These placeholders cannot authenticate anyone. The issuer must be configured
 and its claim contract verified before deployment. Not every identity provider
-emits these claims by default. The package does not register an OAuth client,
-implement a login page or obtain an access token on the person's behalf.
+emits these claims by default. The generic profile does not implement a login flow. The Entra profile provides
+an MSAL-based sign-in command, but does not register applications or configure
+your tenant on your behalf.
 
 ```sh
 npx --no-install atg-operational init /private/new-atg /private/public-trust.json
@@ -231,3 +263,18 @@ No tests establish global superiority, certification, fraud prevention, financia
 benefit, arbitrary external enforcement or production readiness for every buyer.
 This implementation is an operational integration release candidate awaiting
 those external qualification gates, not the old fixture-only plugin relabelled.
+
+## Candidate upgrade and identity-policy changes
+
+This candidate adds an identity-policy digest to every new approval. Changing
+issuer, audience, client, context, authentication-age policy or other identity
+profile fields invalidates unused approvals before admission. Changing only
+public JWKS keys does not. Older rc.1 approvals lack this digest and are refused
+after upgrading; cancel or expire pending work first, and obtain new approvals.
+Do not upgrade while actions are in flight. Preserve the same deployment keys,
+URLs and databases and reconcile unresolved outcomes before resuming. There is
+no automated rolling-upgrade or schema-migration qualification.
+
+The rc.2 package includes Microsoft MSAL Node 7.1.0 and its reviewed runtime
+dependency graph in `npm-shrinkwrap.json`; it is no longer dependency-free.
+Install with `--ignore-scripts` where your operating policy requires it.

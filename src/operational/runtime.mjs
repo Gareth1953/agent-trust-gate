@@ -22,6 +22,17 @@ function object(value, keys) {
   return value;
 }
 function identifier(value) { need(typeof value === 'string' && /^[A-Za-z0-9][A-Za-z0-9_.-]{0,99}$/.test(value), 'IDENTIFIER_INVALID'); return value; }
+const guid = value => typeof value === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(value);
+/** Explicit commercial-cloud, single-tenant Entra v2 profile; no tenant inference. */
+export function validateEntraProfile(identity) {
+  object(identity);
+  need(identity.provider === 'microsoft-entra' && guid(identity.tenantId) && identity.tenantId !== '9188040d-6c67-4c5b-b112-36a304b66dad', 'ENTRA_TENANT_INVALID');
+  need(guid(identity.audience) && guid(identity.clientId) && identity.audience !== identity.clientId, 'ENTRA_APPLICATIONS_INVALID');
+  need(identity.issuer === `https://login.microsoftonline.com/${identity.tenantId}/v2.0`, 'ENTRA_ISSUER_INVALID');
+  need(/^c(?:[1-9]|[1-9][0-9])$/.test(identity.requiredAuthenticationContext), 'ENTRA_AUTHENTICATION_CONTEXT_REQUIRED');
+  need(Number.isSafeInteger(identity.maximumAuthenticationAgeSeconds) && identity.maximumAuthenticationAgeSeconds > 0 && identity.maximumAuthenticationAgeSeconds <= 900, 'AUTHENTICATION_AGE_INVALID');
+  return identity;
+}
 function jsonValue(value, depth = 0) {
   need(depth < 24, 'JSON_TOO_DEEP');
   if (value === null || typeof value === 'string' || typeof value === 'boolean') return;
@@ -75,7 +86,9 @@ function configAt(path, mode) {
   if (mode === 'gateway') {
     const identity = config.identity; object(identity);
     need(new URL(identity.issuer).protocol === 'https:' && typeof identity.audience === 'string' && identity.audience.length > 0, 'IDENTITY_TRUST_INVALID');
-    need(Array.isArray(identity.jwks) && identity.jwks.length > 0 && Array.isArray(identity.requiredAmr) && identity.requiredAmr.length > 0, 'IDENTITY_KEYS_AND_AMR_REQUIRED');
+    need(identity.provider === undefined || ['generic-jwt', 'microsoft-entra'].includes(identity.provider), 'IDENTITY_PROVIDER_INVALID');
+    if (identity.provider === 'microsoft-entra') validateEntraProfile(identity);
+    need(Array.isArray(identity.jwks) && identity.jwks.length > 0 && (identity.provider === 'microsoft-entra' || (Array.isArray(identity.requiredAmr) && identity.requiredAmr.length > 0)), 'IDENTITY_KEYS_AND_AMR_REQUIRED');
     need(new Set(identity.jwks.map(k => k.kid)).size === identity.jwks.length, 'DUPLICATE_IDENTITY_KEY');
     for (const key of identity.jwks) {
       need(typeof key.kid === 'string' && key.kty === 'RSA' && !key.d && !key.p && !key.q && (!key.alg || key.alg === 'RS256') && (!key.use || key.use === 'sig'), 'IDENTITY_PUBLIC_KEY_INVALID');
@@ -85,6 +98,7 @@ function configAt(path, mode) {
     need(Array.isArray(config.humans) && config.humans.length > 0, 'HUMAN_AUTHORITY_REQUIRED');
     need(new Set(config.humans.map(h => h.subject)).size === config.humans.length, 'DUPLICATE_HUMAN');
     for (const human of config.humans) need(typeof human.subject === 'string' && human.subject.length > 0 && typeof human.active === 'boolean' && typeof human.recordPrefix === 'string' && human.recordPrefix.length > 0, 'HUMAN_AUTHORITY_INVALID');
+    if (identity.provider === 'microsoft-entra') need(config.humans.every(h => guid(h.subject)), 'ENTRA_OBJECT_ID_REQUIRED');
     need(Number.isSafeInteger(config.approvalTtlSeconds) && config.approvalTtlSeconds > 0 && config.approvalTtlSeconds <= 300, 'APPROVAL_TTL_INVALID');
     need(/^[a-f0-9]{64}$/.test(config.claimTokenHash), 'CLAIM_TOKEN_HASH_INVALID');
   }
@@ -113,15 +127,27 @@ export function humanIdentity(token, config) {
   need(key.asymmetricKeyType === 'rsa' && key.asymmetricKeyDetails.modulusLength >= 2048, 'JWT_KEY_INVALID', 401);
   need(verify('RSA-SHA256', Buffer.from(parts[0] + '.' + parts[1]), key, Buffer.from(parts[2], 'base64url')), 'JWT_SIGNATURE_INVALID', 401);
   const now = Math.floor(Date.now() / 1000);
-  need(claims.iss === trust.issuer && (claims.aud === trust.audience || (Array.isArray(claims.aud) && claims.aud.includes(trust.audience))), 'JWT_ISSUER_OR_AUDIENCE_INVALID', 401);
+  need(claims.iss === trust.issuer && (claims.aud === trust.audience || (trust.provider !== 'microsoft-entra' && Array.isArray(claims.aud) && claims.aud.includes(trust.audience))), 'JWT_ISSUER_OR_AUDIENCE_INVALID', 401);
   need(Number.isSafeInteger(claims.exp) && claims.exp > now && Number.isSafeInteger(claims.iat) && claims.iat <= now && claims.exp > claims.iat && (claims.nbf === undefined || (Number.isSafeInteger(claims.nbf) && claims.nbf <= now)), 'JWT_TIME_INVALID', 401);
   need(Number.isSafeInteger(claims.auth_time) && claims.auth_time <= now && now - claims.auth_time <= trust.maximumAuthenticationAgeSeconds, 'RECENT_HUMAN_AUTHENTICATION_REQUIRED', 401);
-  need(Array.isArray(claims.amr) && trust.requiredAmr.every(method => claims.amr.includes(method)), 'AUTHENTICATION_METHOD_REQUIRED', 401);
-  need(typeof claims.scope === 'string' && claims.scope.split(' ').includes('atg:approve'), 'APPROVAL_SCOPE_REQUIRED', 403);
-  need(claims.token_use === 'access' && typeof claims.sub === 'string', 'ACCESS_TOKEN_REQUIRED', 401);
-  const human = config.humans.find(h => h.subject === claims.sub && h.active);
+  let subject;
+  if (trust.provider === 'microsoft-entra') {
+    validateEntraProfile(trust);
+    need(claims.ver === '2.0' && claims.tid === trust.tenantId && claims.azp === trust.clientId && guid(claims.oid) && claims.idtyp !== 'app', 'ENTRA_DELEGATED_USER_REQUIRED', 401);
+    need(typeof claims.scp === 'string' && claims.scp.split(' ').includes('atg.approve'), 'APPROVAL_SCOPE_REQUIRED', 403);
+    need(Array.isArray(claims.acrs) && claims.acrs.includes(trust.requiredAuthenticationContext), 'ENTRA_AUTHENTICATION_CONTEXT_REQUIRED', 401);
+    // acrs means the tenant's configured context was satisfied, not inherently MFA.
+    // Its Conditional Access policy must require the intended authentication strength.
+    subject = claims.oid;
+  } else {
+    need(Array.isArray(claims.amr) && trust.requiredAmr.every(method => claims.amr.includes(method)), 'AUTHENTICATION_METHOD_REQUIRED', 401);
+    need(typeof claims.scope === 'string' && claims.scope.split(' ').includes('atg:approve'), 'APPROVAL_SCOPE_REQUIRED', 403);
+    need(claims.token_use === 'access' && typeof claims.sub === 'string', 'ACCESS_TOKEN_REQUIRED', 401);
+    subject = claims.sub;
+  }
+  const human = config.humans.find(h => h.subject === subject && h.active);
   need(human, 'HUMAN_AUTHORITY_INACTIVE', 403);
-  return { issuer: claims.iss, subject: claims.sub, authTime: claims.auth_time, recordPrefix: human.recordPrefix };
+  return { issuer: claims.iss, subject, authTime: claims.auth_time, recordPrefix: human.recordPrefix };
 }
 export async function callJson(base, path, token, method = 'GET', value) {
   const response = await fetch(transportUrl(base) + path, { method, redirect: 'error', signal: AbortSignal.timeout(5000), headers: { authorization: `Bearer ${token}`, ...(value === undefined ? {} : { 'content-type': 'application/json' }) }, ...(value === undefined ? {} : { body: JSON.stringify(value) }) });
@@ -155,9 +181,14 @@ export function provisionOperationalRecord(configPath, recordId, document) {
 }
 export function validateOperationalConfiguration(path, mode) { configAt(path, mode); }
 function ownRequest(db, id, agent) { const row = db.prepare('SELECT * FROM requests WHERE id=? AND agent=?').get(id, agent); need(row, 'REQUEST_NOT_FOUND', 404); return row; }
+function identityPolicy(identity) {
+  const { jwks, ...policy } = identity;
+  return digest(policy);
+}
 function activeAuthority(config, grant) {
   need(!config.emergencyStop && config.policyVersion === grant.policyVersion, 'POLICY_CHANGED_OR_STOPPED', 403);
   need(grant.approver.issuer === config.identity.issuer, 'APPROVAL_ISSUER_CHANGED', 403);
+  need(grant.identityPolicyDigest === identityPolicy(config.identity), 'APPROVAL_IDENTITY_POLICY_CHANGED', 403);
   need(config.agents.some(a => a.id === grant.agentId), 'AGENT_REVOKED', 403);
   agentScope(config, grant.agentId, grant.action.recordId);
   need(config.humans.some(h => h.subject === grant.approver.subject && h.active && grant.action.recordId.startsWith(h.recordPrefix)), 'HUMAN_AUTHORITY_REVOKED', 403);
@@ -258,7 +289,7 @@ export function openOperationalService({ mode, configPath, host = '127.0.0.1', p
         }
         need(!current.emergencyStop && row.status === 'PENDING' && proposal.createdAt + 600000 > Date.now(), 'REQUEST_NOT_APPROVABLE', 409);
         need(current.agents.some(a => a.id === row.agent), 'AGENT_REVOKED', 403);
-        const grant = signed({ kind: 'atg.record-grant.v1', destination: config.destinationUrl, requestId: row.id, agentId: row.agent, action: proposal.action, beforeHash: proposal.beforeHash, digest: proposal.digest, approver: { issuer: human.issuer, subject: human.subject, authTime: human.authTime }, policyVersion: current.policyVersion, issuedAt: Date.now(), expiresAt: Date.now() + current.approvalTtlSeconds * 1000 });
+        const grant = signed({ kind: 'atg.record-grant.v1', destination: config.destinationUrl, requestId: row.id, agentId: row.agent, action: proposal.action, beforeHash: proposal.beforeHash, digest: proposal.digest, approver: { issuer: human.issuer, subject: human.subject, authTime: human.authTime }, identityPolicyDigest: identityPolicy(current.identity), policyVersion: current.policyVersion, issuedAt: Date.now(), expiresAt: Date.now() + current.approvalTtlSeconds * 1000 });
         db.prepare('UPDATE requests SET status=?,grant_json=? WHERE id=?').run('APPROVED', canonical(grant), row.id);
         event(db, row.id, 'APPROVED', human.issuer + '|' + human.subject);
         return { requestId: row.id, status: 'APPROVED', digest: proposal.digest };

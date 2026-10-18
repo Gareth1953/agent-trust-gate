@@ -14,6 +14,8 @@ descriptions below refer to the evaluation editions, not this opt-in candidate.
 Installing, importing or building the candidate starts no service and creates
 no keys, identity, authority or records.
 
+The rc.2 candidate adds [Microsoft Entra ID setup and interactive approval](docs/entra-setup.md), with tenant/API/client checks and authentication-context enforcement. Actual tenant sign-in remains unverified.
+
 See the [implementation and qualification record](docs/operational-record-qualification.md).
 
 ![Agent Trust Gate human-in-the-loop governance architecture](docs/assets/agent-trust-gate-readme-hero.png)
