@@ -1,0 +1,16 @@
+import { mkdirSync, copyFileSync, writeFileSync, existsSync } from 'node:fs';
+import { resolve, dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const [output, ...extra] = process.argv.slice(2);
+if (!output || extra.length || !output.startsWith('/') && !/^[A-Za-z]:[\\/]/.test(output)) throw new Error('Supply one new absolute staging directory.');
+if (existsSync(output)) throw new Error('Preserve existing staging directories; choose a new path.');
+for (const directory of ['src/operational', 'dist/src']) mkdirSync(join(output, directory), { recursive: true });
+for (const name of ['runtime.mjs', 'sdk.mjs', 'cli.mjs', 'setup.mjs']) copyFileSync(join(root, 'src/operational', name), join(output, 'src/operational', name));
+writeFileSync(join(output, 'dist/package.json'), JSON.stringify({ type: 'commonjs' }) + '\n');
+for (const name of ['canonical-json.js', 'canonical-json.d.ts']) copyFileSync(join(root, 'dist/src', name), join(output, 'dist/src', name));
+copyFileSync(join(root, 'docs/operational-record-plugin.md'), join(output, 'README.md'));
+copyFileSync(join(root, 'src/operational/sdk.d.ts'), join(output, 'sdk.d.ts'));
+copyFileSync(join(root, 'LICENSE'), join(output, 'LICENSE'));
+writeFileSync(join(output, 'package.json'), JSON.stringify({ name: '@agent-trust-gate/operational', version: '0.2.0-rc.1', private: true, type: 'module', description: 'Single-tenant authenticated approval and enforced versioned record updates; operational release candidate.', exports: { '.': { types: './sdk.d.ts', import: './src/operational/sdk.mjs' } }, bin: { 'atg-operational': './src/operational/cli.mjs' }, engines: { node: '>=24.19.0' }, license: 'MIT', files: ['src', 'dist', 'sdk.d.ts', 'README.md', 'LICENSE'] }, null, 2) + '\n');
+console.log(output);

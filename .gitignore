@@ -26,3 +26,7 @@ plugin-build/
 
 # Preserve local review worktrees without including nested repositories in release scans.
 .worktrees/
+
+# Operator-generated operational credentials and databases
+.atg-operational/
+operational-build/

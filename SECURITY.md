@@ -1,5 +1,19 @@
 # Security Policy
 
+## Operational record candidate
+
+The optional operational record plugin is a scoped release candidate with real
+network listeners and persistent non-payment record writes. It requires
+operator-configured identity trust, private deployment credentials, separate
+service roles and deployment-specific security qualification. It is not covered
+by the historical no-network/no-execution boundary below. Read
+[its security and qualification requirements](docs/operational-record-plugin.md)
+before enabling it. There is no production-supported or certified operational
+release. Existing fixture keys must never be configured as operational keys.
+
+Report issues through the existing reporting route below without sending keys,
+tokens, customer records or private configuration by ordinary email.
+
 Agent Trust Gate™ is a public, local-first synthetic demonstrator. It is not a
 hosted or production service, payment processor, settlement engine, production
 identity service, or production security control. No production release or
