@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "atg.microsoft-demonstration-summary.v1",
+  "status": "reviewed_local_demonstration_evidence",
+  "reviewDate": "2026-10-20",
+  "evidenceBasis": "Local retained live-workflow report, journal, synthetic destination and lifecycle store; rechecked against Mission 17M hashes",
+  "identity": {
+    "provider": "Microsoft Entra ID",
+    "mode": "genuine_browser_authentication_in_controlled_local_companion",
+    "outcome": "IDENTITY_ADMITTED",
+    "authorityGranted": false,
+    "approvalGranted": false,
+    "gatePassIssued": false,
+    "executionPermitted": false,
+    "independentIdentityAttestation": false
+  },
+  "action": {
+    "syntheticOnly": true,
+    "currency": "GBP",
+    "amountMinorUnits": 400000,
+    "executions": 1,
+    "journalAttempts": 1,
+    "lifecycles": 1,
+    "exposureEntries": 1,
+    "duplicateRecords": 0,
+    "unknownOutcomes": 0,
+    "pendingAttempts": 0,
+    "realPayments": false
+  },
+  "authority": {
+    "approval": "separate_manual_host_confirmation_using_public_synthetic_fixture_authority",
+    "execution": "separate_manual_confirmation",
+    "gatePassOneUse": true,
+    "nonceConsumed": true,
+    "lifecycle": [
+      "ISSUED",
+      "RESERVED",
+      "EXECUTED"
+    ],
+    "exposureStatus": "COMMITTED"
+  },
+  "verification": {
+    "checksPassed": 21,
+    "decisionReceipt": "allowed",
+    "decisionReceiptExecutionState": "not_executed",
+    "executionReceipt": "executed",
+    "distinctLinkedReceipts": true,
+    "gatePassSignature": true,
+    "exactRequestBinding": true,
+    "reviewerBinding": true,
+    "businessStateBinding": true,
+    "integrityDigests": true
+  },
+  "software": {
+    "sourceFilesMatched": 1777,
+    "compiledModulesMatched": 12,
+    "separateCompanion": true,
+    "includedInLocal7": false,
+    "operationalRecordCandidateLiveQualifiedByThisRun": false
+  },
+  "priorOfflineRegression": {
+    "performedIn": "Mission 17H",
+    "rerunInMission18": false,
+    "node24": {
+      "version": "24.21.0",
+      "total": 1996,
+      "passed": 1995,
+      "failed": 0,
+      "skipped": 1
+    },
+    "node20Compatible": {
+      "version": "20.19.0",
+      "total": 1931,
+      "passed": 1930,
+      "failed": 0,
+      "skipped": 1,
+      "excludedNode24OnlyTests": 65
+    },
+    "skip": "POSIX permission test on Windows"
+  },
+  "limitations": [
+    "Local evidence, not independent attestation or Microsoft endorsement",
+    "Public fixture signing keys and fixed synthetic action clock, not production authority",
+    "Receipt time is a synthetic fixture date, not wall-clock proof of execution time",
+    "Pseudonymous same-run reviewer link; raw verified identity token deliberately not retained",
+    "Records unencrypted; host ACLs and same-user/admin boundary remain relevant",
+    "One successful run does not qualify production SSO, MFA policy, operational rc.2, scale or customer environments",
+    "No new live sign-in or execution in Mission 18"
+  ],
+  "historicalFailures": [
+    "Original launcher module-path preflight failure retained",
+    "First prompt denial cause remains unproven",
+    "Second attempt recorded APPROVAL_TIMEOUT; earlier locks retained",
+    "Historical Windows EPERM replacement failures remain unattributed",
+    "Earlier aggregate-exposure failure not reproduced; strict assertions preserved",
+    "Mission 17H test-only authority-store shape assertions corrected; failed logs retained",
+    "Mission 17M review assertions initially used wrong decision enums; corrected read-only checks passed"
+  ],
+  "excludedFromExport": [
+    "Real tenant, client and reviewer IDs",
+    "Tokens, authorisation codes, state, nonce and PKCE values",
+    "Raw receipts, run directories, screenshots and terminal logs",
+    "Personal host paths and private evidence hashes",
+    "Credentials, dependencies, authentication launcher and source bundles"
+  ]
+}
