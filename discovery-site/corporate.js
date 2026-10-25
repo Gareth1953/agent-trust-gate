@@ -13,6 +13,9 @@
     nav.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', closeMenu);
     });
+    // Restored pages must not retain a stale mobile disclosure state.
+    window.addEventListener('pageshow', closeMenu);
+    window.matchMedia('(max-width: 1180px)').addEventListener('change', closeMenu);
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && nav.classList.contains('open')) {
         closeMenu();

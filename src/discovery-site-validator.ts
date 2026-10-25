@@ -322,7 +322,7 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
     {
       id: "no_external_scripts_or_assets",
       passed: scriptSources.length > 0 &&
-        scriptSources.every((src) => src === "./corporate.js") &&
+        scriptSources.every((src) => src === "./corporate.js" || src === "./corporate.js?v=nav-01") &&
         !/<link\b[^>]*\brel=["']?stylesheet["']?[^>]*https?:\/\//i.test(combinedPublicHtml) &&
         !/<img\b[^>]*\bsrc=["']https?:\/\//i.test(combinedPublicHtml) &&
         !/<video\b/i.test(combinedPublicHtml),
@@ -492,7 +492,7 @@ function localLinkFailures(
     }
     const candidate = join(dirname(sourceArtifactPath), withoutFragment)
       .replace(/\\/g, "/")
-      .replace(/^\.\//, "");
+      .replace(/^\.\//, "").replace(/\/+$/, "");
     const artifactPath = withoutFragment.endsWith("/") || candidate === "."
       ? `${candidate === "." ? "" : `${candidate}/`}index.html`
       : candidate;

@@ -9,8 +9,8 @@ test("all M164 browser-review pages retain one H1 and shared local assets", () =
   for (const page of pages) {
     const html = read(`discovery-site/${page}`);
     assert.equal((html.match(/<h1\b/gi) ?? []).length, 1, page);
-    assert.match(html, /href="\.\/corporate\.css"/i, page);
-    assert.match(html, /src="\.\/corporate\.js"/i, page);
+    assert.match(html, /href="\.\/corporate\.css(?:\?v=nav-01)?"/i, page);
+    assert.match(html, /src="\.\/corporate\.js(?:\?v=nav-01)?"/i, page);
   }
 });
 
