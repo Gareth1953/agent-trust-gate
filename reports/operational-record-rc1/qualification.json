@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-18",
+  "baseCommit": "15c8275f85d70eabbb89f9fd59c5d30e85654e1d",
+  "package": "agent-trust-gate-operational-0.2.0-rc.1.tgz",
+  "sha256": "53044e3f35b64e91f4acc138ba8e2ce23525f39c86ad755a65c4f47aa359b56c",
+  "sizeBytes": 17104,
+  "runtime": "Node 24.19.0 / Linux",
+  "legacyVerifierRuntime": "actual temporary Node 20",
+  "repositoryTestPhases": {
+    "tests": [
+      675,
+      1006
+    ],
+    "pass": [
+      675,
+      1006
+    ],
+    "fail": [
+      0,
+      0
+    ],
+    "skipped": [
+      0,
+      0
+    ]
+  },
+  "repositoryTestTotal": 1681,
+  "installedArchiveIntegrationTests": {
+    "passed": 19,
+    "failed": 0,
+    "skipped": 0
+  },
+  "identityTestMethod": "ephemeral test-only issuer signing keys; signature and claims validated by real services",
+  "actualHumanIdpLoginVerified": false,
+  "customerIntegrationVerified": false,
+  "paymentsExecuted": false,
+  "externalSecurityReviewPerformed": false,
+  "publicTlsDeploymentQualified": false,
+  "publishedEvaluationArchivesChanged": false,
+  "disposition": "operational record-service release candidate; not production qualified"
+}

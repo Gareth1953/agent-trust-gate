@@ -5,6 +5,7 @@ import {
   sign as cryptoSign,
   verify as cryptoVerify,
 } from "node:crypto";
+import { toCanonicalValue } from "./canonical-json.js";
 
 import type { LocalEndToEndMoneyGateProofResult } from "./local-end-to-end-money-gate-proof.js";
 import type { LocalGatePassAuditReceipt } from "./local-gate-pass-receipt.js";
@@ -407,19 +408,6 @@ function failedDecision(
     checkedAt: safeTimestamp(options.checkedAt ?? metadata.signedAt),
     note: NOTE,
   };
-}
-
-function toCanonicalValue(value: unknown): unknown {
-  if (Array.isArray(value)) return value.map(toCanonicalValue);
-  if (!isRecord(value)) return value;
-  const output: Record<string, unknown> = {};
-  for (const key of Object.keys(value).sort()) {
-    const item = value[key];
-    if (item !== undefined) Object.defineProperty(output, key, {
-      value: toCanonicalValue(item), enumerable: true, writable: true, configurable: true,
-    });
-  }
-  return output;
 }
 
 function inferSignedAt(value: unknown): string {

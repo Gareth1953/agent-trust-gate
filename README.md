@@ -1,5 +1,23 @@
 # Agent Trust Gate™
 
+### Operational upgrade candidate — 18 October 2026
+
+The separately packaged [ATG operational record plugin](docs/operational-record-plugin.md)
+adds authenticated human approvals, real-time expiry, two running services,
+conditional persistent record writes and signed destination reconciliation.
+It is an operational release candidate for one tenant's versioned JSON record
+service, not a live payment/ERP connector or a production-certified platform.
+An actual identity provider, deployment configuration and security qualification
+are required before admitting customer data. The published local.7 archive
+remains unchanged. Historical `local_demo_only` and no-network/no-execution
+descriptions below refer to the evaluation editions, not this opt-in candidate.
+Installing, importing or building the candidate starts no service and creates
+no keys, identity, authority or records.
+
+The rc.2 candidate adds [Microsoft Entra ID setup and interactive approval](docs/entra-setup.md), with tenant/API/client checks and authentication-context enforcement. Actual tenant sign-in remains unverified.
+
+See the [implementation and qualification record](docs/operational-record-qualification.md).
+
 ![Agent Trust Gate human-in-the-loop governance architecture](docs/assets/agent-trust-gate-readme-hero.png)
 
 ## Exact Action Trust Gateway for AI agents
