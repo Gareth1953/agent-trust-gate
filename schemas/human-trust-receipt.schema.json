@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gareth1953.github.io/agent-trust-gate/schemas/human-trust-receipt.schema.json",
+  "title": "Agent Trust Gate Human Trust Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "receiptVersion",
+    "receiptReference",
+    "status",
+    "plainLanguageAction",
+    "agent",
+    "authority",
+    "checks",
+    "evidence",
+    "issuedAt",
+    "localOnly",
+    "simulatedOnly",
+    "claimBoundary"
+  ],
+  "properties": {
+    "receiptVersion": { "const": "atg.human-trust-receipt.local.v1" },
+    "receiptReference": { "type": "string", "minLength": 8 },
+    "status": {
+      "enum": [
+        "AUTHORISED",
+        "REFUSED",
+        "COMPLETED_EXACTLY_AS_AUTHORISED",
+        "UNVERIFIED"
+      ]
+    },
+    "plainLanguageAction": { "type": "string", "minLength": 1 },
+    "purpose": { "type": ["string", "null"] },
+    "amount": { "type": ["number", "null"] },
+    "currency": { "type": ["string", "null"] },
+    "counterparty": { "type": ["string", "null"] },
+    "agent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity", "standingVerified"],
+      "properties": {
+        "identity": { "type": "string", "minLength": 1 },
+        "standingVerified": { "type": "boolean" }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["humanApprovalRequired", "verified"],
+      "properties": {
+        "humanApprovalRequired": { "type": "boolean" },
+        "verified": { "type": "boolean" },
+        "authorisedBy": { "type": ["string", "null"] },
+        "authoritySummary": { "type": ["string", "null"] }
+      }
+    },
+    "checks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policyChecked", "exactActionVerified", "executionMatched"],
+      "properties": {
+        "policyChecked": { "type": "boolean" },
+        "exactActionVerified": { "type": "boolean" },
+        "executionMatched": { "type": ["boolean", "null"] }
+      }
+    },
+    "refusalReason": { "type": ["string", "null"] },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actionDigest", "gatePassId", "decisionReceiptReference", "executionReceiptReference"],
+      "properties": {
+        "actionDigest": { "type": "string", "pattern": "^sha256:" },
+        "gatePassId": { "type": ["string", "null"] },
+        "humanAuthorityProofReference": { "type": ["string", "null"] },
+        "decisionReceiptReference": { "type": ["string", "null"] },
+        "executionReceiptReference": { "type": ["string", "null"] }
+      }
+    },
+    "issuedAt": { "type": "string", "format": "date-time" },
+    "localOnly": { "const": true },
+    "simulatedOnly": { "const": true },
+    "claimBoundary": {
+      "const": "Human-readable presentation of underlying ATG evidence. The receipt is not itself the source of proof and does not certify that an AI system is universally safe or compliant."
+    }
+  }
+}
