@@ -323,6 +323,18 @@ Approved **research and assessment roadmap**, not an implemented protection: inv
 
 **Current evidence boundary:** ATG protects selected exact-action paths only within its local evaluation assumptions. It has not demonstrated detection or prevention of microarchitectural covert channels, independent host isolation, production containment or real-world execution truth. Physical credential isolation, independent checkpoint custody and complete destination mediation remain blocked. This work is not an ARIA award or endorsement; the ARIA funding application remains under review.
 
+## October 2026 local research milestones (not public plugin releases)
+
+The following results are **Codex-reported, bounded local synthetic evaluations**; their advanced archives remain unpublished and have not been independently audited or production deployed:
+
+| Research candidate | Reported evidence | Important boundary |
+| --- | --- | --- |
+| **PQ2-R 0.12.0-pq2r.1** | 287/287 full-suite checks in each of two runs; strict certificate timing fixture repaired, SHA-1 and inappropriate basic-KeyUsage acceptance gaps closed; ML-DSA cross-platform evidence work retained | Not FIPS certified, end-to-end quantum resistant or production ready; underlying clock and historical CLR causes unresolved |
+| **AgentShield CONTAIN-01 0.1.0-contain.1** | 33/33 local assessment tests; metadata-only CPU-cache, scheduling, storage and shared-service risk reports | Reports are advisory; physical covert-channel detection/prevention and isolation are unproven |
+| **ATG-INT1 0.1.0-int1.1** | Nine synthetic £4,000 scenarios; 32/32 new tests, 287/287 mapped retained PQ2-R tests and 33/33 containment tests; two 136/136 clean-install runs | Identity is an offline Entra-shaped fixture, not live sign-in; destination execution is fictional and signatures do not independently prove it happened |
+
+The separate historical controlled Microsoft Entra reviewer sign-in demonstration must not be conflated with the offline INT1 identity fixture. Physical credential isolation, independent checkpoint custody and complete destination mediation remain **BLOCKED**; real-world execution truth remains **UNPROVEN**. The published local.7 plugin has **not** been upgraded to these research candidates. ATG-BUYER-01 is still under review/development and is not presented as complete.
+
 ## Post-quantum evidence-signature evaluation (PQ1.1 — unpublished)
 
 The isolated ATG PQ1.1 engineering candidate (0.11.0-pq1.1) tested ML-DSA-65 and dual-signature evidence envelopes, algorithm verification policies, downgrade refusal and VOP1/VOP2 compatibility. Its reported offline checks include 258/258 PQ1/retained tests, 123/123 scoped regressions, two 45/45 installation checks and ML-DSA 44/65/87 interoperability between two OpenSSL builds. These are bounded local results, **not** independent implementation validation or FIPS certification.
