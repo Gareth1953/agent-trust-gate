@@ -311,6 +311,12 @@ interception, real payment or settlement capability, distributed replay store
 or production key management. It does not claim production adoption, legal or
 compliance certification, or live payment readiness.
 
+## Credential-to-action trust bridge — integration research (ATG-ID1, proposed)
+
+**External market signal, 26 October 2026:** [1Password for Agents](https://1password.com/blog/1password-for-ai-agents) describes credential-hidden agent sign-in with user approval. 1Password's wider [Unified Access offering](https://1password.com/press/2026/october/1password-surpasses-500-million-arr) also describes task-scoped privileges, runtime agent identity and credential brokering; it must not be characterised as login-only or lacking action governance.
+
+**Research direction only:** assess vendor-neutral integration contracts linking independently verified login/session assertions (where made available) to ATG's exact-action mandate, a destination-side admission decision and separately verified execution evidence. Evaluate overlap and potential partnerships without claiming 1Password compatibility, access to proprietary APIs, a vendor relationship, live enforcement or solved account-session bypass. An approved sign-in alone cannot guarantee downstream transactions are mediated. Begin with fictional login events and synthetic protected destinations; do not touch real customer credentials or the ongoing PQ2-R worktree.
+
 ## AgentShield covert-channel containment research (ATG-CONTAIN-01 — planned)
 
 Approved **research and assessment roadmap**, not an implemented protection: investigate information-isolation weaknesses caused by shared CPU caches, CPU scheduling, storage contention and shared service caches, even when network and file sharing are restricted. Planned work includes explicit threat modelling, read-only deployment-assumption assessment, safe synthetic fixtures and a PASS / FAIL / UNKNOWN evidence report. No live side-channel exploitation or uncontrolled testing is authorised.
