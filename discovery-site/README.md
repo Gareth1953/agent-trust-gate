@@ -26,8 +26,7 @@ the static review invitation. The catalogue is draft-ARD-compatible static
 metadata only. It does not advertise an executable remote agent, A2A service,
 MCP server, registry or hosted GatePass API.
 
-The site uses one checked-in script, `corporate.js`, only for mobile navigation
-and the displayed copyright year. It loads no analytics, tracking, telemetry or
+Corporate pages use the checked-in `corporate.js` for mobile navigation, keyboard table scrolling and the displayed copyright year. The separately scoped TrustShield Lab also uses `app.js` and `evidence.js` to display captured synthetic records; it makes no backend enforcement call. It loads no analytics, tracking, telemetry or
 third-party script and creates no browser identifier. See `privacy.html`.
 There are no forms, checkout or payment links, external fonts, third-party
 images, videos, iframes, live chat, or hosted ATG API calls.
