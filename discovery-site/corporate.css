@@ -406,3 +406,6 @@ tbody th { font-weight: 750; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
 }
+
+/* Microsoft brand treatment: familiar four-colour square, no endorsement implied. */
+.ms-brand{display:inline-flex;align-items:center;gap:.35em;white-space:nowrap}.ms-brand-mark{display:inline-grid;grid-template-columns:repeat(2,.42em);grid-template-rows:repeat(2,.42em);gap:.09em;flex-shrink:0}.ms-brand-mark i:nth-child(1){background:#f25022}.ms-brand-mark i:nth-child(2){background:#7fba00}.ms-brand-mark i:nth-child(3){background:#00a4ef}.ms-brand-mark i:nth-child(4){background:#ffb900}.ms-brand-name{font-weight:600;color:inherit}
