@@ -311,6 +311,12 @@ interception, real payment or settlement capability, distributed replay store
 or production key management. It does not claim production adoption, legal or
 compliance certification, or live payment readiness.
 
+## AgentShield covert-channel containment research (ATG-CONTAIN-01 — planned)
+
+Approved **research and assessment roadmap**, not an implemented protection: investigate information-isolation weaknesses caused by shared CPU caches, CPU scheduling, storage contention and shared service caches, even when network and file sharing are restricted. Planned work includes explicit threat modelling, read-only deployment-assumption assessment, safe synthetic fixtures and a PASS / FAIL / UNKNOWN evidence report. No live side-channel exploitation or uncontrolled testing is authorised.
+
+**Current evidence boundary:** ATG protects selected exact-action paths only within its local evaluation assumptions. It has not demonstrated detection or prevention of microarchitectural covert channels, independent host isolation, production containment or real-world execution truth. Physical credential isolation, independent checkpoint custody and complete destination mediation remain blocked. This work is not an ARIA award or endorsement; the ARIA funding application remains under review.
+
 ## Post-quantum evidence-signature evaluation (PQ1.1 — unpublished)
 
 The isolated ATG PQ1.1 engineering candidate (0.11.0-pq1.1) tested ML-DSA-65 and dual-signature evidence envelopes, algorithm verification policies, downgrade refusal and VOP1/VOP2 compatibility. Its reported offline checks include 258/258 PQ1/retained tests, 123/123 scoped regressions, two 45/45 installation checks and ML-DSA 44/65/87 interoperability between two OpenSSL builds. These are bounded local results, **not** independent implementation validation or FIPS certification.
