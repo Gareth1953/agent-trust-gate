@@ -311,6 +311,12 @@ interception, real payment or settlement capability, distributed replay store
 or production key management. It does not claim production adoption, legal or
 compliance certification, or live payment readiness.
 
+## Post-quantum evidence-signature evaluation (PQ1.1 — unpublished)
+
+The isolated ATG PQ1.1 engineering candidate (0.11.0-pq1.1) tested ML-DSA-65 and dual-signature evidence envelopes, algorithm verification policies, downgrade refusal and VOP1/VOP2 compatibility. Its reported offline checks include 258/258 PQ1/retained tests, 123/123 scoped regressions, two 45/45 installation checks and ML-DSA 44/65/87 interoperability between two OpenSSL builds. These are bounded local results, **not** independent implementation validation or FIPS certification.
+
+The candidate is **not** included in the published local.7 plugin; existing business-authority and TLS algorithms remain classical and unchanged. No end-to-end quantum-resistant security, production key isolation, independent checkpoint custody, complete destination mediation or external execution truth has been demonstrated. Earlier "post-quantum-ready" roadmap text refers to design intent; this new milestone relates only to offline evidence-signature evaluation.
+
 ## Approved roadmap: verified human authority and post-quantum readiness
 
 P3-M152A records the next human-in-the-loop trust requirement for Agent Trust Gate™. A stored approval status is not sufficient evidence that a real authorised person sanctioned an action.
