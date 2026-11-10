@@ -131,9 +131,10 @@ test("corporate discovery site constrains local assets and contains no analytics
   const privacy = read("discovery-site/privacy.html");
   const allSiteText = siteFiles.map(read).join("\n");
   const scriptSources = [...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/gi)].map((match) => match[1]);
-  assert.deepEqual(scriptSources, ["./corporate.js"]);
+  assert.equal(scriptSources.length, 1);
+  assert.ok(["./corporate.js", "./corporate.js?v=nav-01"].includes(scriptSources[0]!));
   assert.doesNotMatch(html, /<script\b[^>]*\bsrc=["']https?:\/\//i);
-  assert.match(html, /<link rel="stylesheet" href="\.\/corporate\.css">/i);
+  assert.match(html, /<link rel="stylesheet" href="\.\/corporate\.css(?:\?v=nav-01)?">/i);
   assert.doesNotMatch(html, /<form\b/i);
   assert.doesNotMatch(html, /<iframe\b/i);
   const imageTags = [...html.matchAll(/<img\b[^>]*>/gi)].map(([tag]) => tag);

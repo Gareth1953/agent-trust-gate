@@ -1,0 +1,94 @@
+{
+  "schema": "atg.buyer-evaluation.v1",
+  "completedAt": "2026-11-10T07:08:42.592Z",
+  "runtime": "v24.22.1",
+  "platform": "linux",
+  "elapsedMs": 3230,
+  "execution": "LOCAL_SYNTHETIC_ONLY",
+  "readiness": "PRODUCTION_NO_GO",
+  "independentReview": "NOT_PERFORMED",
+  "controls": [
+    {
+      "id": "exact-action-and-reuse",
+      "securityResult": "PASS_WITHIN_SYNTHETIC_BOUNDARY",
+      "observed": {
+        "first": "EXECUTED",
+        "reuse": "REJECTED",
+        "orderVersion": 2
+      }
+    },
+    {
+      "id": "changed-request",
+      "securityResult": "PASS_WITHIN_SYNTHETIC_BOUNDARY",
+      "observed": {
+        "changedSupplier": "REFUSED",
+        "destinationOrderVersion": 1
+      }
+    },
+    {
+      "id": "direct-unapproved-command",
+      "securityResult": "PASS_WITHIN_SYNTHETIC_BOUNDARY",
+      "observed": {
+        "registration": "REFUSED",
+        "destinationOrderVersion": 1
+      }
+    },
+    {
+      "id": "revoke",
+      "securityResult": "PASS_WITHIN_SYNTHETIC_BOUNDARY",
+      "observed": {
+        "afterControl": "REJECTED",
+        "destinationOrderVersion": 1
+      }
+    },
+    {
+      "id": "emergencyStop",
+      "securityResult": "PASS_WITHIN_SYNTHETIC_BOUNDARY",
+      "observed": {
+        "afterControl": "REJECTED",
+        "destinationOrderVersion": 1
+      }
+    },
+    {
+      "id": "expired-authority",
+      "securityResult": "PASS_WITHIN_SYNTHETIC_BOUNDARY",
+      "observed": {
+        "outcome": "REJECTED",
+        "adapterReached": false
+      }
+    }
+  ],
+  "counterexamples": [
+    {
+      "id": "same-user-database-edit",
+      "securityResult": "FAIL",
+      "attackSucceeded": true,
+      "observed": "Destination accepted locally rewritten state with recomputed checksum; no approval used."
+    },
+    {
+      "id": "coherent-all-role-clone-replay",
+      "securityResult": "FAIL",
+      "attackSucceeded": true,
+      "observed": {
+        "original": "EXECUTED",
+        "clone": "EXECUTED",
+        "sameApprovalDigest": "sha256:28455153628794d101fab6ee5f22702f46badb8c38764aaf3eb69236d3e2feff"
+      }
+    }
+  ],
+  "blocked": [
+    "Independent OS-principal/key/state custody",
+    "Externally administered anti-rollback witness",
+    "Real partner sandbox integration",
+    "Windows Stage 2B/2C evidence",
+    "Independent security assessment",
+    "Measured buyer usefulness"
+  ],
+  "sourceHashes": {
+    "src/destination-ipc-protocol.ts": "10b41751ca08256db288ab3524ce3bcb6392f8a5635182a72c79492e577f80ce",
+    "src/destination-process-client.ts": "8c337f8a9c4d10e53764bd3d1647e910712009208c03489210adc079b9d7161d",
+    "scripts/destination-process.mjs": "78870c2efbbf37a582cc07d1398facdc9f33e7d60abd2119344a0c5d2d4e2697",
+    "scripts/buyer-evaluation.mjs": "723ba797c4ea58a34bc973a3edffc9381af86267b9dd64ac1113ee9a5defc776"
+  },
+  "limits": "Exit 0 means the harness reproduced its expected observations, including security FAIL counterexamples. It is not approval or security certification. Private synthetic keys/state stay in this run directory; do not share them."
+}
