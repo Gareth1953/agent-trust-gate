@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import {
@@ -71,7 +71,7 @@ test("CLI security readiness JSON is parseable", () => {
 });
 
 test("CLI security readiness output creates a local JSON report", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-security-readiness-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-security-readiness-"));
   const outputPath = resolve(directory, "nested", "security-readiness.json");
   try {
     const result = spawnSync(process.execPath, [
@@ -90,7 +90,7 @@ test("CLI security readiness output creates a local JSON report", () => {
 });
 
 test("GET security readiness returns JSON with request ID and logs the request", async () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-security-readiness-http-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-security-readiness-http-"));
   const logPath = resolve(directory, "gateway.jsonl");
   const server = createGatewayServer({
     requireApiKey: true,

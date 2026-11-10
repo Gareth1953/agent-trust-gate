@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import {
@@ -85,7 +85,7 @@ test("tracked agent manifest stays aligned and contains no raw secrets", () => {
 });
 
 test("GET /v1/agent-manifest.json is open, parseable, traced, and logged", async () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-agent-manifest-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-agent-manifest-"));
   const logPath = resolve(directory, "gateway.jsonl");
   const server = createGatewayServer({
     requireApiKey: true,
@@ -120,7 +120,7 @@ test("CLI --agent-manifest --json outputs parseable JSON", () => {
 });
 
 test("CLI --agent-manifest --output creates directories and writes JSON", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-manifest-export-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-manifest-export-"));
   const output = resolve(directory, "nested", "agent-manifest.json");
   try {
     const result = spawnSync(process.execPath, [cliPath, "--agent-manifest", "--output", output], {

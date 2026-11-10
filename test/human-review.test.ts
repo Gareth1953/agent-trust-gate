@@ -4,7 +4,7 @@ import { createHash } from "node:crypto";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { readFile, readdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import {
@@ -44,7 +44,7 @@ function runCli(...args: string[]) {
 
 for (const decision of ["approved", "rejected", "needs_more_info"] as const) {
   test(`${decision} review record generated`, () => {
-    const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-review-`);
+    const tempDirectory = mkdtempSync(join(tmpdir(), "atg-review-"));
 
     try {
       const approvalPackPath = writeApprovalPack(tempDirectory);
@@ -136,7 +136,7 @@ test("missing approval pack file fails", () => {
 });
 
 test("malformed approval pack JSON fails", () => {
-  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-review-bad-`);
+  const tempDirectory = mkdtempSync(join(tmpdir(), "atg-review-bad-"));
 
   try {
     const badPath = resolve(tempDirectory, "bad.json");
@@ -161,7 +161,7 @@ test("malformed approval pack JSON fails", () => {
 });
 
 test("approval pack hash is included", async () => {
-  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-review-hash-`);
+  const tempDirectory = mkdtempSync(join(tmpdir(), "atg-review-hash-"));
 
   try {
     const approvalPackPath = writeApprovalPack(tempDirectory);
@@ -205,7 +205,7 @@ test("--json output is parseable", () => {
 });
 
 test("--save-review-record creates local JSON file", async () => {
-  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-review-save-`);
+  const tempDirectory = mkdtempSync(join(tmpdir(), "atg-review-save-"));
 
   try {
     const approvalPackPath = writeApprovalPack(tempDirectory);

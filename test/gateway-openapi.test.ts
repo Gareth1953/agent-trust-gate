@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import {
@@ -65,7 +65,7 @@ test("tracked OpenAPI document stays aligned with the contract module", () => {
 });
 
 test("GET /v1/openapi.json returns contract JSON without an API key", async () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-openapi-gateway-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-openapi-gateway-"));
   const gatewayLogPath = resolve(directory, "gateway-requests.jsonl");
   const server = createGatewayServer({
     requireApiKey: true,
@@ -106,7 +106,7 @@ test("CLI --openapi --json outputs parseable OpenAPI JSON", () => {
 });
 
 test("CLI --openapi --output creates directories and writes JSON", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-openapi-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-openapi-"));
   const output = resolve(directory, "nested", "agent-trust-gate.openapi.json");
   try {
     const result = spawnSync(process.execPath, [cliPath, "--openapi", "--output", output], {

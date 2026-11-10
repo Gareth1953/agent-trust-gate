@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { readdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import { reviewBatch } from "../src/index.js";
@@ -11,7 +11,7 @@ import { reviewBatch } from "../src/index.js";
 const cliPath = resolve("dist/src/cli.js");
 
 function makeTempDirectory(): string {
-  return mkdtempSync(`${tmpdir()}\\atg-batch-`);
+  return mkdtempSync(join(tmpdir(), "atg-batch-"));
 }
 
 function action(overrides: Record<string, unknown> = {}) {

@@ -1,14 +1,14 @@
 import assert from "node:assert/strict";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import { auditReceipts, listReceipts } from "../src/receipt-audit.js";
 import type { RiskLevel } from "../src/types.js";
 
 function makeTempDirectory(): string {
-  return mkdtempSync(`${tmpdir()}\\atg-audit-`);
+  return mkdtempSync(join(tmpdir(), "atg-audit-"));
 }
 
 function receipt(overrides: {

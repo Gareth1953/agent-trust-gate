@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 const cli = resolve("dist/src/local-demo-cli.js");
@@ -48,7 +48,7 @@ test("summary-only omits full receipt and full mode prints receipt JSON", () => 
 });
 
 test("save writes a parseable local receipt while retaining summary output", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-local-demo-cli-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-local-demo-cli-"));
   try {
     const output = resolve(directory, "receipt.json");
     const result = runCli("--input", refusalInput, "--save", output);
@@ -64,7 +64,7 @@ test("save writes a parseable local receipt while retaining summary output", () 
 });
 
 test("missing paths unreadable files and malformed JSON fail safely", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-local-demo-errors-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-local-demo-errors-"));
   try {
     const marker = "PRIVATE_ERROR_MARKER";
     const malformed = resolve(directory, `${marker}.json`);

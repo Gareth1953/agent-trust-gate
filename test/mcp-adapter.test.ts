@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import test from "node:test";
 
@@ -77,7 +77,7 @@ test("manifest and MCP examples contain no raw real API keys", () => {
 });
 
 test("Node MCP-style adapter dispatches health and decision tools locally", async () => {
-  const temporaryDirectory = mkdtempSync(`${tmpdir()}\\atg-mcp-adapter-`);
+  const temporaryDirectory = mkdtempSync(join(tmpdir(), "atg-mcp-adapter-"));
   const server = createGatewayServer({
     gatewayLogPath: resolve(temporaryDirectory, "gateway.jsonl"),
   });

@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { readFile, readdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import {
@@ -42,7 +42,7 @@ function approvalPack(overrides: Record<string, unknown> = {}) {
 }
 
 function makeReviewFixture(): { directory: string; reviewPath: string; approvalPackPath: string } {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-evidence-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-evidence-"));
   const approvalPackPath = resolve(directory, "approval-pack.json");
   writeFileSync(approvalPackPath, JSON.stringify(approvalPack(), null, 2), "utf8");
   const reviewRecord = createHumanReviewRecord({
@@ -116,7 +116,7 @@ test("malformed linked approval pack gives mismatch without crashing", () => {
 });
 
 test("malformed review record fails safely", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-evidence-bad-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-evidence-bad-"));
 
   try {
     const reviewPath = resolve(directory, "bad-review.json");
@@ -128,7 +128,7 @@ test("malformed review record fails safely", () => {
 });
 
 test("invalid review record fails safely", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-evidence-invalid-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-evidence-invalid-"));
 
   try {
     const reviewPath = resolve(directory, "invalid-review.json");

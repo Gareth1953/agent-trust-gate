@@ -11,7 +11,8 @@ Fresh validation on the published #29 source: 30 focused custody/transport tests
 passed, zero failures/skips/cancellations; TypeScript typecheck passed. The 25
 custody cases include TWO reproduced successful common-owner attacks. Prior
 complete validation for that identical source tree was 1,692 passing tests;
-it was not repeated merely for documentation changes. See the custody
+it was not repeated merely for documentation changes. Hosted CI subsequently
+exposed a separate test portability defect, recorded below. See the custody
 VALIDATION.md for the separate installed-plugin and LangGraph observations.
 
 This follow-up adds a least-privilege GitHub regression workflow and the
@@ -32,3 +33,18 @@ Principal/delegation services, shared root budgets, a non-bypassable real paymen
 route and external reconciliation are acceptance requirements, not newly
 implemented features. A named buyer/partner must supply the agreed deployment,
 sandbox ownership and scope before these properties can be tested honestly.
+
+## Retained first hosted CI failure and portability repair
+
+The first job in https://github.com/Gareth1953/agent-trust-gate/actions/runs/42794413522
+failed: main suite 675 tests, 559 passed / 116 failed / 0 skipped. Reported
+errors were EACCES during temporary-directory creation. Legacy tests concatenated
+Windows separators to the OS temporary directory, producing sibling paths at the
+Linux filesystem root instead of directories inside /tmp.
+
+Repair: 90 temporary-directory prefixes in 31 test files now use node:path join.
+The complete diff was mechanically checked: only those prefixes and required
+join imports changed; no assertion, permission, skip or runtime code changed.
+Do not elevate the runner or make the root filesystem writable to hide this bug.
+The failed job remains retained. Full local and hosted regression must run again
+on the repaired commit; consult its check run before treating CI as passed.

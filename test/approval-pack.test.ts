@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { mkdtempSync, rmSync } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import { createApprovalPack, verifyBeforeAction } from "../src/index.js";
@@ -91,7 +91,7 @@ test("--approval-pack --json outputs parseable JSON", () => {
 });
 
 test("--save-approval-pack creates local JSON file", async () => {
-  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-approval-pack-`);
+  const tempDirectory = mkdtempSync(join(tmpdir(), "atg-approval-pack-"));
 
   try {
     const result = spawnSync(

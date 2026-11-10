@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import {
@@ -66,7 +66,7 @@ test("simple abuse statuses include repeated errors and unknown clients", () => 
 });
 
 test("configured local runtime limit returns 429 before protected logic runs", async () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-rate-limit-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-rate-limit-"));
   const logPath = resolve(directory, "gateway.jsonl");
   const server = createGatewayServer({ clients: [client], gatewayLogPath: logPath });
   await new Promise<void>((done) => server.listen(0, "127.0.0.1", done));
@@ -101,7 +101,7 @@ test("configured local runtime limit returns 429 before protected logic runs", a
 });
 
 test("GET rate-limit status is JSON, traced, logged, and protected in API-key mode", async () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-rate-limit-status-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-rate-limit-status-"));
   const logPath = resolve(directory, "gateway.jsonl");
   const server = createGatewayServer({ requireApiKey: true, clients: [client], gatewayLogPath: logPath });
   await new Promise<void>((done) => server.listen(0, "127.0.0.1", done));
@@ -133,7 +133,7 @@ test("CLI rate-limit JSON and output modes are parseable", () => {
   assert.equal(json.status, 0);
   assert.equal((JSON.parse(json.stdout) as RateLimitStatusReport).rate_limit_version, "atg.rate-limit.v1");
 
-  const directory = mkdtempSync(`${tmpdir()}\\atg-rate-limit-cli-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-rate-limit-cli-"));
   const outputPath = resolve(directory, "nested", "rate-limit.json");
   try {
     const output = spawnSync(process.execPath, [

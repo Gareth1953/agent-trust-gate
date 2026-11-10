@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import type { AddressInfo } from "node:net";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import { createGatewayServer, createHumanReviewRecord } from "../src/index.js";
@@ -199,7 +199,7 @@ test("server binds to localhost in tests", async () => {
 });
 
 test("POST /v1/evidence-bundle can save locally when requested", async () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-gateway-evidence-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-gateway-evidence-"));
   const approvalPackPath = resolve(directory, "approval-pack.json");
   const reviewPath = resolve(directory, "review.json");
 
