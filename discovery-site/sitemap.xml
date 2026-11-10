@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <url><loc>https://agenttrustgate.com/</loc><lastmod>2026-08-19</lastmod><priority>1.0</priority></url>
-  <url><loc>https://agenttrustgate.com/technology.html</loc><lastmod>2026-08-19</lastmod><priority>0.9</priority></url>
+  <url><loc>https://agenttrustgate.com/</loc><lastmod>2026-11-10</lastmod><priority>1.0</priority></url>
+  <url><loc>https://agenttrustgate.com/technology.html</loc><lastmod>2026-11-10</lastmod><priority>0.9</priority></url>
   <url><loc>https://agenttrustgate.com/solutions.html</loc><lastmod>2026-08-19</lastmod><priority>0.9</priority></url>
-  <url><loc>https://agenttrustgate.com/evidence.html</loc><lastmod>2026-08-19</lastmod><priority>0.9</priority></url>
+  <url><loc>https://agenttrustgate.com/evidence.html</loc><lastmod>2026-11-10</lastmod><priority>0.9</priority></url>
   <url><loc>https://agenttrustgate.com/company.html</loc><lastmod>2026-08-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://agenttrustgate.com/contact.html</loc><lastmod>2026-08-19</lastmod><priority>0.8</priority></url>
   <url><loc>https://agenttrustgate.com/controlled-buyer-pilot.html</loc><lastmod>2026-09-02</lastmod><priority>0.9</priority></url>
@@ -13,7 +13,7 @@
   <url><loc>https://agenttrustgate.com/evidence-and-reviewer.html</loc><lastmod>2026-08-19</lastmod><priority>0.8</priority></url>
   <url><loc>https://agenttrustgate.com/agent-standing-demo.html</loc><lastmod>2026-08-19</lastmod><priority>0.8</priority></url>
   <url><loc>https://agenttrustgate.com/human-authority-demo.html</loc><lastmod>2026-08-19</lastmod><priority>0.8</priority></url>
-  <url><loc>https://agenttrustgate.com/financial-services-ai-agent-authority.html</loc><lastmod>2026-08-19</lastmod><priority>0.7</priority></url>
+  <url><loc>https://agenttrustgate.com/financial-services-ai-agent-authority.html</loc><lastmod>2026-11-10</lastmod><priority>0.7</priority></url>
   <url><loc>https://agenttrustgate.com/public-procurement-ai-agent-authority.html</loc><lastmod>2026-08-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://agenttrustgate.com/retail-supply-chain-ai-agent-authority.html</loc><lastmod>2026-08-19</lastmod><priority>0.7</priority></url>
   <url><loc>https://agenttrustgate.com/for-agents.html</loc><lastmod>2026-08-19</lastmod><priority>0.7</priority></url>
@@ -28,8 +28,10 @@
   <url><loc>https://agenttrustgate.com/llms.txt</loc><lastmod>2026-08-19</lastmod><priority>0.4</priority></url>
   <url><loc>https://agenttrustgate.com/agent-trust-gate.agent-card.json</loc><lastmod>2026-08-19</lastmod><priority>0.3</priority></url>
   <url><loc>https://agenttrustgate.com/agent-trust-gate.manifest.json</loc><lastmod>2026-08-19</lastmod><priority>0.3</priority></url>
-  <url><loc>https://agenttrustgate.com/plugin.html</loc><lastmod>2026-10-08</lastmod></url>
+  <url><loc>https://agenttrustgate.com/plugin.html</loc><lastmod>2026-11-10</lastmod></url>
   <url><loc>https://agenttrustgate.com/challenge.html</loc><lastmod>2026-10-08</lastmod><priority>0.9</priority></url>
   <url><loc>https://agenttrustgate.com/payeeshield.html</loc><lastmod>2026-10-16</lastmod><priority>0.8</priority></url>
-  <url><loc>https://agenttrustgate.com/operational-update.html</loc><lastmod>2026-10-18</lastmod><priority>0.9</priority></url>
+  <url><loc>https://agenttrustgate.com/operational-update.html</loc><lastmod>2026-11-10</lastmod><priority>0.9</priority></url>
+  <url><loc>https://agenttrustgate.com/custody-research.html</loc><lastmod>2026-11-10</lastmod><priority>0.9</priority></url>
+  <url><loc>https://agenttrustgate.com/security.html</loc><lastmod>2026-11-10</lastmod><priority>0.8</priority></url>
 </urlset>
