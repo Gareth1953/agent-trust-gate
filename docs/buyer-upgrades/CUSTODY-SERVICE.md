@@ -2,6 +2,10 @@
 
 **Synthetic research implementation. Production NO-GO. Not a plugin release.**
 
+The [dated validation and retained receipt](SPLIT-CUSTODY-VALIDATION-2026-11-10.md)
+record 28/28 actual Linux distinct-principal checks passing for the cited source
+head. They do not clear the trusted-administrator or whole-host restore limits.
+
 ## What is being repaired
 
 The old local evaluation remains deliberately reproducible: a common owner can
