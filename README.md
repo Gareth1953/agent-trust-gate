@@ -30,6 +30,12 @@ retains successful same-user database-edit and coherent-clone replay attacks as
 not included in the unchanged local.7 downloads. Read its threat boundary,
 quickstart, independent-assessment brief and buyer diligence notes before use.
 
+The optional [custody boundary and LangGraph evaluation](docs/custody-evaluation/README.md)
+adds a freshly pinned signing authority, a transactional synthetic record writer
+and a real framework walkthrough. OS isolation remains blocked and both
+common-owner attacks remain successful. It is a source research candidate,
+without production clearance or changes to published plugin archives.
+
 ### Installable standalone plugin — local evaluation edition
 
 **Local.7 evaluation release:** includes the reviewed Mission 04 signing, POSIX durable-state and durable-write repair fixes. Download the exact archive, verify its checksum, and install the downloaded file below. [Local.7 archive](discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.7.tgz), [published local.5 (unchanged)](discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.5.tgz), [current release status and security limits](docs/mission-04-local7-publication-status.md). Retained [historical local.6](discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.6.tgz) is publicly retrievable for historical review, remains unchanged, and lacks the durable-write repair. Public availability is distinct from a current recommendation. The original Windows DURABLE_WRITE_FAILED incident remains unattributed. A matching EPERM atomic-replacement mechanism was reproduced with an owned open file handle; this does not identify the original failing operation or process. A separate cleanup defect was fixed: colliding temporary files are now preserved and native filesystem errors are retained in Error.cause. Denied writes still fail closed; no automatic retries, permission weakening or clearing of held state was added. Fixture keys/clocks, same-host synthetic evaluation, no ATG record encryption and separately configured Windows NTFS permissions remain. No independent assurance is claimed. POSIX runtime verification was not performed for this candidate. This remains a synthetic evaluation release without production approval.

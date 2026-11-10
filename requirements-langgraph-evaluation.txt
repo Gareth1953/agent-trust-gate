@@ -1,0 +1,3 @@
+# Optional isolated evaluation only. Exact transitive versions are retained in
+# the run's pip-freeze receipt; no provider/model package is required.
+langgraph==1.2.20
