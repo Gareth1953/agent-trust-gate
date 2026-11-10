@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import {
@@ -15,7 +15,7 @@ import {
 const cliPath = resolve("dist/src/cli.js");
 
 function makeTempDirectory(): string {
-  return mkdtempSync(`${tmpdir()}\\atg-review-audit-`);
+  return mkdtempSync(join(tmpdir(), "atg-review-audit-"));
 }
 
 function approvalPack(overrides: Record<string, unknown> = {}) {

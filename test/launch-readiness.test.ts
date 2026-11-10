@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 import { createGatewayServer, createLaunchReadinessReport, type GatewayRequestLogEntry, type LaunchReadinessReport } from "../src/index.js";
 
@@ -28,10 +28,10 @@ test("launch checks and blockers remain explicit",()=>{
 });
 test("CLI JSON and output modes are local and parseable",()=>{
   const j=spawnSync(process.execPath,[cli,"--launch-readiness","--json"],{encoding:"utf8"});assert.equal(j.status,0);assert.equal((JSON.parse(j.stdout) as LaunchReadinessReport).public_launch_enabled,false);
-  const d=mkdtempSync(`${tmpdir()}\\atg-launch-`),p=resolve(d,"x","launch.json");try{assert.equal(spawnSync(process.execPath,[cli,"--launch-readiness","--output",p],{encoding:"utf8"}).status,0);assert.equal(existsSync(p),true);}finally{rmSync(d,{recursive:true,force:true});}
+  const d=mkdtempSync(join(tmpdir(), "atg-launch-")),p=resolve(d,"x","launch.json");try{assert.equal(spawnSync(process.execPath,[cli,"--launch-readiness","--output",p],{encoding:"utf8"}).status,0);assert.equal(existsSync(p),true);}finally{rmSync(d,{recursive:true,force:true});}
 });
 test("GET launch readiness includes request ID and logs locally",async()=>{
-  const d=mkdtempSync(`${tmpdir()}\\atg-launch-http-`),l=resolve(d,"gateway.jsonl"),s=createGatewayServer({gatewayLogPath:l});await new Promise<void>(r=>s.listen(0,"127.0.0.1",r));try{const a=s.address() as AddressInfo,res=await fetch(`http://127.0.0.1:${a.port}/v1/launch-readiness`),b=await res.json() as LaunchReadinessReport&{request_id:string};assert.equal(res.status,200);assert.match(b.request_id,/^gw_/);assert.equal(b.hosted_service_enabled,false);}finally{await new Promise<void>((r,j)=>s.close(e=>e?j(e):r()));assert.equal((JSON.parse(readFileSync(l,"utf8")) as GatewayRequestLogEntry).endpoint,"/v1/launch-readiness");rmSync(d,{recursive:true,force:true});}
+  const d=mkdtempSync(join(tmpdir(), "atg-launch-http-")),l=resolve(d,"gateway.jsonl"),s=createGatewayServer({gatewayLogPath:l});await new Promise<void>(r=>s.listen(0,"127.0.0.1",r));try{const a=s.address() as AddressInfo,res=await fetch(`http://127.0.0.1:${a.port}/v1/launch-readiness`),b=await res.json() as LaunchReadinessReport&{request_id:string};assert.equal(res.status,200);assert.match(b.request_id,/^gw_/);assert.equal(b.hosted_service_enabled,false);}finally{await new Promise<void>((r,j)=>s.close(e=>e?j(e):r()));assert.equal((JSON.parse(readFileSync(l,"utf8")) as GatewayRequestLogEntry).endpoint,"/v1/launch-readiness");rmSync(d,{recursive:true,force:true});}
 });
 test("public developer docs exist and preserve local-only safety boundaries",()=>{
   const dir=resolve("docs/public-developer");for(const f of docs)assert.equal(existsSync(resolve(dir,f)),true,f);const source=docs.map(f=>readFileSync(resolve(dir,f),"utf8")).join("\n");assert.match(source,/local-only/i);assert.match(source,/no payment|payment processing.*false/i);assert.match(source,/automatic purchase.*false|no automatic purchase/i);assert.match(source,/no compliance guarantee|do not prove.*compliance/i);assert.match(source,/no.*security certification|production certifications/i);assert.doesNotMatch(source,/sk-[A-Za-z0-9_-]{20,}|ghp_[A-Za-z0-9_]{20,}|AKIA[0-9A-Z]{16}/);

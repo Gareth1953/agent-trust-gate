@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import {
@@ -119,7 +119,7 @@ test("CLI accepts valid local JSON and supports pretty output", () => {
 });
 
 test("CLI returns structured safe errors for path, file, JSON, and receipt failures", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-receipt-cli-errors-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-receipt-cli-errors-"));
   try {
     const marker = "PRIVATE_ERROR_PATH_MUST_NOT_COPY";
     const invalidJson = resolve(directory, `${marker}.json`);
@@ -150,7 +150,7 @@ test("CLI returns structured safe errors for path, file, JSON, and receipt failu
 });
 
 test("private receipt fields and private values never enter helper or CLI output", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-receipt-cli-private-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-receipt-cli-private-"));
   try {
     const marker = "PRIVATE_RECEIPT_VALUE_MUST_NOT_COPY";
     const value = validContainer();

@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import { createGatewayServer, loadGatewayAuthConfig } from "../src/index.js";
@@ -199,7 +199,7 @@ test("mismatched client ID and API key is rejected", async () => {
 });
 
 test("gateway clients file loads local clients", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-gateway-clients-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-gateway-clients-"));
   const clientsFile = resolve(directory, "gateway-clients.json");
 
   try {
@@ -235,7 +235,7 @@ test("gateway-clients.example.json is safe and tracked", () => {
 });
 
 test("--serve --require-api-key fails clearly when clients file is missing", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-gateway-missing-clients-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-gateway-missing-clients-"));
 
   try {
     const result = spawnSync(

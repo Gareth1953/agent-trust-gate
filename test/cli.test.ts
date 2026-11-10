@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { readdir, readFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 const cliPath = resolve("dist/src/cli.js");
@@ -47,7 +47,7 @@ test("CLI exits non-zero and reports invalid JSON", () => {
 });
 
 test("CLI --save writes a receipt to a local receipts archive", async () => {
-  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-cli-`);
+  const tempDirectory = mkdtempSync(join(tmpdir(), "atg-cli-"));
 
   try {
     const result = spawnSync(process.execPath, [cliPath, lowRiskExamplePath, "--save"], {
@@ -80,7 +80,7 @@ test("CLI --save writes a receipt to a local receipts archive", async () => {
 });
 
 test("CLI audit mode prints a receipt audit summary without requiring an action file", () => {
-  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-cli-audit-`);
+  const tempDirectory = mkdtempSync(join(tmpdir(), "atg-cli-audit-"));
 
   try {
     const result = spawnSync(process.execPath, [cliPath, "--audit"], {
@@ -104,7 +104,7 @@ test("CLI audit mode prints a receipt audit summary without requiring an action 
 });
 
 test("CLI list receipts mode marks malformed receipts without crashing", () => {
-  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-cli-list-`);
+  const tempDirectory = mkdtempSync(join(tmpdir(), "atg-cli-list-"));
 
   try {
     mkdirSync(resolve(tempDirectory, "receipts"));
@@ -138,7 +138,7 @@ test("CLI rejects an unknown policy profile clearly", () => {
 });
 
 test("CLI --save includes the selected policy profile in the saved receipt", async () => {
-  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-cli-policy-`);
+  const tempDirectory = mkdtempSync(join(tmpdir(), "atg-cli-policy-"));
 
   try {
     const result = spawnSync(
@@ -195,7 +195,7 @@ test("CLI --json outputs parseable integration JSON for a normal verification", 
 });
 
 test("CLI saved receipt includes contract_version", async () => {
-  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-cli-contract-save-`);
+  const tempDirectory = mkdtempSync(join(tmpdir(), "atg-cli-contract-save-"));
 
   try {
     const result = spawnSync(process.execPath, [cliPath, lowRiskExamplePath, "--save"], {
@@ -234,7 +234,7 @@ test("CLI --json with regulated policy includes policy fields", () => {
 });
 
 test("CLI --json with --save includes receipt save metadata", async () => {
-  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-cli-json-save-`);
+  const tempDirectory = mkdtempSync(join(tmpdir(), "atg-cli-json-save-"));
 
   try {
     const result = spawnSync(
@@ -308,7 +308,7 @@ test("CLI unknown policy with --json prints a JSON error object", () => {
 });
 
 test("CLI validation error with --json is parseable and exits 1", () => {
-  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-cli-invalid-contract-`);
+  const tempDirectory = mkdtempSync(join(tmpdir(), "atg-cli-invalid-contract-"));
 
   try {
     const invalidActionPath = resolve(tempDirectory, "invalid-action.json");
@@ -376,7 +376,7 @@ test("CLI --contract --json prints parseable contract JSON", () => {
 });
 
 test("CLI --audit --json outputs parseable JSON", () => {
-  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-cli-audit-json-`);
+  const tempDirectory = mkdtempSync(join(tmpdir(), "atg-cli-audit-json-"));
 
   try {
     const result = spawnSync(process.execPath, [cliPath, "--audit", "--json"], {
@@ -397,7 +397,7 @@ test("CLI --audit --json outputs parseable JSON", () => {
 });
 
 test("CLI --list-receipts --json outputs parseable JSON", () => {
-  const tempDirectory = mkdtempSync(`${tmpdir()}\\atg-cli-list-json-`);
+  const tempDirectory = mkdtempSync(join(tmpdir(), "atg-cli-list-json-"));
 
   try {
     const result = spawnSync(process.execPath, [cliPath, "--list-receipts", "--json"], {

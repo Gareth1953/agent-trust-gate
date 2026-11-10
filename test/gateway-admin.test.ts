@@ -21,7 +21,7 @@ function runCli(cwd: string, ...args: string[]) {
 }
 
 test("--gateway-admin with no logs returns zero summary", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-admin-empty-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-admin-empty-"));
 
   try {
     const result = runCli(directory, "--gateway-admin", "--json");
@@ -40,7 +40,7 @@ test("--gateway-admin with no logs returns zero summary", () => {
 });
 
 test("--gateway-admin --json outputs parseable JSON", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-admin-json-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-admin-json-"));
 
   try {
     writeGatewayLog(directory, [sampleLogEntry()]);
@@ -58,7 +58,7 @@ test("--gateway-admin --json outputs parseable JSON", () => {
 });
 
 test("admin summary includes gateway health and decision activity totals", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-admin-activity-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-admin-activity-"));
   const logPath = resolve(directory, "gateway-requests.jsonl");
 
   try {
@@ -106,7 +106,7 @@ test("admin summary includes gateway health and decision activity totals", () =>
 });
 
 test("admin summary includes auth and usage limit activity totals", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-admin-auth-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-admin-auth-"));
   const logPath = resolve(directory, "gateway-requests.jsonl");
 
   try {
@@ -145,7 +145,7 @@ test("admin summary includes auth and usage limit activity totals", () => {
 });
 
 test("admin summary includes clients from logs", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-admin-log-clients-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-admin-log-clients-"));
   const logPath = resolve(directory, "gateway-requests.jsonl");
 
   try {
@@ -164,7 +164,7 @@ test("admin summary includes clients from logs", () => {
 });
 
 test("admin summary includes configured clients without exposing api_key", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-admin-config-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-admin-config-"));
   const clientsFile = resolve(directory, "gateway-clients.json");
 
   try {
@@ -212,7 +212,7 @@ test("admin summary includes configured clients without exposing api_key", () =>
 });
 
 test("missing clients file does not crash", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-admin-missing-config-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-admin-missing-config-"));
 
   try {
     const result = runCli(directory, "--gateway-admin", "--clients-file", "missing-clients.json", "--json");
@@ -227,7 +227,7 @@ test("missing clients file does not crash", () => {
 });
 
 test("malformed log line is counted", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-admin-malformed-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-admin-malformed-"));
   const logPath = resolve(directory, "gateway-requests.jsonl");
 
   try {
@@ -243,7 +243,7 @@ test("malformed log line is counted", () => {
 });
 
 test("allowance_status covers unlimited, under_limit, at_limit, and over_limit", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-admin-allowance-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-admin-allowance-"));
   const logPath = resolve(directory, "gateway-requests.jsonl");
   const clientsFile = resolve(directory, "gateway-clients.json");
 

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import test from "node:test";
 
@@ -69,7 +69,7 @@ test("SDK README documents local-only safety and demo commands", () => {
 });
 
 test("Node SDK wrapper calls the local gateway and surfaces JSON errors", async () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-sdk-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-sdk-"));
   const server = createGatewayServer({ gatewayLogPath: resolve(directory, "gateway.jsonl") });
   await new Promise<void>((done) => server.listen(0, "127.0.0.1", done));
   const address = server.address() as AddressInfo;

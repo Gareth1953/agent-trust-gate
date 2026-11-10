@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import {
@@ -16,7 +16,7 @@ import {
 const cliPath = resolve("dist/src/cli.js");
 
 test("monitoring health is versioned and keeps production services disabled", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-monitoring-empty-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-monitoring-empty-"));
   try {
     const now = new Date("2026-06-27T12:00:10.000Z");
     const report = createMonitoringHealthReport({
@@ -59,7 +59,7 @@ test("monitoring health exposes local capability signals and required checks", (
 });
 
 test("monitoring log health counts valid, error, rate-limit, unauthorized, and malformed entries", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-monitoring-log-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-monitoring-log-"));
   const logPath = resolve(directory, "gateway.jsonl");
   const base = {
     timestamp: "2026-06-27T12:00:00.000Z",
@@ -101,7 +101,7 @@ test("CLI monitoring health JSON and output modes are parseable", () => {
     "atg.monitoring-health.v1",
   );
 
-  const directory = mkdtempSync(`${tmpdir()}\\atg-monitoring-cli-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-monitoring-cli-"));
   const outputPath = resolve(directory, "nested", "monitoring.json");
   try {
     const output = spawnSync(process.execPath, [
@@ -122,7 +122,7 @@ test("CLI monitoring health JSON and output modes are parseable", () => {
 });
 
 test("GET monitoring health returns live runtime JSON with request ID and logs the request", async () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-monitoring-http-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-monitoring-http-"));
   const logPath = resolve(directory, "gateway.jsonl");
   const server = createGatewayServer({ gatewayLogPath: logPath });
   await new Promise<void>((done) => server.listen(0, "127.0.0.1", done));

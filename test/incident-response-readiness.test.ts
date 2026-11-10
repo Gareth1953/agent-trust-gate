@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import {
@@ -71,7 +71,7 @@ test("incident readiness CLI JSON and output modes are parseable", () => {
   assert.equal(json.stderr, "");
   assert.equal((JSON.parse(json.stdout) as IncidentResponseReadinessReport).incident_response_version, "atg.incident-response.v1");
 
-  const directory = mkdtempSync(`${tmpdir()}\\atg-incident-readiness-cli-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-incident-readiness-cli-"));
   const outputPath = resolve(directory, "nested", "readiness.json");
   try {
     const output = spawnSync(process.execPath, [cliPath, "--incident-response-readiness", "--output", outputPath], {
@@ -93,7 +93,7 @@ test("incident template CLI JSON and output modes are parseable", () => {
   assert.equal(json.stderr, "");
   assert.equal((JSON.parse(json.stdout) as IncidentRecordTemplate).incident_record_version, "atg.incident-record.v1");
 
-  const directory = mkdtempSync(`${tmpdir()}\\atg-incident-template-cli-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-incident-template-cli-"));
   const outputPath = resolve(directory, "nested", "incident.json");
   try {
     const output = spawnSync(process.execPath, [cliPath, "--incident-template", "--output", outputPath], {
@@ -108,7 +108,7 @@ test("incident template CLI JSON and output modes are parseable", () => {
 });
 
 test("GET incident response readiness returns request ID and logs the request", async () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-incident-http-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-incident-http-"));
   const logPath = resolve(directory, "gateway.jsonl");
   const server = createGatewayServer({ gatewayLogPath: logPath });
   await new Promise<void>((done) => server.listen(0, "127.0.0.1", done));

@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import {
@@ -35,7 +35,7 @@ const publicPostAction = {
 async function withGatewayLog<T>(
   callback: (baseUrl: string, logPath: string) => Promise<T>,
 ): Promise<T> {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-gateway-log-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-gateway-log-"));
   const logPath = resolve(directory, "gateway-requests.jsonl");
   const server = createGatewayServer({ gatewayLogPath: logPath });
 
@@ -162,7 +162,7 @@ test("invalid request writes an error log entry", async () => {
 });
 
 test("--gateway-usage with no log file returns zero summary", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-gateway-empty-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-gateway-empty-"));
 
   try {
     const result = runCli(directory, "--gateway-usage", "--json");
@@ -180,7 +180,7 @@ test("--gateway-usage with no log file returns zero summary", () => {
 });
 
 test("--gateway-usage --json outputs parseable JSON", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-gateway-usage-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-gateway-usage-"));
 
   try {
     mkdirSync(resolve(directory, "gateway-logs"));
@@ -208,7 +208,7 @@ test("--gateway-usage --json outputs parseable JSON", () => {
 });
 
 test("--list-gateway-requests --json outputs parseable JSON", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-gateway-list-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-gateway-list-"));
 
   try {
     mkdirSync(resolve(directory, "gateway-logs"));
@@ -241,7 +241,7 @@ test("--list-gateway-requests --json outputs parseable JSON", () => {
 });
 
 test("malformed JSONL log line is counted without crashing", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-gateway-malformed-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-gateway-malformed-"));
   const logPath = resolve(directory, "gateway-requests.jsonl");
 
   try {
@@ -259,7 +259,7 @@ test("malformed JSONL log line is counted without crashing", () => {
 });
 
 test("--list-gateway-requests default limit works", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-gateway-limit-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-gateway-limit-"));
 
   try {
     mkdirSync(resolve(directory, "gateway-logs"));

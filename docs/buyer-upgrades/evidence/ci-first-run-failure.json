@@ -1,0 +1,19 @@
+{
+  "run": 42794413522,
+  "job": 129755760420,
+  "commit": "2f4e3faaad96ab773eed5289e359b9681ca2c878",
+  "main": {
+    "tests": 675,
+    "pass": 559,
+    "fail": 116,
+    "skipped": 0
+  },
+  "error": "EACCES: permission denied during legacy temporary-directory creation",
+  "repair": {
+    "files": 31,
+    "prefixes": 90,
+    "assertions_changed": false,
+    "permissions_weakened": false
+  },
+  "production_ready": false
+}

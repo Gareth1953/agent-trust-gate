@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import {
@@ -48,7 +48,7 @@ const publicPostAction = {
 async function withLimitedGateway<T>(
   callback: (baseUrl: string, logPath: string) => Promise<T>,
 ): Promise<T> {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-usage-limit-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-usage-limit-"));
   const logPath = resolve(directory, "gateway-requests.jsonl");
   const server = createGatewayServer({
     requireApiKey: true,
@@ -206,7 +206,7 @@ test("over-limit request is logged with usage fields", async () => {
 });
 
 test("--gateway-usage includes over_limit_requests and client_usage_summary", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-usage-summary-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-usage-summary-"));
 
   try {
     mkdirSync(resolve(directory, "gateway-logs"));
@@ -242,7 +242,7 @@ test("--gateway-usage includes over_limit_requests and client_usage_summary", ()
 });
 
 test("--client-usage with no logs returns empty client list", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-client-usage-empty-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-client-usage-empty-"));
 
   try {
     const result = spawnSync(process.execPath, [cliPath, "--client-usage", "--json"], {
@@ -259,7 +259,7 @@ test("--client-usage with no logs returns empty client list", () => {
 });
 
 test("--client-usage --json outputs parseable per-client usage", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-client-usage-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-client-usage-"));
 
   try {
     mkdirSync(resolve(directory, "gateway-logs"));
@@ -286,7 +286,7 @@ test("--client-usage --json outputs parseable per-client usage", () => {
 });
 
 test("--list-gateway-requests --json includes over-limit usage fields", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-list-usage-fields-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-list-usage-fields-"));
 
   try {
     mkdirSync(resolve(directory, "gateway-logs"));
@@ -323,7 +323,7 @@ test("gateway-clients.example.json includes safe allowance example", () => {
 });
 
 test("auditGatewayClientUsage summarizes client usage from log path", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-client-usage-api-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-client-usage-api-"));
   const logPath = resolve(directory, "gateway-requests.jsonl");
 
   try {

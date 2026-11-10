@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import {
@@ -70,7 +70,7 @@ test("billing payment readiness CLI supports JSON, output, and plans file", () =
   const configured = spawnSync(process.execPath, [cliPath, "--billing-payment-readiness", "--plans-file", examplePath, "--json"], { cwd: process.cwd(), encoding: "utf8" });
   assert.equal(configured.status, 0);
   assert.equal((JSON.parse(configured.stdout) as BillingPaymentReadinessReport).plan_model.source.plans_file_found, true);
-  const directory = mkdtempSync(`${tmpdir()}\\atg-billing-cli-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-billing-cli-"));
   const outputPath = resolve(directory, "nested", "readiness.json");
   try {
     const output = spawnSync(process.execPath, [cliPath, "--billing-payment-readiness", "--output", outputPath], { cwd: process.cwd(), encoding: "utf8" });
@@ -80,7 +80,7 @@ test("billing payment readiness CLI supports JSON, output, and plans file", () =
 });
 
 test("GET billing payment readiness is traced and logged", async () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-billing-http-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-billing-http-"));
   const logPath = resolve(directory, "gateway.jsonl");
   const server = createGatewayServer({ gatewayLogPath: logPath });
   await new Promise<void>((done) => server.listen(0, "127.0.0.1", done));

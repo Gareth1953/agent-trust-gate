@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import {
@@ -125,7 +125,7 @@ test("CLI commercial readiness JSON is parseable", () => {
 });
 
 test("CLI commercial readiness output creates a local JSON report", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-commercial-readiness-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-commercial-readiness-"));
   const outputPath = resolve(directory, "nested", "commercial-readiness.json");
   try {
     const result = spawnSync(process.execPath, [
@@ -144,7 +144,7 @@ test("CLI commercial readiness output creates a local JSON report", () => {
 });
 
 test("GET commercial readiness returns JSON with request ID and logs the request", async () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-commercial-readiness-http-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-commercial-readiness-http-"));
   const logPath = resolve(directory, "gateway.jsonl");
   const server = createGatewayServer({
     requireApiKey: true,

@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
 import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import { createGatewayServer, createGlobalMarketingReadinessReport, type GatewayRequestLogEntry, type GlobalMarketingReadinessReport } from "../src/index.js";
@@ -36,11 +36,11 @@ test("checks and distribution gates preserve approval and safety boundaries",()=
 
 test("CLI JSON and output modes are local and parseable",()=>{
   const j=spawnSync(process.execPath,[cli,"--global-marketing-readiness","--json"],{encoding:"utf8"});assert.equal(j.status,0);assert.equal((JSON.parse(j.stdout) as GlobalMarketingReadinessReport).global_marketing_enabled,false);
-  const d=mkdtempSync(`${tmpdir()}\\atg-marketing-`),p=resolve(d,"x","report.json");try{assert.equal(spawnSync(process.execPath,[cli,"--global-marketing-readiness","--output",p],{encoding:"utf8"}).status,0);assert.equal(existsSync(p),true);}finally{rmSync(d,{recursive:true,force:true});}
+  const d=mkdtempSync(join(tmpdir(), "atg-marketing-")),p=resolve(d,"x","report.json");try{assert.equal(spawnSync(process.execPath,[cli,"--global-marketing-readiness","--output",p],{encoding:"utf8"}).status,0);assert.equal(existsSync(p),true);}finally{rmSync(d,{recursive:true,force:true});}
 });
 
 test("GET global marketing readiness includes request ID and logs locally",async()=>{
-  const d=mkdtempSync(`${tmpdir()}\\atg-marketing-http-`),l=resolve(d,"gateway.jsonl"),s=createGatewayServer({gatewayLogPath:l});await new Promise<void>(r=>s.listen(0,"127.0.0.1",r));try{const a=s.address() as AddressInfo,res=await fetch(`http://127.0.0.1:${a.port}/v1/global-marketing-readiness`),b=await res.json() as GlobalMarketingReadinessReport&{request_id:string};assert.equal(res.status,200);assert.match(b.request_id,/^gw_/);assert.equal(b.public_distribution_enabled,false);}finally{await new Promise<void>((r,j)=>s.close(e=>e?j(e):r()));assert.equal((JSON.parse(readFileSync(l,"utf8")) as GatewayRequestLogEntry).endpoint,"/v1/global-marketing-readiness");rmSync(d,{recursive:true,force:true});}
+  const d=mkdtempSync(join(tmpdir(), "atg-marketing-http-")),l=resolve(d,"gateway.jsonl"),s=createGatewayServer({gatewayLogPath:l});await new Promise<void>(r=>s.listen(0,"127.0.0.1",r));try{const a=s.address() as AddressInfo,res=await fetch(`http://127.0.0.1:${a.port}/v1/global-marketing-readiness`),b=await res.json() as GlobalMarketingReadinessReport&{request_id:string};assert.equal(res.status,200);assert.match(b.request_id,/^gw_/);assert.equal(b.public_distribution_enabled,false);}finally{await new Promise<void>((r,j)=>s.close(e=>e?j(e):r()));assert.equal((JSON.parse(readFileSync(l,"utf8")) as GatewayRequestLogEntry).endpoint,"/v1/global-marketing-readiness");rmSync(d,{recursive:true,force:true});}
 });
 
 test("marketing docs and discovery drafts are local, parseable, and contain no targets or secrets",()=>{

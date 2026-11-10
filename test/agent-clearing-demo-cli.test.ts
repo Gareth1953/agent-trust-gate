@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 const cliPath = resolve("dist/src/agent-clearing-demo-cli.js");
@@ -123,7 +123,7 @@ test("demo CLI runs the full blocked pipeline and prints exact safe JSON", () =>
 });
 
 test("demo CLI runs a low-risk pipeline with metering disabled", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-clearing-cli-low-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-clearing-cli-low-"));
   try {
     const path = resolve(directory, "input.json");
     writeFileSync(path, JSON.stringify(lowRiskInput()));
@@ -141,7 +141,7 @@ test("demo CLI runs a low-risk pipeline with metering disabled", () => {
 });
 
 test("demo CLI safely defaults pipeline ID, local signals, and fee metering", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-clearing-cli-defaults-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-clearing-cli-defaults-"));
   try {
     const value = lowRiskInput();
     delete value.pipeline_id;
@@ -162,7 +162,7 @@ test("demo CLI safely defaults pipeline ID, local signals, and fee metering", ()
 });
 
 test("demo CLI errors are structured, local, and contain no path, input, or stack trace", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-clearing-cli-errors-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-clearing-cli-errors-"));
   try {
     const privateMarker = "PRIVATE_ERROR_VALUE_MUST_NOT_COPY";
     const invalidJsonPath = resolve(directory, `${privateMarker}.json`);
@@ -191,7 +191,7 @@ test("demo CLI errors are structured, local, and contain no path, input, or stac
 });
 
 test("demo CLI strips private fields before the pipeline and nested output", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-clearing-cli-private-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-clearing-cli-private-"));
   try {
     const marker = "PRIVATE_CLI_VALUE_MUST_NOT_COPY";
     const value = lowRiskInput();

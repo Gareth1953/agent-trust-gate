@@ -3,7 +3,7 @@ import { spawnSync } from "node:child_process";
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import test from "node:test";
 
 import {
@@ -17,7 +17,7 @@ import {
 const cliPath = resolve("dist/src/cli.js");
 
 test("entitlement statuses cover unlimited, active, at-limit, over-limit, and unknown", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-entitlement-status-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-entitlement-status-"));
   try {
     const cases: Array<{
       name: string;
@@ -110,7 +110,7 @@ test("entitlement statuses cover unlimited, active, at-limit, over-limit, and un
 });
 
 test("entitlement over-limit status also detects usage beyond configured allowance", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-entitlement-over-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-entitlement-over-"));
   const logPath = resolve(directory, "gateway.jsonl");
   try {
     writeFileSync(logPath, [
@@ -132,7 +132,7 @@ test("entitlement over-limit status also detects usage beyond configured allowan
 });
 
 test("CLI entitlement JSON supports client ID and optional clients file", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-entitlement-cli-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-entitlement-cli-"));
   try {
     const result = spawnSync(process.execPath, [
       cliPath,
@@ -159,7 +159,7 @@ test("CLI entitlement JSON supports client ID and optional clients file", () => 
 });
 
 test("CLI entitlement with missing logs and clients file does not crash", () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-entitlement-missing-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-entitlement-missing-"));
   try {
     const result = spawnSync(process.execPath, [
       cliPath,
@@ -178,7 +178,7 @@ test("CLI entitlement with missing logs and clients file does not crash", () => 
 });
 
 test("GET entitlement returns JSON with request ID and logs the lookup", async () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-entitlement-http-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-entitlement-http-"));
   const logPath = resolve(directory, "gateway.jsonl");
   const server = createGatewayServer({ gatewayLogPath: logPath });
   await new Promise<void>((done) => server.listen(0, "127.0.0.1", done));
@@ -203,7 +203,7 @@ test("GET entitlement returns JSON with request ID and logs the lookup", async (
 });
 
 test("GET entitlement requires and validates API key in API-key mode", async () => {
-  const directory = mkdtempSync(`${tmpdir()}\\atg-entitlement-auth-`);
+  const directory = mkdtempSync(join(tmpdir(), "atg-entitlement-auth-"));
   const server = createGatewayServer({
     requireApiKey: true,
     clients: [limitedClient("auth-agent", 5)],
