@@ -1,0 +1,219 @@
+{
+  "evaluatedHead": "a89189af0d2b00b577d36287f19a6065676b440a",
+  "workflowRunId": 42800730943,
+  "jobId": 129777229739,
+  "url": "https://github.com/Gareth1953/agent-trust-gate/actions/runs/42800730943",
+  "evidenceKind": "ATG-owned GitHub CI; not independent assurance",
+  "receipt": {
+    "schema": "atg.split-custody.evidence.v1",
+    "startedAt": "2026-11-10T10:37:48.789Z",
+    "status": "PASS_SCOPED",
+    "productionReady": false,
+    "independentAssessment": false,
+    "scope": "Synthetic Linux distinct-principal evaluation; root/custody administrator remains trusted.",
+    "cases": [
+      {
+        "name": "Actual service identity has distinct UID, no capabilities and no_new_privs",
+        "status": "PASS",
+        "observation": {
+          "agentUid": 62011,
+          "serviceUid": 62012,
+          "issuerUid": 62013
+        }
+      },
+      {
+        "name": "Agent cannot read issuer signing key",
+        "status": "PASS",
+        "observation": {
+          "denied": true,
+          "code": "EACCES"
+        }
+      },
+      {
+        "name": "Agent cannot read writer TLS private key",
+        "status": "PASS",
+        "observation": {
+          "denied": true,
+          "code": "EACCES"
+        }
+      },
+      {
+        "name": "Agent cannot directly rewrite authoritative SQL",
+        "status": "PASS",
+        "observation": {
+          "denied": true,
+          "code": "ERR_SQLITE_ERROR"
+        }
+      },
+      {
+        "name": "Agent cannot overwrite authoritative database",
+        "status": "PASS",
+        "observation": {
+          "denied": true,
+          "code": "EACCES"
+        }
+      },
+      {
+        "name": "Agent cannot chmod authoritative database",
+        "status": "PASS",
+        "observation": {
+          "denied": true,
+          "code": "EACCES"
+        }
+      },
+      {
+        "name": "Agent cannot copy complete writer state",
+        "status": "PASS",
+        "observation": {
+          "denied": true,
+          "code": "COPY_DENIED"
+        }
+      },
+      {
+        "name": "Agent cannot replace writer state directory",
+        "status": "PASS",
+        "observation": {
+          "denied": true,
+          "code": "EACCES"
+        }
+      },
+      {
+        "name": "Agent cannot replace pinned trust or service configuration",
+        "status": "PASS",
+        "observation": {
+          "denied": true,
+          "code": "EACCES"
+        }
+      },
+      {
+        "name": "Agent cannot rewrite pinned issuer public key",
+        "status": "PASS",
+        "observation": {
+          "denied": true,
+          "code": "EACCES"
+        }
+      },
+      {
+        "name": "Agent cannot rewrite protected executable code",
+        "status": "PASS",
+        "observation": {
+          "denied": true,
+          "code": "EACCES"
+        }
+      },
+      {
+        "name": "Agent cannot read writer memory",
+        "status": "PASS",
+        "observation": {
+          "denied": true,
+          "code": "EACCES"
+        }
+      },
+      {
+        "name": "Agent cannot signal writer",
+        "status": "PASS",
+        "observation": {
+          "denied": true,
+          "code": "EPERM"
+        }
+      },
+      {
+        "name": "Writer cannot read issuer signing key",
+        "status": "PASS",
+        "observation": {
+          "denied": true,
+          "code": "EACCES"
+        }
+      },
+      {
+        "name": "Same-owner service startup refuses rather than downgrades",
+        "status": "PASS",
+        "observation": null
+      },
+      {
+        "name": "Missing client certificate cannot reach writer",
+        "status": "PASS",
+        "observation": null
+      },
+      {
+        "name": "Different client certificate signed by trusted CA is still refused",
+        "status": "PASS",
+        "observation": null
+      },
+      {
+        "name": "Wrong pinned server identity refuses before any grant is sent",
+        "status": "PASS",
+        "observation": null
+      },
+      {
+        "name": "CA-valid fake endpoint fails exact server pin",
+        "status": "PASS",
+        "observation": null
+      },
+      {
+        "name": "Agent channel cannot stop, revoke or choose a database",
+        "status": "PASS",
+        "observation": null
+      },
+      {
+        "name": "Public fixture signer cannot impersonate the protected issuer",
+        "status": "PASS",
+        "observation": null
+      },
+      {
+        "name": "Changed payee fails exact-action binding",
+        "status": "PASS",
+        "observation": null
+      },
+      {
+        "name": "Two real agent processes race: exactly one synthetic effect",
+        "status": "PASS",
+        "observation": [
+          "EXECUTED",
+          "REJECTED"
+        ]
+      },
+      {
+        "name": "Restore all agent-held credentials/cache: same authority remains used",
+        "status": "PASS",
+        "observation": null
+      },
+      {
+        "name": "Authoritative service restart retains one-use and reconciles result",
+        "status": "PASS",
+        "observation": null
+      },
+      {
+        "name": "Custody outage returns UNKNOWN, no automatic retry or local fallback",
+        "status": "PASS",
+        "observation": null
+      },
+      {
+        "name": "Missing authoritative database refuses startup without recreation",
+        "status": "PASS",
+        "observation": null
+      },
+      {
+        "name": "Trusted controller stop persists and agent channel cannot clear it",
+        "status": "PASS",
+        "observation": null
+      }
+    ],
+    "sourceHashes": {
+      "src/custody-witness.ts": "03e67b9f195afe91aa6110cb2cc16ea9e64ae6151332cf00e5ae027326384394",
+      "scripts/custody-service.mjs": "af6763dc9fe1839c389a1870cf132527382ff6f1f94eece470c9de4c195b16d1",
+      "scripts/custody-service-client.mjs": "617468e674ef2c5d4b5e665764458dc615dd4c203bb9ae78a827cd8af95547b2",
+      "scripts/custody-agent-probe.mjs": "99be873e0e71dcf7c6e5e64a69b2ac69bcc0231df9bb06d44430206ad6d6a524",
+      "scripts/test-custody-isolation.mjs": "adfe295b0c2a72b4ef58aef1a0ccba4ef07f9e1fc73a9a51c58692edf11eb638"
+    },
+    "limitations": [
+      "No HSM or hostile administrator/whole-host restore protection.",
+      "No payment provider or production authority.",
+      "One-use is scoped to the retained authoritative service store; no independent global anchor."
+    ],
+    "sourceCommit": "2f628897fff871afe5d890b10ae73f6bf8ac0f0b",
+    "fixtureRoot": "/tmp/atg-split-custody-6VfrT2",
+    "authoritativeResourceVersion": 2,
+    "finishedAt": "2026-11-10T10:37:51.869Z"
+  }
+}

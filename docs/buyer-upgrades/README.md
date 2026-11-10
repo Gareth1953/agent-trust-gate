@@ -18,6 +18,9 @@ The unchanged downloadable local.7 archive does not contain this candidate.
 5. Use [the buyer diligence and evaluation pack](BUYER-PACK.md) for discussion.
 6. Agree the [third-party payment acceptance matrix](PAYMENT-EVALUATION.md)
    with a named technical owner before a payment-provider sandbox evaluation.
+7. Evaluate the optional [split-custody service](CUSTODY-SERVICE.md) against a
+   compromised agent under distinct Linux identities. This does not protect
+   against the trusted custody administrator or complete host rollback.
 
 ## What changed
 
