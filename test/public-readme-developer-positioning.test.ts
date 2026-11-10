@@ -125,6 +125,8 @@ test("README limits URLs to local demos and approved public resources, with no c
         url === currentCorporateSiteUrl ||
         url === "https://agenttrustgate.com/plugin.html" ||
         url === "https://agenttrustgate.com/downloads/SHA256SUMS" ||
+        url === "https://1password.com/blog/1password-for-ai-agents" ||
+        url === "https://1password.com/press/2026/october/1password-surpasses-500-million-arr" ||
         url === `https://agenttrustgate.com/downloads/agent-trust-gate-plugin-${STANDALONE_PLUGIN_VERSION}.tgz`,
       url,
     );

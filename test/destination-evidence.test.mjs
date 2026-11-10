@@ -285,7 +285,7 @@ for(const fault of ['missing-fence','wrong-destination','wrong-action','wrong-st
 
 for(const op of ['submit','fence_lookup']) test('destination crash inside uncommitted '+op+' transaction preserves hold and rolls back before fenced recovery',async t=>{
   const f=await fixture(t),a=await approved(f),q=f.authority.beginLookup(a.id,op==='fence_lookup');
-  const reached=barrier(f.client.child),sent=f.client.request({op,...q,token:a.claim.token,barrier:'before_commit'}),failure=assert.rejects(sent,/DESTINATION_UNAVAILABLE/);
+  const reached=barrier(f.client.child),sent=f.client.request({op,...q,...(op==='submit'?{token:a.claim.token}:{}),barrier:'before_commit'}),failure=assert.rejects(sent,/DESTINATION_UNAVAILABLE/);
   assert.equal((await reached).barrier,'before_commit');await kill(f.client.child);await failure;assert.equal(status(f),'UNKNOWN');assert.equal(exposure(f),400000);
   f.authority.close();const restarted=await SyntheticDestinationProcess.start(f.destinationDirectory,false,f.trust);f.client=restarted.client;
   f.authority=new SeparateDestinationAuthority({stateDirectory:f.authorityDirectory,destination:f.client,trust:f.trust});

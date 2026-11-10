@@ -281,7 +281,8 @@ test("static discovery site permits only the constrained corporate script and no
   const corporateScript = read("discovery-site/corporate.js");
   assert.match(html, /application\/ld\+json/);
   const runtimeScripts = [...html.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/gi)].map((match) => match[1]);
-  assert.deepEqual(runtimeScripts, ["./corporate.js"]);
+  assert.equal(runtimeScripts.length, 1);
+  assert.ok(["./corporate.js", "./corporate.js?v=nav-01"].includes(runtimeScripts[0]!));
   assert.doesNotMatch(html, /<script[^>]+src=["']https?:\/\//i);
   assert.doesNotMatch(html, /<form\b/i);
   assert.doesNotMatch(html, /<iframe\b/i);

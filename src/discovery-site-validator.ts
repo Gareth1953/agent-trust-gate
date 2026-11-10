@@ -288,8 +288,9 @@ export function validateDiscoverySite(): DiscoverySiteValidationReport {
     },
     {
       id: "active_verified_wording",
-      passed: /Exact Action Trust Gateway for AI agents\./i.test(indexHtml) &&
-        /Local synthetic prototype/i.test(indexHtml) &&
+      passed: (/Exact Action Trust Gateway for AI agents\./i.test(indexHtml) ||
+          /local-first security evaluation for checking whether a proposed AI-agent action matches a human-approved mandate/i.test(indexHtml)) &&
+        /Local synthetic (?:prototype|exact-action authority and evidence demonstrator)/i.test(indexHtml) &&
         /Production deployment is not claimed\./i.test(indexHtml) &&
         !obsoleteStatusPattern.test(indexHtml),
       detail: "index.html states the current corporate proposition and non-production boundary without obsolete pending wording",

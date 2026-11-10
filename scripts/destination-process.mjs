@@ -7,6 +7,7 @@ import { createCanonicalPayloadHash as hash } from '../dist/src/local-signed-pro
 import { canonicalDestinationEvidence as canonical, verifyDestinationApproval, validateDestinationTrust, validateDestinationLookup, destinationRecordDigest, DESTINATION_EVIDENCE_SCHEMA, DESTINATION_CLOCK_ID } from '../dist/src/destination-evidence.js';
 import { purchaseOrderStateBindingMatches } from '../dist/src/purchase-order-state-binding.js';
 import { PURCHASING_DEMO_EXECUTION_TIME as AT } from '../dist/src/local-purchasing-lifecycle-demo.js';
+import { isDestinationRequestId, snapshotDestinationCommand } from '../dist/src/destination-ipc-protocol.js';
 
 const directory = process.argv[2];
 if (!isAbsolute(directory)) throw Error('ABSOLUTE_DESTINATION_DIRECTORY_REQUIRED');
@@ -81,8 +82,11 @@ function barrier(stage, requested) {
   if (stage === requested) { writeSync(1, JSON.stringify({ barrier: stage })+'\n'); readSync(0, Buffer.alloc(1), 0, 1, null); }
 }
 process.send({ phase: 'ready', publicKeyPem: publicKey, pid: process.pid });
-process.on('message', m => {
+process.on('message', input => {
+  let m;
   try {
+    // Validate before dereferencing untrusted framing or touching a transaction.
+    m = snapshotDestinationCommand(input, true);
     if (m.op === 'configure') {
       validateDestinationTrust(m.trust);
       if (m.trust.destinationPublicKeyPem !== publicKey || (trust && hash(trust) !== hash(m.trust))) throw Error('DESTINATION_TRUST_CHANGED');
@@ -127,6 +131,10 @@ process.on('message', m => {
     // The signed evidence is sent only after the independent destination transaction commits.
     barrier('after_commit', m.barrier);
     process.send({ id:m.id, value:evidence });
-  } catch(e) { process.send({ id:m.id, error:e.message }); }
+  } catch(e) {
+    // A null/malformed request must not throw again in the error handler.
+    const id = m?.id ?? (input && typeof input === 'object' && isDestinationRequestId(input.id) ? input.id : null);
+    if (process.connected) process.send({ id, error: e instanceof Error ? e.message : 'DESTINATION_COMMAND_INVALID' }, () => {});
+  }
 });
 process.on('disconnect', () => { try { db.close(); } catch {} });
