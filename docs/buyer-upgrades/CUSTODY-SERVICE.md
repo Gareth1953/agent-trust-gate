@@ -83,6 +83,13 @@ records source hashes, actual UIDs, case observations and limitations. The runne
 prints only this sanitized receipt; **never upload its private fixture directory**.
 That directory contains disposable CA/signing/client keys and databases.
 
+The [first hosted failure](evidence/custody-first-run-failure.json) is retained:
+six checks passed, then Node's native directory-copy probe aborted on denied
+access. This did not count as a passing attack refusal. The repaired probe uses
+POSIX `cp` and requires an explicit permission-denied result; no protected path
+or permission is relaxed. Consult subsequent CI results, not this failure, for
+the completed attack matrix.
+
 This workspace's unprivileged execution records BLOCKED rather than pretending
 to have tested distinct identities. Passing TLS unit tests alone is not an OS
 custody proof. Consult the PR's actual completed CI job and receipt for the exact

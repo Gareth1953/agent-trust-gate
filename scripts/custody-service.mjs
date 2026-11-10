@@ -44,6 +44,7 @@ export function loadServiceConfig(path) {
     || new Set([c.agentUid,c.serviceUid,c.issuerUid]).size !== 3 || c.serviceUid !== process.getuid()
     || !/^(?:[A-F0-9]{2}:){31}[A-F0-9]{2}$/.test(c.clientFingerprint)) throw Error('CUSTODY_CONFIG_INVALID');
   protectedPath(fileURLToPath(import.meta.url), [0]);
+  protectedPath(process.execPath, [0]);
   rootCodeTree(c.codeRoot);
   for (const p of [c.trustPath,c.caPath,c.serverCertPath]) protectedPath(p, [0]);
   protectedPath(c.serverKeyPath, [c.serviceUid,0], { privateFile: true });

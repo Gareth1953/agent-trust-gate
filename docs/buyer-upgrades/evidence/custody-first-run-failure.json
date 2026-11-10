@@ -1,0 +1,13 @@
+{
+  "status": "FAIL_RETAINED",
+  "head": "7f4c724aabb7650fcfed55c49ac32447ff842170",
+  "run": 42800517303,
+  "job": 129776496946,
+  "url": "https://github.com/Gareth1953/agent-trust-gate/actions/runs/42800517303",
+  "completedPassingCases": 6,
+  "failedCase": "Agent cannot copy complete writer state",
+  "cause": "Node 24.22.2 fs.cpSync terminated with an uncaught native std::filesystem permission-denied exception. The probe crashed; no passing copy-denial result was recorded.",
+  "repair": "The disposable attacker probe now executes POSIX cp -a against the same protected directory. Only exit 1 with an explicit permission-denied diagnostic counts as COPY_DENIED; probe crashes and other errors remain failures.",
+  "permissionsOrAssertionsWeakened": false,
+  "remainingGate": "A subsequent actual isolation run must pass all cases; this retained failure is not production or security clearance."
+}

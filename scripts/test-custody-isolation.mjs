@@ -98,6 +98,7 @@ try {
     if(input.path)assert.ok(lstatSync(input.path));
     const r=await probe(input);assert.equal(r.denied,true,JSON.stringify(r));
     if(input.op==='sql')assert.match(r.message,/unable to open database|permission denied/i);
+    else if(input.op==='copy')assert.equal(r.code,'COPY_DENIED');
     else assert.ok(['EACCES','EPERM'].includes(r.code),JSON.stringify(r));
     return {denied:r.denied,code:r.code};
   });
