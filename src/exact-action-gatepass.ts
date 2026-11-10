@@ -460,7 +460,7 @@ export function recomputeCanonicalActionDigest(envelope: CanonicalActionEnvelope
 
 export function issueExactActionGatePass(
   input: CanonicalActionEnvelopeInput,
-  keyPair: LocalDemoSigningKeyPair = createLocalDemoKeyPair(),
+  keyPair: Pick<LocalDemoSigningKeyPair, "privateKeyPem"> = createLocalDemoKeyPair(),
 ): ExactActionIssuance {
   const action = createCanonicalActionEnvelope(input);
   if (action.approvalRequired
@@ -552,7 +552,7 @@ export function createLocalVerificationProfile(
     issuerIdentity?: string;
     keyId?: string;
     acceptedForVerification?: boolean;
-    keyPair?: LocalDemoSigningKeyPair;
+    keyPair?: { keyId: string; publicKeyPem: string };
   } = {},
 ): LocalVerificationProfile {
   const keyPair = options.keyPair ?? createLocalDemoKeyPair();

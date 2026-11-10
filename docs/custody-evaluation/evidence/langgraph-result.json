@@ -1,0 +1,65 @@
+{
+  "schema": "atg.langgraph-custody.synthetic.v1",
+  "langgraph": "1.2.20",
+  "cases": [
+    {
+      "case": "graph_refusal",
+      "outcome": "REJECTED",
+      "reason": "GRAPH_APPROVAL_REFUSED"
+    },
+    {
+      "case": "exact_approved",
+      "outcome": "EXECUTED",
+      "reason": "SYNTHETIC_RECORD_AND_CONSUMPTION_COMMITTED",
+      "domainId": "0c22a6e1-3dca-4a80-8149-1b75962fbfbb",
+      "automaticRetryPermitted": false,
+      "receipt": {
+        "gatePassId": "gatepass_exact_b99a29b85b198811b767d910",
+        "actionDigest": "sha256:e28d58d70df851873c0452349f4599df6c82e5846b85e1beb0c688e5637508c0",
+        "resourceVersion": 2
+      }
+    },
+    {
+      "case": "copied_agent_grant",
+      "outcome": "REJECTED",
+      "reason": "AUTHORITY_ALREADY_USED_OR_REVOKED",
+      "domainId": "0c22a6e1-3dca-4a80-8149-1b75962fbfbb",
+      "automaticRetryPermitted": false,
+      "receipt": null
+    },
+    {
+      "case": "changed_payee_after_approval",
+      "outcome": "REJECTED",
+      "reason": "INVALID_EXPIRED_OR_CHANGED_AUTHORITY",
+      "domainId": "0c22a6e1-3dca-4a80-8149-1b75962fbfbb",
+      "automaticRetryPermitted": false,
+      "receipt": null
+    },
+    {
+      "case": "agent_admin_attempt",
+      "outcome": "REJECTED",
+      "reason": "WITNESS_COMMAND_INVALID",
+      "domainId": "unresolved",
+      "automaticRetryPermitted": false,
+      "receipt": null
+    },
+    {
+      "case": "authoritative_lookup",
+      "outcome": "EXECUTED",
+      "reason": "AUTHORITATIVE_SYNTHETIC_RECORD",
+      "domainId": "0c22a6e1-3dca-4a80-8149-1b75962fbfbb",
+      "automaticRetryPermitted": false,
+      "receipt": {
+        "gatePassId": "gatepass_exact_b99a29b85b198811b767d910",
+        "actionDigest": "sha256:e28d58d70df851873c0452349f4599df6c82e5846b85e1beb0c688e5637508c0",
+        "resourceVersion": 2
+      }
+    }
+  ],
+  "provider_requests": 0,
+  "blocked_python_network_attempts": 0,
+  "live_external_effects": 0,
+  "production_ready": false,
+  "independent_review": "NOT_PERFORMED",
+  "limits": "Real framework with deterministic synthetic approval and local record writer; no autonomous LLM reasoning, buyer-defined integration, OS isolation, live payment or global anti-rollback proof."
+}

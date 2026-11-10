@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-10",
+  "node": "24.22.1",
+  "regression": {
+    "main": 675,
+    "posttest": 1017,
+    "failed": 0,
+    "skipped": 0
+  },
+  "custody_tests": 25,
+  "retained_successful_common_owner_attacks": 2,
+  "typecheck": "PASS",
+  "plugin_unit_checks": 42,
+  "langgraph_cases": 6,
+  "isolation": "BLOCKED",
+  "independent_assessment": "NOT_PERFORMED",
+  "production_ready": false,
+  "log_sha256": "78cc033f63b01c7b40a9686fde78dd844f8708ece9d98e8c7da6f8a076d39110"
+}
