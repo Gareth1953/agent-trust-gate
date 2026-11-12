@@ -7,7 +7,6 @@ import { join,resolve } from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 import { createDelegatedBudgetFixture } from '../scripts/delegated-budget-fixture.mjs';
 import { SyntheticDelegatedBudgetWriter, budgetPublicKeyFingerprint } from '../dist/src/delegated-budget-witness.js';
-process.env.ATG_BUDGET_TEST_TRACE='1';
 
 function setup(t, options={}) {
   const root=mkdtempSync(join(tmpdir(),'atg-shared-budget-v1-'));
