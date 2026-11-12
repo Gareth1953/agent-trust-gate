@@ -314,7 +314,7 @@ export class SyntheticDelegatedBudgetWriter {
         return result(state,"TRUSTED_SYNTHETIC_RECONCILIATION",actionId,
           column?{actionDigest:row.action_digest,mandateId:row.mandate_id,rootPrincipalId:this.#trust.rootPrincipalId,amountMinor:row.amount_minor}:null);
       });
-    } catch { return result("UNKNOWN","RECONCILIATION_OUTCOME_UNKNOWN",actionId); }
+    } catch (e) { if (process.env.ATG_BUDGET_TEST_TRACE === "1") process.stderr.write("SYNTHETIC_RECONCILIATION_TEST_ERROR: " + (e instanceof Error ? e.message : "unknown") + "\n"); return result("UNKNOWN","RECONCILIATION_OUTCOME_UNKNOWN",actionId); }
   }
   /** Non-authorising lookup. Never a permission to retry after UNKNOWN. */
   lookup(actionId:string):BudgetResult {
