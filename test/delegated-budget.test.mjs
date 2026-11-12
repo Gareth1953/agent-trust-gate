@@ -5,7 +5,7 @@ import { cpSync,mkdtempSync,rmSync,writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join,resolve } from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
-import { createDelegatedBudgetFixture } from '../scripts/delegated-budget-fixture.mjs';
+import { createDelegatedBudgetFixture, signFixture } from '../scripts/delegated-budget-fixture.mjs';
 import { SyntheticDelegatedBudgetWriter, budgetPublicKeyFingerprint } from '../dist/src/delegated-budget-witness.js';
 
 function setup(t, options={}) {
@@ -161,7 +161,7 @@ test('UNKNOWN holds count against the shared ceiling until protected reconciliat
   assert.equal(x.w.execute(a.req,a.ctx).outcome,'COMMITTED');
   const excess=x.request({amountMinor:1});deny(x,excess.req,excess.ctx);
   assert.deepEqual([x.read().account.committed,x.read().account.held],[200000,300000]);
-  assert.equal(x.w.reconcileUnknown(h.req.action.actionId,'NO_EFFECT').outcome,'RELEASED');
+  assert.equal(x.w.reconcileUnknown(h.req.action.actionId,x.witnessEvidence(h.req.action.actionId,'NO_EFFECT')).outcome,'RELEASED');
   assert.equal(x.w.lookup(h.req.action.actionId).outcome,'RELEASED');
   assert.equal(x.w.execute(h.req,h.ctx).reason,'ACTION_ALREADY_RECORDED');
   const another=x.request({amountMinor:250000});
@@ -172,10 +172,34 @@ test('UNKNOWN holds count against the shared ceiling until protected reconciliat
 test('trusted synthetic reconciliation can classify an UNKNOWN as committed, once only',t=>{
   const x=setup(t),h=x.request({amountMinor:300000});
   assert.equal(x.w.holdUnknown(h.req,h.ctx).outcome,'UNKNOWN');
-  const r=x.w.reconcileUnknown(h.req.action.actionId,'COMMITTED');
+  const r=x.w.reconcileUnknown(h.req.action.actionId,x.witnessEvidence(h.req.action.actionId,'COMMITTED'));
   assert.equal(r.outcome,'COMMITTED');assert.equal(r.receipt.amountMinor,300000);
-  assert.equal(x.w.reconcileUnknown(h.req.action.actionId,'NO_EFFECT').outcome,'REJECTED');
+  assert.equal(x.w.reconcileUnknown(h.req.action.actionId,x.witnessEvidence(h.req.action.actionId,'NO_EFFECT')).outcome,'REJECTED');
   assert.equal(x.read().account.committed,300000);assert.equal(x.read().account.held,0);
+});
+
+test('untrusted agent cannot release UNKNOWN by claiming no external effect',t=>{
+  const x=setup(t),h=x.request({amountMinor:300000});
+  assert.equal(x.w.holdUnknown(h.req,h.ctx).outcome,'UNKNOWN');
+  const id=h.req.action.actionId,good=x.witnessEvidence(id,'NO_EFFECT');
+  assert.equal(x.w.reconcileUnknown(id,'NO_EFFECT').outcome,'REJECTED');
+  assert.equal(x.w.reconcileUnknown(id,{...good,signature:'A'.repeat(86)}).reason,'WITNESS_SIGNATURE_INVALID');
+  const wrongDigest=signFixture({...good.body,actionDigest:'0'.repeat(64)},x.keys.outcome.privateKeyPem,'ATG_SYNTHETIC_OUTCOME_WITNESS_V1:');
+  assert.equal(x.w.reconcileUnknown(id,wrongDigest).reason,'WITNESS_ACTION_BINDING_INVALID');
+  const wrongSigner=signFixture(good.body,x.keys['agent-B'].privateKeyPem,'ATG_SYNTHETIC_OUTCOME_WITNESS_V1:');
+  assert.equal(x.w.reconcileUnknown(id,wrongSigner).reason,'WITNESS_SIGNATURE_INVALID');
+  const badId=signFixture({...good.body,actionId:'other-action'},x.keys.outcome.privateKeyPem,'ATG_SYNTHETIC_OUTCOME_WITNESS_V1:');
+  assert.equal(x.w.reconcileUnknown(id,badId).reason,'WITNESS_ACTION_BINDING_INVALID');
+  assert.deepEqual([x.read().account.committed,x.read().account.held],[0,300000]);
+  assert.equal(x.w.reconcileUnknown(id,good).outcome,'RELEASED');
+  assert.deepEqual([x.read().account.committed,x.read().account.held],[0,0]);
+});
+
+test('root or agent signing key cannot be used as the separate outcome witness',t=>{
+  const x=setup(t),p=join(x.root,'wrong-outcome-key.sqlite');
+  assert.throws(()=>SyntheticDelegatedBudgetWriter.create(p,{
+    ...x.trust,outcomeWitnessPublicKeyPem:x.keys['agent-B'].publicKeyPem
+  }),/OUTCOME_WITNESS_AGENT_KEY_FORBIDDEN/);
 });
 
 test('reopening the same pinned store retains consumption, budget, and revocation',t=>{
