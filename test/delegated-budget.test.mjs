@@ -19,7 +19,8 @@ function setup(t, options={}) {
       return {account:d.prepare('SELECT * FROM account').get(),
         mandates:d.prepare('SELECT * FROM mandates ORDER BY id').all(),
         actions:d.prepare('SELECT * FROM actions ORDER BY action_id').all(),
-        revocations:d.prepare('SELECT * FROM revocations').all()};
+        revocations:d.prepare('SELECT * FROM revocations').all(),
+        outcomeAudit:d.prepare('SELECT * FROM outcome_audit ORDER BY event_id').all()};
     } finally{d.close();}
   };
   return {...f,w,read};
@@ -191,8 +192,11 @@ test('untrusted agent cannot release UNKNOWN by claiming no external effect',t=>
   const badId=signFixture({...good.body,actionId:'other-action'},x.keys.outcome.privateKeyPem,'ATG_SYNTHETIC_OUTCOME_WITNESS_V1:');
   assert.equal(x.w.reconcileUnknown(id,badId).reason,'WITNESS_ACTION_BINDING_INVALID');
   assert.deepEqual([x.read().account.committed,x.read().account.held],[0,300000]);
+  assert.equal(x.read().outcomeAudit.length,0);
   assert.equal(x.w.reconcileUnknown(id,good).outcome,'RELEASED');
   assert.deepEqual([x.read().account.committed,x.read().account.held],[0,0]);
+  assert.equal(x.read().outcomeAudit.length,1);
+  assert.equal(x.read().outcomeAudit[0].signed_evidence_digest.length,64);
 });
 
 test('root or agent signing key cannot be used as the separate outcome witness',t=>{
