@@ -85,7 +85,7 @@ export interface BudgetResult {
   actionId: string | null;
   receipt: null | { actionDigest: string; mandateId: string; rootPrincipalId: string; amountMinor: number; };
 }
-type ActionRecord = { action_id: string; mandate_id: string; amount_minor: number; status: string; action_digest: string; principal_id: string };
+type ActionRecord = { action_id: string; mandate_id: string; amount: number; status: string; action_digest: string; principal_id: string };
 const keyPattern = /^[a-zA-Z0-9:._-]{1,120}$/;
 const fingerprintPattern = /^[a-f0-9]{64}$/;
 const scopeKeys = ["accountId","currency","destinationId","expiresAt","maxPerActionMinor","missionId","payeeId","tenantId","toolId"];
@@ -306,15 +306,15 @@ export class SyntheticDelegatedBudgetWriter {
         if (!row || row.status!=="UNKNOWN") return result("REJECTED","NO_UNCERTAIN_ACTION",actionId);
         const column=authoritativeSyntheticEffect==="COMMITTED"?"committed":null;
         this.#db.prepare("UPDATE account SET held=held-?"+(column?", committed=committed+?":"")+" WHERE id=1")
-          .run(...(column?[row.amount_minor,row.amount_minor]:[row.amount_minor]));
+          .run(...(column?[row.amount,row.amount]:[row.amount]));
         this.#db.prepare("UPDATE mandates SET held=held-?"+(column?", committed=committed+?":"")+" WHERE id=?")
-          .run(...(column?[row.amount_minor,row.amount_minor,row.mandate_id]:[row.amount_minor,row.mandate_id]));
+          .run(...(column?[row.amount,row.amount,row.mandate_id]:[row.amount,row.mandate_id]));
         const state=column?"COMMITTED":"RELEASED";
         this.#db.prepare("UPDATE actions SET status=? WHERE action_id=?").run(state,actionId);
         return result(state,"TRUSTED_SYNTHETIC_RECONCILIATION",actionId,
-          column?{actionDigest:row.action_digest,mandateId:row.mandate_id,rootPrincipalId:this.#trust.rootPrincipalId,amountMinor:row.amount_minor}:null);
+          column?{actionDigest:row.action_digest,mandateId:row.mandate_id,rootPrincipalId:this.#trust.rootPrincipalId,amountMinor:row.amount}:null);
       });
-    } catch (e) { if (process.env.ATG_BUDGET_TEST_TRACE === "1") process.stderr.write("SYNTHETIC_RECONCILIATION_TEST_ERROR: " + (e instanceof Error ? e.message : "unknown") + "\n"); return result("UNKNOWN","RECONCILIATION_OUTCOME_UNKNOWN",actionId); }
+    } catch { return result("UNKNOWN","RECONCILIATION_OUTCOME_UNKNOWN",actionId); }
   }
   /** Non-authorising lookup. Never a permission to retry after UNKNOWN. */
   lookup(actionId:string):BudgetResult {
@@ -323,7 +323,7 @@ export class SyntheticDelegatedBudgetWriter {
       const row=this.#db.prepare("SELECT * FROM actions WHERE action_id=?").get(actionId) as ActionRecord | undefined;
       if (!row) return result("NOT_RECORDED","NO_RECORD_NOT_RETRY_PERMISSION",actionId);
       return result(row.status as BudgetResult["outcome"],"AUTHORITATIVE_SYNTHETIC_STATE",actionId,
-        row.status==="COMMITTED"?{actionDigest:row.action_digest,mandateId:row.mandate_id,rootPrincipalId:this.#trust.rootPrincipalId,amountMinor:row.amount_minor}:null);
+        row.status==="COMMITTED"?{actionDigest:row.action_digest,mandateId:row.mandate_id,rootPrincipalId:this.#trust.rootPrincipalId,amountMinor:row.amount}:null);
     } catch {return result("UNKNOWN","LOOKUP_UNAVAILABLE",actionId);}
   }
   revoke(mandateId:string):void {
