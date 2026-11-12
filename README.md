@@ -1,5 +1,7 @@
 # Agent Trust Gate™
 
+**Optional source-only local approval app:** [register a passkey, sign in and review one exact fictional action](apps/local-approval/README.md). Node 24+, loopback only; automated software credentials are not a genuine human/device result. No real-world identity/authority, independent custody or production readiness is established. This app is separate from the unchanged local.7 plugin archive.
+
 ![Agent Trust Gate human-in-the-loop governance architecture](docs/assets/agent-trust-gate-readme-hero.png)
 
 ## Exact Action Trust Gateway for AI agents

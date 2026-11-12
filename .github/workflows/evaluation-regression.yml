@@ -14,6 +14,34 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  local-approval:
+    name: Local approval app — virtual authenticator only
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci --ignore-scripts
+      - run: npm run build --silent
+      - run: npm ci --ignore-scripts --prefix apps/local-approval
+      - run: npm test --prefix apps/local-approval
+      - name: Disposable Chromium software-authenticator test
+        working-directory: apps/local-approval
+        run: |
+          npx playwright install --with-deps chromium
+          npx playwright test
+      - name: Retain synthetic screen images only
+        uses: actions/upload-artifact@v4
+        with:
+          name: local-approval-synthetic-screens
+          path: apps/local-approval/test-results/**/*.png
+          if-no-files-found: error
+      - run: echo 'Virtual authenticator only. Real human/device enrollment, organisational authority, external custody and independent review are unproven. Production NO-GO.'
+
   regression:
     name: Regression only — not security clearance
     runs-on: ubuntu-latest
