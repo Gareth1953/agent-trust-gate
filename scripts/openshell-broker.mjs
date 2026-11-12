@@ -6,17 +6,30 @@ import { dirname, resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { protectedPath, rootCodeTree } from './custody-service.mjs';
 import { BROKER_MAX_BYTES, brokerRefusal, handleBrokerRequest } from '../dist/src/openshell-transaction-broker.js';
+import { budgetPublicKeyFingerprint } from '../dist/src/delegated-budget-witness.js';
 import { CustodyWitness } from '../dist/src/custody-witness.js';
 
-export async function startSyntheticBroker({ writer, host='127.0.0.1', port=0, ca, cert, key, clientFingerprint }) {
+export async function startSyntheticBroker({ writer, host='127.0.0.1', port=0, ca, cert, key, clientFingerprint, delegatedClients }) {
   if (!/^(?:[A-F0-9]{2}:){31}[A-F0-9]{2}$/.test(clientFingerprint)) throw Error('BROKER_CLIENT_PIN_REQUIRED');
+  if(delegatedClients!==undefined && (!delegatedClients || typeof delegatedClients!=='object' || Array.isArray(delegatedClients) ||
+      Object.keys(delegatedClients).length<1 || Object.keys(delegatedClients).length>24 ||
+      !Object.entries(delegatedClients).every(([pin,id])=>/^(?:[A-F0-9]{2}:){31}[A-F0-9]{2}$/.test(pin) && typeof id==='string' && /^[a-zA-Z0-9:._-]{1,120}$/.test(id))))throw Error('BROKER_DELEGATE_REGISTRY_INVALID');
   // Private-interface binding is only for disposable host/container integration.
   if (!/^(127\.0\.0\.1|10(?:\.\d{1,3}){3}|192\.168(?:\.\d{1,3}){2}|172\.(1[6-9]|2\d|3[01])(?:\.\d{1,3}){2})$/.test(host)) throw Error('BROKER_PRIVATE_BIND_REQUIRED');
   const sockets=new Set();
   const server=createServer({ca,cert,key,requestCert:true,rejectUnauthorized:true,minVersion:'TLSv1.3',handshakeTimeout:3000}, (req,res)=>{
     const send=(status,body)=>{if(res.destroyed)return;res.writeHead(status,{'content-type':'application/json','cache-control':'no-store','connection':'close'});res.end(JSON.stringify(body));};
-    if (!req.socket.authorized || new X509Certificate(req.socket.getPeerCertificate().raw).fingerprint256!==clientFingerprint) {
+    const peerPin=new X509Certificate(req.socket.getPeerCertificate().raw).fingerprint256;
+    if (!req.socket.authorized || (delegatedClients? !Object.hasOwn(delegatedClients,peerPin):peerPin!==clientFingerprint)) {
       send(403,brokerRefusal('BROKER_CLIENT_REFUSED'));return;
+    }
+    let caller;
+    if(delegatedClients!==undefined){
+      try {
+        const delegatedAgentId=delegatedClients[peerPin];
+        const peer=new X509Certificate(req.socket.getPeerCertificate().raw);
+        caller={agentId:delegatedAgentId,transportCredentialFingerprint:budgetPublicKeyFingerprint(peer.publicKey.export({type:'spki',format:'pem'}).toString())};
+      }catch{send(403,brokerRefusal('BROKER_DELEGATE_IDENTITY_REFUSED'));return;}
     }
     if(req.headers['content-type']!=='application/json' || req.headers['content-encoding']!==undefined) {send(415,brokerRefusal('BROKER_CONTENT_TYPE_REFUSED'));req.resume();return;}
     if(req.rawHeaders.filter((_,i)=>i%2===0).filter(x=>x.toLowerCase()==='content-type').length!==1) {send(400,brokerRefusal('BROKER_HEADERS_INVALID'));req.resume();return;}
@@ -26,7 +39,7 @@ export async function startSyntheticBroker({ writer, host='127.0.0.1', port=0, c
       if(data.length+chunk.length>BROKER_MAX_BYTES){done=true;send(413,brokerRefusal('BROKER_BODY_TOO_LARGE'));req.resume();return;}
       data=Buffer.concat([data,chunk]);
     });
-    req.on('end',()=>{if(done)return;done=true;const r=handleBrokerRequest(writer,req.method??'',req.url??'',data);send(r.outcome==='EXECUTED'?200:r.outcome==='UNKNOWN'?503:403,r);});
+    req.on('end',()=>{if(done)return;done=true;const r=handleBrokerRequest(writer,req.method??'',req.url??'',data,caller);send(r.outcome==='EXECUTED'?200:r.outcome==='UNKNOWN'?503:403,r);});
     req.on('error',()=>{done=true;});
   });
   server.maxConnections=32;server.requestTimeout=3000;server.headersTimeout=3000;server.keepAliveTimeout=1;
@@ -42,7 +55,10 @@ export function loadBrokerConfig(path) {
   const status=readFileSync('/proc/self/status','utf8');
   if(!/^NoNewPrivs:\s+1$/m.test(status)||!['CapInh','CapPrm','CapEff','CapBnd','CapAmb'].every(k=>new RegExp('^'+k+':\\s+0+$','m').test(status)))throw Error('BROKER_PRIVILEGES_NOT_DROPPED');
   protectedPath(path,[0]);const c=JSON.parse(readFileSync(path,'utf8'));
-  if(!c || Object.keys(c).sort().join(',')!=='caPath,clientFingerprint,codeRoot,databasePath,host,port,schema,serverCertPath,serverKeyPath,serviceUid,trustPath'
+  if(!c || ![
+    'caPath,clientFingerprint,codeRoot,databasePath,host,port,schema,serverCertPath,serverKeyPath,serviceUid,trustPath',
+    'caPath,clientFingerprint,codeRoot,databasePath,delegatedClients,host,port,schema,serverCertPath,serverKeyPath,serviceUid,trustPath'
+  ].includes(Object.keys(c).sort().join(','))
     || c.schema!=='atg.openshell-broker.config.synthetic.v1'||c.serviceUid!==process.getuid()||!Number.isInteger(c.port)||c.port<1||c.port>65535)throw Error('BROKER_CONFIG_INVALID');
   for(const p of [process.execPath,fileURLToPath(import.meta.url),c.caPath,c.serverCertPath,c.trustPath])protectedPath(p,[0]);
   rootCodeTree(dirname(fileURLToPath(import.meta.url)));
@@ -56,7 +72,7 @@ if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
   try {
     if(process.argv.length!==3)throw Error('BROKER_CONFIG_PATH_REQUIRED');const c=loadBrokerConfig(process.argv[2]);
     const writer=new CustodyWitness({path:c.databasePath,trust:JSON.parse(readFileSync(c.trustPath,'utf8'))});
-    const broker=await startSyntheticBroker({writer,host:c.host,port:c.port,ca:readFileSync(c.caPath),cert:readFileSync(c.serverCertPath),key:readFileSync(c.serverKeyPath),clientFingerprint:c.clientFingerprint});
+    const broker=await startSyntheticBroker({writer,host:c.host,port:c.port,ca:readFileSync(c.caPath),cert:readFileSync(c.serverCertPath),key:readFileSync(c.serverKeyPath),clientFingerprint:c.clientFingerprint,delegatedClients:c.delegatedClients});
     console.log(JSON.stringify({status:'READY',port:broker.port,syntheticOnly:true}));
     const stop=async()=>{await broker.close();writer.close();process.exit(0);};process.once('SIGTERM',stop);process.once('SIGINT',stop);
   }catch(error){console.error(String(error.message));process.exitCode=1;}

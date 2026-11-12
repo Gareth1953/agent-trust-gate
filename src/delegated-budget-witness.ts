@@ -5,7 +5,8 @@ import type { DatabaseSync as SqliteDatabase } from "node:sqlite";
 
 /**
  * Standalone, opt-in synthetic evaluation. It is NOT wired into the public
- * plugin, real payment rails or the existing OpenShell broker. This module
+ * plugin or real payment rails. The optional custody broker bridge reuses its
+ * signed-chain verification under a shared destination transaction. This module
  * deliberately accepts host-verified caller identity as an external trust
  * input; production authentication and anti-rollback custody are NOT supplied.
  */
@@ -66,6 +67,8 @@ export interface SyntheticAction {
   currency: string;
   amountMinor: number;
   resourceId: string;
+  /** Optional exact destination payload binding, required by the custody broker mode. */
+  payloadDigest?: string;
 }
 export interface Signed<T> { body: T; signature: string }
 export interface DelegatedRequest {
@@ -134,7 +137,7 @@ const publicKey = (s: unknown): string => {
 export function budgetPublicKeyFingerprint(key: string): string {
   return createHash("sha256").update(createPublicKey(publicKey(key)).export({ type: "spki", format: "der" })).digest("hex");
 }
-function checkTrust(t: BudgetTrust): BudgetTrust {
+export function validateBudgetTrust(t: BudgetTrust): BudgetTrust {
   if (!fields(t, trustKeys) || t.schema !== DELEGATED_BUDGET_SCHEMA ||
       ![t.domainId,t.rootPrincipalId,t.outcomeWitnessId,t.tenantId,t.accountId,t.currency].every(id) ||
       !minor(t.accountCeilingMinor) || !t.agentPublicKeys || typeof t.agentPublicKeys !== "object" ||
@@ -175,7 +178,15 @@ function signed<T>(item: unknown, keys: string[], signerPem: string, domain: str
     throw Error("SIGNATURE_OR_SHAPE_INVALID");
   return entry.body;
 }
-function parseRequest(req: unknown, t: BudgetTrust, caller: HostVerifiedCaller, ms: number): { mandate: RootMandate; action: SyntheticAction; actionDigest: string } {
+/** Authentication of the separately pinned SYNTHETIC observer, not proof of external truth. */
+export function verifySignedBudgetOutcome(input: unknown, trust: BudgetTrust): SignedSyntheticOutcome {
+  const e=signed<SignedSyntheticOutcome>(input,outcomeKeys,trust.outcomeWitnessPublicKeyPem,SIGNED_OUTCOME_DOMAIN);
+  if(e.schema!=='atg.signed-outcome.synthetic.v1' || e.witnessId!==trust.outcomeWitnessId ||
+    !id(e.eventId) || !id(e.actionId) || !fingerprintPattern.test(e.actionDigest) || !iso(e.observedAt) ||
+    !['COMMITTED','NO_EFFECT'].includes(e.outcome))throw Error('OUTCOME_WITNESS_INVALID');
+  return e;
+}
+export function verifyDelegatedBudgetRequest(req: unknown, t: BudgetTrust, caller: HostVerifiedCaller, ms: number): { mandate: RootMandate; action: SyntheticAction; actionDigest: string } {
   if (!fields(req, ["mandate","delegations","action","leafSignature"])) throw Error("REQUEST_SHAPE_INVALID");
   const r = req as unknown as DelegatedRequest;
   const mandate = signed<RootMandate>(r.mandate,mandateKeys,t.rootPublicKeyPem,SIGNED_MANDATE_DOMAIN);
@@ -212,8 +223,9 @@ function parseRequest(req: unknown, t: BudgetTrust, caller: HostVerifiedCaller, 
   if (!caller || caller.agentId !== parentId ||
       caller.transportCredentialFingerprint !== budgetPublicKeyFingerprint(t.agentPublicKeys[parentId]!))
     throw Error("CALLER_NOT_HOST_VERIFIED");
-  if (!fields(r.action,actionKeys)) throw Error("ACTION_SHAPE_INVALID");
+  if (!fields(r.action,actionKeys) && !fields(r.action,[...actionKeys,"payloadDigest"])) throw Error("ACTION_SHAPE_INVALID");
   const action = r.action;
+  if ('payloadDigest' in action && (typeof action.payloadDigest !== 'string' || !fingerprintPattern.test(action.payloadDigest))) throw Error("PAYLOAD_DIGEST_INVALID");
   if (![action.actionId,action.resourceId].every(id) || !minor(action.amountMinor) ||
       action.amountMinor > scope.maxPerActionMinor || action.amountMinor > mandate.maxPerActionMinor ||
       !equalIdentityScope({ ...action, maxPerActionMinor: action.amountMinor, expiresAt: scope.expiresAt }, scope))
@@ -237,7 +249,7 @@ export class SyntheticDelegatedBudgetWriter {
   readonly #now: () => Date;
   #closed = false;
   static create(path: string, input: BudgetTrust): void {
-    const t = checkTrust(input);
+    const t = validateBudgetTrust(input);
     if (!isAbsolute(path)) throw Error("ABSOLUTE_BUDGET_PATH_REQUIRED");
     const fd = openSync(path, "wx", 0o600); closeSync(fd);
     const db = new (dbClass())(path);
@@ -254,7 +266,7 @@ export class SyntheticDelegatedBudgetWriter {
     } finally { db.close(); }
   }
   constructor(options: {path:string;trust:BudgetTrust;now?:()=>Date}) {
-    this.#trust = checkTrust(options.trust);
+    this.#trust = validateBudgetTrust(options.trust);
     this.#now = options.now ?? (()=>new Date());
     if (!isAbsolute(options.path) || !lstatSync(options.path).isFile() ||
       lstatSync(options.path).isSymbolicLink()) throw Error("BUDGET_PATH_INVALID");
@@ -283,7 +295,7 @@ export class SyntheticDelegatedBudgetWriter {
         const ms=this.#now().getTime();
         this.#clock(ms);
         let parsed: {mandate:RootMandate;action:SyntheticAction;actionDigest:string};
-        try { parsed=parseRequest(req,this.#trust,caller,ms); }
+        try { parsed=verifyDelegatedBudgetRequest(req,this.#trust,caller,ms); }
         catch { return result("REJECTED","INVALID_OR_EXPANDED_DELEGATION"); }
         const {mandate,action,actionDigest}=parsed;
         const status=this.#db.prepare("SELECT stopped FROM metadata WHERE id=1").get();

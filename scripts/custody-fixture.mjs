@@ -6,12 +6,13 @@ import { CustodyWitness } from '../dist/src/custody-witness.js';
 import { createBaseExactActionInput,issueExactActionGatePass } from '../dist/src/exact-action-gatepass.js';
 
 export const FIXTURE_NOW='2026-11-10T08:30:00.000Z';
-export function createCustodyFixture(root,passkeyApproval) {
+export function createCustodyFixture(root,passkeyApproval,delegatedBudget) {
   if(!isAbsolute(root))throw Error('ABSOLUTE_NEW_CUSTODY_ROOT_REQUIRED');
   mkdirSync(root,{mode:0o700});const custody=join(root,'controller-owned'),agent=join(root,'agent-cache');mkdirSync(custody,{mode:0o700});mkdirSync(agent,{mode:0o700});
   const keys=generateKeyPairSync('ed25519'),privateKeyPem=keys.privateKey.export({type:'pkcs8',format:'pem'}).toString();
   const trust={domainId:randomUUID(),issuerIdentity:'synthetic-custody-authority',issuerKeyId:randomUUID(),issuerPublicKeyPem:keys.publicKey.export({type:'spki',format:'pem'}).toString()};
   if(passkeyApproval)trust.passkeyApproval=passkeyApproval;
+  if(delegatedBudget)trust.delegatedBudget={...delegatedBudget,domainId:trust.domainId};
   writeFileSync(join(custody,'issuer-private.pem'),privateKeyPem,{flag:'wx',mode:0o600});
   writeFileSync(join(custody,'trust.json'),JSON.stringify(trust),{flag:'wx',mode:0o600});
   const path=join(custody,'witness.sqlite');CustodyWitness.create(path,trust);

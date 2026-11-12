@@ -34,5 +34,13 @@ if(mode==='outage') {
   assert.deepEqual(raced.map(r=>r.outcome).sort(),['EXECUTED','REJECTED']);cases.push({name:'concurrent one-use',observed:raced.map(r=>r.outcome)});
   record('replay refused',(await brokerRequest(c,body)).outcome,'REJECTED');
   record('lookup finds committed synthetic effect',(await brokerRequest(c,body,{path:'/v1/synthetic-record/lookup'})).outcome,'EXECUTED');
+  if(body.grant.delegatedRequest){
+    const a={...c,certPath:join(root,'agent-a.crt'),keyPath:join(root,'agent-a.key')};
+    record('wrong leaf certificate cannot act for sub-agent',(await brokerRequest(a,body)).outcome,'REJECTED');
+    const read=name=>JSON.parse(readFileSync(join(root,name+'.json'),'utf8'));
+    const over=await brokerRequest(a,read('over-budget'));record('different agent and mandate cannot overspend root budget',over.reason,'SHARED_ROOT_OR_MANDATE_BUDGET_EXCEEDED');
+    record('second agent spends remaining allowance',(await brokerRequest(a,read('within-budget'))).outcome,'EXECUTED');
+    record('root budget exhausted across both agents',(await brokerRequest(c,read('exhausted'))).reason,'SHARED_ROOT_OR_MANDATE_BUDGET_EXCEEDED');
+  }
 }
 console.log(JSON.stringify({schema:'atg.openshell-agent-evidence.v1',mode,status:'PASS_SCOPED',syntheticOnly:true,productionReady:false,cases}));

@@ -36,6 +36,8 @@ jobs:
       - run: npm run test:plugin
       - name: Synthetic multi-agent authority and shared-budget adversarial tests
         run: npm run test:delegated-budget
+      - run: npm run test:delegated-custody
+      - run: npm run demo:delegated-custody
       - name: Seven-step synthetic delegated-budget buyer walkthrough
         run: npm run demo:delegated-budget
       - name: State the evidence boundary
