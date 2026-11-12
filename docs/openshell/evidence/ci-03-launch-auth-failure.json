@@ -1,0 +1,34 @@
+{
+  "workflowRunId": 43185625301,
+  "jobId": 131071930239,
+  "head": "e6d2ef704be8ba483afb60138c2d0f8c775163cd",
+  "url": "https://github.com/Gareth1953/agent-trust-gate/actions/runs/43185625301",
+  "receipt": {
+    "schema": "atg.openshell-integration.evidence.v1",
+    "startedAt": "2026-11-12T08:46:12.303Z",
+    "status": "FAIL",
+    "syntheticOnly": true,
+    "productionReady": false,
+    "independentAssessment": false,
+    "targetOpenshellVersion": "0.1.8",
+    "cases": [],
+    "limitations": [
+      "Root/writer and Docker administrators remain trusted; whole-host rollback is unprotected.",
+      "No live principal, payment, model, independent assessment or comparative performance claim.",
+      "OpenShell mediates network/binary access; mTLS is end-to-end, so the broker owns HTTP/body enforcement."
+    ],
+    "sourceCommit": "ff07acf5bcbed2f3cea2536495a4ce6f4fa27763",
+    "sourceHashes": {
+      "src/openshell-transaction-broker.ts": "eedab90d8e46d8e8b9ad886b06efc5b444b0d3e51746235f18ba3b56209dbe9f",
+      "scripts/openshell-broker.mjs": "f91822c54400d9986b58f7631af763b589c599bf3f28da9a72135e68bd6b1d55",
+      "scripts/openshell-broker-client.mjs": "dc798e091acb6c4793705d1066cb76a2ee592ad9de320eca72ca0edd977b846f",
+      "scripts/openshell-agent-probe.mjs": "c3fd8c45afc414bfa0eb23857796e6164f0d24cd278dc88e21b32a6bda97ccbc",
+      "scripts/test-openshell-integration.mjs": "6821b7ff054996df4286e9f3c473f8c61b2c09fd328d8e0512882b612c989a08"
+    },
+    "actualOpenshellVersion": "openshell 0.1.8",
+    "gatewayStatus": "Server Status\n\n  Gateway: atg-ci\n  Server: https://172.17.0.1:17670\n  Status: Connected\n  Authentication: Authenticated (mTLS transport)\n  Version: 0.1.8\n",
+    "agentImage": "sha256:baee7417f37857ea1c66c00c89791845283842050c05fc62a73b5babf3acd7a6",
+    "failure": "Error: Command failed: /home/runner/work/_temp/atg-openshell-bin/openshell sandbox create --name atg-broker-eval --from atg-openshell-agent:synthetic --policy /tmp/atg-openshell-ci-KQ98JI/policy.yaml --no-auto-providers --detach -- sleep infinity\nError:   × code: 'The system is not in a state required for the operation's\n  │ execution', message: \"docker sandboxes require launch-scoped gateway\n  │ authentication\"\n\n\n    at genericNodeError (node:internal/errors:986:15)\n    at wrappedFn (node:internal/errors:540:14)\n    at checkExecSyncError (node:child_process:943:11)\n    at execFileSync (node:child_process:979:15)\n    at run (file:///home/runner/work/agent-trust-gate/agent-trust-gate/scripts/test-openshell-integration.mjs:25:28)\n    at openshell (file:///home/runner/work/agent-trust-gate/agent-trust-gate/scripts/test-openshell-integration.mjs:31:20)\n    at file:///home/runner/work/agent-trust-gate/agent-trust-gate/scripts/test-openshell-integration.mjs:91:99\n    at cases (file:///home/runner/work/agent-trust-gate/agent-trust-gate/scripts/test-openshell-integration.mjs:32:54)\n    at file:///home/runner/work/agent-trust-gate/agent-trust-gate/scripts/test-openshell-integration.mjs:91:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+    "finishedAt": "2026-11-12T08:46:22.753Z"
+  }
+}

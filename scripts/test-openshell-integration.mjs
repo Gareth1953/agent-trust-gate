@@ -6,7 +6,7 @@ import { once } from 'node:events';
 import { mkdtempSync,mkdirSync,readFileSync,writeFileSync,cpSync,chmodSync,chownSync,readdirSync,lstatSync } from 'node:fs';
 import { join,resolve,isAbsolute } from 'node:path';
 import { tmpdir } from 'node:os';
-import { createHash,X509Certificate,randomBytes } from 'node:crypto';
+import { createHash,X509Certificate,randomBytes,generateKeyPairSync,randomUUID } from 'node:crypto';
 import { DatabaseSync } from 'node:sqlite';
 import { connect } from 'node:tls';
 import { createServer } from 'node:https';
@@ -74,7 +74,10 @@ try {
   run('openssl',['x509','-req','-in',join(gw,'operator.csr'),'-CA',gt.caPath,'-CAkey',gt.caKey,'-set_serial','0x'+randomBytes(16).toString('hex'),'-out',gt.client.certPath,'-days','1','-extfile',join(gw,'agent.ext')]);
   const mtls=join(env.XDG_CONFIG_HOME,'openshell/gateways/atg-ci/mtls');mkdirSync(mtls,{recursive:true,mode:0o700});
   for(const [from,to] of [[gt.caPath,'ca.crt'],[gt.client.certPath,'tls.crt'],[gt.client.keyPath,'tls.key']])cpSync(from,join(mtls,to));
-  const gatewayConfig=join(gw,'gateway.toml');writeFileSync(gatewayConfig,'[openshell]\nversion = 2\n[openshell.gateway]\ncompute_driver = "docker"\nguest_tls_ca = '+JSON.stringify(gt.caPath)+'\n[openshell.drivers.docker]\nsupervisor_network_mode = "host"\nhost_gateway_ip = ' + JSON.stringify(host) + '\nimage_pull_policy = "if_not_present"\n');
+  const signing=generateKeyPairSync('ed25519'),jwt=join(gw,'jwt');mkdirSync(jwt,{mode:0o700});
+  writeFileSync(join(jwt,'signing.pem'),signing.privateKey.export({type:'pkcs8',format:'pem'}),{mode:0o600});
+  writeFileSync(join(jwt,'public.pem'),signing.publicKey.export({type:'spki',format:'pem'}));writeFileSync(join(jwt,'kid'),randomUUID());
+  const gatewayConfig=join(gw,'gateway.toml');writeFileSync(gatewayConfig,'[openshell]\nversion = 2\n[openshell.gateway]\ncompute_driver = "docker"\nguest_tls_ca = '+JSON.stringify(gt.caPath)+'\n[openshell.gateway.gateway_jwt]\nsigning_key_path = '+JSON.stringify(join(jwt,'signing.pem'))+'\npublic_key_path = '+JSON.stringify(join(jwt,'public.pem'))+'\nkid_path = '+JSON.stringify(join(jwt,'kid'))+'\ngateway_id = "atg-ci"\nttl_secs = 600\n[openshell.drivers.docker]\nsupervisor_network_mode = "host"\nhost_gateway_ip = ' + JSON.stringify(host) + '\nimage_pull_policy = "if_not_present"\n');
   const log=join(root,'gateway.log'),{openSync,closeSync}=await import('node:fs'),fd=openSync(log,'wx',0o600);
   const gp=spawn(gateway,['--config',gatewayConfig,'--name','atg-ci','--bind-address',host,'--tls-cert',gt.server.certPath,'--tls-key',gt.server.keyPath,'--tls-client-ca',gt.caPath,'--enable-mtls-auth','true','--enable-operator-auth','true'],{env,stdio:['ignore',fd,fd]});closeSync(fd);children.push(gp);
   // Bounded readiness polling only opens an authenticated TLS connection.
