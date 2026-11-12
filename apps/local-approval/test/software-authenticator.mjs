@@ -13,7 +13,7 @@ export function softwareAuthenticator({backup=false,counter=0}={}){
     return {id,rawId:id,type:'public-key',clientExtensionResults:{},response:{clientDataJSON:client('webauthn.create',options.challenge,overrides.origin??origin).toString('base64url'),attestationObject:Buffer.from(attestation).toString('base64url'),transports:['internal']}};
   },authentication(options,origin,overrides={}){
     const data=Buffer.alloc(37);h(overrides.rpId??'localhost').copy(data);data[32]=overrides.flags??(5|(backup?0x18:0));data.writeUInt32BE(overrides.counter??counter,33);
-    const c=client(overrides.type??'webauthn.get',overrides.challenge??options.challenge,overrides.origin??origin);
+    const c=Buffer.from(overrides.clientText??JSON.stringify({type:overrides.type??'webauthn.get',challenge:overrides.challenge??options.challenge,origin:overrides.origin??origin,crossOrigin:false,...(overrides.extraClientData??{})}));
     return {id,rawId:id,type:'public-key',clientExtensionResults:{},response:{clientDataJSON:c.toString('base64url'),authenticatorData:data.toString('base64url'),signature:sign('sha256',Buffer.concat([data,h(c)]),pair.privateKey).toString('base64url'),userHandle:overrides.userHandle??userHandle}};
   }};
 }
