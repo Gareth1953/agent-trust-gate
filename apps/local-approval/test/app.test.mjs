@@ -66,6 +66,24 @@ test('local passkey sign-in accepts signed Chromium extra client-data members',a
   assert.equal((await x.status()).authenticated,true);
   assert.deepEqual(x.state(),{version:1,audit:0});
 });
+test('real login route distinguishes missing verification, wrong RP and changed backup eligibility without bypass',async t=>{
+  const x=await setup(t);await x.enroll();await x.status();
+  for(const [label,override,expected] of [
+    ['missing UV',{flags:1},'PASSKEY_USER_VERIFICATION_MISSING'],
+    ['missing presence',{flags:4},'PASSKEY_USER_PRESENCE_MISSING'],
+    ['wrong RP',{rpId:'wrong.example'},'PASSKEY_RP_ID_HASH_MISMATCH'],
+    ['backup eligibility changed',{flags:13},'PASSKEY_BACKUP_ELIGIBILITY_MISMATCH'],
+    ['unsupported reserved flag',{flags:7},'PASSKEY_FLAGS_UNSUPPORTED'],
+  ]) {
+    const opts=(await x.request('/api/login/options',{})).data;
+    const proof=x.auth.authentication(opts,x.origin,override);
+    const attempt=await x.request('/api/login/verify',{credential:proof});
+    assert.equal(attempt.status,400,label);
+    assert.equal(attempt.data.error,expected,label);
+    assert.equal((await x.status()).authenticated,false,label);
+  }
+  assert.deepEqual(x.state(),{version:1,audit:0});
+});
 test('login proof cannot approve an action',async t=>{
   const x=await setup(t);await x.enroll();await x.status();const options=(await x.request('/api/login/options',{})).data,proof=x.auth.authentication(options,x.origin);
   assert.equal((await x.request('/api/login/verify',{credential:proof})).status,200);await x.status();const p=(await x.request('/api/transaction/prepare',{})).data;
