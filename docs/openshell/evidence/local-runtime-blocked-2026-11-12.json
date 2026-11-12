@@ -1,0 +1,17 @@
+{
+  "schema": "atg.openshell-integration.evidence.v1",
+  "startedAt": "2026-11-12T08:40:39.216Z",
+  "status": "BLOCKED",
+  "syntheticOnly": true,
+  "productionReady": false,
+  "independentAssessment": false,
+  "targetOpenshellVersion": "0.1.8",
+  "cases": [],
+  "limitations": [
+    "Root/writer and Docker administrators remain trusted; whole-host rollback is unprotected.",
+    "No live principal, payment, model, independent assessment or comparative performance claim.",
+    "OpenShell mediates network/binary access; mTLS is end-to-end, so the broker owns HTTP/body enforcement."
+  ],
+  "blocker": "Distinct-UID disposable root provisioner unavailable",
+  "finishedAt": "2026-11-12T08:40:39.217Z"
+}

@@ -1,0 +1,45 @@
+name: OpenShell synthetic transaction integration
+on:
+  pull_request:
+    paths:
+      - 'src/openshell-transaction-broker.ts'
+      - 'src/custody-witness.ts'
+      - 'scripts/*openshell*'
+      - 'test/openshell-broker.test.mjs'
+      - '.github/workflows/openshell-integration.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  openshell:
+    name: Real OpenShell 0.1.8 path — synthetic only
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci --ignore-scripts
+      - run: npm run build --silent
+      - name: Fetch exact official release binaries and verify retained digests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/atg-openshell-bin"
+          cd "$RUNNER_TEMP/atg-openshell-bin"
+          curl -fL --max-time 120 https://github.com/NVIDIA/OpenShell/releases/download/v0.1.8/openshell-x86_64-unknown-linux-musl.tar.gz -o cli.tar.gz
+          curl -fL --max-time 120 https://github.com/NVIDIA/OpenShell/releases/download/v0.1.8/openshell-gateway-x86_64-unknown-linux-gnu.tar.gz -o gateway.tar.gz
+          echo '87f5c41d396dcd36b4c30a7b5e6f41643a656cb31a82b0edbb00319c9a719c2d  cli.tar.gz' | sha256sum -c -
+          echo 'd2e5e7f80811b7cfbad0d48f0b561ea5e301401d311e4402bbfc419b3d08cbd3  gateway.tar.gz' | sha256sum -c -
+          tar -xzf cli.tar.gz
+          tar -xzf gateway.tar.gz
+      - name: Run protected broker and actual sandbox on this disposable host
+        run: sudo -- "$(command -v node)" scripts/test-openshell-integration.mjs --output "$RUNNER_TEMP/atg-openshell-result.json" --openshell-bin "$RUNNER_TEMP/atg-openshell-bin" --disposable-host
+      - name: Retain only sanitized result
+        if: always()
+        run: |
+          if test -f "$RUNNER_TEMP/atg-openshell-result.json"; then sudo cat "$RUNNER_TEMP/atg-openshell-result.json"; fi
+          echo 'Never upload the fixture directory or private keys. Production NO-GO; no independent review or payments.'
