@@ -55,6 +55,17 @@ test(`transaction refuses ${name}, before any synthetic effect`,async t=>{
   const x=await setup(t);await x.enroll();await x.login();const p=(await x.request('/api/transaction/prepare',{})).data;
   assert.equal((await x.request('/api/transaction/commit',{id:p.id,credential:x.auth.authentication(p.prepared.publicKey,x.origin,changes)})).status,400);assert.deepEqual(x.state(),{version:1,audit:0});
 });
+test('local passkey sign-in accepts signed Chromium extra client-data members',async t=>{
+  const x=await setup(t);await x.enroll();await x.status();
+  const options=(await x.request('/api/login/options',{})).data;
+  const signed=x.auth.authentication(options,x.origin,{
+    extraClientData:{new_keys_may_be_added_here:'WebAuthn clients may extend clientDataJSON'}
+  });
+  const response=await x.request('/api/login/verify',{credential:signed});
+  assert.equal(response.status,200,JSON.stringify(response.data));
+  assert.equal((await x.status()).authenticated,true);
+  assert.deepEqual(x.state(),{version:1,audit:0});
+});
 test('login proof cannot approve an action',async t=>{
   const x=await setup(t);await x.enroll();await x.status();const options=(await x.request('/api/login/options',{})).data,proof=x.auth.authentication(options,x.origin);
   assert.equal((await x.request('/api/login/verify',{credential:proof})).status,200);await x.status();const p=(await x.request('/api/transaction/prepare',{})).data;
