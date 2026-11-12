@@ -36,7 +36,7 @@ The seven-step narrative:
 - The leaf agent signs the **actual canonical action**, including action ID, amount, resource and chain digest.
 - A protected host is expected to supply the agent's authenticated workload identity and pinned credential fingerprint. In this test this input is provided by a fixture, not by actual mTLS or Entra.
 - One SQLite transaction checks both the per-mandate limit and the root/account shared ceiling, then records an action and its debit. Different valid mandates cannot reset the root/account limit.
-- A simulated `UNKNOWN` reserves exposure. The amount stays held until a separately pinned **Ed25519 outcome-witness key** signs a record bound to the exact action ID and digest. The protected controller verifies that signature before classifying the outcome. A bare agent claim or signed evidence for a different action cannot release exposure.
+- A simulated `UNKNOWN` reserves exposure. The amount stays held until a separately pinned **Ed25519 outcome-witness key** signs a record bound to the exact action ID and digest. The protected controller verifies that signature before classifying the outcome and atomically saves a digest of the signed witness evidence with the updated allowance. A bare agent claim or signed evidence for a different action cannot release exposure.
 - Mandate revocation, a stopped writer, stale signatures, expiration, wrong identity, wrong payee/destination and replay are rejected or held as appropriate.
 - Tests include two genuine Node.js processes racing separate valid mandates against the same writer database.
 - There is no public API for signing mandates, changing registry keys, lifting the ceiling, clearing state or arbitrarily releasing holds.
