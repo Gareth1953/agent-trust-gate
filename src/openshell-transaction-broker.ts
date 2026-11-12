@@ -49,7 +49,15 @@ export function handleBrokerRequest(writer: CustodyWitness, method: string, path
         currency: payload.currency as string },
     };
     if ('humanApproval' in original) grant.humanApproval = original.humanApproval!;
-    const result = path === BROKER_COMMIT_PATH ? writer.execute(grant) : writer.lookup(grant);
+    // An unexpected writer exception may happen after an effect committed
+    // but before its outcome reached the broker. Never classify that as an
+    // invalid request or imply that a retry is safe; require reconciliation.
+    let result: WitnessResult;
+    try {
+      result = path === BROKER_COMMIT_PATH ? writer.execute(grant) : writer.lookup(grant);
+    } catch {
+      return brokerRefusal("BROKER_WRITER_OUTCOME_UNKNOWN", true);
+    }
     return { ...result, schema: BROKER_SCHEMA, syntheticOnly: true, productionReady: false };
   } catch { return brokerRefusal("BROKER_BODY_INVALID"); }
 }
