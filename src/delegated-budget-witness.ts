@@ -150,7 +150,7 @@ function safeSignature(sig: unknown): Buffer {
 }
 function signed<T>(item: unknown, keys: string[], signerPem: string, domain: string): T {
   if (!fields(item, ["body","signature"])) throw Error("SIGNED_RECORD_INVALID");
-  const entry = item as Signed<T>;
+  const entry = item as unknown as Signed<T>;
   if (!fields(entry.body, keys) ||
       !verify(null, Buffer.from(domain + canonicalBudgetEvidence(entry.body)), signerPem, safeSignature(entry.signature)))
     throw Error("SIGNATURE_OR_SHAPE_INVALID");
@@ -158,7 +158,7 @@ function signed<T>(item: unknown, keys: string[], signerPem: string, domain: str
 }
 function parseRequest(req: unknown, t: BudgetTrust, caller: HostVerifiedCaller, ms: number): { mandate: RootMandate; action: SyntheticAction; actionDigest: string } {
   if (!fields(req, ["mandate","delegations","action","leafSignature"])) throw Error("REQUEST_SHAPE_INVALID");
-  const r = req as DelegatedRequest;
+  const r = req as unknown as DelegatedRequest;
   const mandate = signed<RootMandate>(r.mandate,mandateKeys,t.rootPublicKeyPem,SIGNED_MANDATE_DOMAIN);
   checkScope(mandate);
   if (mandate.schema !== "atg.root-mandate.synthetic.v1" || !id(mandate.mandateId) ||
