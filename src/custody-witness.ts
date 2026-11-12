@@ -1,29 +1,33 @@
 import type { DatabaseSync as SqliteDatabase } from "node:sqlite";
-import { createPublicKey } from "node:crypto";
+import { createPublicKey, randomBytes } from "node:crypto";
 import { closeSync, lstatSync, openSync } from "node:fs";
 import { isAbsolute } from "node:path";
 import { canonicalDestinationEvidence } from "./destination-evidence.js";
 import { createCanonicalPayloadHash as digest } from "./local-signed-proof.js";
+import { validatePasskeyTrust, verifyPasskeyAssertion, type PasskeyApprovalTrust, type PasskeyAssertion, type PreparedPurchaseApproval } from "./passkey-transaction-approval.js";
 import { createLocalVerificationProfile, createVerifierContext, InMemoryNonceStore, verifyExactActionAtExecution,
   type CanonicalActionEnvelopeInput, type ExactActionIssuance } from "./exact-action-gatepass.js";
 
 export const CUSTODY_WITNESS_SCHEMA = "atg.custody-witness.synthetic.v1";
 export const CUSTODY_WITNESS_MAX_BYTES = 64 * 1024;
-export interface WitnessTrust { domainId: string; issuerIdentity: string; issuerKeyId: string; issuerPublicKeyPem: string }
-export interface WitnessGrant { issuance: ExactActionIssuance; proposedAction: CanonicalActionEnvelopeInput }
+export interface WitnessTrust { domainId: string; issuerIdentity: string; issuerKeyId: string; issuerPublicKeyPem: string; passkeyApproval?: PasskeyApprovalTrust }
+export interface WitnessGrant { issuance: ExactActionIssuance; proposedAction: CanonicalActionEnvelopeInput; humanApproval?: PasskeyAssertion }
 export interface WitnessResult { outcome: "EXECUTED" | "REJECTED" | "UNKNOWN" | "NOT_RECORDED"; reason: string;
   domainId: string; automaticRetryPermitted: false; receipt: null | { gatePassId: string; actionDigest: string; resourceVersion: number } }
 interface Payload { tenantId: "synthetic-tenant-A"; resourceId: "synthetic-order-001"; expectedVersion: number;
   value: string; payeeReference: string; amountMinorUnits: number; currency: "GBP" }
+interface ApprovalRecord {challenge:string;counter:number;assertionDigest:string;approvedAt:string}
 
 function database() { if(Number(process.versions.node.split('.')[0])<24) throw Error("WITNESS_REQUIRES_NODE_24");
   return (require("node:sqlite") as typeof import("node:sqlite")).DatabaseSync; }
 function validateTrust(value: WitnessTrust): WitnessTrust {
   const trust=snapshot(value) as unknown as WitnessTrust;
-  if(Object.keys(trust).sort().join(',')!=="domainId,issuerIdentity,issuerKeyId,issuerPublicKeyPem"
+  if(!["domainId,issuerIdentity,issuerKeyId,issuerPublicKeyPem","domainId,issuerIdentity,issuerKeyId,issuerPublicKeyPem,passkeyApproval"].includes(Object.keys(trust).sort().join(','))
     || !/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/.test(trust.domainId)
     || ![trust.issuerIdentity,trust.issuerKeyId].every(v=>typeof v==='string' && /^[a-zA-Z0-9:._-]{1,160}$/.test(v))
     || typeof trust.issuerPublicKeyPem!=='string' || createPublicKey(trust.issuerPublicKeyPem).asymmetricKeyType!=='ed25519') throw Error("WITNESS_TRUST_INVALID");
+  if(trust.passkeyApproval)validatePasskeyTrust(trust.passkeyApproval);
+  else if('passkeyApproval' in trust)throw Error('WITNESS_APPROVAL_TRUST_INVALID');
   return trust;
 }
 function snapshot(value: unknown): Record<string, unknown> {
@@ -65,6 +69,12 @@ export class CustodyWitness {
       CREATE TABLE decisions(gate_id TEXT PRIMARY KEY,nonce TEXT NOT NULL UNIQUE,idempotency TEXT NOT NULL UNIQUE,action_digest TEXT NOT NULL,status TEXT NOT NULL CHECK(status IN('EXECUTED','REVOKED')),resource_version INTEGER) STRICT;`);
       db.prepare('INSERT INTO meta VALUES(1,?,?,0)').run(CUSTODY_WITNESS_SCHEMA,digest(trust));
       db.prepare('INSERT INTO resource VALUES(?,1,?)').run('synthetic-order-001','pending');
+      if(trust.passkeyApproval){
+        db.exec(`CREATE TABLE approval_challenges(challenge TEXT PRIMARY KEY,gate_id TEXT NOT NULL,action_digest TEXT NOT NULL,grant_digest TEXT NOT NULL,expires_ms INTEGER NOT NULL,used INTEGER NOT NULL CHECK(used IN(0,1))) STRICT;
+          CREATE TABLE approval_counter(id INTEGER PRIMARY KEY CHECK(id=1),counter INTEGER NOT NULL) STRICT;
+          CREATE TABLE approval_audit(gate_id TEXT PRIMARY KEY,challenge TEXT NOT NULL UNIQUE,principal_id TEXT NOT NULL,credential_id TEXT NOT NULL,assertion_digest TEXT NOT NULL,counter INTEGER NOT NULL,approved_at TEXT NOT NULL) STRICT;`);
+        db.prepare('INSERT INTO approval_counter VALUES(1,?)').run(trust.passkeyApproval.initialSignCount);
+      }
     } finally { db.close(); }
   }
   constructor(options:{path:string;trust:WitnessTrust;now?:()=>Date}) {
@@ -89,9 +99,11 @@ export class CustodyWitness {
     try {this.#checkStore();const v=fn();this.#db.exec('COMMIT');return v;}
     catch(error){this.#db.exec('ROLLBACK');throw error;}
   }
-  #grant(input:unknown,historical=false): {grant:WitnessGrant;p:Payload} {
+  #grant(input:unknown,historical=false,preparing=false): {grant:WitnessGrant;p:Payload} {
     const grant=snapshot(input) as unknown as WitnessGrant;
-    if(Object.keys(grant).sort().join(',')!=='issuance,proposedAction'
+    const keys=Object.keys(grant).sort().join(',');
+    const expected=this.#trust.passkeyApproval && !((historical||preparing) && !('humanApproval' in grant))?'humanApproval,issuance,proposedAction':'issuance,proposedAction';
+    if(keys!==expected
       || !grant.issuance || Object.keys(grant.issuance).sort().join(',')!=='decisionReceipt,gatePass')throw Error('WITNESS_GRANT_INVALID');
     const pass=grant.issuance.gatePass,a=pass.action,p=payload(a.canonicalArguments);
     if(a.operatingEnvironment!==`custody-witness:${this.#trust.domainId}` || a.verificationProfile!==`custody-profile:${this.#trust.domainId}`
@@ -107,7 +119,47 @@ export class CustodyWitness {
     const check=verifyExactActionAtExecution(pass,grant.proposedAction,createVerifierContext(grant.issuance,nonces,{verificationProfile:profile,verifierIdentity:profile.verifierIdentity,
       trustedClock:{clockId:'custody-evaluation-host-clock',now:this.#now}}));
     if(!check.verified && !(historical && check.signatureValid && check.reasonCodes.every(r=>r==='GATEPASS_EXPIRED'||r==='GATEPASS_NOT_YET_VALID')))throw Error('WITNESS_AUTHORITY_INVALID');
+    if(this.#trust.passkeyApproval && a.operatorIdentity!==this.#trust.passkeyApproval.principalId)throw Error('WITNESS_PRINCIPAL_MISMATCH');
     return {grant,p};
+  }
+  /** Trusted controller only. Not an agent HTTP/MCP operation. A challenge is
+   * not an approval and cannot execute anything without a valid assertion. */
+  preparePurchaseApproval(input:unknown):PreparedPurchaseApproval {
+    if(!this.#trust.passkeyApproval)throw Error('PASSKEY_APPROVAL_NOT_CONFIGURED');
+    const {grant,p}=this.#grant(input,false,true),pass=grant.issuance.gatePass,t=this.#trust.passkeyApproval;
+    if(grant.humanApproval)throw Error('PREPARE_REQUIRES_UNAPPROVED_GRANT');
+    return this.#tx(()=>{
+      this.#grant(grant,false,true);
+      if(this.#checkStore().stopped || this.#db.prepare('SELECT gate_id FROM decisions WHERE gate_id=? OR nonce=? OR idempotency=?').get(pass.gatePassId,pass.action.nonce,pass.action.idempotencyKey))throw Error('APPROVAL_AUTHORITY_UNAVAILABLE');
+      const now=this.#now().getTime(),expires=Math.min(now+120000,Date.parse(pass.action.expiresAt));
+      if(!Number.isSafeInteger(now)||expires<=now)throw Error('APPROVAL_TIME_INVALID');
+      // Retire old challenges, but never erase committed audit or decisions.
+      this.#db.prepare('DELETE FROM approval_challenges WHERE used=0 AND expires_ms<=?').run(now);
+      const pending=this.#db.prepare('SELECT count(*) AS n FROM approval_challenges WHERE used=0').get();
+      if(Number(pending?.n)>=64)throw Error('APPROVAL_PENDING_LIMIT');
+      const challenge=randomBytes(32).toString('base64url');
+      this.#db.prepare('INSERT INTO approval_challenges VALUES(?,?,?,?,?,0)').run(challenge,pass.gatePassId,pass.action.actionDigest,digest({issuance:grant.issuance,proposedAction:grant.proposedAction}),expires);
+      return {schema:'atg.purchase-passkey-request.synthetic.v1',challenge,expiresAt:new Date(expires).toISOString(),principalId:t.principalId,gatePassId:pass.gatePassId,actionDigest:pass.action.actionDigest,
+        summary:{...p},publicKey:{challenge,rpId:t.rpId,timeout:expires-now,userVerification:'required',allowCredentials:[{type:'public-key',id:t.credentialId}]}};
+    });
+  }
+  #approve(grant:WitnessGrant):null|ApprovalRecord {
+    const t=this.#trust.passkeyApproval;if(!t)return null;
+    const assertion=grant.humanApproval;
+    if(!assertion)throw Error('PASSKEY_ASSERTION_REQUIRED');
+    // Decode only to locate a server-issued row. The independent verifier
+    // authenticates the complete original bytes, origin and challenge below.
+    const client=JSON.parse(Buffer.from(assertion.clientDataJSON,'base64url').toString('utf8')) as {challenge:string};
+    if(typeof client.challenge!=='string')throw Error('PASSKEY_CHALLENGE_INVALID');
+    const row=this.#db.prepare('SELECT * FROM approval_challenges WHERE challenge=?').get(client.challenge),pass=grant.issuance.gatePass;
+    const now=this.#now().getTime();
+    if(!row || row.used!==0 || !Number.isSafeInteger(now) || Number(row.expires_ms)<=now || Number(row.expires_ms)>now+120000
+      || row.gate_id!==pass.gatePassId || row.action_digest!==pass.action.actionDigest
+      || row.grant_digest!==digest({issuance:grant.issuance,proposedAction:grant.proposedAction}))throw Error('PASSKEY_CHALLENGE_MISMATCH_OR_EXPIRED');
+    const counter=this.#db.prepare('SELECT counter FROM approval_counter WHERE id=1').get();
+    if(!counter)throw Error('PASSKEY_COUNTER_UNAVAILABLE');
+    const next=verifyPasskeyAssertion(t,assertion,client.challenge,Number(counter.counter));
+    return {challenge:client.challenge,counter:next,assertionDigest:digest(assertion),approvedAt:new Date(now).toISOString()};
   }
   execute(input:unknown):WitnessResult {
     let checked:{grant:WitnessGrant;p:Payload}; // assigned after strict snapshot; no awaits or caller callbacks
@@ -120,6 +172,13 @@ export class CustodyWitness {
       if(this.#db.prepare('SELECT gate_id FROM decisions WHERE gate_id=? OR nonce=? OR idempotency=?').get(pass.gatePassId,a.nonce,a.idempotencyKey))return this.#result('REJECTED','AUTHORITY_ALREADY_USED_OR_REVOKED');
       const r=this.#db.prepare('SELECT version FROM resource WHERE id=?').get(p.resourceId);
       if(!r || r.version!==p.expectedVersion)return this.#result('REJECTED','RESOURCE_VERSION_CHANGED');
+      let approval:null|ApprovalRecord;
+      try {approval=this.#approve(grant);}catch{return this.#result('REJECTED','PASSKEY_APPROVAL_INVALID_OR_UNAVAILABLE');}
+      if(approval && this.#trust.passkeyApproval){
+        this.#db.prepare('UPDATE approval_counter SET counter=? WHERE id=1').run(approval.counter);
+        this.#db.prepare('UPDATE approval_challenges SET used=1 WHERE challenge=? AND used=0').run(approval.challenge);
+        this.#db.prepare('INSERT INTO approval_audit VALUES(?,?,?,?,?,?,?)').run(pass.gatePassId,approval.challenge,this.#trust.passkeyApproval.principalId,this.#trust.passkeyApproval.credentialId,approval.assertionDigest,approval.counter,approval.approvedAt);
+      }
       this.#db.prepare('INSERT INTO decisions VALUES(?,?,?,?,?,?)').run(pass.gatePassId,a.nonce,a.idempotencyKey,a.actionDigest,'EXECUTED',p.expectedVersion+1);
       const changed=this.#db.prepare('UPDATE resource SET version=version+1,value=? WHERE id=? AND version=?').run(p.value,p.resourceId,p.expectedVersion);
       if(changed.changes!==1)throw Error('RESOURCE_RACE');
