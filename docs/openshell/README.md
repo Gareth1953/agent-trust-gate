@@ -104,5 +104,7 @@ over a destination's native checks or custom OpenShell middleware.
 - [ATG split-custody scope](../buyer-upgrades/CUSTODY-SERVICE.md)
 - [ATG payment acceptance matrix](../buyer-upgrades/PAYMENT-EVALUATION.md)
 
-Check the workflow's actual result before describing this candidate as tested
-with OpenShell. Missing runtime/privileges are BLOCKED, never an inferred pass.
+The [12 November validation record](VALIDATION.md) contains a real OpenShell
+0.1.8 scoped pass, exact source identity and the retained initial failures.
+Missing runtime/privileges are BLOCKED, never an inferred pass. A different
+deployment needs its own checks.

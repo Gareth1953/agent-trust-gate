@@ -49,6 +49,14 @@ common-owner attack reproductions. The custody administrator and whole-host
 rollback remain trusted/unprotected; production remains NO-GO. This service is
 not enabled in the old MCP/SDK modes or downloadable plugin archives.
 
+The optional [OpenShell transaction-authority integration](docs/openshell/README.md)
+adds a protected synthetic destination broker tested inside a real OpenShell
+0.1.8 workload. It binds the actual request to signed authority, commits one
+synthetic effect and supports historical lookup. See the [exact validation and
+retained failures](docs/openshell/VALIDATION.md). No real payment adapter,
+production principal approval or administrator/rollback protection is claimed.
+Existing plugin downloads and the public website are unchanged.
+
 ### Installable standalone plugin — local evaluation edition
 
 **Local.7 evaluation release:** includes the reviewed Mission 04 signing, POSIX durable-state and durable-write repair fixes. Download the exact archive, verify its checksum, and install the downloaded file below. [Local.7 archive](discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.7.tgz), [published local.5 (unchanged)](discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.5.tgz), [current release status and security limits](docs/mission-04-local7-publication-status.md). Retained [historical local.6](discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.6.tgz) is publicly retrievable for historical review, remains unchanged, and lacks the durable-write repair. Public availability is distinct from a current recommendation. The original Windows DURABLE_WRITE_FAILED incident remains unattributed. A matching EPERM atomic-replacement mechanism was reproduced with an owned open file handle; this does not identify the original failing operation or process. A separate cleanup defect was fixed: colliding temporary files are now preserved and native filesystem errors are retained in Error.cause. Denied writes still fail closed; no automatic retries, permission weakening or clearing of held state was added. Fixture keys/clocks, same-host synthetic evaluation, no ATG record encryption and separately configured Windows NTFS permissions remain. No independent assurance is claimed. POSIX runtime verification was not performed for this candidate. This remains a synthetic evaluation release without production approval.
