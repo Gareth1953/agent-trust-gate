@@ -28,6 +28,8 @@ jobs:
           node-version: '24'
       - run: npm ci --ignore-scripts
       - run: npm run build --silent
+      - name: Test broker refusal versus uncertain writer outcomes
+        run: npm run test:openshell-broker
       - name: Fetch exact official release binaries and verify retained digests
         shell: bash
         run: |
