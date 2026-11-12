@@ -14,13 +14,16 @@ import { createCustodyFixture } from './custody-fixture.mjs';
 import { custodyTlsFixture } from './custody-tls-fixture.mjs';
 import { brokerRequest } from './openshell-broker-client.mjs';
 import { createPasskeyApprovalFixture } from './passkey-approval-fixture.mjs';
+import { createDelegatedCustodyFixture } from './delegated-custody-fixture.mjs';
+import { delegatedTlsClient } from './delegated-custody-tls-fixture.mjs';
 import { CustodyWitness } from '../dist/src/custody-witness.js';
 
 const args=process.argv.slice(2);
-const requirePasskey=args.length===6&&args[5]==='--require-passkey';
+const requireDelegation=args.length===6&&args[5]==='--require-delegation';
+const requirePasskey=requireDelegation||(args.length===6&&args[5]==='--require-passkey');
 if((args.length!==5&&!requirePasskey)||args[0]!=='--output'||args[2]!=='--openshell-bin'||args[4]!=='--disposable-host'||!isAbsolute(args[1])||!isAbsolute(args[3]))throw Error('Use --output /ABSOLUTE/NEW/report.json --openshell-bin /ABSOLUTE/BIN/DIR --disposable-host [--require-passkey]');
 const output=args[1],bin=args[3],receipt={schema:'atg.openshell-integration.evidence.v1',startedAt:new Date().toISOString(),status:'INCOMPLETE',
-  syntheticOnly:true,productionReady:false,independentAssessment:false,passkeyApprovalRequired:requirePasskey,liveHumanCeremony:false,authenticator:requirePasskey?'SOFTWARE_TEST_FIXTURE':'NONE',targetOpenshellVersion:'0.1.8',cases:[],limitations:[
+  syntheticOnly:true,productionReady:false,independentAssessment:false,delegatedBudgetRequired:requireDelegation,passkeyApprovalRequired:requirePasskey,liveHumanCeremony:false,authenticator:requirePasskey?'SOFTWARE_TEST_FIXTURE':'NONE',targetOpenshellVersion:'0.1.8',cases:[],limitations:[
     'Root/writer and Docker administrators remain trusted; whole-host rollback is unprotected.',
     'No live principal, payment, model, independent assessment or comparative performance claim.',
     'OpenShell mediates network/binary access; mTLS is end-to-end, so the broker owns HTTP/body enforcement.']};
@@ -37,7 +40,7 @@ function protect(path){const s=lstatSync(path);assert.equal(s.isSymbolicLink(),f
 async function ready(p,pattern){await new Promise((ok,bad)=>{let text='';const timer=setTimeout(()=>bad(Error('PROCESS_READY_TIMEOUT')),15000);p.stdout.on('data',b=>{text+=b;if(pattern.test(text)){clearTimeout(timer);ok();}});p.once('exit',()=>{clearTimeout(timer);bad(Error('PROCESS_EXIT_BEFORE_READY'));});});}
 try {
   receipt.sourceCommit=run('git',['rev-parse','HEAD']).trim();receipt.sourceHashes={};
-  for(const p of ['src/openshell-transaction-broker.ts','src/custody-witness.ts','src/passkey-transaction-approval.ts','scripts/custody-fixture.mjs','scripts/passkey-approval-fixture.mjs','scripts/openshell-broker.mjs','scripts/openshell-broker-client.mjs','scripts/openshell-agent-probe.mjs','scripts/test-openshell-integration.mjs'])receipt.sourceHashes[p]=createHash('sha256').update(readFileSync(p)).digest('hex');
+  for(const p of ['src/openshell-transaction-broker.ts','src/custody-witness.ts','src/passkey-transaction-approval.ts','scripts/custody-fixture.mjs','scripts/passkey-approval-fixture.mjs','src/custody-delegated-budget.ts','src/delegated-budget-witness.ts','scripts/delegated-custody-fixture.mjs','scripts/delegated-custody-tls-fixture.mjs','scripts/openshell-broker.mjs','scripts/openshell-broker-client.mjs','scripts/openshell-agent-probe.mjs','scripts/test-openshell-integration.mjs'])receipt.sourceHashes[p]=createHash('sha256').update(readFileSync(p)).digest('hex');
   receipt.actualOpenshellVersion=openshell(['--version']).trim();assert.equal(receipt.actualOpenshellVersion,'openshell 0.1.8');
   const host=run('docker',['network','inspect','bridge','--format','{{(index .IPAM.Config 0).Gateway}}']).trim();
   assert.match(host,/^(172\.(1[6-9]|2\d|3[01])|10\.|192\.168\.)/);
@@ -45,34 +48,52 @@ try {
   cpSync(resolve('dist'),join(code,'dist'),{recursive:true});
   for(const f of ['openshell-broker.mjs','custody-service.mjs'])cpSync(resolve('scripts',f),join(scripts,f));
   const node=join(code,'node');cpSync(process.execPath,node);chmodSync(node,0o555);protect(code);
-  const passkey=requirePasskey?createPasskeyApprovalFixture():null;
-  const f=createCustodyFixture(join(root,'fixture'),passkey?.trust),serviceUid=62012;chmodSync(f.root,0o755);
+  const f=requireDelegation?createDelegatedCustodyFixture(join(root,'fixture')):null;
+  const passkey=requireDelegation?f.pk:(requirePasskey?createPasskeyApprovalFixture():null);
+  const fixture=f??createCustodyFixture(join(root,'fixture'),passkey?.trust),serviceUid=62012;chmodSync(fixture.root,0o755);
   const pub=join(root,'public'),secret=join(root,'secret'),bundle=join(root,'client-bundle');for(const p of [pub,secret,bundle])mkdirSync(p,{mode:0o700});chmodSync(pub,0o755);
   const tls=custodyTlsFixture(root);
+  let agentA;
+  if(requireDelegation){agentA=delegatedTlsClient(root,tls,f.keys['agent-A'],'leaf-a');tls.client=delegatedTlsClient(root,tls,f.keys['agent-B'],'leaf-b');}
   // Additional SAN for the exact private Docker bridge interface, no public listener.
   const bridgeExt=join(root,'bridge.ext');writeFileSync(bridgeExt,'basicConstraints=critical,CA:FALSE\nkeyUsage=critical,digitalSignature\nextendedKeyUsage=serverAuth\nsubjectAltName=IP:'+host+',DNS:host.openshell.internal\n');
   run('openssl',['x509','-req','-in',join(root,'server.csr'),'-CA',tls.caPath,'-CAkey',tls.caKey,'-set_serial','0x'+randomBytes(16).toString('hex'),'-out',tls.server.certPath,'-days','1','-extfile',bridgeExt]);
   const serverFingerprint=new X509Certificate(readFileSync(tls.server.certPath)).fingerprint256;
-  const trustPath=join(pub,'trust.json');cpSync(join(f.custody,'trust.json'),trustPath);chmodSync(trustPath,0o444);
-  const issuerDir=join(root,'issuer');mkdirSync(issuerDir,{mode:0o700});cpSync(join(f.custody,'issuer-private.pem'),join(issuerDir,'issuer.pem'));
+  const trustPath=join(pub,'trust.json');cpSync(join(fixture.custody,'trust.json'),trustPath);chmodSync(trustPath,0o444);
+  const issuerDir=join(root,'issuer');mkdirSync(issuerDir,{mode:0o700});cpSync(join(fixture.custody,'issuer-private.pem'),join(issuerDir,'issuer.pem'));
   // Remove issuer material from the writer domain before starting it.
-  const {unlinkSync}=await import('node:fs');unlinkSync(join(f.custody,'issuer-private.pem'));unlinkSync(join(f.custody,'trust.json'));
-  chownSync(f.custody,serviceUid,serviceUid);chownSync(f.path,serviceUid,serviceUid);chmodSync(f.custody,0o700);chmodSync(f.path,0o600);
+  const {unlinkSync}=await import('node:fs');unlinkSync(join(fixture.custody,'issuer-private.pem'));unlinkSync(join(fixture.custody,'trust.json'));
+  chownSync(fixture.custody,serviceUid,serviceUid);chownSync(fixture.path,serviceUid,serviceUid);chmodSync(fixture.custody,0o700);chmodSync(fixture.path,0o600);
   const caPath=join(pub,'ca.crt'),serverCertPath=join(pub,'server.crt'),serverKeyPath=join(secret,'server.key');
   cpSync(tls.caPath,caPath);cpSync(tls.server.certPath,serverCertPath);cpSync(tls.server.keyPath,serverKeyPath);chownSync(secret,serviceUid,serviceUid);chownSync(serverKeyPath,serviceUid,serviceUid);chmodSync(serverKeyPath,0o600);
   const port=49443,config=join(pub,'broker.json');
-  writeFileSync(config,JSON.stringify({schema:'atg.openshell-broker.config.synthetic.v1',serviceUid,codeRoot:join(code,'dist'),databasePath:f.path,trustPath,
-    host,port,caPath,serverCertPath,serverKeyPath,clientFingerprint:tls.client.fingerprint}));chmodSync(config,0o444);
+  writeFileSync(config,JSON.stringify({schema:'atg.openshell-broker.config.synthetic.v1',serviceUid,codeRoot:join(code,'dist'),databasePath:fixture.path,trustPath,
+    host,port,caPath,serverCertPath,serverKeyPath,clientFingerprint:tls.client.fingerprint,...(requireDelegation?{delegatedClients:{[tls.client.fingerprint]:'agent-B',[agentA.fingerprint]:'agent-A'}}:{})}));chmodSync(config,0o444);
   const broker=spawn('setpriv',['--reuid='+serviceUid,'--regid='+serviceUid,'--clear-groups','--bounding-set=-all','--inh-caps=-all','--ambient-caps=-all','--no-new-privs',node,'--no-addons',join(scripts,'openshell-broker.mjs'),config],{stdio:['ignore','pipe','pipe'],env:{PATH:'/usr/bin:/bin',LANG:'C.UTF-8'}});children.push(broker);
   let brokerErrors='';broker.stderr.on('data',b=>brokerErrors+=b);await ready(broker,/"status":"READY"/).catch(e=>{throw Error(e.message+' '+brokerErrors);});
-  const now=Date.now(),grant=f.grant({issuedAt:new Date(now-1000).toISOString(),notBefore:new Date(now-1000).toISOString(),expiresAt:new Date(now+600000).toISOString()});
-  const expired=f.grant({issuedAt:new Date(now-600000).toISOString(),notBefore:new Date(now-600000).toISOString(),expiresAt:new Date(now-1000).toISOString()});
+  const now=Date.now();if(requireDelegation)f.setNow(new Date(now).toISOString());
+  const initial=requireDelegation?f.request():null;
+  const grant=initial?.grant??fixture.grant({issuedAt:new Date(now-1000).toISOString(),notBefore:new Date(now-1000).toISOString(),expiresAt:new Date(now+600000).toISOString()});
+  const expired=fixture.grant({issuedAt:new Date(now-600000).toISOString(),notBefore:new Date(now-600000).toISOString(),expiresAt:new Date(now-1000).toISOString()});
   if(passkey){
-    const controller=new CustodyWitness({path:f.path,trust:f.trust});
-    try {const request=controller.preparePurchaseApproval(grant);grant.humanApproval=passkey.assertion(request);expired.humanApproval=grant.humanApproval;}
+    const controller=new CustodyWitness({path:fixture.path,trust:fixture.trust});
+    try {const request=controller.preparePurchaseApproval(grant,initial?.ctx);grant.humanApproval=passkey.assertion(request);expired.humanApproval=grant.humanApproval;}
     finally{controller.close();}
   }
   const body={grant,payload:grant.proposedAction.canonicalArguments};
+  if(requireDelegation){
+    const controller=new CustodyWitness({path:fixture.path,trust:fixture.trust});
+    try {
+      for(const [name,options,counter] of [
+        ['over-budget',{leaf:'agent-A',amount:250000,version:2},2],
+        ['within-budget',{leaf:'agent-A',amount:200000,version:2},3],
+        ['exhausted',{leaf:'agent-B',amount:1,version:3},4]]){
+        const r=f.request(options);r.grant.humanApproval=passkey.assertion(controller.preparePurchaseApproval(r.grant,r.ctx),{counter});
+        writeFileSync(join(bundle,name+'.json'),JSON.stringify({grant:r.grant,payload:r.grant.proposedAction.canonicalArguments}));
+      }
+    }finally{controller.close();}
+    cpSync(agentA.certPath,join(bundle,'agent-a.crt'));cpSync(agentA.keyPath,join(bundle,'agent-a.key'));
+  }
   for(const [from,to] of [[tls.caPath,'ca.crt'],[tls.client.certPath,'agent.crt'],[tls.client.keyPath,'agent.key'],[resolve('scripts/openshell-broker-client.mjs'),'openshell-broker-client.mjs'],[resolve('scripts/openshell-agent-probe.mjs'),'openshell-agent-probe.mjs']])cpSync(from,join(bundle,to));
   writeFileSync(join(bundle,'client.json'),JSON.stringify({host:'host.openshell.internal',port,caPath:'ca.crt',certPath:'agent.crt',keyPath:'agent.key',serverFingerprint}));
   writeFileSync(join(bundle,'body.json'),JSON.stringify(body));writeFileSync(join(bundle,'expired.json'),JSON.stringify({grant:expired,payload:expired.proposedAction.canonicalArguments}));
@@ -117,9 +138,19 @@ try {
   const directConfig={host,port:port+1,caPath:tls.caPath,certPath:tls.client.certPath,keyPath:tls.client.keyPath,serverFingerprint};
   assert.equal((await brokerRequest(directConfig,body)).reason,'DECOY_REACHABLE');assert.equal(decoyRequests,1);
   await cases('unlisted live decoy port refused by the runtime',async()=>{const r=await probe('network-denied');assert.equal(decoyRequests,1,'Sandbox must not reach the listening decoy');return r;});
-  const db=new DatabaseSync(f.path,{readOnly:true});const version=db.prepare('SELECT version FROM resource').get().version;
-  if(passkey){const audit=db.prepare('SELECT principal_id,counter FROM approval_audit').all();assert.equal(audit.length,1);assert.equal(audit[0].principal_id,passkey.trust.principalId);assert.equal(audit[0].counter,1);receipt.approvalAudit={rows:audit.length,principal:'synthetic-purchase-approver',counter:1,liveHumanCeremony:false};}
-  db.close();assert.equal(version,2);receipt.authoritativeResourceVersion=version;
+  const db=new DatabaseSync(fixture.path,{readOnly:true});const version=db.prepare('SELECT version FROM resource').get().version;
+  if(passkey){const audit=db.prepare('SELECT principal_id,counter FROM approval_audit').all();assert.equal(audit.length,requireDelegation?2:1);assert.equal(audit[0].principal_id,passkey.trust.principalId);assert.equal(audit[0].counter,1);receipt.approvalAudit={rows:audit.length,principal:'synthetic-purchase-approver',counters:audit.map(x=>x.counter),liveHumanCeremony:false};}
+  if(requireDelegation){
+    const controller=new CustodyWitness({path:fixture.path,trust:fixture.trust});
+    try{assert.equal(controller.recordDelegatedOutcomeEvidence(initial.grant.issuance.gatePass.gatePassId,f.outcomeEvidence(initial)).outcome,'EXECUTED');}
+    finally{controller.close();}
+    receipt.signedOutcomeWitness={separateFixtureKey:true,observedRecordMatched:true,independentlyAdministered:false};
+    const spent=db.prepare('SELECT committed FROM delegated_account WHERE id=1').get().committed;
+    const agents=db.prepare('SELECT leaf_id,amount FROM delegated_actions ORDER BY amount').all();
+    assert.equal(spent,500000);assert.deepEqual(agents.map(x=>x.leaf_id).sort(),['agent-A','agent-B']);
+    receipt.sharedBudget={currency:'GBP',ceilingMinor:500000,committedMinor:spent,agents:agents.map(x=>({...x})),atomicSameDestinationStore:true};
+  }
+  db.close();assert.equal(version,requireDelegation?3:2);receipt.authoritativeResourceVersion=version;
   await cases('broker outage fails closed without fallback',async()=>{const stopped=once(broker,'exit');broker.kill('SIGTERM');await stopped;return probe('outage');});
   receipt.sandbox=openshell(['sandbox','get',name,'-o','json']);
   receipt.status='PASS_SCOPED';

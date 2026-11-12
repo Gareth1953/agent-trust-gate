@@ -57,6 +57,17 @@ retained failures](docs/openshell/VALIDATION.md). No real payment adapter,
 production principal approval or administrator/rollback protection is claimed.
 Existing plugin downloads and the public website are unchanged.
 
+### Combined delegated-budget source evaluation — 12 November 2026
+
+The optional [combined transaction-authority route](docs/openshell/DELEGATED-BUDGET.md)
+joins passkey-format approval, signed non-expanding agent/sub-agent delegation,
+one shared root-account spending allowance and the versioned synthetic effect
+inside one destination transaction. The local walkthrough uses actual loopback
+mTLS with two pinned fixture identities. Real OpenShell combined-mode validation
+is pending the exact new CI receipt; do not infer it from earlier mode results.
+A genuine human/device ceremony and independent anti-rollback custody remain
+unproven. Production NO-GO; existing plugin archives remain unchanged.
+
 ### Installable standalone plugin — local evaluation edition
 
 **Local.7 evaluation release:** includes the reviewed Mission 04 signing, POSIX durable-state and durable-write repair fixes. Download the exact archive, verify its checksum, and install the downloaded file below. [Local.7 archive](discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.7.tgz), [published local.5 (unchanged)](discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.5.tgz), [current release status and security limits](docs/mission-04-local7-publication-status.md). Retained [historical local.6](discovery-site/downloads/agent-trust-gate-plugin-0.1.0-local.6.tgz) is publicly retrievable for historical review, remains unchanged, and lacks the durable-write repair. Public availability is distinct from a current recommendation. The original Windows DURABLE_WRITE_FAILED incident remains unattributed. A matching EPERM atomic-replacement mechanism was reproduced with an owned open file handle; this does not identify the original failing operation or process. A separate cleanup defect was fixed: colliding temporary files are now preserved and native filesystem errors are retained in Error.cause. Denied writes still fail closed; no automatic retries, permission weakening or clearing of held state was added. Fixture keys/clocks, same-host synthetic evaluation, no ATG record encryption and separately configured Windows NTFS permissions remain. No independent assurance is claimed. POSIX runtime verification was not performed for this candidate. This remains a synthetic evaluation release without production approval.

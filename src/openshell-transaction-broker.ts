@@ -1,6 +1,8 @@
 import { canonicalDestinationEvidence } from "./destination-evidence.js";
 import { type CustodyWitness, type WitnessGrant, type WitnessResult } from "./custody-witness.js";
 
+import type { HostVerifiedCaller } from "./delegated-budget-witness.js";
+
 export const BROKER_MAX_BYTES = 64 * 1024;
 export const BROKER_COMMIT_PATH = "/v1/synthetic-record/commit";
 export const BROKER_LOOKUP_PATH = "/v1/synthetic-record/lookup";
@@ -25,7 +27,7 @@ export const brokerRefusal = (reason: string, unknown = false): BrokerReply => (
 /** A deliberately small wire contract: canonical UTF-8 JSON only. Requiring
  * exact canonical bytes also rejects duplicate keys and ambiguous encodings.
  * No arbitrary URL, callback, database, clock, signing or admin operation. */
-export function handleBrokerRequest(writer: CustodyWitness, method: string, path: string, bytes: Uint8Array): BrokerReply {
+export function handleBrokerRequest(writer: CustodyWitness, method: string, path: string, bytes: Uint8Array, caller?: HostVerifiedCaller): BrokerReply {
   if (method !== "POST" || ![BROKER_COMMIT_PATH, BROKER_LOOKUP_PATH].includes(path)) return brokerRefusal("BROKER_ROUTE_REFUSED");
   try {
     if (!bytes.byteLength || bytes.byteLength > BROKER_MAX_BYTES) throw Error();
@@ -37,7 +39,7 @@ export function handleBrokerRequest(writer: CustodyWitness, method: string, path
     if (Object.keys(body).sort().join(",") !== "grant,payload" || !body.grant || typeof body.grant !== "object" || Array.isArray(body.grant)
       || !body.payload || typeof body.payload !== "object" || Array.isArray(body.payload)) throw Error();
     const original = body.grant as WitnessGrant;
-    if (!["issuance,proposedAction","humanApproval,issuance,proposedAction"].includes(Object.keys(original).sort().join(",")) || !original.proposedAction) throw Error();
+    if (!["issuance,proposedAction","humanApproval,issuance,proposedAction","delegatedRequest,humanApproval,issuance,proposedAction","delegatedRequest,issuance,proposedAction"].includes(Object.keys(original).sort().join(",")) || !original.proposedAction) throw Error();
     const payload = body.payload as Record<string, unknown>;
     // Reconstruct the effect from the ACTUAL HTTP payload. Never authorise a
     // signed envelope and then execute an unrelated body supplied beside it.
@@ -48,13 +50,14 @@ export function handleBrokerRequest(writer: CustodyWitness, method: string, path
         amount: typeof payload.amountMinorUnits === "number" ? payload.amountMinorUnits / 100 : null,
         currency: payload.currency as string },
     };
+    if ('delegatedRequest' in original) grant.delegatedRequest=original.delegatedRequest!;
     if ('humanApproval' in original) grant.humanApproval = original.humanApproval!;
     // An unexpected writer exception may happen after an effect committed
     // but before its outcome reached the broker. Never classify that as an
     // invalid request or imply that a retry is safe; require reconciliation.
     let result: WitnessResult;
     try {
-      result = path === BROKER_COMMIT_PATH ? writer.execute(grant) : writer.lookup(grant);
+      result = path === BROKER_COMMIT_PATH ? writer.execute(grant,caller) : writer.lookup(grant,caller);
     } catch {
       return brokerRefusal("BROKER_WRITER_OUTCOME_UNKNOWN", true);
     }

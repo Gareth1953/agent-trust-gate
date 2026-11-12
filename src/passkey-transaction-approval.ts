@@ -17,6 +17,7 @@ export interface PreparedPurchaseApproval {
   gatePassId: string; actionDigest: string;
   summary: { tenantId: string; resourceId: string; expectedVersion: number;
     payeeReference: string; amountMinorUnits: number; currency: string; value: string };
+  delegatedAuthority?: import("./custody-delegated-budget.js").DelegatedApprovalSummary;
   publicKey: { challenge: string; rpId: string; timeout: number;
     userVerification: "required"; allowCredentials: { type: "public-key"; id: string }[] };
 }

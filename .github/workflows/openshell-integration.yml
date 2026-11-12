@@ -4,6 +4,8 @@ on:
     paths:
       - 'src/openshell-transaction-broker.ts'
       - 'src/delegated-budget-witness.ts'
+      - 'src/custody-delegated-budget.ts'
+      - 'test/delegated-custody.test.mjs'
       - 'scripts/delegated-budget*'
       - 'test/delegated-budget.test.mjs'
       - 'src/custody-witness.ts'
@@ -35,6 +37,7 @@ jobs:
         run: npm run test:openshell-broker
       - name: Check isolated signed delegation and shared budget
         run: npm run test:delegated-budget
+      - run: npm run test:delegated-custody
       - name: Fetch exact official release binaries and verify retained digests
         shell: bash
         run: |
@@ -51,9 +54,12 @@ jobs:
         run: sudo -- "$(command -v node)" scripts/test-openshell-integration.mjs --output "$RUNNER_TEMP/atg-openshell-result.json" --openshell-bin "$RUNNER_TEMP/atg-openshell-bin" --disposable-host
       - name: Require passkey-format approval inside the actual workload — software fixture only
         run: sudo -- "$(command -v node)" scripts/test-openshell-integration.mjs --output "$RUNNER_TEMP/atg-openshell-passkey-result.json" --openshell-bin "$RUNNER_TEMP/atg-openshell-bin" --disposable-host --require-passkey
+      - name: Combined passkey, two agent identities and root account budget in the actual workload
+        run: sudo -- "$(command -v node)" scripts/test-openshell-integration.mjs --output "$RUNNER_TEMP/atg-openshell-delegated-result.json" --openshell-bin "$RUNNER_TEMP/atg-openshell-bin" --disposable-host --require-delegation
       - name: Retain only sanitized result
         if: always()
         run: |
           if test -f "$RUNNER_TEMP/atg-openshell-result.json"; then sudo cat "$RUNNER_TEMP/atg-openshell-result.json"; fi
           if test -f "$RUNNER_TEMP/atg-openshell-passkey-result.json"; then sudo cat "$RUNNER_TEMP/atg-openshell-passkey-result.json"; fi
+          if test -f "$RUNNER_TEMP/atg-openshell-delegated-result.json"; then sudo cat "$RUNNER_TEMP/atg-openshell-delegated-result.json"; fi
           echo 'Never upload the fixture directory or private keys. Production NO-GO; no independent review or payments.'

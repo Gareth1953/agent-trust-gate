@@ -6,7 +6,9 @@ const wire=b=>btoa(String.fromCharCode(...new Uint8Array(b))).replace(/\+/g,'-')
 export function displayPurchaseApproval(element,request){
   if(request?.schema!=='atg.purchase-passkey-request.synthetic.v1')throw Error('APPROVAL_REQUEST_INVALID');
   const p=request.summary;
-  element.textContent=`TEST ONLY purchase approval\nPrincipal: ${request.principalId}\nTenant: ${p.tenantId}\nOrder: ${p.resourceId}, version ${p.expectedVersion}\nPayee: ${p.payeeReference}\nAmount (minor units): ${p.amountMinorUnits} ${p.currency}\nChange: ${p.value}\nAuthority: ${request.gatePassId}\nAction digest: ${request.actionDigest}\nExpires: ${request.expiresAt}`;
+  const d=request.delegatedAuthority;
+  const delegation=d?`\nRoot principal: ${d.rootPrincipalId}\nAccount: ${d.accountId}\nMandate: ${d.mandateId}\nMission: ${d.missionId}\nAgents: ${d.agentChain.join(' → ')}\nRoot / mandate ceilings (minor units): ${d.accountCeilingMinor} / ${d.mandateCeilingMinor}`:'';
+  element.textContent=`TEST ONLY purchase approval\nPrincipal: ${request.principalId}\nTenant: ${p.tenantId}\nOrder: ${p.resourceId}, version ${p.expectedVersion}\nPayee: ${p.payeeReference}\nAmount (minor units): ${p.amountMinorUnits} ${p.currency}\nChange: ${p.value}\nAuthority: ${request.gatePassId}\nAction digest: ${request.actionDigest}\nExpires: ${request.expiresAt}${delegation}`;
 }
 export async function requestPurchaseApproval(prepared){
   if(prepared?.schema!=='atg.purchase-passkey-request.synthetic.v1'||Date.parse(prepared.expiresAt)<=Date.now())throw Error('APPROVAL_REQUEST_INVALID_OR_EXPIRED');
