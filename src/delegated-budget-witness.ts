@@ -41,6 +41,7 @@ export interface BudgetScope {
 export interface RootMandate extends BudgetScope {
   schema: "atg.root-mandate.synthetic.v1";
   mandateId: string;
+  domainId: string;
   rootPrincipalId: string;
   maxTotalMinor: number;
   notBefore: string;
@@ -89,7 +90,7 @@ const keyPattern = /^[a-zA-Z0-9:._-]{1,120}$/;
 const fingerprintPattern = /^[a-f0-9]{64}$/;
 const scopeKeys = ["accountId","currency","destinationId","expiresAt","maxPerActionMinor","missionId","payeeId","tenantId","toolId"];
 const actionKeys = ["accountId","actionId","amountMinor","currency","destinationId","missionId","payeeId","resourceId","tenantId","toolId"];
-const mandateKeys = [...scopeKeys, "schema","mandateId","rootPrincipalId","maxTotalMinor","notBefore","maxDelegationDepth"].sort();
+const mandateKeys = [...scopeKeys, "schema","mandateId","domainId","rootPrincipalId","maxTotalMinor","notBefore","maxDelegationDepth"].sort();
 const delegationKeys = [...scopeKeys, "parentId","childId","remainingHops"].sort();
 const trustKeys = ["schema","domainId","rootPrincipalId","rootPublicKeyPem","agentPublicKeys","tenantId","accountId","currency","accountCeilingMinor"].sort();
 const fields = (v: unknown, keys: string[]): v is Record<string, unknown> =>
@@ -161,6 +162,7 @@ function parseRequest(req: unknown, t: BudgetTrust, caller: HostVerifiedCaller, 
   const mandate = signed<RootMandate>(r.mandate,mandateKeys,t.rootPublicKeyPem,SIGNED_MANDATE_DOMAIN);
   checkScope(mandate);
   if (mandate.schema !== "atg.root-mandate.synthetic.v1" || !id(mandate.mandateId) ||
+    mandate.domainId !== t.domainId ||
     mandate.rootPrincipalId !== t.rootPrincipalId || mandate.tenantId !== t.tenantId ||
     mandate.accountId !== t.accountId || mandate.currency !== t.currency ||
     !minor(mandate.maxTotalMinor) || mandate.maxTotalMinor > t.accountCeilingMinor ||
@@ -260,7 +262,10 @@ export class SyntheticDelegatedBudgetWriter {
       return this.#tx(()=>{
         const ms=this.#now().getTime();
         this.#clock(ms);
-        const {mandate,action,actionDigest}=parseRequest(req,this.#trust,caller,ms);
+        let parsed: {mandate:RootMandate;action:SyntheticAction;actionDigest:string};
+        try { parsed=parseRequest(req,this.#trust,caller,ms); }
+        catch { return result("REJECTED","INVALID_OR_EXPANDED_DELEGATION"); }
+        const {mandate,action,actionDigest}=parsed;
         const status=this.#db.prepare("SELECT stopped FROM metadata WHERE id=1").get();
         if (status?.stopped!==0) return result("REJECTED","WRITER_STOPPED",action.actionId);
         if (this.#db.prepare("SELECT id FROM revocations WHERE id=?").get(mandate.mandateId))
