@@ -36,7 +36,7 @@ The seven-step narrative:
 - The leaf agent signs the **actual canonical action**, including action ID, amount, resource and chain digest.
 - A protected host is expected to supply the agent's authenticated workload identity and pinned credential fingerprint. In this test this input is provided by a fixture, not by actual mTLS or Entra.
 - One SQLite transaction checks both the per-mandate limit and the root/account shared ceiling, then records an action and its debit. Different valid mandates cannot reset the root/account limit.
-- A simulated `UNKNOWN` reserves exposure. The amount stays held until a **trusted synthetic controller** classifies the outcome; an agent may not simply claim that no payment happened.
+- A simulated `UNKNOWN` reserves exposure. The amount stays held until a separately pinned **Ed25519 outcome-witness key** signs a record bound to the exact action ID and digest. The protected controller verifies that signature before classifying the outcome. A bare agent claim or signed evidence for a different action cannot release exposure.
 - Mandate revocation, a stopped writer, stale signatures, expiration, wrong identity, wrong payee/destination and replay are rejected or held as appropriate.
 - Tests include two genuine Node.js processes racing separate valid mandates against the same writer database.
 - There is no public API for signing mandates, changing registry keys, lifting the ceiling, clearing state or arbitrarily releasing holds.
@@ -49,7 +49,7 @@ The seven-step narrative:
 
 **Restore resistance remains unproven.** An adversarial test intentionally copies the entire SQLite writer state before use and shows that each copy can commit a nominally single-use action. The successful attack is retained, not relabelled as a pass. The writer and its backup are under the same administrative domain; there is no separate monotonic witness.
 
-**A local controller is trusted.** `reconcileUnknown()` represents a simulated trusted external observation, not independent proof of a real bank outcome.
+**An outcome witness is not independent custody.** The separate outcome-signing key is generated in the same disposable test setup. `reconcileUnknown()` now refuses a bare claimed outcome and requires signed, action-bound evidence from that key. This prevents accidental unsigned clearance in the test but does not prove an external bank event, a separate legal operator or a protected third-party checkpoint. The protected controller and its signer remain trusted.
 
 **No independent assessment, enterprise key lifecycle, cross-host budget, production identity, certified WebAuthn or regulatory claims.** The previous OpenShell and Microsoft Entra demonstrations stay separate.
 
@@ -62,4 +62,4 @@ The seven-step narrative:
 5. Repeat concurrency and shared-spending checks under the buyer's operational deployment and independent assessment.
 6. Keep every historical failure and successful bypass visible. Any failure is a production **HOLD**.
 
-**Decision:** Accept this as a new isolated evaluation capability only after green targeted, regression and real-OpenShell-preservation checks. Do not represent it as an OpenShell plugin upgrade, Entra integration, real payment control or production-ready agent authority.
+**Decision:** Accept these as new isolated evaluation capabilities only after green targeted, regression and real-OpenShell-preservation checks. Do not represent it as an OpenShell plugin upgrade, Entra integration, real payment control or production-ready agent authority.
