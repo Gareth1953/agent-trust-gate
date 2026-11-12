@@ -20,6 +20,39 @@ If a prompt is cancelled, the app does not automatically submit anything. An uns
 
 The enrollment code expires 30 minutes after setup and becomes permanently spent after enrollment. Sign-in sessions expire after 10 minutes and are invalidated whenever the server restarts. After sign-out or restart, a prepared request from an earlier session cannot be committed by the new session; cancel the unused authority first. Completed/uncertain records remain available for authenticated inspection.
 
+## Existing-passkey sign-in compatibility recovery
+
+If a genuine Windows Hello/Edge passkey is registered but sign-in returns
+\`PASSKEY_CLIENT_BINDING_INVALID\`, do **not** remove the device passkey, run
+\`setup\` again, delete the state directory, reset counters or retry a
+transaction. Chromium may add signed WebAuthn client-data members such as
+\`new_keys_may_be_added_here\`; the verifier now accepts such optional signed
+metadata while still checking challenge, exact origin, signature, user verification,
+counter and unique decoded JSON member names.
+
+For an **existing** evaluation created by \`start-windows.cmd\`:
+
+1. Close the previously running ATG server with **Ctrl+C**; keep the private
+   evaluation directory under \`%LOCALAPPDATA%\AgentTrustGate\` exactly as it is.
+2. Download the **updated** main-branch source ZIP after the corresponding
+   security regression has passed. Extract it into a **new** folder. Do not
+   overwrite the private state directory.
+3. In the updated source open \`apps\local-approval\` and double-click
+   \`resume-existing-windows.cmd\`. It will refuse to select an evaluation if
+   it finds zero or multiple matching saved directories. The helper does not
+   call \`setup\` or migrate data.
+4. When the server reports \`http://localhost:8796\`, type that exact URL
+   directly into Edge and use **Sign in with passkey**. No re-enrollment is
+   needed. Verify that the status is signed in before reviewing a transaction.
+5. If the sign-in still fails, stop and report **only the error code**, not
+   passkey credentials, private state, raw assertion data or PIN.
+
+This compatibility change has automated software-fixture and Chromium
+virtual-authenticator coverage; it is **not** a verified Windows Hello result
+until a genuine device test succeeds. Reusing saved passkey state must never
+be confused with approving an action. Never submit or retry any transaction
+while its recorded outcome is uncertain.
+
 ## Manual commands / restart
 
 From the repository root in PowerShell (choose a genuinely new state-folder name for initial setup):
