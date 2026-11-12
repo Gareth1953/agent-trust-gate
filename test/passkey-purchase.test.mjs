@@ -33,6 +33,35 @@ for(const [name,override] of [
  ['self-chosen challenge',{client:{challenge:'YXR0YWNrZXI'}}]
 ])test('passkey refuses '+name+' before any state change',t=>{const x=setup(t);assert.equal(x.writer.execute(x.approved(x.grant,x.prepared,override)).outcome,'REJECTED');assert.deepEqual(x.state(),{version:1,audit:0,counter:0,decisions:0});});
 test('duplicate and escaped client-data names fail closed',t=>{const x=setup(t);for(const text of ['{"type":"webauthn.get","challenge":"'+x.prepared.challenge+'","origin":"http://localhost:8787","origin":"http://localhost:8787"}','{"type":"webauthn.get","challen\\u0067e":"'+x.prepared.challenge+'","origin":"http://localhost:8787"}'])assert.equal(x.writer.execute(x.approved(x.grant,x.prepared,{clientText:text})).outcome,'REJECTED');assert.equal(x.state().version,1);});
+test('signed Chromium client metadata and valid JSON reordering are accepted',t=>{
+  const x=setup(t);
+  // Chromium may add this forward-compatibility marker to clientDataJSON.
+  // Real browsers also may reorder members or emit innocuous whitespace.
+  const clientText=JSON.stringify({
+    new_keys_may_be_added_here:"https://www.chromium.org/security-keys/",
+    origin:x.key.trust.origin,
+    extra:{nested:["comma,brace}",{note:"escaped \" quote"}]},
+    challenge:x.prepared.challenge,
+    crossOrigin:false,
+    type:"webauthn.get",
+  },null,2);
+  assert.equal(x.writer.execute(x.approved(x.grant,x.prepared,{clientText})).outcome,'EXECUTED');
+  assert.equal(x.state().version,2);
+});
+test('duplicate Unicode-escaped origin and challenge members fail closed even when signed',t=>{
+  const x=setup(t);
+  const root='{"type":"webauthn.get","challenge":"'+x.prepared.challenge+'","origin":"'+x.key.trust.origin+'","crossOrigin":false';
+  for(const appended of [',"ori\\u0067in":"'+x.key.trust.origin+'"}',',"chall\\u0065nge":"'+x.prepared.challenge+'"}']){
+    assert.equal(x.writer.execute(x.approved(x.grant,x.prepared,{clientText:root+appended})).outcome,'REJECTED');
+  }
+  assert.equal(x.state().version,1);
+});
+test('browser-added topOrigin remains forbidden in same-origin passkey mode',t=>{
+  const x=setup(t);
+  const a=x.approved(x.grant,x.prepared,{client:{topOrigin:x.key.trust.origin}});
+  assert.equal(x.writer.execute(a).outcome,'REJECTED');
+  assert.equal(x.state().version,1);
+});
 test('forged signature and caller-supplied public key cannot create approval',t=>{const x=setup(t),g=x.approved();g.humanApproval.signature='AAAA';assert.equal(x.writer.execute(g).outcome,'REJECTED');g.humanApproval=x.key.assertion(x.prepared);g.humanApproval.publicKeyPem=x.key.trust.publicKeyPem;assert.equal(x.writer.execute(g).outcome,'REJECTED');assert.equal(x.state().audit,0);});
 test('an independently valid second key cannot approve the enrolled principal',t=>{const x=setup(t),rogue=createPasskeyApprovalFixture(),g={...x.grant,humanApproval:rogue.assertion(x.prepared,{credentialId:x.key.trust.credentialId,userHandle:x.key.trust.userHandle})};assert.equal(x.writer.execute(g).outcome,'REJECTED');assert.equal(x.state().version,1);});
 test('challenge binds the complete signed grant, not just the effect payload',t=>{const x=setup(t),other=x.f.grant();assert.equal(x.writer.execute(x.approved(other)).outcome,'REJECTED');assert.equal(x.state().audit,0);});
