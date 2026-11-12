@@ -1,0 +1,234 @@
+{
+  "schema": "atg.openshell-integration.evidence.v1",
+  "startedAt": "2026-11-12T13:02:24.026Z",
+  "status": "PASS_SCOPED",
+  "syntheticOnly": true,
+  "productionReady": false,
+  "independentAssessment": false,
+  "delegatedBudgetRequired": true,
+  "passkeyApprovalRequired": true,
+  "liveHumanCeremony": false,
+  "authenticator": "SOFTWARE_TEST_FIXTURE",
+  "targetOpenshellVersion": "0.1.8",
+  "cases": [
+    {
+      "name": "real OpenShell workload created with no provider or arbitrary mounts",
+      "status": "PASS",
+      "observation": "\nCreated sandbox: atg-broker-eval\n\n  [0.0s] Requesting compute...\n[0.0s] Sandbox allocated\n[0.0s] Pulling image atg-openshell-agent:synthetic\n[0.0s] Image already present\n[0.1s] Starting sandbox Container created\n"
+    },
+    {
+      "name": "actual workload exact-action and replay matrix",
+      "status": "PASS",
+      "observation": {
+        "schema": "atg.openshell-agent-evidence.v1",
+        "mode": "matrix",
+        "status": "PASS_SCOPED",
+        "syntheticOnly": true,
+        "productionReady": false,
+        "cases": [
+          {
+            "name": "missing passkey approval refused",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "forged passkey assertion refused",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "changed payeeReference",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "changed amountMinorUnits",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "changed currency",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "changed tenantId",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "changed resourceId",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "changed expectedVersion",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "changed value",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "admin route refused",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "expired authority refused",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "forged signature refused",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "missing client identity",
+            "observed": "UNKNOWN",
+            "expected": "UNKNOWN"
+          },
+          {
+            "name": "wrong endpoint pin",
+            "observed": "UNKNOWN",
+            "expected": "UNKNOWN"
+          },
+          {
+            "name": "concurrent one-use",
+            "observed": [
+              "EXECUTED",
+              "REJECTED"
+            ]
+          },
+          {
+            "name": "replay refused",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "lookup finds committed synthetic effect",
+            "observed": "EXECUTED",
+            "expected": "EXECUTED"
+          },
+          {
+            "name": "wrong leaf certificate cannot act for sub-agent",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "different agent and mandate cannot overspend root budget",
+            "observed": "SHARED_ROOT_OR_MANDATE_BUDGET_EXCEEDED",
+            "expected": "SHARED_ROOT_OR_MANDATE_BUDGET_EXCEEDED"
+          },
+          {
+            "name": "second agent spends remaining allowance",
+            "observed": "EXECUTED",
+            "expected": "EXECUTED"
+          },
+          {
+            "name": "root budget exhausted across both agents",
+            "observed": "SHARED_ROOT_OR_MANDATE_BUDGET_EXCEEDED",
+            "expected": "SHARED_ROOT_OR_MANDATE_BUDGET_EXCEEDED"
+          }
+        ]
+      }
+    },
+    {
+      "name": "unlisted live decoy port refused by the runtime",
+      "status": "PASS",
+      "observation": {
+        "schema": "atg.openshell-agent-evidence.v1",
+        "mode": "network-denied",
+        "status": "PASS_SCOPED",
+        "syntheticOnly": true,
+        "productionReady": false,
+        "cases": [
+          {
+            "name": "unlisted port cannot execute",
+            "observed": "UNKNOWN",
+            "expected": "UNKNOWN"
+          }
+        ]
+      }
+    },
+    {
+      "name": "broker outage fails closed without fallback",
+      "status": "PASS",
+      "observation": {
+        "schema": "atg.openshell-agent-evidence.v1",
+        "mode": "outage",
+        "status": "PASS_SCOPED",
+        "syntheticOnly": true,
+        "productionReady": false,
+        "cases": [
+          {
+            "name": "broker outage is UNKNOWN",
+            "observed": "UNKNOWN",
+            "expected": "UNKNOWN"
+          }
+        ]
+      }
+    }
+  ],
+  "limitations": [
+    "Root/writer and Docker administrators remain trusted; whole-host rollback is unprotected.",
+    "No live principal, payment, model, independent assessment or comparative performance claim.",
+    "OpenShell mediates network/binary access; mTLS is end-to-end, so the broker owns HTTP/body enforcement."
+  ],
+  "sourceCommit": "8c92fed55a2519558d90eee57f7f825454789bd0",
+  "sourceHashes": {
+    "src/openshell-transaction-broker.ts": "5ad0be25a9cee74bed8ee6d2074253b015e2efab0750e27b6a64a0e74b1c0f50",
+    "src/custody-witness.ts": "200584c936b6634f8f20956c4d78b503e40024a067919371b13e9373db58e076",
+    "src/passkey-transaction-approval.ts": "5fdf8886847623c734d09c34feba6c7abf9946636f6e74efbfb7ef59fd7a3e94",
+    "scripts/custody-fixture.mjs": "c780f787433cd72651eda45ee2067f325aec0268450943a90e7e63aa8aa89c75",
+    "scripts/passkey-approval-fixture.mjs": "fb013c2392b24ab35a083df91436587db72843d09a3fe370f3207c2e928198f7",
+    "src/custody-delegated-budget.ts": "88ee7f62303f93d9edf9dd51d8544c362a8cc81811e9a18567b3ce315bd53387",
+    "src/delegated-budget-witness.ts": "9b6a09b3c7e9f46fb531a50f7d6deacc4caa5b54552a6027219033c110eca682",
+    "scripts/delegated-custody-fixture.mjs": "eee9532d7e3e071c95865bb6fa7efbfc9349f115db71c3760e4eed9698169272",
+    "scripts/delegated-custody-tls-fixture.mjs": "ec11bad2007b99e67efc0a2c14a9336e075530c06cfbfd85173ed09ab19febcb",
+    "scripts/openshell-broker.mjs": "3e9a4bb1abb143eba244bdffd267992dd16207a410ec9496763fde1b94386a32",
+    "scripts/openshell-broker-client.mjs": "dc798e091acb6c4793705d1066cb76a2ee592ad9de320eca72ca0edd977b846f",
+    "scripts/openshell-agent-probe.mjs": "eb52961224ba9b75249aeeabde3b0b29003c83c878f8709c900dcd3e60d8c05c",
+    "scripts/test-openshell-integration.mjs": "fde466e734d2823ee0d4ea8b5a5bf1609e01a49b0191236e3f7cb1a3fff0c455"
+  },
+  "actualOpenshellVersion": "openshell 0.1.8",
+  "gatewayStatus": "Server Status\n\n  Gateway: atg-ci\n  Server: https://172.17.0.1:17670\n  Status: Connected\n  Authentication: Authenticated (mTLS transport)\n  Version: 0.1.8\n",
+  "agentImage": "sha256:6edffb226bba56898096f5698abf764191b07f7778ccf32e829929eab32b7c58",
+  "clientFiles": "total 88\ndrwxr-xr-x 2 node node 4096 Nov 12 13:02 .\ndrwx------ 1 node node 4096 Nov 12 13:02 ..\n-rw-r--r-- 1 node node  591 Nov 12 13:02 agent-a.crt\n-rw------- 1 node node  119 Nov 12 13:02 agent-a.key\n-rw-r--r-- 1 node node  591 Nov 12 13:02 agent.crt\n-rw------- 1 node node  119 Nov 12 13:02 agent.key\n-rw-r--r-- 1 node node 8270 Nov 12 13:02 body.json\n-rw-r--r-- 1 node node  652 Nov 12 13:02 ca.crt\n-rw-r--r-- 1 node node  228 Nov 12 13:02 client.json\n-rw-r--r-- 1 node node 8250 Nov 12 13:02 exhausted.json\n-rw-r--r-- 1 node node 5984 Nov 12 13:02 expired.json\n-rw-r--r-- 1 node node 3805 Nov 12 13:02 openshell-agent-probe.mjs\n-rw-r--r-- 1 node node 3534 Nov 12 13:02 openshell-broker-client.mjs\n-rw-r--r-- 1 node node 7776 Nov 12 13:02 over-budget.json\n-rw-r--r-- 1 node node 7775 Nov 12 13:02 within-budget.json\n",
+  "approvalAudit": {
+    "rows": 2,
+    "principal": "synthetic-purchase-approver",
+    "counters": [
+      1,
+      3
+    ],
+    "liveHumanCeremony": false
+  },
+  "signedOutcomeWitness": {
+    "separateFixtureKey": true,
+    "observedRecordMatched": true,
+    "independentlyAdministered": false
+  },
+  "sharedBudget": {
+    "currency": "GBP",
+    "ceilingMinor": 500000,
+    "committedMinor": 500000,
+    "agents": [
+      {
+        "leaf_id": "agent-A",
+        "amount": 200000
+      },
+      {
+        "leaf_id": "agent-B",
+        "amount": 300000
+      }
+    ],
+    "atomicSameDestinationStore": true
+  },
+  "authoritativeResourceVersion": 3,
+  "sandbox": "{\n  \"annotations\": {\n    \"internal.openshell.ai/auth-epoch\": \"1\",\n    \"internal.openshell.ai/gateway-token-id\": \"d024745b-9f0f-44b0-850e-ba48488cc2b9\",\n    \"internal.openshell.ai/isolation-backend\": \"openshell-sandbox\",\n    \"internal.openshell.ai/runtime-generation\": \"2c12f476-ecd9-4887-9851-555ea6578b7e\"\n  },\n  \"conditions\": [\n    {\n      \"last_transition_time\": \"\",\n      \"message\": \"Supervisor session connected\",\n      \"reason\": \"DependenciesReady\",\n      \"status\": \"True\",\n      \"type\": \"Ready\"\n    },\n    {\n      \"last_transition_time\": \"\",\n      \"message\": \"\",\n      \"reason\": \"ConfigurationAccepted\",\n      \"status\": \"True\",\n      \"type\": \"ConfigurationReady\"\n    }\n  ],\n  \"configuration_admission\": {\n    \"config_revision\": 17878873510380133248,\n    \"error\": \"\",\n    \"policy_hash\": \"d05348452e4bc2e6622562dbfa508b9d49fc87a4acbdee2f093bc969be98c8ae\",\n    \"policy_version\": 2,\n    \"provider_env_revision\": 3176606324465211593,\n    \"state\": \"accepted\"\n  },\n  \"created_at\": \"2026-11-12 13:02:26\",\n  \"created_from_workload_template\": null,\n  \"current_policy_version\": 2,\n  \"endpoint_statuses\": [],\n  \"exit_code\": null,\n  \"host_key_fingerprint\": \"SHA256:CobYa3+C5nRZtawubAM2exwVCJvxJ0y1mz0CjthSQyM\",\n  \"id\": \"4729a234-166c-4923-a3f4-3f44569d70a9\",\n  \"labels\": {},\n  \"last_token_grant_failure\": null,\n  \"main_process_instance_id\": \"1fc033d2-fbe4-4de4-8b5e-a3d81f93c9c7\",\n  \"main_process_started_at_ms\": 1794488547208,\n  \"name\": \"atg-broker-eval\",\n  \"next_restart_at_ms\": 0,\n  \"phase\": \"Ready\",\n  \"policy\": {\n    \"filesystem_policy\": {\n      \"include_workdir\": true,\n      \"read_only\": [\n        \"/usr\",\n        \"/lib\",\n        \"/lib64\",\n        \"/etc\",\n        \"/bin\",\n        \"/var/log\",\n        \"/proc\",\n        \"/dev/urandom\"\n      ],\n      \"read_write\": [\n        \"/sandbox\",\n        \"/tmp\",\n        \"/dev/null\"\n      ]\n    },\n    \"landlock\": {\n      \"compatibility\": \"hard_requirement\"\n    },\n    \"network_policies\": {\n      \"atg_only\": {\n        \"binaries\": [\n          {\n            \"path\": \"/usr/local/bin/node\"\n          }\n        ],\n        \"endpoints\": [\n          {\n            \"allowed_ips\": [\n              \"172.17.0.1/32\"\n            ],\n            \"host\": \"host.openshell.internal\",\n            \"port\": 49443,\n            \"protocol\": \"tcp\",\n            \"tls\": \"skip\"\n          }\n        ],\n        \"name\": \"atg_only\"\n      }\n    },\n    \"version\": 1\n  },\n  \"policy_source\": \"sandbox\",\n  \"provisioning\": {\n    \"admission_start_time\": \"2026-11-12T13:02:27.170Z\",\n    \"attempt_id\": \"91496f81-7fdd-4f69-b093-d70c750193a9\",\n    \"cleanup_completed_time\": null,\n    \"cleanup_error\": \"\",\n    \"cleanup_retry_time\": null,\n    \"configuration_change_id\": \"1b6e26b6034bd4412f42a96f5f7d7bd04f7ed9836433b3674d5105e95857a3b0\",\n    \"configuration_change_time\": \"2026-11-12T13:02:27.175Z\",\n    \"deadline\": null,\n    \"driver_operation_id\": \"9f87a1ff-59ba-48fd-acaf-810bd89c3087\",\n    \"driver_operation_pending\": false,\n    \"first_rejection_time\": null,\n    \"phase\": \"ready\",\n    \"preparation_deadline\": \"2026-11-12T13:32:26.526Z\",\n    \"timeout_time\": null\n  },\n  \"resource_version\": 12,\n  \"restart_count\": 0,\n  \"restart_policy\": \"never\",\n  \"revision\": 2,\n  \"workspace\": \"default\"\n}\n",
+  "finishedAt": "2026-11-12T13:02:30.312Z"
+}

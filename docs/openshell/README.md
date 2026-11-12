@@ -82,6 +82,16 @@ initial runs and any faults must remain visible. A green job proves only the
 exact tested deployment/commit; it is not independent assurance or superiority
 over a destination's native checks or custom OpenShell middleware.
 
+## Combined delegated-budget evaluation
+
+A third opt-in mode now joins passkey-format approval, the authenticated leaf's
+signed non-expanding delegation and a shared root-account allowance inside the
+versioned destination transaction. It passed in the real OpenShell 0.1.8 workload
+with two fixture client identities and a software authenticator. See the
+[combined guide](DELEGATED-BUDGET.md) and [exact evidence](DELEGATED-BUDGET-VALIDATION.md).
+It does not upgrade old stores or plugin archives and does not establish genuine
+human enrollment, independent outcome truth or administrator rollback resistance.
+
 ## Remaining boundaries
 
 The optional [purchase approval connector and buyer walkthrough](PURCHASE-APPROVAL.md)
@@ -90,8 +100,9 @@ evaluation stores. Automated evidence uses a software authenticator fixture;
 live-person enrollment and a device/browser ceremony remain outstanding. It
 does not change the original mode or upgrade old stores in place.
 
-- Principal approval and issuer authority are synthetic. Real identity,
-  non-expanding delegation and shared principal budgets remain future work.
+- Principal approval and issuer authority are synthetic. The combined optional mode tests
+  signed non-expanding delegation and a shared fixture-principal budget; real
+  authenticated organisational identity remains future work.
 - One-use is confined to one retained authoritative SQLite store. Administrator
   compromise, complete-writer restore and whole-host rollback remain unprotected.
 - The atomic effect is a local synthetic record. Remote payment idempotency,

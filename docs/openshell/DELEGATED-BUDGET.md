@@ -4,8 +4,8 @@
 
 This opt-in mode joins the previously separate signed sub-agent delegation and
 root-account allowance with the existing OpenShell HTTPS destination, passkey
-assertion requirement and versioned synthetic record. It is an engineering
-candidate until the exact combined real-runtime CI evidence is recorded.
+assertion requirement and versioned synthetic record. The [exact combined real-runtime CI evidence](DELEGATED-BUDGET-VALIDATION.md)
+is recorded as PASS_SCOPED, not production clearance.
 
 ## What runs together
 

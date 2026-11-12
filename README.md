@@ -63,8 +63,8 @@ The optional [combined transaction-authority route](docs/openshell/DELEGATED-BUD
 joins passkey-format approval, signed non-expanding agent/sub-agent delegation,
 one shared root-account spending allowance and the versioned synthetic effect
 inside one destination transaction. The local walkthrough uses actual loopback
-mTLS with two pinned fixture identities. Real OpenShell combined-mode validation
-is pending the exact new CI receipt; do not infer it from earlier mode results.
+mTLS with two pinned fixture identities. The combined mode also passed inside a real OpenShell 0.1.8 workload; inspect the
+[exact combined-mode receipt](docs/openshell/DELEGATED-BUDGET-VALIDATION.md).
 A genuine human/device ceremony and independent anti-rollback custody remain
 unproven. Production NO-GO; existing plugin archives remain unchanged.
 
