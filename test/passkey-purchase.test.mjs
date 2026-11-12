@@ -62,6 +62,22 @@ test('browser-added topOrigin remains forbidden in same-origin passkey mode',t=>
   assert.equal(x.writer.execute(a).outcome,'REJECTED');
   assert.equal(x.state().version,1);
 });
+test('authenticator failure codes identify UV, presence, RP mismatch and unsupported bits without permitting execution',t=>{
+  const x=setup(t);
+  const matrix=[
+    ['UV missing',{flags:1},'PASSKEY_USER_VERIFICATION_MISSING'],
+    ['presence missing',{flags:4},'PASSKEY_USER_PRESENCE_MISSING'],
+    ['wrong RP hash',{rpId:'wrong.example'},'PASSKEY_RP_ID_HASH_MISMATCH'],
+    ['reserved flag',{flags:7},'PASSKEY_FLAGS_UNSUPPORTED'],
+    ['backup bits not allowed in legacy profile',{flags:13},'PASSKEY_FLAGS_UNSUPPORTED'],
+  ];
+  for(const [label,override,reason] of matrix){
+    const proof=x.key.assertion(x.prepared,override);
+    assert.throws(()=>verifyPasskeyAssertion(x.key.trust,proof,x.prepared.challenge,0),new RegExp(reason),label);
+    assert.equal(x.writer.execute(x.approved(x.grant,x.prepared,override)).outcome,'REJECTED',label);
+    assert.equal(x.state().version,1,label);
+  }
+});
 test('forged signature and caller-supplied public key cannot create approval',t=>{const x=setup(t),g=x.approved();g.humanApproval.signature='AAAA';assert.equal(x.writer.execute(g).outcome,'REJECTED');g.humanApproval=x.key.assertion(x.prepared);g.humanApproval.publicKeyPem=x.key.trust.publicKeyPem;assert.equal(x.writer.execute(g).outcome,'REJECTED');assert.equal(x.state().audit,0);});
 test('an independently valid second key cannot approve the enrolled principal',t=>{const x=setup(t),rogue=createPasskeyApprovalFixture(),g={...x.grant,humanApproval:rogue.assertion(x.prepared,{credentialId:x.key.trust.credentialId,userHandle:x.key.trust.userHandle})};assert.equal(x.writer.execute(g).outcome,'REJECTED');assert.equal(x.state().version,1);});
 test('challenge binds the complete signed grant, not just the effect payload',t=>{const x=setup(t),other=x.f.grant();assert.equal(x.writer.execute(x.approved(other)).outcome,'REJECTED');assert.equal(x.state().audit,0);});

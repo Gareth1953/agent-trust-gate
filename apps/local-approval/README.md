@@ -53,6 +53,34 @@ until a genuine device test succeeds. Reusing saved passkey state must never
 be confused with approving an action. Never submit or retry any transaction
 while its recorded outcome is uncertain.
 
+## Diagnosing a genuine Windows Hello sign-in refusal
+
+`PASSKEY_USER_VERIFICATION_REQUIRED` was a broad message that could mean
+missing authenticator presence, missing device PIN/biometric verification, an
+unexpected website (RP) hash or unsupported backup/flag properties.
+The verifier now retains the **same fail-closed checks** but distinguishes:
+
+- `PASSKEY_USER_VERIFICATION_MISSING`: the returned passkey proof did **not**
+  signal completed PIN/biometric/device verification. This is not permission to
+  skip Windows Hello or lower the approval requirement.
+- `PASSKEY_USER_PRESENCE_MISSING`: the proof did not signal device-user presence.
+- `PASSKEY_RP_ID_HASH_MISMATCH`: the signed proof was not bound to our expected
+  `localhost` relying party.
+- `PASSKEY_BACKUP_ELIGIBILITY_MISMATCH`: registered passkey backup eligibility
+  does not match the current proof.
+- `PASSKEY_FLAGS_UNSUPPORTED`: other unexpected or unsupported authenticator
+  flags. The app continues to reject such assertions.
+
+**Recovery:** do not reset registration or submit/retry a transaction.
+Close the original server normally, use the tested updated main-branch source,
+and run `apps\\local-approval\\resume-existing-windows.cmd` to reuse the saved
+credential and application state. Report only the displayed short error code
+and whether Windows prompted for a PIN/fingerprint/face check. Do not transmit
+raw authenticator data, the passkey, PIN, state databases or private keys.
+
+This local test does not establish real identity, production authority or
+independent protection from a computer administrator.
+
 ## Manual commands / restart
 
 From the repository root in PowerShell (choose a genuinely new state-folder name for initial setup):
