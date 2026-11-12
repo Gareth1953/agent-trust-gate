@@ -1,6 +1,7 @@
 // Trusted, SYNTHETIC issuer/controller helper. Private keys never go to an agent service or public API.
 import { generateKeyPairSync, sign, randomUUID, createHash } from 'node:crypto';
 import { mkdirSync } from 'node:fs';
+import { DatabaseSync } from 'node:sqlite';
 import { join } from 'node:path';
 import { SyntheticDelegatedBudgetWriter, DELEGATED_BUDGET_SCHEMA,
   canonicalBudgetEvidence, budgetPublicKeyFingerprint } from '../dist/src/delegated-budget-witness.js';
@@ -8,6 +9,7 @@ import { SyntheticDelegatedBudgetWriter, DELEGATED_BUDGET_SCHEMA,
 const ROOT_DOMAIN='ATG_SYNTHETIC_ROOT_MANDATE_V1:';
 const LINK_DOMAIN='ATG_SYNTHETIC_DELEGATION_V1:';
 const ACTION_DOMAIN='ATG_SYNTHETIC_EXACT_ACTION_V1:';
+const OUTCOME_DOMAIN='ATG_SYNTHETIC_OUTCOME_WITNESS_V1:';
 const pair=()=>{const k=generateKeyPairSync('ed25519');return {
   publicKeyPem:k.publicKey.export({type:'spki',format:'pem'}).toString(),
   privateKeyPem:k.privateKey.export({type:'pkcs8',format:'pem'}).toString(),
@@ -18,9 +20,9 @@ export const signFixture=(body,secret,domain)=>({
 });
 export function createDelegatedBudgetFixture(root,{accountCeilingMinor=500000,maxTotalMinor=500000}={}) {
   mkdirSync(root,{recursive:true,mode:0o700});
-  const keys={root:pair(),'agent-A':pair(),'agent-B':pair(),'agent-C':pair()};
+  const keys={root:pair(),'agent-A':pair(),'agent-B':pair(),'agent-C':pair(),outcome:pair()};
   const trust={schema:DELEGATED_BUDGET_SCHEMA,domainId:randomUUID(),rootPrincipalId:'organisation-A',
-    rootPublicKeyPem:keys.root.publicKeyPem,
+    rootPublicKeyPem:keys.root.publicKeyPem,outcomeWitnessId:'synthetic-outcome-observer-A',outcomeWitnessPublicKeyPem:keys.outcome.publicKeyPem,
     agentPublicKeys:{'agent-A':keys['agent-A'].publicKeyPem,'agent-B':keys['agent-B'].publicKeyPem,'agent-C':keys['agent-C'].publicKeyPem},
     tenantId:'tenant-A',accountId:'account-A',currency:'GBP',accountCeilingMinor};
   const path=join(root,'shared-budget.sqlite');SyntheticDelegatedBudgetWriter.create(path,trust);
@@ -51,7 +53,18 @@ export function createDelegatedBudgetFixture(root,{accountCeilingMinor=500000,ma
     const ctx={agentId:leaf,transportCredentialFingerprint:budgetPublicKeyFingerprint(trust.agentPublicKeys[leaf]??trust.agentPublicKeys['agent-B'])};
     return {req,ctx};
   }
-  return {root,path,keys,trust,open,request,setNow:v=>{now=v;},getNow:()=>now,
+  function witnessEvidence(actionId,outcome,{eventId=randomUUID(),actionDigest,observedAt=now,witnessId=trust.outcomeWitnessId}={}) {
+    let committedDigest=actionDigest;
+    if(!committedDigest) {
+      const d=new DatabaseSync(path,{readOnly:true});
+      try {committedDigest=d.prepare('SELECT action_digest FROM actions WHERE action_id=?').get(actionId)?.action_digest;}
+      finally{d.close();}
+    }
+    if(!committedDigest)throw Error('SYNTHETIC_RECORD_NOT_FOUND');
+    const body={schema:'atg.signed-outcome.synthetic.v1',witnessId,eventId,actionId,actionDigest:committedDigest,outcome,observedAt};
+    return signFixture(body,keys.outcome.privateKeyPem,OUTCOME_DOMAIN);
+  }
+  return {root,path,keys,trust,open,request,setNow:v=>{now=v;},getNow:()=>now,witnessEvidence,
     resignMandate:m=>signFixture(m,keys.root.privateKeyPem,ROOT_DOMAIN),
     resignFirst:d=>signFixture(d,keys.root.privateKeyPem,LINK_DOMAIN),
     resignSecond:d=>signFixture(d,keys['agent-A'].privateKeyPem,LINK_DOMAIN),
