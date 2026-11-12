@@ -29,7 +29,8 @@ async function refresh(){
 async function run(fn){if(busy)return;busy=true;document.querySelectorAll('button').forEach(b=>b.disabled=true);
   try{await fn();}catch(error){
     const text=error.name==='NotAllowedError'?'Device approval was cancelled or unavailable. No automatic submission will occur.':error.message;
-    message(`${text}. If a transaction was submitted, check its recorded outcome before doing anything else.`);
+    const guidance=intent?'If a transaction was submitted, check its recorded outcome before doing anything else.':'Signing in does not submit a transaction. Do not create another passkey or reset saved state.';
+    message(`${text}. ${guidance}`);
     try{await refresh();}catch{/* Keep the existing summary; never retry a commit. */}
   }finally{busy=false;document.querySelectorAll('button').forEach(b=>b.disabled=false);}
 }
