@@ -92,7 +92,9 @@ try {
   receipt.agentImage=JSON.parse(run('docker',['image','inspect',image,'--format','{{json .Id}}']));
   const policy=join(root,'policy.yaml');writeFileSync(policy,`version: 1\nfilesystem_policy:\n  include_workdir: true\n  read_only: [/usr, /lib, /lib64, /etc, /bin]\n  read_write: [/sandbox, /tmp]\nlandlock:\n  compatibility: hard_requirement\nnetwork_policies:\n  atg_only:\n    endpoints:\n      - host: "host.openshell.internal"\n        allowed_ips: ["${host}/32"]\n        port: ${port}\n        protocol: tcp\n        tls: skip\n    binaries:\n      - path: /usr/local/bin/node\n`);
   await cases('real OpenShell workload created with no provider or arbitrary mounts',()=>{sandboxCreated=true;const r=openshell(['sandbox','create','--name',name,'--from',image,'--policy',policy,'--no-auto-providers','--detach','--','sleep','infinity']);sandboxCreated=true;return r;});
-  openshell(['sandbox','upload',name,bundle,'/sandbox/client','--no-git-ignore']);
+  openshell(['sandbox','exec',name,'--no-login-shell','--','mkdir','-p','/sandbox/client']);
+  for(const file of readdirSync(bundle).sort())openshell(['sandbox','upload',name,join(bundle,file),'/sandbox/client/'+file,'--no-git-ignore']);
+  receipt.clientFiles=openshell(['sandbox','exec',name,'--no-login-shell','--','ls','-la','/sandbox/client']);
   const probe=mode=>new Promise((ok,bad)=>{
     const p=spawn(cli,['sandbox','exec',name,'--no-login-shell','--timeout','60','--','/usr/local/bin/node','/sandbox/client/openshell-agent-probe.mjs','/sandbox/client',mode],{env,stdio:['ignore','pipe','pipe']});children.push(p);
     let out='',err='';const timer=setTimeout(()=>{p.kill('SIGTERM');bad(Error('PROBE_DEADLINE'));},90000);
