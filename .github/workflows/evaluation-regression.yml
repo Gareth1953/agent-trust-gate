@@ -34,6 +34,10 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run test:plugin
+      - name: Synthetic multi-agent authority and shared-budget adversarial tests
+        run: npm run test:delegated-budget
+      - name: Seven-step synthetic delegated-budget buyer walkthrough
+        run: npm run demo:delegated-budget
       - name: State the evidence boundary
         run: |
           echo 'Passing tests include expected reproduction of two successful common-owner attacks.'

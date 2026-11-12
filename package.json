@@ -126,6 +126,8 @@
     "demo:custody-setup": "npm run build --silent && node scripts/custody-setup-demo.mjs",
     "test:openshell-broker": "npm run build --silent && node --test test/openshell-broker.test.mjs",
     "test:purchase-approval": "npm run build --silent && node --test test/passkey-purchase.test.mjs",
+    "test:delegated-budget": "npm run build --silent && node --test test/delegated-budget.test.mjs",
+    "demo:delegated-budget": "npm run build --silent && node scripts/delegated-budget-demo.mjs",
     "demo:purchase-approval": "npm run build --silent && node scripts/purchase-approval-demo.mjs"
   },
   "devDependencies": {

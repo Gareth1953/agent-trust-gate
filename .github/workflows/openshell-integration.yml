@@ -30,6 +30,8 @@ jobs:
       - run: npm run build --silent
       - name: Test broker refusal versus uncertain writer outcomes
         run: npm run test:openshell-broker
+      - name: Check isolated signed delegation and shared budget
+        run: npm run test:delegated-budget
       - name: Fetch exact official release binaries and verify retained digests
         shell: bash
         run: |
