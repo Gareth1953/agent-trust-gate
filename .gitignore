@@ -26,3 +26,7 @@ plugin-build/
 
 # Preserve local review worktrees without including nested repositories in release scans.
 .worktrees/
+
+# Local approval state belongs outside the repository. Never commit credentials.
+apps/local-approval/test-results/
+apps/local-approval/playwright-report/

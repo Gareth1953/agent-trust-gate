@@ -6,6 +6,10 @@ import { createHash, createPublicKey, verify } from "node:crypto";
 export interface PasskeyApprovalTrust {
   principalId: string; rpId: string; origin: string; credentialId: string;
   userHandle: string; publicKeyPem: string; initialSignCount: number;
+  /** Explicit opt-in for a fresh registration-backed store. Legacy stores
+   * retain their no-backup, strictly advancing counter profile. */
+  credentialProfile?: "registered-webauthn-v1";
+  backupEligible?: boolean;
 }
 export interface PasskeyAssertion {
   credentialId: string; clientDataJSON: string; authenticatorData: string;
@@ -29,7 +33,9 @@ function decode(s: unknown, max: number): Buffer {
   return b;
 }
 export function validatePasskeyTrust(t: PasskeyApprovalTrust): void {
-  if(!t || Object.keys(t).sort().join(",")!=="credentialId,initialSignCount,origin,principalId,publicKeyPem,rpId,userHandle"
+  const registered=t?.credentialProfile==="registered-webauthn-v1";
+  const fields=registered?"backupEligible,credentialId,credentialProfile,initialSignCount,origin,principalId,publicKeyPem,rpId,userHandle":"credentialId,initialSignCount,origin,principalId,publicKeyPem,rpId,userHandle";
+  if(!t || Object.keys(t).sort().join(",")!==fields || (registered && typeof t.backupEligible!=="boolean")
     || typeof t.principalId!=="string" || !/^[A-Za-z0-9:._-]{1,160}$/.test(t.principalId)
     || typeof t.rpId!=="string" || !/^[a-z0-9.-]{1,253}$/.test(t.rpId)
     || typeof t.origin!=="string" || typeof t.publicKeyPem!=="string" || t.publicKeyPem.length>4096 || !t.publicKeyPem.startsWith('-----BEGIN PUBLIC KEY-----\n')
@@ -56,9 +62,17 @@ export function verifyPasskeyAssertion(t: PasskeyApprovalTrust, input: unknown, 
   if(JSON.stringify(c)!==text || Object.keys(c).some(k=>!["type","challenge","origin","crossOrigin"].includes(k))
     || c.type!=="webauthn.get" || c.challenge!==challenge || c.origin!==t.origin
     || (c.crossOrigin!==undefined && c.crossOrigin!==false))throw Error("PASSKEY_CLIENT_BINDING_INVALID");
-  // 0x01 UP + 0x04 UV; reject AT, ED, backup and reserved bits in this profile.
-  if(auth.length!==37 || !auth.subarray(0,32).equals(hash(t.rpId)) || auth[32]!==5)throw Error("PASSKEY_USER_VERIFICATION_REQUIRED");
+  // Always require UP+UV and refuse extensions/reserved bits. A registered
+  // credential may use BE/BS only with its enrollment-pinned BE value.
+  const flags=auth[32]??0,registered=t.credentialProfile==="registered-webauthn-v1";
+  const validFlags=registered ? (flags & ~0x1d)===0 && (flags & 5)===5
+    && Boolean(flags & 8)===t.backupEligible && (!(flags & 16) || Boolean(flags & 8)) : flags===5;
+  if(auth.length!==37 || !auth.subarray(0,32).equals(hash(t.rpId)) || !validFlags)throw Error("PASSKEY_USER_VERIFICATION_REQUIRED");
   const counter=auth.readUInt32BE(33);
-  if(counter<=previousCounter || !verify("sha256",Buffer.concat([auth,hash(client)]),t.publicKeyPem,signature))throw Error("PASSKEY_SIGNATURE_OR_COUNTER_INVALID");
+  // Some real credentials do not implement counters. Only this explicitly
+  // enrolled profile permits 0 -> 0; one-use persisted challenges still bind
+  // every ceremony. No counter-based clone detection is claimed for zero.
+  const validCounter=counter>previousCounter || (registered && counter===0 && previousCounter===0);
+  if(!validCounter || !verify("sha256",Buffer.concat([auth,hash(client)]),t.publicKeyPem,signature))throw Error("PASSKEY_SIGNATURE_OR_COUNTER_INVALID");
   return counter;
 }

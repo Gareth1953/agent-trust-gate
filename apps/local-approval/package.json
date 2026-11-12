@@ -1,0 +1,19 @@
+{
+  "name": "atg-local-approval-evaluation",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@simplewebauthn/server": "14.1.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0"
+  }
+}
