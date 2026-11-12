@@ -46,7 +46,7 @@ try {
   const pub=join(root,'public'),secret=join(root,'secret'),bundle=join(root,'client-bundle');for(const p of [pub,secret,bundle])mkdirSync(p,{mode:0o700});chmodSync(pub,0o755);
   const tls=custodyTlsFixture(root);
   // Additional SAN for the exact private Docker bridge interface, no public listener.
-  const bridgeExt=join(root,'bridge.ext');writeFileSync(bridgeExt,'basicConstraints=critical,CA:FALSE\nkeyUsage=critical,digitalSignature\nextendedKeyUsage=serverAuth\nsubjectAltName=IP:'+host+'\n');
+  const bridgeExt=join(root,'bridge.ext');writeFileSync(bridgeExt,'basicConstraints=critical,CA:FALSE\nkeyUsage=critical,digitalSignature\nextendedKeyUsage=serverAuth\nsubjectAltName=IP:'+host+',DNS:host.openshell.internal\n');
   run('openssl',['x509','-req','-in',join(root,'server.csr'),'-CA',tls.caPath,'-CAkey',tls.caKey,'-set_serial','0x'+randomBytes(16).toString('hex'),'-out',tls.server.certPath,'-days','1','-extfile',bridgeExt]);
   const serverFingerprint=new X509Certificate(readFileSync(tls.server.certPath)).fingerprint256;
   const trustPath=join(pub,'trust.json');cpSync(join(f.custody,'trust.json'),trustPath);chmodSync(trustPath,0o444);
@@ -65,28 +65,29 @@ try {
   const expired=f.grant({issuedAt:new Date(now-600000).toISOString(),notBefore:new Date(now-600000).toISOString(),expiresAt:new Date(now-1000).toISOString()});
   const body={grant,payload:grant.proposedAction.canonicalArguments};
   for(const [from,to] of [[tls.caPath,'ca.crt'],[tls.client.certPath,'agent.crt'],[tls.client.keyPath,'agent.key'],[resolve('scripts/openshell-broker-client.mjs'),'openshell-broker-client.mjs'],[resolve('scripts/openshell-agent-probe.mjs'),'openshell-agent-probe.mjs']])cpSync(from,join(bundle,to));
-  writeFileSync(join(bundle,'client.json'),JSON.stringify({host,port,caPath:'ca.crt',certPath:'agent.crt',keyPath:'agent.key',serverFingerprint}));
+  writeFileSync(join(bundle,'client.json'),JSON.stringify({host:'host.openshell.internal',port,caPath:'ca.crt',certPath:'agent.crt',keyPath:'agent.key',serverFingerprint}));
   writeFileSync(join(bundle,'body.json'),JSON.stringify(body));writeFileSync(join(bundle,'expired.json'),JSON.stringify({grant:expired,payload:expired.proposedAction.canonicalArguments}));
   // Native gateway uses its own disposable TLS identity. No auth/TLS bypass.
   const gw=join(root,'gateway');mkdirSync(gw,{mode:0o700});const gt=custodyTlsFixture(gw);
+  run('openssl',['x509','-req','-in',join(gw,'server.csr'),'-CA',gt.caPath,'-CAkey',gt.caKey,'-set_serial','0x'+randomBytes(16).toString('hex'),'-out',gt.server.certPath,'-days','1','-extfile',bridgeExt]);
   run('openssl',['req','-new','-key',gt.client.keyPath,'-out',join(gw,'operator.csr'),'-subj','/CN=atg-ci/OU=operator']);
   run('openssl',['x509','-req','-in',join(gw,'operator.csr'),'-CA',gt.caPath,'-CAkey',gt.caKey,'-set_serial','0x'+randomBytes(16).toString('hex'),'-out',gt.client.certPath,'-days','1','-extfile',join(gw,'agent.ext')]);
   const mtls=join(env.XDG_CONFIG_HOME,'openshell/gateways/atg-ci/mtls');mkdirSync(mtls,{recursive:true,mode:0o700});
   for(const [from,to] of [[gt.caPath,'ca.crt'],[gt.client.certPath,'tls.crt'],[gt.client.keyPath,'tls.key']])cpSync(from,join(mtls,to));
-  const gatewayConfig=join(gw,'gateway.toml');writeFileSync(gatewayConfig,'[openshell]\nversion = 2\n[openshell.gateway]\ncompute_driver = "docker"\nguest_tls_ca = '+JSON.stringify(gt.caPath)+'\n[openshell.drivers.docker]\nsupervisor_network_mode = "host"\nimage_pull_policy = "if_not_present"\n');
+  const gatewayConfig=join(gw,'gateway.toml');writeFileSync(gatewayConfig,'[openshell]\nversion = 2\n[openshell.gateway]\ncompute_driver = "docker"\nguest_tls_ca = '+JSON.stringify(gt.caPath)+'\n[openshell.drivers.docker]\nsupervisor_network_mode = "host"\nhost_gateway_ip = ' + JSON.stringify(host) + '\nimage_pull_policy = "if_not_present"\n');
   const log=join(root,'gateway.log'),{openSync,closeSync}=await import('node:fs'),fd=openSync(log,'wx',0o600);
-  const gp=spawn(gateway,['--config',gatewayConfig,'--name','atg-ci','--tls-cert',gt.server.certPath,'--tls-key',gt.server.keyPath,'--tls-client-ca',gt.caPath,'--enable-mtls-auth','true','--enable-operator-auth','true'],{env,stdio:['ignore',fd,fd]});closeSync(fd);children.push(gp);
+  const gp=spawn(gateway,['--config',gatewayConfig,'--name','atg-ci','--bind-address',host,'--tls-cert',gt.server.certPath,'--tls-key',gt.server.keyPath,'--tls-client-ca',gt.caPath,'--enable-mtls-auth','true','--enable-operator-auth','true'],{env,stdio:['ignore',fd,fd]});closeSync(fd);children.push(gp);
   // Bounded readiness polling only opens an authenticated TLS connection.
-  const tlsReady=()=>new Promise(ok=>{const s=connect({host:'127.0.0.1',port:17670,ca:readFileSync(gt.caPath),cert:readFileSync(gt.client.certPath),key:readFileSync(gt.client.keyPath),rejectUnauthorized:true},()=>{s.destroy();ok(true);});s.setTimeout(500,()=>{s.destroy();ok(false);});s.on('error',()=>ok(false));});
+  const tlsReady=()=>new Promise(ok=>{const s=connect({host,port:17670,ca:readFileSync(gt.caPath),cert:readFileSync(gt.client.certPath),key:readFileSync(gt.client.keyPath),rejectUnauthorized:true},()=>{s.destroy();ok(true);});s.setTimeout(500,()=>{s.destroy();ok(false);});s.on('error',()=>ok(false));});
   let connected=false;for(let i=0;i<30;i++){if(await tlsReady()){connected=true;break;}await new Promise(ok=>setTimeout(ok,1000));if(gp.exitCode!==null)break;}
   if(!connected)throw Error('GATEWAY_START_FAILED '+readFileSync(log,'utf8').slice(-8000));
-  openshell(['gateway','add','https://127.0.0.1:17670','--local','--name','atg-ci']);
+  openshell(['gateway','add','https://'+host+':17670','--local','--name','atg-ci']);
   receipt.gatewayStatus=openshell(['status']);
   const image='atg-openshell-agent:synthetic';
   const imageContext=join(root,'image-context');mkdirSync(imageContext);const dockerfile=join(imageContext,'Dockerfile');writeFileSync(dockerfile,'FROM node:24-bookworm-slim\nRUN mkdir -p /sandbox && chmod 777 /sandbox\nWORKDIR /sandbox\nCMD ["sleep","infinity"]\n');
   run('docker',['build','-t',image,'-f',dockerfile,imageContext],{timeout:180000,stdio:['ignore','pipe','pipe']});
   receipt.agentImage=JSON.parse(run('docker',['image','inspect',image,'--format','{{json .Id}}']));
-  const policy=join(root,'policy.yaml');writeFileSync(policy,`version: 1\nfilesystem_policy:\n  include_workdir: true\n  read_only: [/usr, /lib, /lib64, /etc, /bin]\n  read_write: [/sandbox, /tmp]\nlandlock:\n  compatibility: hard_requirement\nnetwork_policies:\n  atg_only:\n    endpoints:\n      - host: "${host}"\n        port: ${port}\n        protocol: tcp\n        tls: skip\n    binaries:\n      - path: /usr/local/bin/node\n`);
+  const policy=join(root,'policy.yaml');writeFileSync(policy,`version: 1\nfilesystem_policy:\n  include_workdir: true\n  read_only: [/usr, /lib, /lib64, /etc, /bin]\n  read_write: [/sandbox, /tmp]\nlandlock:\n  compatibility: hard_requirement\nnetwork_policies:\n  atg_only:\n    endpoints:\n      - host: "host.openshell.internal"\n        allowed_ips: ["${host}/32"]\n        port: ${port}\n        protocol: tcp\n        tls: skip\n    binaries:\n      - path: /usr/local/bin/node\n`);
   await cases('real OpenShell workload created with no provider or arbitrary mounts',()=>{const r=openshell(['sandbox','create','--name',name,'--from',image,'--policy',policy,'--no-auto-providers','--detach','--','sleep','infinity']);sandboxCreated=true;return r;});
   openshell(['sandbox','upload',name,bundle,'/sandbox/client','--no-git-ignore']);
   const probe=mode=>new Promise((ok,bad)=>{
