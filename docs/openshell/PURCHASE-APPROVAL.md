@@ -119,7 +119,7 @@ The unchanged legacy modes do not acquire this approval requirement.
 
 Run `npm run test:purchase-approval` for the focused adversarial checks.
 The existing general and OpenShell CI jobs must pass before merging this source
-candidate. Read retained exact run IDs in the accompanying validation record.
+candidate. Read the [exact run IDs and evidence](PURCHASE-APPROVAL-VALIDATION.md).
 
 The verifier follows a deliberately restricted subset of
 [W3C WebAuthn Level 3, section 7.2](https://www.w3.org/TR/2026/REC-webauthn-3-20260825/#sctn-verifying-assertion).
