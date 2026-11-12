@@ -46,6 +46,43 @@ test('only the two exact POST routes are exposed; no reset, path, key or clock A
   assert.equal(x.call(x.body,BROKER_COMMIT_PATH,'GET').reason,'BROKER_ROUTE_REFUSED');assert.equal(x.version(),1);
 });
 test('writer outage stays UNKNOWN; there is no callback or local fallback',t=>{const x=setup(t);x.writer.close();assert.equal(x.call().outcome,'UNKNOWN');assert.equal(x.call().automaticRetryPermitted,false);});
+test('writer exception after a committed effect is UNKNOWN, not a safe refusal or permission to retry',t=>{
+  const x=setup(t),bytes=Buffer.from(canonicalWire(x.body));
+  const writer={
+    execute(grant) {
+      assert.equal(x.writer.execute(grant).outcome,'EXECUTED');
+      throw new Error('response lost after effect committed');
+    },
+    lookup(grant) {
+      assert.equal(x.writer.lookup(grant).outcome,'EXECUTED');
+      throw new Error('lookup reply lost');
+    },
+  };
+  const result=handleBrokerRequest(writer,'POST',BROKER_COMMIT_PATH,bytes);
+  assert.equal(result.outcome,'UNKNOWN');
+  assert.equal(result.reason,'BROKER_WRITER_OUTCOME_UNKNOWN');
+  assert.equal(result.automaticRetryPermitted,false);
+  assert.equal(result.receipt,null);
+  assert.equal(x.version(),2);
+  assert.equal(x.call().reason,'AUTHORITY_ALREADY_USED_OR_REVOKED');
+  const lookup=handleBrokerRequest(writer,'POST',BROKER_LOOKUP_PATH,bytes);
+  assert.equal(lookup.outcome,'UNKNOWN');
+  assert.equal(lookup.automaticRetryPermitted,false);
+  assert.equal(x.call(x.body,BROKER_LOOKUP_PATH).outcome,'EXECUTED');
+  assert.equal(x.version(),2);
+});
+test('writer exception before an effect also stays UNKNOWN until authoritative reconciliation',t=>{
+  const x=setup(t),bytes=Buffer.from(canonicalWire(x.body));
+  const writer={execute(){throw Error('writer crashed before commit');},lookup(){throw Error('writer offline');}};
+  for(const path of [BROKER_COMMIT_PATH,BROKER_LOOKUP_PATH]){
+    const result=handleBrokerRequest(writer,'POST',path,bytes);
+    assert.equal(result.outcome,'UNKNOWN');assert.equal(result.reason,'BROKER_WRITER_OUTCOME_UNKNOWN');
+    assert.equal(result.automaticRetryPermitted,false);assert.equal(result.receipt,null);
+  }
+  assert.equal(x.version(),1);
+  // The synthetic test reveals the truth; a real caller cannot infer it from UNKNOWN.
+});
+
 test('normal startup refuses a same-owner/unprotected deployment',()=>{assert.throws(()=>loadBrokerConfig('/tmp/nonexistent-atg-config'),/BROKER_|ENOENT/);});
 
 test('actual pinned mTLS HTTP route: changed request, concurrent duplicate, lookup and outage',async t=>{
