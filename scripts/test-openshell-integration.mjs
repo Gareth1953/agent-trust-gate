@@ -26,7 +26,7 @@ const run=(cmd,a,opts={})=>execFileSync(cmd,a,{encoding:'utf8',timeout:120000,ma
 if(process.platform!=='linux'||process.getuid?.()!==0){receipt.status='BLOCKED';receipt.blocker='Distinct-UID disposable root provisioner unavailable';persist();process.exit(2);}
 try{run('docker',['version']);}catch{receipt.status='BLOCKED';receipt.blocker='Docker runtime unavailable';persist();process.exit(2);}
 const root=mkdtempSync(join(tmpdir(),'atg-openshell-ci-'));chmodSync(root,0o755);
-const children=[];let sandboxCreated=false,decoy;const name='atg-broker-evaluation',cli=join(bin,'openshell'),gateway=join(bin,'openshell-gateway');
+const children=[];let sandboxCreated=false,decoy;const name='atg-broker-eval',cli=join(bin,'openshell'),gateway=join(bin,'openshell-gateway');
 const env={PATH:process.env.PATH,LANG:'C.UTF-8',XDG_CONFIG_HOME:join(root,'xdg-config'),XDG_STATE_HOME:join(root,'xdg-state'),XDG_DATA_HOME:join(root,'xdg-data'),XDG_CACHE_HOME:join(root,'xdg-cache')};
 const openshell=a=>run(cli,a,{env,timeout:180000});
 const cases=async(name,fn)=>{const observation=await fn();receipt.cases.push({name,status:'PASS',observation:observation??null});};

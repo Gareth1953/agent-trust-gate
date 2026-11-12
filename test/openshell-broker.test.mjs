@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import { mkdtempSync,readFileSync,rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { request } from 'node:https';
+import { request,createServer } from 'node:https';
 import { DatabaseSync } from 'node:sqlite';
 import { createCustodyFixture } from '../scripts/custody-fixture.mjs';
 import { custodyTlsFixture } from '../scripts/custody-tls-fixture.mjs';
@@ -38,7 +38,8 @@ test('expiry, revocation and emergency stop refuse before the synthetic effect',
 });
 test('strict wire contract rejects duplicates, invalid UTF-8, oversize and extra fields',t=>{
   const x=setup(t);for(const v of ['{"grant":{},"grant":{},"payload":{}}',' '+canonicalWire(x.body),canonicalWire({...x.body,path:'/tmp/attacker'}),'x'.repeat(65537)])assert.equal(x.call(v).reason,'BROKER_BODY_INVALID');
-  assert.equal(handleBrokerRequest(x.writer,'POST',BROKER_COMMIT_PATH,new Uint8Array([255])).reason,'BROKER_BODY_INVALID');assert.equal(x.version(),1);
+  assert.equal(handleBrokerRequest(x.writer,'POST',BROKER_COMMIT_PATH,new Uint8Array([255])).reason,'BROKER_BODY_INVALID');
+  assert.equal(handleBrokerRequest(x.writer,'POST',BROKER_COMMIT_PATH,Buffer.concat([Buffer.from([239,187,191]),Buffer.from(canonicalWire(x.body))])).reason,'BROKER_BODY_INVALID');assert.equal(x.version(),1);
 });
 test('only the two exact POST routes are exposed; no reset, path, key or clock API',t=>{
   const x=setup(t);for(const p of ['/admin','/v1/synthetic-record/commit?reset=1','/v1/synthetic-record/commit/','https://evil.example/v1/synthetic-record/commit'])assert.equal(x.call(x.body,p).reason,'BROKER_ROUTE_REFUSED');
@@ -66,4 +67,14 @@ test('HTTP server refuses content encoding, admin routes and oversized wire bodi
   assert.equal((await raw(canonicalWire(x.body),{'content-encoding':'gzip'})).status,415);
   assert.equal((await raw(canonicalWire(x.body),{},'/admin')).body.reason,'BROKER_ROUTE_REFUSED');
   assert.equal((await raw('x'.repeat(65537))).status,413);assert.equal(x.version(),1);
+});
+test('an authenticated but mismatched completion receipt is UNKNOWN to the client',async t=>{
+  const x=setup(t),tls=custodyTlsFixture(x.dir);
+  const server=createServer({ca:readFileSync(tls.caPath),cert:readFileSync(tls.server.certPath),key:readFileSync(tls.server.keyPath),requestCert:true,rejectUnauthorized:true},(req,res)=>{
+    req.resume();res.end(JSON.stringify({schema:'atg.openshell-broker.synthetic.v1',syntheticOnly:true,productionReady:false,outcome:'EXECUTED',reason:'BAD_COMPLETION',automaticRetryPermitted:false,
+      domainId:x.f.trust.domainId,receipt:{gatePassId:x.grant.issuance.gatePass.gatePassId,actionDigest:'0'.repeat(64),resourceVersion:2}}));
+  });
+  await new Promise(ok=>server.listen(0,'127.0.0.1',ok));t.after(()=>new Promise(ok=>server.close(ok)));
+  const c={host:'127.0.0.1',port:server.address().port,caPath:tls.caPath,certPath:tls.client.certPath,keyPath:tls.client.keyPath,serverFingerprint:tls.server.fingerprint};
+  assert.equal((await brokerRequest(c,x.body)).outcome,'UNKNOWN');assert.equal(x.version(),1);
 });

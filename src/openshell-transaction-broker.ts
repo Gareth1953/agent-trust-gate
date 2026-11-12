@@ -30,6 +30,7 @@ export function handleBrokerRequest(writer: CustodyWitness, method: string, path
   try {
     if (!bytes.byteLength || bytes.byteLength > BROKER_MAX_BYTES) throw Error();
     const text = new TextDecoder("utf-8", { fatal: true }).decode(bytes);
+    if (!Buffer.from(text, "utf8").equals(bytes)) throw Error();
     const input: unknown = JSON.parse(text);
     if (canonicalDestinationEvidence(input) !== text || !input || typeof input !== "object" || Array.isArray(input)) throw Error();
     const body = input as Record<string, unknown>;

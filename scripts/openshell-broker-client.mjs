@@ -27,7 +27,14 @@ export async function brokerRequest(c,body,{path='/v1/synthetic-record/commit',r
           let b=Buffer.alloc(0);res.on('data',chunk=>{if(b.length+chunk.length>65536){finish(unknown);return;}b=Buffer.concat([b,chunk]);});
           res.on('end',()=>{try{const r=JSON.parse(b.toString('utf8'));
             if(r.schema!=='atg.openshell-broker.synthetic.v1'||r.syntheticOnly!==true||r.productionReady!==false||r.automaticRetryPermitted!==false
-              ||!['EXECUTED','REJECTED','UNKNOWN','NOT_RECORDED'].includes(r.outcome)||typeof r.reason!=='string')throw Error();finish(r);
+              ||!['EXECUTED','REJECTED','UNKNOWN','NOT_RECORDED'].includes(r.outcome)||typeof r.reason!=='string')throw Error();
+            if(r.outcome==='EXECUTED') {
+              const pass=body?.grant?.issuance?.gatePass,payload=body?.payload,proof=r.receipt;
+              if(raw||res.statusCode!==200||!pass||!payload||!proof||Object.keys(proof).sort().join(',')!=='actionDigest,gatePassId,resourceVersion'
+                ||proof.gatePassId!==pass.gatePassId||proof.actionDigest!==pass.action.actionDigest||proof.resourceVersion!==payload.expectedVersion+1
+                ||r.domainId!==pass.action.operatingEnvironment.replace('custody-witness:',''))throw Error();
+            }
+            finish(r);
           }catch{finish(unknown);}});res.on('error',()=>finish(unknown));
         });
       req.on('error',()=>finish(unknown));req.end(data);
