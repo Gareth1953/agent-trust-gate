@@ -130,12 +130,18 @@ export function verifyPasskeyAssertion(t: PasskeyApprovalTrust, input: unknown, 
   if(c.type!=="webauthn.get" || c.challenge!==challenge || c.origin!==t.origin
     || (c.crossOrigin!==undefined && c.crossOrigin!==false)
     || c.topOrigin!==undefined)throw Error("PASSKEY_CLIENT_BINDING_INVALID");
-  // Always require UP+UV and refuse extensions/reserved bits. A registered
-  // credential may use BE/BS only with its enrollment-pinned BE value.
+  // Report a precise, non-sensitive reason. Never weaken UP/UV, RP binding,
+  // reserved/extension-bit refusal or enrollment-pinned backup eligibility.
+  // The previous single code mislabelled RP/backup mismatches as missing UV.
+  if(auth.length!==37)throw Error("PASSKEY_AUTHENTICATOR_FORMAT_UNSUPPORTED");
+  if(!auth.subarray(0,32).equals(hash(t.rpId)))throw Error("PASSKEY_RP_ID_HASH_MISMATCH");
   const flags=auth[32]??0,registered=t.credentialProfile==="registered-webauthn-v1";
-  const validFlags=registered ? (flags & ~0x1d)===0 && (flags & 5)===5
-    && Boolean(flags & 8)===t.backupEligible && (!(flags & 16) || Boolean(flags & 8)) : flags===5;
-  if(auth.length!==37 || !auth.subarray(0,32).equals(hash(t.rpId)) || !validFlags)throw Error("PASSKEY_USER_VERIFICATION_REQUIRED");
+  if((flags & 1)!==1)throw Error("PASSKEY_USER_PRESENCE_MISSING");
+  if((flags & 4)!==4)throw Error("PASSKEY_USER_VERIFICATION_MISSING");
+  if(registered){
+    if((flags & ~0x1d)!==0 || Boolean(flags & 16) && !Boolean(flags & 8))throw Error("PASSKEY_FLAGS_UNSUPPORTED");
+    if(Boolean(flags & 8)!==t.backupEligible)throw Error("PASSKEY_BACKUP_ELIGIBILITY_MISMATCH");
+  }else if(flags!==5)throw Error("PASSKEY_FLAGS_UNSUPPORTED");
   const counter=auth.readUInt32BE(33);
   // Some real credentials do not implement counters. Only this explicitly
   // enrolled profile permits 0 -> 0; one-use persisted challenges still bind
