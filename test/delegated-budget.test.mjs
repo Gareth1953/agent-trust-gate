@@ -7,6 +7,7 @@ import { join,resolve } from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 import { createDelegatedBudgetFixture } from '../scripts/delegated-budget-fixture.mjs';
 import { SyntheticDelegatedBudgetWriter, budgetPublicKeyFingerprint } from '../dist/src/delegated-budget-witness.js';
+process.env.ATG_BUDGET_TEST_TRACE='1';
 
 function setup(t, options={}) {
   const root=mkdtempSync(join(tmpdir(),'atg-shared-budget-v1-'));
@@ -185,7 +186,7 @@ test('reopening the same pinned store retains consumption, budget, and revocatio
   try {
     assert.equal(another.lookup(r.req.action.actionId).outcome,'COMMITTED');
     assert.equal(another.execute(r.req,r.ctx).reason,'ACTION_ALREADY_RECORDED');
-    const restricted=x.request({amountMinor:300001});
+    const restricted=x.request({leaf:'agent-A',amountMinor:300001});
     assert.equal(another.execute(restricted.req,restricted.ctx).reason,'ROOT_OR_MANDATE_BUDGET_EXCEEDED');
     another.revoke('future-mandate');
   } finally {another.close();}
