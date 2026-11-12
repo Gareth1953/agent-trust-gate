@@ -84,6 +84,12 @@ over a destination's native checks or custom OpenShell middleware.
 
 ## Remaining boundaries
 
+The optional [purchase approval connector and buyer walkthrough](PURCHASE-APPROVAL.md)
+adds a separately enrolled passkey assertion requirement to newly provisioned
+evaluation stores. Automated evidence uses a software authenticator fixture;
+live-person enrollment and a device/browser ceremony remain outstanding. It
+does not change the original mode or upgrade old stores in place.
+
 - Principal approval and issuer authority are synthetic. Real identity,
   non-expanding delegation and shared principal budgets remain future work.
 - One-use is confined to one retained authoritative SQLite store. Administrator

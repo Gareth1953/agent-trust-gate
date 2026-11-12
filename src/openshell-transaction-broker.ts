@@ -37,7 +37,7 @@ export function handleBrokerRequest(writer: CustodyWitness, method: string, path
     if (Object.keys(body).sort().join(",") !== "grant,payload" || !body.grant || typeof body.grant !== "object" || Array.isArray(body.grant)
       || !body.payload || typeof body.payload !== "object" || Array.isArray(body.payload)) throw Error();
     const original = body.grant as WitnessGrant;
-    if (Object.keys(original).sort().join(",") !== "issuance,proposedAction" || !original.proposedAction) throw Error();
+    if (!["issuance,proposedAction","humanApproval,issuance,proposedAction"].includes(Object.keys(original).sort().join(",")) || !original.proposedAction) throw Error();
     const payload = body.payload as Record<string, unknown>;
     // Reconstruct the effect from the ACTUAL HTTP payload. Never authorise a
     // signed envelope and then execute an unrelated body supplied beside it.
@@ -48,6 +48,7 @@ export function handleBrokerRequest(writer: CustodyWitness, method: string, path
         amount: typeof payload.amountMinorUnits === "number" ? payload.amountMinorUnits / 100 : null,
         currency: payload.currency as string },
     };
+    if ('humanApproval' in original) grant.humanApproval = original.humanApproval!;
     const result = path === BROKER_COMMIT_PATH ? writer.execute(grant) : writer.lookup(grant);
     return { ...result, schema: BROKER_SCHEMA, syntheticOnly: true, productionReady: false };
   } catch { return brokerRefusal("BROKER_BODY_INVALID"); }

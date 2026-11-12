@@ -13,6 +13,12 @@ if(mode==='outage') {
 }else if(mode==='network-denied') {
   const r=await brokerRequest({...c,port:c.port+1},body);record('unlisted port cannot execute',r.outcome,'UNKNOWN');
 }else {
+  if(body.grant.humanApproval){
+    const missing=structuredClone(body);delete missing.grant.humanApproval;
+    record('missing passkey approval refused',(await brokerRequest(c,missing)).outcome,'REJECTED');
+    const forged=structuredClone(body);forged.grant.humanApproval.signature='AAAA';
+    record('forged passkey assertion refused',(await brokerRequest(c,forged)).outcome,'REJECTED');
+  }
   for(const [field,value] of [['payeeReference','fixture-bank-B'],['amountMinorUnits',1],['currency','USD'],['tenantId','other-tenant'],['resourceId','other-resource'],['expectedVersion',2],['value','changed']]){
     const changed=structuredClone(body);changed.payload[field]=value;
     record('changed '+field,(await brokerRequest(c,changed)).outcome,'REJECTED');

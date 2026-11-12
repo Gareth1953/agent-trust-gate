@@ -4,6 +4,10 @@ on:
     paths:
       - 'src/openshell-transaction-broker.ts'
       - 'src/custody-witness.ts'
+      - 'src/passkey-transaction-approval.ts'
+      - 'scripts/*passkey*'
+      - 'scripts/custody-fixture.mjs'
+      - 'test/passkey-purchase.test.mjs'
       - 'scripts/*openshell*'
       - 'test/openshell-broker.test.mjs'
       - '.github/workflows/openshell-integration.yml'
@@ -38,8 +42,11 @@ jobs:
           tar -xzf gateway.tar.gz
       - name: Run protected broker and actual sandbox on this disposable host
         run: sudo -- "$(command -v node)" scripts/test-openshell-integration.mjs --output "$RUNNER_TEMP/atg-openshell-result.json" --openshell-bin "$RUNNER_TEMP/atg-openshell-bin" --disposable-host
+      - name: Require passkey-format approval inside the actual workload — software fixture only
+        run: sudo -- "$(command -v node)" scripts/test-openshell-integration.mjs --output "$RUNNER_TEMP/atg-openshell-passkey-result.json" --openshell-bin "$RUNNER_TEMP/atg-openshell-bin" --disposable-host --require-passkey
       - name: Retain only sanitized result
         if: always()
         run: |
           if test -f "$RUNNER_TEMP/atg-openshell-result.json"; then sudo cat "$RUNNER_TEMP/atg-openshell-result.json"; fi
+          if test -f "$RUNNER_TEMP/atg-openshell-passkey-result.json"; then sudo cat "$RUNNER_TEMP/atg-openshell-passkey-result.json"; fi
           echo 'Never upload the fixture directory or private keys. Production NO-GO; no independent review or payments.'

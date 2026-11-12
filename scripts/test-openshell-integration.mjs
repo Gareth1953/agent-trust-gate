@@ -13,11 +13,14 @@ import { createServer } from 'node:https';
 import { createCustodyFixture } from './custody-fixture.mjs';
 import { custodyTlsFixture } from './custody-tls-fixture.mjs';
 import { brokerRequest } from './openshell-broker-client.mjs';
+import { createPasskeyApprovalFixture } from './passkey-approval-fixture.mjs';
+import { CustodyWitness } from '../dist/src/custody-witness.js';
 
 const args=process.argv.slice(2);
-if(args.length!==5||args[0]!=='--output'||args[2]!=='--openshell-bin'||args[4]!=='--disposable-host'||!isAbsolute(args[1])||!isAbsolute(args[3]))throw Error('Use --output /ABSOLUTE/NEW/report.json --openshell-bin /ABSOLUTE/BIN/DIR --disposable-host');
+const requirePasskey=args.length===6&&args[5]==='--require-passkey';
+if((args.length!==5&&!requirePasskey)||args[0]!=='--output'||args[2]!=='--openshell-bin'||args[4]!=='--disposable-host'||!isAbsolute(args[1])||!isAbsolute(args[3]))throw Error('Use --output /ABSOLUTE/NEW/report.json --openshell-bin /ABSOLUTE/BIN/DIR --disposable-host [--require-passkey]');
 const output=args[1],bin=args[3],receipt={schema:'atg.openshell-integration.evidence.v1',startedAt:new Date().toISOString(),status:'INCOMPLETE',
-  syntheticOnly:true,productionReady:false,independentAssessment:false,targetOpenshellVersion:'0.1.8',cases:[],limitations:[
+  syntheticOnly:true,productionReady:false,independentAssessment:false,passkeyApprovalRequired:requirePasskey,liveHumanCeremony:false,authenticator:requirePasskey?'SOFTWARE_TEST_FIXTURE':'NONE',targetOpenshellVersion:'0.1.8',cases:[],limitations:[
     'Root/writer and Docker administrators remain trusted; whole-host rollback is unprotected.',
     'No live principal, payment, model, independent assessment or comparative performance claim.',
     'OpenShell mediates network/binary access; mTLS is end-to-end, so the broker owns HTTP/body enforcement.']};
@@ -34,7 +37,7 @@ function protect(path){const s=lstatSync(path);assert.equal(s.isSymbolicLink(),f
 async function ready(p,pattern){await new Promise((ok,bad)=>{let text='';const timer=setTimeout(()=>bad(Error('PROCESS_READY_TIMEOUT')),15000);p.stdout.on('data',b=>{text+=b;if(pattern.test(text)){clearTimeout(timer);ok();}});p.once('exit',()=>{clearTimeout(timer);bad(Error('PROCESS_EXIT_BEFORE_READY'));});});}
 try {
   receipt.sourceCommit=run('git',['rev-parse','HEAD']).trim();receipt.sourceHashes={};
-  for(const p of ['src/openshell-transaction-broker.ts','scripts/openshell-broker.mjs','scripts/openshell-broker-client.mjs','scripts/openshell-agent-probe.mjs','scripts/test-openshell-integration.mjs'])receipt.sourceHashes[p]=createHash('sha256').update(readFileSync(p)).digest('hex');
+  for(const p of ['src/openshell-transaction-broker.ts','src/custody-witness.ts','src/passkey-transaction-approval.ts','scripts/custody-fixture.mjs','scripts/passkey-approval-fixture.mjs','scripts/openshell-broker.mjs','scripts/openshell-broker-client.mjs','scripts/openshell-agent-probe.mjs','scripts/test-openshell-integration.mjs'])receipt.sourceHashes[p]=createHash('sha256').update(readFileSync(p)).digest('hex');
   receipt.actualOpenshellVersion=openshell(['--version']).trim();assert.equal(receipt.actualOpenshellVersion,'openshell 0.1.8');
   const host=run('docker',['network','inspect','bridge','--format','{{(index .IPAM.Config 0).Gateway}}']).trim();
   assert.match(host,/^(172\.(1[6-9]|2\d|3[01])|10\.|192\.168\.)/);
@@ -42,7 +45,8 @@ try {
   cpSync(resolve('dist'),join(code,'dist'),{recursive:true});
   for(const f of ['openshell-broker.mjs','custody-service.mjs'])cpSync(resolve('scripts',f),join(scripts,f));
   const node=join(code,'node');cpSync(process.execPath,node);chmodSync(node,0o555);protect(code);
-  const f=createCustodyFixture(join(root,'fixture')),serviceUid=62012;chmodSync(f.root,0o755);
+  const passkey=requirePasskey?createPasskeyApprovalFixture():null;
+  const f=createCustodyFixture(join(root,'fixture'),passkey?.trust),serviceUid=62012;chmodSync(f.root,0o755);
   const pub=join(root,'public'),secret=join(root,'secret'),bundle=join(root,'client-bundle');for(const p of [pub,secret,bundle])mkdirSync(p,{mode:0o700});chmodSync(pub,0o755);
   const tls=custodyTlsFixture(root);
   // Additional SAN for the exact private Docker bridge interface, no public listener.
@@ -63,6 +67,11 @@ try {
   let brokerErrors='';broker.stderr.on('data',b=>brokerErrors+=b);await ready(broker,/"status":"READY"/).catch(e=>{throw Error(e.message+' '+brokerErrors);});
   const now=Date.now(),grant=f.grant({issuedAt:new Date(now-1000).toISOString(),notBefore:new Date(now-1000).toISOString(),expiresAt:new Date(now+600000).toISOString()});
   const expired=f.grant({issuedAt:new Date(now-600000).toISOString(),notBefore:new Date(now-600000).toISOString(),expiresAt:new Date(now-1000).toISOString()});
+  if(passkey){
+    const controller=new CustodyWitness({path:f.path,trust:f.trust});
+    try {const request=controller.preparePurchaseApproval(grant);grant.humanApproval=passkey.assertion(request);expired.humanApproval=grant.humanApproval;}
+    finally{controller.close();}
+  }
   const body={grant,payload:grant.proposedAction.canonicalArguments};
   for(const [from,to] of [[tls.caPath,'ca.crt'],[tls.client.certPath,'agent.crt'],[tls.client.keyPath,'agent.key'],[resolve('scripts/openshell-broker-client.mjs'),'openshell-broker-client.mjs'],[resolve('scripts/openshell-agent-probe.mjs'),'openshell-agent-probe.mjs']])cpSync(from,join(bundle,to));
   writeFileSync(join(bundle,'client.json'),JSON.stringify({host:'host.openshell.internal',port,caPath:'ca.crt',certPath:'agent.crt',keyPath:'agent.key',serverFingerprint}));
@@ -108,7 +117,9 @@ try {
   const directConfig={host,port:port+1,caPath:tls.caPath,certPath:tls.client.certPath,keyPath:tls.client.keyPath,serverFingerprint};
   assert.equal((await brokerRequest(directConfig,body)).reason,'DECOY_REACHABLE');assert.equal(decoyRequests,1);
   await cases('unlisted live decoy port refused by the runtime',async()=>{const r=await probe('network-denied');assert.equal(decoyRequests,1,'Sandbox must not reach the listening decoy');return r;});
-  const db=new DatabaseSync(f.path,{readOnly:true});const version=db.prepare('SELECT version FROM resource').get().version;db.close();assert.equal(version,2);receipt.authoritativeResourceVersion=version;
+  const db=new DatabaseSync(f.path,{readOnly:true});const version=db.prepare('SELECT version FROM resource').get().version;
+  if(passkey){const audit=db.prepare('SELECT principal_id,counter FROM approval_audit').all();assert.equal(audit.length,1);assert.equal(audit[0].principal_id,passkey.trust.principalId);assert.equal(audit[0].counter,1);receipt.approvalAudit={rows:audit.length,principal:'synthetic-purchase-approver',counter:1,liveHumanCeremony:false};}
+  db.close();assert.equal(version,2);receipt.authoritativeResourceVersion=version;
   await cases('broker outage fails closed without fallback',async()=>{const stopped=once(broker,'exit');broker.kill('SIGTERM');await stopped;return probe('outage');});
   receipt.sandbox=openshell(['sandbox','get',name,'-o','json']);
   receipt.status='PASS_SCOPED';
