@@ -15,12 +15,15 @@ const MAX_HOPS = 4;
 const SIGNED_MANDATE_DOMAIN = "ATG_SYNTHETIC_ROOT_MANDATE_V1:";
 const SIGNED_DELEGATION_DOMAIN = "ATG_SYNTHETIC_DELEGATION_V1:";
 const SIGNED_ACTION_DOMAIN = "ATG_SYNTHETIC_EXACT_ACTION_V1:";
+const SIGNED_OUTCOME_DOMAIN = "ATG_SYNTHETIC_OUTCOME_WITNESS_V1:";
 
 export interface BudgetTrust {
   schema: typeof DELEGATED_BUDGET_SCHEMA;
   domainId: string;
   rootPrincipalId: string;
   rootPublicKeyPem: string;
+  outcomeWitnessId: string;
+  outcomeWitnessPublicKeyPem: string;
   agentPublicKeys: Record<string, string>;
   tenantId: string;
   accountId: string;
@@ -71,6 +74,16 @@ export interface DelegatedRequest {
   action: SyntheticAction;
   leafSignature: string;
 }
+/** Only this separately pinned signer may classify a synthetic UNKNOWN hold. */
+export interface SignedSyntheticOutcome {
+  schema: "atg.signed-outcome.synthetic.v1";
+  witnessId: string;
+  eventId: string;
+  actionId: string;
+  actionDigest: string;
+  outcome: "COMMITTED" | "NO_EFFECT";
+  observedAt: string;
+}
 export interface HostVerifiedCaller {
   /** Both values MUST originate from independently authenticated host transport. */
   agentId: string;
@@ -92,7 +105,8 @@ const scopeKeys = ["accountId","currency","destinationId","expiresAt","maxPerAct
 const actionKeys = ["accountId","actionId","amountMinor","currency","destinationId","missionId","payeeId","resourceId","tenantId","toolId"];
 const mandateKeys = [...scopeKeys, "schema","mandateId","domainId","rootPrincipalId","maxTotalMinor","notBefore","maxDelegationDepth"].sort();
 const delegationKeys = [...scopeKeys, "parentId","childId","remainingHops"].sort();
-const trustKeys = ["schema","domainId","rootPrincipalId","rootPublicKeyPem","agentPublicKeys","tenantId","accountId","currency","accountCeilingMinor"].sort();
+const trustKeys = ["schema","domainId","rootPrincipalId","rootPublicKeyPem","outcomeWitnessId","outcomeWitnessPublicKeyPem","agentPublicKeys","tenantId","accountId","currency","accountCeilingMinor"].sort();
+const outcomeKeys = ["schema","witnessId","eventId","actionId","actionDigest","outcome","observedAt"];
 const fields = (v: unknown, keys: string[]): v is Record<string, unknown> =>
   !!v && typeof v === "object" && !Array.isArray(v) && Object.keys(v).sort().join("|") === keys.slice().sort().join("|");
 const id = (s: unknown): s is string => typeof s === "string" && keyPattern.test(s);
@@ -122,13 +136,18 @@ export function budgetPublicKeyFingerprint(key: string): string {
 }
 function checkTrust(t: BudgetTrust): BudgetTrust {
   if (!fields(t, trustKeys) || t.schema !== DELEGATED_BUDGET_SCHEMA ||
-      ![t.domainId,t.rootPrincipalId,t.tenantId,t.accountId,t.currency].every(id) ||
+      ![t.domainId,t.rootPrincipalId,t.outcomeWitnessId,t.tenantId,t.accountId,t.currency].every(id) ||
       !minor(t.accountCeilingMinor) || !t.agentPublicKeys || typeof t.agentPublicKeys !== "object" ||
       Array.isArray(t.agentPublicKeys) || Object.getPrototypeOf(t.agentPublicKeys) !== Object.prototype) throw Error("BUDGET_TRUST_INVALID");
-  publicKey(t.rootPublicKeyPem);
+  publicKey(t.rootPublicKeyPem); publicKey(t.outcomeWitnessPublicKeyPem);
+  const witnessFingerprint = budgetPublicKeyFingerprint(t.outcomeWitnessPublicKeyPem);
+  if (witnessFingerprint === budgetPublicKeyFingerprint(t.rootPublicKeyPem)) throw Error("OUTCOME_WITNESS_MUST_BE_DISTINCT");
   const names = Object.keys(t.agentPublicKeys);
   if (names.length < 1 || names.length > 24 || names.includes(t.rootPrincipalId)) throw Error("AGENT_REGISTRY_INVALID");
-  for (const n of names) { if (!id(n)) throw Error("AGENT_ID_INVALID"); publicKey(t.agentPublicKeys[n]); }
+  for (const n of names) {
+    if (!id(n)) throw Error("AGENT_ID_INVALID"); publicKey(t.agentPublicKeys[n]);
+    if (budgetPublicKeyFingerprint(t.agentPublicKeys[n]!) === witnessFingerprint) throw Error("OUTCOME_WITNESS_AGENT_KEY_FORBIDDEN");
+  }
   return copy(t);
 }
 function checkScope(s: unknown): asserts s is BudgetScope {
@@ -228,7 +247,8 @@ export class SyntheticDelegatedBudgetWriter {
         "CREATE TABLE account(id INTEGER PRIMARY KEY CHECK(id=1), ceiling INTEGER NOT NULL, committed INTEGER NOT NULL, held INTEGER NOT NULL) STRICT;" +
         "CREATE TABLE mandates(id TEXT PRIMARY KEY, body_digest TEXT NOT NULL, ceiling INTEGER NOT NULL, committed INTEGER NOT NULL, held INTEGER NOT NULL) STRICT;" +
         "CREATE TABLE revocations(id TEXT PRIMARY KEY) STRICT;" +
-        "CREATE TABLE actions(action_id TEXT PRIMARY KEY, mandate_id TEXT NOT NULL, amount INTEGER NOT NULL, status TEXT NOT NULL CHECK(status IN('COMMITTED','UNKNOWN','RELEASED')), action_digest TEXT NOT NULL, principal_id TEXT NOT NULL) STRICT;");
+        "CREATE TABLE actions(action_id TEXT PRIMARY KEY, mandate_id TEXT NOT NULL, amount INTEGER NOT NULL, status TEXT NOT NULL CHECK(status IN('COMMITTED','UNKNOWN','RELEASED')), action_digest TEXT NOT NULL, principal_id TEXT NOT NULL) STRICT;" +
+        "CREATE TABLE outcome_audit(event_id TEXT PRIMARY KEY, action_id TEXT NOT NULL UNIQUE, witness_id TEXT NOT NULL, observed_at TEXT NOT NULL, outcome TEXT NOT NULL CHECK(outcome IN('COMMITTED','NO_EFFECT')), signed_evidence_digest TEXT NOT NULL) STRICT;");
       db.prepare("INSERT INTO metadata VALUES(1,?,0,0)").run(hash(t));
       db.prepare("INSERT INTO account VALUES(1,?,0,0)").run(t.accountCeilingMinor);
     } finally { db.close(); }
@@ -298,13 +318,26 @@ export class SyntheticDelegatedBudgetWriter {
   /** Protected host-only synthetic simulation of external outcome uncertainty. */
   holdUnknown(req:unknown,caller:HostVerifiedCaller):BudgetResult { return this.#effect(req,caller,"UNKNOWN"); }
   /** Protected controller only: never expose as an agent's arbitrary claim of payment success. */
-  reconcileUnknown(actionId:string, authoritativeSyntheticEffect:"COMMITTED"|"NO_EFFECT"):BudgetResult {
-    if (!id(actionId) || !["COMMITTED","NO_EFFECT"].includes(authoritativeSyntheticEffect)) return result("REJECTED","INVALID_RECONCILIATION");
+  reconcileUnknown(actionId:string, signedEvidence:Signed<SignedSyntheticOutcome>):BudgetResult {
+    if (!id(actionId)) return result("REJECTED","INVALID_RECONCILIATION");
     try {
       return this.#tx(()=>{
         const row=this.#db.prepare("SELECT * FROM actions WHERE action_id=?").get(actionId) as ActionRecord | undefined;
         if (!row || row.status!=="UNKNOWN") return result("REJECTED","NO_UNCERTAIN_ACTION",actionId);
-        const column=authoritativeSyntheticEffect==="COMMITTED"?"committed":null;
+        let evidence: SignedSyntheticOutcome;
+        try {evidence=signed<SignedSyntheticOutcome>(signedEvidence,outcomeKeys,this.#trust.outcomeWitnessPublicKeyPem,SIGNED_OUTCOME_DOMAIN);}
+        catch {return result("REJECTED","WITNESS_SIGNATURE_INVALID",actionId);}
+        if (evidence.schema !== "atg.signed-outcome.synthetic.v1" || evidence.witnessId !== this.#trust.outcomeWitnessId ||
+            evidence.actionId !== actionId || evidence.actionDigest !== row.action_digest ||
+            !fingerprintPattern.test(evidence.actionDigest) || !id(evidence.eventId) || !iso(evidence.observedAt) ||
+            !["COMMITTED","NO_EFFECT"].includes(evidence.outcome))
+          return result("REJECTED","WITNESS_ACTION_BINDING_INVALID",actionId);
+        // Retain a digest of the signed evidence atomically with the budget
+        // decision. This is tamper-evidence within one store, not external
+        // anti-rollback custody or independent event-truth attestation.
+        this.#db.prepare("INSERT INTO outcome_audit VALUES(?,?,?,?,?,?)").run(
+          evidence.eventId,actionId,evidence.witnessId,evidence.observedAt,evidence.outcome,hash(signedEvidence));
+        const column=evidence.outcome==="COMMITTED"?"committed":null;
         this.#db.prepare("UPDATE account SET held=held-?"+(column?", committed=committed+?":"")+" WHERE id=1")
           .run(...(column?[row.amount,row.amount]:[row.amount]));
         this.#db.prepare("UPDATE mandates SET held=held-?"+(column?", committed=committed+?":"")+" WHERE id=?")
