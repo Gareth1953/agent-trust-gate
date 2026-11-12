@@ -247,7 +247,8 @@ export class SyntheticDelegatedBudgetWriter {
         "CREATE TABLE account(id INTEGER PRIMARY KEY CHECK(id=1), ceiling INTEGER NOT NULL, committed INTEGER NOT NULL, held INTEGER NOT NULL) STRICT;" +
         "CREATE TABLE mandates(id TEXT PRIMARY KEY, body_digest TEXT NOT NULL, ceiling INTEGER NOT NULL, committed INTEGER NOT NULL, held INTEGER NOT NULL) STRICT;" +
         "CREATE TABLE revocations(id TEXT PRIMARY KEY) STRICT;" +
-        "CREATE TABLE actions(action_id TEXT PRIMARY KEY, mandate_id TEXT NOT NULL, amount INTEGER NOT NULL, status TEXT NOT NULL CHECK(status IN('COMMITTED','UNKNOWN','RELEASED')), action_digest TEXT NOT NULL, principal_id TEXT NOT NULL) STRICT;");
+        "CREATE TABLE actions(action_id TEXT PRIMARY KEY, mandate_id TEXT NOT NULL, amount INTEGER NOT NULL, status TEXT NOT NULL CHECK(status IN('COMMITTED','UNKNOWN','RELEASED')), action_digest TEXT NOT NULL, principal_id TEXT NOT NULL) STRICT;" +
+        "CREATE TABLE outcome_audit(event_id TEXT PRIMARY KEY, action_id TEXT NOT NULL UNIQUE, witness_id TEXT NOT NULL, observed_at TEXT NOT NULL, outcome TEXT NOT NULL CHECK(outcome IN('COMMITTED','NO_EFFECT')), signed_evidence_digest TEXT NOT NULL) STRICT;");
       db.prepare("INSERT INTO metadata VALUES(1,?,0,0)").run(hash(t));
       db.prepare("INSERT INTO account VALUES(1,?,0,0)").run(t.accountCeilingMinor);
     } finally { db.close(); }
@@ -331,6 +332,11 @@ export class SyntheticDelegatedBudgetWriter {
             !fingerprintPattern.test(evidence.actionDigest) || !id(evidence.eventId) || !iso(evidence.observedAt) ||
             !["COMMITTED","NO_EFFECT"].includes(evidence.outcome))
           return result("REJECTED","WITNESS_ACTION_BINDING_INVALID",actionId);
+        // Retain a digest of the signed evidence atomically with the budget
+        // decision. This is tamper-evidence within one store, not external
+        // anti-rollback custody or independent event-truth attestation.
+        this.#db.prepare("INSERT INTO outcome_audit VALUES(?,?,?,?,?,?)").run(
+          evidence.eventId,actionId,evidence.witnessId,evidence.observedAt,evidence.outcome,hash(signedEvidence));
         const column=evidence.outcome==="COMMITTED"?"committed":null;
         this.#db.prepare("UPDATE account SET held=held-?"+(column?", committed=committed+?":"")+" WHERE id=1")
           .run(...(column?[row.amount,row.amount]:[row.amount]));
