@@ -76,6 +76,10 @@ function uniqueClientDataObject(text: string): Record<string, unknown> {
     if (!terminated) throw Error("PASSKEY_CLIENT_BINDING_INVALID");
     const key: unknown = JSON.parse(text.slice(start, i));
     if (typeof key !== "string" || seen.has(key)) throw Error("PASSKEY_CLIENT_BINDING_INVALID");
+    // Maintain the historic fail-closed rule for escaped spellings of
+    // authority-bearing names, even when they decode to the right string.
+    if (["type","challenge","origin","crossOrigin","topOrigin"].includes(key)
+      && text.slice(start, i) !== JSON.stringify(key)) throw Error("PASSKEY_CLIENT_BINDING_INVALID");
     seen.add(key);
     whitespace();
     if (text[i++] !== ":") throw Error("PASSKEY_CLIENT_BINDING_INVALID");
