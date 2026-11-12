@@ -1,0 +1,165 @@
+{
+  "schema": "atg.openshell-integration.evidence.v1",
+  "startedAt": "2026-11-12T08:53:17.344Z",
+  "status": "PASS_SCOPED",
+  "syntheticOnly": true,
+  "productionReady": false,
+  "independentAssessment": false,
+  "targetOpenshellVersion": "0.1.8",
+  "cases": [
+    {
+      "name": "real OpenShell workload created with no provider or arbitrary mounts",
+      "status": "PASS",
+      "observation": "\nCreated sandbox: atg-broker-eval\n\n  [0.0s] Requesting compute...\n"
+    },
+    {
+      "name": "actual workload exact-action and replay matrix",
+      "status": "PASS",
+      "observation": {
+        "schema": "atg.openshell-agent-evidence.v1",
+        "mode": "matrix",
+        "status": "PASS_SCOPED",
+        "syntheticOnly": true,
+        "productionReady": false,
+        "cases": [
+          {
+            "name": "changed payeeReference",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "changed amountMinorUnits",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "changed currency",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "changed tenantId",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "changed resourceId",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "changed expectedVersion",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "changed value",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "admin route refused",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "expired authority refused",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "forged signature refused",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "missing client identity",
+            "observed": "UNKNOWN",
+            "expected": "UNKNOWN"
+          },
+          {
+            "name": "wrong endpoint pin",
+            "observed": "UNKNOWN",
+            "expected": "UNKNOWN"
+          },
+          {
+            "name": "concurrent one-use",
+            "observed": [
+              "EXECUTED",
+              "REJECTED"
+            ]
+          },
+          {
+            "name": "replay refused",
+            "observed": "REJECTED",
+            "expected": "REJECTED"
+          },
+          {
+            "name": "lookup finds committed synthetic effect",
+            "observed": "EXECUTED",
+            "expected": "EXECUTED"
+          }
+        ]
+      }
+    },
+    {
+      "name": "unlisted live decoy port refused by the runtime",
+      "status": "PASS",
+      "observation": {
+        "schema": "atg.openshell-agent-evidence.v1",
+        "mode": "network-denied",
+        "status": "PASS_SCOPED",
+        "syntheticOnly": true,
+        "productionReady": false,
+        "cases": [
+          {
+            "name": "unlisted port cannot execute",
+            "observed": "UNKNOWN",
+            "expected": "UNKNOWN"
+          }
+        ]
+      }
+    },
+    {
+      "name": "broker outage fails closed without fallback",
+      "status": "PASS",
+      "observation": {
+        "schema": "atg.openshell-agent-evidence.v1",
+        "mode": "outage",
+        "status": "PASS_SCOPED",
+        "syntheticOnly": true,
+        "productionReady": false,
+        "cases": [
+          {
+            "name": "broker outage is UNKNOWN",
+            "observed": "UNKNOWN",
+            "expected": "UNKNOWN"
+          }
+        ]
+      }
+    }
+  ],
+  "limitations": [
+    "Root/writer and Docker administrators remain trusted; whole-host rollback is unprotected.",
+    "No live principal, payment, model, independent assessment or comparative performance claim.",
+    "OpenShell mediates network/binary access; mTLS is end-to-end, so the broker owns HTTP/body enforcement."
+  ],
+  "sourceCommit": "d6f5604db7e23494a22fed9be75caaa09dc5cd4c",
+  "sourceHashes": {
+    "src/openshell-transaction-broker.ts": "eedab90d8e46d8e8b9ad886b06efc5b444b0d3e51746235f18ba3b56209dbe9f",
+    "scripts/openshell-broker.mjs": "f91822c54400d9986b58f7631af763b589c599bf3f28da9a72135e68bd6b1d55",
+    "scripts/openshell-broker-client.mjs": "dc798e091acb6c4793705d1066cb76a2ee592ad9de320eca72ca0edd977b846f",
+    "scripts/openshell-agent-probe.mjs": "c3fd8c45afc414bfa0eb23857796e6164f0d24cd278dc88e21b32a6bda97ccbc",
+    "scripts/test-openshell-integration.mjs": "642c152e12d4e12bd1a315c50b33d0592bc33a8aeb3cc12de0cfae87ff29d33c"
+  },
+  "actualOpenshellVersion": "openshell 0.1.8",
+  "gatewayStatus": "Server Status\n\n  Gateway: atg-ci\n  Server: https://172.17.0.1:17670\n  Status: Connected\n  Authentication: Authenticated (mTLS transport)\n  Version: 0.1.8\n",
+  "agentImage": "sha256:01060a66e54cdeee49be3c7a0f9b16103ebd968268da234f044bd0e63e351174",
+  "clientFiles": "total 48\ndrwxr-xr-x 2 node node 4096 Nov 12 08:53 .\ndrwx------ 1 node node 4096 Nov 12 08:53 ..\n-rw-r--r-- 1 node node  644 Nov 12 08:53 agent.crt\n-rw------- 1 node node  241 Nov 12 08:53 agent.key\n-rw-r--r-- 1 node node 5497 Nov 12 08:53 body.json\n-rw-r--r-- 1 node node  652 Nov 12 08:53 ca.crt\n-rw-r--r-- 1 node node  228 Nov 12 08:53 client.json\n-rw-r--r-- 1 node node 5497 Nov 12 08:53 expired.json\n-rw-r--r-- 1 node node 2646 Nov 12 08:53 openshell-agent-probe.mjs\n-rw-r--r-- 1 node node 3534 Nov 12 08:53 openshell-broker-client.mjs\n",
+  "authoritativeResourceVersion": 2,
+  "sandbox": "{\n  \"annotations\": {\n    \"internal.openshell.ai/auth-epoch\": \"1\",\n    \"internal.openshell.ai/gateway-token-id\": \"a24db893-ce16-479d-bc35-f28369e215f4\",\n    \"internal.openshell.ai/isolation-backend\": \"openshell-sandbox\",\n    \"internal.openshell.ai/runtime-generation\": \"e9c6903d-52bd-4799-b745-b529d7d9c1af\"\n  },\n  \"conditions\": [\n    {\n      \"last_transition_time\": \"\",\n      \"message\": \"Supervisor session connected\",\n      \"reason\": \"DependenciesReady\",\n      \"status\": \"True\",\n      \"type\": \"Ready\"\n    },\n    {\n      \"last_transition_time\": \"\",\n      \"message\": \"\",\n      \"reason\": \"ConfigurationAccepted\",\n      \"status\": \"True\",\n      \"type\": \"ConfigurationReady\"\n    }\n  ],\n  \"configuration_admission\": {\n    \"config_revision\": 17878873510380133248,\n    \"error\": \"\",\n    \"policy_hash\": \"d05348452e4bc2e6622562dbfa508b9d49fc87a4acbdee2f093bc969be98c8ae\",\n    \"policy_version\": 2,\n    \"provider_env_revision\": 3176606324465211593,\n    \"state\": \"accepted\"\n  },\n  \"created_at\": \"2026-11-12 08:53:24\",\n  \"created_from_workload_template\": null,\n  \"current_policy_version\": 2,\n  \"endpoint_statuses\": [],\n  \"exit_code\": null,\n  \"host_key_fingerprint\": \"SHA256:UMZr/rCypBDk/LMVeewPEnD+rD9UhjtnBSN7gDToMJU\",\n  \"id\": \"98ef7d23-5f9a-43a8-b082-96fa17c30542\",\n  \"labels\": {},\n  \"last_token_grant_failure\": null,\n  \"main_process_instance_id\": \"6ac3a355-ef09-4eb0-93d3-05a508a9d764\",\n  \"main_process_started_at_ms\": 1794473605291,\n  \"name\": \"atg-broker-eval\",\n  \"next_restart_at_ms\": 0,\n  \"phase\": \"Ready\",\n  \"policy\": {\n    \"filesystem_policy\": {\n      \"include_workdir\": true,\n      \"read_only\": [\n        \"/usr\",\n        \"/lib\",\n        \"/lib64\",\n        \"/etc\",\n        \"/bin\",\n        \"/var/log\",\n        \"/proc\",\n        \"/dev/urandom\"\n      ],\n      \"read_write\": [\n        \"/sandbox\",\n        \"/tmp\",\n        \"/dev/null\"\n      ]\n    },\n    \"landlock\": {\n      \"compatibility\": \"hard_requirement\"\n    },\n    \"network_policies\": {\n      \"atg_only\": {\n        \"binaries\": [\n          {\n            \"path\": \"/usr/local/bin/node\"\n          }\n        ],\n        \"endpoints\": [\n          {\n            \"allowed_ips\": [\n              \"172.17.0.1/32\"\n            ],\n            \"host\": \"host.openshell.internal\",\n            \"port\": 49443,\n            \"protocol\": \"tcp\",\n            \"tls\": \"skip\"\n          }\n        ],\n        \"name\": \"atg_only\"\n      }\n    },\n    \"version\": 1\n  },\n  \"policy_source\": \"sandbox\",\n  \"provisioning\": {\n    \"admission_start_time\": \"2026-11-12T08:53:25.243Z\",\n    \"attempt_id\": \"897c5b3d-a71e-4429-a8fa-e6de08473e83\",\n    \"cleanup_completed_time\": null,\n    \"cleanup_error\": \"\",\n    \"cleanup_retry_time\": null,\n    \"configuration_change_id\": \"1b6e26b6034bd4412f42a96f5f7d7bd04f7ed9836433b3674d5105e95857a3b0\",\n    \"configuration_change_time\": \"2026-11-12T08:53:25.249Z\",\n    \"deadline\": null,\n    \"driver_operation_id\": \"e5208214-62cc-4a87-903d-d434345ab68c\",\n    \"driver_operation_pending\": false,\n    \"first_rejection_time\": null,\n    \"phase\": \"ready\",\n    \"preparation_deadline\": \"2026-11-12T09:23:24.615Z\",\n    \"timeout_time\": null\n  },\n  \"resource_version\": 13,\n  \"restart_count\": 0,\n  \"restart_policy\": \"never\",\n  \"revision\": 2,\n  \"workspace\": \"default\"\n}\n",
+  "finishedAt": "2026-11-12T08:53:28.172Z",
+  "workflowRun": 43186605253,
+  "workflowJob": 131075213468,
+  "branchHead": "4f2a2eefc04ce56d100a6e7b3f4c756edfd79b63"
+}

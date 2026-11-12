@@ -1,0 +1,36 @@
+{
+  "schema": "atg.openshell-integration.evidence.v1",
+  "startedAt": "2026-11-12T08:50:03.028Z",
+  "status": "FAIL",
+  "syntheticOnly": true,
+  "productionReady": false,
+  "independentAssessment": false,
+  "targetOpenshellVersion": "0.1.8",
+  "cases": [
+    {
+      "name": "real OpenShell workload created with no provider or arbitrary mounts",
+      "status": "PASS",
+      "observation": "\nCreated sandbox: atg-broker-eval\n\n  [0.0s] Requesting compute...\n[0.0s] Sandbox allocated\n[0.0s] Pulling image atg-openshell-agent:synthetic\n[0.0s] Image already present\n[0.1s] Starting sandbox Container created\n"
+    }
+  ],
+  "limitations": [
+    "Root/writer and Docker administrators remain trusted; whole-host rollback is unprotected.",
+    "No live principal, payment, model, independent assessment or comparative performance claim.",
+    "OpenShell mediates network/binary access; mTLS is end-to-end, so the broker owns HTTP/body enforcement."
+  ],
+  "sourceCommit": "aa2a7129abeb621259176edb795009416012c752",
+  "sourceHashes": {
+    "src/openshell-transaction-broker.ts": "eedab90d8e46d8e8b9ad886b06efc5b444b0d3e51746235f18ba3b56209dbe9f",
+    "scripts/openshell-broker.mjs": "f91822c54400d9986b58f7631af763b589c599bf3f28da9a72135e68bd6b1d55",
+    "scripts/openshell-broker-client.mjs": "dc798e091acb6c4793705d1066cb76a2ee592ad9de320eca72ca0edd977b846f",
+    "scripts/openshell-agent-probe.mjs": "c3fd8c45afc414bfa0eb23857796e6164f0d24cd278dc88e21b32a6bda97ccbc",
+    "scripts/test-openshell-integration.mjs": "42d3596436e49235da41c9a1918e13e8fe5fb1a57cb3c9a046fc016758815a7f"
+  },
+  "actualOpenshellVersion": "openshell 0.1.8",
+  "gatewayStatus": "Server Status\n\n  Gateway: atg-ci\n  Server: https://172.17.0.1:17670\n  Status: Connected\n  Authentication: Authenticated (mTLS transport)\n  Version: 0.1.8\n",
+  "agentImage": "sha256:0d2f32260fd419ddb0984795aebb592c117d1f8d401b70b8a8cb9858075329f9",
+  "failure": "Error: PROBE_FAILED node:internal/modules/cjs/loader:1568\n  throw err;\n  ^\n\nError: Cannot find module '/sandbox/client/openshell-agent-probe.mjs'\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1564:15)\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1118:27)\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1142:10)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1169:12)\n    at Module._load (node:internal/modules/cjs/loader:1341:5)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: []\n}\n\nNode.js v24.22.3\n \n    at ChildProcess.<anonymous> (file:///home/runner/work/agent-trust-gate/agent-trust-gate/scripts/test-openshell-integration.mjs:100:112)\n    at ChildProcess.wrapper (node:events:639:12)\n    at ChildProcess.emit (node:events:514:28)\n    at ChildProcess._handle.onexit (node:internal/child_process:324:12)",
+  "finishedAt": "2026-11-12T08:50:21.844Z",
+  "workflowRun": 43186143658,
+  "workflowJob": 131073671826
+}

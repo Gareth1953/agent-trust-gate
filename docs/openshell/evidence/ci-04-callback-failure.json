@@ -1,0 +1,34 @@
+{
+  "workflowRunId": 43185844560,
+  "jobId": 131072661656,
+  "head": "c2bf4fef6af531f4d8eee1c37c9b42359f058c1b",
+  "url": "https://github.com/Gareth1953/agent-trust-gate/actions/runs/43185844560",
+  "receipt": {
+    "schema": "atg.openshell-integration.evidence.v1",
+    "startedAt": "2026-11-12T08:47:43.225Z",
+    "status": "FAIL",
+    "syntheticOnly": true,
+    "productionReady": false,
+    "independentAssessment": false,
+    "targetOpenshellVersion": "0.1.8",
+    "cases": [],
+    "limitations": [
+      "Root/writer and Docker administrators remain trusted; whole-host rollback is unprotected.",
+      "No live principal, payment, model, independent assessment or comparative performance claim.",
+      "OpenShell mediates network/binary access; mTLS is end-to-end, so the broker owns HTTP/body enforcement."
+    ],
+    "sourceCommit": "8e6658e512b51fb243f4fe840fd11a9feed04f45",
+    "sourceHashes": {
+      "src/openshell-transaction-broker.ts": "eedab90d8e46d8e8b9ad886b06efc5b444b0d3e51746235f18ba3b56209dbe9f",
+      "scripts/openshell-broker.mjs": "f91822c54400d9986b58f7631af763b589c599bf3f28da9a72135e68bd6b1d55",
+      "scripts/openshell-broker-client.mjs": "dc798e091acb6c4793705d1066cb76a2ee592ad9de320eca72ca0edd977b846f",
+      "scripts/openshell-agent-probe.mjs": "c3fd8c45afc414bfa0eb23857796e6164f0d24cd278dc88e21b32a6bda97ccbc",
+      "scripts/test-openshell-integration.mjs": "7c6157e9ca5bab8e7041792120ae0f8dac6b726c30ed01519b9f9553a6bf02f7"
+    },
+    "actualOpenshellVersion": "openshell 0.1.8",
+    "gatewayStatus": "Server Status\n\n  Gateway: atg-ci\n  Server: https://172.17.0.1:17670\n  Status: Connected\n  Authentication: Authenticated (mTLS transport)\n  Version: 0.1.8\n",
+    "agentImage": "sha256:36f2e539ebaa266186d532aead11304c82c572a654a9c8ab43e0493c0ee04f67",
+    "failure": "Error: Command failed: /home/runner/work/_temp/atg-openshell-bin/openshell sandbox create --name atg-broker-eval --from atg-openshell-agent:synthetic --policy /tmp/atg-openshell-ci-uew64J/policy.yaml --no-auto-providers --detach -- sleep infinity\nError:   × sandbox entered error phase while provisioning:\n  │ ControlSupervisorStartFailed: Docker supervisor exited before becoming\n  │ ready; log tail: [truncated] nShell server\n  │ 2026-11-12T08:47:55.365Z INFO openshell_supervisor: Starting sandbox\n  │ supervision\n  │ 2026-11-12T08:47:55.366Z INFO\n  │ openshell_sandbox_backend::runtime_initiated: Runtime-initiated Sandbox\n  │ Protocol listener ready\n  │ 2026-11-12T08:47:55.574Z INFO openshell_supervisor: Fetching sandbox\n  │ policy via gRPC\n  │ 2026-11-12T08:47:55.575Z WARN openshell_supervisor: Startup configuration\n  │ fetch failed, retrying\n  │ openshell: log push connect failed: failed to connect to OpenShell server\n  │ 2026-11-12T08:47:56.576Z WARN openshell_supervisor: Startup configuration\n  │ fetch failed, retrying\n  │ openshell: log push connect failed: failed to connect to OpenShell server\n  │ 2026-11-12T08:47:58.577Z WARN openshell_supervisor: Startup configuration\n  │ fetch failed, retrying\n  │ openshell: log push connect failed: failed to connect to OpenShell server\n  │ 2026-11-12T08:48:02.578Z WARN openshell_supervisor: Startup configuration\n  │ fetch failed, retrying\n  │ Error:   × Startup configuration fetch failed after 5 attempts: failed to\n  │ connect to\n  │   │ OpenShell server\n\n\n    at genericNodeError (node:internal/errors:986:15)\n    at wrappedFn (node:internal/errors:540:14)\n    at checkExecSyncError (node:child_process:943:11)\n    at execFileSync (node:child_process:979:15)\n    at run (file:///home/runner/work/agent-trust-gate/agent-trust-gate/scripts/test-openshell-integration.mjs:25:28)\n    at openshell (file:///home/runner/work/agent-trust-gate/agent-trust-gate/scripts/test-openshell-integration.mjs:31:20)\n    at file:///home/runner/work/agent-trust-gate/agent-trust-gate/scripts/test-openshell-integration.mjs:94:99\n    at cases (file:///home/runner/work/agent-trust-gate/agent-trust-gate/scripts/test-openshell-integration.mjs:32:54)\n    at file:///home/runner/work/agent-trust-gate/agent-trust-gate/scripts/test-openshell-integration.mjs:94:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+    "finishedAt": "2026-11-12T08:48:06.695Z"
+  }
+}
