@@ -9,11 +9,12 @@ import { BROKER_MAX_BYTES, brokerRefusal, handleBrokerRequest } from '../dist/sr
 import { budgetPublicKeyFingerprint } from '../dist/src/delegated-budget-witness.js';
 import { CustodyWitness } from '../dist/src/custody-witness.js';
 
-export async function startSyntheticBroker({ writer, host='127.0.0.1', port=0, ca, cert, key, clientFingerprint, delegatedClients }) {
+export async function startSyntheticBroker({ writer, host='127.0.0.1', port=0, ca, cert, key, clientFingerprint, delegatedClients, checkpointHandler }) {
   if (!/^(?:[A-F0-9]{2}:){31}[A-F0-9]{2}$/.test(clientFingerprint)) throw Error('BROKER_CLIENT_PIN_REQUIRED');
   if(delegatedClients!==undefined && (!delegatedClients || typeof delegatedClients!=='object' || Array.isArray(delegatedClients) ||
       Object.keys(delegatedClients).length<1 || Object.keys(delegatedClients).length>24 ||
       !Object.entries(delegatedClients).every(([pin,id])=>/^(?:[A-F0-9]{2}:){31}[A-F0-9]{2}$/.test(pin) && typeof id==='string' && /^[a-zA-Z0-9:._-]{1,120}$/.test(id))))throw Error('BROKER_DELEGATE_REGISTRY_INVALID');
+  if(checkpointHandler!==undefined && typeof checkpointHandler!=='function')throw Error('BROKER_CHECKPOINT_HANDLER_INVALID');
   // Private-interface binding is only for disposable host/container integration.
   if (!/^(127\.0\.0\.1|10(?:\.\d{1,3}){3}|192\.168(?:\.\d{1,3}){2}|172\.(1[6-9]|2\d|3[01])(?:\.\d{1,3}){2})$/.test(host)) throw Error('BROKER_PRIVATE_BIND_REQUIRED');
   const sockets=new Set();
@@ -39,7 +40,17 @@ export async function startSyntheticBroker({ writer, host='127.0.0.1', port=0, c
       if(data.length+chunk.length>BROKER_MAX_BYTES){done=true;send(413,brokerRefusal('BROKER_BODY_TOO_LARGE'));req.resume();return;}
       data=Buffer.concat([data,chunk]);
     });
-    req.on('end',()=>{if(done)return;done=true;const r=handleBrokerRequest(writer,req.method??'',req.url??'',data,caller);send(r.outcome==='EXECUTED'?200:r.outcome==='UNKNOWN'?503:403,r);});
+    req.on('end',()=>{if(done)return;done=true;
+      // Guarded experimental mode MUST NOT fall back to the legacy writer
+      // if checkpoint admission is missing, rejected or unavailable.
+      // Lookups may use the existing read-only historical lookup path.
+      const guardedCommit=checkpointHandler!==undefined && req.url==='/v1/synthetic-record/commit';
+      const operation=guardedCommit
+        ? Promise.resolve().then(()=>checkpointHandler(req.method??'',req.url??'',data,caller))
+        : Promise.resolve().then(()=>handleBrokerRequest(writer,req.method??'',req.url??'',data,caller));
+      operation.then(r=>send(r.outcome==='EXECUTED'?200:r.outcome==='UNKNOWN'?503:403,r))
+        .catch(()=>send(503,brokerRefusal('BROKER_CHECKPOINT_OUTCOME_UNKNOWN',true)));
+    });
     req.on('error',()=>{done=true;});
   });
   server.maxConnections=32;server.requestTimeout=3000;server.headersTimeout=3000;server.keepAliveTimeout=1;
