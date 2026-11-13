@@ -97,7 +97,7 @@ test('checkpoint mode denies alternate mutation routes without touching writer o
 });
 test('checkpoint remains required even after a failed or malformed HTTP commit',async t=>{
  const x=await fixture(t);
- const broken=await brokerRequest(x.client,x.body,{raw:true,path:'/v1/synthetic-record/commit'});
+ const broken=await brokerRequest(x.client,'{invalid-json',{raw:true,path:'/v1/synthetic-record/commit'});
  assert.notEqual(broken.outcome,'EXECUTED');
  assert.equal(x.anchor.lookup(x.r.grant.issuance.gatePass.gatePassId).outcome,'NOT_RECORDED');
  await x.checkpoint.close();
