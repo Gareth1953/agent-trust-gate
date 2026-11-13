@@ -67,6 +67,8 @@ jobs:
       - run: npm run test:delegated-custody
       - name: Retained checkpoint and rollback counterexample tests — research only
         run: npm run test:antirollback-anchor
+      - name: Checkpoint controller and retained bypass counterexample — research only
+        run: node --test experiments/mandatory-destination/anchored-destination.test.mjs
       - run: npm run demo:delegated-custody
       - name: Seven-step synthetic delegated-budget buyer walkthrough
         run: npm run demo:delegated-budget
