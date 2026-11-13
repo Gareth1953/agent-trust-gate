@@ -1,0 +1,190 @@
+{
+  "schema": "atg.acs.synthetic-walkthrough.v1",
+  "syntheticOnly": true,
+  "upstream": {
+    "release": "v0.1.4",
+    "commit": "834f3f0d51e7bbbd9a68ff682bec89f97ddd72d8",
+    "specification": "0.1.0"
+  },
+  "requests": [
+    {
+      "jsonrpc": "2.0",
+      "id": "transport-001",
+      "method": "steps/toolCallRequest",
+      "params": {
+        "acs_version": "0.1.0",
+        "request_id": "f003deda-38b6-4e09-9d22-b83243323289",
+        "timestamp": "2026-11-10T08:30:00.000Z",
+        "metadata": {
+          "agent_id": "simulated_agent_procurement_001",
+          "session_id": "dfd82dfa-98c7-4066-8cc0-22f374562a2f"
+        },
+        "payload": {
+          "tool": {
+            "name": "atg.custody.synthetic-record",
+            "version": "1.0.0"
+          },
+          "operation": "record_synthetic_order",
+          "arguments": {
+            "tenantId": {
+              "value": "synthetic-tenant-A"
+            },
+            "resourceId": {
+              "value": "synthetic-order-001"
+            },
+            "expectedVersion": {
+              "value": 1
+            },
+            "value": {
+              "value": "approved"
+            },
+            "payeeReference": {
+              "value": "fixture-bank-A"
+            },
+            "amountMinorUnits": {
+              "value": 400000
+            },
+            "currency": {
+              "value": "GBP"
+            }
+          }
+        }
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "transport-001",
+      "method": "steps/toolCallRequest",
+      "params": {
+        "acs_version": "0.1.0",
+        "request_id": "f003deda-38b6-4e09-9d22-b83243323289",
+        "timestamp": "2026-11-10T08:30:00.000Z",
+        "metadata": {
+          "agent_id": "simulated_agent_procurement_001",
+          "session_id": "dfd82dfa-98c7-4066-8cc0-22f374562a2f"
+        },
+        "payload": {
+          "tool": {
+            "name": "atg.custody.synthetic-record",
+            "version": "1.0.0"
+          },
+          "operation": "record_synthetic_order",
+          "arguments": {
+            "tenantId": {
+              "value": "synthetic-tenant-A"
+            },
+            "resourceId": {
+              "value": "synthetic-order-001"
+            },
+            "expectedVersion": {
+              "value": 1
+            },
+            "value": {
+              "value": "approved"
+            },
+            "payeeReference": {
+              "value": "fixture-bank-A"
+            },
+            "amountMinorUnits": {
+              "value": 1
+            },
+            "currency": {
+              "value": "GBP"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "responses": [
+    {
+      "jsonrpc": "2.0",
+      "id": "transport-001",
+      "result": {
+        "type": "final",
+        "acs_version": "0.1.0",
+        "request_id": "f003deda-38b6-4e09-9d22-b83243323289",
+        "decision": "deny",
+        "reasoning": "ATG_ACS_ACTION_BINDING_MISMATCH",
+        "reason_codes": [
+          "ATG_ACS_ACTION_BINDING_MISMATCH"
+        ],
+        "policy_data": {
+          "atg": {
+            "synthetic_only": true,
+            "preflight_only": true,
+            "executed": false,
+            "automatic_retry_permitted": false
+          }
+        },
+        "metadata": {
+          "evaluator": "deterministic",
+          "evaluator_version": "atg-acs-experiment-1"
+        }
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "transport-001",
+      "result": {
+        "type": "final",
+        "acs_version": "0.1.0",
+        "request_id": "f003deda-38b6-4e09-9d22-b83243323289",
+        "decision": "allow",
+        "reasoning": "ATG_SYNTHETIC_PREFLIGHT_VERIFIED",
+        "reason_codes": [
+          "ATG_SYNTHETIC_PREFLIGHT_VERIFIED"
+        ],
+        "policy_data": {
+          "atg": {
+            "synthetic_only": true,
+            "preflight_only": true,
+            "executed": false,
+            "automatic_retry_permitted": false,
+            "gate_pass_id": "gatepass_exact_b220a09a04cb8824e80134f3",
+            "action_digest": "sha256:6d07520a60d3d04a2f6e9c5d467bf1dc59a97cbba2b834e67025ea5b8390c7c2"
+          }
+        },
+        "metadata": {
+          "evaluator": "deterministic",
+          "evaluator_version": "atg-acs-experiment-1"
+        }
+      }
+    },
+    {
+      "jsonrpc": "2.0",
+      "id": "transport-001",
+      "result": {
+        "type": "final",
+        "acs_version": "0.1.0",
+        "request_id": "f003deda-38b6-4e09-9d22-b83243323289",
+        "decision": "deny",
+        "reasoning": "ATG_AUTHORITY_NOT_VERIFIED",
+        "reason_codes": [
+          "ATG_AUTHORITY_NOT_VERIFIED"
+        ],
+        "policy_data": {
+          "atg": {
+            "synthetic_only": true,
+            "preflight_only": true,
+            "executed": false,
+            "automatic_retry_permitted": false,
+            "reasons": [
+              "GATEPASS_ALREADY_CONSUMED"
+            ]
+          }
+        },
+        "metadata": {
+          "evaluator": "deterministic",
+          "evaluator_version": "atg-acs-experiment-1"
+        }
+      }
+    }
+  ],
+  "beforeAdmissionExecution": "NOT_RECORDED",
+  "committed": "EXECUTED",
+  "destinationReplay": "REJECTED",
+  "productionReady": false,
+  "acsCoreConformance": false,
+  "independentReview": false
+}

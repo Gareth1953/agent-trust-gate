@@ -67,6 +67,12 @@ jobs:
       - run: npm run test:delegated-custody
       - name: Retained checkpoint and rollback counterexample tests — research only
         run: npm run test:antirollback-anchor
+      - name: Experimental ACS tool-hook subset — no conformance claim
+        run: |
+          node --test experiments/acs-adapter/adapter.test.mjs
+          node experiments/acs-adapter/demo.mjs > "$RUNNER_TEMP/acs-walkthrough.json"
+          python3 -m pip install 'jsonschema==4.26.0'
+          python3 experiments/acs-adapter/validate_schemas.py "$RUNNER_TEMP/acs-walkthrough.json"
       - run: npm run demo:delegated-custody
       - name: Seven-step synthetic delegated-budget buyer walkthrough
         run: npm run demo:delegated-budget
