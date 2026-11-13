@@ -145,7 +145,7 @@ catch(e){console.log(JSON.stringify({denied:true,code:e.code||'SQL_DENIED'}));}`
     const p=spawn('setpriv',['--reuid='+agentUid,'--regid='+agentUid,'--clear-groups',
       '--bounding-set=-all','--inh-caps=-all','--ambient-caps=-all','--no-new-privs',
       node,'--no-addons',agentProbe,op,path],{cwd:code,stdio:['ignore','pipe','pipe']});
-    children.push(p);return await one(p);
+    children.push(p);let stderr='';p.stderr.on('data',b=>stderr=(stderr+b).slice(-3000));p.errorText=()=>stderr;return await one(p);
   }
   for(const [label,op,path] of [
     ['Agent cannot read checkpoint store','read',anchorPath],
