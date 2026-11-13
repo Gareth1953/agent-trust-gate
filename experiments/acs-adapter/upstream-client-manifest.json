@@ -1,0 +1,8 @@
+{
+  "commit": "834f3f0d51e7bbbd9a68ff682bec89f97ddd72d8",
+  "source_path": "reference-implementations/agt/packages/host-adapter/src/guardian-client.ts",
+  "sha256": {
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "guardian-client.ts": "c406de884a5ffbadba4ff2db544e0fd2680d892a683d23fdcb48d22511ce0a35"
+  }
+}

@@ -1,5 +1,8 @@
 # Validation record — 13 November 2026
 
+This records the first schema/adapter stage. Subsequent actual upstream-client
+and AP2 SDK integration results are in [STAGE2-VALIDATION.md](STAGE2-VALIDATION.md).
+
 ATG base: `29dda2b3790b16047b7aff5a7797a59cb8bc5172`.
 Upstream ACS: `834f3f0d51e7bbbd9a68ff682bec89f97ddd72d8`, release v0.1.4.
 Local runtime: Node 24.22.1; compatibility subprocess: actual Node 20.20.2.

@@ -1,0 +1,32 @@
+{
+  "schema": "atg.ap2.synthetic-walkthrough.v1",
+  "syntheticOnly": true,
+  "sdkCommit": "e1ea56db72a6385bce3e5c1112b3a56ce60acb43",
+  "invalidToken": {
+    "outcome": "REJECTED",
+    "reason": "AP2_CHECKOUT_NOT_VERIFIED",
+    "automaticRetryPermitted": false
+  },
+  "destinationCallsAfterInvalidToken": 0,
+  "permitted": {
+    "outcome": "EXECUTED",
+    "reason": "SYNTHETIC_RECORD_AND_CONSUMPTION_COMMITTED",
+    "domainId": "0b57207a-ebad-4cbe-bd5d-b7a88d8e1867",
+    "automaticRetryPermitted": false,
+    "receipt": {
+      "gatePassId": "gatepass_exact_d7fbc4cde5cb22014043e4e2",
+      "actionDigest": "sha256:905992c2aebc4dce8f0a296f2178b291af132bec70c2b3a0d8433f705c3886e4",
+      "resourceVersion": 2
+    }
+  },
+  "replay": {
+    "outcome": "REJECTED",
+    "reason": "AUTHORITY_ALREADY_USED_OR_REVOKED",
+    "domainId": "0b57207a-ebad-4cbe-bd5d-b7a88d8e1867",
+    "automaticRetryPermitted": false,
+    "receipt": null
+  },
+  "destinationCalls": 2,
+  "livePayment": false,
+  "productionReady": false
+}

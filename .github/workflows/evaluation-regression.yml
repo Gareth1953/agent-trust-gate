@@ -69,10 +69,16 @@ jobs:
         run: npm run test:antirollback-anchor
       - name: Experimental ACS tool-hook subset — no conformance claim
         run: |
-          node --test experiments/acs-adapter/adapter.test.mjs
+          node --test experiments/acs-adapter/adapter.test.mjs experiments/acs-adapter/transport.test.mjs
           node experiments/acs-adapter/demo.mjs > "$RUNNER_TEMP/acs-walkthrough.json"
           python3 -m pip install 'jsonschema==4.26.0'
           python3 experiments/acs-adapter/validate_schemas.py "$RUNNER_TEMP/acs-walkthrough.json"
+      - name: Pinned AP2 SDK checkout bridge — synthetic only
+        run: |
+          python3 -m venv "$RUNNER_TEMP/ap2-env"
+          "$RUNNER_TEMP/ap2-env/bin/pip" install -r experiments/ap2-adapter/requirements.txt
+          "$RUNNER_TEMP/ap2-env/bin/python" experiments/ap2-adapter/verify_sdk.py
+          "$RUNNER_TEMP/ap2-env/bin/python" -m pytest -q experiments/ap2-adapter/test_adapter.py
       - run: npm run demo:delegated-custody
       - name: Seven-step synthetic delegated-budget buyer walkthrough
         run: npm run demo:delegated-budget
