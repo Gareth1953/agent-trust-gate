@@ -64,3 +64,17 @@ test('signed writer preflight prevents forged payee from poisoning the checkpoin
   assert.equal(valid.outcome,'EXECUTED','genuine approved action still succeeds');
   assert.equal(version(x.f.path),2);
 });
+
+test('forged delegation and approval proof cannot reserve valid authority',t=>{
+  const x=setup(t);
+  const badDelegation=structuredClone(x.r.grant);
+  badDelegation.delegatedRequest.action.amountMinor=999999;
+  assert.equal(x.wrap(x.writer).execute(badDelegation,x.r.ctx).outcome,'REJECTED');
+  assert.equal(x.anchor.lookup(x.r.grant.issuance.gatePass.gatePassId).outcome,'NOT_RECORDED');
+  const badApproval=structuredClone(x.r.grant);
+  badApproval.humanApproval.signature='forged-signature';
+  assert.equal(x.wrap(x.writer).execute(badApproval,x.r.ctx).outcome,'REJECTED');
+  assert.equal(x.anchor.lookup(x.r.grant.issuance.gatePass.gatePassId).outcome,'NOT_RECORDED');
+  assert.equal(version(x.f.path),1);
+  assert.equal(x.wrap(x.writer).execute(x.r.grant,x.r.ctx).outcome,'EXECUTED');
+});
