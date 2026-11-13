@@ -81,6 +81,9 @@ export function loadBrokerConfig(path) {
     if(!q || Object.keys(q).sort().join(',')!=='caPath,certPath,host,keyPath,port,serverFingerprint'
       || q.host!=='127.0.0.1'||!Number.isInteger(q.port)||q.port<1||q.port>65535
       || !/^(?:[A-F0-9]{2}:){31}[A-F0-9]{2}$/.test(q.serverFingerprint))throw Error('BROKER_CHECKPOINT_CONFIG_INVALID');
+    // Guard against a same-UID attacker replacing the optional checkpoint
+    // transport/controller modules before the protected broker loads them.
+    rootCodeTree(join(dirname(fileURLToPath(import.meta.url)),'../experiments/mandatory-destination'));
     for(const p of [q.caPath,q.certPath])protectedPath(p,[0]);
     protectedPath(q.keyPath,[c.serviceUid,0],{privateFile:true});
   }
