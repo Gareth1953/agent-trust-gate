@@ -26,6 +26,13 @@ test('retained checkpoint permits only first exact-action reservation',t=>{
   assert.equal(altered.reason,'ANCHOR_CONFLICTING_ACTION');
   assert.equal(w.lookup(data.actionId).outcome,'HELD');
 });
+test('ATG sha256-prefixed signed action digest is reserved without normalization',t=>{
+  const f=fixture(t),w=f.open();t.after(()=>w.close());
+  const prefixed={...data,actionId:'atg-gatepass-prefixed',actionDigest:'sha256:'+digest};
+  assert.equal(w.reserve(prefixed).outcome,'RESERVED');
+  assert.equal(w.reserve({...prefixed,actionDigest:digest}).reason,'ANCHOR_CONFLICTING_ACTION');
+  assert.equal(w.lookup(prefixed.actionId).outcome,'HELD');
+});
 test('two restored destination copies cannot both pass one shared retained anchor',t=>{
   const f=fixture(t),w=f.open();t.after(()=>w.close());
   // Emulates separately restored local writer state. Both copied writers
