@@ -92,6 +92,12 @@ with two fixture client identities and a software authenticator. See the
 It does not upgrade old stores or plugin archives and does not establish genuine
 human enrollment, independent outcome truth or administrator rollback resistance.
 
+## Optional checkpoint-enforced real OpenShell workload — 13 November 2026
+
+The source-only experimental broker configuration now supports a **separately authenticated checkpoint**, enforced for the exact synthetic commit route. The real OpenShell **0.1.8** sandbox evaluation passed the modified-action, replay, race, network, historical lookup and checkpoint-outage scenarios. The separate checkpoint stays on a loopback address and requires pinned mutual TLS; the OpenShell workload connects to the broker through its restricted network policy.
+
+See [the exact checkpoint validation and deliberate limits](CHECKPOINT-VALIDATION-2026-11-13.md), with the pinned workflow/commit evidence and source-only experiment under `experiments/mandatory-destination/`. The route remains **opt-in**, is not the released plugin, and has not been combined end-to-end with genuine device approval or independent checkpoint administration. Production NO-GO. Existing tests intentionally retain successful common-owner direct-writer and whole-domain rollback attacks.
+
 ## Remaining boundaries
 
 The optional [purchase approval connector and buyer walkthrough](PURCHASE-APPROVAL.md)

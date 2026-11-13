@@ -67,6 +67,12 @@ jobs:
       - run: npm run test:delegated-custody
       - name: Retained checkpoint and rollback counterexample tests — research only
         run: npm run test:antirollback-anchor
+      - name: Checkpoint controller and retained bypass counterexample — research only
+        run: node --test experiments/mandatory-destination/anchored-destination.test.mjs experiments/mandatory-destination/custody-integration.test.mjs
+      - name: Pinned mutual-TLS checkpoint and actual synthetic custody writer red-team checks
+        run: node --test experiments/mandatory-destination/checkpoint-tls-integration.test.mjs
+      - name: Protected OpenShell-shaped HTTP broker checkpoint enforcement — synthetic only
+        run: node --test experiments/mandatory-destination/checkpoint-broker.test.mjs
       - run: npm run demo:delegated-custody
       - name: Seven-step synthetic delegated-budget buyer walkthrough
         run: npm run demo:delegated-budget
@@ -90,10 +96,15 @@ jobs:
       - run: npm run build --silent
       - name: Run distinct numeric UIDs on this disposable runner
         run: sudo -- "$(command -v node)" scripts/test-custody-isolation.mjs --output "$RUNNER_TEMP/atg-custody-isolation.json" --disposable-host
+      - name: Authenticated checkpoint and writer under distinct Linux UIDs — synthetic only
+        run: sudo -- "$(command -v node)" experiments/mandatory-destination/linux-isolation-harness.mjs --output "$RUNNER_TEMP/atg-separated-checkpoint.json" --disposable-host
       - name: Retain sanitized evidence only
         if: always()
         run: |
           if test -f "$RUNNER_TEMP/atg-custody-isolation.json"; then
             sudo cat "$RUNNER_TEMP/atg-custody-isolation.json"
+          fi
+          if test -f "$RUNNER_TEMP/atg-separated-checkpoint.json"; then
+            sudo cat "$RUNNER_TEMP/atg-separated-checkpoint.json"
           fi
           echo 'No private fixture directory or key is uploaded. Administrator/whole-host rollback remains outside this proof. Production NO-GO.'

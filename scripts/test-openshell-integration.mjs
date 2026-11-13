@@ -10,6 +10,7 @@ import { createHash,X509Certificate,randomBytes,generateKeyPairSync,randomUUID }
 import { DatabaseSync } from 'node:sqlite';
 import { connect } from 'node:tls';
 import { createServer } from 'node:https';
+import { createServer as createTcpListener } from 'node:net';
 import { createCustodyFixture } from './custody-fixture.mjs';
 import { custodyTlsFixture } from './custody-tls-fixture.mjs';
 import { brokerRequest } from './openshell-broker-client.mjs';
@@ -17,13 +18,16 @@ import { createPasskeyApprovalFixture } from './passkey-approval-fixture.mjs';
 import { createDelegatedCustodyFixture } from './delegated-custody-fixture.mjs';
 import { delegatedTlsClient } from './delegated-custody-tls-fixture.mjs';
 import { CustodyWitness } from '../dist/src/custody-witness.js';
+import {SyntheticConsumptionAnchor} from '../experiments/anti-rollback/consumption-anchor.mjs';
+import {startSyntheticCheckpointService} from '../experiments/mandatory-destination/checkpoint-tls-service.mjs';
 
 const args=process.argv.slice(2);
 const requireDelegation=args.length===6&&args[5]==='--require-delegation';
+const requireCheckpoint=args.length===6&&args[5]==='--require-checkpoint';
 const requirePasskey=requireDelegation||(args.length===6&&args[5]==='--require-passkey');
-if((args.length!==5&&!requirePasskey)||args[0]!=='--output'||args[2]!=='--openshell-bin'||args[4]!=='--disposable-host'||!isAbsolute(args[1])||!isAbsolute(args[3]))throw Error('Use --output /ABSOLUTE/NEW/report.json --openshell-bin /ABSOLUTE/BIN/DIR --disposable-host [--require-passkey]');
+if((args.length!==5&&!requirePasskey&&!requireCheckpoint)||args[0]!=='--output'||args[2]!=='--openshell-bin'||args[4]!=='--disposable-host'||!isAbsolute(args[1])||!isAbsolute(args[3]))throw Error('Use --output /ABSOLUTE/NEW/report.json --openshell-bin /ABSOLUTE/BIN/DIR --disposable-host [--require-passkey]');
 const output=args[1],bin=args[3],receipt={schema:'atg.openshell-integration.evidence.v1',startedAt:new Date().toISOString(),status:'INCOMPLETE',
-  syntheticOnly:true,productionReady:false,independentAssessment:false,delegatedBudgetRequired:requireDelegation,passkeyApprovalRequired:requirePasskey,liveHumanCeremony:false,authenticator:requirePasskey?'SOFTWARE_TEST_FIXTURE':'NONE',targetOpenshellVersion:'0.1.8',cases:[],limitations:[
+  syntheticOnly:true,productionReady:false,independentAssessment:false,checkpointRequired:requireCheckpoint,delegatedBudgetRequired:requireDelegation,passkeyApprovalRequired:requirePasskey,liveHumanCeremony:false,authenticator:requirePasskey?'SOFTWARE_TEST_FIXTURE':'NONE',targetOpenshellVersion:'0.1.8',cases:[],limitations:[
     'Root/writer and Docker administrators remain trusted; whole-host rollback is unprotected.',
     'No live principal, payment, model, independent assessment or comparative performance claim.',
     'OpenShell mediates network/binary access; mTLS is end-to-end, so the broker owns HTTP/body enforcement.']};
@@ -32,7 +36,7 @@ const run=(cmd,a,opts={})=>execFileSync(cmd,a,{encoding:'utf8',timeout:120000,ma
 if(process.platform!=='linux'||process.getuid?.()!==0){receipt.status='BLOCKED';receipt.blocker='Distinct-UID disposable root provisioner unavailable';persist();process.exit(2);}
 try{run('docker',['version']);}catch{receipt.status='BLOCKED';receipt.blocker='Docker runtime unavailable';persist();process.exit(2);}
 const root=mkdtempSync(join(tmpdir(),'atg-openshell-ci-'));chmodSync(root,0o755);
-const children=[];let sandboxCreated=false,decoy;const name='atg-broker-eval',cli=join(bin,'openshell'),gateway=join(bin,'openshell-gateway');
+const children=[];let sandboxCreated=false,decoy,checkpointServer,checkpointAnchor;const name='atg-broker-eval',cli=join(bin,'openshell'),gateway=join(bin,'openshell-gateway');
 const env={PATH:process.env.PATH,LANG:'C.UTF-8',XDG_CONFIG_HOME:join(root,'xdg-config'),XDG_STATE_HOME:join(root,'xdg-state'),XDG_DATA_HOME:join(root,'xdg-data'),XDG_CACHE_HOME:join(root,'xdg-cache')};
 const openshell=a=>run(cli,a,{env,timeout:180000});
 const cases=async(name,fn)=>{const observation=await fn();receipt.cases.push({name,status:'PASS',observation:observation??null});};
@@ -41,12 +45,23 @@ async function ready(p,pattern){await new Promise((ok,bad)=>{let text='';const t
 try {
   receipt.sourceCommit=run('git',['rev-parse','HEAD']).trim();receipt.sourceHashes={};
   for(const p of ['src/openshell-transaction-broker.ts','src/custody-witness.ts','src/passkey-transaction-approval.ts','scripts/custody-fixture.mjs','scripts/passkey-approval-fixture.mjs','src/custody-delegated-budget.ts','src/delegated-budget-witness.ts','scripts/delegated-custody-fixture.mjs','scripts/delegated-custody-tls-fixture.mjs','scripts/openshell-broker.mjs','scripts/openshell-broker-client.mjs','scripts/openshell-agent-probe.mjs','scripts/test-openshell-integration.mjs'])receipt.sourceHashes[p]=createHash('sha256').update(readFileSync(p)).digest('hex');
+  if(requireCheckpoint)for(const p of ['experiments/mandatory-destination/checkpoint-tls-service.mjs',
+    'experiments/mandatory-destination/async-checkpointed-destination.mjs',
+    'experiments/mandatory-destination/checkpoint-broker-handler.mjs',
+    'experiments/anti-rollback/consumption-anchor.mjs'])
+      receipt.sourceHashes[p]=createHash('sha256').update(readFileSync(p)).digest('hex');
   receipt.actualOpenshellVersion=openshell(['--version']).trim();assert.equal(receipt.actualOpenshellVersion,'openshell 0.1.8');
   const host=run('docker',['network','inspect','bridge','--format','{{(index .IPAM.Config 0).Gateway}}']).trim();
   assert.match(host,/^(172\.(1[6-9]|2\d|3[01])|10\.|192\.168\.)/);
   const code=join(root,'protected-code'),scripts=join(code,'scripts');mkdirSync(code);mkdirSync(scripts);
   cpSync(resolve('dist'),join(code,'dist'),{recursive:true});
-  for(const f of ['openshell-broker.mjs','custody-service.mjs'])cpSync(resolve('scripts',f),join(scripts,f));
+  for(const f of ['openshell-broker.mjs','custody-service.mjs',...(requireCheckpoint?['openshell-broker-client.mjs']:[])])cpSync(resolve('scripts',f),join(scripts,f));
+  if(requireCheckpoint){
+    const destination=join(code,'experiments/mandatory-destination');
+    mkdirSync(destination,{recursive:true});
+    for(const file of ['checkpoint-tls-service.mjs','async-checkpointed-destination.mjs','checkpoint-broker-handler.mjs'])
+      cpSync(resolve('experiments/mandatory-destination',file),join(destination,file));
+  }
   const node=join(code,'node');cpSync(process.execPath,node);chmodSync(node,0o555);protect(code);
   const f=requireDelegation?createDelegatedCustodyFixture(join(root,'fixture')):null;
   const passkey=requireDelegation?f.pk:(requirePasskey?createPasskeyApprovalFixture():null);
@@ -66,9 +81,43 @@ try {
   chownSync(fixture.custody,serviceUid,serviceUid);chownSync(fixture.path,serviceUid,serviceUid);chmodSync(fixture.custody,0o700);chmodSync(fixture.path,0o600);
   const caPath=join(pub,'ca.crt'),serverCertPath=join(pub,'server.crt'),serverKeyPath=join(secret,'server.key');
   cpSync(tls.caPath,caPath);cpSync(tls.server.certPath,serverCertPath);cpSync(tls.server.keyPath,serverKeyPath);chownSync(secret,serviceUid,serviceUid);chownSync(serverKeyPath,serviceUid,serviceUid);chmodSync(serverKeyPath,0o600);
-  const port=49443,config=join(pub,'broker.json');
+  let checkpointConfig;
+  if(requireCheckpoint){
+    const store=join(root,'checkpoint-owned');mkdirSync(store,{mode:0o700});
+    const storePath=join(store,'checkpoint.sqlite');
+    SyntheticConsumptionAnchor.create(storePath,fixture.trust.domainId);
+    checkpointAnchor=new SyntheticConsumptionAnchor(storePath,fixture.trust.domainId);
+    const secureTls=join(root,'checkpoint-tls');mkdirSync(secureTls,{mode:0o700});
+    const ct=custodyTlsFixture(secureTls);
+    checkpointServer=await startSyntheticCheckpointService({
+      anchor:checkpointAnchor,caPath:ct.caPath,certPath:ct.server.certPath,
+      keyPath:ct.server.keyPath,writerFingerprint:ct.client.fingerprint,
+    });
+    const writerKey=join(secret,'checkpoint-writer.key');
+    const writerCert=join(pub,'checkpoint-writer.crt');
+    const checkpointCA=join(pub,'checkpoint-ca.crt');
+    cpSync(ct.client.keyPath,writerKey);chownSync(writerKey,serviceUid,serviceUid);chmodSync(writerKey,0o600);
+    cpSync(ct.client.certPath,writerCert);chmodSync(writerCert,0o444);
+    cpSync(ct.caPath,checkpointCA);chmodSync(checkpointCA,0o444);
+    checkpointConfig={host:'127.0.0.1',port:checkpointServer.port,
+      caPath:checkpointCA,certPath:writerCert,keyPath:writerKey,
+      serverFingerprint:ct.server.fingerprint};
+    receipt.checkpoint={configured:true,scope:'opt-in actual OpenShell workload, same root operator controls fixture'};
+  }
+  // Avoid unrelated runner services claiming the decoy/broker port pair.
+  // Both candidate sockets are tested on the exact Docker bridge address.
+  const availablePort=p=>new Promise(ok=>{
+    const test=createTcpListener();test.once('error',()=>ok(false));
+    test.listen(p,host,()=>test.close(()=>ok(true)));
+  });
+  let port;
+  for(let candidate=49443;candidate<=49543;candidate+=2){
+    if(await availablePort(candidate) && await availablePort(candidate+1)){port=candidate;break;}
+  }
+  if(!port)throw Error('BROKER_TEST_PORT_PAIR_UNAVAILABLE');
+  const config=join(pub,'broker.json');
   writeFileSync(config,JSON.stringify({schema:'atg.openshell-broker.config.synthetic.v1',serviceUid,codeRoot:join(code,'dist'),databasePath:fixture.path,trustPath,
-    host,port,caPath,serverCertPath,serverKeyPath,clientFingerprint:tls.client.fingerprint,...(requireDelegation?{delegatedClients:{[tls.client.fingerprint]:'agent-B',[agentA.fingerprint]:'agent-A'}}:{})}));chmodSync(config,0o444);
+    host,port,caPath,serverCertPath,serverKeyPath,clientFingerprint:tls.client.fingerprint,...(requireCheckpoint?{checkpoint:checkpointConfig}:{}),...(requireDelegation?{delegatedClients:{[tls.client.fingerprint]:'agent-B',[agentA.fingerprint]:'agent-A'}}:{})}));chmodSync(config,0o444);
   const broker=spawn('setpriv',['--reuid='+serviceUid,'--regid='+serviceUid,'--clear-groups','--bounding-set=-all','--inh-caps=-all','--ambient-caps=-all','--no-new-privs',node,'--no-addons',join(scripts,'openshell-broker.mjs'),config],{stdio:['ignore','pipe','pipe'],env:{PATH:'/usr/bin:/bin',LANG:'C.UTF-8'}});children.push(broker);
   let brokerErrors='';broker.stderr.on('data',b=>brokerErrors+=b);await ready(broker,/"status":"READY"/).catch(e=>{throw Error(e.message+' '+brokerErrors);});
   const now=Date.now();if(requireDelegation)f.setNow(new Date(now).toISOString());
@@ -81,6 +130,11 @@ try {
     finally{controller.close();}
   }
   const body={grant,payload:grant.proposedAction.canonicalArguments};
+  if(requireCheckpoint){
+    const next=fixture.grant({issuedAt:new Date(now-1000).toISOString(),notBefore:new Date(now-1000).toISOString(),expiresAt:new Date(now+600000).toISOString()},
+      {expectedVersion:2,value:'after-checkpoint-outage'});
+    writeFileSync(join(bundle,'after-outage.json'),JSON.stringify({grant:next,payload:next.proposedAction.canonicalArguments}));
+  }
   if(requireDelegation){
     const controller=new CustodyWitness({path:fixture.path,trust:fixture.trust});
     try {
@@ -138,6 +192,11 @@ try {
   const directConfig={host,port:port+1,caPath:tls.caPath,certPath:tls.client.certPath,keyPath:tls.client.keyPath,serverFingerprint};
   assert.equal((await brokerRequest(directConfig,body)).reason,'DECOY_REACHABLE');assert.equal(decoyRequests,1);
   await cases('unlisted live decoy port refused by the runtime',async()=>{const r=await probe('network-denied');assert.equal(decoyRequests,1,'Sandbox must not reach the listening decoy');return r;});
+  if(requireCheckpoint){
+    assert.equal(checkpointAnchor.lookup(grant.issuance.gatePass.gatePassId).outcome,'HELD');
+    await checkpointServer.close();
+    await cases('actual workload refuses fresh valid transaction when checkpoint unavailable',()=>probe('checkpoint-outage'));
+  }
   const db=new DatabaseSync(fixture.path,{readOnly:true});const version=db.prepare('SELECT version FROM resource').get().version;
   if(passkey){const audit=db.prepare('SELECT principal_id,counter FROM approval_audit').all();assert.equal(audit.length,requireDelegation?2:1);assert.equal(audit[0].principal_id,passkey.trust.principalId);assert.equal(audit[0].counter,1);receipt.approvalAudit={rows:audit.length,principal:'synthetic-purchase-approver',counters:audit.map(x=>x.counter),liveHumanCeremony:false};}
   if(requireDelegation){
@@ -159,5 +218,7 @@ finally {
   if(sandboxCreated){try{openshell(['sandbox','delete',name]);}catch{receipt.cleanup='Sandbox deletion not confirmed; inspect this disposable runner.';}}
   for(const p of children)if(p.exitCode===null)p.kill('SIGTERM');
   decoy?.closeAllConnections();decoy?.close();
+  if(checkpointServer)await checkpointServer.close();
+  checkpointAnchor?.close();
   persist();
 }
