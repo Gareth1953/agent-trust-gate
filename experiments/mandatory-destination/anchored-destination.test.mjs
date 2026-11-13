@@ -16,7 +16,7 @@ function setup(t) {
   SyntheticConsumptionAnchor.create(path,domainId);
   const anchor=new SyntheticConsumptionAnchor(path,domainId);
   let effects=0;
-  const writer={execute:()=>{effects++;return {outcome:'EXECUTED'};}};
+  const writer={preflightForAnchor:g=>({verified:true,actionId:g.issuance.gatePass.gatePassId,actionDigest:g.issuance.gatePass.action.actionDigest}),execute:()=>{effects++;return {outcome:'EXECUTED'};}};
   t.after(()=>{anchor.close();rmSync(dir,{recursive:true,force:true});});
   return {anchor,writer,get effects(){return effects;},
     destination:()=>new SyntheticAnchoredDestination({anchor,writer,domainId})};
@@ -55,7 +55,7 @@ test('untrusted checkpoint response alone cannot claim effect permission',()=>{
   let effects=0;
   const d=new SyntheticAnchoredDestination({
     anchor:{reserve(){return {outcome:'RESERVED',effectPermittedByAnchor:false,actionId};}},
-    writer:{execute(){effects++;return {outcome:'EXECUTED'};}},domainId
+    writer:{preflightForAnchor:()=>({verified:true,actionId,actionDigest}),execute(){effects++;return {outcome:'EXECUTED'};}},domainId
   });
   assert.equal(d.execute(grant,{}).outcome,'UNKNOWN');
   assert.equal(effects,0);
@@ -63,7 +63,7 @@ test('untrusted checkpoint response alone cannot claim effect permission',()=>{
 test('uncertain writer outcome holds permission, and retry remains blocked',t=>{
   const f=setup(t);
   const failing=new SyntheticAnchoredDestination({
-    anchor:f.anchor,domainId,writer:{execute(){throw Error('lost acknowledgement');}}
+    anchor:f.anchor,domainId,writer:{preflightForAnchor:()=>({verified:true,actionId,actionDigest}),execute(){throw Error('lost acknowledgement');}}
   });
   const result=failing.execute(grant,{});
   assert.equal(result.outcome,'UNKNOWN');
@@ -78,4 +78,17 @@ test('expected RED TEAM success: direct access to underlying writer STILL BYPASS
   // Known successful attack retained: this wrapper does not secure the writer.
   assert.equal(f.writer.execute(grant,{}).outcome,'EXECUTED');
   assert.equal(f.effects,2);
+});
+
+test('missing or refusing writer preflight does not consume one-use authority',t=>{
+  const f=setup(t);
+  assert.throws(()=>new SyntheticAnchoredDestination({
+    anchor:f.anchor,writer:{execute:()=>({outcome:'EXECUTED'})},domainId
+  }),/CONFIGURATION_INVALID/);
+  const denying=new SyntheticAnchoredDestination({
+    anchor:f.anchor,writer:{preflightForAnchor:()=>({verified:false}),execute(){throw Error('must not execute');}},domainId
+  });
+  assert.equal(denying.execute(grant,{}).outcome,'REJECTED');
+  assert.equal(f.anchor.lookup(actionId).outcome,'NOT_RECORDED');
+  assert.equal(f.destination().execute(grant,{}).outcome,'EXECUTED');
 });
