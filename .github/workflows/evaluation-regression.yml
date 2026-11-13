@@ -69,6 +69,8 @@ jobs:
         run: npm run test:antirollback-anchor
       - name: Checkpoint controller and retained bypass counterexample — research only
         run: node --test experiments/mandatory-destination/anchored-destination.test.mjs experiments/mandatory-destination/custody-integration.test.mjs
+      - name: Pinned mutual-TLS checkpoint and actual synthetic custody writer red-team checks
+        run: node --test experiments/mandatory-destination/checkpoint-tls-integration.test.mjs
       - run: npm run demo:delegated-custody
       - name: Seven-step synthetic delegated-budget buyer walkthrough
         run: npm run demo:delegated-budget
