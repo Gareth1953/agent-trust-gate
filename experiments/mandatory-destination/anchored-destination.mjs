@@ -19,7 +19,7 @@ export class SyntheticAnchoredDestination {
 
   constructor({anchor, writer, domainId}) {
     if (!anchor || typeof anchor.reserve !== 'function' ||
-        !writer || typeof writer.execute !== 'function' ||
+        !writer || typeof writer.execute !== 'function' || typeof writer.preflightForAnchor !== 'function' ||
         typeof domainId !== 'string' || !ID.test(domainId))
       throw Error('SYNTHETIC_DESTINATION_CONFIGURATION_INVALID');
     this.#anchor = anchor;
@@ -40,6 +40,17 @@ export class SyntheticAnchoredDestination {
     if (typeof actionId !== 'string' || !ID.test(actionId) ||
         typeof actionDigest !== 'string' || !DIGEST.test(actionDigest)) {
       return refusal('REJECTED','CHECKPOINT_SIGNED_ACTION_MISSING_OR_INVALID');
+    }
+    // The trusted writer must validate the actual signed grant and approval
+    // before this non-refundable one-use reservation. A separate preflight is
+    // not sufficient for production atomicity: writer.execute rechecks under
+    // its own transaction lock; a destination must exclude alternate routes.
+    let preflight;
+    try { preflight = this.#writer.preflightForAnchor(grant, ctx); }
+    catch { return refusal('UNKNOWN','WRITER_PREFLIGHT_UNAVAILABLE'); }
+    if (!preflight || preflight.verified !== true ||
+        preflight.actionId !== actionId || preflight.actionDigest !== actionDigest) {
+      return refusal('REJECTED','WRITER_AUTHORITY_PREFLIGHT_REFUSED');
     }
     let reservation;
     try {
