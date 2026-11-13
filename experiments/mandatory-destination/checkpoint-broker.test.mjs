@@ -78,3 +78,31 @@ test('legacy direct writer does not consult an unused checkpoint',async t=>{
  assert.equal(x.anchor.lookup(x.r.grant.issuance.gatePass.gatePassId).outcome,'NOT_RECORDED');
  // This is a SUCCESSFUL unmediated write; not a protection success.
 });
+
+test('checkpoint mode denies alternate mutation routes without touching writer or checkpoint',async t=>{
+ const x=await fixture(t);
+ const before=x.anchor.lookup(x.r.grant.issuance.gatePass.gatePassId);
+ assert.equal(before.outcome,'NOT_RECORDED');
+ for(const path of [
+   '/admin/reset','/v1/synthetic-record/commit/','/v1/synthetic-record/commit?bypass=true',
+   '/v1/synthetic-record/execute','/v1/synthetic-record/release','/v1/synthetic-record/lookup?write=1',
+   '/v2/synthetic-record/commit'
+ ]) {
+   const result=await brokerRequest(x.client,x.body,{path});
+   assert.equal(result.outcome,'REJECTED',path);
+ }
+ assert.equal(x.anchor.lookup(x.r.grant.issuance.gatePass.gatePassId).outcome,'NOT_RECORDED');
+ assert.equal(x.writer.lookup(x.r.grant).outcome,'NOT_RECORDED');
+ assert.equal((await brokerRequest(x.client,x.body)).outcome,'EXECUTED');
+});
+test('checkpoint remains required even after a failed or malformed HTTP commit',async t=>{
+ const x=await fixture(t);
+ const broken=await brokerRequest(x.client,x.body,{raw:true,path:'/v1/synthetic-record/commit'});
+ assert.notEqual(broken.outcome,'EXECUTED');
+ assert.equal(x.anchor.lookup(x.r.grant.issuance.gatePass.gatePassId).outcome,'NOT_RECORDED');
+ await x.checkpoint.close();
+ const answer=await brokerRequest(x.client,x.body);
+ assert.equal(answer.outcome,'UNKNOWN');
+ assert.equal(answer.automaticRetryPermitted,false);
+ assert.equal(x.writer.lookup(x.r.grant).outcome,'NOT_RECORDED');
+});
