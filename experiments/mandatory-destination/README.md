@@ -37,3 +37,25 @@ The existing Linux split-custody service shows that a restricted agent cannot di
 ## Current scope after preflight repair
 
 The preflight and reservation are **separate steps**, and cannot by themselves guarantee cross-process atomic execution or independently protected monotonic history. An operator who can invoke or clone the unprotected writer still bypasses this wrapper. Do not merge this research as a production fix or claim that the direct-access bypass has been removed. The real Linux custody service has not yet been rewired to this checkpoint. Independent administration and destination-owner involvement remain required.
+
+
+## Optional authenticated checkpoint service and Linux isolation experiment
+
+The new research path consists of `checkpoint-tls-service.mjs`, `async-checkpointed-destination.mjs`, and the opt-in **separate-UID** test processes. The service binds only to 127.0.0.1 and requires TLS 1.3, CA validation and an exactly pinned certificate for both destination-to-checkpoint directions. The only service operation is `reserve`; the agent is given no release, reset or administration API. A failed connection, wrong identity, invalid reply or outage refuses effect permission and does not retry.
+
+**Actual protected synthetic writer:** `isolated-writer-process.mjs` runs with a distinct writer UID, reads only its owned database/TLS client key, validates signed authority using `CustodyWitness.preflightForAnchor`, calls the checkpoint over mutual TLS, then revalidates at the protected synthetic commit. The checkpoint process holds its own file and TLS key under another UID. The untrusted agent UID has neither key nor database access.
+
+Reproduce on a disposable Linux host with Node 24 and `setpriv`, after `npm ci --ignore-scripts && npm run build --silent`:
+
+```sh
+node --test experiments/mandatory-destination/checkpoint-tls-integration.test.mjs
+# Disposable Linux CI host only; never run as root on a personal/work device:
+sudo -- "$(command -v node)" experiments/mandatory-destination/linux-isolation-harness.mjs \
+  --output /ABSOLUTE/NEW/evidence.json --disposable-host
+```
+
+The harness must demonstrate a first fictional effect through the authenticated writer, refusal of a restored writer through the retained checkpoint, actual OS denied access to writer/checkpoint state and secrets, and rejection of agent impersonation. It records a sanitized JSON receipt, never copies the fixture credentials into uploaded artifacts, and makes **no** persistent account or host ACL changes.
+
+**Explicit limitations:** The test's root orchestrator controls both UIDs, all fixture credentials and the creation/restoration of both stores, so it does not establish independent *administrative* custody. A malicious destination operator with direct access to the writer process/code can still bypass the opt-in wrapper. The existing OpenShell broker and published plugin are not silently rerouted through this service. The service has no externally authoritative payment effect, global transaction ledger, durable remote acknowledgements, customer identity or independent audit. A permitted checkpoint reservation can still remain HELD if the subsequent writer action fails.
+
+**Production acceptance remains blocked** until the actual buyer-owned destination makes this route non-bypassable, the checkpoint has a *different administrator/restore domain*, and a separate security assessor verifies those boundaries and recovery behaviours. This is a synthetic demonstration of separated *operating-system identities*, not production-grade anti-rollback.
