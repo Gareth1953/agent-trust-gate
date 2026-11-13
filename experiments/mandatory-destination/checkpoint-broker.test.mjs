@@ -3,7 +3,7 @@ import {test} from 'node:test';
 import {mkdtempSync,mkdirSync,copyFileSync,rmSync,readFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-import {createDelegatedCustodyFixture} from '../../scripts/delegated-custody-fixture.mjs';
+import {createCustodyFixture} from '../../scripts/custody-fixture.mjs';
 import {custodyTlsFixture} from '../../scripts/custody-tls-fixture.mjs';
 import {CustodyWitness} from '../../dist/src/custody-witness.js';
 import {startSyntheticBroker} from '../../scripts/openshell-broker.mjs';
@@ -13,8 +13,8 @@ import {startSyntheticCheckpointService,reserveViaCheckpoint} from './checkpoint
 import {createCheckpointBrokerHandler} from './checkpoint-broker-handler.mjs';
 async function fixture(t) {
  const root=mkdtempSync(join(tmpdir(),'atg-openshell-checkpoint-'));
- const f=createDelegatedCustodyFixture(join(root,'writer'));
- const writer=f.open(),r=f.request();f.approve(writer,r);
+ const f=createCustodyFixture(join(root,'writer'));
+ const writer=f.open(),grant=f.grant();const r={grant,ctx:undefined};
  const clonePath=join(root,'clone.sqlite');copyFileSync(f.path,clonePath);
  const clone=new CustodyWitness({path:clonePath,trust:f.trust,now:()=>new Date(f.getNow())});
  const anchorPath=join(root,'anchor.sqlite');SyntheticConsumptionAnchor.create(anchorPath,f.trust.domainId);
