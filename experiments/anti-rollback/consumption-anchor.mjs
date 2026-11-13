@@ -10,7 +10,7 @@ import { openSync, closeSync, lstatSync } from 'node:fs';
 import { isAbsolute } from 'node:path';
 
 const ID = /^[A-Za-z0-9:._-]{1,160}$/;
-const DIGEST = /^[a-f0-9]{64}$/;
+const DIGEST = /^(?:sha256:)?[a-f0-9]{64}$/; // ATG's signed action digests use sha256:<hex>.
 export const ANCHOR_SCHEMA = 'atg.consumption-anchor.synthetic.v1';
 const answer = (outcome, reason, actionId = null) => ({
   schema: ANCHOR_SCHEMA, syntheticOnly: true, productionReady: false,
