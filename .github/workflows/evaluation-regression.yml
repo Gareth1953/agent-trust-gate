@@ -65,6 +65,8 @@ jobs:
       - name: Synthetic multi-agent authority and shared-budget adversarial tests
         run: npm run test:delegated-budget
       - run: npm run test:delegated-custody
+      - name: Retained checkpoint and rollback counterexample tests — research only
+        run: npm run test:antirollback-anchor
       - run: npm run demo:delegated-custody
       - name: Seven-step synthetic delegated-budget buyer walkthrough
         run: npm run demo:delegated-budget

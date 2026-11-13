@@ -129,6 +129,7 @@
     "test:delegated-budget": "npm run build --silent && node --test test/delegated-budget.test.mjs",
     "demo:delegated-budget": "npm run build --silent && node scripts/delegated-budget-demo.mjs",
     "demo:purchase-approval": "npm run build --silent && node scripts/purchase-approval-demo.mjs",
+    "test:antirollback-anchor": "npm run build --silent && node --test experiments/anti-rollback/anchor.test.mjs test/antirollback-custody.test.mjs",
     "test:delegated-custody": "npm run build --silent && node --test test/delegated-custody.test.mjs",
     "demo:delegated-custody": "npm run build --silent && node scripts/delegated-custody-demo.mjs"
   },
