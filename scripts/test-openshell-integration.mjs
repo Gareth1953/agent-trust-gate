@@ -10,6 +10,7 @@ import { createHash,X509Certificate,randomBytes,generateKeyPairSync,randomUUID }
 import { DatabaseSync } from 'node:sqlite';
 import { connect } from 'node:tls';
 import { createServer } from 'node:https';
+import { createServer as createTcpListener } from 'node:net';
 import { createCustodyFixture } from './custody-fixture.mjs';
 import { custodyTlsFixture } from './custody-tls-fixture.mjs';
 import { brokerRequest } from './openshell-broker-client.mjs';
@@ -103,7 +104,18 @@ try {
       serverFingerprint:ct.server.fingerprint};
     receipt.checkpoint={configured:true,scope:'opt-in actual OpenShell workload, same root operator controls fixture'};
   }
-  const port=49443,config=join(pub,'broker.json');
+  // Avoid unrelated runner services claiming the decoy/broker port pair.
+  // Both candidate sockets are tested on the exact Docker bridge address.
+  const availablePort=p=>new Promise(ok=>{
+    const test=createTcpListener();test.once('error',()=>ok(false));
+    test.listen(p,host,()=>test.close(()=>ok(true)));
+  });
+  let port;
+  for(let candidate=49443;candidate<=49543;candidate+=2){
+    if(await availablePort(candidate) && await availablePort(candidate+1)){port=candidate;break;}
+  }
+  if(!port)throw Error('BROKER_TEST_PORT_PAIR_UNAVAILABLE');
+  const config=join(pub,'broker.json');
   writeFileSync(config,JSON.stringify({schema:'atg.openshell-broker.config.synthetic.v1',serviceUid,codeRoot:join(code,'dist'),databasePath:fixture.path,trustPath,
     host,port,caPath,serverCertPath,serverKeyPath,clientFingerprint:tls.client.fingerprint,...(requireCheckpoint?{checkpoint:checkpointConfig}:{}),...(requireDelegation?{delegatedClients:{[tls.client.fingerprint]:'agent-B',[agentA.fingerprint]:'agent-A'}}:{})}));chmodSync(config,0o444);
   const broker=spawn('setpriv',['--reuid='+serviceUid,'--regid='+serviceUid,'--clear-groups','--bounding-set=-all','--inh-caps=-all','--ambient-caps=-all','--no-new-privs',node,'--no-addons',join(scripts,'openshell-broker.mjs'),config],{stdio:['ignore','pipe','pipe'],env:{PATH:'/usr/bin:/bin',LANG:'C.UTF-8'}});children.push(broker);
