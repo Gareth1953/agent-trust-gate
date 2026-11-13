@@ -68,13 +68,23 @@ export function loadBrokerConfig(path) {
   protectedPath(path,[0]);const c=JSON.parse(readFileSync(path,'utf8'));
   if(!c || ![
     'caPath,clientFingerprint,codeRoot,databasePath,host,port,schema,serverCertPath,serverKeyPath,serviceUid,trustPath',
-    'caPath,clientFingerprint,codeRoot,databasePath,delegatedClients,host,port,schema,serverCertPath,serverKeyPath,serviceUid,trustPath'
+    'caPath,clientFingerprint,codeRoot,databasePath,delegatedClients,host,port,schema,serverCertPath,serverKeyPath,serviceUid,trustPath',
+    'caPath,checkpoint,clientFingerprint,codeRoot,databasePath,host,port,schema,serverCertPath,serverKeyPath,serviceUid,trustPath'
   ].includes(Object.keys(c).sort().join(','))
     || c.schema!=='atg.openshell-broker.config.synthetic.v1'||c.serviceUid!==process.getuid()||!Number.isInteger(c.port)||c.port<1||c.port>65535)throw Error('BROKER_CONFIG_INVALID');
   for(const p of [process.execPath,fileURLToPath(import.meta.url),c.caPath,c.serverCertPath,c.trustPath])protectedPath(p,[0]);
   rootCodeTree(dirname(fileURLToPath(import.meta.url)));
   rootCodeTree(c.codeRoot);
   for(const p of [c.serverKeyPath,c.databasePath])protectedPath(p,[c.serviceUid,0],{privateFile:true});
+  if(c.checkpoint!==undefined){
+    const q=c.checkpoint;
+    if(!q || Object.keys(q).sort().join(',')!=='caPath,certPath,host,keyPath,port,serverFingerprint'
+      || q.host!=='127.0.0.1'||!Number.isInteger(q.port)||q.port<1||q.port>65535
+      || !/^(?:[A-F0-9]{2}:){31}[A-F0-9]{2}$/.test(q.serverFingerprint))throw Error('BROKER_CHECKPOINT_CONFIG_INVALID');
+    for(const p of [q.caPath,q.certPath])protectedPath(p,[0]);
+    protectedPath(q.keyPath,[c.serviceUid,0],{privateFile:true});
+  }
+
   protectedPath(dirname(c.databasePath),[c.serviceUid,0],{privateFile:true,directory:true});
   if(lstatSync(c.databasePath).uid!==c.serviceUid || lstatSync(dirname(c.databasePath)).uid!==c.serviceUid)throw Error('BROKER_WRITER_OWNERSHIP_REQUIRED');
   return c;
@@ -83,7 +93,18 @@ if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
   try {
     if(process.argv.length!==3)throw Error('BROKER_CONFIG_PATH_REQUIRED');const c=loadBrokerConfig(process.argv[2]);
     const writer=new CustodyWitness({path:c.databasePath,trust:JSON.parse(readFileSync(c.trustPath,'utf8'))});
-    const broker=await startSyntheticBroker({writer,host:c.host,port:c.port,ca:readFileSync(c.caPath),cert:readFileSync(c.serverCertPath),key:readFileSync(c.serverKeyPath),clientFingerprint:c.clientFingerprint,delegatedClients:c.delegatedClients});
+    let checkpointHandler;
+    if(c.checkpoint!==undefined){
+      // No downgrade to the legacy execute path when checkpoint is configured.
+      // Loaded only from the protected code tree; agent has no reset API.
+      const {reserveViaCheckpoint}=await import('../experiments/mandatory-destination/checkpoint-tls-service.mjs');
+      const {createCheckpointBrokerHandler}=await import('../experiments/mandatory-destination/checkpoint-broker-handler.mjs');
+      checkpointHandler=createCheckpointBrokerHandler({
+        writer,domainId:JSON.parse(readFileSync(c.trustPath,'utf8')).domainId,
+        reserve:proposal=>reserveViaCheckpoint(c.checkpoint,proposal)
+      });
+    }
+    const broker=await startSyntheticBroker({writer,host:c.host,port:c.port,ca:readFileSync(c.caPath),cert:readFileSync(c.serverCertPath),key:readFileSync(c.serverKeyPath),clientFingerprint:c.clientFingerprint,delegatedClients:c.delegatedClients,checkpointHandler});
     console.log(JSON.stringify({status:'READY',port:broker.port,syntheticOnly:true}));
     const stop=async()=>{await broker.close();writer.close();process.exit(0);};process.once('SIGTERM',stop);process.once('SIGINT',stop);
   }catch(error){console.error(String(error.message));process.exitCode=1;}
