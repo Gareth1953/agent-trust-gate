@@ -69,9 +69,12 @@ test('broker rejects alternate routes, invalid client identity and direct reset 
  assert.equal((await brokerRequest({...x.client,certPath:undefined,keyPath:undefined},x.body)).outcome,'UNKNOWN');
  assert.equal(x.anchor.lookup(x.r.grant.issuance.gatePass.gatePassId).outcome,'NOT_RECORDED');
 });
-test('retained red-team boundary: trusted direct writer call can still evade optional broker checkpoint',async t=>{
+test('legacy direct writer does not consult an unused checkpoint',async t=>{
  const x=await fixture(t);
- assert.equal((await brokerRequest(x.client,x.body)).outcome,'EXECUTED');
- // Known successful bypass OUTSIDE restricted agent boundary.
- assert.equal(x.clone.execute(x.r.grant,x.r.ctx).outcome,'EXECUTED');
+ // Proves the architectural bypass, without pretending that a cloned
+ // version/mode in this standard fixture necessarily executes.
+ const direct=x.writer.execute(x.r.grant);
+ assert.equal(direct.outcome,'EXECUTED');
+ assert.equal(x.anchor.lookup(x.r.grant.issuance.gatePass.gatePassId).outcome,'NOT_RECORDED');
+ // This is a SUCCESSFUL unmediated write; not a protection success.
 });
