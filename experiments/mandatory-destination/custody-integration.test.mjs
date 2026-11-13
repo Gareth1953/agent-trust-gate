@@ -51,3 +51,16 @@ test('retained successful bypass: original CustodyWitness is still directly call
   assert.equal(x.clone.execute(x.r.grant,x.r.ctx).outcome,'EXECUTED');
   assert.equal(version(x.clonePath),2);
 });
+
+test('retained security failure: a forged payload can reserve a valid action before writer verification',t=>{
+  const x=setup(t);
+  const forged=structuredClone(x.r.grant);
+  forged.proposedAction.canonicalArguments.payeeReference='fixture-bank-Z';
+  const first=x.wrap(x.writer).execute(forged,x.r.ctx);
+  assert.equal(first.outcome,'UNKNOWN','writer rejects forged action after anchor reservation');
+  assert.equal(version(x.f.path),1,'forged payload caused no transaction effect');
+  assert.equal(x.anchor.lookup(x.r.grant.issuance.gatePass.gatePassId).outcome,'HELD');
+  const valid=x.wrap(x.writer).execute(x.r.grant,x.r.ctx);
+  assert.equal(valid.outcome,'REJECTED','valid authority is now denied by poisoned reservation');
+  assert.equal(version(x.f.path),1);
+});
