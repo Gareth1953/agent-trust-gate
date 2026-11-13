@@ -44,8 +44,13 @@ export async function startSyntheticBroker({ writer, host='127.0.0.1', port=0, c
       // Guarded experimental mode MUST NOT fall back to the legacy writer
       // if checkpoint admission is missing, rejected or unavailable.
       // Lookups may use the existing read-only historical lookup path.
-      const guardedCommit=checkpointHandler!==undefined && req.url==='/v1/synthetic-record/commit';
-      const operation=guardedCommit
+      // When checkpoint mode is on, ONLY historical lookup may use the
+      // legacy read-only handler. Every other method/path is handled by the
+      // guarded route, even an unknown URL or malformed commit request.
+      // This prevents a future legacy write route from becoming an implicit
+      // bypass by accident.
+      const historicalLookup=req.method==='POST' && req.url==='/v1/synthetic-record/lookup';
+      const operation=checkpointHandler!==undefined && !historicalLookup
         ? Promise.resolve().then(()=>checkpointHandler(req.method??'',req.url??'',data,caller))
         : Promise.resolve().then(()=>handleBrokerRequest(writer,req.method??'',req.url??'',data,caller));
       operation.then(r=>send(r.outcome==='EXECUTED'?200:r.outcome==='UNKNOWN'?503:403,r))
