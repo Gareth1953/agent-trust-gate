@@ -141,8 +141,8 @@ console.log(JSON.stringify({denied:false}));}
 catch(e){console.log(JSON.stringify({denied:true,code:e.code||'SQL_DENIED'}));}`);
   // Unlike secured code tree, the disposable probe is public read-only.
   ownedFile(agentProbe,0,0o444);
-  async function probe(op,path){
-    const p=spawn('setpriv',['--reuid='+agentUid,'--regid='+agentUid,'--clear-groups',
+  async function probe(op,path,uid=agentUid){
+    const p=spawn('setpriv',['--reuid='+uid,'--regid='+uid,'--clear-groups',
       '--bounding-set=-all','--inh-caps=-all','--ambient-caps=-all','--no-new-privs',
       node,'--no-addons',agentProbe,op,path],{cwd:code,stdio:['ignore','pipe','pipe']});
     children.push(p);let stderr='';p.stderr.on('data',b=>stderr=(stderr+b).slice(-3000));p.errorText=()=>stderr;return await one(p);
@@ -150,11 +150,21 @@ catch(e){console.log(JSON.stringify({denied:true,code:e.code||'SQL_DENIED'}));}`
   for(const [label,op,path] of [
     ['Agent cannot read checkpoint store','read',anchorPath],
     ['Agent cannot rewrite checkpoint history','write',anchorPath],
+    ['Agent cannot read protected writer database','read',f.path],
     ['Agent cannot read checkpoint TLS secret','read',serverKey],
     ['Agent cannot read writer TLS secret','read',writerKey],
     ['Agent cannot modify protected writer SQL','sql',f.path],
     ['Agent cannot replace writer database','write',f.path]
   ]){const result=await probe(op,path);record(label,result.denied===true);}
+
+  for(const [label,op,path] of [
+    ['Writer cannot read checkpoint history','read',anchorPath],
+    ['Writer cannot rewrite checkpoint history','write',anchorPath],
+    ['Writer cannot access checkpoint service key','read',serverKey]
+  ]) {
+    const result=await probe(op,path,writerUid);
+    record(label,result.denied===true);
+  }
   const agentWriter=role(agentUid,writerScript,configPath);
   let textOutput='';for await(const b of agentWriter.stdout)textOutput+=b;
   if(agentWriter.exitCode===null)await once(agentWriter,'exit');
