@@ -10,6 +10,11 @@ const body=JSON.parse(readFileSync(join(root,'body.json'),'utf8'));
 const cases=[];const record=(name,observed,expected)=>{assert.equal(observed,expected,name);cases.push({name,observed,expected});};
 if(mode==='outage') {
   const r=await brokerRequest(c,body);record('broker outage is UNKNOWN',r.outcome,'UNKNOWN');assert.equal(r.automaticRetryPermitted,false);
+}else if(mode==='checkpoint-outage') {
+  const changed=JSON.parse(readFileSync(join(root,'after-outage.json'),'utf8'));
+  const r=await brokerRequest(c,changed);
+  record('valid fresh action refused during checkpoint outage',r.outcome,'UNKNOWN');
+  assert.equal(r.automaticRetryPermitted,false);
 }else if(mode==='network-denied') {
   const r=await brokerRequest({...c,port:c.port+1},body);record('unlisted port cannot execute',r.outcome,'UNKNOWN');
 }else {
