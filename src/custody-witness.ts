@@ -185,6 +185,24 @@ export class CustodyWitness {
     const next=verifyPasskeyAssertion(t,assertion,client.challenge,Number(counter.counter));
     return {challenge:client.challenge,counter:next,assertionDigest:digest(assertion),approvedAt:new Date(now).toISOString()};
   }
+  /** Trusted in-process controller preflight, not exposed over MCP or the agent TLS service.
+   * This is read-only validation, NOT authority to execute and NOT a budget reservation.
+   * Execution must repeat every check under its own transaction lock.
+   */
+  preflightForAnchor(input:unknown,caller?:HostVerifiedCaller):{verified:boolean;actionId?:string;actionDigest?:string} {
+    try {
+      const {grant,p}=this.#grant(input);
+      const pass=grant.issuance.gatePass,a=pass.action;
+      this.#checkStore();
+      if(this.#db.prepare('SELECT stopped FROM meta WHERE id=1').get()?.stopped!==0) return {verified:false};
+      if(this.#db.prepare('SELECT gate_id FROM decisions WHERE gate_id=? OR nonce=? OR idempotency=?').get(pass.gatePassId,a.nonce,a.idempotencyKey))return {verified:false};
+      const row=this.#db.prepare('SELECT version FROM resource WHERE id=?').get(p.resourceId);
+      if(!row || row.version!==p.expectedVersion)return {verified:false};
+      this.#approve(grant);
+      this.#delegation(grant,p,caller);
+      return {verified:true,actionId:pass.gatePassId,actionDigest:a.actionDigest};
+    } catch {return {verified:false};}
+  }
   execute(input:unknown,caller?:HostVerifiedCaller):WitnessResult {
     let checked:{grant:WitnessGrant;p:Payload}; // assigned after strict snapshot; no awaits or caller callbacks
     try {checked=this.#grant(input);}catch{return this.#result('REJECTED','INVALID_EXPIRED_OR_CHANGED_AUTHORITY');}
