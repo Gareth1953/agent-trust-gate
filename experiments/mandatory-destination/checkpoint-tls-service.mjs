@@ -46,9 +46,13 @@ export async function startSyntheticCheckpointService({anchor,caPath,certPath,ke
   server.on('tlsClientError',()=>{});
   server.maxConnections=16;
   await new Promise((ok,bad)=>{server.once('error',bad);server.listen(0,'127.0.0.1',ok);});
-  return {port:server.address().port,close:()=>new Promise(ok=>{
-    for(const s of sockets)s.destroy();server.close(ok);
-  })};
+  let shutdown;
+  return {port:server.address().port,close:()=>{
+    if(shutdown)return shutdown;
+    shutdown=new Promise(ok=>{for(const s of sockets)s.destroy();server.close(ok);});
+    return shutdown;
+  }};
+
 }
 
 export async function reserveViaCheckpoint(config,proposal) {
