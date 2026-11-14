@@ -28,12 +28,28 @@ synthetic writer. It does not execute a payment or operate a live merchant.
 | CoSAI | Secure-design review and contribution through its agent-security workstream | Public onboarding route verified; evidence packet prepared below; no membership or submission claimed | Review of an exact-action gateway pattern with successful and failed attack cases; no buyer introduction is promised |
 | OpenID AAuth | Track agent identity, delegation, supervision and budget protocol drafts | Official working-group page and linked protocol draft reviewed; compatibility not implemented | Pin an adopted draft and map issuer/audience/caller/delegation/revocation semantics before a cross-implementation test |
 | Google AP2 | Mandate-to-destination interoperability | Pinned actual SDK verifies a delegated checkout chain; merchant signature/hash and narrow constraints checked; one synthetic ATG commit and replay refusal demonstrated; 26 scoped checks passed | Real merchant/user enrollment, independent custody, retained cross-restart mapping, revocation and full AP2/payment conformance remain unimplemented |
-| AWS AgentCore | Compare native controls against a proposed ATG destination adapter | Current official concepts reviewed; no AWS account, deployment or integration created | Native-only versus ATG-assisted tests of the same protected operation; evaluate Dogwood temporal controls as well as Cedar |
+| AWS AgentCore | REQUEST-interceptor contract and native Cedar interoperability | Local MCP contract adapter and actual Cedar WASM 4.14.0 exercised; 20 checks passed; no AWS account or deployment created | Managed AgentCore/Lambda payload, authenticated caller mapping, complete destination coverage and fair Dogwood/native baseline comparison |
 | Cloud Security Alliance | Evidence mapping and external governance review | Published ATF description reviewed; high-level mapping below; no certification or formal assessment | Full control-by-control mapping, deployment evidence and independent assessment; ATG cannot supply comprehensive governance by itself |
 
 These routes are different: frameworks and standards can be implemented;
 community organisations can review or accept contributions. Neither activity
 automatically establishes a partnership, certification, endorsement or buyer.
+
+## Automatic evidence and improvement review
+
+The [integration evidence collector](../experiments/improvement-loop/README.md)
+runs the fixed ACS/AP2/AWS-contract test suites on existing GitHub workflow
+events and generates source-bound reports and human-review topics. It records
+failures/blocked evidence without modifying policy or granting authority.
+The workflow retains sanitised JSON artifacts, including failure summaries.
+This provides repeatable feedback for engineering; it is not autonomous model
+learning, community participation, deployment or proof of wider acceptance.
+
+The [AWS contract experiment](../experiments/aws-agentcore-adapter/README.md)
+is a local contract/native-engine test, not a deployed AgentCore integration.
+OpenID AAuth remains a separate unimplemented protocol integration, while
+CoSAI/CSA require actual external review/participation. Existing public evidence
+does not imply that any of those organisations has accepted ATG.
 
 ## Material overlap and differentiation
 

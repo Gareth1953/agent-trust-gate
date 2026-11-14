@@ -1,0 +1,14 @@
+{
+  "name": "atg-agentcore-contract-research",
+  "version": "0.0.0",
+  "description": "Local synthetic AgentCore interceptor-contract and Cedar interoperability research",
+  "scripts": {
+    "test": "node --test adapter.test.mjs"
+  },
+  "license": "MIT",
+  "type": "commonjs",
+  "dependencies": {
+    "@cedar-policy/cedar-wasm": "4.14.0"
+  },
+  "private": true
+}

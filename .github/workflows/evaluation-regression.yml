@@ -69,7 +69,6 @@ jobs:
         run: npm run test:antirollback-anchor
       - name: Experimental ACS tool-hook subset — no conformance claim
         run: |
-          node --test experiments/acs-adapter/adapter.test.mjs experiments/acs-adapter/transport.test.mjs
           node experiments/acs-adapter/demo.mjs > "$RUNNER_TEMP/acs-walkthrough.json"
           python3 -m pip install 'jsonschema==4.26.0'
           python3 experiments/acs-adapter/validate_schemas.py "$RUNNER_TEMP/acs-walkthrough.json"
@@ -78,7 +77,21 @@ jobs:
           python3 -m venv "$RUNNER_TEMP/ap2-env"
           "$RUNNER_TEMP/ap2-env/bin/pip" install -r experiments/ap2-adapter/requirements.txt
           "$RUNNER_TEMP/ap2-env/bin/python" experiments/ap2-adapter/verify_sdk.py
-          "$RUNNER_TEMP/ap2-env/bin/python" -m pytest -q experiments/ap2-adapter/test_adapter.py
+      - name: Install pinned Cedar research engine — no AWS deployment
+        run: npm ci --ignore-scripts --prefix experiments/aws-agentcore-adapter
+      - name: Automatic integration evidence and review candidates — no policy changes
+        if: always()
+        run: |
+          python3 -m unittest discover -s experiments/improvement-loop -p 'test_*.py'
+          python3 experiments/improvement-loop/collect.py --out "$RUNNER_TEMP/atg-integration-evidence" --ap2-python "$RUNNER_TEMP/ap2-env/bin/python"
+      - name: Retain sanitised integration evidence, including failed checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atg-integration-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/atg-integration-evidence/*.json
+          if-no-files-found: warn
+          retention-days: 30
       - run: npm run demo:delegated-custody
       - name: Seven-step synthetic delegated-budget buyer walkthrough
         run: npm run demo:delegated-budget

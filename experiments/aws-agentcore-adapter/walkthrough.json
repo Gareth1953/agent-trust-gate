@@ -1,0 +1,65 @@
+{
+  "schema": "atg.agentcore-contract.synthetic.v1",
+  "cedarVersion": "4.14.0",
+  "nativeChangedAmount": "allow",
+  "changedResult": {
+    "interceptorOutputVersion": "1.0",
+    "mcp": {
+      "transformedGatewayResponse": {
+        "statusCode": 200,
+        "body": {
+          "jsonrpc": "2.0",
+          "id": "synthetic-request-1",
+          "error": {
+            "code": -32001,
+            "message": "ATG_EXACT_ACTION_MISMATCH"
+          }
+        }
+      }
+    }
+  },
+  "permitted": {
+    "interceptorOutputVersion": "1.0",
+    "mcp": {
+      "transformedGatewayRequest": {
+        "body": {
+          "jsonrpc": "2.0",
+          "id": "synthetic-request-1",
+          "method": "tools/call",
+          "params": {
+            "name": "atg.custody.synthetic-record",
+            "arguments": {
+              "tenantId": "synthetic-tenant-A",
+              "resourceId": "synthetic-order-001",
+              "expectedVersion": 1,
+              "value": "approved",
+              "payeeReference": "fixture-bank-A",
+              "amountMinorUnits": 400000,
+              "currency": "GBP"
+            }
+          }
+        }
+      }
+    }
+  },
+  "beforeSyntheticCommit": "NOT_RECORDED",
+  "committed": "EXECUTED",
+  "replay": {
+    "interceptorOutputVersion": "1.0",
+    "mcp": {
+      "transformedGatewayResponse": {
+        "statusCode": 200,
+        "body": {
+          "jsonrpc": "2.0",
+          "id": "synthetic-request-1",
+          "error": {
+            "code": -32001,
+            "message": "ATG_AUTHORITY_NOT_VERIFIED"
+          }
+        }
+      }
+    }
+  },
+  "liveAwsDeployment": false,
+  "productionReady": false
+}
